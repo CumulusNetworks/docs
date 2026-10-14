@@ -1,7 +1,7 @@
 ---
 title: Interface
 author: Cumulus Networks
-weight: 710
+weight: 580
 
 type: nojsscroll
 ---
@@ -224,6 +224,33 @@ cumulus@switch:~$ nv set interface swp1 ipv4 address 10.0.0.1/30
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set interface \<interface-id\> ipv4 gateway \<ip-address\></h>
+
+Configures the gateway IP address on the specified interface. For IPv6, run the `nv set interface <interface-id> ipv6 gateway <ip-address>` command.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, the command is `nv set interface <interface-id> ip gateway <ip-address>`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` | The interface you want to configure. |
+| `<ip-address>` | The IP address.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp1 ipv4 gateway 10.10.10.1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set interface \<interface-id\> ipv4 forward</h>
 
 Enables and disables IPv4 forwarding for the specified interface. The default setting is `disabled`.
@@ -252,12 +279,14 @@ cumulus@switch:~$ nv set interface swp1 ipv4 forward enabled
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> ipv4 gateway \<ip-address\></h>
+## <h>nv set interface \<interface-id\> ipv6 state</h>
 
-Configures the gateway IP address on the specified interface. For IPv6, run the `nv set interface <interface-id> ipv6 gateway <ip-address>` command.
+Enables and disables IPv6. The default setting is `enabled`.
 
 {{%notice note%}}
-In Cumulus Linux 5.14 and earlier, the command is `nv set interface <interface-id> ip gateway <ip-address>`.
+In Cumulus Linux 5.14 and earlier:
+- The command is `nv set interface <interface-id> ip ipv6 state`.
+- You specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
 {{%/notice%}}
 
 ### Command Syntax
@@ -265,7 +294,6 @@ In Cumulus Linux 5.14 and earlier, the command is `nv set interface <interface-i
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` | The interface you want to configure. |
-| `<ip-address>` | The IP address.|
 
 ### Version History
 
@@ -274,7 +302,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 ipv4 gateway 10.10.10.1
+cumulus@switch:~$ nv set interface swp1 ipv6 state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -303,34 +331,6 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv set interface swp1 ipv6 forward disabled
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set interface \<interface-id\> ipv6 state</h>
-
-Enables and disables IPv6. The default setting is `enabled`.
-
-{{%notice note%}}
-In Cumulus Linux 5.14 and earlier:
-- The command is `nv set interface <interface-id> ip ipv6 state`.
-- You specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
-{{%/notice%}}
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<interface-id>` | The interface you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set interface swp1 ipv6 state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -412,38 +412,6 @@ cumulus@switch:~$ nv set interface swp1 link breakout 2x lanes-per-port 2
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> link debounce down</h>
-
-Configures the link debounce down timer. You can set a value between 0 and 5000. The default value is 10 milliseconds. A value of 0 disables the timer.
-
-A flapping port can cause network instability and disruption as layer 2 and layer 3 protocols are constantly forced to reconverge and rebuild the topology with every port status change. If flapping occurs at short intervals, it can also cause a spike in CPU utilization. To enhance the stability of Ethernet port link state transitions and mitigate network disruptions resulting from port flapping, Cumulus Linux provides link debounce hold timers for link state transitions. The switch waits until the port status is stable for a configured period before notifying layer 2 and layer 3 protocols about the status change.
-
-When a link transitions down, the debounce timer starts. The switch reports the link change only after the timer expires, and the link remains in that state. If the link toggles back before the timer expires, the switch ignores the event and does not report any state change.
-
-{{%notice note%}}
-- You can configure link debounce timers on physical switch ports only.
-- The maximum debounce timer values are limited by SDK capabilities (5000ms).
-- Link debounce and link flap protection are complementary features that work at different time scales. Link debounce filters transient noise and micro-interruptions whereas link flap protection detects excessive legitimate state transitions and protects the system by placing the interface into a protodown state. If you configure both features, set the link flap protection interval to be significantly larger than the debounce timer to ensure proper coordination.
-{{%/notice%}}
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-|`<interface-id>` |  The interface you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.17.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set interface swp1 link debounce down 1000  
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set interface \<interface-id\> link debounce up</h>
 
 Configures link debounce up timer. You can set a value between 0 and 5000. The default value is 10 milliseconds. A value of 0 disables the timer.
@@ -473,6 +441,38 @@ Introduced in Cumulus Linux 5.17.0
 
 ```
 cumulus@switch:~$ nv set interface swp1 link debounce up 2000  
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set interface \<interface-id\> link debounce down</h>
+
+Configures the link debounce down timer. You can set a value between 0 and 5000. The default value is 10 milliseconds. A value of 0 disables the timer.
+
+A flapping port can cause network instability and disruption as layer 2 and layer 3 protocols are constantly forced to reconverge and rebuild the topology with every port status change. If flapping occurs at short intervals, it can also cause a spike in CPU utilization. To enhance the stability of Ethernet port link state transitions and mitigate network disruptions resulting from port flapping, Cumulus Linux provides link debounce hold timers for link state transitions. The switch waits until the port status is stable for a configured period before notifying layer 2 and layer 3 protocols about the status change.
+
+When a link transitions down, the debounce timer starts. The switch reports the link change only after the timer expires, and the link remains in that state. If the link toggles back before the timer expires, the switch ignores the event and does not report any state change.
+
+{{%notice note%}}
+- You can configure link debounce timers on physical switch ports only.
+- The maximum debounce timer values are limited by SDK capabilities (5000ms).
+- Link debounce and link flap protection are complementary features that work at different time scales. Link debounce filters transient noise and micro-interruptions whereas link flap protection detects excessive legitimate state transitions and protects the system by placing the interface into a protodown state. If you configure both features, set the link flap protection interval to be significantly larger than the debounce timer to ensure proper coordination.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp1 link debounce down 1000  
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -686,6 +686,30 @@ cumulus@switch:~$ nv set interface swp1 link state up
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set interface \<interface-id\> link-tracking group</h>
+
+Configures the target interfaces for the link tracking group.
+
+Link tracking enables you to monitor interfaces automatically and ensure traffic is steered through available redundant paths. This feature prevents traffic blackholing by dynamically managing downlink behavior based on the health of uplinks, ensuring predictable network operations, and improving overall resiliency.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp8 link-tracking group GROUP2
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set interface \<interface-id\> link tx-squelch</h>
 
 {{%notice note%}}
@@ -715,30 +739,6 @@ Introduced in Cumulus Linux 5.16.0
 
 ```
 cumulus@switch:~$ nv set interface swp1 link tx-squelch enabled 
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set interface \<interface-id\> link-tracking group</h>
-
-Configures the target interfaces for the link tracking group.
-
-Link tracking enables you to monitor interfaces automatically and ensure traffic is steered through available redundant paths. This feature prevents traffic blackholing by dynamically managing downlink behavior based on the health of uplinks, ensuring predictable network operations, and improving overall resiliency.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<interface-id>` |  The interface you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.18.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set interface swp8 link-tracking group GROUP2
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1066,6 +1066,29 @@ cumulus@switch:~$ nv set system link-tracking group GROUP1
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set system link-tracking group \<group-id\> watch-interface \<interface-id\></h>
+
+Configures the watch interfaces in the link tracking group.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<group-id>` |  The name of the link tracking group. |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system link-tracking group GROUP1 watch-interface swp17,19,21
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system link-tracking group \<group-id\> min-links</h>
 
 Configures the minimum number of watch interfaces for each group that must be operationally up to keep the associated target interfaces active.
@@ -1113,29 +1136,6 @@ Introduced in Cumulus Linux 5.18.0
 
 ```
 cumulus@switch:~$ nv set system link-tracking group GROUP2 state-change-action protodown-target-interface
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system link-tracking group \<group-id\> watch-interface \<interface-id\></h>
-
-Configures the watch interfaces in the link tracking group.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<group-id>` |  The name of the link tracking group. |
-| `<interface-id>` |  The interface you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.18.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system link-tracking group GROUP1 watch-interface swp17,19,21
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

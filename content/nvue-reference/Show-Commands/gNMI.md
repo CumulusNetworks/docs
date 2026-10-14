@@ -1,7 +1,7 @@
 ---
 title: gNMI
 author: Cumulus Networks
-weight: 280
+weight: 180
 
 type: nojsscroll
 ---

@@ -1,7 +1,7 @@
 ---
 title: System
 author: Cumulus Networks
-weight: 600
+weight: 385
 
 type: nojsscroll
 ---
@@ -162,6 +162,25 @@ polling-interval
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show system counter rates</h>
+
+Shows the load interval for the switch counters for both the logical and physical interfaces.
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system counter rates 
+               applied
+-------------  -------
+load-interval  6
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show system counter polling-interval</h>
 
 Shows the polling interval for the switch counters for both the logical and physical interfaces.
@@ -178,25 +197,6 @@ cumulus@switch:~$ nv show system counter polling-interval
 ------------------  -------
 logical-interface   0:00:05
 physical-interface  0:00:02
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system counter rates</h>
-
-Shows the load interval for the switch counters for both the logical and physical interfaces.
-
-### Version History
-
-Introduced in Cumulus Linux 5.12.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system counter rates 
-               applied
--------------  -------
-load-interval  6
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -303,6 +303,26 @@ Docker Containers
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show system docker image</h>
+
+Shows Docker images present on the switch.
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system docker image
+Image Id      Image Name                Tag     Size    Date                           Summary
+------------  ------------------------  ------  ------  -----------------------------  -------
+283e2bf92e80  docker-wjh                latest  716MB   2025-10-29 21:47:09 -0400 EDT         
+d839322a5483  cumulus-linux-apt-mirror  5.15.0  3.47GB  2025-10-30 02:35:30 -0400 EDT 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show system docker container</h>
 
 Shows all containers and their status, including stopped containers.
@@ -381,26 +401,6 @@ log-level       json-file
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system docker image</h>
-
-Shows Docker images present on the switch.
-
-### Version History
-
-Introduced in Cumulus Linux 5.15.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system docker image
-Image Id      Image Name                Tag     Size    Date                           Summary
-------------  ------------------------  ------  ------  -----------------------------  -------
-283e2bf92e80  docker-wjh                latest  716MB   2025-10-29 21:47:09 -0400 EDT         
-d839322a5483  cumulus-linux-apt-mirror  5.15.0  3.47GB  2025-10-30 02:35:30 -0400 EDT 
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv show system forwarding profile-option</h>
 
 Shows forwarding profile information.
@@ -449,27 +449,6 @@ reserved
     l3-vni-vlan                                      
       begin      4000               4000             
       end        4064               4064
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system global </h>
-
-Shows if the `svi-force-up` option is set to `on` for all SVIs on the switch.
-
-The first time you configure a switch, all southbound bridge ports are down; therefore, by default, all SVIs are also down. You can force all SVIs to always be UP with the `nv set system global svi-force-up enable on` option, which is beneficial if you want to perform connectivity testing.
-
-### Version History
-
-Introduced in Cumulus Linux 5.8.0
-
-### Example
-
-```
-nv show system global svi-force-up
-       operational  applied
-------  -----------  -------
-enable  on           on
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -581,6 +560,27 @@ cumulus@switch:~$ nv show system global reserved vlan l3-vni-vlan
 -----  -----------  -------
 begin  4000         4000   
 end    4064         4064
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system global </h>
+
+Shows if the `svi-force-up` option is set to `on` for all SVIs on the switch.
+
+The first time you configure a switch, all southbound bridge ports are down; therefore, by default, all SVIs are also down. You can force all SVIs to always be UP with the `nv set system global svi-force-up enable on` option, which is beneficial if you want to perform connectivity testing.
+
+### Version History
+
+Introduced in Cumulus Linux 5.8.0
+
+### Example
+
+```
+nv show system global svi-force-up
+       operational  applied
+------  -----------  -------
+enable  on           on
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

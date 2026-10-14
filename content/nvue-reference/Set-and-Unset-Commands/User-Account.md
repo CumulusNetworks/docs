@@ -1,7 +1,7 @@
 ---
 title: User Account
 author: Cumulus Networks
-weight: 1070
+weight: 790
 
 type: nojsscroll
 ---
@@ -11,54 +11,6 @@ h { color: RGB(118,185,0)}
 {{%notice note%}}
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system aaa aa restrictions lockout-reattempt</h>
-
-Configures the default user authentication reattempt timer (the number of seconds after which the user can retry authentication). You can specify a value between 0 and 99999. The default value is 15 seconds.
-
-### Version History
-
-Introduced in Cumulus Linux 5.15.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system aaa authentication restrictions lockout-reattempt 5
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system aaa authentication restrictions fail-delay</h>
-
-Extends the reattempt timer after each failed login. You can set a value between 0 and 999. By default, the failure delay is disabled (set to 0 seconds).
-
-### Version History
-
-Introduced in Cumulus Linux 5.15.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system aaa authentication restrictions fail-delay 5
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system aaa authentication restrictions lockout-attempts</h>
-
-Configures the maximum number of failed login attempts allowed before the switch locks a user out. You can specify a value between 3 and 999. The default value is 5.
-
-### Version History
-
-Introduced in Cumulus Linux 5.15.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system aaa authentication restrictions lockout-attempts 10
-```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -80,6 +32,54 @@ Introduced in Cumulus Linux 5.15.0
 
 ```
 cumulus@switch:~$ nv set system aaa authentication restrictions lockout-state disabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system aaa authentication restrictions lockout-attempts</h>
+
+Configures the maximum number of failed login attempts allowed before the switch locks a user out. You can specify a value between 3 and 999. The default value is 5.
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system aaa authentication restrictions lockout-attempts 10
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system aaa authentication restrictions fail-delay</h>
+
+Extends the reattempt timer after each failed login. You can set a value between 0 and 999. By default, the failure delay is disabled (set to 0 seconds).
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system aaa authentication restrictions fail-delay 5
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system aaa aa restrictions lockout-reattempt</h>
+
+Configures the default user authentication reattempt timer (the number of seconds after which the user can retry authentication). You can specify a value between 0 and 99999. The default value is 15 seconds.
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system aaa authentication restrictions lockout-reattempt 5
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

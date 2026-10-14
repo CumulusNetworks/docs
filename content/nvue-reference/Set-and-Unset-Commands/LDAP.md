@@ -1,7 +1,7 @@
 ---
 title: LDAP
 author: Cumulus Networks
-weight: 720
+weight: 585
 
 type: nojsscroll
 ---
@@ -96,70 +96,6 @@ cumulus@switch:~$ nv set system aaa ldap hostname ldapserver2 priority 2
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system aaa ldap port</h>
-
-Configures the port number of the LDAP server if you are using a non-default port. The default port number for LDAP is TCP and UDP port 389.
-
-### Version History
-
-Introduced in Cumulus Linux 5.11.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system aaa ldap port 388
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system aaa ldap referrals</h>
-
-Enables or disables LDAP referrals, which allow a directory tree to be partitioned and distributed between multiple LDAP servers.
-
-### Version History
-
-Introduced in Cumulus Linux 5.11.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system aaa ldap referrals enabled
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system aaa ldap scope</h>
-
-Configures the search scope to one level to limit the level of the search to users directly under the base DN or to subtree to search for users in all branches under the base DN. The default setting is subtree.
-
-### Version History
-
-Introduced in Cumulus Linux 5.12.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system aaa ldap scope one-level
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system aaa ldap secret</h>
-
-Configures the LDAP secret.
-
-### Version History
-
-Introduced in Cumulus Linux 5.11.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system aaa ldap secret 1Q2w3e4r!
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set system aaa ldap server \<server-id\></h>
 
 Configures the host name or IP address of the LDAP server from which you want to import users. If you use multiple LDAP servers, you can also set a priority for each server.
@@ -208,6 +144,54 @@ Introduced in Cumulus Linux 5.12.0
 
 ```
 cumulus@switch:~$ nv set system aaa ldap server ldapserver2 priority 2
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system aaa ldap port</h>
+
+Configures the port number of the LDAP server if you are using a non-default port. The default port number for LDAP is TCP and UDP port 389.
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system aaa ldap port 388
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system aaa ldap referrals</h>
+
+Enables or disables LDAP referrals, which allow a directory tree to be partitioned and distributed between multiple LDAP servers.
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system aaa ldap referrals enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system aaa ldap secret</h>
+
+Configures the LDAP secret.
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system aaa ldap secret 1Q2w3e4r!
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -316,6 +300,22 @@ Introduced in Cumulus Linux 5.11.0
 
 ```
 cumulus@switch:~$ nv set system aaa ldap ssl port 8443
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system aaa ldap scope</h>
+
+Configures the search scope to one level to limit the level of the search to users directly under the base DN or to subtree to search for users in all branches under the base DN. The default setting is subtree.
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system aaa ldap scope one-level
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

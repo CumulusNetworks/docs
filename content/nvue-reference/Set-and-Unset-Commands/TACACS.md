@@ -1,7 +1,7 @@
 ---
 title: TACACS
 author: Cumulus Networks
-weight: 1050
+weight: 780
 
 type: nojsscroll
 ---
@@ -11,48 +11,6 @@ h { color: RGB(118,185,0)}
 {{%notice note%}}
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system aaa authentication-order \<priority-id\></h>
-
-Configures the authentication order so that either TACACS+ or local authentication has priority (the lower number has priority). You can specify a value of `tacacs` or `local`.
-
-{{%notice note%}}
-Cumulus Linux 5.12 and later does not provide this command.
-{{%/notice%}}
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<user-id>`  |  The user account. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.4.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system aaa authentication-order 1 tacacs
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system aaa tacacs accounting send-records</h>
-
-Configures Cumulus Linux to send accounting records to all servers (`all`) or to the server that is first to respond (`first-response`). By default, Cumulus Linux sends accounting records to all servers.
-
-### Version History
-
-Introduced in Cumulus Linux 5.4.0 (Beta)
-
-### Example
-
-```
-cumulus@switch:~$ nv set system aaa tacacs accounting send-records first-response
-```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -78,6 +36,22 @@ cumulus@switch:~$ nv set system aaa tacacs accounting state enabled
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set system aaa tacacs accounting send-records</h>
+
+Configures Cumulus Linux to send accounting records to all servers (`all`) or to the server that is first to respond (`first-response`). By default, Cumulus Linux sends accounting records to all servers.
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0 (Beta)
+
+### Example
+
+```
+cumulus@switch:~$ nv set system aaa tacacs accounting send-records first-response
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system aaa tacacs authentication mode</h>
 
 Configures the TACACS+ authentication mode. You can specify `pap` to send clear text between the user and the server, `chap` to establish a PPP connection between the user and the server, or `login`. The default is `pap`.
@@ -90,6 +64,32 @@ Introduced in Cumulus Linux 5.4.0 (Beta)
 
 ```
 cumulus@switch:~$ nv set system aaa tacacs authentication mode chap
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system aaa authentication-order \<priority-id\></h>
+
+Configures the authentication order so that either TACACS+ or local authentication has priority (the lower number has priority). You can specify a value of `tacacs` or `local`.
+
+{{%notice note%}}
+Cumulus Linux 5.12 and later does not provide this command.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<user-id>`  |  The user account. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system aaa authentication-order 1 tacacs
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -362,32 +362,6 @@ cumulus@switch:~$ nv set system aaa tacacs server 192.168.0.30 port 32
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system aaa tacacs server \<server-id\> prefer-ip-version 6</h>
-
-Configures the TACACS server to use IPv6.
-
-{{%notice note%}}
-Cumulus Linux 5.11 and earlier uses `nv set system aaa tacacs server <priority-id> prefer-ip-version 6`.
-{{%/notice%}}
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<server-id>`  |  The TACACS server IP address or hostname. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.12.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system aaa tacacs server SERVER1 prefer-ip-version 6 
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set system aaa tacacs server \<server-id\> priority \<priority-id\></h>
 
 Configures the TACACS server priority number. You must set a priority even if you only specify one server.
@@ -438,6 +412,32 @@ Introduced in Cumulus Linux 5.12.0
 
 ```
 cumulus@switch:~$ nv set system aaa tacacs server 192.168.0.30 secret abcdefghijklmnopqrstuvwxyz
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system aaa tacacs server \<server-id\> prefer-ip-version 6</h>
+
+Configures the TACACS server to use IPv6.
+
+{{%notice note%}}
+Cumulus Linux 5.11 and earlier uses `nv set system aaa tacacs server <priority-id> prefer-ip-version 6`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<server-id>`  |  The TACACS server IP address or hostname. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.12.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system aaa tacacs server SERVER1 prefer-ip-version 6 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

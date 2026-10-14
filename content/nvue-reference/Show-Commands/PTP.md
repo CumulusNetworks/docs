@@ -1,7 +1,7 @@
 ---
 title: PTP
 author: Cumulus Networks
-weight: 470
+weight: 310
 
 type: nojsscroll
 ---
@@ -282,33 +282,6 @@ alt-priority  255          255
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service ptp \<instance-id\> clock-quality</h>
-
-Shows the clock quality status, such as accuracy, class and the offset scaled log variance, for the specified PTP instance.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<instance-id>`  | The PTP instance number.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show service ptp 1 clock-quality
-                            operational  applied
---------------------------  -----------  -------
-clock-accuracy              254                 
-clock-class                 248                 
-offset-scaled-log-variance  65535
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv show service ptp \<instance-id\> counters</h>
 
 Shows all PTP counters, such as the number of received and transmitted announce, sync, followup, and delay request and response packets.
@@ -366,6 +339,33 @@ cumulus@switch:~$ nv show service ptp 1 current
 mean-path-delay     0                   
 offset-from-master  0                   
 steps-removed       0
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show service ptp \<instance-id\> clock-quality</h>
+
+Shows the clock quality status, such as accuracy, class and the offset scaled log variance, for the specified PTP instance.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<instance-id>`  | The PTP instance number.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show service ptp 1 clock-quality
+                            operational  applied
+--------------------------  -----------  -------
+clock-accuracy              254                 
+clock-class                 248                 
+offset-scaled-log-variance  65535
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

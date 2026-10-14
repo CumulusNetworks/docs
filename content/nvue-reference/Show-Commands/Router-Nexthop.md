@@ -1,7 +1,7 @@
 ---
 title: Router Nexthop
 author: Cumulus Networks
-weight: 510
+weight: 340
 
 type: nojsscroll
 ---
@@ -328,35 +328,6 @@ Dependents
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show router nexthop rib \<nhg-id\> dependents</h>
-
-Shows information about the next hop dependents on which a specific next hop relies.
-
-{{%notice note%}}
-Cumulus Linux 5.11 and later no longer provides this command.
-{{%/notice%}}
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<nhg-id>` | The next hop group ID. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.4.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show router nexthop rib 56 dependents  
-Nexthop-group 
-------------- 
-55   
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv show router nexthop rib \<nhg-id\> depends</h>
 
 Shows information about the next hops on which a specific next hop relies.
@@ -383,6 +354,35 @@ Nexthop-group
 ------------- 
 56
 57
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show router nexthop rib \<nhg-id\> dependents</h>
+
+Shows information about the next hop dependents on which a specific next hop relies.
+
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<nhg-id>` | The next hop group ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show router nexthop rib 56 dependents  
+Nexthop-group 
+------------- 
+55   
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

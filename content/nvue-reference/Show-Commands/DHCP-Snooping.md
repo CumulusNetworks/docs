@@ -1,7 +1,7 @@
 ---
 title: DHCP Snooping
 author: Cumulus Networks
-weight: 230
+weight: 154
 
 type: nojsscroll
 ---
@@ -101,53 +101,6 @@ No Data
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show bridge domain \<domain-id\> dhcp-snoop vlan \<vid\> bind</h>
-
-Shows IPv4 DHCP bind port information.
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<domain-id>` | The bridge name. |
-| `<vlan-id>` | The VLAN name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.11.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show bridge domain br_default dhcp-snoop vlan 10 bind
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show bridge domain \<domain-id\> dhcp-snoop vlan \<vid\> bind \<interface-id\></h>
-
-Shows IPv4 DHCP bind information for a specific port.
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<domain-id>` | The bridge name. |
-| `<vlan-id>` | The VLAN name. |
-| `<interface-id>` | The interface name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.11.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show bridge domain br_default dhcp-snoop vlan 10 bind swp6
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv show bridge domain \<domain-id\> dhcp-snoop vlan \<vid\> trust</h>
 
 Shows the trusted ports for a VLAN.
@@ -200,6 +153,53 @@ IP    : 20.0.0.1
 Mac   : 00:02:00:00:00:04 
 Lease : 7200    
 State : ACK  
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show bridge domain \<domain-id\> dhcp-snoop vlan \<vid\> bind</h>
+
+Shows IPv4 DHCP bind port information.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<domain-id>` | The bridge name. |
+| `<vlan-id>` | The VLAN name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show bridge domain br_default dhcp-snoop vlan 10 bind
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show bridge domain \<domain-id\> dhcp-snoop vlan \<vid\> bind \<interface-id\></h>
+
+Shows IPv4 DHCP bind information for a specific port.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<domain-id>` | The bridge name. |
+| `<vlan-id>` | The VLAN name. |
+| `<interface-id>` | The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show bridge domain br_default dhcp-snoop vlan 10 bind swp6
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -280,53 +280,6 @@ No Data
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show bridge domain \<domain-id\> dhcp-snoop6 vlan \<vid\> bind</h>
-
-Shows IPv6 DHCP bind information.
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<domain-id>` | The bridge name. |
-| `<vlan-id>` | The VLAN name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.11.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show bridge domain br_default dhcp-snoop6 vlan 10 bind
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show bridge domain \<domain-id\> dhcp-snoop6 vlan \<vid\> bind \<interface-id\></h>
-
-Shows IPv6 DHCP bind information for a specific port.
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<domain-id>` | The bridge name. |
-| `<vlan-id>` | The VLAN name. |
-| `<interface-id>` | The interface name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.11.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show bridge domain br_default dhcp-snoop6 vlan 10 bind swp6
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv show bridge domain \<domain-id\> dhcp-snoop6 vlan \<vid\> trust</h>
 
 Shows information in the IPv6 DHCP snooping table for trusted ports.
@@ -370,4 +323,51 @@ Introduced in Cumulus Linux 5.11.0
 
 ```
 cumulus@switch:~$ nv show bridge domain br_default dhcp-snoop6 vlan 10 trust swp6
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show bridge domain \<domain-id\> dhcp-snoop6 vlan \<vid\> bind</h>
+
+Shows IPv6 DHCP bind information.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<domain-id>` | The bridge name. |
+| `<vlan-id>` | The VLAN name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show bridge domain br_default dhcp-snoop6 vlan 10 bind
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show bridge domain \<domain-id\> dhcp-snoop6 vlan \<vid\> bind \<interface-id\></h>
+
+Shows IPv6 DHCP bind information for a specific port.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<domain-id>` | The bridge name. |
+| `<vlan-id>` | The VLAN name. |
+| `<interface-id>` | The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show bridge domain br_default dhcp-snoop6 vlan 10 bind swp6
 ```

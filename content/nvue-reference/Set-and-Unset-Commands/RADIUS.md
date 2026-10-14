@@ -1,7 +1,7 @@
 ---
 title: RADIUS
 author: Cumulus Networks
-weight: 890
+weight: 695
 
 type: nojsscroll
 ---
@@ -126,28 +126,6 @@ cumulus@switch:~$ nv set system aaa radius enable on
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system aaa radius nas-identifier \<identifier\></h>
-
-Configures the NAS (Network Access Server) identifier that the switch sends in RADIUS requests. The NAS identifier is a global setting that overrides the source IP address set for each RADIUS server.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<identifier>` |  The NAS identifier. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.18.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system aaa radius nas-identifier AB-123
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set system aaa radius nas-ip-address \<ipv4-address\></h>
 
 Configures the NAS (Network Access Server) IPv4 address that the switch sends in RADIUS requests.
@@ -196,6 +174,28 @@ cumulus@switch:~$ nv set system aaa radius nas-ip-address 2001:DB8::1
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set system aaa radius nas-identifier \<identifier\></h>
+
+Configures the NAS (Network Access Server) identifier that the switch sends in RADIUS requests. The NAS identifier is a global setting that overrides the source IP address set for each RADIUS server.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<identifier>` |  The NAS identifier. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system aaa radius nas-identifier AB-123
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system aaa radius port</h>
 
 Configures the port you want to use for all RADIUS communication. You can specify a value between 0 and 65535. The default value is 1812.
@@ -218,22 +218,6 @@ cumulus@switch:~$ nv set system aaa radius privilege-level 10
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system aaa radius require-message-authenticator</h>
-
-Requires authentication packets to have the Message-Authenticator mode attribute; the switch discards as Access-Reject all packets that do not have the Message-Authenticator attribute. You can specify `enabled` or `disabled`.
-
-### Version History
-
-Introduced in Cumulus Linux 5.13.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system aaa radius require-message-authenticator enabled
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set system aaa radius retransmit</h>
 
 Configures the maximum number of retransmission attempts allowed for requests when a RADIUS authentication request times out. This is a global option only; you cannot set the number of retransmission attempts for specific RADIUS servers.
@@ -246,6 +230,22 @@ Introduced in Cumulus Linux 5.7.0
 
 ```
 cumulus@switch:~$ nv set system aaa radius retransmit 8
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system aaa radius require-message-authenticator</h>
+
+Requires authentication packets to have the Message-Authenticator mode attribute; the switch discards as Access-Reject all packets that do not have the Message-Authenticator attribute. You can specify `enabled` or `disabled`.
+
+### Version History
+
+Introduced in Cumulus Linux 5.13.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system aaa radius require-message-authenticator enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

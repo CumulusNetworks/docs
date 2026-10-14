@@ -1,7 +1,7 @@
 ---
 title: Static Routing
 author: Cumulus Networks
-weight: 570
+weight: 370
 
 type: nojsscroll
 ---

@@ -1,7 +1,7 @@
 ---
 title: gNMI
 author: Cumulus Networks
-weight: 690
+weight: 567
 
 type: nojsscroll
 ---
@@ -11,50 +11,6 @@ h { color: RGB(118,185,0)}
 {{%notice note%}}
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system gnmi-server certificate \<cert-id\></h>
-
-Binds the certificate to the gNMI server when you configure the gRPC tunnel client package.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<cert-id>` |  The certificate ID. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.13.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system gnmi-server certificate CERT1
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system gnmi-server listening-address \<address\></h>
-
-Sets the listening address for the gNMI server.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<address>` |  The gNMI server listening address. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.13.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system gnmi-server listening-address localhost
-```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -98,6 +54,50 @@ Introduced in Cumulus Linux 5.13.0
 
 ```
 cumulus@switch:~$ nv set system gnmi-server mtls crl abcdefghijklmnop
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system gnmi-server certificate \<cert-id\></h>
+
+Binds the certificate to the gNMI server when you configure the gRPC tunnel client package.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<cert-id>` |  The certificate ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.13.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system gnmi-server certificate CERT1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system gnmi-server listening-address \<address\></h>
+
+Sets the listening address for the gNMI server.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<address>` |  The gNMI server listening address. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.13.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system gnmi-server listening-address localhost
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -163,28 +163,6 @@ cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 address 10.1.1.10
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system grpc-tunnel server \<server-id\> certificate self-signed</h>
-
-Configures the self-signed certificate you want to use for the gRPC tunnel server.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<server-id>` |  The gRPC tunnel server ID. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.13.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 certificate self-signed
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set system grpc-tunnel server \<server\> ca-certificate \<ca-cert-id\></h>
 
 Sets the CA certificate you want to use for the gRPC tunnel server.
@@ -204,6 +182,28 @@ Introduced in Cumulus Linux 5.13.0
 
 ```
 cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 ca-certificate CERT1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system grpc-tunnel server \<server-id\> certificate self-signed</h>
+
+Configures the self-signed certificate you want to use for the gRPC tunnel server.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<server-id>` |  The gRPC tunnel server ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.13.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 certificate self-signed
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -252,28 +252,6 @@ cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 retry-interval 20
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system grpc-tunnel server \<server\> state</h>
-
-Enables and disables the gRPC tunnel server.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<server-id>` |  The gRPC tunnel server ID. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.13.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 state enabled
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set system grpc-tunnel server \<server\> target-name \<target-name\></h>
 
 Configures the target name for the gRPC tunnel server to which you want to connect.
@@ -316,4 +294,26 @@ Introduced in Cumulus Linux 5.13.0
 
 ```
 cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 target-type gnmi-gnoi
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system grpc-tunnel server \<server\> state</h>
+
+Enables and disables the gRPC tunnel server.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<server-id>` |  The gRPC tunnel server ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.13.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 state enabled
 ```

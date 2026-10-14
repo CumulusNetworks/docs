@@ -1,7 +1,7 @@
 ---
 title: LDAP
 author: Cumulus Networks
-weight: 310
+weight: 195
 
 type: nojsscroll
 ---

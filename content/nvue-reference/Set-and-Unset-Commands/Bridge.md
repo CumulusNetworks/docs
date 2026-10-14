@@ -1,7 +1,7 @@
 ---
 title: Bridge
 author: Cumulus Networks
-weight: 590
+weight: 530
 
 type: nojsscroll
 ---
@@ -121,16 +121,9 @@ cumulus@switch:~$ nv set bridge domain br_default arp-inspection vlan 10 interfa
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set bridge domain \<domain-id\> arp-inspection vlan \<vlan-id\> state</h>
+## <h>nv set bridge domain \<domain-id\> arp-inspection vlan \<vlan-id\> static-binding \<static-binding-id\> mac \<mac-address\></h>
 
-Enables and disables dynamic ARP inspection for a bridge VLAN.
-
-Dynamic ARP Inspection protects against ARP spoofing and ARP poisoning attacks by validating ARP packets on untrusted bridge ports against trusted IP-to-MAC bindings, and drops packets that do not match. Bindings come from the DHCP snooping table and from static bindings you configure. On an untrusted port, the switch permits an ARP packet only when its Ethernet source MAC, ARP sender MAC, ARP sender IP address, and ingress port all match a binding.
-
-The switch does not inspect ports you list as ARP Inspection trusted interfaces. This list is independent of the DHCP snooping trust configuration; a DHCP snooping trusted uplink is still ARP inspected unless it is also an ARP Inspection trusted interface.
-
-- Before you enable dynamic ARP inspection on a bridge VLAN, you must configure DHCP snooping for the VLAN.
-- Dynamic ARP inspection inspects IPv4 ARP only, on untrusted ports, in single bridge mode.
+Configures the MAC address for static MAC to IP and port bindings for hosts not using DHCP.
 
 ### Command Syntax
 
@@ -138,6 +131,8 @@ The switch does not inspect ports you list as ARP Inspection trusted interfaces.
 | ---------  | -------------- |
 | `<domain-id>` |  The bridge name. |
 | `<vlan-id>` |  The VLAN ID. |
+| `<static-binding-id>` |  The static binding. |
+| `<mac-address>` |  The MAC address. |
 
 ### Version History
 
@@ -146,7 +141,7 @@ Introduced in Cumulus Linux 5.18.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set bridge domain br_default arp-inspection vlan 10 state enabled
+cumulus@switch:~$ nv set bridge domain br_default arp-inspection vlan 10 static-binding server1 mac 00:02:00:00:00:05
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -176,31 +171,6 @@ cumulus@switch:~$ nv set bridge domain br_default arp-inspection vlan 10 static-
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set bridge domain \<domain-id\> arp-inspection vlan \<vlan-id\> static-binding \<static-binding-id\> mac \<mac-address\></h>
-
-Configures the MAC address for static MAC to IP and port bindings for hosts not using DHCP.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<domain-id>` |  The bridge name. |
-| `<vlan-id>` |  The VLAN ID. |
-| `<static-binding-id>` |  The static binding. |
-| `<mac-address>` |  The MAC address. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.18.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set bridge domain br_default arp-inspection vlan 10 static-binding server1 mac 00:02:00:00:00:05
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set bridge domain \<domain-id\> arp-inspection vlan \<vlan-id\> static-binding \<static-binding-id\> port \<interface-id\></h>
 
 Configures the port for static MAC to IP and port bindings for hosts not using DHCP.
@@ -222,6 +192,36 @@ Introduced in Cumulus Linux 5.18.0
 
 ```
 cumulus@switch:~$ nv set bridge domain br_default arp-inspection vlan 10 static-binding server1 port swp2
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set bridge domain \<domain-id\> arp-inspection vlan \<vlan-id\> state</h>
+
+Enables and disables dynamic ARP inspection for a bridge VLAN.
+
+Dynamic ARP Inspection protects against ARP spoofing and ARP poisoning attacks by validating ARP packets on untrusted bridge ports against trusted IP-to-MAC bindings, and drops packets that do not match. Bindings come from the DHCP snooping table and from static bindings you configure. On an untrusted port, the switch permits an ARP packet only when its Ethernet source MAC, ARP sender MAC, ARP sender IP address, and ingress port all match a binding.
+
+The switch does not inspect ports you list as ARP Inspection trusted interfaces. This list is independent of the DHCP snooping trust configuration; a DHCP snooping trusted uplink is still ARP inspected unless it is also an ARP Inspection trusted interface.
+
+- Before you enable dynamic ARP inspection on a bridge VLAN, you must configure DHCP snooping for the VLAN.
+- Dynamic ARP inspection inspects IPv4 ARP only, on untrusted ports, in single bridge mode.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<domain-id>` |  The bridge name. |
+| `<vlan-id>` |  The VLAN ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set bridge domain br_default arp-inspection vlan 10 state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -376,6 +376,32 @@ Configures IGMP and MLD snooping to prevent hosts on a local network from receiv
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set bridge domain \<domain-id\> multicast snooping state</h>
+
+Enables and disables IGMP and MLD snooping. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<domain-id>` |  The bridge name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set bridge domain br_default multicast snooping state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set bridge domain \<domain-id\> multicast snooping querier state</h>
 
 Enables and disables the IGMP and MLD multicast querier. The default setting is `disabled`.
@@ -400,32 +426,6 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv set bridge domain br_default multicast snooping querier state enabled
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set bridge domain \<domain-id\> multicast snooping state</h>
-
-Enables and disables IGMP and MLD snooping. The default setting is `disabled`.
-
-{{%notice note%}}
-In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
-{{%/notice%}}
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-|`<domain-id>` |  The bridge name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set bridge domain br_default multicast snooping state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -543,29 +543,6 @@ cumulus@switch:~$ nv set bridge domain br_default stp vlan 10 bridge-priority 40
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set bridge domain \<domain-id\> stp vlan \<vid\> forward-delay</h>
-
-Configures the forward delay for a VLAN when in PVRST mode. The forward delay sets the delay before changing the spanning tree state from blocking to forwarding. You can set a value between 4 and 30 seconds.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-|`<domain-id>` |  The bridge name. |
-| `<vlan-id>`   |  The VLAN name.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.6.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set bridge domain br_default stp vlan 10 forward-delay 4 
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set bridge domain \<domain-id\> stp vlan \<vid\> hello-time</h>
 
 Configures the hello timer for a VLAN when in PVRST mode. The hello timer sets how often to broadcast hello messages to other switches. You can set a value between 1 and 10 seconds.
@@ -585,6 +562,29 @@ Introduced in Cumulus Linux 5.6.0
 
 ```
 cumulus@switch:~$ nv set bridge domain br_default stp vlan 10 hello-time 4 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set bridge domain \<domain-id\> stp vlan \<vid\> forward-delay</h>
+
+Configures the forward delay for a VLAN when in PVRST mode. The forward delay sets the delay before changing the spanning tree state from blocking to forwarding. You can set a value between 4 and 30 seconds.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<domain-id>` |  The bridge name. |
+| `<vlan-id>`   |  The VLAN name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set bridge domain br_default stp vlan 10 forward-delay 4 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -707,29 +707,6 @@ cumulus@switch:~$ nv set bridge domain br_default vlan 10
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set bridge domain \<domain-id\> vlan \<vid\> multicast snooping querier source-ip \<source-ip\></h>
-
-Configures the source IP address you want to use to send IGMP MLD queries.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<domain-id>` | The bridge name. |
-| `<vlan-id>`   |  The VLAN name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set bridge domain br_default vlan vlan10 multicast snooping querier source-ip 10.10.10.1
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set bridge domain \<domain-id\> vlan \<vid\> ptp state</h>
 
 Enables and disables PTP for the specified VLAN. The default setting is `disabled`.
@@ -777,6 +754,34 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv set bridge domain br_default vlan 10 vni 10
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set bridge domain \<domain-id\> vlan \<vid\> vni \<vni-id\> flooding state</h>
+
+Enables <span class="a-tooltip">[BUM](## "Broadcast, unknown-unicast and multicast")</span> traffic handling for the specified VNI.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<domain-id>` | The bridge name. |
+| `<vlan-id>`   |  The VLAN name. |
+| `<vni-id>` | The VXLAN name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set bridge domain br_default vlan 10 vni 10 flooding state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -831,34 +836,6 @@ cumulus@switch:~$ nv set bridge domain br_default vlan 10 vni 10 flooding multic
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set bridge domain \<domain-id\> vlan \<vid\> vni \<vni-id\> flooding state</h>
-
-Enables <span class="a-tooltip">[BUM](## "Broadcast, unknown-unicast and multicast")</span> traffic handling for the specified VNI.
-
-{{%notice note%}}
-In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
-{{%/notice%}}
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<domain-id>` | The bridge name. |
-| `<vlan-id>`   |  The VLAN name. |
-| `<vni-id>` | The VXLAN name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set bridge domain br_default vlan 10 vni 10 flooding state enabled
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set bridge domain \<domain-id\> vlan \<vid\> vni \<vni-id\> mac-learning</h>
 
 Enables and disables MAC learning for the VNI. The default setting is `disabled`.
@@ -883,6 +860,29 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv set bridge domain br_default vlan 10 vni 10 mac-learning enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set bridge domain \<domain-id\> vlan \<vid\> multicast snooping querier source-ip \<source-ip\></h>
+
+Configures the source IP address you want to use to send IGMP MLD queries.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<domain-id>` | The bridge name. |
+| `<vlan-id>`   |  The VLAN name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set bridge domain br_default vlan vlan10 multicast snooping querier source-ip 10.10.10.1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1119,31 +1119,6 @@ cumulus@switch:~$ nv set interface swp1 bridge domain default stp network enable
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> bridge domain \<domain-id\> stp path-cost</h>
-
-Configures the path cost for an interface in the bridge to influence the spanning tree forwarding path. You can specify a value between 1 and 200000000.
-
-For PVRST mode, the port cost for a VLAN takes precedence over the cost for a port. If you do not configure the port cost for a VLAN, Cumulus Linux applies the port cost to all the interfaces in the VLAN. If you do not configure either the port cost for a VLAN or the cost for a port, Cumulus Linux bases the port cost on the link speed.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<interface-id>` |  The interface you want to configure. |
-| `<domain-id>` |  The bridge name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.6.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set interface swp1 bridge domain default stp path-cost 4000
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set interface \<interface-id\> bridge domain \<domain-id\> stp restrrole</h>
 
 Enables and disables STP restricted role for the bridged port.
@@ -1167,6 +1142,30 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv set interface swp1 bridge domain default stp restrrole enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set interface \<interface-id\> bridge domain \<domain-id\> stp vlan \<vid\> priority</h>
+
+Configures the interface port priority for a VLAN. You can specify a priority between 0 and 240; the value must be a multiple of 16.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+| `<domain-id>` |  The bridge name. |
+| `<vlan-id>` | The VLAN name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp1 bridge domain default stp vlan 10 priority 240
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1195,9 +1194,11 @@ cumulus@switch:~$ nv set interface swp1 bridge domain default stp vlan 10 path-c
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> bridge domain \<domain-id\> stp vlan \<vid\> priority</h>
+## <h>nv set interface \<interface-id\> bridge domain \<domain-id\> stp path-cost</h>
 
-Configures the interface port priority for a VLAN. You can specify a priority between 0 and 240; the value must be a multiple of 16.
+Configures the path cost for an interface in the bridge to influence the spanning tree forwarding path. You can specify a value between 1 and 200000000.
+
+For PVRST mode, the port cost for a VLAN takes precedence over the cost for a port. If you do not configure the port cost for a VLAN, Cumulus Linux applies the port cost to all the interfaces in the VLAN. If you do not configure either the port cost for a VLAN or the cost for a port, Cumulus Linux bases the port cost on the link speed.
 
 ### Command Syntax
 
@@ -1205,7 +1206,6 @@ Configures the interface port priority for a VLAN. You can specify a priority be
 | ---------  | -------------- |
 | `<interface-id>` |  The interface you want to configure. |
 | `<domain-id>` |  The bridge name. |
-| `<vlan-id>` | The VLAN name. |
 
 ### Version History
 
@@ -1214,7 +1214,7 @@ Introduced in Cumulus Linux 5.6.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 bridge domain default stp vlan 10 priority 240
+cumulus@switch:~$ nv set interface swp1 bridge domain default stp path-cost 4000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

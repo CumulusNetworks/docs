@@ -1,7 +1,7 @@
 ---
 title: SSH Server
 author: Cumulus Networks
-weight: 560
+weight: 365
 type: nojsscroll
 ---
 <style>

@@ -1,7 +1,7 @@
 ---
 title: DHCP Relay
 author: Cumulus Networks
-weight: 210
+weight: 150
 
 type: nojsscroll
 ---

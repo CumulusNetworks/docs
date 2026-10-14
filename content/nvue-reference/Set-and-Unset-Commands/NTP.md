@@ -1,7 +1,7 @@
 ---
 title: NTP
 author: Cumulus Networks
-weight: 770
+weight: 620
 
 type: nojsscroll
 ---
@@ -14,29 +14,28 @@ The `nv unset` commands remove the configuration you set with the equivalent `nv
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set service ntp \<vrf-id\> pool \<server-id\></h>
+## <h>nv set system ntp vrf \<vrf-id\></h>
 
-Configures the remote NTP server pool.
+Configures the Network Time Protocol (NTP) in a specific VRF. The default VRF is `default`.
 
 {{%notice note%}}
-Cumulus Linux 5.15 and later no longer supports this command.
+In Cumulus Linux 5.14 and earlier, this command is `nv set service ntp <vrf-id>`.
 {{%/notice%}}
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<vrf-id>` |   The VRF you want to configure. |
-| `<server-id>` |  The NTP server pool. |
+| `<vrf-id>` |  The VRF you want to configure. |
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.15.0
 
 ### Example
 
 ```
-cumulus@switch:~$ nv set service ntp default pool 4.cumulusnetworks.pool.ntp.org
+cumulus@switch:~$ nv set system ntp vrf default
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -63,6 +62,33 @@ Introduced in Cumulus Linux 5.15.0
 
 ```
 cumulus@switch:~$ nv set system ntp listen swp10
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set service ntp \<vrf-id\> pool \<server-id\></h>
+
+Configures the remote NTP server pool.
+
+{{%notice note%}}
+Cumulus Linux 5.15 and later no longer supports this command.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<server-id>` |  The NTP server pool. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service ntp default pool 4.cumulusnetworks.pool.ntp.org
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -197,32 +223,6 @@ Introduced in Cumulus Linux 5.15.0
 
 ```
 cumulus@switch:~$ nv set system ntp state disabled
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system ntp vrf \<vrf-id\></h>
-
-Configures the Network Time Protocol (NTP) in a specific VRF. The default VRF is `default`.
-
-{{%notice note%}}
-In Cumulus Linux 5.14 and earlier, this command is `nv set service ntp <vrf-id>`.
-{{%/notice%}}
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<vrf-id>` |  The VRF you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.15.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system ntp vrf default
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

@@ -1,7 +1,7 @@
 ---
 title: sFlow
 author: Cumulus Networks
-weight: 540
+weight: 355
 
 type: nojsscroll
 ---
@@ -51,26 +51,6 @@ policer
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system sflow agent</h>
-
-Shows sFlow agent configuration.
-
-### Version History
-
-Introduced in Cumulus Linux 5.11.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system sflow agent
-           operational  applied   
----------  -----------  ----------
-ip                      10.0.0.0/8
-interface               eth0
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv show system sflow collector</h>
 
 Shows sFlow collector configuration.
@@ -113,43 +93,6 @@ cumulus@switch:~$ nv show system sflow collector 192.0.2.100
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system sflow dropmon hw</h>
-
-Shows information for dropped packets in hardware.
-
-### Version History
-
-Introduced in Cumulus Linux 5.11.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system sflow dropmon hw
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system sflow policer</h>
-
-Shows the number of sFlow samples per second and the sample burst size per second that the switch can send.
-
-### Version History
-
-Introduced in Cumulus Linux 5.11.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system sflow policer
----------------------- 
-       applied
------  -------
-rate   8000   
-burst  9000
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv show system sflow sampling-rate</h>
 
 Shows the sFlow sampling rate configuration.
@@ -175,4 +118,61 @@ speed-100g  100000
 speed-200g  200000 
 speed-400g  400000 
 speed-800g  800000 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system sflow agent</h>
+
+Shows sFlow agent configuration.
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system sflow agent
+           operational  applied   
+---------  -----------  ----------
+ip                      10.0.0.0/8
+interface               eth0
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system sflow policer</h>
+
+Shows the number of sFlow samples per second and the sample burst size per second that the switch can send.
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system sflow policer
+---------------------- 
+       applied
+-----  -------
+rate   8000   
+burst  9000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system sflow dropmon hw</h>
+
+Shows information for dropped packets in hardware.
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system sflow dropmon hw
 ```

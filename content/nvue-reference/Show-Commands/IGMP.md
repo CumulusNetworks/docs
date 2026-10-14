@@ -1,7 +1,7 @@
 ---
 title: IGMP
 author: Cumulus Networks
-weight: 290
+weight: 180
 
 type: nojsscroll
 ---
@@ -37,6 +37,61 @@ cumulus@switch:~$ nv show interface vlan10 ipv4 igmp
 enable               on      on
 ```
 
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> ipv4 igmp static-group</h>
+
+Shows information about IGMP static multicast groups configured on the interface.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, the command is `nv show interface <interface-id> ip igmp static-group`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description |
+| --------- | -------------- |
+| `<interface-id>` | The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface vlan10 ipv4 igmp static-group
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> ipv4 igmp static-group \<static-group-id\></h>
+
+Shows information about IGMP static multicast groups configured on the interface.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, the command is `nv show interface <interface-id> ip igmp static-group <static-group-id>`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<interface-id>` | The interface name. |
+| `<static-group-id>` | The IGMP static multicast mroute destination. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface vlan10 ipv4 igmp static-group 224.10.0.0
+                  operational  applied   
+----------------  -----------  ----------
+[source-address]               10.10.10.4
+```
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv show interface \<interface-id\> ipv4 igmp group</h>
@@ -96,61 +151,6 @@ Introduced in Cumulus Linux 5.6.0
 
 ```
 cumulus@switch:~$ nv show interface swp3 ipv4 igmp group 225.1.101.1
-```
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show interface \<interface-id\> ipv4 igmp static-group</h>
-
-Shows information about IGMP static multicast groups configured on the interface.
-
-{{%notice note%}}
-In Cumulus Linux 5.14 and earlier, the command is `nv show interface <interface-id> ip igmp static-group`.
-{{%/notice%}}
-
-### Command Syntax
-
-| Syntax |  Description |
-| --------- | -------------- |
-| `<interface-id>` | The interface name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show interface vlan10 ipv4 igmp static-group
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show interface \<interface-id\> ipv4 igmp static-group \<static-group-id\></h>
-
-Shows information about IGMP static multicast groups configured on the interface.
-
-{{%notice note%}}
-In Cumulus Linux 5.14 and earlier, the command is `nv show interface <interface-id> ip igmp static-group <static-group-id>`.
-{{%/notice%}}
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<interface-id>` | The interface name. |
-| `<static-group-id>` | The IGMP static multicast mroute destination. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show interface vlan10 ipv4 igmp static-group 224.10.0.0
-                  operational  applied   
-----------------  -----------  ----------
-[source-address]               10.10.10.4
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

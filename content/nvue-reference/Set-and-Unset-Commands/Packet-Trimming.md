@@ -1,7 +1,7 @@
 ---
 title: Packet Trimming
 author: Cumulus Networks
-weight: 790
+weight: 635
 
 type: nojsscroll
 ---

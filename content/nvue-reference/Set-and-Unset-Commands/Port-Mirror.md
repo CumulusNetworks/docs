@@ -1,7 +1,7 @@
 ---
 title: Port Mirror
 author: Cumulus Networks
-weight: 820
+weight: 660
 
 type: nojsscroll
 ---
@@ -25,6 +25,154 @@ Configures <span class="a-tooltip">[SPAN](## "Switched Port Analyzer")</span> an
 ## <h>nv set system port-mirror session \<session-id\></h>
 
 Configures the port mirror session number, which is a number between 0 and 7.
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system port-mirror session \<session-id\> span</h>
+
+Configures SPAN, which enables you to mirror all packets that come in from or go out of an interface (the SPAN source), and copy and transmit the packets out of a local port or CPU (the SPAN destination) for monitoring.
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system port-mirror session \<session-id\> span destination \<port-id\></h>
+
+Configures the SPAN destination port.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<session-id>` | The port mirror session number. |
+| `<port-id>`  |  The interface. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system port-mirror session 1 span destination swp2
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system port-mirror session \<session-id\> span direction</h>
+
+Configures the SPAN direction. You can specify ingress or egress.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<session-id>` | The port mirror session number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system port-mirror session 1 span direction ingress
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system port-mirror session \<session-id\> span state</h>
+
+Enables and disables port mirroring. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<session-id>` | The port mirror session number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system port-mirror session 1 span state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system port-mirror session \<session-id\> span source-port \<port-id\></h>
+
+Configures the port mirror source port (switch ports or bonds only).
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<session-id>` | The port mirror session number. |
+| `<port-id>`  |  The interface. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system port-mirror session 1 span source-port swp1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system port-mirror session \<session-id\> span truncate state</h>
+
+Enables and disables truncation. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<session-id>` | The port mirror session number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system port-mirror session 1 span truncate state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system port-mirror session \<session-id\> span truncate size</h>
+
+Configures the size in bytes at which to truncate mirrored frames. You can specify a value between 4 and 4088.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<session-id>` | The port mirror session number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system port-mirror session 1 span truncate size 40
+```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -108,29 +256,6 @@ cumulus@switch:~$ nv set system port-mirror session 1 direction ingress
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system port-mirror session \<session-id\> erspan source-port \<port-id\></h>
-
-Configures the ERSPAN source port (switch ports or bonds only).
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<session-id>` | The port mirror session number. |
-| `<port-id>`   |  The interface. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system port-mirror session 1 erspan source-port swp1
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set system port-mirror session \<session-id\> erspan state</h>
 
 Enables and disables ERSPAN. The default setting is `disabled`.
@@ -157,21 +282,16 @@ cumulus@switch:~$ nv set system port-mirror session 1 erspan state enabled
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system port-mirror session \<session-id\> erspan truncate</h>
+## <h>nv set system port-mirror session \<session-id\> erspan source-port \<port-id\></h>
 
-Configures truncation to decrease bandwidth by reducing the size of monitored packets.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system port-mirror session \<session-id\> erspan truncate size</h>
-
-Configures the size in bytes at which to truncate mirrored frames. You can specify a value between 4 and 4088.
+Configures the ERSPAN source port (switch ports or bonds only).
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<session-id>` | The port mirror session number. |
+| `<port-id>`   |  The interface. |
 
 ### Version History
 
@@ -180,8 +300,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set system port-mirror session 1 erspan truncate size 4000
+cumulus@switch:~$ nv set system port-mirror session 1 erspan source-port swp1
 ```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system port-mirror session \<session-id\> erspan truncate</h>
+
+Configures truncation to decrease bandwidth by reducing the size of monitored packets.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -207,107 +333,7 @@ cumulus@switch:~$ nv set system port-mirror session 1 erspan truncate state enab
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system port-mirror session \<session-id\> span</h>
-
-Configures SPAN, which enables you to mirror all packets that come in from or go out of an interface (the SPAN source), and copy and transmit the packets out of a local port or CPU (the SPAN destination) for monitoring.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system port-mirror session \<session-id\> span destination \<port-id\></h>
-
-Configures the SPAN destination port.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<session-id>` | The port mirror session number. |
-| `<port-id>`  |  The interface. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system port-mirror session 1 span destination swp2
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system port-mirror session \<session-id\> span direction</h>
-
-Configures the SPAN direction. You can specify ingress or egress.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<session-id>` | The port mirror session number. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system port-mirror session 1 span direction ingress
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system port-mirror session \<session-id\> span source-port \<port-id\></h>
-
-Configures the port mirror source port (switch ports or bonds only).
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<session-id>` | The port mirror session number. |
-| `<port-id>`  |  The interface. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system port-mirror session 1 span source-port swp1
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system port-mirror session \<session-id\> span state</h>
-
-Enables and disables port mirroring. The default setting is `disabled`.
-
-{{%notice note%}}
-In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
-{{%/notice%}}
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<session-id>` | The port mirror session number. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system port-mirror session 1 span state enabled
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system port-mirror session \<session-id\> span truncate size</h>
+## <h>nv set system port-mirror session \<session-id\> erspan truncate size</h>
 
 Configures the size in bytes at which to truncate mirrored frames. You can specify a value between 4 and 4088.
 
@@ -324,31 +350,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set system port-mirror session 1 span truncate size 40
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system port-mirror session \<session-id\> span truncate state</h>
-
-Enables and disables truncation. The default setting is `disabled`.
-
-{{%notice note%}}
-In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
-{{%/notice%}}
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<session-id>` | The port mirror session number. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system port-mirror session 1 span truncate state enabled
+cumulus@switch:~$ nv set system port-mirror session 1 erspan truncate size 4000
 ```

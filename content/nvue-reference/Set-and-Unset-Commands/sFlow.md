@@ -1,7 +1,7 @@
 ---
 title: sFlow
 author: Cumulus Networks
-weight: 940
+weight: 625
 
 type: nojsscroll
 ---
@@ -122,43 +122,6 @@ cumulus@switch:~$ nv set system sflow dropmon shw
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system sflow policer burst</h>
-
-Configures the sample burst size per second that the can switch send.
-
-The default sample size is 16384. You can specify a value between 0 and 16384.
-
-### Version History
-
-Introduced in Cumulus Linux 5.11.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system sflow policer burst 9000
-```
--->
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system sflow policer rate</h>
-
-Configures the number of sFlow samples per second that the switch can send.
-
-The default number of sFlow samples is 16384. You can specify a value between 0 and 16384.
-
-### Version History
-
-Introduced in Cumulus Linux 5.11.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system sflow policer rate 8000
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set system sflow poll-interval</h>
 
 Configures the sFlow polling interval in seconds.
@@ -187,22 +150,6 @@ Introduced in Cumulus Linux 5.11.0
 
 ```
 cumulus@switch:~$ nv set system sflow sampling-rate default
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system sflow sampling-rate speed-100g</h>
-
-Configures the sampling rate in number of packets for 100G interfaces.
-
-### Version History
-
-Introduced in Cumulus Linux 5.11.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system sflow sampling-rate speed-100G 100000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -253,22 +200,6 @@ cumulus@switch:~$ nv set system sflow sampling-rate speed-10G 10000
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system sflow sampling-rate speed-200g</h>
-
-Configures the sampling rate in number of packets for 200G interfaces.
-
-### Version History
-
-Introduced in Cumulus Linux 5.11.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system sflow sampling-rate speed-200G 200000
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set system sflow sampling-rate speed-25g</h>
 
 Configures the sampling rate in number of packets for 25G interfaces.
@@ -281,6 +212,70 @@ Introduced in Cumulus Linux 5.11.0
 
 ```
 cumulus@switch:~$ nv set system sflow sampling-rate speed-25G 20000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system sflow sampling-rate speed-40g</h>
+
+Configures the sampling rate in number of packets for 40G interfaces.
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system sflow sampling-rate speed-40G 40000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system sflow sampling-rate speed-50g</h>
+
+Configures the sampling rate in number of packets for 50G interfaces.
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system sflow sampling-rate speed-50G 50000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system sflow sampling-rate speed-100g</h>
+
+Configures the sampling rate in number of packets for 100G interfaces.
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system sflow sampling-rate speed-100G 100000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system sflow sampling-rate speed-200g</h>
+
+Configures the sampling rate in number of packets for 200G interfaces.
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system sflow sampling-rate speed-200G 200000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -301,37 +296,6 @@ cumulus@switch:~$ nv set system sflow sampling-rate speed-4000G 400000
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system sflow sampling-rate speed-40g</h>
-
-Configures the sampling rate in number of packets for 40G interfaces.
-
-### Version History
-
-Introduced in Cumulus Linux 5.11.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system sflow sampling-rate speed-40G 40000
-```
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system sflow sampling-rate speed-50g</h>
-
-Configures the sampling rate in number of packets for 50G interfaces.
-
-### Version History
-
-Introduced in Cumulus Linux 5.11.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system sflow sampling-rate speed-50G 50000
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set system sflow sampling-rate speed-800g</h>
 
 Configures the sampling rate in number of packets for 800G interfaces.
@@ -346,6 +310,42 @@ Introduced in Cumulus Linux 5.11.0
 cumulus@switch:~$ nv set system sflow sampling-rate speed-800G 800000
 ```
 <!--
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system sflow policer rate</h>
+
+Configures the number of sFlow samples per second that the switch can send.
+
+The default number of sFlow samples is 16384. You can specify a value between 0 and 16384.
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system sflow policer rate 8000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system sflow policer burst</h>
+
+Configures the sample burst size per second that the can switch send.
+
+The default sample size is 16384. You can specify a value between 0 and 16384.
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system sflow policer burst 9000
+```
+-->
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set system sflow state</h>

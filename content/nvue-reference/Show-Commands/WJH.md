@@ -1,7 +1,7 @@
 ---
 title: WJH
 author: Cumulus Networks
-weight: 720
+weight: 460
 
 type: nojsscroll
 ---
@@ -69,6 +69,28 @@ cumulus@switch:~$ nv show system wjh channel forwarding
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show system wjh channel \<channel-id\> trigger</h>
+
+Shows the configuration for packet drop categories in a WJH channel.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<channel-id>` |  The channel name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system wjh channel forwarding trigger
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show system wjh channel \<channel-id\> buffer-threshold</h>
 
 Shows WJH channel latency and congestion threshold configuration.
@@ -98,6 +120,121 @@ Congestion buffer threshold
     all            swp1       20
                    swp2       20
                    swp3       20
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system wjh channel \<channel-id\> buffer-threshold latency</h>
+
+Shows WJH channel latency threshold information.
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<channel-id>` |  The channel name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system wjh channel buffer buffer-threshold latency
+Latency buffer threshold
+===========================
+    Traffic Class  Interface  High threshold
+    -------------  ---------  --------------
+    all            all        1000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system wjh channel \<channel-id\> buffer-threshold latency tc</h>
+
+Shows WJH channel latency buffer thresholds for all traffic classes.
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<channel-id>` |  The channel name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system wjh channel buffer buffer-threshold latency tc
+No Data
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system wjh channel \<channel-id\> buffer-threshold latency tc \<tc-id\></h>
+
+Shows WJH channel latency buffer thresholds for a specific traffic class.
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<channel-id>` |  The channel name.|
+| `<tc-id>` |  The traffic class.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system wjh channel buffer buffer-threshold latency tc 3
+interface
+============
+No Data
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system wjh channel \<channel-id\> buffer-threshold latency tc \<tc-id\> interface</h>
+
+Shows WJH channel latency buffer thresholds for traffic class interfaces.
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<channel-id>` |  The channel name.|
+| `<tc-id>` |  The traffic class.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system wjh channel buffer buffer-threshold latency tc 3 interface
+No Data
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system wjh channel \<channel-id\> buffer-threshold latency tc \<tc-id\> interface \<interface-id\></h>
+
+Shows WJH channel latency buffer thresholds for a specific traffic class and interface.
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<channel-id>` |  The channel name.|
+| `<tc-id>` |  The traffic class.|
+| `<interface-id>` |  The interface ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system wjh channel buffer buffer-threshold latency tc 3 interface swp1
+No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -215,121 +352,6 @@ Introduced in Cumulus Linux 5.18.0
 
 ```
 cumulus@switch:~$ nv show system wjh channel buffer buffer-threshold congestion tc 3 interface swp1
-No Data
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system wjh channel \<channel-id\> buffer-threshold latency</h>
-
-Shows WJH channel latency threshold information.
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<channel-id>` |  The channel name.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.18.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system wjh channel buffer buffer-threshold latency
-Latency buffer threshold
-===========================
-    Traffic Class  Interface  High threshold
-    -------------  ---------  --------------
-    all            all        1000
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system wjh channel \<channel-id\> buffer-threshold latency tc</h>
-
-Shows WJH channel latency buffer thresholds for all traffic classes.
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<channel-id>` |  The channel name.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.18.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system wjh channel buffer buffer-threshold latency tc
-No Data
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system wjh channel \<channel-id\> buffer-threshold latency tc \<tc-id\></h>
-
-Shows WJH channel latency buffer thresholds for a specific traffic class.
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<channel-id>` |  The channel name.|
-| `<tc-id>` |  The traffic class.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.18.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system wjh channel buffer buffer-threshold latency tc 3
-interface
-============
-No Data
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system wjh channel \<channel-id\> buffer-threshold latency tc \<tc-id\> interface</h>
-
-Shows WJH channel latency buffer thresholds for traffic class interfaces.
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<channel-id>` |  The channel name.|
-| `<tc-id>` |  The traffic class.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.18.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system wjh channel buffer buffer-threshold latency tc 3 interface
-No Data
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system wjh channel \<channel-id\> buffer-threshold latency tc \<tc-id\> interface \<interface-id\></h>
-
-Shows WJH channel latency buffer thresholds for a specific traffic class and interface.
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<channel-id>` |  The channel name.|
-| `<tc-id>` |  The traffic class.|
-| `<interface-id>` |  The interface ID.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.18.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system wjh channel buffer buffer-threshold latency tc 3 interface swp1
 No Data
 ```
 
@@ -494,28 +516,6 @@ Introduced in Cumulus Linux 5.18.0
 ```
 cumulus@switch:~$ nv show system wjh channel forwarding drop-filter TUNNEL1 ip 10.10.10.10
 No Data
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system wjh channel \<channel-id\> trigger</h>
-
-Shows the configuration for packet drop categories in a WJH channel.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<channel-id>` |  The channel name.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system wjh channel forwarding trigger
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

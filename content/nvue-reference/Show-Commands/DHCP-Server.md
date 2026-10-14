@@ -1,41 +1,13 @@
 ---
 title: DHCP Server
 author: Cumulus Networks
-weight: 220
+weight: 152
 
 type: nojsscroll
 ---
 <style>
 h { color: RGB(118,185,0)}
 </style>
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show dhcp-server-v4 vrf \<vrf-id\> subnet \<subnet-id\> domain-name-server \<server-id\></h>
-
-Shows information about a specific IPv4 DHCP domain name server in the specified pool.
-
-{{%notice note%}}
-In Cumulus Linux 5.14 and earlier, this command is `nv show service dhcp-server <vrf-id> pool <pool-id> domain-name-server <server-id>`.
-{{%/notice%}}
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<vrf-id>` | The VRF name. |
-| `<subnet-id>` | The DHCP pool subnet. |
-| `<server-id>` | The DNS server IP address.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.15.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show vrf default dhcp-server-v4 subnet 10.1.10.0/24 domain-name-server 192.168.200.53
-```
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv show interface \<interface-id\> ipv4 dhcp-client</h>
@@ -325,34 +297,6 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show service dhcp-server default interface
-----
-swp1
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show service dhcp-server \<vrf-id\> interface</h>
-
-Shows a list of interfaces on which the IPv4 DHCP client attaches.
-
-{{%notice note%}}
-In Cumulus Linux 5.14 and earlier, this command is `nv show service dhcp-server <vrf-id> interface`.
-{{%/notice%}}
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<vrf-id>` | The VRF name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.15.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show vrf default dhcp-server-v4 interface
 ----
 swp1
 ```
@@ -1119,6 +1063,33 @@ cumulus@switch:~$ nv show service dhcp-server6 default storage-servers domain-na
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show service dhcp-server6 \<vrf-id\> pool \<pool-id\> range></h>
+
+Shows the IPv6 DHCP IP address range assignments.
+
+{{%notice note%}}
+In Cumulus Linux 5.15 and later, this command is `nv show vrf <vrf-id> dhcp-server-v6 subnet <subnet-id> range`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+| `<pool-id>` | The DHCP6 pool subnet. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show service dhcp-server6 default storage-servers range
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show service dhcp-server6 \<vrf-id\> pool \<pool-id\> range \<range-id\></h>
 
 Shows information about a specific IPv6 DHCP IP address range assignment.
@@ -1143,33 +1114,6 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show service dhcp-server6 default storage-servers range 0:0:0:0:0:ffff:0a01:0a64
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show service dhcp-server6 \<vrf-id\> pool \<pool-id\> range></h>
-
-Shows the IPv6 DHCP IP address range assignments.
-
-{{%notice note%}}
-In Cumulus Linux 5.15 and later, this command is `nv show vrf <vrf-id> dhcp-server-v6 subnet <subnet-id> range`.
-{{%/notice%}}
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<vrf-id>` | The VRF name. |
-| `<pool-id>` | The DHCP6 pool subnet. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show service dhcp-server6 default storage-servers range
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1259,6 +1203,34 @@ cumulus@switch:~$ nv show vrf default dhcp-server-v4
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show service dhcp-server \<vrf-id\> interface</h>
+
+Shows a list of interfaces on which the IPv4 DHCP client attaches.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv show service dhcp-server <vrf-id> interface`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default dhcp-server-v4 interface
+----
+swp1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show vrf \<vrf-id\> dhcp-server-v4 interface \<interface-id\></h>
 
 Shows information about a specific interface on which the IPv4 DHCP client attaches.
@@ -1282,89 +1254,6 @@ Introduced in Cumulus Linux 5.15.0
 
 ```
 cumulus@switch:~$ nv show vrf default dhcp-server-v4 interface swp1
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show vrf \<vrf-id\> dhcp-server-v4 static-host</h>
-
-Shows configuration for static hosts served by the DHCPv4 server.
-
-{{%notice note%}}
-In Cumulus Linux 5.14 and earlier, this command is `nv show service dhcp-server <vrf-id> static`.
-{{%/notice%}}
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<vrf-id>` | The VRF name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.15.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show vrf default dhcp-server-v4 static-host
-         cumulus-provision-url  host-id-circuit-id  ip-address  MAC address      
--------  ---------------------  ------------------  ----------  -----------------
-server1                                             10.0.0.2    44:38:39:00:01:7e
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show vrf \<vrf-id\> dhcp-server-v4 static-host \<static-id\></h>
-
-Shows configuration for a specific static host served by the DHCPv4 server.
-
-{{%notice note%}}
-In Cumulus Linux 5.14 and earlier, this command is `nv show service dhcp-server <vrf-id> static <static-id>`.
-{{%/notice%}}
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<vrf-id>` | The VRF name. |
-| `<static-id>` | The IDN host name.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.15.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show vrf default dhcp-server-v4 static-host server1
-             operational        applied          
------------  -----------------  -----------------
-ip-address   10.0.0.2           10.0.0.2         
-mac-address  44:38:39:00:01:7e  44:38:39:00:01:7e
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show vrf \<vrf-id\> dhcp-server-v4 static-host \<static-id\> ifname \<interface-name\></h>
-
-Shows configuration for a specific static host interface served by the DHCPv4 server.
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<vrf-id>` | The VRF name. |
-| `<static-id>` | The IDN host name.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.15.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show vrf default dhcp-server-v4 static-host server1 ifname <interface-name>
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1465,6 +1354,34 @@ Introduced in Cumulus Linux 5.15.0
 cumulus@switch:~$ nv show vrf default dhcp-server-v4 subnet 10.1.10.0/24 domain-name-server
 --------------
 192.168.200.53
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show dhcp-server-v4 vrf \<vrf-id\> subnet \<subnet-id\> domain-name-server \<server-id\></h>
+
+Shows information about a specific IPv4 DHCP domain name server in the specified pool.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv show service dhcp-server <vrf-id> pool <pool-id> domain-name-server <server-id>`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+| `<subnet-id>` | The DHCP pool subnet. |
+| `<server-id>` | The DNS server IP address.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default dhcp-server-v4 subnet 10.1.10.0/24 domain-name-server 192.168.200.53
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1587,6 +1504,89 @@ to  10.1.10.199  10.1.10.199
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show vrf \<vrf-id\> dhcp-server-v4 static-host</h>
+
+Shows configuration for static hosts served by the DHCPv4 server.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv show service dhcp-server <vrf-id> static`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default dhcp-server-v4 static-host
+         cumulus-provision-url  host-id-circuit-id  ip-address  MAC address      
+-------  ---------------------  ------------------  ----------  -----------------
+server1                                             10.0.0.2    44:38:39:00:01:7e
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show vrf \<vrf-id\> dhcp-server-v4 static-host \<static-id\></h>
+
+Shows configuration for a specific static host served by the DHCPv4 server.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv show service dhcp-server <vrf-id> static <static-id>`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+| `<static-id>` | The IDN host name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default dhcp-server-v4 static-host server1
+             operational        applied          
+-----------  -----------------  -----------------
+ip-address   10.0.0.2           10.0.0.2         
+mac-address  44:38:39:00:01:7e  44:38:39:00:01:7e
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show vrf \<vrf-id\> dhcp-server-v4 static-host \<static-id\> ifname \<interface-name\></h>
+
+Shows configuration for a specific static host interface served by the DHCPv4 server.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+| `<static-id>` | The IDN host name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default dhcp-server-v4 static-host server1 ifname <interface-name>
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show vrf \<vrf-id\> dhcp-server-v6</h>
 
 Shows IPv6 DHCP server configuration information in the specified VRF.
@@ -1666,6 +1666,89 @@ cumulus@switch:~$ nv show vrf default dhcp-server-v6 domain-name-server 0:0:0:0:
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show vrf \<vrf-id\> dhcp-server-v6 static-host</h>
+
+Shows configuration for static hosts served by the DHCPv6 server.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv show service dhcp-server6 <vrf-id> static`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default dhcp-server-v6 static-host
+         cumulus-provision-url  host-id-circuit-id  ip-address     MAC address      
+-------  ---------------------  ------------------  ----------     -----------------
+server1                                             2001:db8:1::2  44:38:39:00:01:7e
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show vrf \<vrf-id\> dhcp-server-v6 static-host \<static-id\></h>
+
+Shows configuration for a specific static host served by the DHCPv6 server.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv show service dhcp-server6 <vrf-id> static <static-id>`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+| `<static-id>` | The IDN host name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default dhcp-server-v6 static-host server1
+             operational        applied          
+-----------  -----------------  -----------------
+ip-address   2001:db8:1::2      2001:db8:1::2   
+mac-address  44:38:39:00:01:7e  44:38:39:00:01:7e
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show vrf \<vrf-id\> dhcp-server-v6 static-host \<static-id\> ifname \<interface-name\></h>
+
+Shows configuration for a specific static host interface served by the DHCPv6 server.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+| `<static-id>` | The IDN host name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default dhcp-server-v6 static-host server1 ifname swp1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show vrf \<vrf-id\> dhcp-server-v6 interface</h>
 
 Shows the interfaces on which the IPv6 DHCP client attaches.
@@ -1715,142 +1798,6 @@ Introduced in Cumulus Linux 5.15.0
 
 ```
 cumulus@switch:~$ nv show vrf default dhcp-server-v6 interface swp1
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show vrf \<vrf-id\> dhcp-server-v6 static-host</h>
-
-Shows configuration for static hosts served by the DHCPv6 server.
-
-{{%notice note%}}
-In Cumulus Linux 5.14 and earlier, this command is `nv show service dhcp-server6 <vrf-id> static`.
-{{%/notice%}}
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<vrf-id>` | The VRF name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.15.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show vrf default dhcp-server-v6 static-host
-         cumulus-provision-url  host-id-circuit-id  ip-address     MAC address      
--------  ---------------------  ------------------  ----------     -----------------
-server1                                             2001:db8:1::2  44:38:39:00:01:7e
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show vrf \<vrf-id\> dhcp-server-v6 static-host</h>
-
-Shows configuration for static hosts served by the IPv6 DHCP server.
-
-{{%notice note%}}
-In Cumulus Linux 5.14 and earlier, this command is `nv set service dhcp-server6 <vrf-id> static`.
-{{%/notice%}}
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<vrf-id>` | The VRF name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.15.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show vrf default dhcp-server-v6 static-host
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show vrf \<vrf-id\> dhcp-server-v6 static-host \<static-id\></h>
-
-Shows configuration for a specific static host served by the DHCPv6 server.
-
-{{%notice note%}}
-In Cumulus Linux 5.14 and earlier, this command is `nv show service dhcp-server6 <vrf-id> static <static-id>`.
-{{%/notice%}}
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<vrf-id>` | The VRF name. |
-| `<static-id>` | The IDN host name.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.15.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show vrf default dhcp-server-v6 static-host server1
-             operational        applied          
------------  -----------------  -----------------
-ip-address   2001:db8:1::2      2001:db8:1::2   
-mac-address  44:38:39:00:01:7e  44:38:39:00:01:7e
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show vrf \<vrf-id\> dhcp-server-v6 static-host \<static-id\></h>
-
-Shows configuration for a specific static host served by the IPv6 DHCP server.
-
-{{%notice note%}}
-In Cumulus Linux 5.14 and earlier, this command is `nv set service dhcp-server6 <vrf-id> static <static-id>`.
-{{%/notice%}}
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<vrf-id>` | The VRF name. |
-| `<static-id>` | The IDN hostname. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.15.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show vrf default dhcp-server-v6 static-host server1
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show vrf \<vrf-id\> dhcp-server-v6 static-host \<static-id\> ifname \<interface-name\></h>
-
-Shows configuration for a specific static host interface served by the DHCPv6 server.
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<vrf-id>` | The VRF name. |
-| `<static-id>` | The IDN host name.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.15.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show vrf default dhcp-server-v6 static-host server1 ifname swp1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2018,6 +1965,33 @@ cumulus@switch:~$ nv show vrf default dhcp-server-v6 subnet 2001:db8::1/128 doma
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show vrf \<vrf-id\> dhcp-server-v6 subnet \<subnet-id\> range></h>
+
+Shows the IPv6 DHCP IP address range assignments.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv set service dhcp-server6 <vrf-id> pool <pool-id> range`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+| `<subnet-id>` | The DHCP6 pool subnet. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default dhcp-server-v6 subnet 2001:db8::1/128 range
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show vrf \<vrf-id\> dhcp-server-v6 subnet \<subnet-id\> range \<range-id\></h>
 
 Shows information about a specific IPv6 DHCP IP address range assignment.
@@ -2046,12 +2020,12 @@ cumulus@switch:~$ nv show vrf default dhcp-server-v6 subnet 2001:db8::1/128 rang
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show vrf \<vrf-id\> dhcp-server-v6 subnet \<subnet-id\> range></h>
+## <h>nv show vrf \<vrf-id\> dhcp-server-v6 static-host</h>
 
-Shows the IPv6 DHCP IP address range assignments.
+Shows configuration for static hosts served by the IPv6 DHCP server.
 
 {{%notice note%}}
-In Cumulus Linux 5.14 and earlier, this command is `nv set service dhcp-server6 <vrf-id> pool <pool-id> range`.
+In Cumulus Linux 5.14 and earlier, this command is `nv set service dhcp-server6 <vrf-id> static`.
 {{%/notice%}}
 
 ### Command Syntax
@@ -2059,7 +2033,6 @@ In Cumulus Linux 5.14 and earlier, this command is `nv set service dhcp-server6 
 | Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name. |
-| `<subnet-id>` | The DHCP6 pool subnet. |
 
 ### Version History
 
@@ -2068,5 +2041,32 @@ Introduced in Cumulus Linux 5.15.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default dhcp-server-v6 subnet 2001:db8::1/128 range
+cumulus@switch:~$ nv show vrf default dhcp-server-v6 static-host
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show vrf \<vrf-id\> dhcp-server-v6 static-host \<static-id\></h>
+
+Shows configuration for a specific static host served by the IPv6 DHCP server.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv set service dhcp-server6 <vrf-id> static <static-id>`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+| `<static-id>` | The IDN hostname. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default dhcp-server-v6 static-host server1
 ```

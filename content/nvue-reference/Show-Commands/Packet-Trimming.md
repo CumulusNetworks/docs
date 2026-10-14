@@ -1,13 +1,38 @@
 ---
 title: Packet Trimming
 author: Cumulus Networks
-weight: 380
+weight: 245
 
 type: nojsscroll
 ---
 <style>
 h { color: RGB(118,185,0)}
 </style>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> packet-trim</h>
+
+Shows packet trimming information for an interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.14.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1-3 packet-trim
+Egress Eligibility TC
+========================
+No Data
+```
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv show interface \<interface-id\> counters packet-trim</h>
@@ -33,31 +58,6 @@ Traffic Class  Trim Eligible Packets
 1                 1000                
 2                 2000              
 3                 3000 
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show interface \<interface-id\> packet-trim</h>
-
-Shows packet trimming information for an interface.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<interface-id>` | The interface name.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.14.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show interface swp1-3 packet-trim
-Egress Eligibility TC
-========================
-No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -177,6 +177,25 @@ No Data
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show system forwarding packet-trim remark</h>
+
+Shows packet trimming remark information.
+
+### Version History
+
+Introduced in Cumulus Linux 5.14.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system forwarding packet-trim remark 
+      operational  applied
+----  -----------  -------
+dscp               11
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show system forwarding packet-trim counters</h>
 
 Shows the number of trimmed packets at both the global and interface levels.
@@ -199,24 +218,5 @@ swp1        1000                  N/A
 swp2        2000                  N/A 
 swp3        4000                  N/A 
 swp4        5000                  N/A
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system forwarding packet-trim remark</h>
-
-Shows packet trimming remark information.
-
-### Version History
-
-Introduced in Cumulus Linux 5.14.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system forwarding packet-trim remark 
-      operational  applied
-----  -----------  -------
-dscp               11
 ```
 

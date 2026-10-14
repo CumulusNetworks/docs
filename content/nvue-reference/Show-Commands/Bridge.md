@@ -1,7 +1,7 @@
 ---
 title: Bridge
 author: Cumulus Networks
-weight: 190
+weight: 140
 
 type: nojsscroll
 ---
@@ -1002,6 +1002,35 @@ cumulus@switch:~$ nv show bridge domain br_default vlan 10 vni
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show bridge domain \<domain-id\> vlan-vni-map</h>
+
+Shows the VLAN to VNI mapping for a specific bridge.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<domain-id>` | The bridge name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show bridge domain br_default vlan-vni-map
+br_default  VLAN-VNI-Offset: None 
+
+VLAN  VNI
+----  -----   
+10    10
+20    20   
+30    30   
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show bridge domain \<domain-id\> vlan \<vid\> vni \<vni-id\></h>
 
 Shows configuration settings for a specific bridge VLAN VNI.
@@ -1112,35 +1141,6 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show bridge domain br_default vlan 10 vni 10 flooding head-end-replication 10.0.1.34
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show bridge domain \<domain-id\> vlan-vni-map</h>
-
-Shows the VLAN to VNI mapping for a specific bridge.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<domain-id>` | The bridge name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.7.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show bridge domain br_default vlan-vni-map
-br_default  VLAN-VNI-Offset: None 
-
-VLAN  VNI
-----  -----   
-10    10
-20    20   
-30    30   
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

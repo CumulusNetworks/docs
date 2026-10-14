@@ -1,7 +1,7 @@
 ---
 title: Interface
 author: Cumulus Networks
-weight: 300
+weight: 190
 
 type: nojsscroll
 ---
@@ -56,6 +56,146 @@ swp4        down          1500   swp
 swp5        down          1500   swp                                                         
 swp6        up     1G     9216   swp                                                        
 ...
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface --view ber</h>
+
+Shows a tabular summary of PHY health statistics for all switch port interfaces in a single command, such as the error counters for all ports.
+
+## Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface --view ber
+Interface  Eff-BER  Raw-BER  Sym-BER  Sym-Errs  Eff-Errs  Last-Clr(min) 
+---------  -------  -------  -------  --------  --------  -------------
+swp1       15E-255  15E-255  15E-255  0         0         1            
+swp2       15E-255  15E-255  15E-255  0         0         1            
+swp3       15E-255  15E-255  15E-255  0         0         1            
+swp49      15E-255  15E-255  15E-255  0         0         1            
+swp50      15E-255  15E-255  15E-255  0         0         1            
+swp51      15E-255  15E-255  15E-255  0         0         1            
+swp52      15E-255  15E-255  15E-255  0         0         1            
+swp53      15E-255  15E-255  15E-255  0         0         1            
+swp54      15E-255  15E-255  15E-255  0         0         1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface --view dom</h>
+
+Shows a tabular summary of transceiver temperature, voltage, and per-channel optical power and bias values for all switch port interfaces.
+
+{{%notice note%}}
+In Cumulus Linux 5.18.0, the `nv show interface --view dom` command is a Beta feature.
+{{%/notice%}}
+
+## Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface --view dom
+swp1s0  temperature 65.98 C       voltage 3.2097 V 
+        Ln       TX(mW/dBm)     Bias(mA)        RX(mW/dBm) 
+        ----     ------------   ---------       ------------ 
+        1        1.0000/0.00    110.400         1.0000/0.00 
+        2        1.0000/0.00    80.100          0.6310/-2.00 
+swp1s1  temperature 65.98 C       voltage 3.2097 V 
+        Ln       TX(mW/dBm)     Bias(mA)        RX(mW/dBm) 
+        ----     ------------   ---------       ------------ 
+        3        1.0000/0.00    75.100          1.0000/0.00 
+        4        1.5849/2.00    80.400          1.0000/0.00 
+swp1s2  temperature 65.98 C       voltage 3.2097 V 
+        Ln       TX(mW/dBm)     Bias(mA)        RX(mW/dBm) 
+        ----     ------------   ---------       ------------ 
+        5        1.5849/2.00    86.966          1.0000/0.00 
+        6        1.5849/2.00    77.400          1.0000/0.00 
+swp1s3  temperature 65.98 C       voltage 3.2097 V 
+        Ln       TX(mW/dBm)     Bias(mA)        RX(mW/dBm) 
+        ----     ------------   ---------       ------------ 
+        7        1.5849/2.00    94.480          1.0000/0.00 
+        8        1.5849/2.00    85.000          1.0000/0.00 
+swp2s0  temperature 68.79 C       voltage 3.2225 V 
+        Ln       TX(mW/dBm)     Bias(mA)        RX(mW/dBm) 
+        ----     ------------   ---------       ------------ 
+        1        1.5849/2.00    80.300          0.6310/-2.00 
+        2        1.5849/2.00    65.400          1.0000/0.00 
+...
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface debounce-counters</h>
+
+Shows the link debounce statistics for all interfaces.
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface debounce-counters
+Interface ignored-up ignored-down received-up received-down timer-cancel timer-expire 
+--------- ---------- ------------ ----------- ------------- ------------ ------------ 
+swp1      10         8            23          22            18           45 
+swp2      5          3            15          14            8            22 
+swp3      0          0            2           2             0            4
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface link-tracking</h>
+
+Shows link tracking information for all interfaces.
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface link-tracking
+Interface  Link Tracking Group  Admin Status  Oper Status  Protodown  Protodown Reason
+---------  -------------------  ------------  -----------  ---------  ----------------
+eth0                            up            up           disabled
+lo                              up            unknown      disabled
+mgmt                            up            up           disabled
+swp1                            up            down         disabled
+swp2                            up            down         disabled
+swp3                            up            down         disabled
+swp4                            up            down         disabled
+swp5                            up            down         disabled
+swp6                            up            down         disabled
+swp7       GROUP1               up            down         disabled
+swp8       GROUP2               up            down         enabled    link-tracking
+swp9                            up            down         disabled
+swp10                           up            down         disabled
+swp11                           up            down         disabled
+swp12                           up            down         disabled
+swp13                           up            down         disabled
+swp14                           up            down         disabled
+swp15      GROUP1               up            down         disabled
+swp16                           up            down         disabled
+swp17                           up            up           disabled
+swp18                           up            up           disabled
+swp19                           up            up           disabled
+swp20                           up            up           disabled
+swp21                           up            up           disabled
+swp22                           up            up           disabled
+swp23                           up            down         disabled
+swp24                           up            down         disabled
+swp25                           up            down         disabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1227,6 +1367,7 @@ cumulus@switch:~$ nv show interface swp8 link-tracking
 group  GROUP2       GROUP2
 ```
 
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv show interface \<interface-id\> pluggable</h>
@@ -1342,123 +1483,23 @@ Introduced in Cumulus Linux 5.1.0
 cumulus@switch:~$ nv show interface swp1 tunnel
 ```
 
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface --view ber</h>
+## <h>nv show interface bonds</h>
 
-Shows a tabular summary of PHY health statistics for all switch port interfaces in a single command, such as the error counters for all ports.
-
-## Version History
-
-Introduced in Cumulus Linux 5.18.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show interface --view ber
-Interface  Eff-BER  Raw-BER  Sym-BER  Sym-Errs  Eff-Errs  Last-Clr(min) 
----------  -------  -------  -------  --------  --------  -------------
-swp1       15E-255  15E-255  15E-255  0         0         1            
-swp2       15E-255  15E-255  15E-255  0         0         1            
-swp3       15E-255  15E-255  15E-255  0         0         1            
-swp49      15E-255  15E-255  15E-255  0         0         1            
-swp50      15E-255  15E-255  15E-255  0         0         1            
-swp51      15E-255  15E-255  15E-255  0         0         1            
-swp52      15E-255  15E-255  15E-255  0         0         1            
-swp53      15E-255  15E-255  15E-255  0         0         1            
-swp54      15E-255  15E-255  15E-255  0         0         1
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show interface --view dom</h>
-
-Shows a tabular summary of transceiver temperature, voltage, and per-channel optical power and bias values for all switch port interfaces.
-
-{{%notice note%}}
-In Cumulus Linux 5.18.0, the `nv show interface --view dom` command is a Beta feature.
-{{%/notice%}}
-
-## Version History
-
-Introduced in Cumulus Linux 5.18.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show interface --view dom
-swp1s0  temperature 65.98 C       voltage 3.2097 V 
-        Ln       TX(mW/dBm)     Bias(mA)        RX(mW/dBm) 
-        ----     ------------   ---------       ------------ 
-        1        1.0000/0.00    110.400         1.0000/0.00 
-        2        1.0000/0.00    80.100          0.6310/-2.00 
-swp1s1  temperature 65.98 C       voltage 3.2097 V 
-        Ln       TX(mW/dBm)     Bias(mA)        RX(mW/dBm) 
-        ----     ------------   ---------       ------------ 
-        3        1.0000/0.00    75.100          1.0000/0.00 
-        4        1.5849/2.00    80.400          1.0000/0.00 
-swp1s2  temperature 65.98 C       voltage 3.2097 V 
-        Ln       TX(mW/dBm)     Bias(mA)        RX(mW/dBm) 
-        ----     ------------   ---------       ------------ 
-        5        1.5849/2.00    86.966          1.0000/0.00 
-        6        1.5849/2.00    77.400          1.0000/0.00 
-swp1s3  temperature 65.98 C       voltage 3.2097 V 
-        Ln       TX(mW/dBm)     Bias(mA)        RX(mW/dBm) 
-        ----     ------------   ---------       ------------ 
-        7        1.5849/2.00    94.480          1.0000/0.00 
-        8        1.5849/2.00    85.000          1.0000/0.00 
-swp2s0  temperature 68.79 C       voltage 3.2225 V 
-        Ln       TX(mW/dBm)     Bias(mA)        RX(mW/dBm) 
-        ----     ------------   ---------       ------------ 
-        1        1.5849/2.00    80.300          0.6310/-2.00 
-        2        1.5849/2.00    65.400          1.0000/0.00 
-...
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show interface --view=counters</h>
-
-Shows all statistics for all the interfaces configured on the switch.
+Shows information about the bonds on the switch, such as the admin and operational status, the LACP mode and rate, if LACP bypass is enabled, and the up delay and down delay settings.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.5.0
+Introduced in Cumulus Linux 5.11.0
 
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface --view=counters
-Interface   MTU    RX_OK   RX_ERR  RX_DRP  RX_OVR  TX_OK   TX_ERR  TX_DRP  TX_OVR  Flg  
-----------  -----  ------  ------  ------  ------  ------  ------  ------  ------  -----
-BLUE        65575  0       0       0       0       0       0       1197    0       OmRU 
-RED         65575  0       0       0       0       0       0       1197    0       OmRU 
-bond1       9000   324612  0       0       0       502040  0       0       0       BMmRU
-bond2       9000   330788  0       0       0       499929  0       0       0       BMmRU
-bond3       9000   324604  0       0       0       499590  0       0       0       BMmRU
-br_default  9216   44391   0       0       0       40362   0       0       0       BMRU 
-br_l3vni    9216   0       0       0       0       7253    0       0       0       BMRU 
-eth0        1500   214911  0       0       0       29286   0       0       0       BMRU 
-lo          65536  227368  0       0       0       227368  0       0       0       LRU  
-mgmt        65575  31690   0       0       0       0       0       1197    0       OmRU 
-swp1        9000   324616  0       0       0       502040  0       0       0       BMsRU
-swp2        9000   330792  0       0       0       499929  0       0       0       BMsRU
-swp3        9000   324608  0       0       0       499590  0       0       0       BMsRU
-swp6        9216   0       0       0       0       97832   0       0       0       BMRU 
-swp7        9216   0       0       0       0       97832   0       0       0       BMRU 
-swp51       9216   273647  0       10793   0       274422  0       0       0       BMRU 
-swp52       9216   249220  0       10793   0       262843  0       0       0       BMRU 
-vlan10      9216   13482   0       80      0       14416   0       0       0       BMRU 
-vlan10-v0   9216   300     0       80      0       7090    0       0       0       BMRU 
-vlan20      9216   20409   0       50      0       11355   0       0       0       BMRU 
-vlan20-v0   9216   275     0       50      0       5894    0       0       0       BMRU 
-vlan30      9216   11700   0       50      0       12033   0       0       0       BMRU 
-vlan30-v0   9216   226     0       50      0       5894    0       0       0       BMRU 
-vlan220_l3  9216   0       0       0       0       2420    0       0       0       BMRU 
-vlan297_l3  9216   0       0       0       0       2420    0       0       0       BMRU 
-vxlan48     9216   27342   0       0       0       25891   40829   51      0       BMRU 
-vxlan99     9216   0       0       0       0       0       0       4800    0       BMRU
+cumulus@switch:~$ nv show interface bonds
+Interface  Admin Status  Oper Status  Mode  Mlag ID  Lacp-rate  Lacp-bypass  Up-delay  Down-delay
+---------  ------------  -----------  ----  -------  ---------  -----------  --------  ----------
+bond1      up            down         lacp           fast       off          0         0 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1481,25 +1522,6 @@ swp1       bond1   up            up           1G     9216
 swp2       bond1   up            up           1G     9216
 swp3       bond1   up            up           1G     9216
 swp4       bond1   up            up           1G     9216
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show interface bonds</h>
-
-Shows information about the bonds on the switch, such as the admin and operational status, the LACP mode and rate, if LACP bypass is enabled, and the up delay and down delay settings.
-
-### Version History
-
-Introduced in Cumulus Linux 5.11.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show interface bonds
-Interface  Admin Status  Oper Status  Mode  Mlag ID  Lacp-rate  Lacp-bypass  Up-delay  Down-delay
----------  ------------  -----------  ----  -------  ---------  -----------  --------  ----------
-bond1      up            down         lacp           fast       off          0         0 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1531,103 +1553,6 @@ swp6       down         1         1           2                    2024/11/04 19
 swp7       down         1         1           2                    2024/11/04 19:41:56.512
 swp8       down         1         1           2                    2024/11/04 19:41:56.512
 ...
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show interface debounce-counters</h>
-
-Shows the link debounce statistics for all interfaces.
-
-### Version History
-
-Introduced in Cumulus Linux 5.17.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show interface debounce-counters
-Interface ignored-up ignored-down received-up received-down timer-cancel timer-expire 
---------- ---------- ------------ ----------- ------------- ------------ ------------ 
-swp1      10         8            23          22            18           45 
-swp2      5          3            15          14            8            22 
-swp3      0          0            2           2             0            4
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show interface down</h>
-
-Shows information about interfaces that are down.
-
-### Version History
-
-Introduced in Cumulus Linux 5.11.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show interface down
-Interface  Admin Status  Oper Status  Speed  MTU    Type      Summary                
----------  ------------  -----------  -----  -----  --------  -----------------------
-bond1      up            down                9216   bond                             
-lo         up            unknown             65536  loopback  IP Address: 127.0.0.1/8
-                                                              IP Address:     ::1/128
-swp5       down          down                1500   swp                              
-swp6       down          down                1500   swp                              
-swp7       down          down                1500   swp                              
-swp8       down          down                1500   swp                              
-swp9       down          down                1500   swp                              
-swp10      down          down                1500   swp                              
-swp11      down          down                1500   swp                              
-swp12      down          down                1500   swp
-...
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show interface link-tracking</h>
-
-Shows link tracking information for all interfaces.
-
-### Version History
-
-Introduced in Cumulus Linux 5.18.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show interface link-tracking
-Interface  Link Tracking Group  Admin Status  Oper Status  Protodown  Protodown Reason
----------  -------------------  ------------  -----------  ---------  ----------------
-eth0                            up            up           disabled
-lo                              up            unknown      disabled
-mgmt                            up            up           disabled
-swp1                            up            down         disabled
-swp2                            up            down         disabled
-swp3                            up            down         disabled
-swp4                            up            down         disabled
-swp5                            up            down         disabled
-swp6                            up            down         disabled
-swp7       GROUP1               up            down         disabled
-swp8       GROUP2               up            down         enabled    link-tracking
-swp9                            up            down         disabled
-swp10                           up            down         disabled
-swp11                           up            down         disabled
-swp12                           up            down         disabled
-swp13                           up            down         disabled
-swp14                           up            down         disabled
-swp15      GROUP1               up            down         disabled
-swp16                           up            down         disabled
-swp17                           up            up           disabled
-swp18                           up            up           disabled
-swp19                           up            up           disabled
-swp20                           up            up           disabled
-swp21                           up            up           disabled
-swp22                           up            up           disabled
-swp23                           up            down         disabled
-swp24                           up            down         disabled
-swp25                           up            down         disabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1691,6 +1616,36 @@ swp32      60     0 bps         0.0%     0 pps         0 bps          0.0%      
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show interface down</h>
+
+Shows information about interfaces that are down.
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface down
+Interface  Admin Status  Oper Status  Speed  MTU    Type      Summary                
+---------  ------------  -----------  -----  -----  --------  -----------------------
+bond1      up            down                9216   bond                             
+lo         up            unknown             65536  loopback  IP Address: 127.0.0.1/8
+                                                              IP Address:     ::1/128
+swp5       down          down                1500   swp                              
+swp6       down          down                1500   swp                              
+swp7       down          down                1500   swp                              
+swp8       down          down                1500   swp                              
+swp9       down          down                1500   swp                              
+swp10      down          down                1500   swp                              
+swp11      down          down                1500   swp                              
+swp12      down          down                1500   swp
+...
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show interface svi</h>
 
 Shows SVI information on the switch.
@@ -1724,6 +1679,51 @@ Interface  Summary
 mgmt       IP Address: 127.0.0.1/8
            IP Address: 127.0.1.1/8
            IP Address:     ::1/128
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface --view=counters</h>
+
+Shows all statistics for all the interfaces configured on the switch.
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface --view=counters
+Interface   MTU    RX_OK   RX_ERR  RX_DRP  RX_OVR  TX_OK   TX_ERR  TX_DRP  TX_OVR  Flg  
+----------  -----  ------  ------  ------  ------  ------  ------  ------  ------  -----
+BLUE        65575  0       0       0       0       0       0       1197    0       OmRU 
+RED         65575  0       0       0       0       0       0       1197    0       OmRU 
+bond1       9000   324612  0       0       0       502040  0       0       0       BMmRU
+bond2       9000   330788  0       0       0       499929  0       0       0       BMmRU
+bond3       9000   324604  0       0       0       499590  0       0       0       BMmRU
+br_default  9216   44391   0       0       0       40362   0       0       0       BMRU 
+br_l3vni    9216   0       0       0       0       7253    0       0       0       BMRU 
+eth0        1500   214911  0       0       0       29286   0       0       0       BMRU 
+lo          65536  227368  0       0       0       227368  0       0       0       LRU  
+mgmt        65575  31690   0       0       0       0       0       1197    0       OmRU 
+swp1        9000   324616  0       0       0       502040  0       0       0       BMsRU
+swp2        9000   330792  0       0       0       499929  0       0       0       BMsRU
+swp3        9000   324608  0       0       0       499590  0       0       0       BMsRU
+swp6        9216   0       0       0       0       97832   0       0       0       BMRU 
+swp7        9216   0       0       0       0       97832   0       0       0       BMRU 
+swp51       9216   273647  0       10793   0       274422  0       0       0       BMRU 
+swp52       9216   249220  0       10793   0       262843  0       0       0       BMRU 
+vlan10      9216   13482   0       80      0       14416   0       0       0       BMRU 
+vlan10-v0   9216   300     0       80      0       7090    0       0       0       BMRU 
+vlan20      9216   20409   0       50      0       11355   0       0       0       BMRU 
+vlan20-v0   9216   275     0       50      0       5894    0       0       0       BMRU 
+vlan30      9216   11700   0       50      0       12033   0       0       0       BMRU 
+vlan30-v0   9216   226     0       50      0       5894    0       0       0       BMRU 
+vlan220_l3  9216   0       0       0       0       2420    0       0       0       BMRU 
+vlan297_l3  9216   0       0       0       0       2420    0       0       0       BMRU 
+vxlan48     9216   27342   0       0       0       25891   40829   51      0       BMRU 
+vxlan99     9216   0       0       0       0       0       0       4800    0       BMRU
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1765,6 +1765,37 @@ cumulus@switch:~$ nv show system link flap-protection
 ---------  -------
 threshold  8      
 interval   30
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system link-tracking/h>
+
+Shows link tracking configuration, such as the feature state (enabled or disabled) and all configured link tracking groups with their watch interfaces, minimum threshold, and state-change action.
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system link-tracking
+       operational  applied
+-----  -----------  -------
+state  enabled      enabled
+
+group
+========
+    Link Tracking Group  Watch Interface  Min Links  State Change Action
+    -------------------  ---------------  ---------  --------------------------
+    GROUP1               swp17            1          control-plane-action
+                         swp19
+                         swp21
+    GROUP2               swp17            2          protodown-target-interface
+                         swp24
+                         swp25
+                         swp3
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1869,37 +1900,6 @@ Introduced in Cumulus Linux 5.18.0
 
 ```
 cumulus@switch:~$ nv show system link-tracking group GROUP2 watch-interface swp17
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system link-tracking/h>
-
-Shows link tracking configuration, such as the feature state (enabled or disabled) and all configured link tracking groups with their watch interfaces, minimum threshold, and state-change action.
-
-### Version History
-
-Introduced in Cumulus Linux 5.18.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system link-tracking
-       operational  applied
------  -----------  -------
-state  enabled      enabled
-
-group
-========
-    Link Tracking Group  Watch Interface  Min Links  State Change Action
-    -------------------  ---------------  ---------  --------------------------
-    GROUP1               swp17            1          control-plane-action
-                         swp19
-                         swp21
-    GROUP2               swp17            2          protodown-target-interface
-                         swp24
-                         swp25
-                         swp3
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

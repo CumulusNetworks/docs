@@ -1,13 +1,363 @@
 ---
 title: QoS
 author: Cumulus Networks
-weight: 480
+weight: 320
 
 type: nojsscroll
 ---
 <style>
 h { color: RGB(118,185,0)}
 </style>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> qos</h>
+
+Shows QoS configuration settings for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 qos
+                  operational  applied    
+----------------  -----------  -----------
+egress-scheduler                          
+  profile                      list2      
+mapping                                   
+  profile                      customports
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> qos buffer</h>
+
+Shows QoS buffer configuration for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp5 qos buffer
+Buffer Statistics - Ingress Port
+===================================
+    Pool ID  Mode     Reserved Size  Current Usage  Max Usage  Shared Max
+    -------  -------  -------------  -------------  ---------  ----------
+    1        DYNAMIC  0 Bytes        0 Bytes        0 Bytes    ALPHA_8   
+    2        DYNAMIC  9.98 KB        0 Bytes        0 Bytes    ALPHA_8   
+
+Buffer Statistics - Ingress Priority Group
+=============================================
+    priori…  Pool ID  Mode     Reserv…  Current  Max      Shared  Lossy/…  XON Th  XOFF Th  HR      HR/PL    HR/PL   
+                               Size     Usage    Usage    Max                                       Usage    Max     
+    ------…  -------  -------  ------…  ------…  ------…  -----…  ------…  -----…  -------  -----…  ------…  -------…
+    0        2        DYNAMIC  0 Bytes  0 Bytes  0 Bytes  ALPHA…  Lossy    0       0 Bytes  18.98   0 Bytes  0 Bytes 
+                                                                           Bytes            KB                       
+    9        1        DYNAMIC  9.98 KB  0 Bytes  0 Bytes  ALPHA…  Lossy    0       0 Bytes  9.98    0 Bytes  0 Bytes 
+                                                                           Bytes            KB                       
+
+Buffer Statistics - Egress Port
+==================================
+    Pool ID  Mode     Reserved Size  Current Usage  Max Usage  Shared Max
+    -------  -------  -------------  -------------  ---------  ----------
+    12       DYNAMIC  0 Bytes        0 Bytes        0 Bytes    ALPHA_8   
+    13       DYNAMIC  9.98 KB        0 Bytes        0 Bytes    ALPHA_16  
+
+Buffer - Egress Traffic Class
+================================
+    traffic-class  Pool ID  Mode          Reserved Size  Current Usage  Max Usage  Shared Max
+    -------------  -------  ------------  -------------  -------------  ---------  ----------
+    0              13       DYNAMIC       1008 Bytes     0 Bytes        0 Bytes    ALPHA_8   
+    1              13       DYNAMIC       1008 Bytes     0 Bytes        0 Bytes    ALPHA_8   
+    2              13       DYNAMIC       1008 Bytes     0 Bytes        0 Bytes    ALPHA_8   
+    3              13       DYNAMIC       1008 Bytes     0 Bytes        0 Bytes    ALPHA_8   
+    4              13       DYNAMIC       1008 Bytes     0 Bytes        0 Bytes    ALPHA_8   
+    5              13       DYNAMIC       1008 Bytes     0 Bytes        0 Bytes    ALPHA_8   
+    6              13       DYNAMIC       1008 Bytes     0 Bytes        0 Bytes    ALPHA_8   
+    7              13       DYNAMIC       1008 Bytes     0 Bytes        0 Bytes    ALPHA_8   
+    8              10       BUFFER UNITS  0 Bytes        0 Bytes        0 Bytes    infinity  
+    9              10       BUFFER UNITS  0 Bytes        0 Bytes        0 Bytes    infinity  
+    10             10       BUFFER UNITS  0 Bytes        0 Bytes        0 Bytes    infinity  
+    11             10       BUFFER UNITS  0 Bytes        0 Bytes        0 Bytes    infinity  
+    12             10       BUFFER UNITS  0 Bytes        0 Bytes        0 Bytes    infinity  
+    13             10       BUFFER UNITS  0 Bytes        0 Bytes        0 Bytes    infinity  
+    14             10       BUFFER UNITS  0 Bytes        0 Bytes        0 Bytes    infinity  
+    15             10       BUFFER UNITS  0 Bytes        0 Bytes        0 Bytes    infinity  
+    16             12       DYNAMIC       1008 Bytes     0 Bytes        0 Bytes    ALPHA_8   
+
+Buffer - Egress Multicast
+============================
+    Pool ID  Mode          Reserved Size  Current Usage  Max Usage  Shared Max
+    -------  ------------  -------------  -------------  ---------  ----------
+    10       BUFFER UNITS  9.98 KB        0 Bytes        0 Bytes    90.00 KB  
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> qos buffer ingress-port</h>
+
+Shows QoS ingress port buffer configuration for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp5 qos buffer ingress-port
+Pool ID  Mode     Reserved Size  Current Usage  Max Usage  Shared Max
+-------  -------  -------------  -------------  ---------  ----------
+1        DYNAMIC  0 Bytes        0 Bytes        0 Bytes    ALPHA_8   
+2        DYNAMIC  9.98 KB        0 Bytes        0 Bytes    ALPHA_8 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> qos buffer ingress-priority-group</h>
+
+Shows QoS priority group ingress buffer configuration for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp5 qos buffer ingress-priority-group
+priori…  Pool ID  Mode     Reserv…  Current  Max      Shared    Lossy/…  XON Th   XOFF Th  HR        HR/PL    HR/PL Max
+                           Size     Usage    Usage    Max                                            Usage             
+------…  -------  -------  ------…  ------…  ------…  -------…  ------…  -------  -------  --------  ------…  ---------
+0        2        DYNAMIC  0 Bytes  0 Bytes  0 Bytes  ALPHA_8   Lossy    0 Bytes  0 Bytes  18.98 KB  0 Bytes  0 Bytes  
+9        1        DYNAMIC  9.98 KB  0 Bytes  0 Bytes  ALPHA_8   Lossy    0 Bytes  0 Bytes  9.98 KB   0 Bytes  0 Bytes
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> qos buffer egress-port</h>
+
+Shows QoS egress port buffer configuration for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp5 qos buffer egress-port
+Pool ID  Mode     Reserved Size  Current Usage  Max Usage  Shared Max
+-------  -------  -------------  -------------  ---------  ----------
+12       DYNAMIC  0 Bytes        0 Bytes        0 Bytes    ALPHA_8   
+13       DYNAMIC  9.98 KB        0 Bytes        0 Bytes    ALPHA_16
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> qos buffer egress-traffic-class</h>
+
+Shows QoS egress traffic class buffer configuration for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp5 qos buffer egress-traffic-class
+traffic-class  Pool ID  Mode          Reserved Size  Current Usage  Max Usage  Shared Max
+-------------  -------  ------------  -------------  -------------  ---------  ----------
+0              13       DYNAMIC       1008 Bytes     0 Bytes        0 Bytes    ALPHA_8   
+1              13       DYNAMIC       1008 Bytes     0 Bytes        0 Bytes    ALPHA_8   
+2              13       DYNAMIC       1008 Bytes     0 Bytes        0 Bytes    ALPHA_8   
+3              13       DYNAMIC       1008 Bytes     0 Bytes        0 Bytes    ALPHA_8   
+4              13       DYNAMIC       1008 Bytes     0 Bytes        0 Bytes    ALPHA_8   
+5              13       DYNAMIC       1008 Bytes     0 Bytes        0 Bytes    ALPHA_8   
+6              13       DYNAMIC       1008 Bytes     0 Bytes        0 Bytes    ALPHA_8   
+7              13       DYNAMIC       1008 Bytes     0 Bytes        0 Bytes    ALPHA_8   
+8              10       BUFFER UNITS  0 Bytes        0 Bytes        0 Bytes    infinity  
+9              10       BUFFER UNITS  0 Bytes        0 Bytes        0 Bytes    infinity  
+10             10       BUFFER UNITS  0 Bytes        0 Bytes        0 Bytes    infinity  
+11             10       BUFFER UNITS  0 Bytes        0 Bytes        0 Bytes    infinity  
+12             10       BUFFER UNITS  0 Bytes        0 Bytes        0 Bytes    infinity  
+13             10       BUFFER UNITS  0 Bytes        0 Bytes        0 Bytes    infinity  
+14             10       BUFFER UNITS  0 Bytes        0 Bytes        0 Bytes    infinity  
+15             10       BUFFER UNITS  0 Bytes        0 Bytes        0 Bytes    infinity  
+16             12       DYNAMIC       1008 Bytes     0 Bytes        0 Bytes    ALPHA_8
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> qos buffer egress-multicast</h>
+
+Shows QoS egress multicast traffic buffer configuration for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp5 qos buffer egress-multicast
+Pool ID  Mode          Reserved Size  Current Usage  Max Usage  Shared Max
+-------  ------------  -------------  -------------  ---------  ----------
+10       BUFFER UNITS  9.98 KB        0 Bytes        0 Bytes    90.00 KB
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> qos buffer shared-headroom-pool</h>
+
+Shows the shared headroom pool information for an interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp5 qos buffer shared-headroom-pool
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> qos congestion-control</h>
+
+Shows QoS congestion control configuration settings for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp5 qos congestion-control
+ECN configuration
+====================
+    traffic-class  ECN     RED      Min Th     Max Th   Probability
+    -------------  ------  -------  ---------  -------  -----------
+    0              enable  disable  153.00 KB  1.43 MB  100
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> qos congestion-control traffic-class</h>
+
+Shows QoS congestion control traffic class configuration settings for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp5 qos congestion-control traffic-class
+traffic-class  ECN     RED      Min Th     Max Th   Probability
+-------------  ------  -------  ---------  -------  -----------
+0              enable  disable  153.00 KB  1.43 MB  100
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> qos congestion-control traffic-class \<qos-tc-id\></h>
+
+Shows specific QoS congestion control traffic class configuration settings for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface name.|
+| `<qos-tc-id>` | The traffic class (egress queue). |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp5 qos congestion-control traffic-class 0
+               operational  applied
+-------------  -----------  -------
+ecn            enable              
+max-threshold  1.43 MB             
+min-threshold  153.00 KB           
+probability    100                 
+red            disable
+```
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv show interface \<interface-id\> counters qos</h>
@@ -222,356 +572,6 @@ Counter             Receive  Transmit
 ECN Marked Packets  n/a      0       
 MC Buffer Discards  n/a      0       
 Pause Frames        0        0
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show interface \<interface-id\> qos</h>
-
-Shows QoS configuration settings for the specified interface.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<interface-id>` | The interface name.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show interface swp1 qos
-                  operational  applied    
-----------------  -----------  -----------
-egress-scheduler                          
-  profile                      list2      
-mapping                                   
-  profile                      customports
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show interface \<interface-id\> qos buffer</h>
-
-Shows QoS buffer configuration for the specified interface.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<interface-id>` | The interface name.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.4.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show interface swp5 qos buffer
-Buffer Statistics - Ingress Port
-===================================
-    Pool ID  Mode     Reserved Size  Current Usage  Max Usage  Shared Max
-    -------  -------  -------------  -------------  ---------  ----------
-    1        DYNAMIC  0 Bytes        0 Bytes        0 Bytes    ALPHA_8   
-    2        DYNAMIC  9.98 KB        0 Bytes        0 Bytes    ALPHA_8   
-
-Buffer Statistics - Ingress Priority Group
-=============================================
-    priori…  Pool ID  Mode     Reserv…  Current  Max      Shared  Lossy/…  XON Th  XOFF Th  HR      HR/PL    HR/PL   
-                               Size     Usage    Usage    Max                                       Usage    Max     
-    ------…  -------  -------  ------…  ------…  ------…  -----…  ------…  -----…  -------  -----…  ------…  -------…
-    0        2        DYNAMIC  0 Bytes  0 Bytes  0 Bytes  ALPHA…  Lossy    0       0 Bytes  18.98   0 Bytes  0 Bytes 
-                                                                           Bytes            KB                       
-    9        1        DYNAMIC  9.98 KB  0 Bytes  0 Bytes  ALPHA…  Lossy    0       0 Bytes  9.98    0 Bytes  0 Bytes 
-                                                                           Bytes            KB                       
-
-Buffer Statistics - Egress Port
-==================================
-    Pool ID  Mode     Reserved Size  Current Usage  Max Usage  Shared Max
-    -------  -------  -------------  -------------  ---------  ----------
-    12       DYNAMIC  0 Bytes        0 Bytes        0 Bytes    ALPHA_8   
-    13       DYNAMIC  9.98 KB        0 Bytes        0 Bytes    ALPHA_16  
-
-Buffer - Egress Traffic Class
-================================
-    traffic-class  Pool ID  Mode          Reserved Size  Current Usage  Max Usage  Shared Max
-    -------------  -------  ------------  -------------  -------------  ---------  ----------
-    0              13       DYNAMIC       1008 Bytes     0 Bytes        0 Bytes    ALPHA_8   
-    1              13       DYNAMIC       1008 Bytes     0 Bytes        0 Bytes    ALPHA_8   
-    2              13       DYNAMIC       1008 Bytes     0 Bytes        0 Bytes    ALPHA_8   
-    3              13       DYNAMIC       1008 Bytes     0 Bytes        0 Bytes    ALPHA_8   
-    4              13       DYNAMIC       1008 Bytes     0 Bytes        0 Bytes    ALPHA_8   
-    5              13       DYNAMIC       1008 Bytes     0 Bytes        0 Bytes    ALPHA_8   
-    6              13       DYNAMIC       1008 Bytes     0 Bytes        0 Bytes    ALPHA_8   
-    7              13       DYNAMIC       1008 Bytes     0 Bytes        0 Bytes    ALPHA_8   
-    8              10       BUFFER UNITS  0 Bytes        0 Bytes        0 Bytes    infinity  
-    9              10       BUFFER UNITS  0 Bytes        0 Bytes        0 Bytes    infinity  
-    10             10       BUFFER UNITS  0 Bytes        0 Bytes        0 Bytes    infinity  
-    11             10       BUFFER UNITS  0 Bytes        0 Bytes        0 Bytes    infinity  
-    12             10       BUFFER UNITS  0 Bytes        0 Bytes        0 Bytes    infinity  
-    13             10       BUFFER UNITS  0 Bytes        0 Bytes        0 Bytes    infinity  
-    14             10       BUFFER UNITS  0 Bytes        0 Bytes        0 Bytes    infinity  
-    15             10       BUFFER UNITS  0 Bytes        0 Bytes        0 Bytes    infinity  
-    16             12       DYNAMIC       1008 Bytes     0 Bytes        0 Bytes    ALPHA_8   
-
-Buffer - Egress Multicast
-============================
-    Pool ID  Mode          Reserved Size  Current Usage  Max Usage  Shared Max
-    -------  ------------  -------------  -------------  ---------  ----------
-    10       BUFFER UNITS  9.98 KB        0 Bytes        0 Bytes    90.00 KB  
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show interface \<interface-id\> qos buffer egress-multicast</h>
-
-Shows QoS egress multicast traffic buffer configuration for the specified interface.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<interface-id>` | The interface name.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.4.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show interface swp5 qos buffer egress-multicast
-Pool ID  Mode          Reserved Size  Current Usage  Max Usage  Shared Max
--------  ------------  -------------  -------------  ---------  ----------
-10       BUFFER UNITS  9.98 KB        0 Bytes        0 Bytes    90.00 KB
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show interface \<interface-id\> qos buffer egress-port</h>
-
-Shows QoS egress port buffer configuration for the specified interface.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<interface-id>` | The interface name.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.4.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show interface swp5 qos buffer egress-port
-Pool ID  Mode     Reserved Size  Current Usage  Max Usage  Shared Max
--------  -------  -------------  -------------  ---------  ----------
-12       DYNAMIC  0 Bytes        0 Bytes        0 Bytes    ALPHA_8   
-13       DYNAMIC  9.98 KB        0 Bytes        0 Bytes    ALPHA_16
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show interface \<interface-id\> qos buffer egress-traffic-class</h>
-
-Shows QoS egress traffic class buffer configuration for the specified interface.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<interface-id>` | The interface name.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.4.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show interface swp5 qos buffer egress-traffic-class
-traffic-class  Pool ID  Mode          Reserved Size  Current Usage  Max Usage  Shared Max
--------------  -------  ------------  -------------  -------------  ---------  ----------
-0              13       DYNAMIC       1008 Bytes     0 Bytes        0 Bytes    ALPHA_8   
-1              13       DYNAMIC       1008 Bytes     0 Bytes        0 Bytes    ALPHA_8   
-2              13       DYNAMIC       1008 Bytes     0 Bytes        0 Bytes    ALPHA_8   
-3              13       DYNAMIC       1008 Bytes     0 Bytes        0 Bytes    ALPHA_8   
-4              13       DYNAMIC       1008 Bytes     0 Bytes        0 Bytes    ALPHA_8   
-5              13       DYNAMIC       1008 Bytes     0 Bytes        0 Bytes    ALPHA_8   
-6              13       DYNAMIC       1008 Bytes     0 Bytes        0 Bytes    ALPHA_8   
-7              13       DYNAMIC       1008 Bytes     0 Bytes        0 Bytes    ALPHA_8   
-8              10       BUFFER UNITS  0 Bytes        0 Bytes        0 Bytes    infinity  
-9              10       BUFFER UNITS  0 Bytes        0 Bytes        0 Bytes    infinity  
-10             10       BUFFER UNITS  0 Bytes        0 Bytes        0 Bytes    infinity  
-11             10       BUFFER UNITS  0 Bytes        0 Bytes        0 Bytes    infinity  
-12             10       BUFFER UNITS  0 Bytes        0 Bytes        0 Bytes    infinity  
-13             10       BUFFER UNITS  0 Bytes        0 Bytes        0 Bytes    infinity  
-14             10       BUFFER UNITS  0 Bytes        0 Bytes        0 Bytes    infinity  
-15             10       BUFFER UNITS  0 Bytes        0 Bytes        0 Bytes    infinity  
-16             12       DYNAMIC       1008 Bytes     0 Bytes        0 Bytes    ALPHA_8
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show interface \<interface-id\> qos buffer ingress-port</h>
-
-Shows QoS ingress port buffer configuration for the specified interface.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<interface-id>` | The interface name.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.4.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show interface swp5 qos buffer ingress-port
-Pool ID  Mode     Reserved Size  Current Usage  Max Usage  Shared Max
--------  -------  -------------  -------------  ---------  ----------
-1        DYNAMIC  0 Bytes        0 Bytes        0 Bytes    ALPHA_8   
-2        DYNAMIC  9.98 KB        0 Bytes        0 Bytes    ALPHA_8 
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show interface \<interface-id\> qos buffer ingress-priority-group</h>
-
-Shows QoS priority group ingress buffer configuration for the specified interface.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<interface-id>` | The interface name.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.4.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show interface swp5 qos buffer ingress-priority-group
-priori…  Pool ID  Mode     Reserv…  Current  Max      Shared    Lossy/…  XON Th   XOFF Th  HR        HR/PL    HR/PL Max
-                           Size     Usage    Usage    Max                                            Usage             
-------…  -------  -------  ------…  ------…  ------…  -------…  ------…  -------  -------  --------  ------…  ---------
-0        2        DYNAMIC  0 Bytes  0 Bytes  0 Bytes  ALPHA_8   Lossy    0 Bytes  0 Bytes  18.98 KB  0 Bytes  0 Bytes  
-9        1        DYNAMIC  9.98 KB  0 Bytes  0 Bytes  ALPHA_8   Lossy    0 Bytes  0 Bytes  9.98 KB   0 Bytes  0 Bytes
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show interface \<interface-id\> qos buffer shared-headroom-pool</h>
-
-Shows the shared headroom pool information for an interface.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<interface-id>` | The interface name.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.17.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show interface swp5 qos buffer shared-headroom-pool
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show interface \<interface-id\> qos congestion-control</h>
-
-Shows QoS congestion control configuration settings for the specified interface.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<interface-id>` | The interface name.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show interface swp5 qos congestion-control
-ECN configuration
-====================
-    traffic-class  ECN     RED      Min Th     Max Th   Probability
-    -------------  ------  -------  ---------  -------  -----------
-    0              enable  disable  153.00 KB  1.43 MB  100
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show interface \<interface-id\> qos congestion-control traffic-class</h>
-
-Shows QoS congestion control traffic class configuration settings for the specified interface.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<interface-id>` | The interface name.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show interface swp5 qos congestion-control traffic-class
-traffic-class  ECN     RED      Min Th     Max Th   Probability
--------------  ------  -------  ---------  -------  -----------
-0              enable  disable  153.00 KB  1.43 MB  100
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show interface \<interface-id\> qos congestion-control traffic-class \<qos-tc-id\></h>
-
-Shows specific QoS congestion control traffic class configuration settings for the specified interface.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<interface-id>` | The interface name.|
-| `<qos-tc-id>` | The traffic class (egress queue). |
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show interface swp5 qos congestion-control traffic-class 0
-               operational  applied
--------------  -----------  -------
-ecn            enable              
-max-threshold  1.43 MB             
-min-threshold  153.00 KB           
-probability    100                 
-red            disable
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1059,90 +1059,6 @@ tx  disable
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface-id\> qos pfc-watchdog</h>
-
-Shows if the PFC watchdog setting is on or off and shows the state for each traffic class. PFC watchdog detects and mitigates pause storms on ports where PFC or link pause is ON.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<interface-id>` | The interface name.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.6.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show interface swp1 qos pfc-watchdog
-                 operational  applied 
----------------  -----------  ------- 
-state            enabled      enabled 
-
-PFC WD Status 
-=========================== 
-    traffic-class  status    deadlock-count 
-    -------------  --------  -------------- 
-
-    0              OK        0 
-    1              OK        3 
-    2              DEADLOCK  2  
-    3              OK        0 
-    4              OK        0 
-    5              OK        0 
-    6              OK        0 
-    7              DEADLOCK  3
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show interface \<interface-id\> qos pfc-watchdog status</h>
-
-Shows PFC watchdog data for every traffic class. PFC watchdog detects and mitigates pause storms on ports where PFC or link pause is ON.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<interface-id>` | The interface name.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.6.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show interface swp1 qos pfc-watchdog status
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show interface \<interface-id\> qos pfc-watchdog status \<qos-tc-id\></h>
-
-Shows PFC watchdog data for a specific traffic class. PFC watchdog detects and mitigates pause storms on ports where PFC or link pause is ON.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<interface-id>` | The interface name.|
-| `<qos-tc-id>` | The Traffic class. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.6.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show interface swp1 qos pfc-watchdog status 0
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv show interface \<interface-id\> qos remark</h>
 
 Shows QoS remarking configuration settings for the specified interface.
@@ -1406,299 +1322,86 @@ cumulus@switch:~$ nv show interface swp5 qos roce status tc-map
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface qos-congestion-control</h>
+## <h>nv show interface \<interface-id\> qos pfc-watchdog</h>
 
-Shows QoS congestion control configuration for all interfaces.
+Shows if the PFC watchdog setting is on or off and shows the state for each traffic class. PFC watchdog detects and mitigates pause storms on ports where PFC or link pause is ON.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface name.|
 
 ### Version History
 
-Introduced in Cumulus Linux 5.14.0
+Introduced in Cumulus Linux 5.6.0
 
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface qos-congestion-control
-=======================================================================
-ECN configuration for Interface: swp1
-=======================================================================
-    traffic-class  ECN     RED      Min Th     Max Th     Probability
-    -------------  ------  -------  ---------  ---------  -----------
-    0              enable  disable  153.0 KB   1.43 MB    100        
-    3              enable  disable  153.0 KB   1.43 MB    100        
+cumulus@switch:~$ nv show interface swp1 qos pfc-watchdog
+                 operational  applied 
+---------------  -----------  ------- 
+state            enabled      enabled 
 
-=======================================================================
-ECN configuration for Interface: swp2
-=======================================================================
-    traffic-class  ECN     RED      Min Th     Max Th     Probability
-    -------------  ------  -------  ---------  ---------  -----------
-    0              enable  disable  153.0 KB   1.43 MB    100        
-    3              enable  disable  153.0 KB   1.43 MB    100        
+PFC WD Status 
+=========================== 
+    traffic-class  status    deadlock-count 
+    -------------  --------  -------------- 
 
-=======================================================================
-ECN configuration for Interface: swp3
-=======================================================================
-    traffic-class  ECN     RED      Min Th     Max Th     Probability
-    -------------  ------  -------  ---------  ---------  -----------
-    0              enable  disable  153.0 KB   1.43 MB    100        
-    3              enable  disable  153.0 KB   1.43 MB    100        
-
-=======================================================================
-ECN configuration for Interface: swp4
-=======================================================================
-    traffic-class  ECN     RED      Min Th     Max Th     Probability
-    -------------  ------  -------  ---------  ---------  -----------
-    0              enable  disable  153.0 KB   1.43 MB    100        
-    3              enable  disable  153.0 KB   1.43 MB    100        
-...
+    0              OK        0 
+    1              OK        3 
+    2              DEADLOCK  2  
+    3              OK        0 
+    4              OK        0 
+    5              OK        0 
+    6              OK        0 
+    7              DEADLOCK  3
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface qos-roce-counters</h>
+## <h>nv show interface \<interface-id\> qos pfc-watchdog status</h>
 
-Shows detailed information about current buffer utilization as well as historic RoCE byte and packet counts for all interfaces.
+Shows PFC watchdog data for every traffic class. PFC watchdog detects and mitigates pause storms on ports where PFC or link pause is ON.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface name.|
 
 ### Version History
 
-Introduced in Cumulus Linux 5.14.0
+Introduced in Cumulus Linux 5.6.0
 
 ### Example
 
 ```
-cumulus@switch:~$ v show interface qos-roce-counters
-----------------------------------------------------
-Interface: swp1
-----------------------------------------------------
-rx-stats
-  rx-pfc-stats
-    pause-duration             0
-    pause-packets              0
-  rx-roce-stats
-    buffer-max-usage           0 Bytes
-    buffer-usage               0 Bytes
-    no-buffer-discard          0
-    roce-packets               0
-    roce-bytes                 0 Bytes
-    pg-max-usage               0 Bytes
-    pg-usage                   0 Bytes
-  rx-non-roce-stats
-    pg-usage                   0 Bytes
-    buffer-max-usage           144 Bytes
-    buffer-usage               0 Bytes
-    no-buffer-discard          0
-    non-roce-bytes             1432 Bytes
-    pg-max-usage               144 Bytes
-    non-roce-packets           12
-tx-stats
-  tx-pfc-stats
-    pause-duration             0
-    pause-packets              0
-  tx-roce-stats
-    buffer-max-usage           0 Bytes
-    buffer-usage               0 Bytes
-    roce-bytes                 0 Bytes
-    roce-packets               0
-    tc-max-usage               0 Bytes
-    tc-usage                   0 Bytes
-    unicast-no-buffer-discard  0
-  tx-non-roce-stats
-    buffer-max-usage           0 Bytes
-    buffer-usage               0 Bytes
-  tx-cnp-stats
-    cnp-bytes                  0 Bytes
-    tc-max-usage               0 Bytes
-    cnp-packets                0
-    tc-usage                   0 Bytes
-    unicast-no-buffer-discard  0
-  tx-ecn-stats
-    ecn-marked-packets         0
-----------------------------------------------------
-Interface: swp2
-----------------------------------------------------
-rx-stats
-  rx-pfc-stats
-    pause-duration             0
-    pause-packets              0
-  rx-roce-stats
-    buffer-max-usage           0 Bytes
-    buffer-usage               0 Bytes
-    no-buffer-discard          0
-    roce-packets               0
-    roce-bytes                 0 Bytes
-    pg-max-usage               0 Bytes
-    pg-usage                   0 Bytes
-  rx-non-roce-stats
-    pg-usage                   0 Bytes
-    buffer-max-usage           288 Bytes
-    buffer-usage               0 Bytes
-    no-buffer-discard          0
-    non-roce-bytes             8459 Bytes
-    pg-max-usage               288 Bytes
-    non-roce-packets           46
-tx-stats
-  tx-pfc-stats
-    pause-duration             0
-    pause-packets              0
-  tx-roce-stats
-    buffer-max-usage           0 Bytes
-    buffer-usage               0 Bytes
-    roce-bytes                 0 Bytes
-    roce-packets               0
-    tc-max-usage               0 Bytes
-    tc-usage                   0 Bytes
-    unicast-no-buffer-discard  0
-  tx-non-roce-stats
-    buffer-max-usage           0 Bytes
-    buffer-usage               0 Bytes
-  tx-cnp-stats
-    cnp-bytes                  0 Bytes
-    tc-max-usage               0 Bytes
-    cnp-packets                0
-    tc-usage                   0 Bytes
-    unicast-no-buffer-discard  0
-  tx-ecn-stats
-    ecn-marked-packets         0
-...
+cumulus@switch:~$ nv show interface swp1 qos pfc-watchdog status
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface qos-roce-status</h>
+## <h>nv show interface \<interface-id\> qos pfc-watchdog status \<qos-tc-id\></h>
 
-Shows detailed RoCE information about all interfaces.
+Shows PFC watchdog data for a specific traffic class. PFC watchdog detects and mitigates pause storms on ports where PFC or link pause is ON.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface name.|
+| `<qos-tc-id>` | The Traffic class. |
 
 ### Version History
 
-Introduced in Cumulus Linux 5.14.0
+Introduced in Cumulus Linux 5.6.0
 
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface qos-roce-status
----------------------------------------------
-Interface: swp1
-----------------------------------------------
-pfc
-  pfc-priority          3
-  rx-enabled            yes
-  tx-enabled            yes
-trust
-  trust-mode            pcp,dscp
-congestion-control
-  congestion-mode       ecn, absolute
-  enabled-tc            0,3
-  min-threshold         156672
-  max-threshold         1502208
-mode
-  mode                   lossless
-
-RoCE PCP/DSCP->SP mapping configurations
-===========================================
-          pcp  dscp  switch-prio
-    ----  ---  ----  -----------
-    cnp     6     48     6
-    roce    3     26     3
-
-RoCE SP->TC mapping and ETS configurations
-=============================================
-          switch-prio  traffic-class  scheduler-weight
-    ----  -----------  -------------  ----------------
-    cnp     6            6            strict priority
-    roce    3            3            dwrr-50%
-
-RoCE Pool Status
-===================
-          name                    mode     pool-id    switch-priorities       traffic-class      size       current-usage   max-usage
-    -     ----------------------  -------  ---------  ----------------------  ---------------    ---------  --------------  ----------
-    0      lossy-default-ingress   DYNAMIC   0          0,1,2,4,5,6,7           -                14.02 MB   0               0
-    1      roce-reserved-ingress   DYNAMIC   1          3                       -                14.02 MB   0               0
-    2      lossy-default-egress    DYNAMIC   2          -                       0,6              14.02 MB   0               0
-    3      roce-reserved-egress    DYNAMIC   3          -                       3                inf        0               0
-
----------------------------------------------
-Interface: swp2
-----------------------------------------------
-pfc
-  pfc-priority          3
-  rx-enabled            yes
-  tx-enabled            yes
-trust
-  trust-mode            pcp,dscp
-congestion-control
-  congestion-mode       ecn, absolute
-  enabled-tc            0,3
-  min-threshold         156672
-  max-threshold         1502208
-mode
-  mode                   lossless
-
-RoCE PCP/DSCP->SP mapping configurations
-===========================================
-          pcp  dscp  switch-prio
-    ----  ---  ----  -----------
-    cnp     6     48     6
-    roce    3     26     3
-
-RoCE SP->TC mapping and ETS configurations
-=============================================
-          switch-prio  traffic-class  scheduler-weight
-    ----  -----------  -------------  ----------------
-    cnp     6            6            strict priority
-    roce    3            3            dwrr-50%
-
-RoCE Pool Status
-===================
-          name                    mode     pool-id    switch-priorities       traffic-class      size       current-usage   max-usage
-    -     ----------------------  -------  ---------  ----------------------  ---------------    ---------  --------------  ----------
-    0      lossy-default-ingress   DYNAMIC   0          0,1,2,4,5,6,7           -                14.02 MB   0               0
-    1      roce-reserved-ingress   DYNAMIC   1          3                       -                14.02 MB   0               0
-    2      lossy-default-egress    DYNAMIC   2          -                       0,6              14.02 MB   0               0
-    3      roce-reserved-egress    DYNAMIC   3          -                       3                inf        0               0
-...
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show interface qos-roce-status-pool-map</h>
-
-Shows the status for RoCE pools for all interfaces.
-
-### Version History
-
-Introduced in Cumulus Linux 5.14.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show interface qos-roce-status-pool-map
--------------------------------------
-Interface: swp1
--------------------------------------
-    name                     mode      pool-id  switch-priorities  traffic-class     size     current-usage  max-usage
--   ---------------------    --------  -------  -----------------  -------------     -------  -------------  ---------
-0   lossy-default-ingress    DYNAMIC    2         0,1,2,4,5,6,7       -              14.02 MB  0              0         
-1   roce-reserved-ingress    DYNAMIC    3         3                   -              14.02 MB  0              0         
-2   lossy-default-egress     DYNAMIC    13        -                   0,6            14.02 MB  0              0         
-3   roce-reserved-egress     DYNAMIC    14        -                   3              inf       0              0         
--------------------------------------
-Interface: swp2
--------------------------------------
-    name                     mode      pool-id  switch-priorities  traffic-class     size     current-usage  max-usage
--   ---------------------    --------  -------  -----------------  -------------     -------  -------------  ---------
-0   lossy-default-ingress    DYNAMIC    2         0,1,2,4,5,6,7       -              14.02 MB  0              0         
-1   roce-reserved-ingress    DYNAMIC    3         3                   -              14.02 MB  0              0         
-2   lossy-default-egress     DYNAMIC    13        -                   0,6            14.02 MB  0              0         
-3   roce-reserved-egress     DYNAMIC    14        -                   3              inf       0              0         
--------------------------------------
-Interface: swp3
--------------------------------------
-    name                     mode      pool-id  switch-priorities  traffic-class     size     current-usage  max-usage
--   ---------------------    --------  -------  -----------------  -------------     -------  -------------  ---------
-0   lossy-default-ingress    DYNAMIC    2         0,1,2,4,5,6,7       -              14.02 MB  0              0         
-1   roce-reserved-ingress    DYNAMIC    3         3                   -              14.02 MB  0              0         
-2   lossy-default-egress     DYNAMIC    13        -                   0,6            14.02 MB  0              0         
-3   roce-reserved-egress     DYNAMIC    14        -                   3              inf       0              0         
-...
+cumulus@switch:~$ nv show interface swp1 qos pfc-watchdog status 0
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2050,33 +1753,6 @@ service-pool  0            0
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show qos advance-buffer-config \<profile-id\> egress-mgmt-buffer</h>
-
-Shows the lossy egress management buffer settings that you can configure to isolate management traffic to a different priority group. Management traffic consists of control traffic originating from or destined to the switch CPU.
-
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<profile-id>` | The profile name.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.10.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show qos advance-buffer-config default-global egress-mgmt-buffer 
-              operational       applied 
-------------  -----------       ---- 
-reserved       1200 Bytes       1200 Bytes 
-shared-bytes   13.53 KB         13.53 KB 
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv show qos advance-buffer-config \<profile-id\> egress-service-pool</h>
 
 Shows all egress service pool settings for the specified QoS advanced buffer profile.
@@ -2308,32 +1984,6 @@ cumulus@switch:~$ nv show qos advance-buffer-config default-global ingress-lossy
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show qos advance-buffer-config \<profile-id\> ingress-mgmt-buffer</h>
-
-Shows the lossy ingress management buffer settings that you can configure to isolate management traffic to a different priority group. Management traffic consists of control traffic originating from or destined to the switch CPU.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<profile-id>` | The profile name.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.10.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show qos advance-buffer-config default-global ingress-mgmt-buffer
-              operational       applied
-------------  -----------       ---- 
-headroom       1000 Bytes       1000 Bytes 
-shared-bytes   19.53 KB         19.53 KB 
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv show qos advance-buffer-config \<profile-id\> ingress-service-pool</h>
 
 Shows all ingress service pool settings for the specified QoS advanced buffer profile.
@@ -2391,6 +2041,59 @@ cumulus@switch:~$ nv show qos advance-buffer-config default-global ingress-servi
 --------------  -----------  -------
 memory-percent  100          100    
 mode            dynamic      dynamic
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show qos advance-buffer-config \<profile-id\> egress-mgmt-buffer</h>
+
+Shows the lossy egress management buffer settings that you can configure to isolate management traffic to a different priority group. Management traffic consists of control traffic originating from or destined to the switch CPU.
+
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<profile-id>` | The profile name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show qos advance-buffer-config default-global egress-mgmt-buffer 
+              operational       applied 
+------------  -----------       ---- 
+reserved       1200 Bytes       1200 Bytes 
+shared-bytes   13.53 KB         13.53 KB 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show qos advance-buffer-config \<profile-id\> ingress-mgmt-buffer</h>
+
+Shows the lossy ingress management buffer settings that you can configure to isolate management traffic to a different priority group. Management traffic consists of control traffic originating from or destined to the switch CPU.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<profile-id>` | The profile name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show qos advance-buffer-config default-global ingress-mgmt-buffer
+              operational       applied
+------------  -----------       ---- 
+headroom       1000 Bytes       1000 Bytes 
+shared-bytes   19.53 KB         19.53 KB 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2466,19 +2169,31 @@ Buffer - Multicast Switch Priority
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show qos buffer descriptor-pool</h>
+## <h>nv show qos buffer pool</h>
 
-Shows the buffer descriptor pool counters.
+Shows QoS buffer traffic pool configuration.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.11.0
+Introduced in Cumulus Linux 5.4.0
 
 ### Example
 
 ```
-cumulus@switch:~$ nv show qos buffer descriptor-pool
-No Data
+cumulus@switch:~$ nv show qos buffer pool
+Pool ID  Pool Type               Direction  Mode          Pool Size  Current Usage  Max Usage
+-------  ----------------------  ---------  ------------  ---------  -------------  ---------
+0        Ingress Data            INGRESS    DYNAMIC       25.14 MB   0 Bytes        0 Bytes  
+1        Ingress Management      INGRESS    DYNAMIC       255.94 KB  0 Bytes        0 Bytes  
+2        User data buffer        INGRESS    DYNAMIC       29.99 MB   0 Bytes        0 Bytes  
+10       Multicast               EGRESS     BUFFER UNITS  32.75 MB   0 Bytes        0 Bytes  
+11       Egress Data             EGRESS     DYNAMIC       25.14 MB   0 Bytes        0 Bytes  
+12       Egress Management       EGRESS     DYNAMIC       255.94 KB  0 Bytes        0 Bytes  
+13       User data buffer        EGRESS     DYNAMIC       29.99 MB   0 Bytes        0 Bytes  
+21       Ingress Descriptor      INGRESS    DYNAMIC       18.81 MB   0 Bytes        0 Bytes  
+22       User descriptor buffer  INGRESS    DYNAMIC       18.01 MB   0 Bytes        0 Bytes  
+30       Egress Descriptor       EGRESS     DYNAMIC       18.81 MB   0 Bytes        0 Bytes  
+31       User descriptor buffer  EGRESS     DYNAMIC       18.01 MB   0 Bytes        0 Bytes
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2505,35 +2220,6 @@ switch-priority  Pool ID  Mode     Reserved Size  Current Usage  Max Usage  Shar
 5                13       DYNAMIC  9.98 KB        0 Bytes        0 Bytes    ALPHA_1_4 
 6                13       DYNAMIC  9.98 KB        0 Bytes        0 Bytes    ALPHA_1_4 
 7                13       DYNAMIC  9.98 KB        0 Bytes        288 Bytes  ALPHA_1_4
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show qos buffer pool</h>
-
-Shows QoS buffer traffic pool configuration.
-
-### Version History
-
-Introduced in Cumulus Linux 5.4.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show qos buffer pool
-Pool ID  Pool Type               Direction  Mode          Pool Size  Current Usage  Max Usage
--------  ----------------------  ---------  ------------  ---------  -------------  ---------
-0        Ingress Data            INGRESS    DYNAMIC       25.14 MB   0 Bytes        0 Bytes  
-1        Ingress Management      INGRESS    DYNAMIC       255.94 KB  0 Bytes        0 Bytes  
-2        User data buffer        INGRESS    DYNAMIC       29.99 MB   0 Bytes        0 Bytes  
-10       Multicast               EGRESS     BUFFER UNITS  32.75 MB   0 Bytes        0 Bytes  
-11       Egress Data             EGRESS     DYNAMIC       25.14 MB   0 Bytes        0 Bytes  
-12       Egress Management       EGRESS     DYNAMIC       255.94 KB  0 Bytes        0 Bytes  
-13       User data buffer        EGRESS     DYNAMIC       29.99 MB   0 Bytes        0 Bytes  
-21       Ingress Descriptor      INGRESS    DYNAMIC       18.81 MB   0 Bytes        0 Bytes  
-22       User descriptor buffer  INGRESS    DYNAMIC       18.01 MB   0 Bytes        0 Bytes  
-30       Egress Descriptor       EGRESS     DYNAMIC       18.81 MB   0 Bytes        0 Bytes  
-31       User descriptor buffer  EGRESS     DYNAMIC       18.01 MB   0 Bytes        0 Bytes
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2640,6 +2326,23 @@ max-threshold  200000 B     200000 B  Maximum Threshold (in bytes)
 min-threshold  40000 B      40000 B   Minimum Threshold (in bytes)
 probability    100          100       Probability
 red            enable       enable    Random Early Detection State
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show qos buffer descriptor-pool</h>
+
+Shows the buffer descriptor pool counters.
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show qos buffer descriptor-pool
+No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2986,6 +2689,303 @@ cumulus@switch:~$ nv show qos egress-shaper shaper1 traffic-class 2
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show interface qos-congestion-control</h>
+
+Shows QoS congestion control configuration for all interfaces.
+
+### Version History
+
+Introduced in Cumulus Linux 5.14.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface qos-congestion-control
+=======================================================================
+ECN configuration for Interface: swp1
+=======================================================================
+    traffic-class  ECN     RED      Min Th     Max Th     Probability
+    -------------  ------  -------  ---------  ---------  -----------
+    0              enable  disable  153.0 KB   1.43 MB    100        
+    3              enable  disable  153.0 KB   1.43 MB    100        
+
+=======================================================================
+ECN configuration for Interface: swp2
+=======================================================================
+    traffic-class  ECN     RED      Min Th     Max Th     Probability
+    -------------  ------  -------  ---------  ---------  -----------
+    0              enable  disable  153.0 KB   1.43 MB    100        
+    3              enable  disable  153.0 KB   1.43 MB    100        
+
+=======================================================================
+ECN configuration for Interface: swp3
+=======================================================================
+    traffic-class  ECN     RED      Min Th     Max Th     Probability
+    -------------  ------  -------  ---------  ---------  -----------
+    0              enable  disable  153.0 KB   1.43 MB    100        
+    3              enable  disable  153.0 KB   1.43 MB    100        
+
+=======================================================================
+ECN configuration for Interface: swp4
+=======================================================================
+    traffic-class  ECN     RED      Min Th     Max Th     Probability
+    -------------  ------  -------  ---------  ---------  -----------
+    0              enable  disable  153.0 KB   1.43 MB    100        
+    3              enable  disable  153.0 KB   1.43 MB    100        
+...
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface qos-roce-counters</h>
+
+Shows detailed information about current buffer utilization as well as historic RoCE byte and packet counts for all interfaces.
+
+### Version History
+
+Introduced in Cumulus Linux 5.14.0
+
+### Example
+
+```
+cumulus@switch:~$ v show interface qos-roce-counters
+----------------------------------------------------
+Interface: swp1
+----------------------------------------------------
+rx-stats
+  rx-pfc-stats
+    pause-duration             0
+    pause-packets              0
+  rx-roce-stats
+    buffer-max-usage           0 Bytes
+    buffer-usage               0 Bytes
+    no-buffer-discard          0
+    roce-packets               0
+    roce-bytes                 0 Bytes
+    pg-max-usage               0 Bytes
+    pg-usage                   0 Bytes
+  rx-non-roce-stats
+    pg-usage                   0 Bytes
+    buffer-max-usage           144 Bytes
+    buffer-usage               0 Bytes
+    no-buffer-discard          0
+    non-roce-bytes             1432 Bytes
+    pg-max-usage               144 Bytes
+    non-roce-packets           12
+tx-stats
+  tx-pfc-stats
+    pause-duration             0
+    pause-packets              0
+  tx-roce-stats
+    buffer-max-usage           0 Bytes
+    buffer-usage               0 Bytes
+    roce-bytes                 0 Bytes
+    roce-packets               0
+    tc-max-usage               0 Bytes
+    tc-usage                   0 Bytes
+    unicast-no-buffer-discard  0
+  tx-non-roce-stats
+    buffer-max-usage           0 Bytes
+    buffer-usage               0 Bytes
+  tx-cnp-stats
+    cnp-bytes                  0 Bytes
+    tc-max-usage               0 Bytes
+    cnp-packets                0
+    tc-usage                   0 Bytes
+    unicast-no-buffer-discard  0
+  tx-ecn-stats
+    ecn-marked-packets         0
+----------------------------------------------------
+Interface: swp2
+----------------------------------------------------
+rx-stats
+  rx-pfc-stats
+    pause-duration             0
+    pause-packets              0
+  rx-roce-stats
+    buffer-max-usage           0 Bytes
+    buffer-usage               0 Bytes
+    no-buffer-discard          0
+    roce-packets               0
+    roce-bytes                 0 Bytes
+    pg-max-usage               0 Bytes
+    pg-usage                   0 Bytes
+  rx-non-roce-stats
+    pg-usage                   0 Bytes
+    buffer-max-usage           288 Bytes
+    buffer-usage               0 Bytes
+    no-buffer-discard          0
+    non-roce-bytes             8459 Bytes
+    pg-max-usage               288 Bytes
+    non-roce-packets           46
+tx-stats
+  tx-pfc-stats
+    pause-duration             0
+    pause-packets              0
+  tx-roce-stats
+    buffer-max-usage           0 Bytes
+    buffer-usage               0 Bytes
+    roce-bytes                 0 Bytes
+    roce-packets               0
+    tc-max-usage               0 Bytes
+    tc-usage                   0 Bytes
+    unicast-no-buffer-discard  0
+  tx-non-roce-stats
+    buffer-max-usage           0 Bytes
+    buffer-usage               0 Bytes
+  tx-cnp-stats
+    cnp-bytes                  0 Bytes
+    tc-max-usage               0 Bytes
+    cnp-packets                0
+    tc-usage                   0 Bytes
+    unicast-no-buffer-discard  0
+  tx-ecn-stats
+    ecn-marked-packets         0
+...
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface qos-roce-status</h>
+
+Shows detailed RoCE information about all interfaces.
+
+### Version History
+
+Introduced in Cumulus Linux 5.14.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface qos-roce-status
+---------------------------------------------
+Interface: swp1
+----------------------------------------------
+pfc
+  pfc-priority          3
+  rx-enabled            yes
+  tx-enabled            yes
+trust
+  trust-mode            pcp,dscp
+congestion-control
+  congestion-mode       ecn, absolute
+  enabled-tc            0,3
+  min-threshold         156672
+  max-threshold         1502208
+mode
+  mode                   lossless
+
+RoCE PCP/DSCP->SP mapping configurations
+===========================================
+          pcp  dscp  switch-prio
+    ----  ---  ----  -----------
+    cnp     6     48     6
+    roce    3     26     3
+
+RoCE SP->TC mapping and ETS configurations
+=============================================
+          switch-prio  traffic-class  scheduler-weight
+    ----  -----------  -------------  ----------------
+    cnp     6            6            strict priority
+    roce    3            3            dwrr-50%
+
+RoCE Pool Status
+===================
+          name                    mode     pool-id    switch-priorities       traffic-class      size       current-usage   max-usage
+    -     ----------------------  -------  ---------  ----------------------  ---------------    ---------  --------------  ----------
+    0      lossy-default-ingress   DYNAMIC   0          0,1,2,4,5,6,7           -                14.02 MB   0               0
+    1      roce-reserved-ingress   DYNAMIC   1          3                       -                14.02 MB   0               0
+    2      lossy-default-egress    DYNAMIC   2          -                       0,6              14.02 MB   0               0
+    3      roce-reserved-egress    DYNAMIC   3          -                       3                inf        0               0
+
+---------------------------------------------
+Interface: swp2
+----------------------------------------------
+pfc
+  pfc-priority          3
+  rx-enabled            yes
+  tx-enabled            yes
+trust
+  trust-mode            pcp,dscp
+congestion-control
+  congestion-mode       ecn, absolute
+  enabled-tc            0,3
+  min-threshold         156672
+  max-threshold         1502208
+mode
+  mode                   lossless
+
+RoCE PCP/DSCP->SP mapping configurations
+===========================================
+          pcp  dscp  switch-prio
+    ----  ---  ----  -----------
+    cnp     6     48     6
+    roce    3     26     3
+
+RoCE SP->TC mapping and ETS configurations
+=============================================
+          switch-prio  traffic-class  scheduler-weight
+    ----  -----------  -------------  ----------------
+    cnp     6            6            strict priority
+    roce    3            3            dwrr-50%
+
+RoCE Pool Status
+===================
+          name                    mode     pool-id    switch-priorities       traffic-class      size       current-usage   max-usage
+    -     ----------------------  -------  ---------  ----------------------  ---------------    ---------  --------------  ----------
+    0      lossy-default-ingress   DYNAMIC   0          0,1,2,4,5,6,7           -                14.02 MB   0               0
+    1      roce-reserved-ingress   DYNAMIC   1          3                       -                14.02 MB   0               0
+    2      lossy-default-egress    DYNAMIC   2          -                       0,6              14.02 MB   0               0
+    3      roce-reserved-egress    DYNAMIC   3          -                       3                inf        0               0
+...
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface qos-roce-status-pool-map</h>
+
+Shows the status for RoCE pools for all interfaces.
+
+### Version History
+
+Introduced in Cumulus Linux 5.14.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface qos-roce-status-pool-map
+-------------------------------------
+Interface: swp1
+-------------------------------------
+    name                     mode      pool-id  switch-priorities  traffic-class     size     current-usage  max-usage
+-   ---------------------    --------  -------  -----------------  -------------     -------  -------------  ---------
+0   lossy-default-ingress    DYNAMIC    2         0,1,2,4,5,6,7       -              14.02 MB  0              0         
+1   roce-reserved-ingress    DYNAMIC    3         3                   -              14.02 MB  0              0         
+2   lossy-default-egress     DYNAMIC    13        -                   0,6            14.02 MB  0              0         
+3   roce-reserved-egress     DYNAMIC    14        -                   3              inf       0              0         
+-------------------------------------
+Interface: swp2
+-------------------------------------
+    name                     mode      pool-id  switch-priorities  traffic-class     size     current-usage  max-usage
+-   ---------------------    --------  -------  -----------------  -------------     -------  -------------  ---------
+0   lossy-default-ingress    DYNAMIC    2         0,1,2,4,5,6,7       -              14.02 MB  0              0         
+1   roce-reserved-ingress    DYNAMIC    3         3                   -              14.02 MB  0              0         
+2   lossy-default-egress     DYNAMIC    13        -                   0,6            14.02 MB  0              0         
+3   roce-reserved-egress     DYNAMIC    14        -                   3              inf       0              0         
+-------------------------------------
+Interface: swp3
+-------------------------------------
+    name                     mode      pool-id  switch-priorities  traffic-class     size     current-usage  max-usage
+-   ---------------------    --------  -------  -----------------  -------------     -------  -------------  ---------
+0   lossy-default-ingress    DYNAMIC    2         0,1,2,4,5,6,7       -              14.02 MB  0              0         
+1   roce-reserved-ingress    DYNAMIC    3         3                   -              14.02 MB  0              0         
+2   lossy-default-egress     DYNAMIC    13        -                   0,6            14.02 MB  0              0         
+3   roce-reserved-egress     DYNAMIC    14        -                   3              inf       0              0         
+...
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show qos link-pause</h>
 
 Shows QoS link pause configuration.
@@ -3077,6 +3077,64 @@ trust            port         port     Port Trust configuration
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show qos mapping \<profile-id\> pcp</h>
+
+Shows 802.1p mapping configuration settings for the specified profile.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<profile-id>` | The profile name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show qos mapping default-global pcp
+802.1p  switch-priority
+------  ---------------
+0       0              
+1       1              
+2       2              
+3       3              
+4       4              
+5       5              
+6       6              
+7       7
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show qos mapping \<profile-id\> pcp \<qos-pcp-id\></h>
+
+Shows specific 802.1p mapping configuration settings for the specified profile.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<profile-id>` | The profile name.|
+| `<qos-pcp-id>` | The 802.1p (PCP) value.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show qos mapping default-global pcp 0
+                 operational  applied  description
+---------------  -----------  -------  ------------------------
+switch-priority  4            4        Internal Switch Priority
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show qos mapping \<profile-id\> dscp</h>
 
 Shows DSCP mapping configuration settings for the specified profile.
@@ -3139,64 +3197,6 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv show qos mapping default-global dscp 22
-                 operational  applied  description
----------------  -----------  -------  ------------------------
-switch-priority  4            4        Internal Switch Priority
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show qos mapping \<profile-id\> pcp</h>
-
-Shows 802.1p mapping configuration settings for the specified profile.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<profile-id>` | The profile name.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show qos mapping default-global pcp
-802.1p  switch-priority
-------  ---------------
-0       0              
-1       1              
-2       2              
-3       3              
-4       4              
-5       5              
-6       6              
-7       7
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show qos mapping \<profile-id\> pcp \<qos-pcp-id\></h>
-
-Shows specific 802.1p mapping configuration settings for the specified profile.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<profile-id>` | The profile name.|
-| `<qos-pcp-id>` | The 802.1p (PCP) value.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show qos mapping default-global pcp 0
                  operational  applied  description
 ---------------  -----------  -------  ------------------------
 switch-priority  4            4        Internal Switch Priority
@@ -3292,26 +3292,6 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv show qos pfc default-global switch-priority 2
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show qos pfc-watchdog</h>
-
-Shows PFC watchdog configuration settings. PFC watchdog detects and mitigates pause storms on ports where PFC or link pause is ON. 
-
-### Version History
-
-Introduced in Cumulus Linux 5.6.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show qos qos pfc-watchdog
-                  operational  applied       
-----------------  -----------  --------------
-polling-interval  0:00:00      0:00:00.100000
-robustness        0            3 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3471,48 +3451,6 @@ Exception List
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show qos roce pool</h>
-
-Shows QoS ROCE traffic pool configuration.
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show qos roce pool
-   name                   mode     pool-id  size      current-usage  max-usage
--  ---------------------  -------  -------  --------  -------------  ---------
-0  lossy-default-ingress  DYNAMIC  2        14.46 MB  0 Bytes        0 Bytes  
-2  lossy-default-egress   DYNAMIC  13       14.46 MB  0 Bytes        0 Bytes
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show qos roce pool-map</h>
-
-Shows QoS ROCE traffic pool map configuration.
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show qos roce pool-map
-   name                   mode     size  switch-priorities  traffic-class
--  ---------------------  -------  ----  -----------------  -------------
-0  lossy-default-ingress  Dynamic  50%   0,1,2,4,5,6,7      -            
-1  roce-reserved-ingress  Dynamic  50%   3                  -            
-2  lossy-default-egress   Dynamic  50%   -                  0,6          
-3  roce-reserved-egress   Dynamic  50%   -                  3
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv show qos roce prio-map</h>
 
 Shows QoS ROCE priority map configuration.
@@ -3561,6 +3499,48 @@ cumulus@switch:~$ nv show qos roce tc-map
 5  5            0              DWRR-50%        
 6  6            6              strict-priority 
 7  7            0              DWRR-50%
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show qos roce pool-map</h>
+
+Shows QoS ROCE traffic pool map configuration.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show qos roce pool-map
+   name                   mode     size  switch-priorities  traffic-class
+-  ---------------------  -------  ----  -----------------  -------------
+0  lossy-default-ingress  Dynamic  50%   0,1,2,4,5,6,7      -            
+1  roce-reserved-ingress  Dynamic  50%   3                  -            
+2  lossy-default-egress   Dynamic  50%   -                  0,6          
+3  roce-reserved-egress   Dynamic  50%   -                  3
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show qos roce pool</h>
+
+Shows QoS ROCE traffic pool configuration.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show qos roce pool
+   name                   mode     pool-id  size      current-usage  max-usage
+-  ---------------------  -------  -------  --------  -------------  ---------
+0  lossy-default-ingress  DYNAMIC  2        14.46 MB  0 Bytes        0 Bytes  
+2  lossy-default-egress   DYNAMIC  13       14.46 MB  0 Bytes        0 Bytes
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3655,4 +3635,24 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv show qos traffic-pool default-lossy switch-priority 2
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show qos pfc-watchdog</h>
+
+Shows PFC watchdog configuration settings. PFC watchdog detects and mitigates pause storms on ports where PFC or link pause is ON. 
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show qos qos pfc-watchdog
+                  operational  applied       
+----------------  -----------  --------------
+polling-interval  0:00:00      0:00:00.100000
+robustness        0            3 
 ```

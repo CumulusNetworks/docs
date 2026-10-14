@@ -1,7 +1,7 @@
 ---
 title: DHCP Snooping
 author: Cumulus Networks
-weight: 544
+weight: 630
 
 type: nojsscroll
 ---

@@ -1,7 +1,7 @@
 ---
 title: DNS
 author: Cumulus Networks
-weight: 550
+weight: 640
 
 type: nojsscroll
 ---
@@ -90,6 +90,32 @@ cumulus@switch:~$ nv set system dns domain nvidia.com
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set system dns search \<dns-search-id\></h>
+
+Configures the domains you want to search for name matches.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv set service dns <vrf-id> search <domain-id>`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<domain-id>` | The domain name or IPv4 address.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system dns search nvidia.com
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system dns server \<dns-server-id\></h>
 
 Configures a remote DNS server.
@@ -161,30 +187,4 @@ Introduced in Cumulus Linux 5.15.0
 
 ```
 cumulus@switch:~$ nv set system dns server 192.0.2.44 vrf RED
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system dns search \<dns-search-id\></h>
-
-Configures the domains you want to search for name matches.
-
-{{%notice note%}}
-In Cumulus Linux 5.14 and earlier, this command is `nv set service dns <vrf-id> search <domain-id>`.
-{{%/notice%}}
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<domain-id>` | The domain name or IPv4 address.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.15.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system dns search nvidia.com
 ```

@@ -1,7 +1,7 @@
 ---
 title: Profile-Based Configuration
 author: Cumulus Networks
-weight: 293
+weight: 450
 
 type: nojsscroll
 ---
@@ -130,57 +130,6 @@ otlp-destination
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show system do-spx profile \<profile-id\> uplink</h>
-
-Shows the upinks configured for the specified profile.
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<profile-id>` | The profile ID: `leaf`, `spine-2` (two-tier spine), `spine-3` (three-tier spine), or `super-spine`. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.18.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system do-spx profile leaf uplink
-Interface  breakout
----------  --------
-swp1-32    4x
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## nv show system do-spx profile \<profile-id\> uplink \<interface-id\></h>
-
-Shows the breakouts configured for the specified profile uplink interface.
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<profile-id>` | The profile ID. |
-| `<interface-id>` | The interface ID. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.18.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system do-spx profile leaf uplink swp2
-          operational  applied  pending
---------  -----------  -------  -------
-breakout  4x           4x       4x  
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## nv show system do-spx profile \<profile-id\> downlink</h>
 
 Shows the downlinks configured for the specified profile.
@@ -203,7 +152,6 @@ Interface  breakout
 ---------  --------
 swp33-64   4x
 ```
-
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -256,6 +204,7 @@ OTLP Dest IP  OTLP Port
 10.1.1.100    4317
 ```
 
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## nv show system do-spx profile \<profile-id\> otlp-destination \<destination-id\></h>
@@ -280,4 +229,55 @@ cumulus@switch:~$ nv show system do-spx profile leaf otlp-destination 10.1.1.100
            operational  applied  pending
 ---------  -----------  -------  -------
 otlp-port  4317         4317     4317   
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## nv show system do-spx profile \<profile-id\> uplink</h>
+
+Shows the upinks configured for the specified profile.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<profile-id>` | The profile ID: `leaf`, `spine-2` (two-tier spine), `spine-3` (three-tier spine), or `super-spine`. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system do-spx profile leaf uplink
+Interface  breakout
+---------  --------
+swp1-32    4x
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## nv show system do-spx profile \<profile-id\> uplink \<interface-id\></h>
+
+Shows the breakouts configured for the specified profile uplink interface.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<profile-id>` | The profile ID. |
+| `<interface-id>` | The interface ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.18.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system do-spx profile leaf uplink swp2
+          operational  applied  pending
+--------  -----------  -------  -------
+breakout  4x           4x       4x  
 ```

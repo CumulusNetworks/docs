@@ -1,7 +1,7 @@
 ---
 title: NAT
 author: Cumulus Networks
-weight: 605
+weight: 750
 
 type: nojsscroll
 ---
@@ -156,30 +156,6 @@ cumulus@switch:~$ nv set acl acl_1 rule 1 action source-nat translate-ip 172.30.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set acl \<acl-id\> rule \<rule-id\> action source-nat translate-port \<port-id\></h>
-
-Configures a NAT action rule to translate a source port.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
-| `<rule-id>` |  The ACL rule number. |
-| `<port-id>` |  The port number. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.7.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set acl acl_3 rule 1 action source-nat translate-port 6000
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set acl \<acl-id\> rule \<rule-id\> action source-nat translate-mac \<mac-address\></h>
 
 Configures a NAT action rule to translate a source MAC address to a public address. MAC address translation is equivalent to static NAT but operates at layer 2 on Ethernet frames.
@@ -200,6 +176,30 @@ Introduced in Cumulus Linux 5.7.0
 
 ```
 cumulus@switch:~$ nv set acl MACL1 rule 1 action source-nat translate-mac 99:de:fc:32:11:01  
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl \<acl-id\> rule \<rule-id\> action source-nat translate-port \<port-id\></h>
+
+Configures a NAT action rule to translate a source port.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
+| `<port-id>` |  The port number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl_3 rule 1 action source-nat translate-port 6000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

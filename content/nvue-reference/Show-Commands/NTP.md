@@ -1,13 +1,43 @@
 ---
 title: NTP
 author: Cumulus Networks
-weight: 230
+weight: 360
 
 type: nojsscroll
 ---
 <style>
 h { color: RGB(118,185,0)}
 </style>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show service ntp \<vrf-id\> pool \<server-id\></h>
+
+Shows information about the specified remote NTP server pool.
+
+{{%notice note%}}
+Cumulus Linux 5.15 and later no longer supports this command.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+| `<server-id>` | The hostname or IP address of the NTP server. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show service ntp default pool 4.cumulusnetworks.pool.ntp.org
+        operational  applied
+------  -----------  -------
+iburst  on           on
+```
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv show system ntp</h>
@@ -111,36 +141,6 @@ Introduced in Cumulus Linux 5.15.0
 
 ```
 cumulus@switch:~$ nv show system ntp listen eth0  
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show service ntp \<vrf-id\> pool \<server-id\></h>
-
-Shows information about the specified remote NTP server pool.
-
-{{%notice note%}}
-Cumulus Linux 5.15 and later no longer supports this command.
-{{%/notice%}}
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<vrf-id>` | The VRF name. |
-| `<server-id>` | The hostname or IP address of the NTP server. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show service ntp default pool 4.cumulusnetworks.pool.ntp.org
-        operational  applied
-------  -----------  -------
-iburst  on           on
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

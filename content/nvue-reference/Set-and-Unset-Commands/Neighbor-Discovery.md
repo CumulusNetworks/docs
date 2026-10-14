@@ -1,7 +1,7 @@
 ---
 title: Neighbor Discovery
 author: Cumulus Networks
-weight: 610
+weight: 760
 
 type: nojsscroll
 ---
@@ -11,78 +11,6 @@ h { color: RGB(118,185,0)}
 {{%notice note%}}
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set interface \<interface-id\> neighbor ipv6 \<ip-address\> lladdr \<lladdr-id\></h>
-
-Configures a static ARP table entry for an interface with an IPv6 address associated with a MAC address for easy management or as a security measure to prevent spoofing and other nefarious activities.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<interface-id>` | The interface you want to configure. |
-| `<ip-address>` |  The static IPv6 address. |
-| `<lladdr-id>` |  The MAC address you want to associate with IPv6 address. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.7.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set interface swp51 neighbor ipv6 fe80::4ab0:2dff:fea2:4c79 lladdr 00:00:5E:00:53:51
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set interface \<interface-id\> neighbor ipv6 \<ip-address\> lladdr \<lladdr-id\> flag</h>
-
-Configures a flag to indicate that the neighbor in the IP neighbor table is a router (`is-router`) or learned externally (`ext_learn`).
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<interface-id>` | The interface you want to configure. |
-| `<ip-address>` |  The static IPv6 address. |
-| `<lladdr-id>` |  The MAC address you want to associate with IPv6 address. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.7.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set interface swp51 neighbor ipv6 fe80::4ab0:2dff:fea2:4c79 lladdr 00:00:5E:00:53:51 flag is-router
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set interface \<interface-id\> neighbor ipv6 \<ip-address\> lladdr \<lladdr-id\> state</h>
-
-Configures the state of the neighbor in the IP neighbor table (`delay`, `failed`, `incomplete`, `noarp`, `permanent`, `probe`, `reachable`, or `stale`).
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<interface-id>` | The interface you want to configure. |
-| `<ip-address>` |  The static IPv6 address. |
-| `<lladdr-id>` |  The MAC address you want to associate with IPv6 address. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.7.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set interface swp51 neighbor ipv6 fe80::4ab0:2dff:fea2:4c79 lladdr 00:00:5E:00:53:51 state permanent
-```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -132,60 +60,6 @@ cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery dnssl accounting.n
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> ip neighbor-discovery state</h>
-
-Enables and disables ND. The default setting is `enabled`.
-
-ND allows different devices on the same link to advertise their existence to their neighbors and to learn about the existence of their neighbors. ND is the IPv6 equivalent of IPv4 ARP for layer 2 address resolution.
-
-{{%notice note%}}
-In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
-{{%/notice%}}
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-|`<interface-id>` |  The interface you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.1.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery state disabled
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set interface \<interface-id\> ip neighbor-discovery home-agent state</h>
-
-Enables and disables the Home Agent. The default setting is `disabled`.
-
-{{%notice note%}}
-In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
-{{%/notice%}}
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-|`<interface-id>` |  The interface you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.1.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery home-agent state enabled
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set interface \<interface-id\> ip neighbor-discovery home-agent lifetime</h>
 
 Configures the maximum amount of time you want the router to act as a Home Agent. You can set a value between 0 and 65520 seconds. If you set the value to 0, the router is not a Home Agent. The default setting is 0.
@@ -226,6 +100,32 @@ Introduced in Cumulus Linux 5.1.0
 
 ```
 cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery home-agent preference 0
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set interface \<interface-id\> ip neighbor-discovery home-agent state</h>
+
+Enables and disables the Home Agent. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.1.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery home-agent state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -379,6 +279,62 @@ cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery prefix 2001:db8:1:
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set interface \<interface-id\> ip neighbor-discovery router-advertisement interval-option</h>
+
+Configures the specified interface to indicate to hosts that the router uses an advertisement interval to send router advertisements. The default setting is `disabled`.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier:
+- The command is `nv set interface <interface-id> ip neighbor-discovery router-advertisement interval-option`.
+- You specify `on` or `off` instead of `enabled` or `disabled`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` | The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.1.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp1 ipv6 neighbor-discovery router-advertisement interval-option enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set interface \<interface-id\> ip neighbor-discovery state</h>
+
+Enables and disables ND. The default setting is `enabled`.
+
+ND allows different devices on the same link to advertise their existence to their neighbors and to learn about the existence of their neighbors. ND is the IPv6 equivalent of IPv4 ARP for layer 2 address resolution.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.1.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery state disabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set interface \<interface-id\> ipv6 neighbor-discovery rdnss \<address-id\></h>
 
 Configures recursive DNS servers (RDNSS). You must specify the IPv6 address of each RDNSS you want to advertise.
@@ -429,37 +385,6 @@ Introduced in Cumulus Linux 5.1.0
 
 ```
 cumulus@switch:~$ nv set interface swp1 ipv6 neighbor-discovery rdnss 2001:db8:1::100 lifetime infinite
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set interface \<interface-id\> ipv6 neighbor-discovery router-advertisement state</h>
-
-Enables and disables router advertisement for the interface. The default setting is `disabled`.
-
-{{%notice note%}}
-- In Cumulus Linux 5.4 and earlier, the NVUE command to enable router advertisment for an interface is `nv set interface <interface-id> ip neighbor-discovery router-advertisement enable off` and the NVUE command to disable router advertisment for an interface is `nv set interface <interface-id> ip neighbor-discovery router-advertisement enable on`.
-- In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
-{{%/notice%}}
-
-{{%notice note%}}
-In Cumulus Linux 5.14 and earlier, the command is `nv set interface <interface-id> ip neighbor-discovery router-advertisement state`.
-{{%/notice%}}
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<interface-id>` | The interface you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.1.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set interface swp1 ipv6 neighbor-discovery router-advertisement state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -540,34 +465,6 @@ Introduced in Cumulus Linux 5.1.0
 
 ```
 cumulus@switch:~$ nv set interface swp1 ipv6 neighbor-discovery router-advertisement interval 60000
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set interface \<interface-id\> ip neighbor-discovery router-advertisement interval-option</h>
-
-Configures the specified interface to indicate to hosts that the router uses an advertisement interval to send router advertisements. The default setting is `disabled`.
-
-{{%notice note%}}
-In Cumulus Linux 5.14 and earlier:
-- The command is `nv set interface <interface-id> ip neighbor-discovery router-advertisement interval-option`.
-- You specify `on` or `off` instead of `enabled` or `disabled`.
-{{%/notice%}}
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<interface-id>` | The interface you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.1.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set interface swp1 ipv6 neighbor-discovery router-advertisement interval-option enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -728,6 +625,109 @@ Introduced in Cumulus Linux 5.1.0
 
 ```
 cumulus@switch:~$ nv set interface swp1 ipv6 neighbor-discovery router-advertisement router-preference high
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set interface \<interface-id\> ipv6 neighbor-discovery router-advertisement state</h>
+
+Enables and disables router advertisement for the interface. The default setting is `disabled`.
+
+{{%notice note%}}
+- In Cumulus Linux 5.4 and earlier, the NVUE command to enable router advertisment for an interface is `nv set interface <interface-id> ip neighbor-discovery router-advertisement enable off` and the NVUE command to disable router advertisment for an interface is `nv set interface <interface-id> ip neighbor-discovery router-advertisement enable on`.
+- In Cumulus Linux 5.14 and earlier, you specify `enable on` or `enable off` instead of `state enabled` or `state disabled`.
+{{%/notice%}}
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, the command is `nv set interface <interface-id> ip neighbor-discovery router-advertisement state`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` | The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.1.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp1 ipv6 neighbor-discovery router-advertisement state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set interface \<interface-id\> neighbor ipv6 \<ip-address\> lladdr \<lladdr-id\></h>
+
+Configures a static ARP table entry for an interface with an IPv6 address associated with a MAC address for easy management or as a security measure to prevent spoofing and other nefarious activities.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` | The interface you want to configure. |
+| `<ip-address>` |  The static IPv6 address. |
+| `<lladdr-id>` |  The MAC address you want to associate with IPv6 address. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp51 neighbor ipv6 fe80::4ab0:2dff:fea2:4c79 lladdr 00:00:5E:00:53:51
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set interface \<interface-id\> neighbor ipv6 \<ip-address\> lladdr \<lladdr-id\> flag</h>
+
+Configures a flag to indicate that the neighbor in the IP neighbor table is a router (`is-router`) or learned externally (`ext_learn`).
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` | The interface you want to configure. |
+| `<ip-address>` |  The static IPv6 address. |
+| `<lladdr-id>` |  The MAC address you want to associate with IPv6 address. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp51 neighbor ipv6 fe80::4ab0:2dff:fea2:4c79 lladdr 00:00:5E:00:53:51 flag is-router
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set interface \<interface-id\> neighbor ipv6 \<ip-address\> lladdr \<lladdr-id\> state</h>
+
+Configures the state of the neighbor in the IP neighbor table (`delay`, `failed`, `incomplete`, `noarp`, `permanent`, `probe`, `reachable`, or `stale`).
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` | The interface you want to configure. |
+| `<ip-address>` |  The static IPv6 address. |
+| `<lladdr-id>` |  The MAC address you want to associate with IPv6 address. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp51 neighbor ipv6 fe80::4ab0:2dff:fea2:4c79 lladdr 00:00:5E:00:53:51 state permanent
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

@@ -1,7 +1,7 @@
 ---
 title: DHCP Server
 author: Cumulus Networks
-weight: 542
+weight: 620
 
 type: nojsscroll
 ---
@@ -525,6 +525,34 @@ cumulus@switch:~$ nv set service dhcp-server default static server1 host-id-circ
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set service dhcp-server \<vrf-id\> static \<static-id\> ifname \<interface-id\></h>
+
+Configures the interface for the static DHCP6 server.
+
+{{%notice note%}}
+In Cumulus Linux 5.15 and later, this command is `nv set vrf <vrf-id> dhcp-server-v6 static-host <static-id> ifname <interface-id>`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<static-id>` |  The name of the resource. |
+| `<interface-id>` |  The interface ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service dhcp-server6 default static server1 ifname swp1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set service dhcp-server \<vrf-id\> static \<static-id\> ifname \<interface-name\></h>
 
 Configures the interface name for the DHCP static assignment (IPv4 only) to use instead of the MAC address.
@@ -1036,34 +1064,6 @@ cumulus@switch:~$ nv set service dhcp-server6 default static server1 cumulus-pro
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set service dhcp-server \<vrf-id\> static \<static-id\> ifname \<interface-id\></h>
-
-Configures the interface for the static DHCP6 server.
-
-{{%notice note%}}
-In Cumulus Linux 5.15 and later, this command is `nv set vrf <vrf-id> dhcp-server-v6 static-host <static-id> ifname <interface-id>`.
-{{%/notice%}}
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<vrf-id>` |   The VRF you want to configure. |
-| `<static-id>` |  The name of the resource. |
-| `<interface-id>` |  The interface ID. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.11.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set service dhcp-server6 default static server1 ifname swp1
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set service dhcp-server6 \<vrf-id\> static \<static-id\> ip-address \<ip-address\></h>
 
 Configures the IPv6 address for the static DHCP6 server.
@@ -1143,6 +1143,171 @@ Introduced in Cumulus Linux 5.15.0
 
 ```
 cumulus@switch:~$ nv set vrf default dhcp-server-v4 interface swp1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> dhcp-server-v4 static-host \<static-id\></h>
+
+Configures a static IP address for a resource, such as a server or printer.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv set service dhcp-server <vrf-id> static <static-id>`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |  The VRF you want to configure. |
+| `<static-id>` | The name of the resource to which you want to assign a static IP address. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default dhcp-server-v4 static-host server1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> dhcp-server-v4 static-host \<static-id\> agent-remoteid-circuitid \<value\></h>
+
+Configures the host identifier for the agent circuit ID.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv set service dhcp-server <vrf-id> static <static-id> host-id-circuit-id <value>`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |  The VRF you want to configure. |
+| `<static-id>` |  The name of the resource. |
+| `<value>` |  The host identifier for the agent circuit ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default dhcp-server-v4 static-host server1 agent-remoteid-circuitid 1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> dhcp-server-v4 static-host \<static-id\> ifname \<interface-name\></h>
+
+Configures the interface name for the DHCP static assignment (IPv4 only) to use instead of the MAC address.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv set service dhcp-server <vrf-id> static <static-id> ifname <interface-name>`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |  The VRF you want to configure. |
+| `<static-id>` |  The name of the resource. |
+| `<interface-name>` |  The interface name (such as swp1). |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default dhcp-server-v4 static-host server1 ifname swp1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> dhcp-server-v4 static-host \<static-id\> ip-address \<ipv4\></h>
+
+Configures the static IP address for the resource.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv set service dhcp-server <vrf-id> static <static-id> ip-address <ipv4>`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |  The VRF you want to configure. |
+| `<static-id>` | The name of the resource. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default dhcp-server-v4 static-host server1 ip-address 10.0.0.2
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> dhcp-server-v4 static-host \<static-id\> mac-address \<mac-address\></h>
+
+Configures the MAC address of the resource to which you want to assign a static IP address.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv set service dhcp-server <vrf-id> static <static-id> mac-address <mac-address>`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |  The VRF you want to configure. |
+| `<static-id>` | The name of the resource. |
+| `<mac-address>` | The MAC address. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default dhcp-server-v4 static-host server1 mac-address 44:38:39:00:01:7e
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> dhcp-server-v4 static-host \<static-id\> provision-url \<value\></h>
+
+Configures a URL for a provisioning script.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv set service dhcp-server <vrf-id> static <static-id> cumulus-provision-url <value>`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |  The VRF you want to configure. |
+| `<static-id>` |  The name of the resource. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default dhcp-server-v4 static-host server1 provision-url http://192.0.2.1/myscript.sh
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1368,171 +1533,6 @@ cumulus@switch:~$ nv set vrf default dhcp-server-v4 subnet 10.1.10.0/24 range 10
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> dhcp-server-v4 static-host \<static-id\></h>
-
-Configures a static IP address for a resource, such as a server or printer.
-
-{{%notice note%}}
-In Cumulus Linux 5.14 and earlier, this command is `nv set service dhcp-server <vrf-id> static <static-id>`.
-{{%/notice%}}
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<vrf-id>` |  The VRF you want to configure. |
-| `<static-id>` | The name of the resource to which you want to assign a static IP address. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.15.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set vrf default dhcp-server-v4 static-host server1
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> dhcp-server-v4 static-host \<static-id\> provision-url \<value\></h>
-
-Configures a URL for a provisioning script.
-
-{{%notice note%}}
-In Cumulus Linux 5.14 and earlier, this command is `nv set service dhcp-server <vrf-id> static <static-id> cumulus-provision-url <value>`.
-{{%/notice%}}
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<vrf-id>` |  The VRF you want to configure. |
-| `<static-id>` |  The name of the resource. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.15.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set vrf default dhcp-server-v4 static-host server1 provision-url http://192.0.2.1/myscript.sh
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> dhcp-server-v4 static-host \<static-id\> agent-remoteid-circuitid \<value\></h>
-
-Configures the host identifier for the agent circuit ID.
-
-{{%notice note%}}
-In Cumulus Linux 5.14 and earlier, this command is `nv set service dhcp-server <vrf-id> static <static-id> host-id-circuit-id <value>`.
-{{%/notice%}}
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<vrf-id>` |  The VRF you want to configure. |
-| `<static-id>` |  The name of the resource. |
-| `<value>` |  The host identifier for the agent circuit ID. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.15.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set vrf default dhcp-server-v4 static-host server1 agent-remoteid-circuitid 1
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> dhcp-server-v4 static-host \<static-id\> ifname \<interface-name\></h>
-
-Configures the interface name for the DHCP static assignment (IPv4 only) to use instead of the MAC address.
-
-{{%notice note%}}
-In Cumulus Linux 5.14 and earlier, this command is `nv set service dhcp-server <vrf-id> static <static-id> ifname <interface-name>`.
-{{%/notice%}}
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<vrf-id>` |  The VRF you want to configure. |
-| `<static-id>` |  The name of the resource. |
-| `<interface-name>` |  The interface name (such as swp1). |
-
-### Version History
-
-Introduced in Cumulus Linux 5.15.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set vrf default dhcp-server-v4 static-host server1 ifname swp1
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> dhcp-server-v4 static-host \<static-id\> ip-address \<ipv4\></h>
-
-Configures the static IP address for the resource.
-
-{{%notice note%}}
-In Cumulus Linux 5.14 and earlier, this command is `nv set service dhcp-server <vrf-id> static <static-id> ip-address <ipv4>`.
-{{%/notice%}}
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<vrf-id>` |  The VRF you want to configure. |
-| `<static-id>` | The name of the resource. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.15.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set vrf default dhcp-server-v4 static-host server1 ip-address 10.0.0.2
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> dhcp-server-v4 static-host \<static-id\> mac-address \<mac-address\></h>
-
-Configures the MAC address of the resource to which you want to assign a static IP address.
-
-{{%notice note%}}
-In Cumulus Linux 5.14 and earlier, this command is `nv set service dhcp-server <vrf-id> static <static-id> mac-address <mac-address>`.
-{{%/notice%}}
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<vrf-id>` |  The VRF you want to configure. |
-| `<static-id>` | The name of the resource. |
-| `<mac-address>` | The MAC address. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.15.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set vrf default dhcp-server-v4 static-host server1 mac-address 44:38:39:00:01:7e
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set vrf \<vrf-id\> dhcp-server-v6</h>
 
 Configures the Dynamic Host Configuration Protocol Server (DHCP server) for IPv6.
@@ -1624,12 +1624,12 @@ cumulus@switch:~$ nv set vrf default dhcp-server-v6 interface swp1
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> dhcp-server-v6 subnet \<subnet-id\> provision-url \<url\></h>
+## <h>nv set vrf \<vrf-id\> dhcp-server-v6 static-host \<static-id\></h>
 
-Configures a specific URL for the provisioning script.
+Configures a static DHCP6 server for a resource, such as a server or printer.
 
 {{%notice note%}}
-In Cumulus Linux 5.14 and earlier, this command is `nv set service dhcp-server6 <vrf-id> pool <pool-id> cumulus-provision-url <url>`.
+In Cumulus Linux 5.14 and earlier, this command is `nv set service dhcp-server6 <vrf-id> static <static-id>`.
 {{%/notice%}}
 
 ### Command Syntax
@@ -1637,8 +1637,7 @@ In Cumulus Linux 5.14 and earlier, this command is `nv set service dhcp-server6 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<subnet-id>` |  The DHCP6 pool subnet.|
-| `<url>` |  The providioning script URL.|
+| `<static-id>` |  The name of the resource. |
 
 ### Version History
 
@@ -1647,7 +1646,118 @@ Introduced in Cumulus Linux 5.15.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default dhcp-server-v6 subnet 2001:db8::1/128 provision-url https://www.nvidia.com/provision
+cumulus@switch:~$ nv set vrf default dhcp-server-v6 static-host server1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> dhcp-server-v6 static-host \<static-id\> ifname \<interface-id\></h>
+
+Configures the interface for the static DHCP6 server.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv set service dhcp-server6 <vrf-id> static <static-id> ifname <interface-id>`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<static-id>` |  The name of the resource. |
+| `<interface-id>` |  The interface ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default dhcp-server-v6 static-host server1 ifname swp1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> dhcp-server-v6 static-host \<static-id\> ip-address \<ip-address\></h>
+
+Configures the IPv6 address for the static DHCP6 server.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv set service dhcp-server6 <vrf-id> static <static-id> ip-address <ip-address>`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<static-id>` |  The name of the resource. |
+| `<ip-address>` |  The IPv6 address. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default dhcp-server-v6 static-host server1 ip-address 2001:db8::
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> dhcp-server-v6 static-host \<static-id\> mac-address \<mac-address\></h>
+
+Configures the MAC (hardware) address for the static DHCP6 server.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv set service dhcp-server6 <vrf-id> static <static-id> mac-address <mac-address-id>`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<static-id>` |  The name of the resource. |
+| `<mac-address>` |  The MAC address. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default dhcp-server-v6 static-host server1 mac-address 44:38:39:00:01:7e
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> dhcp-server-v6 static-host \<static-id\> provision-url \<value\></h>
+
+Configures a URL for a provisioning script.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv set service dhcp-server6 <vrf-id> static <static-id> cumulus-provision-url`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<static-id>` |  The name of the resource. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default dhcp-server-v6 static-host server1 provision-url https://www.nvidia.com/provision
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1790,6 +1900,34 @@ cumulus@switch:~$ nv set vrf default dhcp-server-v6 subnet 2001:db8::1/128 ping-
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set vrf \<vrf-id\> dhcp-server-v6 subnet \<subnet-id\> provision-url \<url\></h>
+
+Configures a specific URL for the provisioning script.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv set service dhcp-server6 <vrf-id> pool <pool-id> cumulus-provision-url <url>`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<subnet-id>` |  The DHCP6 pool subnet.|
+| `<url>` |  The providioning script URL.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default dhcp-server-v6 subnet 2001:db8::1/128 provision-url https://www.nvidia.com/provision
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set vrf \<vrf-id\> dhcp-server-v6 subnet \<subnet-id\> range \<range-start\> to \<range-end\></h>
 
 Configures the end of the DHCP pool range for IPv6.
@@ -1815,142 +1953,4 @@ Introduced in Cumulus Linux 5.15.0
 
 ```
 cumulus@switch:~$ nv set vrf default dhcp-server-v6 subnet 2001:db8::1/128 range 2002:a01:a64:: to 2002:a01:ac7::
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> dhcp-server-v6 static-host \<static-id\></h>
-
-Configures a static DHCP6 server for a resource, such as a server or printer.
-
-{{%notice note%}}
-In Cumulus Linux 5.14 and earlier, this command is `nv set service dhcp-server6 <vrf-id> static <static-id>`.
-{{%/notice%}}
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<vrf-id>` |   The VRF you want to configure. |
-| `<static-id>` |  The name of the resource. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.15.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set vrf default dhcp-server-v6 static-host server1
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> dhcp-server-v6 static-host \<static-id\> provision-url \<value\></h>
-
-Configures a URL for a provisioning script.
-
-{{%notice note%}}
-In Cumulus Linux 5.14 and earlier, this command is `nv set service dhcp-server6 <vrf-id> static <static-id> cumulus-provision-url`.
-{{%/notice%}}
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<vrf-id>` |   The VRF you want to configure. |
-| `<static-id>` |  The name of the resource. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.15.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set vrf default dhcp-server-v6 static-host server1 provision-url https://www.nvidia.com/provision
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> dhcp-server-v6 static-host \<static-id\> ifname \<interface-id\></h>
-
-Configures the interface for the static DHCP6 server.
-
-{{%notice note%}}
-In Cumulus Linux 5.14 and earlier, this command is `nv set service dhcp-server6 <vrf-id> static <static-id> ifname <interface-id>`.
-{{%/notice%}}
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<vrf-id>` |   The VRF you want to configure. |
-| `<static-id>` |  The name of the resource. |
-| `<interface-id>` |  The interface ID. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.15.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set vrf default dhcp-server-v6 static-host server1 ifname swp1
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> dhcp-server-v6 static-host \<static-id\> ip-address \<ip-address\></h>
-
-Configures the IPv6 address for the static DHCP6 server.
-
-{{%notice note%}}
-In Cumulus Linux 5.14 and earlier, this command is `nv set service dhcp-server6 <vrf-id> static <static-id> ip-address <ip-address>`.
-{{%/notice%}}
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<vrf-id>` |   The VRF you want to configure. |
-| `<static-id>` |  The name of the resource. |
-| `<ip-address>` |  The IPv6 address. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.15.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set vrf default dhcp-server-v6 static-host server1 ip-address 2001:db8::
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> dhcp-server-v6 static-host \<static-id\> mac-address \<mac-address\></h>
-
-Configures the MAC (hardware) address for the static DHCP6 server.
-
-{{%notice note%}}
-In Cumulus Linux 5.14 and earlier, this command is `nv set service dhcp-server6 <vrf-id> static <static-id> mac-address <mac-address-id>`.
-{{%/notice%}}
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<vrf-id>` |   The VRF you want to configure. |
-| `<static-id>` |  The name of the resource. |
-| `<mac-address>` |  The MAC address. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.15.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set vrf default dhcp-server-v6 static-host server1 mac-address 44:38:39:00:01:7e
 ```

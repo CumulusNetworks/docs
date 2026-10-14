@@ -1,7 +1,7 @@
 ---
 title: Router Policy
 author: Cumulus Networks
-weight: 720
+weight: 920
 
 type: nojsscroll
 ---
@@ -399,6 +399,51 @@ cumulus@switch:~$ nv set router policy large-community-list mylist rule 10 large
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set router policy prefix-list \<list-id\> rule \<rule-id\> action</h>
+
+Configures the action to take on a match; `permit` or `deny`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<list-id>` |  The prefix list name. |
+| `<rule-id>` |  The prefix list rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set router policy prefix-list mylist rule 10 action permit
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set router policy prefix-list \<list-id\> type</h>
+
+Configures the type of prefix list; IPv4 or IPv6. The default setting is `ipv4`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<list-id>` |  The prefix list name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set router policy prefix-list mylist type ipv4
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set router policy prefix-list \<prefix-list-id\></h>
 
 Configures the name of the prefix list you want to use to match IPv4 and IPv6 address prefixes.
@@ -440,29 +485,6 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv set router policy prefix-list mylist rule 10
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set router policy prefix-list \<list-id\> rule \<rule-id\> action</h>
-
-Configures the action to take on a match; `permit` or `deny`.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<list-id>` |  The prefix list name. |
-| `<rule-id>` |  The prefix list rule number. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set router policy prefix-list mylist rule 10 action permit
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -535,28 +557,6 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv set router policy prefix-list mylist rule 10 match 10.0.0.0/16 min-prefix-len 30
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set router policy prefix-list \<list-id\> type</h>
-
-Configures the type of prefix list; IPv4 or IPv6. The default setting is `ipv4`.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<list-id>` |  The prefix list name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set router policy prefix-list mylist type ipv4
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1002,29 +1002,6 @@ cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 match ip-nexthop-t
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> match ip-prefix-list</h>
-
-Configures the IP prefix list to use as a match in the route map.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<route-map-id>` | The route map name. |
-| `<rule-id>`  |  The route map rule number. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 match ip-prefix-list prefixlist1
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> match ip-prefix-len</h>
 
 Configures the IP address prefix length you want to match. You can specify a value between 0 and 128.
@@ -1044,6 +1021,29 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 match ip-prefix-len 128
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> match ip-prefix-list</h>
+
+Configures the IP prefix list to use as a match in the route map.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<route-map-id>` | The route map name. |
+| `<rule-id>`  |  The route map rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 match ip-prefix-list prefixlist1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1476,122 +1476,6 @@ cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 set community-dele
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set ip-nexthop</h>
-
-Configures a set clause in the route map for the next hop address for a packet regardless of the explicit route for the packet. You can specify the IP address of the next hop. Alternatively, you can specify `peer-addr` to set the next hop as the IP address of the peer for incoming route maps or the local peering address on the switch for outgoing route maps.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<route-map-id>` | The route map name. |
-| `<rule-id>` | The route map rule number.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 set ip-nexthop peer-addr
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set ipv6-nexthop-global</h>
-
-Configures a set clause in the route map for IPv6 next hop global address.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<route-map-id>` | The route map name. |
-| `<rule-id>` | The route map rule number.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 set ipv6-nexthop-global 2001:db8:0002::0a00:0002
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set ipv6-nexthop-local</h>
-
-Configures a set clause in the route map for the IPv6 next hop local address.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<route-map-id>` | The route map name. |
-| `<rule-id>` | The route map rule number.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 set ipv6-nexthop-local 2001:db8:0002::0a00:0002
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set ipv6-nexthop-prefer-global</h>
-
-Configures a set clause in the route map to use the global address as the IPv6 next hop.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<route-map-id>` | The route map name. |
-| `<rule-id>` | The route map rule number.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.1.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 set ipv6-nexthop-prefer-global enabled
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set large-community \<large-community-id\></h>
-
-Sets the large BGP community for a matched route.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<route-map-id>` | The route map name. |
-| `<rule-id>` | The route map rule number.|
-| `<large-community-id>` | The large community number in AA:BB:CC format.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 set large-community 2914:65400:38016
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set ext-community-bw</h>
 
 Sets the BGP extended community for a matched route. You can specify `cumulative` `multipaths` `cumulative-non-transitive`, or `multipaths-non-transitive`.
@@ -1686,6 +1570,98 @@ cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 set forwarding-add
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set ip-nexthop</h>
+
+Configures a set clause in the route map for the next hop address for a packet regardless of the explicit route for the packet. You can specify the IP address of the next hop. Alternatively, you can specify `peer-addr` to set the next hop as the IP address of the peer for incoming route maps or the local peering address on the switch for outgoing route maps.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<route-map-id>` | The route map name. |
+| `<rule-id>` | The route map rule number.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 set ip-nexthop peer-addr
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set ipv6-nexthop-global</h>
+
+Configures a set clause in the route map for IPv6 next hop global address.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<route-map-id>` | The route map name. |
+| `<rule-id>` | The route map rule number.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 set ipv6-nexthop-global 2001:db8:0002::0a00:0002
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set ipv6-nexthop-local</h>
+
+Configures a set clause in the route map for the IPv6 next hop local address.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<route-map-id>` | The route map name. |
+| `<rule-id>` | The route map rule number.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 set ipv6-nexthop-local 2001:db8:0002::0a00:0002
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set ipv6-nexthop-prefer-global</h>
+
+Configures a set clause in the route map to use the global address as the IPv6 next hop.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<route-map-id>` | The route map name. |
+| `<rule-id>` | The route map rule number.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.1.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 set ipv6-nexthop-prefer-global enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set label-index</h>
 
 Configures the label index value you want to set for the route in the route map. You can set a value between 0 and 1048560.
@@ -1705,6 +1681,30 @@ Introduced in Cumulus Linux 5.2.0
 
 ```
 cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 set label-index 1000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set large-community \<large-community-id\></h>
+
+Sets the large BGP community for a matched route.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<route-map-id>` | The route map name. |
+| `<rule-id>` | The route map rule number.|
+| `<large-community-id>` | The large community number in AA:BB:CC format.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 set large-community 2914:65400:38016
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

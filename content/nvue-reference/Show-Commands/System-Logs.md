@@ -1,7 +1,7 @@
 ---
 title: System Logs
 author: Cumulus Networks
-weight: 405
+weight: 630
 
 type: nojsscroll
 ---

@@ -1251,6 +1251,57 @@ When you configure suppress route advertisement, NVUE restarts `switchd`.
 {{< /tabs >}}
 
 {{<link url="Upgrading-Cumulus-Linux/#issu" text="ISSU">}} suppresses route advertisement automatically when upgrading or troubleshooting an active switch so that there is minimal disruption to the network.
+
+## BGP VRF Active Check
+
+When you enable BGP VRF active check, BGP blocks advertisements and imports for the IPv4, IPv6, and EVPN address families in any VRF that is inactive. A VRF is inactive when no operationally up interface is bound to it. For example, with {{<link url="802.1X-Interfaces/#dynamic-vrf-assignment" text="802.1X dynamic VRF assignment">}}, a VRF has no operationally up interface until a supplicant authenticates.
+
+VRF active check is a global BGP setting that applies to all VRFs. The default setting is disabled.
+
+{{< tabs "TabID1834 ">}}
+{{< tab "NVUE Commands ">}}
+
+To enable BGP VRF active check, run the `nv set router bgp vrf active-check enabled` command:
+
+```
+cumulus@leaf01:~$ nv set router bgp vrf active-check enabled
+cumulus@leaf01:~$ nv config apply
+```
+
+To disable BGP VRF active check, run the `nv unset router bgp vrf active-check` command. Setting `active-check` to `disabled` has the same effect.
+
+```
+cumulus@leaf01:~$ nv unset router bgp vrf active-check
+cumulus@leaf01:~$ nv config apply
+```
+
+You do not need to restart FRR or the switch.
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@leaf01:~$ sudo vtysh
+...
+leaf01# configure terminal
+leaf01(config)# bgp vrf active-check strict
+leaf01(config)# end
+leaf01# write memory
+leaf01# exit
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+To show the BGP VRF active check setting, run the `nv show router bgp vrf` command. The `nv show router bgp` command output also includes the setting.
+
+```
+cumulus@leaf01:~$ nv show router bgp vrf
+              operational  applied
+------------  -----------  -------
+active-check  enabled      enabled
+```
+
 <!-- vale off -->
 ## BGP add-path
 
@@ -2141,7 +2192,7 @@ cumulus@leaf01:mgmt:~$ nv config apply
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
-{{< tabs "TabID1776 ">}}
+{{< tabs "TabID1837 ">}}
 {{< tab "Leaf Configuration ">}}
 
 The following commands configure:

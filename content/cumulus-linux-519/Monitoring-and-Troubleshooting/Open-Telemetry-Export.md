@@ -770,7 +770,7 @@ state  enabled
 
 ### WJH Events and Metrics
 
-When you enable WJH telemetry, the switch exports {{<link url="Mellanox-WJH" text="What Just Happened (WJH)">}} aggregate drop and layer 1 events as formatted OTEL log records. The switch also exports two [WJH metrics](#wjh-events-and-metrics-format) about WJH channels: the total number of dropped packets reported for a channel and which triggers are enabled for each channel. The WJH channel and trigger configuration determines which events the switch produces.
+When you enable WJH telemetry, the switch exports {{<link title="What Just Happened (WJH)" text="What Just Happened (WJH)">}} aggregate drop and layer 1 events as formatted OTEL log records. The switch also exports two {{<link url="#wjh-events-and-metrics-format" text="WJH metrics">}} about WJH channels: the total number of dropped packets reported for a channel and which triggers are enabled for each channel. The WJH channel and trigger configuration determines which events the switch produces.
 
 To enable the WJH events and metrics export:
 

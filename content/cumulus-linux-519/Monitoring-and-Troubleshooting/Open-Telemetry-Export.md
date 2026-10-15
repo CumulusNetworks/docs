@@ -768,11 +768,11 @@ cumulus@switch:~$ nv show system telemetry software-stats systemd export
 state  enabled
 ```
 
-### WJH Metrics
+### WJH Events and Metrics
 
-When you enable [WJH metrics](#wjh-metrics-format), the switch exports information about WJH channels, such as the total number of dropped packets reported for a channel and which triggers are enabled for each channel. 
+When you enable WJH telemetry, the switch exports {{<link title="What Just Happened (WJH)" text="What Just Happened (WJH)">}} aggregate drop and layer 1 events as formatted OTEL log records. The switch also exports two {{<link url="#wjh-events-and-metrics-format" text="WJH metrics">}} about WJH channels: the total number of dropped packets reported for a channel and which triggers are enabled for each channel. The WJH channel and trigger configuration determines which events the switch produces.
 
-To enable the WJH metrics export:
+To enable the WJH events and metrics export:
 
 ```
 cumulus@switch:~$ nv set system telemetry wjh export state enabled
@@ -6635,9 +6635,35 @@ When you enable open telemetry with the `nv set system telemetry export otlp sta
 | `node_time_seconds` | System time in seconds since epoch (1970). |
 | `node_os_info` |  Operating system and image information, such as name and version. |
 
-### WJH Metrics Format
+### WJH Events and Metrics Format
 
-When you enable {{<link url="/#wjh-metrics" text="WJH metrics">}}, the switch exports the following metrics:
+When you enable {{<link url="/#wjh-events-and-metrics" text="WJH events and metrics">}}, the switch exports the following WJH events as OTEL log records. These are log records, not metrics.
+
+|  Name | Description |
+|------ | ----------- |
+| `wjh.aggregate_drop` | A WJH aggregate drop event. |
+| `wjh.l1` | A WJH layer 1 event. |
+
+{{< expand "Example JSON data for a WJH aggregate drop event:" >}}
+```
+{
+  "timeUnixNano": "1786726338791785172",
+  "observedTimeUnixNano": "1786726338791785172",
+  "severityNumber": 9,
+  "severityText": "NOTICE",
+  "body": { "stringValue": "acl drops: ingress port acl" },
+  "eventName": "wjh.aggregate_drop",
+  "attributes": [
+    { "key": "wjh.event_id",   "value": { "intValue": "27" } },
+    { "key": "wjh.reason_id",  "value": { "intValue": "601" } },
+    { "key": "wjh.non_ip",     "value": { "boolValue": false } },
+    { "key": "wjh.acl_rule_id","value": { "stringValue": "0x2000400000000" } }
+  ]
+}
+```
+{{< /expand >}}
+
+The switch also exports the following metrics:
 
 |  Name | Description |
 |------ | ----------- |

@@ -14,8 +14,12 @@ This guide describes the three methods for upgrading Cumulus Linux. Two of these
 To upgrade Cumulus Linux, choose one of the three upgrade methods:
 
 - Install a new Cumulus Linux image with {{<link url="#optimized-image-upgrade" text="optimized image upgrade">}}, (ISSU support and maintains the current switch configuration).
-- Upgrade only changed packages with {{<link url="#package-upgrade" text="package upgrade">}} (ISSU support and maintains the current switch configuration).
 - Install a new Cumulus Linux image with {{<link url="#onie-image-upgrade" text="ONIE">}} (no ISSU support and you need to manually back up and restore your switch configuration).
+- Upgrade only changed packages with {{<link url="#package-upgrade" text="package upgrade">}} (ISSU support and maintains the current switch configuration).
+
+{{%notice infonopad%}}
+NVIDIA is discontinuing package upgrade in Cumulus Linux 5.20.
+{{%/notice%}}
 
 To install a patch (such as a critical bug or CVE), refer to {{<link url="Patches" text="Patches">}}.
 

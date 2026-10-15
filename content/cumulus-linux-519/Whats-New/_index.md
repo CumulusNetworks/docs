@@ -52,9 +52,10 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
   - {{<link url="Zero-Touch-Provisioning-ZTP/#suppress-ztp-console-messages" text="Suppress ZTP console messages">}}
   - {{<link url="FRRouting/#tcp-sockets-and-bgp-peering-sessions" text="Configure the file descriptor limit for the FRR routing daemons">}}
   - {{<link url="Switch-Port-Attributes/#show-the-physical-connector-for-a-port" text="Show the physical connector for a port">}}
+  - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#show-transceiver-information" text="Decoded transceiver Ethernet compliance codes">}}
 - Telemetry
-  - {{<link url="Open-Telemetry-Export/#wjh-metrics" text="WJH metrics for OTEL">}}
-  - {{<link url="gNMI-Streaming/#supported-models" text="gNMI component type and name for platform components">}}
+ - {{<link url="gNMI-Streaming/#supported-models" text="gNMI component type and name for platform components">}}
+  - {{<link url="Open-Telemetry-Export/#wjh-events-and-metrics" text="WJH events, as OTEL log records, and WJH metrics for OTEL">}}
   - {{<link url="New-and-Updated-Telemetry-Metrics/#new-gnmi-metrics" text="gNMI and OTEL metrics for unreachability AFI SAFI">}}
   - {{<link url="New-and-Updated-Telemetry-Metrics/#new-otel-metrics" text="OTEL metrics for AAA RADIUS login authentication">}}
   - {{<link url="ASIC-Monitoring/#microburst-histogram" text="Microburst histogram with per-port burst scoring">}}
@@ -81,6 +82,10 @@ For the SN6600-LD switch, you can upgrade to Cumulus Linux 5.19 only from Cumulu
 To upgrade to Cumulus Linux 5.19 from a release that does not support package upgrade or optimized image upgrade, you can install an image with {{<link url="Upgrading-Cumulus-Linux/#onie-image-upgrade" text="ONIE">}}.
 
 For a list of the earliest Cumulus Linux releases supported for each switch model, refer to [this knowledge base article]({{<ref "/knowledge-base/Support/Support-Offerings/Minimum-Cumulus-Linux-Release-for-Each-Switch-Model" >}}).
+
+{{%notice infonopad%}}
+NVIDIA is discontinuing package upgrade in Cumulus Linux 5.20.
+{{%/notice%}}
 
 ### Spectrum-6 BMC Requirements
 

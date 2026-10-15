@@ -167,16 +167,11 @@ For information about gNMI, refer to {{<link url="gNMI-Streaming" text="gNMI Str
 
 ## New OTEL Metrics
 
-<!-- REVIEW: the Microburst Histogram tab below states that the temporality of
-     nvswitch_histogram_interface_microburst is delta. The telemetry change proposal says the
-     bins reset on read and that consumers receive per-window state rather than cumulative
-     totals, but it does not say whether `nv set system telemetry histogram temporality
-     cumulative` has any effect on the microburst metric. Confirm, and if the microburst
-     histogram ignores that setting, say so here and in the Temporality Mode section of
-     Open-Telemetry-Export.md. Delete this comment before publishing. -->
 
 {{< tabs "TabID113 ">}}
 {{< tab "WJH">}}
+
+In addition to the following metrics, the switch also exports two WJH events, `wjh.aggregate_drop` and `wjh.l1`, as OTEL log records, not metrics. For more information, refer to {{<link url="Open-Telemetry-Export/#wjh-events-and-metrics-format" text="WJH Events and Metrics Format">}}.
 
 |  Name | Description |
 |------ | ----------- |

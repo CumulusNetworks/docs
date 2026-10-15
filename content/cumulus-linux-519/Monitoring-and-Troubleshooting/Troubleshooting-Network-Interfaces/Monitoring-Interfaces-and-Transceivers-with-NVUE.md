@@ -344,6 +344,9 @@ swp54      15E-255  15E-255  15E-255  0         0         1
 - To filter the view for a range of interfaces, use the `--filter` option; for example, the `nv show interface --view ber --filter "*>=swp49&*<=swp54"` command shows PHY health statistics for swp49 through swp54.
 - To show the information in json format, use the `-o json` option; for example, the `nv show interface --view ber --filter "*>=swp49&*<=swp54" -o json` command shows PHY health statistics for swp49 through swp54 in json format.
 
+<!-- TODO: the sample output below predates the compliance decoding: it shows the four compliance
+     fields as decimal numbers. Recapture it on a switch so those fields show decoded names. -->
+
 To show physical layer diagnostic information for a port, run the `nv show interface <interface-id> link phy detail` command:
 
 ```
@@ -422,6 +425,27 @@ Datapath State
     5     0          
     6     0          
     7     0
+```
+
+<!-- REVIEW: the excerpt below is adapted from the specification's mock-up, not captured on hardware.
+     The specification contradicts itself on what `link phy detail` shows for a code that is not in the
+     mapping table. Its test case 4 and its overview say the text output shows names with no hexadecimal
+     for these fields. Its "proprietary compliance codes" example shows the output unchanged, as
+     hexadecimal. Because of that contradiction, the unmapped case is not documented here. The mock-up
+     also pairs a 400G Ethernet code with 800G host and media codes, which might not be a realistic
+     combination. Replace with captured output. Delete this comment before publishing. -->
+
+In the text output, the `ethernet-compliance-code`, `ext-ethernet-compliance-code`, `active-set-host-compliance-code`, and `active-set-media-compliance-code` fields show the standard name that Cumulus Linux decodes from the code instead of the raw value. The following excerpt shows these fields:
+
+```
+cumulus@switch:~$ nv show interface swp1 link phy detail
+...
+ethernet-compliance-code          400GBASE-DR4 (Clause 124)
+ext-ethernet-compliance-code      IB NDR (Arch.Spec.Vol.2)
+...
+active-set-host-compliance-code   800GAUI-8 L C2M (Annex 120G)
+active-set-media-compliance-code  800GBASE-DR8 (Clause 124)
+...
 ```
 
 {{%notice note%}}
@@ -669,6 +693,11 @@ swp31        QSFP28      Mellanox     MCP1600-C001E30N  MT2039VB01191  A3
 
 To show a detailed view of module information for all ports that includes cable length, type, and diagnostics, current status and error status, run the `nv show platform transceiver details` command.
 
+<!-- TODO: the specification shows a `compliance` section in the default output of both
+     `nv show platform transceiver <transceiver-id>` and `nv show interface <interface-id> transceiver`
+     (after `vendor-sn` and `pmd-type`, before the temperature values). Recapture both sample outputs
+     below on a switch so they include it. -->
+
 To show hardware capabilities and measurement information on the module in a particular port, run the `nv show platform transceiver <transceiver-id>` command:
 
 ```
@@ -764,6 +793,44 @@ ch-4-rx-power          : 0.8576 mW / -0.67 dBm
 ch-4-tx-power          : 0.9695 mW / -0.13 dBm 
 ch-4-tx-bias-current   : 6.750 mA 
 ```
+
+To show the Ethernet standards that a module supports, run the `nv show platform transceiver <transceiver-id> compliance` command or the `nv show interface <interface-id> transceiver compliance` command. Cumulus Linux decodes the compliance codes that the module reports into standard names, so you do not need to look up the codes in a specification. The compliance section also appears in the output of the `nv show platform transceiver <transceiver-id>` and `nv show interface <interface-id> transceiver` commands.
+
+<!-- REVIEW: the sample below is adapted from the mock-up in the specification, not captured on
+     hardware. Three details to check on a candidate build: (1) whether the `compliance:` heading and
+     the dash-prefixed list items appear in this form (the specification's platform and interface
+     mock-ups differ in list style); (2) the `extended` list shows one entry here because the
+     specification says extended compliance is a single enumerated value, but two of its own
+     mock-ups list two extended entries; (3) the specification's 5.18 sample showed
+     "N/A - transceiver not inserted" for an empty port, while the 5.19 text says the section is empty
+     or omitted, so no N/A is documented. Delete this comment before publishing. -->
+
+```
+cumulus@switch:~$ nv show platform transceiver swp1 compliance
+compliance:
+  ethernet:
+    - 100GBASE-SR4
+    - 25GBASE-SR
+  extended:
+    - 50GBASE-SR
+```
+
+To show compliance for a range of interfaces, specify the range in the command; for example, `nv show interface swp1-32 transceiver compliance`.
+
+<!-- REVIEW: two statements in the note below are inferred. The range example comes from the
+     specification's bulk-view test case, which gives the command without sample output. The last
+     bullet combines two statements from the specification: raw encodings remain available through
+     `ethtool -m` and the SDK, and the `link phy detail` object model keeps its hexadecimal fields.
+     Reading "object model" as "JSON output" is my inference, and the SDK is omitted as an internal
+     tool. Confirm that `-o json` returns the hexadecimal fields. Delete this comment before
+     publishing. -->
+
+{{%notice note%}}
+- Ethernet compliance is a bitmap. If a module sets more than one bit, the command lists every standard that the module supports, one per line, from the highest nominal speed to the lowest, then alphabetically for standards with the same speed.
+- The command lists only the standards in the Cumulus Linux mapping table. It ignores vendor-specific and unrecognized codes and does not show a placeholder or a hexadecimal value for them. A module that implements a newer standard might not list it until a later release adds the standard.
+- If no transceiver is present, or Cumulus Linux cannot read the module, the compliance section is empty or does not appear, and the command completes without an error.
+- To see the raw compliance codes, use `ethtool -m` or the JSON output of the `nv show interface <interface-id> link phy detail` command.
+{{%/notice%}}
 
 To show channel information for the module in a particular port, run the `nv show platform transceiver <transceiver-id> channel` command. To show specific channel information for the module in a particular port, run the `nv show platform transceiver <transceiver-id> channel <channel-id>` command.
 

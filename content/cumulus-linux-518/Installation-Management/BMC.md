@@ -9,6 +9,21 @@ The Spectrum-6 switch requires <span class="a-tooltip">[BMC](## "Baseboard Manag
 
 You can access BMC either through Cumulus Linux or directly through the BMC RJ45 Ethernet port.
 
+{{%notice infonopad%}}
+If you are upgrading your Spectrum-6 switch, you must upgrade BMC before you upgrade Cumulus Linux.
+{{%/notice%}}
+
+## Upgrade BMC and Cumulus Linux
+
+To upgrade a Spectrum-6 switch, perform the upgrade in this order:
+
+1. Upgrade BMC firmware with NVUE, as described in {{<link url="#install-bmc" text="Install BMC">}}.
+2. Upgrade Cumulus Linux. Refer to {{<link url="Upgrading-Cumulus-Linux" text="Upgrading Cumulus Linux">}}.
+
+{{%notice note%}}
+Upgrade BMC firmware with the NVUE commands in this section. NVIDIA validates BMC firmware upgrades through NVUE only; upgrading BMC firmware through Redfish is not validated.
+{{%/notice%}}
+
 ## Install BMC 
 
 To fetch the latest BMC package, run the `nv action fetch platform firmware BMC <remote-url-to-package>` command:

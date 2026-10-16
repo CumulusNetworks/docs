@@ -9,7 +9,6 @@ Virtual routing and forwarding (VRF) enables you to use multiple independent rou
 You typically use VRFs in the data center to carry multiple isolated traffic streams for multi-tenant environments. The traffic streams can cross over only at configured boundary points, such as a firewall or <span class="a-tooltip">[IDS](## "Intrusion Detection System")</span>. You can also use VRFs to burst traffic from private clouds to enterprise networks where the burst point is at layer 3.
 
 VRF is fully supported in the Linux kernel and has the following characteristics:
-
 - The VRF is a layer 3 master network device with its own associated routing table.
 - You can associate any layer 3 interface with a VRF, such as an SVI, swp port or bond, or a VLAN subinterface of a swp port or bond.
 - The layer 3 interfaces associated with the VRF belong to that VRF; IP rules direct <span class="a-tooltip">[FIB](## "Forwarding Information Base")</span> lookups to the routing table for the VRF device.
@@ -25,12 +24,11 @@ VRF is fully supported in the Linux kernel and has the following characteristics
 Cumulus Linux calls each routing table a *VRF table*, which has its own table ID.
 
 To configure VRF, you associate a subset of interfaces to a VRF routing table and configure an instance of the routing protocol (BGP or OSPFv2) for each routing table. Configuring a VRF is similar to configuring other network interfaces. Keep in mind the following:
-
 - A VRF table can have an IP address, which is a loopback interface for the VRF.
 - Cumulus Linux adds the associated rules automatically.
 - You can add a default route to avoid skipping across tables when the kernel forwards a packet.
 - VRF table names can be a maximum of 15 characters. However, you **cannot** use the name *mgmt*; Cumulus Linux uses this name for the {{<link url="Management-VRF" text="management VRF">}}.
-- Cumulus Linux supports up to 255 VRFs on a switch.
+- On a switch with Spectrum-4 and later, Cumulus Linux supports up to 512 VRFs. On a switch with Spectrum-3 and earlier, Cumulus Linux supports up to 255 VRFs.
 
 The following example commands configure VRF BLUE and assigns a table ID automatically.
 

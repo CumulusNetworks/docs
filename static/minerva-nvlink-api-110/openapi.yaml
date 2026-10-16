@@ -1,0 +1,3957 @@
+
+openapi: 3.0.3
+info:
+  title: NVIDIA Minerva NVL REST API
+  version: ""
+  description: One document over the NVL services' APIs.
+servers:
+- url: /
+tags:
+- description: NVLink domains. Every other entity is scoped to a domain, and most queries take a `domain` parameter that filters by these UUIDs.
+  name: Domains
+- description: Physical enclosures, addressed by serial number.
+  name: Chassis
+- description: Switch boards within a chassis.
+  name: Switch Nodes
+- description: Switch ASICs on a switch node.
+  name: Switches
+- description: Compute boards within a chassis.
+  name: Compute Nodes
+- description: GPU devices on a compute node.
+  name: GPUs
+- description: NVLink port endpoints on switches and GPUs.
+  name: Ports
+- name: Partitions
+- name: Operations
+- name: Services
+- name: NetworkEntity
+- description: System configuration settings
+  name: Settings
+- description: Bring-up describes the switch configuration process, including switch configuration and NMX-related services registration.
+  name: BringUp
+- description: Switch upgrade describes the process of upgrading switch NVOS versions.
+  name: SwitchUpgrade
+paths:
+  /nmx/v1/chassis:
+    get:
+      operationId: GetChassisList
+      parameters:
+      - in: query
+        name: domain
+        schema:
+          description: Domain UUID list
+          items:
+            $ref: "#/components/schemas/nvl-inventory.UUID"
+          type: array
+      - description: Filter by chassis serial number
+        in: query
+        name: chassisSerialNumber
+        schema:
+          $ref: "#/components/schemas/nvl-inventory.ChassisSerialNumber"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/nvl-inventory.Chassis"
+                type: array
+          description: Success
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/nvl-inventory.Error"
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/nvl-inventory.Error"
+          description: Internal Error
+      summary: Get list of Chassis
+      tags:
+      - Chassis
+  /nmx/v1/chassis/count:
+    get:
+      operationId: GetChassisCount
+      parameters:
+      - in: query
+        name: domain
+        schema:
+          description: Domain UUID list
+          items:
+            $ref: "#/components/schemas/nvl-inventory.UUID"
+          type: array
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/nvl-inventory.NetworkEntityCountResponse"
+          description: Success
+        "500":
+          $ref: "#/components/responses/nvl-inventory.Error500"
+      summary: Get total count of chassis
+      tags:
+      - Chassis
+  /nmx/v1/chassis/{id}:
+    get:
+      operationId: GetChassis
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          $ref: "#/components/schemas/nvl-inventory.EntityID"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/nvl-inventory.Chassis"
+          description: Success
+        "400":
+          $ref: "#/components/responses/nvl-inventory.Error400"
+        "404":
+          $ref: "#/components/responses/nvl-inventory.Error404"
+        "500":
+          $ref: "#/components/responses/nvl-inventory.Error500"
+      summary: Chassis information
+      tags:
+      - Chassis
+    put:
+      operationId: UpdateChassis
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          $ref: "#/components/schemas/nvl-inventory.EntityID"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/nvl-inventory.NetworkEntityUpdatePayload"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/nvl-inventory.Chassis"
+          description: Success
+        "400":
+          $ref: "#/components/responses/nvl-inventory.Error400"
+        "404":
+          $ref: "#/components/responses/nvl-inventory.Error404"
+        "500":
+          $ref: "#/components/responses/nvl-inventory.Error500"
+      summary: Update Chassis
+      tags:
+      - Chassis
+  /nmx/v1/compute-nodes:
+    get:
+      operationId: GetComputeNodesList
+      parameters:
+      - in: query
+        name: domain
+        schema:
+          description: Domain UUID list
+          items:
+            $ref: "#/components/schemas/nvl-inventory.UUID"
+          type: array
+      - in: query
+        name: hostname
+        schema:
+          description: Filter by hostname
+          items:
+            type: string
+          type: array
+      - description: Filter by chassis serial number
+        in: query
+        name: chassisSerialNumber
+        schema:
+          $ref: "#/components/schemas/nvl-inventory.ChassisSerialNumber"
+      - description: Filter by slot ID (valid only if chassisSerialNumber is provided)
+        in: query
+        name: slotID
+        schema:
+          $ref: "#/components/schemas/nvl-inventory.SlotID"
+      - description: Filter by tray index (valid only if chassisSerialNumber is provided)
+        in: query
+        name: trayIndex
+        schema:
+          $ref: "#/components/schemas/nvl-inventory.TrayIndex"
+      - description: Filter by host ID (valid only if trayIndex or slotID are provided)
+        in: query
+        name: hostID
+        schema:
+          $ref: "#/components/schemas/nvl-inventory.HostID"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/nvl-inventory.ComputeNode"
+                type: array
+          description: Success
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/nvl-inventory.Error"
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/nvl-inventory.Error"
+          description: Internal Error
+      summary: Get list of Compute Nodes
+      tags:
+      - Compute Nodes
+  /nmx/v1/compute-nodes/count:
+    get:
+      operationId: GetComputeNodesCount
+      parameters:
+      - in: query
+        name: domain
+        schema:
+          description: Domain UUID list
+          items:
+            $ref: "#/components/schemas/nvl-inventory.UUID"
+          type: array
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/nvl-inventory.NetworkEntityCountResponse"
+          description: Success
+        "500":
+          $ref: "#/components/responses/nvl-inventory.Error500"
+      summary: Get total count of Compute Nodes
+      tags:
+      - Compute Nodes
+  /nmx/v1/compute-nodes/{id}:
+    get:
+      operationId: GetComputeNode
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          $ref: "#/components/schemas/nvl-inventory.EntityID"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/nvl-inventory.ComputeNode"
+          description: Success
+        "400":
+          $ref: "#/components/responses/nvl-inventory.Error400"
+        "404":
+          $ref: "#/components/responses/nvl-inventory.Error404"
+        "500":
+          $ref: "#/components/responses/nvl-inventory.Error500"
+      summary: Compute Node information
+      tags:
+      - Compute Nodes
+    put:
+      operationId: UpdateComputeNode
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          $ref: "#/components/schemas/nvl-inventory.EntityID"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/nvl-inventory.NetworkEntityUpdatePayload"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/nvl-inventory.ComputeNode"
+          description: Success
+        "400":
+          $ref: "#/components/responses/nvl-inventory.Error400"
+        "404":
+          $ref: "#/components/responses/nvl-inventory.Error404"
+        "500":
+          $ref: "#/components/responses/nvl-inventory.Error500"
+      summary: Update Compute Node
+      tags:
+      - Compute Nodes
+  /nmx/v1/domains:
+    get:
+      operationId: GetDomainsList
+      parameters:
+      - in: query
+        name: domain
+        schema:
+          description: Domain UUID list
+          items:
+            $ref: "#/components/schemas/nvl-inventory.UUID"
+          type: array
+      - description: Filter by control plane state
+        in: query
+        name: controlPlaneState
+        schema:
+          $ref: "#/components/schemas/nvl-inventory.ControlPlaneState"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/nvl-inventory.Domain"
+                type: array
+          description: Success
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/nvl-inventory.Error"
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/nvl-inventory.Error"
+          description: Internal Error
+      summary: Get list of Domains
+      tags:
+      - Domains
+  /nmx/v1/domains/count:
+    get:
+      operationId: GetDomainsCount
+      parameters:
+      - in: query
+        name: domain
+        schema:
+          description: Domain UUID list
+          items:
+            $ref: "#/components/schemas/nvl-inventory.UUID"
+          type: array
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/nvl-inventory.NetworkEntityCountResponse"
+          description: Success
+        "500":
+          $ref: "#/components/responses/nvl-inventory.Error500"
+      summary: Get total count of Domains
+      tags:
+      - Domains
+  /nmx/v1/domains/{id}:
+    get:
+      operationId: GetDomain
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          $ref: "#/components/schemas/nvl-inventory.EntityID"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/nvl-inventory.Domain"
+          description: Success
+        "400":
+          $ref: "#/components/responses/nvl-inventory.Error400"
+        "404":
+          $ref: "#/components/responses/nvl-inventory.Error404"
+        "500":
+          $ref: "#/components/responses/nvl-inventory.Error500"
+      summary: Domain information
+      tags:
+      - Domains
+    patch:
+      operationId: UpdateDomainProfile
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          $ref: "#/components/schemas/nvl-inventory.EntityID"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/nvl-inventory.UpdateDomainPayload"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/nvl-inventory.Domain"
+          description: Success
+        "400":
+          $ref: "#/components/responses/nvl-inventory.Error400"
+        "404":
+          $ref: "#/components/responses/nvl-inventory.Error404"
+        "500":
+          $ref: "#/components/responses/nvl-inventory.Error500"
+      summary: Update Domain Profile
+      tags:
+      - Domains
+  /nmx/v1/gpus:
+    get:
+      operationId: GetGPUList
+      parameters:
+      - in: query
+        name: domain
+        schema:
+          description: Domain UUID list
+          items:
+            $ref: "#/components/schemas/nvl-inventory.UUID"
+          type: array
+      - description: Filter by GPU device unique identifier. Accepts a decimal number or a hex value (e.g. 0x1A2B3C).
+        in: query
+        name: deviceUID
+        schema:
+          $ref: "#/components/schemas/nvl-inventory.HexOrDecimalUint64"
+      - description: Filter by chassis serial number
+        in: query
+        name: chassisSerialNumber
+        schema:
+          $ref: "#/components/schemas/nvl-inventory.ChassisSerialNumber"
+      - description: Filter by slot ID (valid only if chassisSerialNumber is provided)
+        in: query
+        name: slotID
+        schema:
+          $ref: "#/components/schemas/nvl-inventory.SlotID"
+      - description: Filter by tray index (valid only if chassisSerialNumber is provided)
+        in: query
+        name: trayIndex
+        schema:
+          $ref: "#/components/schemas/nvl-inventory.TrayIndex"
+      - description: Filter by host ID (valid only if trayIndex or slotID are provided)
+        in: query
+        name: hostID
+        schema:
+          $ref: "#/components/schemas/nvl-inventory.HostID"
+      - description: Filter by system unique identifier
+        in: query
+        name: systemUID
+        schema:
+          $ref: "#/components/schemas/nvl-inventory.uint64"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/nvl-inventory.GPU"
+                type: array
+          description: Success
+        "400":
+          $ref: "#/components/responses/nvl-inventory.Error400"
+        "500":
+          $ref: "#/components/responses/nvl-inventory.Error500"
+      summary: Get list of GPUs
+      tags:
+      - GPUs
+  /nmx/v1/gpus/count:
+    get:
+      operationId: GetGPUCount
+      parameters:
+      - in: query
+        name: domain
+        schema:
+          description: Domain UUID list
+          items:
+            $ref: "#/components/schemas/nvl-inventory.UUID"
+          type: array
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/nvl-inventory.NetworkEntityCountResponse"
+          description: Success
+        "500":
+          $ref: "#/components/responses/nvl-inventory.Error500"
+      summary: Get total count of GPUs
+      tags:
+      - GPUs
+  /nmx/v1/gpus/{id}:
+    get:
+      operationId: GetGPU
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          $ref: "#/components/schemas/nvl-inventory.EntityID"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/nvl-inventory.GPU"
+          description: Success
+        "400":
+          $ref: "#/components/responses/nvl-inventory.Error400"
+        "404":
+          $ref: "#/components/responses/nvl-inventory.Error404"
+        "500":
+          $ref: "#/components/responses/nvl-inventory.Error500"
+      summary: GPU information
+      tags:
+      - GPUs
+    put:
+      operationId: UpdateGPU
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          $ref: "#/components/schemas/nvl-inventory.EntityID"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/nvl-inventory.NetworkEntityUpdatePayload"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/nvl-inventory.GPU"
+          description: Success
+        "400":
+          $ref: "#/components/responses/nvl-inventory.Error400"
+        "404":
+          $ref: "#/components/responses/nvl-inventory.Error404"
+        "500":
+          $ref: "#/components/responses/nvl-inventory.Error500"
+      summary: Update GPU
+      tags:
+      - GPUs
+  /nmx/v1/ports:
+    get:
+      operationId: GetPortList
+      parameters:
+      - in: query
+        name: domain
+        schema:
+          description: Domain UUID list
+          items:
+            $ref: "#/components/schemas/nvl-inventory.UUID"
+          type: array
+      - description: Filter by port unique identifier
+        in: query
+        name: portUID
+        schema:
+          $ref: "#/components/schemas/nvl-inventory.uint64"
+      - description: Filter by port type
+        in: query
+        name: portType
+        schema:
+          $ref: "#/components/schemas/nvl-inventory.PortType"
+      - description: Filter by chassis serial number
+        in: query
+        name: chassisSerialNumber
+        schema:
+          $ref: "#/components/schemas/nvl-inventory.ChassisSerialNumber"
+      - description: Filter by tray index (valid only if chassisSerialNumber is provided)
+        in: query
+        name: trayIndex
+        schema:
+          $ref: "#/components/schemas/nvl-inventory.TrayIndex"
+      - description: Filter by host ID (valid only if trayIndex or slotID are provided)
+        in: query
+        name: hostID
+        schema:
+          $ref: "#/components/schemas/nvl-inventory.HostID"
+      - description: Filter by slot ID (valid only if chassisSerialNumber is provided)
+        in: query
+        name: slotID
+        schema:
+          $ref: "#/components/schemas/nvl-inventory.SlotID"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/nvl-inventory.Port"
+                type: array
+          description: Success
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/nvl-inventory.Error"
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/nvl-inventory.Error"
+          description: Internal Error
+      summary: Get list of Ports
+      tags:
+      - Ports
+  /nmx/v1/ports/count:
+    get:
+      operationId: GetPortsCount
+      parameters:
+      - in: query
+        name: domain
+        schema:
+          description: Domain UUID list
+          items:
+            $ref: "#/components/schemas/nvl-inventory.UUID"
+          type: array
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/nvl-inventory.NetworkEntityCountResponse"
+          description: Success
+        "500":
+          $ref: "#/components/responses/nvl-inventory.Error500"
+      summary: Get total count of Ports
+      tags:
+      - Ports
+  /nmx/v1/ports/{id}:
+    get:
+      operationId: GetPort
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          $ref: "#/components/schemas/nvl-inventory.EntityID"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/nvl-inventory.Port"
+          description: Success
+        "400":
+          $ref: "#/components/responses/nvl-inventory.Error400"
+        "404":
+          $ref: "#/components/responses/nvl-inventory.Error404"
+        "500":
+          $ref: "#/components/responses/nvl-inventory.Error500"
+      summary: Port information
+      tags:
+      - Ports
+    put:
+      operationId: UpdatePortAdminState
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          $ref: "#/components/schemas/nvl-service-mgr.EntityID"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/nvl-service-mgr.UpdateAdminStateRequest"
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/nvl-service-mgr.AsyncResponse"
+          description: "\"Update Port Admin State\" request accepted and was assigned an async Operation ID"
+        "400":
+          $ref: "#/components/responses/nvl-service-mgr.Error400"
+        "404":
+          $ref: "#/components/responses/nvl-service-mgr.Error404"
+        "409":
+          $ref: "#/components/responses/nvl-service-mgr.Error409"
+        "500":
+          $ref: "#/components/responses/nvl-service-mgr.Error500"
+        "503":
+          $ref: "#/components/responses/nvl-service-mgr.Error503"
+      summary: Update Port Admin State
+      tags:
+      - NetworkEntity
+  /nmx/v1/switch-nodes:
+    get:
+      operationId: GetSwitchNodesList
+      parameters:
+      - in: query
+        name: domain
+        schema:
+          description: Domain UUID list
+          items:
+            $ref: "#/components/schemas/nvl-inventory.UUID"
+          type: array
+      - in: query
+        name: hostname
+        schema:
+          description: Filter by hostname
+          items:
+            type: string
+          type: array
+      - description: Filter by chassis serial number
+        in: query
+        name: chassisSerialNumber
+        schema:
+          $ref: "#/components/schemas/nvl-inventory.ChassisSerialNumber"
+      - description: Filter by slot ID (valid only if chassisSerialNumber is provided)
+        in: query
+        name: slotID
+        schema:
+          $ref: "#/components/schemas/nvl-inventory.SlotID"
+      - description: Filter by tray index (valid only if chassisSerialNumber is provided)
+        in: query
+        name: trayIndex
+        schema:
+          $ref: "#/components/schemas/nvl-inventory.TrayIndex"
+      - description: Filter by host ID (valid only if trayIndex or slotID are provided)
+        in: query
+        name: hostID
+        schema:
+          $ref: "#/components/schemas/nvl-inventory.HostID"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/nvl-inventory.SwitchNode"
+                type: array
+          description: Success
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/nvl-inventory.Error"
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/nvl-inventory.Error"
+          description: Internal Error
+      summary: Get list of Switch Nodes
+      tags:
+      - Switch Nodes
+  /nmx/v1/switch-nodes/count:
+    get:
+      operationId: GetSwitchNodesCount
+      parameters:
+      - in: query
+        name: domain
+        schema:
+          description: Domain UUID list
+          items:
+            $ref: "#/components/schemas/nvl-inventory.UUID"
+          type: array
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/nvl-inventory.NetworkEntityCountResponse"
+          description: Success
+        "500":
+          $ref: "#/components/responses/nvl-inventory.Error500"
+      summary: Get total count of Switch Nodes
+      tags:
+      - Switch Nodes
+  /nmx/v1/switch-nodes/{id}:
+    get:
+      operationId: GetSwitchNode
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          $ref: "#/components/schemas/nvl-inventory.EntityID"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/nvl-inventory.SwitchNode"
+          description: Success
+        "400":
+          $ref: "#/components/responses/nvl-inventory.Error400"
+        "404":
+          $ref: "#/components/responses/nvl-inventory.Error404"
+        "500":
+          $ref: "#/components/responses/nvl-inventory.Error500"
+      summary: Switch Node information
+      tags:
+      - Switch Nodes
+    put:
+      operationId: UpdateSwitchNode
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          $ref: "#/components/schemas/nvl-inventory.EntityID"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/nvl-inventory.UpdateSwitchNodePayload"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/nvl-inventory.SwitchNode"
+          description: Success
+        "400":
+          $ref: "#/components/responses/nvl-inventory.Error400"
+        "404":
+          $ref: "#/components/responses/nvl-inventory.Error404"
+        "500":
+          $ref: "#/components/responses/nvl-inventory.Error500"
+      summary: Update Switch Node
+      tags:
+      - Switch Nodes
+  /nmx/v1/switches:
+    get:
+      operationId: GetSwitchList
+      parameters:
+      - in: query
+        name: domain
+        schema:
+          description: Domain UUID list
+          items:
+            $ref: "#/components/schemas/nvl-inventory.UUID"
+          type: array
+      - description: Filter by switch device unique identifier. Accepts a decimal number or a hex value (e.g. 0x1A2B3C).
+        in: query
+        name: deviceUID
+        schema:
+          $ref: "#/components/schemas/nvl-inventory.HexOrDecimalUint64"
+      - description: Filter by node unique identifier
+        in: query
+        name: systemUID
+        schema:
+          $ref: "#/components/schemas/nvl-inventory.uint64"
+      - description: Filter by chassis serial number
+        in: query
+        name: chassisSerialNumber
+        schema:
+          $ref: "#/components/schemas/nvl-inventory.ChassisSerialNumber"
+      - description: Filter by slot ID (valid only if chassisSerialNumber is provided)
+        in: query
+        name: slotID
+        schema:
+          $ref: "#/components/schemas/nvl-inventory.SlotID"
+      - description: Filter by tray index (valid only if chassisSerialNumber is provided)
+        in: query
+        name: trayIndex
+        schema:
+          $ref: "#/components/schemas/nvl-inventory.TrayIndex"
+      - description: Filter by host ID (valid only if trayIndex or slotID are provided)
+        in: query
+        name: hostID
+        schema:
+          $ref: "#/components/schemas/nvl-inventory.HostID"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/nvl-inventory.Switch"
+                type: array
+          description: Success
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/nvl-inventory.Error"
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/nvl-inventory.Error"
+          description: Internal Error
+      summary: Get list of Switches
+      tags:
+      - Switches
+  /nmx/v1/switches/count:
+    get:
+      operationId: GetSwitchesCount
+      parameters:
+      - in: query
+        name: domain
+        schema:
+          description: Domain UUID list
+          items:
+            $ref: "#/components/schemas/nvl-inventory.UUID"
+          type: array
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/nvl-inventory.NetworkEntityCountResponse"
+          description: Success
+        "500":
+          $ref: "#/components/responses/nvl-inventory.Error500"
+      summary: Get total count of switches
+      tags:
+      - Switches
+  /nmx/v1/switches/{id}:
+    get:
+      operationId: GetSwitch
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          $ref: "#/components/schemas/nvl-inventory.EntityID"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/nvl-inventory.Switch"
+          description: Success
+        "400":
+          $ref: "#/components/responses/nvl-inventory.Error400"
+        "404":
+          $ref: "#/components/responses/nvl-inventory.Error404"
+        "500":
+          $ref: "#/components/responses/nvl-inventory.Error500"
+      summary: Switch information
+      tags:
+      - Switches
+    put:
+      operationId: UpdateSwitch
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          $ref: "#/components/schemas/nvl-inventory.EntityID"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/nvl-inventory.NetworkEntityUpdatePayload"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/nvl-inventory.Switch"
+          description: Success
+        "400":
+          $ref: "#/components/responses/nvl-inventory.Error400"
+        "404":
+          $ref: "#/components/responses/nvl-inventory.Error404"
+        "500":
+          $ref: "#/components/responses/nvl-inventory.Error500"
+      summary: Update Switch
+      tags:
+      - Switches
+  /nmx/v1/operations:
+    get:
+      operationId: GetOperationsList
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/nvl-partition-mgr.Operation"
+                title: OperationsListResponse
+                type: array
+                uniqueItems: true
+          description: "Success - Operation Object List"
+        "500":
+          $ref: "#/components/responses/nvl-partition-mgr.Error500"
+      summary: Get a list of operations
+      tags:
+      - Operations
+  /nmx/v1/operations/{id}:
+    delete:
+      operationId: CancelOperation
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          $ref: "#/components/schemas/nvl-partition-mgr.EntityID"
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/nvl-partition-mgr.AsyncResponse"
+          description: "\"Cancel Operation\" request accepted and was assigned an async Operation ID"
+        "400":
+          $ref: "#/components/responses/nvl-partition-mgr.Error400"
+        "404":
+          $ref: "#/components/responses/nvl-partition-mgr.Error404"
+        "409":
+          $ref: "#/components/responses/nvl-partition-mgr.Error409"
+        "500":
+          $ref: "#/components/responses/nvl-partition-mgr.Error500"
+        "503":
+          $ref: "#/components/responses/nvl-partition-mgr.Error503"
+      summary: Delete an Operation
+      tags:
+      - Operations
+    get:
+      operationId: GetOperation
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          $ref: "#/components/schemas/nvl-partition-mgr.EntityID"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/nvl-partition-mgr.Operation"
+          description: "Success - Operation Object"
+        "400":
+          $ref: "#/components/responses/nvl-partition-mgr.Error400"
+        "404":
+          $ref: "#/components/responses/nvl-partition-mgr.Error404"
+        "500":
+          $ref: "#/components/responses/nvl-partition-mgr.Error500"
+      summary: Get an operation
+      tags:
+      - Operations
+  /nmx/v1/partitions:
+    get:
+      operationId: GetPartitionsList
+      parameters:
+      - description: GPU ID type for displaying ID-based partition members. Defaults to device-uuid.
+        in: query
+        name: gpu-id-type
+        schema:
+          $ref: "#/components/schemas/nvl-partition-mgr.GpuIdType"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/nvl-partition-mgr.Partition"
+                title: PartitionsListResponse
+                type: array
+                uniqueItems: true
+          description: "Success - Partition Object List"
+        "500":
+          $ref: "#/components/responses/nvl-partition-mgr.Error500"
+      summary: Get a list of partitions
+      tags:
+      - Partitions
+    post:
+      operationId: CreatePartition
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/nvl-partition-mgr.CreatePartitionRequest"
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/nvl-partition-mgr.AsyncResponse"
+          description: "\"Create Partition\" request accepted and was assigned an async Operation ID"
+        "400":
+          $ref: "#/components/responses/nvl-partition-mgr.Error400"
+        "404":
+          $ref: "#/components/responses/nvl-partition-mgr.Error404"
+        "409":
+          $ref: "#/components/responses/nvl-partition-mgr.Error409"
+        "500":
+          $ref: "#/components/responses/nvl-partition-mgr.Error500"
+        "503":
+          $ref: "#/components/responses/nvl-partition-mgr.Error503"
+      summary: Create a Partition by provided information
+      tags:
+      - Partitions
+  /nmx/v1/partitions/{id}:
+    delete:
+      operationId: DeletePartition
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          $ref: "#/components/schemas/nvl-partition-mgr.EntityID"
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/nvl-partition-mgr.AsyncResponse"
+          description: "\"Delete Partition\" request accepted and was assigned an async Operation ID"
+        "400":
+          $ref: "#/components/responses/nvl-partition-mgr.Error400"
+        "404":
+          $ref: "#/components/responses/nvl-partition-mgr.Error404"
+        "500":
+          $ref: "#/components/responses/nvl-partition-mgr.Error500"
+        "503":
+          $ref: "#/components/responses/nvl-partition-mgr.Error503"
+      summary: Delete a Partition
+      tags:
+      - Partitions
+    get:
+      operationId: GetPartition
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          $ref: "#/components/schemas/nvl-partition-mgr.EntityID"
+      - description: GPU ID type for displaying ID-based partition members. Defaults to device-uuid.
+        in: query
+        name: gpu-id-type
+        schema:
+          $ref: "#/components/schemas/nvl-partition-mgr.GpuIdType"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/nvl-partition-mgr.Partition"
+          description: "Success - Partition Object"
+        "400":
+          $ref: "#/components/responses/nvl-partition-mgr.Error400"
+        "404":
+          $ref: "#/components/responses/nvl-partition-mgr.Error404"
+        "500":
+          $ref: "#/components/responses/nvl-partition-mgr.Error500"
+      summary: Partition information
+      tags:
+      - Partitions
+    put:
+      operationId: UpdatePartition
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          $ref: "#/components/schemas/nvl-partition-mgr.EntityID"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/nvl-partition-mgr.UpdatePartitionRequest"
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/nvl-partition-mgr.AsyncResponse"
+          description: "\"Update Partition\" request accepted and was assigned an async Operation ID"
+        "400":
+          $ref: "#/components/responses/nvl-partition-mgr.Error400"
+        "404":
+          $ref: "#/components/responses/nvl-partition-mgr.Error404"
+        "409":
+          $ref: "#/components/responses/nvl-partition-mgr.Error409"
+        "500":
+          $ref: "#/components/responses/nvl-partition-mgr.Error500"
+        "503":
+          $ref: "#/components/responses/nvl-partition-mgr.Error503"
+      summary: Update a Partition
+      tags:
+      - Partitions
+  /nmx/v1/services:
+    get:
+      operationId: GetNmxServicesList
+      parameters:
+      - in: query
+        name: type
+        schema:
+          description: NMX Service Type
+          items:
+            $ref: "#/components/schemas/nvl-service-mgr.NmxServiceType"
+          type: array
+      - in: query
+        name: address
+        schema:
+          description: NMX Service Address
+          items:
+            $ref: "#/components/schemas/nvl-service-mgr.Address"
+          type: array
+      - in: query
+        name: pagination
+        schema:
+          $ref: "#/components/schemas/nvl-service-mgr.Pagination"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/nvl-service-mgr.NmxService"
+                type: array
+          description: Success
+        "400":
+          $ref: "#/components/responses/nvl-service-mgr.Error400"
+        "500":
+          $ref: "#/components/responses/nvl-service-mgr.Error500"
+      summary: Get information on all NMX services
+      tags:
+      - Services
+    post:
+      description: If add operation is not finished yet, you won't be able to add or delete a new object with the same information.
+      operationId: AddNmxService
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/nvl-service-mgr.AddNmxServiceRequest"
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/nvl-service-mgr.NmxService"
+          description: Success
+        "400":
+          $ref: "#/components/responses/nvl-service-mgr.Error400"
+        "409":
+          $ref: "#/components/responses/nvl-service-mgr.Error409"
+        "500":
+          $ref: "#/components/responses/nvl-service-mgr.Error500"
+      summary: Adds a new Telemetry or Controller using its connection information
+      tags:
+      - Services
+  /nmx/v1/services/connection:
+    get:
+      description: |
+        Retrieves connection status for all managed services, including active IPs,
+        failover states, and connection health.
+      operationId: GetAllServiceConnectionStatuses
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/nvl-service-mgr.ServiceConnectionStatus"
+                type: array
+          description: "Success - Connection statuses retrieved"
+        "500":
+          $ref: "#/components/responses/nvl-service-mgr.Error500"
+      summary: Get all service connection statuses
+      tags:
+      - Services
+  /nmx/v1/services/{id}:
+    delete:
+      description: If the service is connected, it will be disconnected from NMX-M Gateway.
+      operationId: DeleteNmxService
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          $ref: "#/components/schemas/nvl-service-mgr.EntityID"
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/nvl-service-mgr.NmxService"
+          description: Success
+        "400":
+          $ref: "#/components/responses/nvl-service-mgr.Error400"
+        "404":
+          $ref: "#/components/responses/nvl-service-mgr.Error404"
+        "409":
+          $ref: "#/components/responses/nvl-service-mgr.Error409"
+        "500":
+          $ref: "#/components/responses/nvl-service-mgr.Error500"
+      summary: Delete a NMX Service from NMX-M
+      tags:
+      - Services
+    get:
+      operationId: GetNmxService
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          $ref: "#/components/schemas/nvl-service-mgr.EntityID"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/nvl-service-mgr.NmxService"
+          description: Success
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/nvl-service-mgr.NmxService"
+          description: Success
+        "400":
+          $ref: "#/components/responses/nvl-service-mgr.Error400"
+        "404":
+          $ref: "#/components/responses/nvl-service-mgr.Error404"
+        "500":
+          $ref: "#/components/responses/nvl-service-mgr.Error500"
+      summary: Get information on NMX service by its ID
+      tags:
+      - Services
+  /nmx/v1/services/{id}/connection:
+    get:
+      description: |
+        Retrieves the current connection status for a service, including active IP,
+        available IPs, failover history, and connection state.
+      operationId: GetServiceConnectionStatus
+      parameters:
+      - $ref: "#/components/parameters/nvl-service-mgr.IdParam"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/nvl-service-mgr.ServiceConnectionStatus"
+          description: "Success - Connection status retrieved"
+        "404":
+          $ref: "#/components/responses/nvl-service-mgr.Error404"
+        "500":
+          $ref: "#/components/responses/nvl-service-mgr.Error500"
+      summary: Get service connection status
+      tags:
+      - Services
+  /nmx/v1/switch-nodes/{id}/admin-state:
+    put:
+      operationId: UpdateSwitchNodeAdminState
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          $ref: "#/components/schemas/nvl-service-mgr.EntityID"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/nvl-service-mgr.UpdateAdminStateRequest"
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/nvl-service-mgr.AsyncResponse"
+          description: "\"Update Switch Node Admin State\" request accepted and was assigned an async Operation ID"
+        "400":
+          $ref: "#/components/responses/nvl-service-mgr.Error400"
+        "404":
+          $ref: "#/components/responses/nvl-service-mgr.Error404"
+        "409":
+          $ref: "#/components/responses/nvl-service-mgr.Error409"
+        "500":
+          $ref: "#/components/responses/nvl-service-mgr.Error500"
+        "503":
+          $ref: "#/components/responses/nvl-service-mgr.Error503"
+      summary: Update Switch Node Admin State
+      tags:
+      - NetworkEntity
+  /nmx/v1/settings:
+    get:
+      description: |
+        Get all supported settings, their name, description and their effective value.
+      operationId: GetSettings
+      parameters:
+      - description: Output format. When set to 'yaml', returns a simplified key-value representation.
+        in: query
+        name: format
+        schema:
+          enum:
+          - yaml
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/setting-mgr.Setting"
+                type: array
+            text/plain:
+              schema:
+                description: YAML-formatted key-value pairs (when format=yaml)
+                type: string
+          description: "Success - list of settings"
+        "500":
+          $ref: "#/components/responses/setting-mgr.Error500"
+      summary: Get all supported settings, their name, description and their effective value.
+      tags:
+      - Settings
+    patch:
+      description: "Update a setting's value by specifying the setting's name and desired value.\nEach setting may have a different expected type (int, string, etc).\nIn case of a type mismatch - an error is returned.\nOnly the value field can be modified.\n"
+      operationId: UpdateSetting
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/setting-mgr.UpdateSettingRequest"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/setting-mgr.Setting"
+          description: Setting updated successfully
+        "400":
+          $ref: "#/components/responses/setting-mgr.Error400"
+        "404":
+          $ref: "#/components/responses/setting-mgr.Error404"
+        "500":
+          $ref: "#/components/responses/setting-mgr.Error500"
+      summary: Updates the value of a specific setting.
+      tags:
+      - Settings
+  /nmx/v1/settings/{name}:
+    delete:
+      description: |
+        Reset a setting's value to its default value.
+      operationId: ResetSetting
+      parameters:
+      - description: The name of the setting
+        in: path
+        name: name
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/setting-mgr.Setting"
+          description: Setting reset successfully
+        "404":
+          $ref: "#/components/responses/setting-mgr.Error404"
+        "500":
+          $ref: "#/components/responses/setting-mgr.Error500"
+      summary: Reset a setting's value to its default value.
+      tags:
+      - Settings
+    get:
+      description: |
+        Retrieves a specific setting by name.
+      operationId: GetSetting
+      parameters:
+      - description: The name of the setting
+        in: path
+        name: name
+        required: true
+        schema:
+          type: string
+      - description: Output format. When set to 'yaml', returns a simplified key-value representation.
+        in: query
+        name: format
+        schema:
+          enum:
+          - yaml
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/setting-mgr.Setting"
+            text/plain:
+              schema:
+                description: YAML-formatted key-value pair (when format=yaml)
+                type: string
+          description: "Success - setting found"
+        "404":
+          $ref: "#/components/responses/setting-mgr.Error404"
+        "500":
+          $ref: "#/components/responses/setting-mgr.Error500"
+      summary: Get a specific setting, its name, description and its effective value.
+      tags:
+      - Settings
+  /minerva/v1/bring-up:
+    get:
+      operationId: GetBringUpList
+      parameters:
+      - in: query
+        name: status
+        schema:
+          description: Filter by Bring-up Status
+          items:
+            $ref: "#/components/schemas/provisioning-mgr.Status"
+          type: array
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/provisioning-mgr.BringUpReport"
+                title: BringUpListResponse
+                type: array
+                uniqueItems: true
+          description: "Success - Bring-up List"
+        "500":
+          $ref: "#/components/responses/provisioning-mgr.Error500"
+      summary: Get information on the Bring-up process
+      tags:
+      - BringUp
+    post:
+      description: "Creates a bring-up operation for one or more switches.\n\nUser-provided certificates are required: you MUST provide `CertP12` (.p12 bundle).\n"
+      operationId: CreateBringUp
+      requestBody:
+        content:
+          multipart/form-data:
+            encoding:
+              Switches:
+                explode: true
+                style: form
+            examples:
+              userCert:
+                summary: CertP12 is required
+                value:
+                  CertP12: (binary .p12 file)
+                  FmConfig: (binary file)
+                  ProfileID: 551137c2f9e1fac808a5f572
+                  Switches:
+                  - Address: 10.0.0.1
+                    ProfileID: 551137c2f9e1fac808a5f574
+                  - Address: 10.0.0.2
+            schema:
+              $ref: "#/components/schemas/provisioning-mgr.CreateBringUpRequest"
+      responses:
+        "202":
+          $ref: "#/components/responses/provisioning-mgr.OperationResponse"
+        "400":
+          $ref: "#/components/responses/provisioning-mgr.Error400"
+        "409":
+          $ref: "#/components/responses/provisioning-mgr.Error409"
+        "500":
+          $ref: "#/components/responses/provisioning-mgr.Error500"
+      summary: Request a new BringUp for one or more switches
+      tags:
+      - BringUp
+  /minerva/v1/bring-up/{id}:
+    get:
+      operationId: GetBringUp
+      parameters:
+      - $ref: "#/components/parameters/provisioning-mgr.IdParam"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/provisioning-mgr.BringUpReport"
+          description: "Success - BringUp Object"
+        "400":
+          $ref: "#/components/responses/provisioning-mgr.Error400"
+        "404":
+          $ref: "#/components/responses/provisioning-mgr.Error404"
+        "500":
+          $ref: "#/components/responses/provisioning-mgr.Error500"
+      summary: Get a bring-up record information
+      tags:
+      - BringUp
+  /minerva/v1/images:
+    get:
+      description: |
+        Retrieves a list of all image files, including their filename, size in bytes, and creation date.
+      operationId: GetImageList
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/provisioning-mgr.ImageMetadata"
+                type: array
+                uniqueItems: true
+          description: "Success - list of images"
+        "500":
+          $ref: "#/components/responses/provisioning-mgr.Error500"
+      summary: Get metadata of all images
+      tags:
+      - Images
+    post:
+      description: |
+        Uploads a new image file. The image can be up to 4GB in size.
+      operationId: UploadImage
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/provisioning-mgr.UploadImageRequest"
+        required: true
+      responses:
+        "201":
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/provisioning-mgr.EntityID"
+          description: Image uploaded successfully
+        "400":
+          $ref: "#/components/responses/provisioning-mgr.Error400"
+        "413":
+          $ref: "#/components/responses/provisioning-mgr.Error413"
+        "500":
+          $ref: "#/components/responses/provisioning-mgr.Error500"
+      summary: Upload a new image
+      tags:
+      - Images
+  /minerva/v1/images/{id}:
+    delete:
+      description: Deletes an image file.
+      operationId: DeleteImage
+      parameters:
+      - $ref: "#/components/parameters/provisioning-mgr.IdParam"
+      responses:
+        "204":
+          description: Image deleted successfully
+        "404":
+          $ref: "#/components/responses/provisioning-mgr.Error404"
+        "500":
+          $ref: "#/components/responses/provisioning-mgr.Error500"
+      summary: Delete an image
+      tags:
+      - Images
+    get:
+      description: Downloads an image file. The file is streamed in binary format.
+      operationId: GetImage
+      parameters:
+      - $ref: "#/components/parameters/provisioning-mgr.IdParam"
+      responses:
+        "200":
+          content:
+            application/octet-stream:
+              schema:
+                format: binary
+                type: string
+          description: File downloaded successfully
+        "400":
+          $ref: "#/components/responses/provisioning-mgr.Error400"
+        "404":
+          $ref: "#/components/responses/provisioning-mgr.Error404"
+        "500":
+          $ref: "#/components/responses/provisioning-mgr.Error500"
+      summary: Get an image
+      tags:
+      - Images
+  /minerva/v1/support-packages:
+    get:
+      description: |
+        Retrieves a list of all support package files, including their filename, size in bytes, and creation date.
+      operationId: GetSupportPackageList
+      parameters:
+      - description: Filter metadata of support packages by domain IDs
+        in: query
+        name: domainIDs
+        schema:
+          items:
+            $ref: "#/components/schemas/provisioning-mgr.EntityID"
+          type: array
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/provisioning-mgr.SupportPackageMetadata"
+                type: array
+                uniqueItems: true
+          description: "Success - list of support packages"
+        "404":
+          $ref: "#/components/responses/provisioning-mgr.Error404"
+        "500":
+          $ref: "#/components/responses/provisioning-mgr.Error500"
+      summary: Get metadata of all support packages
+      tags:
+      - SupportPackages
+    post:
+      description: |
+        Creates an asynchronous operation for collecting logs. The request is recorded and the operation ID is returned.
+      operationId: CreateSupportPackage
+      requestBody:
+        content:
+          application/json:
+            examples:
+              domainBased:
+                summary: Domain-based support package
+                value:
+                  Domains:
+                  - 551137c2f9e1fac808a5f572
+                  - 551137c2f9e1fac808a5f573
+              switchBased:
+                summary: Switch-based support package
+                value:
+                  ProfileID: 551137c2f9e1fac808a5f572
+                  Switches:
+                  - Address: 10.0.0.1
+                    ProfileID: 551137c2f9e1fac808a5f574
+                  - Address: 10.0.0.2
+            schema:
+              $ref: "#/components/schemas/provisioning-mgr.CreateSupportPackageRequest"
+        required: true
+      responses:
+        "202":
+          $ref: "#/components/responses/provisioning-mgr.OperationResponse"
+        "400":
+          $ref: "#/components/responses/provisioning-mgr.Error400"
+        "404":
+          $ref: "#/components/responses/provisioning-mgr.Error404"
+        "409":
+          $ref: "#/components/responses/provisioning-mgr.Error409"
+        "500":
+          $ref: "#/components/responses/provisioning-mgr.Error500"
+      summary: Collect logs and create a new support package
+      tags:
+      - SupportPackages
+  /minerva/v1/support-packages/{id}:
+    delete:
+      description: Deletes a support package file.
+      operationId: DeleteSupportPackage
+      parameters:
+      - $ref: "#/components/parameters/provisioning-mgr.IdParam"
+      responses:
+        "204":
+          description: Support package deleted successfully
+        "404":
+          $ref: "#/components/responses/provisioning-mgr.Error404"
+        "500":
+          $ref: "#/components/responses/provisioning-mgr.Error500"
+      summary: Delete a support package
+      tags:
+      - SupportPackages
+    get:
+      description: Downloads a support package file. The file is streamed in binary format.
+      operationId: GetSupportPackage
+      parameters:
+      - $ref: "#/components/parameters/provisioning-mgr.IdParam"
+      responses:
+        "200":
+          content:
+            application/octet-stream:
+              schema:
+                format: binary
+                type: string
+          description: File downloaded successfully
+        "400":
+          $ref: "#/components/responses/provisioning-mgr.Error400"
+        "404":
+          $ref: "#/components/responses/provisioning-mgr.Error404"
+        "500":
+          $ref: "#/components/responses/provisioning-mgr.Error500"
+      summary: Get a support package
+      tags:
+      - SupportPackages
+  /minerva/v1/switch-profiles:
+    get:
+      operationId: GetSwitchProfilesList
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/provisioning-mgr.SwitchProfile"
+                title: SwitchProfilesListResponse
+                type: array
+                uniqueItems: true
+          description: "Success - SwitchProfile Object List"
+        "500":
+          $ref: "#/components/responses/provisioning-mgr.Error500"
+      summary: Get a list of switch profiles
+      tags:
+      - SwitchProfiles
+    post:
+      operationId: CreateSwitchProfile
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/provisioning-mgr.CreateSwitchProfileRequest"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/provisioning-mgr.SwitchProfile"
+          description: "Success - SwitchProfile Created"
+        "400":
+          $ref: "#/components/responses/provisioning-mgr.Error400"
+        "409":
+          $ref: "#/components/responses/provisioning-mgr.Error409"
+        "500":
+          $ref: "#/components/responses/provisioning-mgr.Error500"
+      summary: Create a new switch profile
+      tags:
+      - SwitchProfiles
+  /minerva/v1/switch-profiles/{id}:
+    delete:
+      operationId: DeleteSwitchProfile
+      parameters:
+      - $ref: "#/components/parameters/provisioning-mgr.IdParam"
+      responses:
+        "204":
+          description: SwitchProfile record successfully deleted
+        "400":
+          $ref: "#/components/responses/provisioning-mgr.Error400"
+        "404":
+          $ref: "#/components/responses/provisioning-mgr.Error404"
+        "405":
+          $ref: "#/components/responses/provisioning-mgr.Error405"
+        "409":
+          $ref: "#/components/responses/provisioning-mgr.Error409"
+        "500":
+          $ref: "#/components/responses/provisioning-mgr.Error500"
+      summary: Delete a SwitchProfile record
+      tags:
+      - SwitchProfiles
+    get:
+      operationId: GetSwitchProfile
+      parameters:
+      - $ref: "#/components/parameters/provisioning-mgr.IdParam"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/provisioning-mgr.SwitchProfile"
+          description: "Success - SwitchProfile Object"
+        "400":
+          $ref: "#/components/responses/provisioning-mgr.Error400"
+        "404":
+          $ref: "#/components/responses/provisioning-mgr.Error404"
+        "500":
+          $ref: "#/components/responses/provisioning-mgr.Error500"
+      summary: Get a switch profile record information
+      tags:
+      - SwitchProfiles
+    patch:
+      operationId: UpdateSwitchProfile
+      parameters:
+      - $ref: "#/components/parameters/provisioning-mgr.IdParam"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/provisioning-mgr.UpdateSwitchProfileRequest"
+        required: true
+      responses:
+        "200":
+          description: Success
+        "400":
+          $ref: "#/components/responses/provisioning-mgr.Error400"
+        "404":
+          $ref: "#/components/responses/provisioning-mgr.Error404"
+        "409":
+          $ref: "#/components/responses/provisioning-mgr.Error409"
+        "500":
+          $ref: "#/components/responses/provisioning-mgr.Error500"
+      summary: Update a SwitchProfile
+      tags:
+      - SwitchProfiles
+  /minerva/v1/upgrade-switch:
+    post:
+      description: |
+        Creates an asynchronous operation for upgrading switches with new NVOS/Firmware version.
+        Supports two mutually exclusive request formats:
+                1. Standard format with explicit switches list
+                2. Domain-based format with domain UUIDs mapping to image IDs
+      operationId: CreateSwitchUpgrade
+      requestBody:
+        content:
+          application/json:
+            examples:
+              cpldDomainUpgrade:
+                summary: Domain-based CPLD firmware upgrade
+                value:
+                  Domains:
+                  - DomainID: 551137c2f9e1fac808a5f572
+                    ImageID: 551137c2f9e1fac808a5f572
+                  ImageID: 551137c2f9e1fac808a5f572
+                  UpgradeType: cpld
+              cpldSwitchUpgrade:
+                summary: Switch-based CPLD firmware upgrade
+                value:
+                  ImageID: 551137c2f9e1fac808a5f572
+                  ProfileID: 551137c2f9e1fac808a5f572
+                  Switches:
+                  - Address: 10.0.0.1
+                    ImageID: 551137c2f9e1fac808a5f572
+                    ProfileID: 551137c2f9e1fac808a5f572
+                  UpgradeType: cpld
+              domainBased:
+                summary: Domain-based NVOS upgrade
+                value:
+                  Domains:
+                  - DomainID: 551137c2f9e1fac808a5f572
+                    ImageID: 551137c2f9e1fac808a5f572
+                  ImageID: 551137c2f9e1fac808a5f572
+                  UpgradeType: nvos
+              switchBased:
+                summary: Switch-based NVOS upgrade
+                value:
+                  ImageID: 551137c2f9e1fac808a5f572
+                  ProfileID: 551137c2f9e1fac808a5f572
+                  Switches:
+                  - Address: 10.0.0.1
+                    ImageID: 551137c2f9e1fac808a5f572
+                    ProfileID: 551137c2f9e1fac808a5f572
+                  UpgradeType: nvos
+            schema:
+              $ref: "#/components/schemas/provisioning-mgr.CreateSwitchUpgradeRequest"
+        required: true
+      responses:
+        "202":
+          $ref: "#/components/responses/provisioning-mgr.OperationResponse"
+        "400":
+          $ref: "#/components/responses/provisioning-mgr.Error400"
+        "404":
+          $ref: "#/components/responses/provisioning-mgr.Error404"
+        "409":
+          $ref: "#/components/responses/provisioning-mgr.Error409"
+        "500":
+          $ref: "#/components/responses/provisioning-mgr.Error500"
+      summary: Upgrade switches with new NVOS/Firmware image
+      tags:
+      - SwitchUpgrade
+components:
+  responses:
+    nvl-inventory.Error400:
+      content:
+        application/json:
+          example:
+            customErrorCode: bad-request
+            description: The request body or parameters are invalid.
+            httpErrorCode: 400
+          schema:
+            $ref: "#/components/schemas/nvl-inventory.Error"
+      description: The request was invalid or malformed.
+    nvl-inventory.Error404:
+      content:
+        application/json:
+          example:
+            customErrorCode: not-found
+            description: The requested resource was not found.
+            httpErrorCode: 404
+          schema:
+            $ref: "#/components/schemas/nvl-inventory.Error"
+      description: The requested resource was not found.
+    nvl-inventory.Error500:
+      content:
+        application/json:
+          example:
+            customErrorCode: internal-error
+            description: An unexpected internal error occurred.
+            httpErrorCode: 500
+          schema:
+            $ref: "#/components/schemas/nvl-inventory.Error"
+      description: An unexpected internal server error occurred.
+    nvl-partition-mgr.Error400:
+      content:
+        application/json:
+          example:
+            customErrorCode: bad-request
+            description: The request body or parameters are invalid.
+            httpErrorCode: 400
+          schema:
+            $ref: "#/components/schemas/nvl-partition-mgr.Error"
+      description: The request was invalid or malformed.
+    nvl-partition-mgr.Error404:
+      content:
+        application/json:
+          example:
+            customErrorCode: not-found
+            description: The requested resource was not found.
+            httpErrorCode: 404
+          schema:
+            $ref: "#/components/schemas/nvl-partition-mgr.Error"
+      description: The requested resource was not found.
+    nvl-partition-mgr.Error409:
+      content:
+        application/json:
+          example:
+            customErrorCode: conflict
+            description: The request conflicts with the current state of the resource.
+            httpErrorCode: 409
+          schema:
+            $ref: "#/components/schemas/nvl-partition-mgr.Error"
+      description: The request conflicts with the current state of the resource.
+    nvl-partition-mgr.Error500:
+      content:
+        application/json:
+          example:
+            customErrorCode: internal-error
+            description: An unexpected internal error occurred.
+            httpErrorCode: 500
+          schema:
+            $ref: "#/components/schemas/nvl-partition-mgr.Error"
+      description: An unexpected internal server error occurred.
+    nvl-partition-mgr.Error503:
+      content:
+        application/json:
+          example:
+            customErrorCode: service-unavailable
+            description: The service is currently unavailable.
+            httpErrorCode: 503
+          schema:
+            $ref: "#/components/schemas/nvl-partition-mgr.Error"
+      description: The service is currently unavailable.
+    nvl-service-mgr.Error400:
+      content:
+        application/json:
+          example:
+            customErrorCode: bad-request
+            description: The request body or parameters are invalid.
+            httpErrorCode: 400
+          schema:
+            $ref: "#/components/schemas/nvl-service-mgr.Error"
+      description: The request was invalid or malformed.
+    nvl-service-mgr.Error404:
+      content:
+        application/json:
+          example:
+            customErrorCode: not-found
+            description: The requested resource was not found.
+            httpErrorCode: 404
+          schema:
+            $ref: "#/components/schemas/nvl-service-mgr.Error"
+      description: The requested resource was not found.
+    nvl-service-mgr.Error409:
+      content:
+        application/json:
+          example:
+            customErrorCode: conflict
+            description: The request conflicts with the current state of the resource.
+            httpErrorCode: 409
+          schema:
+            $ref: "#/components/schemas/nvl-service-mgr.Error"
+      description: The request conflicts with the current state of the resource.
+    nvl-service-mgr.Error500:
+      content:
+        application/json:
+          example:
+            customErrorCode: internal-error
+            description: An unexpected internal error occurred.
+            httpErrorCode: 500
+          schema:
+            $ref: "#/components/schemas/nvl-service-mgr.Error"
+      description: An unexpected internal server error occurred.
+    nvl-service-mgr.Error503:
+      content:
+        application/json:
+          example:
+            customErrorCode: service-unavailable
+            description: The service is currently unavailable.
+            httpErrorCode: 503
+          schema:
+            $ref: "#/components/schemas/nvl-service-mgr.Error"
+      description: The service is currently unavailable.
+    setting-mgr.Error400:
+      content:
+        application/json:
+          example:
+            customErrorCode: bad-request
+            description: The request body or parameters are invalid.
+            httpErrorCode: 400
+          schema:
+            $ref: "#/components/schemas/setting-mgr.Error"
+      description: The request was invalid or malformed.
+    setting-mgr.Error404:
+      content:
+        application/json:
+          example:
+            customErrorCode: not-found
+            description: The requested resource was not found.
+            httpErrorCode: 404
+          schema:
+            $ref: "#/components/schemas/setting-mgr.Error"
+      description: The requested resource was not found.
+    setting-mgr.Error500:
+      content:
+        application/json:
+          example:
+            customErrorCode: internal-error
+            description: An unexpected internal error occurred.
+            httpErrorCode: 500
+          schema:
+            $ref: "#/components/schemas/setting-mgr.Error"
+      description: An unexpected internal server error occurred.
+    provisioning-mgr.Error400:
+      content:
+        application/json:
+          example:
+            customErrorCode: bad-request
+            description: The request body or parameters are invalid.
+            httpErrorCode: 400
+          schema:
+            $ref: "#/components/schemas/provisioning-mgr.Error"
+      description: The request was invalid or malformed.
+    provisioning-mgr.Error404:
+      content:
+        application/json:
+          example:
+            customErrorCode: not-found
+            description: The requested resource was not found.
+            httpErrorCode: 404
+          schema:
+            $ref: "#/components/schemas/provisioning-mgr.Error"
+      description: The requested resource was not found.
+    provisioning-mgr.Error405:
+      content:
+        application/json:
+          example:
+            customErrorCode: method-not-allowed
+            description: The HTTP method is not allowed for this resource.
+            httpErrorCode: 405
+          schema:
+            $ref: "#/components/schemas/provisioning-mgr.Error"
+      description: The HTTP method is not allowed for this resource.
+    provisioning-mgr.Error409:
+      content:
+        application/json:
+          example:
+            customErrorCode: conflict
+            description: The request conflicts with the current state of the resource.
+            httpErrorCode: 409
+          schema:
+            $ref: "#/components/schemas/provisioning-mgr.Error"
+      description: The request conflicts with the current state of the resource.
+    provisioning-mgr.Error413:
+      content:
+        application/json:
+          example:
+            customErrorCode: payload-too-large
+            description: The request payload exceeds the maximum allowed size.
+            httpErrorCode: 413
+          schema:
+            $ref: "#/components/schemas/provisioning-mgr.Error"
+      description: The request payload exceeds the maximum allowed size.
+    provisioning-mgr.Error500:
+      content:
+        application/json:
+          example:
+            customErrorCode: internal-error
+            description: An unexpected internal error occurred.
+            httpErrorCode: 500
+          schema:
+            $ref: "#/components/schemas/provisioning-mgr.Error"
+      description: An unexpected internal server error occurred.
+    provisioning-mgr.OperationResponse:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/provisioning-mgr.AsyncResponse"
+      description: A general response structure describing an NMX-M long-running async operation with a trackable op-id.
+  schemas:
+    nvl-inventory.AdminState:
+      enum:
+      - UNKNOWN
+      - UP
+      - DOWN
+      - DIAG
+      type: string
+      x-enum-varnames:
+      - AdminStateUnknown
+      - AdminStateUp
+      - AdminStateDown
+      - AdminStateDiag
+    nvl-inventory.Chassis:
+      additionalProperties: false
+      properties:
+        ComputeNodeIDList:
+          items:
+            $ref: "#/components/schemas/nvl-inventory.EntityID"
+          type: array
+        CreatedAt:
+          $ref: "#/components/schemas/nvl-inventory.Timestamp"
+        Description:
+          summary: Brief description
+          type: string
+        DomainUUID:
+          $ref: "#/components/schemas/nvl-inventory.UUID"
+        ID:
+          $ref: "#/components/schemas/nvl-inventory.EntityID"
+        InternalID:
+          $ref: "#/components/schemas/nvl-inventory.ChassisID"
+        Name:
+          summary: Helpful name
+          type: string
+        SerialNumber:
+          $ref: "#/components/schemas/nvl-inventory.ChassisSerialNumber"
+        SwitchNodeIDList:
+          items:
+            $ref: "#/components/schemas/nvl-inventory.EntityID"
+          type: array
+        UpdatedAt:
+          $ref: "#/components/schemas/nvl-inventory.Timestamp"
+      type: object
+    nvl-inventory.ChassisID:
+      description: The unique identifier of the chassis
+      type: integer
+    nvl-inventory.ChassisSerialNumber:
+      description: The unique serial number of the chassis
+      type: string
+    nvl-inventory.ComputeNode:
+      additionalProperties: false
+      properties:
+        CreatedAt:
+          $ref: "#/components/schemas/nvl-inventory.Timestamp"
+        Description:
+          description: Brief description
+          type: string
+        DomainUUID:
+          $ref: "#/components/schemas/nvl-inventory.UUID"
+        GpuIDList:
+          items:
+            $ref: "#/components/schemas/nvl-inventory.EntityID"
+          type: array
+        Health:
+          enum:
+          - UNKNOWN
+          - HEALTHY
+          - DEGRADED
+          - UNHEALTHY
+          type: string
+          x-enum-varnames:
+          - ComputeNodeHealthUnknown
+          - ComputeNodeHealthHealthy
+          - ComputeNodeHealthDegraded
+          - ComputeNodeHealthUnhealthy
+        Hostname:
+          description: Hostname of the compute tray
+          type: string
+        ID:
+          $ref: "#/components/schemas/nvl-inventory.EntityID"
+        LocationInfo:
+          $ref: "#/components/schemas/nvl-inventory.LocationInfo"
+        Name:
+          description: Helpful name
+          type: string
+        Sensors:
+          $ref: "#/components/schemas/nvl-inventory.NodeSensorsMap"
+        UpdatedAt:
+          $ref: "#/components/schemas/nvl-inventory.Timestamp"
+      type: object
+    nvl-inventory.ControlPlaneState:
+      enum:
+      - UNDEFINED
+      - OFFLINE
+      - STANDBY
+      - CONFIGURED
+      - TIMEOUT
+      - ERROR
+      - UNCONFIGURED
+      - DEGRADED
+      type: string
+      x-enum-varnames:
+      - ControlPlaneStateUndefined
+      - ControlPlaneStateOffline
+      - ControlPlaneStateStandby
+      - ControlPlaneStateConfigured
+      - ControlPlaneStateTimeout
+      - ControlPlaneStateError
+      - ControlPlaneStateUnconfigured
+      - ControlPlaneStateDegraded
+    nvl-inventory.Domain:
+      additionalProperties: false
+      properties:
+        ControlPlaneState:
+          $ref: "#/components/schemas/nvl-inventory.ControlPlaneState"
+        CreatedAt:
+          $ref: "#/components/schemas/nvl-inventory.Timestamp"
+        DomainType:
+          enum:
+          - NVLink5
+          summary: The Domain type. e.g. NVLink5
+          type: string
+        DomainUUID:
+          $ref: "#/components/schemas/nvl-inventory.UUID"
+        Health:
+          enum:
+          - UNKNOWN
+          - HEALTHY
+          - DEGRADED
+          - UNHEALTHY
+          - UNHEALTHY_DB_CORRUPTED
+          type: string
+          x-enum-varnames:
+          - DomainHealthUnknown
+          - DomainHealthHealthy
+          - DomainHealthDegraded
+          - DomainHealthUnhealthy
+          - DomainHealthUnhealthyDbCorrupted
+        ID:
+          $ref: "#/components/schemas/nvl-inventory.EntityID"
+        ProfileID:
+          $ref: "#/components/schemas/nvl-inventory.EntityID"
+        UpdatedAt:
+          $ref: "#/components/schemas/nvl-inventory.Timestamp"
+      required:
+      - ControlPlaneState
+      type: object
+    nvl-inventory.EntityID:
+      description: System unique identifier.
+      example: 551137c2f9e1fac808a5f572
+      pattern: ^[0-9a-fA-F]{24}$
+      type: string
+    nvl-inventory.Error:
+      additionalProperties: false
+      description: NMX-M Error Information
+      properties:
+        customErrorCode:
+          description: A more granular, textual custom error code
+          example: internal-error
+          type: string
+        description:
+          description: A detailed error description
+          example: "Something really bad happened with resource [id: 123] and we are so sorry about it."
+          type: string
+        httpErrorCode:
+          description: HTTP error code
+          example: 500
+          type: integer
+      required:
+      - httpErrorCode
+      - customErrorCode
+      - description
+      type: object
+      x-go-type: liberr.Error
+      x-go-type-import:
+        name: liberr
+        path: nvl/errors
+    nvl-inventory.FWVersions:
+      properties:
+        ASIC:
+          description: ASIC firmware version
+          type: string
+        BIOS:
+          description: BIOS firmware version
+          type: string
+        BMC:
+          description: BMC firmware version
+          type: string
+        CPLD1:
+          description: CPLD1 firmware version
+          type: string
+        CPLD2:
+          description: CPLD2 firmware version
+          type: string
+        CPLD3:
+          description: CPLD3 firmware version
+          type: string
+        CPLD4:
+          description: CPLD4 firmware version
+          type: string
+        EROT:
+          description: EROT firmware version
+          type: string
+        EROTASIC1:
+          description: EROT ASIC1 firmware version
+          type: string
+        EROTASIC2:
+          description: EROT ASIC2 firmware version
+          type: string
+        EROTBMC:
+          description: EROT BMC firmware version
+          type: string
+        EROTCPU:
+          description: EROT CPU firmware version
+          type: string
+        EROTFPGA:
+          description: EROT FPGA firmware version
+          type: string
+        FPGA:
+          description: FPGA firmware version
+          type: string
+        NVOS:
+          description: NVOS firmware version
+          type: string
+      type: object
+    nvl-inventory.GPU:
+      additionalProperties: false
+      properties:
+        ALIDList:
+          description: List of device labels for internal routing
+          items:
+            $ref: "#/components/schemas/nvl-inventory.uint64"
+          type: array
+        CreatedAt:
+          $ref: "#/components/schemas/nvl-inventory.Timestamp"
+        Description:
+          description: User specified notes & description
+          type: string
+        DeviceID:
+          $ref: "#/components/schemas/nvl-inventory.uint32"
+        DevicePcieID:
+          $ref: "#/components/schemas/nvl-inventory.uint64"
+        DeviceUID:
+          description: "Device unique identifier. Note: JavaScript has a limit on large decimal numbers (max safe integer is 2^53-1 or 9007199254740991). Values exceeding this limit may be truncated or displayed incorrectly in Swagger UI. To see the full DeviceUID value, use API calls via curl.\n"
+          format: uint64
+          maximum: "18446744073709552000"
+          minimum: 0
+          type: integer
+        DomainUUID:
+          $ref: "#/components/schemas/nvl-inventory.UUID"
+        Health:
+          enum:
+          - UNKNOWN
+          - HEALTHY
+          - DEGRADED
+          - NO_NVLINK
+          - DEGRADED_BW
+          type: string
+          x-enum-varnames:
+          - GPUHealthUnknown
+          - GPUHealthHealthy
+          - GPUHealthDegraded
+          - GPUHealthNoNVL
+          - GPUHealthDegradedBW
+        ID:
+          $ref: "#/components/schemas/nvl-inventory.EntityID"
+        InternalDescription:
+          description: Device internal description
+          type: string
+        LocationInfo:
+          $ref: "#/components/schemas/nvl-inventory.LocationInfo"
+        Name:
+          summary: User specified helpful name
+          type: string
+        PartitionID:
+          $ref: "#/components/schemas/nvl-inventory.uint32"
+        PortIDList:
+          description: List of device ports
+          items:
+            $ref: "#/components/schemas/nvl-inventory.EntityID"
+          type: array
+        SystemUID:
+          $ref: "#/components/schemas/nvl-inventory.uint64"
+        UpdatedAt:
+          $ref: "#/components/schemas/nvl-inventory.Timestamp"
+        VendorID:
+          $ref: "#/components/schemas/nvl-inventory.uint32"
+      required:
+      - DeviceUID
+      - DeviceID
+      - SystemUID
+      - VendorID
+      - DevicePcieID
+      - ALIDList
+      type: object
+    nvl-inventory.HexOrDecimalUint64:
+      description: "A uint64 value represented as a decimal number (up to 20 digits) or a hex string with 0x prefix (up to 16 hex digits). Examples: \"8716653020050982345\", \"0x1A2B3C\".\n"
+      pattern: ^([0-9]{1,19}|1844674407370955161[0-5]|0x[0-9a-fA-F]{1,16})$
+      type: string
+    nvl-inventory.HostID:
+      description: The unique identifier of the host
+      minimum: 0
+      type: integer
+    nvl-inventory.IPInfo:
+      properties:
+        IP:
+          description: IPv4 or IPv6 address
+          type: string
+        Netmask:
+          description: Network mask (IPv4) or prefix length (IPv6)
+          type: string
+      type: object
+    nvl-inventory.LocationInfo:
+      additionalProperties: false
+      properties:
+        ChassisID:
+          $ref: "#/components/schemas/nvl-inventory.ChassisID"
+        ChassisSerialNumber:
+          $ref: "#/components/schemas/nvl-inventory.ChassisSerialNumber"
+        HostID:
+          $ref: "#/components/schemas/nvl-inventory.HostID"
+        SlotID:
+          $ref: "#/components/schemas/nvl-inventory.SlotID"
+        TrayIndex:
+          $ref: "#/components/schemas/nvl-inventory.TrayIndex"
+      type: object
+    nvl-inventory.NetworkEntityCountResponse:
+      additionalProperties: false
+      properties:
+        total:
+          description: Number of objects
+          format: int64
+          type: integer
+      type: object
+    nvl-inventory.NetworkEntityUpdatePayload:
+      additionalProperties: false
+      anyOf:
+      - required:
+        - Name
+      - required:
+        - Description
+      properties:
+        Description:
+          example: This is a description.
+          maxLength: 2000
+          pattern: "^[\\x20-\\x7E]*$"
+          type: string
+        Name:
+          example: Some-Name
+          maxLength: 64
+          minLength: 1
+          pattern: "^[\\x20-\\x7E]*$"
+          type: string
+      type: object
+    nvl-inventory.NodeSensor:
+      additionalProperties: false
+      properties:
+        Details:
+          description: Sensor status details
+          type: string
+        ID:
+          description: Sensor identifier
+          type: string
+        Status:
+          description: Sensor status
+          type: string
+        UpdatedAt:
+          $ref: "#/components/schemas/nvl-inventory.Timestamp"
+      required:
+      - ID
+      - Status
+      - Details
+      - UpdatedAt
+      type: object
+    nvl-inventory.NodeSensorsMap:
+      additionalProperties:
+        additionalProperties:
+          $ref: "#/components/schemas/nvl-inventory.NodeSensor"
+        type: object
+      type: object
+    nvl-inventory.Port:
+      additionalProperties: false
+      properties:
+        BaseLID:
+          $ref: "#/components/schemas/nvl-inventory.uint64"
+        CageNum:
+          $ref: "#/components/schemas/nvl-inventory.uint32"
+        CagePortNum:
+          $ref: "#/components/schemas/nvl-inventory.uint32"
+        CageSplitPortNum:
+          $ref: "#/components/schemas/nvl-inventory.uint32"
+        ComputePortNum:
+          $ref: "#/components/schemas/nvl-inventory.uint64"
+        ContainAndDrain:
+          type: boolean
+        CreatedAt:
+          $ref: "#/components/schemas/nvl-inventory.Timestamp"
+        DomainUUID:
+          $ref: "#/components/schemas/nvl-inventory.UUID"
+        ID:
+          $ref: "#/components/schemas/nvl-inventory.EntityID"
+        IsSDNPort:
+          type: boolean
+        LinkRateMbps:
+          $ref: "#/components/schemas/nvl-inventory.uint32"
+        LocationInfo:
+          $ref: "#/components/schemas/nvl-inventory.LocationInfo"
+        LogicalState:
+          $ref: "#/components/schemas/nvl-inventory.PortLogicalState"
+        PeerPortDeviceUID:
+          $ref: "#/components/schemas/nvl-inventory.uint64"
+        PeerPortNum:
+          $ref: "#/components/schemas/nvl-inventory.uint64"
+        PhysicalState:
+          $ref: "#/components/schemas/nvl-inventory.PortPhysicalState"
+        Plane:
+          $ref: "#/components/schemas/nvl-inventory.uint32"
+        PortAdminState:
+          $ref: "#/components/schemas/nvl-inventory.AdminState"
+        PortNum:
+          $ref: "#/components/schemas/nvl-inventory.uint64"
+        PortUID:
+          $ref: "#/components/schemas/nvl-inventory.uint64"
+        Rail:
+          $ref: "#/components/schemas/nvl-inventory.uint32"
+        SubnetPrefix:
+          $ref: "#/components/schemas/nvl-inventory.uint64"
+        SystemPortNum:
+          $ref: "#/components/schemas/nvl-inventory.uint64"
+        Type:
+          $ref: "#/components/schemas/nvl-inventory.PortType"
+        UpdatedAt:
+          $ref: "#/components/schemas/nvl-inventory.Timestamp"
+      required:
+      - PortUID
+      - PortNum
+      - PeerPortDeviceUID
+      - PortAdminState
+      - PeerPortNum
+      - PhysicalState
+      - LogicalState
+      - SubnetPrefix
+      - IsSDNPort
+      - ContainAndDrain
+      - Rail
+      - Plane
+      - LinkRateMbps
+      type: object
+    nvl-inventory.PortLogicalState:
+      enum:
+      - NO_CHANGE
+      - STATE_DOWN
+      - STATE_INIT
+      - STATE_ARMED
+      - STATE_ACTIVE
+      - STATE_ACT_DEFER
+      type: string
+      x-enum-varnames:
+      - PortLogicalStateNoChange
+      - PortLogicalStateDown
+      - PortLogicalStateInit
+      - PortLogicalStateArmed
+      - PortLogicalStateActive
+      - PortLogicalStateActDefer
+    nvl-inventory.PortPhysicalState:
+      enum:
+      - NO_CHANGE
+      - SLEEP
+      - POLLING
+      - DISABLED
+      - PORTCONFTRAIN
+      - LINKUP
+      - LINKERRRECOVER
+      - PHYTEST
+      type: string
+      x-enum-varnames:
+      - PortPhysicalStateNoChange
+      - PortPhysicalStateSleep
+      - PortPhysicalStatePolling
+      - PortPhysicalStateDisabled
+      - PortPhysicalStatePortConfTrain
+      - PortPhysicalStateLinkUp
+      - PortPhysicalStateLinkErrRecover
+      - PortPhysicalStatePhyTest
+    nvl-inventory.PortType:
+      enum:
+      - UNDEFINED
+      - GPU
+      - SWITCH_ACCESS
+      - SWITCH_TRUNK
+      - FNM
+      - HCA
+      type: string
+      x-enum-varnames:
+      - PortTypeUndefined
+      - PortTypeGPU
+      - PortTypeSwitchAccess
+      - PortTypeSwitchTrunk
+      - PortTypeFNM
+      - PortTypeHCA
+    nvl-inventory.SlotID:
+      description: The unique identifier of the slot
+      minimum: 0
+      type: integer
+    nvl-inventory.Switch:
+      additionalProperties: false
+      properties:
+        CreatedAt:
+          $ref: "#/components/schemas/nvl-inventory.Timestamp"
+        Description:
+          description: User specified notes & description
+          type: string
+        DeviceID:
+          $ref: "#/components/schemas/nvl-inventory.uint32"
+        DevicePcieID:
+          $ref: "#/components/schemas/nvl-inventory.uint64"
+        DeviceUID:
+          description: "Device unique identifier. Note: JavaScript has a limit on large decimal numbers (max safe integer is 2^53-1 or 9007199254740991). Values exceeding this limit may be truncated or displayed incorrectly in Swagger UI. To see the full DeviceUID value, use API calls via curl.\n"
+          format: uint64
+          maximum: "18446744073709552000"
+          minimum: 0
+          type: integer
+        DomainUUID:
+          $ref: "#/components/schemas/nvl-inventory.UUID"
+        Health:
+          enum:
+          - UNKNOWN
+          - HEALTHY
+          - MISSING_NVLINK
+          - UNHEALTHY
+          type: string
+          x-enum-varnames:
+          - SwitchHealthUnknown
+          - SwitchHealthHealthy
+          - SwitchHealthMissingNvlink
+          - SwitchHealthUnhealthy
+        ID:
+          $ref: "#/components/schemas/nvl-inventory.EntityID"
+        InternalDescription:
+          description: Device internal description
+          type: string
+        LocationInfo:
+          $ref: "#/components/schemas/nvl-inventory.LocationInfo"
+        Name:
+          summary: User specified helpful name
+          type: string
+        PortIDList:
+          description: List of device ports
+          items:
+            $ref: "#/components/schemas/nvl-inventory.EntityID"
+          type: array
+        SystemUID:
+          $ref: "#/components/schemas/nvl-inventory.uint64"
+        UpdatedAt:
+          $ref: "#/components/schemas/nvl-inventory.Timestamp"
+        VendorID:
+          $ref: "#/components/schemas/nvl-inventory.uint32"
+      required:
+      - DeviceID
+      - DeviceUID
+      - DevicePcieID
+      - SystemUID
+      - VendorID
+      type: object
+    nvl-inventory.SwitchNode:
+      additionalProperties: false
+      properties:
+        AdminState:
+          $ref: "#/components/schemas/nvl-inventory.AdminState"
+        CreatedAt:
+          $ref: "#/components/schemas/nvl-inventory.Timestamp"
+        Description:
+          summary: Brief description
+          type: string
+        DomainUUID:
+          $ref: "#/components/schemas/nvl-inventory.UUID"
+        FWVersions:
+          $ref: "#/components/schemas/nvl-inventory.FWVersions"
+        Health:
+          enum:
+          - UNKNOWN
+          - HEALTHY
+          - MISSING_NVLINK
+          - UNHEALTHY
+          type: string
+          x-enum-varnames:
+          - SwitchNodeHealthUnknown
+          - SwitchNodeHealthHealthy
+          - SwitchNodeHealthMissingNvlink
+          - SwitchNodeHealthUnhealthy
+        Hostname:
+          description: Hostname of the switch tray (extracted from switch telemetry)
+          type: string
+        ID:
+          $ref: "#/components/schemas/nvl-inventory.EntityID"
+        LocationInfo:
+          $ref: "#/components/schemas/nvl-inventory.LocationInfo"
+        ManagementIPs:
+          description: List of IP addresses with their netmasks
+          items:
+            $ref: "#/components/schemas/nvl-inventory.IPInfo"
+          type: array
+        Name:
+          summary: Helpful name
+          type: string
+        ProfileID:
+          $ref: "#/components/schemas/nvl-inventory.EntityID"
+        Sensors:
+          $ref: "#/components/schemas/nvl-inventory.NodeSensorsMap"
+        SwitchIDList:
+          items:
+            $ref: "#/components/schemas/nvl-inventory.EntityID"
+          type: array
+        UpdatedAt:
+          $ref: "#/components/schemas/nvl-inventory.Timestamp"
+      type: object
+    nvl-inventory.Timestamp:
+      format: date-time
+      type: string
+    nvl-inventory.TrayIndex:
+      description: Index of the compute/switch tray within the compute/switch trays group in the chassis, a number from 0
+      minimum: 0
+      type: integer
+    nvl-inventory.UUID:
+      description: Universally Unique Identifier.
+      format: uuid
+      type: string
+    nvl-inventory.UpdateDomainPayload:
+      additionalProperties: false
+      properties:
+        ProfileID:
+          $ref: "#/components/schemas/nvl-inventory.EntityID"
+      required:
+      - ProfileID
+      type: object
+    nvl-inventory.UpdateSwitchNodePayload:
+      additionalProperties: false
+      anyOf:
+      - required:
+        - Name
+      - required:
+        - Description
+      - required:
+        - ProfileID
+      properties:
+        Description:
+          example: This is a description.
+          maxLength: 2000
+          pattern: "^[\\x20-\\x7E]*$"
+          type: string
+        Name:
+          example: Some-Name
+          maxLength: 64
+          minLength: 1
+          pattern: "^[\\x20-\\x7E]*$"
+          type: string
+        ProfileID:
+          $ref: "#/components/schemas/nvl-inventory.EntityID"
+      type: object
+    nvl-inventory.uint32:
+      format: uint32
+      maximum: 4294967295
+      minimum: 0
+      type: integer
+    nvl-inventory.uint64:
+      format: uint64
+      maximum: "18446744073709552000"
+      minimum: 0
+      type: integer
+    nvl-partition-mgr.AsyncResponse:
+      additionalProperties: false
+      description: NMX-M Asynchronous Operation ID
+      properties:
+        operationId:
+          example: 551137c2f9e1fac808a5f572
+          format: entity-db-id
+          pattern: ^[0-9a-fA-F]{24}$
+          type: string
+      required:
+      - operationId
+      type: object
+    nvl-partition-mgr.CreatePartitionRequest:
+      additionalProperties: false
+      properties:
+        Members:
+          $ref: "#/components/schemas/nvl-partition-mgr.PartitionMembers"
+        MultiCastGroupLimit:
+          $ref: "#/components/schemas/nvl-partition-mgr.MultiCastGroupLimit"
+        Name:
+          $ref: "#/components/schemas/nvl-partition-mgr.PartitionName"
+        ResiliencyMode:
+          $ref: "#/components/schemas/nvl-partition-mgr.ResiliencyMode"
+      required:
+      - Name
+      - Members
+      type: object
+    nvl-partition-mgr.EntityID:
+      description: System unique identifier.
+      example: 551137c2f9e1fac808a5f572
+      pattern: ^[0-9a-fA-F]{24}$
+      type: string
+    nvl-partition-mgr.Error:
+      additionalProperties: false
+      description: NMX-M Error Information
+      properties:
+        customErrorCode:
+          description: A more granular, textual custom error code
+          example: internal-error
+          type: string
+        description:
+          description: A detailed error description
+          example: "Something really bad happened with resource [id: 123] and we are so sorry about it."
+          type: string
+        httpErrorCode:
+          description: HTTP error code
+          example: 500
+          type: integer
+      required:
+      - httpErrorCode
+      - customErrorCode
+      - description
+      type: object
+      x-go-type: liberr.Error
+      x-go-type-import:
+        name: liberr
+        path: nvl/errors
+    nvl-partition-mgr.GpuIdType:
+      default: device-uuid
+      description: GPU ID type for displaying ID-based partition members
+      enum:
+      - device-uuid
+      - db-id
+      type: string
+      x-enum-varnames:
+      - GpuIdTypeDeviceUUID
+      - GpuIdTypeDbId
+    nvl-partition-mgr.LocationBasedMember:
+      additionalProperties: false
+      properties:
+        ChassisID:
+          description: The unique identifier of the chassis
+          format: uint64
+          type: integer
+        DeviceID:
+          description: ID of the compute/switch tray within the compute/switch trays group in the chassis, a number from 0
+          format: uint32
+          type: integer
+        DomainUUID:
+          description: Universally Unique Identifier.
+          format: uuid
+          type: string
+        HostID:
+          description: The unique identifier of the host
+          format: uint64
+          type: integer
+        SlotID:
+          description: The unique identifier of the slot
+          format: uint64
+          type: integer
+      required:
+      - DomainUUID
+      - ChassisID
+      - SlotID
+      - HostID
+      - DeviceID
+      type: object
+    nvl-partition-mgr.MultiCastGroupLimit:
+      description: Maximum number of multicast groups allowed for the partition
+      format: uint32
+      minimum: 0
+      type: integer
+    nvl-partition-mgr.Operation:
+      additionalProperties: false
+      description: an operations represents an async request and reflects its progress of execution
+      properties:
+        CreatedAt:
+          $ref: "#/components/schemas/nvl-partition-mgr.Timestamp"
+        CurrentStep:
+          $ref: "#/components/schemas/nvl-partition-mgr.OperationCurrentStep"
+        ID:
+          $ref: "#/components/schemas/nvl-partition-mgr.EntityID"
+        Percentage:
+          $ref: "#/components/schemas/nvl-partition-mgr.OperationPercentage"
+        Request:
+          $ref: "#/components/schemas/nvl-partition-mgr.OperationRequest"
+        Result:
+          $ref: "#/components/schemas/nvl-partition-mgr.OperationResult"
+        Status:
+          $ref: "#/components/schemas/nvl-partition-mgr.OperationStatus"
+        UpdatedAt:
+          $ref: "#/components/schemas/nvl-partition-mgr.Timestamp"
+      required:
+      - ID
+      - CreatedAt
+      - UpdatedAt
+      - Status
+      - Percentage
+      - CurrentStep
+      - Request
+      type: object
+    nvl-partition-mgr.OperationCurrentStep:
+      description: Human-readable description of the current step of execution in the operation
+      type: string
+    nvl-partition-mgr.OperationPercentage:
+      description: The percentage of completion for the operation
+      format: float
+      maximum: 100
+      minimum: 0
+      type: number
+    nvl-partition-mgr.OperationRequest:
+      additionalProperties: false
+      properties:
+        Body:
+          description: JSON request body
+          nullable: true
+          type: object
+        Cancellable:
+          description: Indicates if the operation can be cancelled
+          type: boolean
+        Method:
+          description: The HTTP method for the original request
+          enum:
+          - get
+          - delete
+          - post
+          - put
+          - patch
+          type: string
+        URI:
+          description: The URI for the original request
+          format: uri
+          type: string
+      required:
+      - Method
+      - URI
+      - Cancellable
+      type: object
+    nvl-partition-mgr.OperationResult:
+      additionalProperties: false
+      properties:
+        Data:
+          description: The result data of the operation
+          nullable: true
+        Details:
+          description: Human-readable details of the operation result
+          type: string
+        Error:
+          description: Concise textual error code
+          type: string
+      type: object
+    nvl-partition-mgr.OperationStatus:
+      description: The status of the operation
+      enum:
+      - pending
+      - in-progress
+      - failed
+      - completed
+      - cancelled
+      type: string
+      x-enum-descriptions:
+      - operation is recorded and pending to be picked up for processing
+      - processing of the operation has started
+      - operation has failed, this is a terminal state
+      - operation has finished successfully, this is a terminal state
+      - operation was cancelled, this is a terminal state
+      x-enum-varnames:
+      - Pending
+      - InProgress
+      - Failed
+      - Completed
+      - Cancelled
+    nvl-partition-mgr.Partition:
+      additionalProperties: false
+      properties:
+        CreatedAt:
+          $ref: "#/components/schemas/nvl-partition-mgr.Timestamp"
+        Health:
+          $ref: "#/components/schemas/nvl-partition-mgr.PartitionHealth"
+        ID:
+          $ref: "#/components/schemas/nvl-partition-mgr.EntityID"
+        Members:
+          $ref: "#/components/schemas/nvl-partition-mgr.PartitionMembers"
+        MultiCastGroupLimit:
+          $ref: "#/components/schemas/nvl-partition-mgr.MultiCastGroupLimit"
+        Name:
+          $ref: "#/components/schemas/nvl-partition-mgr.PartitionName"
+        PartitionID:
+          $ref: "#/components/schemas/nvl-partition-mgr.PartitionID"
+        ResiliencyMode:
+          $ref: "#/components/schemas/nvl-partition-mgr.ResiliencyMode"
+        Type:
+          $ref: "#/components/schemas/nvl-partition-mgr.PartitionType"
+        UpdatedAt:
+          $ref: "#/components/schemas/nvl-partition-mgr.Timestamp"
+      required:
+      - ID
+      - PartitionID
+      - Name
+      - Type
+      - Health
+      - Members
+      - CreatedAt
+      - UpdatedAt
+      type: object
+    nvl-partition-mgr.PartitionHealth:
+      enum:
+      - HEALTHY
+      - DEGRADED
+      - DEGRADED_BANDWIDTH
+      - UNHEALTHY
+      - NEW
+      - UNKNOWN
+      type: string
+      x-enum-varnames:
+      - PartitionHealthHealthy
+      - PartitionHealthDegraded
+      - PartitionHealthDegradedBandwidth
+      - PartitionHealthUnhealthy
+      - PartitionHealthIntermediate
+      - PartitionHealthUnknown
+    nvl-partition-mgr.PartitionID:
+      description: Partition ID as identified by the network
+      format: uint32
+      type: integer
+    nvl-partition-mgr.PartitionMembers:
+      oneOf:
+      - items:
+          description: System unique identifier.
+          example: 551137c2f9e1fac808a5f572
+          pattern: ^[0-9a-fA-F]{24}$
+          type: string
+        minItems: 1
+        type: array
+        uniqueItems: true
+      - items:
+          $ref: "#/components/schemas/nvl-partition-mgr.LocationBasedMember"
+        minItems: 1
+        type: array
+        uniqueItems: true
+      - items:
+          description: GPU DeviceUID as known by the network (globally unique).
+          example: 12345678901234567000
+          format: uint64
+          type: integer
+        minItems: 1
+        type: array
+        uniqueItems: true
+      - description: it is to handle partitions without any gpus.
+        maxItems: 0
+        nullable: true
+        type: array
+    nvl-partition-mgr.PartitionName:
+      description: Name of the Partition.
+      example: Some-Name
+      maxLength: 244
+      minLength: 1
+      pattern: "^[\\x20-\\x7E]*$"
+      type: string
+    nvl-partition-mgr.PartitionType:
+      enum:
+      - ID_BASED
+      - LOCATION_BASED
+      - UNDEFINED
+      type: string
+      x-enum-varnames:
+      - PartitionTypeIDBased
+      - PartitionTypeLocationBased
+      - PartitionTypeUndefined
+    nvl-partition-mgr.ResiliencyMode:
+      enum:
+      - UNDEFINED
+      - FULL_BANDWIDTH
+      - ADAPTIVE_BANDWIDTH
+      - USER_ACTION_REQUIRED
+      type: string
+      x-enum-varnames:
+      - ResiliencyModeUndefined
+      - ResiliencyModeFullBandwidth
+      - ResiliencyModeAdaptiveBandwidth
+      - ResiliencyModeUserActionRequired
+    nvl-partition-mgr.Timestamp:
+      format: date-time
+      type: string
+    nvl-partition-mgr.UpdatePartitionRequest:
+      additionalProperties: false
+      properties:
+        Members:
+          $ref: "#/components/schemas/nvl-partition-mgr.PartitionMembers"
+      required:
+      - Members
+      type: object
+    nvl-service-mgr.AddNmxServiceRequest:
+      additionalProperties: false
+      properties:
+        CollectorID:
+          description: "The collector that manages this switch. It selects the Kafka topics the registration and every later call to this service are produced to, and it becomes a topic name segment, hence the charset. Optional: omitted, it resolves to the only collector the broker carries topics for, and is a 400 when the broker carries none or more than one."
+          example: collector-rack-7
+          maxLength: 48
+          minLength: 1
+          pattern: ^[a-z0-9-]{1,48}$
+          type: string
+        Description:
+          example: This is a description.
+          maxLength: 2000
+          pattern: "^[\\x20-\\x7E]*$"
+          type: string
+        Name:
+          example: Some-Name
+          maxLength: 64
+          minLength: 1
+          pattern: "^[\\x20-\\x7E]*$"
+          type: string
+        ServiceConnectionInformation:
+          $ref: "#/components/schemas/nvl-service-mgr.NmxServiceConnectionInformation"
+        ServiceType:
+          $ref: "#/components/schemas/nvl-service-mgr.NmxServiceType"
+      required:
+      - Name
+      - ServiceType
+      - ServiceConnectionInformation
+      type: object
+    nvl-service-mgr.Address:
+      anyOf:
+      - format: ipv4
+        type: string
+      - format: hostname
+        type: string
+      description: Switch IP address (IPv4 or Hostname)
+      maxLength: 253
+      minLength: 1
+      type: string
+    nvl-service-mgr.AdminState:
+      enum:
+      - UNKNOWN
+      - UP
+      - DOWN
+      - DIAG
+      type: string
+      x-enum-varnames:
+      - AdminStateUnknown
+      - AdminStateUp
+      - AdminStateDown
+      - AdminStateDiag
+    nvl-service-mgr.AsyncResponse:
+      additionalProperties: false
+      description: NMX-M Asynchronous Operation ID
+      properties:
+        operationId:
+          example: 551137c2f9e1fac808a5f572
+          format: entity-db-id
+          pattern: ^[0-9a-fA-F]{24}$
+          type: string
+      required:
+      - operationId
+      type: object
+    nvl-service-mgr.EntityID:
+      description: System unique identifier.
+      example: 551137c2f9e1fac808a5f572
+      pattern: ^[0-9a-fA-F]{24}$
+      type: string
+    nvl-service-mgr.Error:
+      additionalProperties: false
+      description: NMX-M Error Information
+      properties:
+        customErrorCode:
+          description: A more granular, textual custom error code
+          example: internal-error
+          type: string
+        description:
+          description: A detailed error description
+          example: "Something really bad happened with resource [id: 123] and we are so sorry about it."
+          type: string
+        httpErrorCode:
+          description: HTTP error code
+          example: 500
+          type: integer
+      required:
+      - httpErrorCode
+      - customErrorCode
+      - description
+      type: object
+      x-go-type: liberr.Error
+      x-go-type-import:
+        name: liberr
+        path: nvl/errors
+    nvl-service-mgr.FailoverEvent:
+      additionalProperties: false
+      description: Record of a single failover event
+      properties:
+        duration:
+          description: Duration of failover in milliseconds
+          example: 5
+          format: int64
+          type: integer
+        errorMessage:
+          description: Error message if failover failed
+          example: TCP connectivity test failed
+          type: string
+        fromIP:
+          description: IP address before failover
+          example: 127.0.0.1
+          type: string
+        reason:
+          description: Reason for failover
+          example: connection_failure
+          type: string
+        success:
+          description: Whether the failover was successful
+          example: true
+          type: boolean
+        timestamp:
+          $ref: "#/components/schemas/nvl-service-mgr.Timestamp"
+        toIP:
+          description: IP address after failover
+          example: 127.0.0.2
+          type: string
+      required:
+      - timestamp
+      - fromIP
+      - toIP
+      - reason
+      - success
+      type: object
+    nvl-service-mgr.NmxService:
+      additionalProperties: false
+      properties:
+        Address:
+          $ref: "#/components/schemas/nvl-service-mgr.Address"
+        ApplicationUUID:
+          $ref: "#/components/schemas/nvl-service-mgr.UUID"
+        ClusterDomainUUID:
+          $ref: "#/components/schemas/nvl-service-mgr.UUID"
+        CollectorID:
+          description: The collector that manages this switch. Empty only for a service registered before the field existed; such a service cannot be addressed and must be re-registered.
+          type: string
+        Description:
+          description: Description of the service.
+          type: string
+        ID:
+          $ref: "#/components/schemas/nvl-service-mgr.EntityID"
+        Name:
+          description: Name of the service.
+          type: string
+        PortNumber:
+          $ref: "#/components/schemas/nvl-service-mgr.PortNumber"
+        RegisteredAt:
+          $ref: "#/components/schemas/nvl-service-mgr.Timestamp"
+        ServiceType:
+          $ref: "#/components/schemas/nvl-service-mgr.NmxServiceType"
+        Status:
+          $ref: "#/components/schemas/nvl-service-mgr.NmxServiceStatus"
+        StatusInfo:
+          description: Additional information about the status.
+          type: string
+        UpSince:
+          $ref: "#/components/schemas/nvl-service-mgr.Timestamp"
+        Version:
+          description: Version of the service.
+          type: string
+      type: object
+    nvl-service-mgr.NmxServiceConnectionInformation:
+      additionalProperties: false
+      properties:
+        Address:
+          $ref: "#/components/schemas/nvl-service-mgr.Address"
+        PortNumber:
+          $ref: "#/components/schemas/nvl-service-mgr.PortNumber"
+      required:
+      - Address
+      - PortNumber
+      type: object
+    nvl-service-mgr.NmxServiceStatus:
+      enum:
+      - UP
+      - DRAINING
+      - REMOVED
+      - DOWN
+      - RECONNECTING
+      - UNREACHABLE
+      - IN_PROGRESS
+      - ERROR
+      type: string
+      x-enum-varnames:
+      - NmxServiceStatusUp
+      - NmxServiceStatusDraining
+      - NmxServiceStatusRemoved
+      - NmxServiceStatusDown
+      - NmxServiceStatusReconnecting
+      - NmxServiceStatusUnreachable
+      - NmxServiceStatusInProgress
+      - NmxServiceStatusError
+    nvl-service-mgr.NmxServiceType:
+      enum:
+      - TELEMETRY
+      - CONTROLLER
+      type: string
+      x-enum-varnames:
+      - NmxServiceTypeTelemetry
+      - NmxServiceTypeController
+    nvl-service-mgr.Pagination:
+      additionalProperties: false
+      properties:
+        limit:
+          description: Items per page
+          minimum: 1
+          type: integer
+        offset:
+          default: 0
+          description: Start offset of the results
+          minimum: 0
+          type: integer
+      type: object
+    nvl-service-mgr.PortNumber:
+      example: 8001
+      maximum: 65535
+      minimum: 0
+      type: integer
+    nvl-service-mgr.ServiceConnectionStatus:
+      additionalProperties: false
+      description: Connection status for a service including IP failover information
+      properties:
+        availableIPs:
+          description: List of available IP addresses for this service
+          example:
+          - 127.0.0.1
+          - 127.0.0.2
+          items:
+            type: string
+          type: array
+        connectionState:
+          description: Current connection state
+          enum:
+          - connected
+          - disconnected
+          - failing_over
+          - failed
+          example: connected
+          type: string
+        currentActiveIP:
+          description: Currently active IP address
+          example: 127.0.0.2
+          type: string
+        failoverHistory:
+          description: History of failover events
+          items:
+            $ref: "#/components/schemas/nvl-service-mgr.FailoverEvent"
+          type: array
+        lastUpdated:
+          $ref: "#/components/schemas/nvl-service-mgr.Timestamp"
+        registrationIP:
+          description: Original registration IP address
+          example: 127.0.0.1
+          type: string
+        serviceId:
+          $ref: "#/components/schemas/nvl-service-mgr.EntityID"
+      required:
+      - serviceId
+      - registrationIP
+      - currentActiveIP
+      - connectionState
+      type: object
+    nvl-service-mgr.Timestamp:
+      format: date-time
+      type: string
+    nvl-service-mgr.UUID:
+      description: Universally Unique Identifier.
+      format: uuid
+      type: string
+    nvl-service-mgr.UpdateAdminStateRequest:
+      additionalProperties: false
+      properties:
+        admin-state:
+          $ref: "#/components/schemas/nvl-service-mgr.AdminState"
+      required:
+      - admin-state
+      type: object
+    setting-mgr.Error:
+      additionalProperties: false
+      description: NMX-M Error Information
+      properties:
+        customErrorCode:
+          description: A more granular, textual custom error code
+          example: internal-error
+          type: string
+        description:
+          description: A detailed error description
+          example: "Something really bad happened with resource [id: 123] and we are so sorry about it."
+          type: string
+        httpErrorCode:
+          description: HTTP error code
+          example: 500
+          type: integer
+      required:
+      - httpErrorCode
+      - customErrorCode
+      - description
+      type: object
+      x-go-type: liberr.Error
+      x-go-type-import:
+        name: liberr
+        path: nvl/errors
+    setting-mgr.Setting:
+      additionalProperties: false
+      description: A system configuration setting
+      properties:
+        CreatedAt:
+          $ref: "#/components/schemas/setting-mgr.Timestamp"
+        Description:
+          description: Description of what the setting controls
+          example: Maximum number of switches that can be managed
+          type: string
+        Name:
+          description: The name of the setting
+          example: max_switches
+          type: string
+        UpdatedAt:
+          $ref: "#/components/schemas/setting-mgr.Timestamp"
+        Value:
+          description: The value of the setting (type varies by setting)
+          example: 100
+          oneOf:
+          - type: string
+          - type: boolean
+          - type: number
+      required:
+      - Name
+      - Value
+      - Description
+      - CreatedAt
+      - UpdatedAt
+      type: object
+    setting-mgr.Timestamp:
+      format: date-time
+      type: string
+    setting-mgr.UpdateSettingRequest:
+      additionalProperties: false
+      description: Request to update a setting value
+      properties:
+        Name:
+          description: The name of the setting to update
+          example: max_switches
+          type: string
+        Value:
+          description: The new value for the setting
+          example: 150
+          oneOf:
+          - type: string
+          - type: boolean
+          - type: number
+      required:
+      - Name
+      - Value
+      type: object
+    provisioning-mgr.Address:
+      anyOf:
+      - format: ipv4
+        type: string
+      - format: hostname
+        type: string
+      description: Switch IP address (IPv4 or Hostname)
+      maxLength: 253
+      minLength: 1
+      type: string
+    provisioning-mgr.AsyncResponse:
+      additionalProperties: false
+      description: NMX-M Asynchronous Operation ID
+      properties:
+        operationId:
+          example: 551137c2f9e1fac808a5f572
+          format: entity-db-id
+          pattern: ^[0-9a-fA-F]{24}$
+          type: string
+      required:
+      - operationId
+      type: object
+    provisioning-mgr.BringUpReport:
+      additionalProperties: false
+      properties:
+        CreatedAt:
+          $ref: "#/components/schemas/provisioning-mgr.Timestamp"
+        ID:
+          $ref: "#/components/schemas/provisioning-mgr.EntityID"
+        Status:
+          $ref: "#/components/schemas/provisioning-mgr.Status"
+        Switches:
+          items:
+            $ref: "#/components/schemas/provisioning-mgr.SwitchInfo"
+          type: array
+          uniqueItems: true
+        UpdatedAt:
+          $ref: "#/components/schemas/provisioning-mgr.Timestamp"
+      required:
+      - ID
+      - CreatedAt
+      - UpdatedAt
+      - Status
+      - Switches
+      type: object
+    provisioning-mgr.CreateBringUpRequest:
+      additionalProperties: false
+      properties:
+        CertP12:
+          description: P12 certificate bundle (.p12) for switch TLS. Required — upload your .p12 certificate bundle.
+          format: binary
+          type: string
+          x-go-type: "*multipart.FileHeader"
+        FmConfig:
+          description: FmConfig file. Size limit 1MB.
+          format: binary
+          type: string
+          x-go-type: "*multipart.FileHeader"
+        ProfileID:
+          $ref: "#/components/schemas/provisioning-mgr.EntityID"
+        Switches:
+          $ref: "#/components/schemas/provisioning-mgr.Switches"
+      required:
+      - Switches
+      - FmConfig
+      - CertP12
+      type: object
+    provisioning-mgr.CreateSupportPackageRequest:
+      additionalProperties: false
+      description: Request to create a support package. Either Switches or Domains must be provided, but not both.
+      properties:
+        Domains:
+          items:
+            $ref: "#/components/schemas/provisioning-mgr.EntityID"
+          minItems: 1
+          type: array
+        ProfileID:
+          $ref: "#/components/schemas/provisioning-mgr.EntityID"
+        Switches:
+          $ref: "#/components/schemas/provisioning-mgr.Switches"
+      type: object
+    provisioning-mgr.CreateSwitchProfileRequest:
+      properties:
+        Name:
+          description: Name of the switch profile.
+          example: Example custom profile
+          maxLength: 64
+          minLength: 1
+          pattern: "^[\\x20-\\x7E]*$"
+          type: string
+        Password:
+          description: Password to connect to a switch (encrypted).
+          example: Password12356
+          format: password
+          maxLength: 64
+          minLength: 1
+          pattern: "^[\\x20-\\x7E]*$"
+          type: string
+        Username:
+          description: Username to connect to a switch (encrypted).
+          example: User12356
+          format: password
+          maxLength: 64
+          minLength: 1
+          pattern: "^[\\x20-\\x7E]*$"
+          type: string
+      required:
+      - Name
+      - Username
+      - Password
+      type: object
+    provisioning-mgr.CreateSwitchUpgradeRequest:
+      additionalProperties: false
+      description: |
+        Request to upgrade switches with a new NVOS/Firmware image.
+        Either Switches or Domains must be provided, but not both.
+        Make sure the image type matches the upgrade type.
+      properties:
+        Domains:
+          $ref: "#/components/schemas/provisioning-mgr.DomainUpgradeList"
+        ImageID:
+          $ref: "#/components/schemas/provisioning-mgr.EntityID"
+        ProfileID:
+          $ref: "#/components/schemas/provisioning-mgr.EntityID"
+        Switches:
+          $ref: "#/components/schemas/provisioning-mgr.SwitchUpgradeList"
+        UpgradeType:
+          $ref: "#/components/schemas/provisioning-mgr.ImageType"
+      type: object
+    provisioning-mgr.DomainUpgradeList:
+      items:
+        $ref: "#/components/schemas/provisioning-mgr.DomainUpgradeRequest"
+      minItems: 1
+      type: array
+      uniqueItems: true
+    provisioning-mgr.DomainUpgradeRequest:
+      additionalProperties: false
+      description: Individual domain upgrade configuration
+      properties:
+        DomainID:
+          $ref: "#/components/schemas/provisioning-mgr.EntityID"
+        ImageID:
+          $ref: "#/components/schemas/provisioning-mgr.EntityID"
+      required:
+      - DomainID
+      type: object
+    provisioning-mgr.EntityID:
+      description: System unique identifier.
+      example: 551137c2f9e1fac808a5f572
+      pattern: ^[0-9a-fA-F]{24}$
+      type: string
+    provisioning-mgr.Error:
+      additionalProperties: false
+      description: NMX-M Error Information
+      properties:
+        customErrorCode:
+          description: A more granular, textual custom error code
+          example: internal-error
+          type: string
+        description:
+          description: A detailed error description
+          example: "Something really bad happened with resource [id: 123] and we are so sorry about it."
+          type: string
+        httpErrorCode:
+          description: HTTP error code
+          example: 500
+          type: integer
+      required:
+      - httpErrorCode
+      - customErrorCode
+      - description
+      type: object
+      x-go-type: liberr.Error
+      x-go-type-import:
+        name: liberr
+        path: nvl/errors
+    provisioning-mgr.ImageMetadata:
+      additionalProperties: false
+      description: Metadata of an image file.
+      properties:
+        filename:
+          example: firmware-update-v1.2.3.img
+          type: string
+        imageID:
+          $ref: "#/components/schemas/provisioning-mgr.EntityID"
+        imageType:
+          $ref: "#/components/schemas/provisioning-mgr.ImageType"
+        name:
+          description: Optional name of the image
+          type: string
+        size:
+          description: File size in bytes
+          example: 1048576
+          format: int64
+          type: integer
+          x-go-name: length
+        uploadDate:
+          $ref: "#/components/schemas/provisioning-mgr.Timestamp"
+        version:
+          description: Optional version of the image
+          type: string
+      required:
+      - imageID
+      - filename
+      - size
+      - uploadDate
+      - imageType
+      type: object
+    provisioning-mgr.ImageType:
+      default: nvos
+      description: Type of the image
+      enum:
+      - nvos
+      - cpld
+      example: nvos
+      type: string
+      x-enum-varnames:
+      - NVOS
+      - CPLD
+    provisioning-mgr.Status:
+      description: The status of the bring-up process
+      enum:
+      - pending
+      - in-progress
+      - failed
+      - completed
+      type: string
+      x-enum-descriptions:
+      - bring-up is recorded and pending to be picked up for processing
+      - processing of the bring-up has started
+      - bring-up has failed, this is a terminal state
+      - bring-up has finished successfully, this is a terminal state
+      x-enum-varnames:
+      - Pending
+      - InProgress
+      - Failed
+      - Completed
+    provisioning-mgr.SupportPackageMetadata:
+      additionalProperties: false
+      description: Metadata of a support package file.
+      properties:
+        domainID:
+          $ref: "#/components/schemas/provisioning-mgr.EntityID"
+        fileID:
+          $ref: "#/components/schemas/provisioning-mgr.EntityID"
+        filename:
+          example: support-logs-2025-05-08.tar.gz
+          type: string
+        size:
+          description: File size in bytes
+          example: 1048576
+          format: int64
+          type: integer
+          x-go-name: length
+        switchAddress:
+          type: string
+        uploadDate:
+          $ref: "#/components/schemas/provisioning-mgr.Timestamp"
+      required:
+      - fileID
+      - filename
+      - size
+      - uploadDate
+      - switchAddress
+      type: object
+    provisioning-mgr.SwitchInfo:
+      additionalProperties: false
+      properties:
+        Address:
+          $ref: "#/components/schemas/provisioning-mgr.Address"
+        CurrentStep:
+          description: Human-readable description of the current step of execution in the bring-up process
+          type: string
+        NMX-Controller-ID:
+          $ref: "#/components/schemas/provisioning-mgr.EntityID"
+        NMX-Telemetry-ID:
+          $ref: "#/components/schemas/provisioning-mgr.EntityID"
+        StartedAt:
+          $ref: "#/components/schemas/provisioning-mgr.Timestamp"
+        Status:
+          $ref: "#/components/schemas/provisioning-mgr.Status"
+        StatusDetails:
+          description: Human-readable details of the bring-up status
+          type: string
+        UpdatedAt:
+          $ref: "#/components/schemas/provisioning-mgr.Timestamp"
+      required:
+      - Status
+      - StatusDetails
+      - Address
+      type: object
+    provisioning-mgr.SwitchProfile:
+      properties:
+        ID:
+          $ref: "#/components/schemas/provisioning-mgr.EntityID"
+        Name:
+          description: Name of the switch profile.
+          example: Example custom profile
+          maxLength: 64
+          minLength: 1
+          pattern: "^[\\x20-\\x7E]*$"
+          type: string
+      required:
+      - ID
+      - Name
+      type: object
+    provisioning-mgr.SwitchRequest:
+      additionalProperties: false
+      properties:
+        Address:
+          $ref: "#/components/schemas/provisioning-mgr.Address"
+        CollectorID:
+          description: "Optional collector ID identifying which collector manages this switch. If omitted, a default collector applies (see #5254407)."
+          type: string
+        ProfileID:
+          $ref: "#/components/schemas/provisioning-mgr.EntityID"
+      required:
+      - Address
+      type: object
+    provisioning-mgr.SwitchUpgradeList:
+      items:
+        $ref: "#/components/schemas/provisioning-mgr.SwitchUpgradeRequest"
+      minItems: 1
+      type: array
+      uniqueItems: true
+    provisioning-mgr.SwitchUpgradeRequest:
+      additionalProperties: false
+      description: Individual switch upgrade configuration
+      properties:
+        Address:
+          $ref: "#/components/schemas/provisioning-mgr.Address"
+        ImageID:
+          $ref: "#/components/schemas/provisioning-mgr.EntityID"
+        ProfileID:
+          $ref: "#/components/schemas/provisioning-mgr.EntityID"
+      required:
+      - Address
+      type: object
+    provisioning-mgr.Switches:
+      additionalProperties: false
+      items:
+        $ref: "#/components/schemas/provisioning-mgr.SwitchRequest"
+      minItems: 1
+      type: array
+      uniqueItems: true
+    provisioning-mgr.Timestamp:
+      format: date-time
+      type: string
+    provisioning-mgr.UpdateSwitchProfileRequest:
+      minProperties: 1
+      properties:
+        Name:
+          description: Name of the switch profile.
+          example: Updated custom profile
+          maxLength: 64
+          minLength: 1
+          pattern: "^[\\x20-\\x7E]*$"
+          type: string
+        Password:
+          description: Password to connect to a switch (encrypted).
+          example: Password12356
+          format: password
+          maxLength: 64
+          minLength: 1
+          pattern: "^[\\x20-\\x7E]*$"
+          type: string
+        Username:
+          description: Username to connect to a switch (encrypted).
+          example: User12356
+          format: password
+          maxLength: 64
+          minLength: 1
+          pattern: "^[\\x20-\\x7E]*$"
+          type: string
+      type: object
+    provisioning-mgr.UploadImageRequest:
+      additionalProperties: false
+      properties:
+        File:
+          description: The image file to upload
+          format: binary
+          maxLength: 4294967296
+          type: string
+          x-go-type: "*multipart.FileHeader"
+        Filename:
+          description: Optional filename override
+          maxLength: 255
+          type: string
+        ImageType:
+          $ref: "#/components/schemas/provisioning-mgr.ImageType"
+        Name:
+          description: Optional name of the image
+          maxLength: 255
+          type: string
+        Version:
+          description: Optional version of the image
+          maxLength: 255
+          type: string
+      required:
+      - File
+      type: object
+  securitySchemes:
+    ApiKeyAuth:
+      description: NVIDIA Minerva API key. Not needed when signed in to the NVIDIA Minerva UI in this browser.
+      in: header
+      name: X-API-Key
+      type: apiKey
+  parameters:
+    nvl-service-mgr.IdParam:
+      in: path
+      name: id
+      required: true
+      schema:
+        $ref: "#/components/schemas/nvl-service-mgr.EntityID"
+    provisioning-mgr.IdParam:
+      in: path
+      name: id
+      required: true
+      schema:
+        $ref: "#/components/schemas/provisioning-mgr.EntityID"
+security:
+- ApiKeyAuth: []
+- {}

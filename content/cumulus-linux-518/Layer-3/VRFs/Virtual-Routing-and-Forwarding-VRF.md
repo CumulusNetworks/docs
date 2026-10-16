@@ -25,12 +25,11 @@ VRF is fully supported in the Linux kernel and has the following characteristics
 Cumulus Linux calls each routing table a *VRF table*, which has its own table ID.
 
 To configure VRF, you associate a subset of interfaces to a VRF routing table and configure an instance of the routing protocol (BGP or OSPFv2) for each routing table. Configuring a VRF is similar to configuring other network interfaces. Keep in mind the following:
-
 - A VRF table can have an IP address, which is a loopback interface for the VRF.
 - Cumulus Linux adds the associated rules automatically.
 - You can add a default route to avoid skipping across tables when the kernel forwards a packet.
 - VRF table names can be a maximum of 15 characters. However, you **cannot** use the name *mgmt*; Cumulus Linux uses this name for the {{<link url="Management-VRF" text="management VRF">}}.
-- Cumulus Linux supports up to 255 VRFs on a switch.
+- On a switch with Spectrum-4 and later, Cumulus Linux supports up to 512 VRFs. On a switch with Spectrum-3 and earlier, Cumulus Linux supports up to 255 VRFs.
 
 The following example commands configure VRF BLUE and assigns a table ID automatically.
 

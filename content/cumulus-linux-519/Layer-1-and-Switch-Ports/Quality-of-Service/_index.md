@@ -2450,7 +2450,7 @@ Because a service port cannot borrow from the shared buffer that the regular por
 - Cumulus Linux does not expose the service port pool as a service pool object. You cannot create, bind, resize, or delete it. The `nv show` commands read it.
 - All service ports on the switch use the same pool. You cannot bind an individual service port to a different pool.
 - Cumulus Linux does not support the shared headroom pool or the port shared buffer on a service port. NVUE rejects `nv set interface <interface-id> qos shared-headroom-pool enabled` before it applies the configuration, with an error such as `shared-headroom-pool config is not supported on service port <port-id>`.
-- Cumulus Linux does not support `cable-length`, `port-buffer`, `xon-threshold`, `xoff-threshold`, or `small-packet-probability` on a service port. NVUE rejects these settings when you apply the configuration.
+- Cumulus Linux supports priority flow control (PFC) on a service port in the same way as on a regular switch port. Refer to {{<link url="#priority-flow-control-on-service-ports" text="Priority Flow Control on Service Ports">}}.
 - Egress pools on service ports are unchanged.
 {{%/notice%}}
 
@@ -2489,15 +2489,6 @@ cumulus@switch:~$ nv config apply
 
 Edit the `/etc/mlx/datapath/qos/qos_infra.conf` file to add the following parameters.
 
-<!-- REVIEW: the `flow_control.srvcp.*` row below is an inference, not a direct statement. The
-     specification's `qos_infra.conf` excerpt gives explicit `srvcp` keys for the service pool, the
-     lossy priority group, and the management priority group, but gives no explicit key for the
-     lossless priority group. Elsewhere on this page, in the existing Shared Headroom Pool section,
-     `flow_control.*` is the key family already used for lossless/PFC-related buffer settings, and
-     the specification's `qos_infra.conf` excerpt does include a `flow_control.srvcp.ingress_buffer`
-     family with no other documented purpose. Confirm this mapping against a candidate build before
-     publishing. Delete this comment before publishing. -->
-
 | Parameter | Description |
 | --------- | ----------- |
 | `port.srvcp_service_pool.0.ingress_buffer.reserved` | The service port pool's port-level reserved buffer allocation, in bytes. |
@@ -2521,27 +2512,30 @@ To return a parameter to its default, delete or comment out the line.
 {{< /tab >}}
 {{< /tabs >}}
 
-<!-- REVIEW: the capacity table below is derived from the specification's own worked example, which
-     assumes 100G ports with a 9216 byte MTU and a 3 metre cable. Confirm that these defaults hold
-     across the supported service port speeds before publishing, or add the assumptions to the
-     lead-in sentence. Delete this comment before publishing. -->
-
 The default allocations consume part of the pool before you tune anything. Cumulus Linux carves the pool per service port: each service port draws the same fixed 49 KB default lossy allocation and, if you enable priority flow control, the same fixed 198 KB lossless headroom, and the switch multiplies that per-port amount by the number of service ports on your platform. It does not divide a single shared total across the ports. The following table shows what the defaults use and what remains, on a switch with two service ports and on a switch with four.
-
-<!-- REVIEW: added 2026-10-07, in response to Reda Haddad's review comment on the FS review thread
-     asking that the documentation state explicitly whether the per-platform totals in the table below
-     come from dividing a shared total by the number of service ports, or multiplying a fixed per-port
-     amount by the number of ports. No one in the thread has yet given the answer directly; this is
-     derived from the table's own numbers, which already exactly double between the two-port and
-     four-port columns (98 -> 196, 396 -> 792) and divide evenly by the fixed 198 KB headroom figure
-     already stated in the priority flow control bullet above. Confirm this reading with Bhargav
-     Sivalenka or the updated FS before publishing. Delete this comment before publishing. -->
 
 | Allocation | Two service ports | Four service ports |
 | ---------- | ----------------- | ------------------ |
 | Default lossy allocation, including the port reserved buffer and the management priority group | 98 KB | 196 KB |
 | Remaining pool with lossy traffic only | 1848 KB | 1750 KB |
 | Remaining pool with priority flow control enabled | 1452 KB | 958 KB |
+
+#### Priority Flow Control on Service Ports
+
+Each switch port, including a service port, has a fixed amount of headroom: 1946 cells (498176 bytes). The commands for PFC on a service port are the same as for a regular switch port; refer to {{<link url="#priority-flow-control-(pfc)" text="priority flow control">}}.
+
+When you explicitly set buffer sizes (the lossy headroom, the management headroom, and the PFC `port-buffer` and `xoff-threshold` values), in the `default-global` profile or in a named profile, `nv config apply` checks the total against the 1946-cell limit. If the total exceeds the limit, NVUE rejects the change with an error and applies nothing.
+
+If you set only the PFC `cable-length` and leave the buffer sizes to the switch, NVUE checks only that the length is between 1 and 100000 meters. The switch calculates the lossless priority group headroom as the 1946-cell limit minus the headroom of all lossy priority groups and the management headroom. If the calculated headroom is larger than the space that remains, the switch reduces the lossless buffer to the space that remains and logs a warning for that port.
+
+The service ports also share the service port pool. After the switch reserves the cells for the traffic queue and the shared floor, all service ports together can use at most 6248 cells (1562 KB). `cl-consistency-check` and `switchd` check the buffer usage of the service ports against this limit. If the usage exceeds the limit, `switchd` reduces the usage of the port until it fits. It removes the excess in the following order:
+
+1. The port reserved buffer
+2. The lossy priority group headroom
+3. The lossy priority group reserved buffer (the management priority group counts as lossy)
+4. The lossless priority group size
+
+If `switchd` cuts the lossless priority group to its xoff value or less, it sets the xon and xoff values of that priority group to 0. If the other service ports already use all 6248 cells, `switchd` sets every buffer field on this port to 0.
 
 To show the pool, mode, and buffer sizes for a service port, run the `nv show interface <interface-id> qos buffer` command. A service port reports hardware pool `12` (`SERVICE_PORT_IPOOL`) instead of the pool a regular port reports:
 

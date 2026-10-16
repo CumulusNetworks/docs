@@ -2559,16 +2559,19 @@ The default allocations consume part of the pool before you tune anything. Cumul
         `service7`) that replace `srvcp_lossy` in some RoCE modes. Confirm the Linux keys.
      2. The capacity table above (958 KB with PFC on four ports) and the specification's worked
         example (742 KB) disagree.
-     3. The sample switchd warning pairs 198176 with a limit of 1946.
-     4. The NVUE, cl-consistency-check, and switchd message strings come from specification tables,
-        not a captured build.
+     3. The switchd warning is now a real log line from Bhargav Sivalenka (16 Oct), used verbatim.
+        It does not name the port, while the specification prose and one specification table say
+        the warning names the port (`swp65s0: hal-port-514`). The count 198176 next to a limit of
+        1946 is as logged. Confirm whether the port name appears in the shipped build.
+     4. The NVUE and cl-consistency-check message strings come from specification tables, not a
+        captured build.
      Delete this comment before publishing. -->
 
 Each switch port, including a service port, has a fixed amount of headroom: 1946 cells (498176 bytes). You configure PFC on a service port in the same way as on a regular switch port, including the switch priority, PFC transmit and receive, the interface profile binding, `cable-length`, `port-buffer`, `xon-threshold`, `xoff-threshold`, and `small-packet-probability`; refer to {{<link url="#priority-flow-control-(pfc)" text="priority flow control">}}. The `port-buffer`, `xon-threshold`, and `xoff-threshold` values must stay within the service port pool.
 
 When you explicitly set buffer sizes (the lossy headroom, the management headroom, and the PFC `port-buffer` and `xoff-threshold` values), in the `default-global` profile or in a named profile, `nv config apply` checks the total against the 1946-cell limit. If the total exceeds the limit, NVUE rejects the change with an error and applies nothing.
 
-If you set only the PFC `cable-length` and leave the buffer sizes to the switch, NVUE checks only that the length is between 1 and 100000 meters. The switch calculates the lossless priority group headroom as the 1946-cell limit minus the headroom of all lossy priority groups and the management headroom. If the calculated headroom is larger than the space that remains, the switch reduces the lossless buffer to the space that remains and logs a warning for that port.
+If you set only the PFC `cable-length` and leave the buffer sizes to the switch, NVUE checks only that the length is between 1 and 100000 meters. The switch calculates the lossless priority group headroom as the 1946-cell limit minus the headroom of all lossy priority groups and the management headroom. If the calculated headroom is larger than the space that remains, the switch reduces the lossless buffer to the space that remains and logs a warning.
 
 The service ports also share the service port pool. After the switch reserves the cells for the traffic queue and the shared floor, all service ports together can use at most 6248 cells (1562 KB). `cl-consistency-check` and `switchd` check the buffer usage of the service ports against this limit. If the usage exceeds the limit, `switchd` reduces the usage of the port until it fits. It removes the excess in the following order:
 
@@ -2597,7 +2600,7 @@ Each layer reports a problem in a different place:
 - `switchd` logs a warning in the `switchd` journal and in the `/var/log/switchd.log` file when it cuts the lossless buffer or repairs the pool, and the apply succeeds. For example:
 
   ```
-  WARN swp65s0: hal-port-514, Total port headroom count 198176 exceeds the maximum value 1946. Reset the priority group 1 headroom to 1830
+  WARN Total port headroom count 198176 exceeds the maximum value 1946. Reset the priority group 1 headroom to 1830
   ```
 
 To show the pool, mode, and buffer sizes for a service port, run the `nv show interface <interface-id> qos buffer` command. A service port reports hardware pool `43` as its ingress pool instead of the pool a regular port reports. The egress pools are unchanged:

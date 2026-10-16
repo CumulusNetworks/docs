@@ -52,8 +52,8 @@ To configure BFD, you configure a BFD profile, then attach the profile to the cl
 
 To configure BFD, you must create a BFD profile that includes the following options:
 - The detection time multiplier to determine packet loss. The detection timeout is calculated based on multiplying the detection multiplier with the greater value between the local switch's receive interval and the peer's transmit interval. The default value is 3.
-- The minimum interval for transmitting BFD control packets. You can set a value between 10 and 4294967 milliseconds. The default value is 300.
-- The minimum interval between the received BFD control packets. You can set a value between 10 and 4294967 milliseconds. The default value is 300.
+- The minimum interval for transmitting BFD control packets. You can set a value between 10 and 4294967 milliseconds. The default value is 300. The lowest supported value depends on the BFD offload mode; refer to {{<link url="#minimum-timer-values" text="Minimum Timer Values">}}.
+- The minimum interval between the received BFD control packets. You can set a value between 10 and 4294967 milliseconds. The default value is 300. The lowest supported value depends on the BFD offload mode.
 - Shutdown, which enables or disables the peer. When the peer is disabled the switch sends an `administrative down` message to the remote peer. The default value is `disabled`.
 - Passive mode, which marks the session as passive. A passive session does not attempt to start the connection and waits for control packets from the peer before it begins replying. Passive mode is useful when you have a router that acts as the central node of a star network and you want to avoid sending BFD control packets you don’t need to. You can set passive mode to `enabled` or `disabled`. The default is `disabled`.
 - The minimum expected TTL for an incoming BFD control packet (for multi hop sessions only). This feature tightens the packet validation requirements to avoid receiving BFD control packets from other sessions. You can set a value between 1 and 254. The default value is 254 (only expect one hop between this system and the peer).
@@ -342,7 +342,7 @@ BFD offload moves BFD packet transmission and reception off the control plane, w
 
 | Mode | Where BFD runs |
 | ---- | -------------- |
-| `control-plane` | Software BFD in the `bfdd` daemon. This is the default on all platforms. When you run multiple BFD sessions in `control-plane` mode, the minimum recommended timer values are 3 for the detect multiplier, 300 milliseconds for the transmit interval, and 900 milliseconds for the receive interval.|
+| `control-plane` | Software BFD in the `bfdd` daemon. This is the default on all platforms. |
 | `kernel` | Offloaded to the kernel driver (`sx_bfd`), which maintains the sessions. Supports numbered sessions and IPv6 unnumbered sessions, single-hop and multi-hop. |
 | `hardware` | Offloaded to switch firmware, which transmits and receives BFD packets with 10 millisecond timer precision independently of CPU load. Spectrum-6 switches and single-hop sessions only. |
 
@@ -353,28 +353,94 @@ BFD offload moves BFD packet transmission and reception off the control plane, w
 - You can change the offload mode at runtime. FRR does not restart and sessions do not flap.
 {{%/notice%}}
 
+### Minimum Timer Values
+
+Each offload mode has a lowest supported transmit interval, receive interval, and detect multiplier. Set the `min-tx-interval` and `min-rx-interval` values in the BFD profile to at least the minimum for the mode, and the `detect-multiplier` to at least the multiplier shown.
+
+| Mode | Minimum transmit and receive interval | Minimum detect multiplier |
+| ---- | ------------------------------------- | ------------------------- |
+| `hardware` | 20 milliseconds | 5 |
+| `kernel` | 100 milliseconds | 3 |
+| `control-plane` | 300 milliseconds | 3 |
+
 ### Change the Offload Mode at Scale
 
-<!-- REVIEW: drafted from a spec passage that gives no exact session count as a threshold, only the
-     scale at which its own validation ran (304 single-hop sessions with subinterfaces) and general
-     "at scale" language. Confirmed the underlying command (`nv set router bfd profile <profile-id>
-     shutdown enabled`) already ships and is documented elsewhere on this page; the recommendation
-     to use it before a mode change is new in this spec revision. Confirm the guidance applies at the
-     scale you expect to run before publishing, and delete this comment. -->
+If you run a large number of BFD sessions, the order in which you change the offload mode and the timers matters. The wrong order can disrupt BFD sessions and the BGP sessions that depend on them. Administratively shutting down a BFD profile does not affect the underlying link or an established BGP TCP session. For the minimum timers that each mode supports, refer to {{<link url="#minimum-timer-values" text="Minimum Timer Values">}}.
 
-If you run a large number of BFD sessions, administratively shut down BFD before you change the offload mode or switch the offload backend between `kernel` and `hardware`, then re-enable BFD after the change. Changing the mode while a large number of sessions are running at their configured timers might prevent the sessions from converging reliably. Administratively shutting down BFD does not affect the underlying link or an established BGP TCP session; BGP remains established throughout.
+In the following procedures, `BFD1` is the BFD profile in use. The modes run from fastest to slowest in this order: `hardware`, `kernel`, `control-plane`.
 
-```
-cumulus@switch:~$ nv set router bfd profile BFD1 shutdown enabled
-cumulus@switch:~$ nv config apply
-```
+{{< tabs "TabID5102 ">}}
+{{< tab "Move to a Slower Mode ">}}
 
-Change the offload mode, then re-enable BFD:
+To move to a slower mode, for example from `hardware` to `kernel`, raise the timers first while the sessions are up. Then shut down the BFD profile, change the mode, and re-enable the profile.
 
-```
-cumulus@switch:~$ nv set router bfd profile BFD1 shutdown disabled
-cumulus@switch:~$ nv config apply
-```
+1. Raise the timers to the minimum values for the slower mode and wait for the sessions to stabilize:
+
+   ```
+   cumulus@switch:~$ nv set router bfd profile BFD1 detect-multiplier 3
+   cumulus@switch:~$ nv set router bfd profile BFD1 min-tx-interval 100
+   cumulus@switch:~$ nv set router bfd profile BFD1 min-rx-interval 100
+   cumulus@switch:~$ nv config apply
+   ```
+
+2. Shut down the BFD profile:
+
+   ```
+   cumulus@switch:~$ nv set router bfd profile BFD1 shutdown enabled
+   cumulus@switch:~$ nv config apply
+   ```
+
+3. Change the offload mode:
+
+   ```
+   cumulus@switch:~$ nv set router bfd offload-mode kernel
+   cumulus@switch:~$ nv config apply
+   ```
+
+4. Re-enable the BFD profile:
+
+   ```
+   cumulus@switch:~$ nv set router bfd profile BFD1 shutdown disabled
+   cumulus@switch:~$ nv config apply
+   ```
+
+{{< /tab >}}
+{{< tab "Move to a Faster Mode ">}}
+
+To move to a faster mode, for example from `kernel` to `hardware`, shut down the BFD profile first and change the mode. Lower the timers only after the sessions are up in the new mode.
+
+1. Shut down the BFD profile. The timers stay at the values for the slower mode:
+
+   ```
+   cumulus@switch:~$ nv set router bfd profile BFD1 shutdown enabled
+   cumulus@switch:~$ nv config apply
+   ```
+
+2. Change the offload mode:
+
+   ```
+   cumulus@switch:~$ nv set router bfd offload-mode hardware
+   cumulus@switch:~$ nv config apply
+   ```
+
+3. Re-enable the BFD profile and wait for the sessions to stabilize:
+
+   ```
+   cumulus@switch:~$ nv set router bfd profile BFD1 shutdown disabled
+   cumulus@switch:~$ nv config apply
+   ```
+
+4. With the sessions up, lower the timers to the minimum values for the faster mode:
+
+   ```
+   cumulus@switch:~$ nv set router bfd profile BFD1 detect-multiplier 5
+   cumulus@switch:~$ nv set router bfd profile BFD1 min-tx-interval 20
+   cumulus@switch:~$ nv set router bfd profile BFD1 min-rx-interval 20
+   cumulus@switch:~$ nv config apply
+   ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Offload to the Kernel
 
@@ -433,6 +499,11 @@ switch# exit
 {{< /tab >}}
 {{< /tabs >}}
 
+<!-- REVIEW: the third bullet below recommends 50 millisecond timers with a multiplier of 3 for
+     kernel offload at scale. The 16 Oct email gives 100 milliseconds with a multiplier of 3 as the
+     kernel minimum, so the 50 millisecond example is below the supported minimum. Left unchanged;
+     confirm the intended example value. Delete this comment before publishing. -->
+
 {{%notice note%}}
 - When you change timer or profile settings with BFD sessions at scale, there is a transient spike in CPU usage because of the increased volume of messages from the BFD daemon to the kernel driver.
 - When a BFD peer goes down because of a path failure rather than an admin-down, the remote peer sends DOWN packets. With sessions at scale, the BFD daemon receives these DOWN events, which might increase CPU usage.
@@ -441,11 +512,11 @@ switch# exit
 
 ### Offload to Hardware
 
-Under heavy CPU load, such as route churn, ACL updates, or large-scale provisioning, software BFD timers can drift and cause false session flaps, especially at aggressive intervals. In `hardware` mode, the switch firmware transmits and receives BFD packets with 10 millisecond timer precision independently of CPU load, which lets you run intervals as low as 10 milliseconds without false flaps.
+Under heavy CPU load, such as route churn, ACL updates, or large-scale provisioning, software BFD timers can drift and cause false session flaps, especially at aggressive intervals. In `hardware` mode, the switch firmware transmits and receives BFD packets with 10 millisecond timer precision independently of CPU load, which lets you run intervals as low as 20 milliseconds without false flaps.
 
 {{%notice note%}}
 - Hardware offload requires a Spectrum-6 switch. On any other platform, `nv config apply` rejects the configuration and tells you which mode to use instead.
-- Hardware offload carries single-hop sessions only. Multi-hop sessions continue to run in the control plane and stay up; the switch reports `control-plane` for them. Set multi-hop profile timers to the control-plane minimum values described above (a detect multiplier of 3, a 300 millisecond transmit interval, and a 900 millisecond receive interval) even when `offload-mode` is `hardware`.
+- Hardware offload carries single-hop sessions only. Multi-hop sessions continue to run in the control plane and stay up; the switch reports `control-plane` for them. Set multi-hop profile timers to at least the `control-plane` minimum values (a detect multiplier of 3 and 300 milliseconds for the transmit and receive intervals; refer to {{<link url="#minimum-timer-values" text="Minimum Timer Values">}}) even when `offload-mode` is `hardware`.
 - The firmware works in units of 10 milliseconds and rounds transmit intervals up to a multiple of 10 milliseconds.
 {{%/notice%}}
 
@@ -630,7 +701,7 @@ In Cumulus Linux 5.18 and earlier, this field shows only `offloaded` or `control
 
 ### Upgrade Notes
 
-In Cumulus Linux 5.18 and earlier, you set BFD offload with the `nv set router bfd offload` command. In Cumulus Linux 5.19 and later, you set BFD offload with the `nv set router bfd offload-mode` command.` Cumulus Linux translates existing configuration when you upgrade:
+In Cumulus Linux 5.18 and earlier, you set BFD offload with the `nv set router bfd offload` command. In Cumulus Linux 5.19 and later, you set BFD offload with the `nv set router bfd offload-mode` command. Cumulus Linux translates existing configuration when you upgrade:
 
 | Cumulus Linux 5.18 and earlier | Cumulus Linux 5.19 |
 | ------------------------------ | ------------------ |

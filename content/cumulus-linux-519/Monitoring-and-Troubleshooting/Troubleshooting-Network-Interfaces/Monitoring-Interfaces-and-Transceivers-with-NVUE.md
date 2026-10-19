@@ -583,12 +583,12 @@ To install a firmware file on a transceiver module, run the `nv action install p
 cumulus@switch:~$ nv action install platform transceiver swp1 firmware files fw-rel-38_100_121.bin
 Action executing ...
 Burning fw-rel-38_100_121.bin on swp1 ...
-Firmware burned on swp1 (mt4129_pciconf0_cable_0). Reset the module or power cycle the system to activate it
+Firmware burned on swp1 (mt4129_pciconf0_cable_0).
 Action succeeded
 ```
 
 {{%notice note%}}
-Installing firmware on a transceiver does not activate it immediately. {{<link url="#reset-a-transceiver" text="Reset the transceiver">}}, or power cycle the switch, to bring the new firmware into use.
+After a successful install, the module restarts automatically to activate the new firmware. The link goes down for up to a minute while the module restarts. You do not need to reset the transceiver.
 {{%/notice%}}
 
 If the specified file is not staged for that transceiver, the action fails:

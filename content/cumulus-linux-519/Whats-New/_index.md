@@ -29,7 +29,7 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 - {{<link url="Understanding-the-cl-support-Output-File/#collect-the-nvme-nand-debug-log" text="The cl-support file">}} captures the SSD internal NAND debug log on a switch with a Virtium NVMe SSD
 - {{<link url="Patches" text="Patch uninstall returns the switch to the patch installed underneath, and a new command reclaims the space held by superseded patches">}}
 - {{<link url="Quality-of-Service/#pfc-watchdog" text="PFC watchdog detection parameters that distinguish a real deadlock from steady-state congestion">}}
-- {{<link url="Security-Configuration-Visibility" text="Security configuration visibility for manufacturing and field inspection">}}
+- {{<link url="Security-Configuration-Visibility" text="Security configuration report that collects the security configuration of the switch and checks each value against the reference values for the platform">}}
 - {{<link url="Packet-Trimming/#back-to-sender-notification-on-congestion-tail-drop" text="Back-to-sender notification on congestion tail drop">}} on Spectrum-6 switches
 - {{<link url="Packet-Trimming/#back-to-sender-notification-on-link-down" text="Back-to-sender notification when an MRC egress link fails">}}
 - {{<link url="Equal-Cost-Multipath-Load-Sharing/#extended-grading" text="Adaptive routing extended grading on Spectrum-6 switches">}}
@@ -144,7 +144,7 @@ In Cumulus Linux 5.18 and later, running the `nv show vrf <vrf-id> router bgp ad
 
 Cumulus Linux 5.19 replaces the BFD offload boolean with an offload mode that selects where BFD packet processing runs; see {{<link url="Bidirectional-Forwarding-Detection-BFD/#bfd-offload" text="BFD Offload">}}.
 
-- The `nv set router bfd offload <enabled|disabled>` command is replaced by `nv set router bfd offload-mode <control-plane|kernel|hardware>`. When you upgrade, Cumulus Linux translates `offload enabled` to `offload-mode kernel` and removes `offload disabled`, which leaves the `control-plane` default in effect.
+- Cumulus Linux 5.19 introduces the `nv set router bfd offload-mode <control-plane|kernel|hardware>` command, which is the recommended way to configure BFD offload. The `nv set router bfd offload <enabled|disabled>` command is still supported as legacy configuration and will be phased out in a future release. When you upgrade, Cumulus Linux keeps an existing `offload` setting unchanged; `offload enabled` is the same as `offload-mode kernel` and `offload disabled` is the same as `offload-mode control-plane`. See {{<link url="Bidirectional-Forwarding-Detection-BFD/#upgrade-notes" text="Upgrade Notes">}}.
 - The per-peer offload field now reports the engine carrying the session. In `nv show vrf <vrf-id> router bfd peers` output, the `Offloaded` column shows `kernel`, `hardware`, or `control-plane`; in vtysh and JSON output, `offload-status` shows the same three values. In Cumulus Linux 5.18 and earlier, this field shows only `offloaded` or `control-plane`. Update any automation or monitoring that matches on the string `offloaded`.
 
 ### RIB-to-FIB Filter Protocol Values

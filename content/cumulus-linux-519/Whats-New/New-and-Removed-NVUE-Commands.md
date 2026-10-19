@@ -17,11 +17,23 @@ The following NVUE commands are new in Cumulus Linux 5.19.
 
 ```
 nv show interface <interface-id> ipv6 neighbor-discovery prefix-lifetime
+nv show interface <interface-id> packet-trim notify-sender
+nv show interface <interface-id> packet-trim notify-sender tail-drop
+nv show interface <interface-id> packet-trim notify-sender tail-drop egress-eligibility
+nv show interface <interface-id> packet-trim notify-sender tail-drop egress-eligibility traffic-class
+nv show interface <interface-id> packet-trim notify-sender tail-drop egress-eligibility traffic-class <tc-id>
+nv show interface <interface-id> packet-trim spxm
+nv show interface <interface-id> packet-trim spxm notify-sender
+nv show interface <interface-id> packet-trim spxm notify-sender link-down
+nv show interface <interface-id> packet-trim spxm notify-sender link-down ingress-eligibility
+nv show interface <interface-id> packet-trim spxm notify-sender link-down ingress-eligibility dscp
+nv show interface <interface-id> packet-trim spxm notify-sender link-down ingress-eligibility dscp <dscp-id>
 nv show interface <interface-id> telemetry histogram microburst
 nv show interface <interface-id> telemetry histogram microburst direction
 nv show interface <interface-id> telemetry histogram microburst direction <if-direction-id>
 nv show interface <interface-id> telemetry histogram microburst direction <if-direction-id> snapshot
 nv show interface <interface-id> telemetry histogram microburst direction <if-direction-id> threshold
+nv show interface <interface-id> telemetry step-time-estimation
 nv show interface <interface-id> transceiver compliance
 nv show platform transceiver <transceiver-id> compliance
 nv show platform transceiver <transceiver-id> firmware
@@ -43,6 +55,16 @@ nv show system control-plane punt-classifier <rule-id> counters
 nv show system control-plane punt-classifier <rule-id> counters hardware
 nv show system control-plane punt-classifier <rule-id> match
 nv show system control-plane punt-classifier <rule-id> match no-route
+nv show system dns server <dns-server-id> source-interface
+nv show system dns server <dns-server-id> source-interface <interface-id>
+nv show system forwarding packet-trim ingress-eligibility
+nv show system forwarding packet-trim notify-sender
+nv show system forwarding packet-trim notify-sender link-down
+nv show system forwarding packet-trim notify-sender link-down counters
+nv show system forwarding packet-trim notify-sender link-down counters native
+nv show system forwarding packet-trim notify-sender link-down remark
+nv show system forwarding packet-trim notify-sender tail-drop
+nv show system forwarding packet-trim notify-sender tail-drop remark
 nv show system forwarding resilient-hash
 nv show system log ztp
 nv show system log ztp messages
@@ -64,8 +86,12 @@ nv show system telemetry stats-group <stats-group-id> control-plane-stats class
 nv show system telemetry stats-group <stats-group-id> control-plane-stats class punt-classifier
 nv show system telemetry stats-group <stats-group-id> radius-stats
 nv show system telemetry stats-group <stats-group-id> radius-stats export
+nv show system telemetry stats-group <stats-group-id> step-time-estimation
+nv show system telemetry stats-group <stats-group-id> step-time-estimation export
 nv show system telemetry stats-group <stats-group-id> wjh
 nv show system telemetry stats-group <stats-group-id> wjh export
+nv show system telemetry step-time-estimation
+nv show system telemetry step-time-estimation export
 nv show system telemetry wjh
 nv show system telemetry wjh channel
 nv show system telemetry wjh channel <channel-id>
@@ -79,12 +105,16 @@ nv show system ztp wall-messages
 ```
 nv set interface <interface-id> ipv6 neighbor-discovery prefix-lifetime preferred
 nv set interface <interface-id> ipv6 neighbor-discovery prefix-lifetime valid
+nv set interface <interface-id> packet-trim notify-sender tail-drop egress-eligibility traffic-class <tc-id>
+nv set interface <interface-id> packet-trim spxm notify-sender link-down ingress-eligibility dscp <dscp-id>
 nv set interface <interface-id> telemetry histogram microburst direction <if-direction-id>
 nv set interface <interface-id> telemetry histogram microburst direction <if-direction-id> bin-min-boundary
 nv set interface <interface-id> telemetry histogram microburst direction <if-direction-id> histogram-size
 nv set interface <interface-id> telemetry histogram microburst direction <if-direction-id> sample-interval
 nv set interface <interface-id> telemetry histogram microburst direction <if-direction-id> threshold score
 nv set interface <interface-id> telemetry histogram microburst direction <if-direction-id> unit
+nv set interface <interface-id> telemetry step-time-estimation state
+nv set platform firmware <platform-component-id>
 nv set platform firmware <platform-component-id> auto-update
 nv set platform firmware <platform-component-id> fw-source
 nv set qos pfc-watchdog recovery-interval
@@ -108,10 +138,22 @@ nv set system control-plane punt-classifier <rule-id> match dscp
 nv set system control-plane punt-classifier <rule-id> match no-route
 nv set system control-plane punt-classifier <rule-id> match packet-type
 nv set system control-plane punt-classifier <rule-id> match udp-dport
+nv set system dns server <dns-server-id> source-interface <interface-id>
+nv set system dns server <dns-server-id> source-interface <interface-id> address
+nv set system dns server <dns-server-id> source-ip
+nv set system forwarding packet-trim ingress-eligibility dscp
+nv set system forwarding packet-trim ingress-eligibility interface
+nv set system forwarding packet-trim notify-sender link-down remark dscp
+nv set system forwarding packet-trim notify-sender link-down service-port
+nv set system forwarding packet-trim notify-sender link-down size
+nv set system forwarding packet-trim notify-sender link-down state
+nv set system forwarding packet-trim notify-sender link-down switch-priority
+nv set system forwarding packet-trim notify-sender tail-drop remark dscp
 nv set system forwarding resilient-hash active-timer
 nv set system forwarding resilient-hash bucket-size
 nv set system forwarding resilient-hash max-unbalanced-timer
 nv set system forwarding resilient-hash state
+nv set system grpc-tunnel server <server-name-id> source-address
 nv set system log ztp messages state
 nv set system telemetry control-plane-stats class punt-classifier sample-interval
 nv set system telemetry control-plane-stats class punt-classifier state
@@ -126,8 +168,11 @@ nv set system telemetry stats-group <stats-group-id> control-plane-stats class p
 nv set system telemetry stats-group <stats-group-id> control-plane-stats class punt-classifier state
 nv set system telemetry stats-group <stats-group-id> radius-stats export state
 nv set system telemetry stats-group <stats-group-id> radius-stats sample-interval
+nv set system telemetry stats-group <stats-group-id> step-time-estimation export state
 nv set system telemetry stats-group <stats-group-id> wjh export state
 nv set system telemetry stats-group <stats-group-id> wjh sample-interval
+nv set system telemetry step-time-estimation batch-interval
+nv set system telemetry step-time-estimation export state
 nv set system telemetry wjh channel <channel-id>
 nv set system telemetry wjh export state
 nv set system telemetry wjh sample-interval
@@ -142,9 +187,11 @@ nv set vrf <vrf-id> router bgp neighbor <neighbor-id> connection
 {{< tab "nv action ">}}
 
 ```
+nv action cancel system image
 nv action clear interface <interface-id> ipv6 neighbor-discovery prefix <ipv6-prefix-id>
 nv action clear system control-plane punt-classifier <rule-id> counters
 nv action clear system control-plane punt-classifier counters
+nv action clear system forwarding packet-trim notify-sender link-down counters
 nv action delete platform firmware <platform-component-id> files <file>
 nv action generate system security spdm <component-id> <value>
 nv action install platform transceiver <transceiver-id> firmware files <file>
@@ -167,6 +214,7 @@ nv action upload platform firmware <platform-component-id> files <file> <url>
 | `nv set interface <interface-id> qos headroom lossy extra-threshold (256-1818368, 192-1236480)` | `nv set interface <interface-id> qos headroom lossy extra-threshold (192-1236480)` |
 | `nv set router segment-routing static srv6-sid <sid> locator-name <generic-name>` | `nv set router segment-routing static srv6-sid <sid> locator-name <value>` |
 | `nv set system dot1x ipv6-profile <profile-id> property <property-id> value (0-4294967295, <valid-ipv6-profile-property-value>)` | `nv set system dot1x ipv6-profile <profile-id> property <property-id> value (0-18446744073709551615, <valid-ipv6-profile-property-value>)` |
+| `nv action install system packages archive <archive-id> force, dry-run, allow-incompatible, accept-rollback-to-base` | `nv action install system packages archive <archive-id> force, dry-run, allow-incompatible` |
 
 ## Removed NVUE Commands
 

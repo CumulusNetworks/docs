@@ -164,6 +164,74 @@ cumulus@switch:~$ nv set system dns server 192.0.2.44 priority 1
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set system dns server \<dns-server-id\> source-interface \<interface-id\></h>
+
+Configures the interface that the switch uses to source upstream DNS queries to the specified DNS server.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<dns-server-id>` |  The IPv4 or IPv6 address of the remote DNS server. |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system dns server 192.0.2.1 source-interface swp1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system dns server \<dns-server-id\> source-interface \<interface-id\> address</h>
+
+Configures the address on the source interface that the switch uses for upstream DNS queries. You can set a value of `auto`, an IPv4 address, or an IPv6 address. When set to `auto`, the switch selects the first address of the DNS server address family, in configuration order, that it can use as a query source. The default setting is `auto`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<dns-server-id>` |  The IPv4 or IPv6 address of the remote DNS server. |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system dns server 192.0.2.1 source-interface swp1 address 198.51.100.1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system dns server \<dns-server-id\> source-ip</h>
+
+Configures the source IP address that the switch uses for upstream DNS queries. You can specify an IPv4 or an IPv6 address.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<dns-server-id>` |  The IPv4 or IPv6 address of the remote DNS server. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system dns server 192.0.2.1 source-ip 198.51.100.1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system dns server \<dns-server-id\> vrf \<vrf-id\></h>
 
 Configures a remote DNS server under a specific VRF.

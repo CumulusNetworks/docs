@@ -185,6 +185,28 @@ cumulus@switch:~$ nv set system grpc-tunnel server SERVER1 certificate self-sign
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set system grpc-tunnel server \<server-name-id\> source-address</h>
+
+Configures the source IP address for outgoing gRPC tunnel connections to the specified server. You can specify an IPv4 or an IPv6 address.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<server-name-id>` |  The gRPC tunnel server name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system grpc-tunnel server server1 source-address 192.0.2.1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system grpc-tunnel server \<server\> ca-certificate \<ca-cert-id\></h>
 
 Sets the CA certificate you want to use for the gRPC tunnel server.

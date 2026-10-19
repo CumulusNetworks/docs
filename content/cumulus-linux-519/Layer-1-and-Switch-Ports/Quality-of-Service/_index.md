@@ -2454,18 +2454,7 @@ Because a service port cannot borrow from the shared buffer that the regular por
 - Egress pools on service ports are unchanged.
 - On a multi-ASIC switch, service port numbers are local to each ASIC.
 - The service port buffer configuration persists across a reboot, an upgrade, and ISSU.
-- To show the service port ingress pool, run the `nv show qos buffer` command. The command lists the pool with hardware pool ID `43` and no service pool ID.
 {{%/notice%}}
-
-<!-- REVIEW: added 2026-10-19 from the FR 4961156 functional specification (modified 17 Oct): multi-ASIC
-     (FS repeats "no changes, port numbers are local to the ASIC"), persistence (FS ISSU / Fast-Boot table:
-     persists across reboot and upgrade; re-applied on switchd start; no special fast-boot handling), and
-     the `nv show qos buffer` pool row. The FS sample shows the pool as "Service Port Ingress", STATIC, size
-     711.50 KB, which does not match 1946 KB or 1690 KB; no size is quoted here. Confirm the value and the
-     description text. The FS names `qos_features.conf` for persistence and `qos_infra.conf` elsewhere; the
-     files are not named here. Delete this comment before publishing. -->
-
-
 
 {{< tabs "TabID2440 ">}}
 {{< tab "NVUE Commands ">}}
@@ -2488,7 +2477,7 @@ For a lossy priority group, the `<priority-group-id>` is `bulk`, `service1` thro
 | `reserved` | The reserved buffer allocation, in bytes. |
 | `service-pool` | The service port ingress pool. Service ports have one pool, so the only value is `0`. |
 | `shared-bytes` | The static shared buffer allocation, in bytes. |
-| `switch-priority` | The switch priorities that the priority group carries. |
+| `switch-priority` | The switch priority that the priority group carries. |
 
 {{%notice note%}}
 - `shared-alpha` is not available on any service port buffer; Cumulus Linux creates the service port pool as a static pool, so a service port buffer cannot take a dynamic alpha allocation. Set `shared-bytes` directly instead. If you unset `shared-bytes`, Cumulus Linux restores the default for that buffer.
@@ -2496,21 +2485,20 @@ For a lossy priority group, the `<priority-group-id>` is `bulk`, `service1` thro
 - The cumulative allocation across the service port pool and its priority groups, for all service ports, must stay within the service port pool size. If a configuration would exceed it, the switch rejects the apply or reduces the allocation; refer to {{<link url="#priority-flow-control-on-service-ports" text="Priority Flow Control on Service Ports">}}.
 {{%/notice%}}
 
-<!-- REVIEW: updated 2026-10-16 from the CLI help that Bhargav Sivalenka sent in Teams (screenshots of
-     `nv set qos advance-buffer-config default-global ?`). The build uses `ingress-srvcp-*`, so the
-     keywords above changed from `ingress-sp-*`, and the lossy buffer is a collection of priority
-     groups (`priority-group bulk|service1..service7|<string>`) with the options shown. The help
-     output covers only the lossy buffer. The options for the service pool, lossless, and management
-     rows come from the functional specification, and the build might also use priority groups
-     there; check `nv set ... ingress-srvcp-<buffer> ?` for each. The description of `switch-priority`
-     and its sub-commands are not in the help text I have. The example priority group `bulk` is
-     the one in the help; confirm that it is the default lossy group. Delete this comment before
-     publishing. -->
-
 The following example sets the headroom of the `bulk` lossy priority group on the service ports to 50000 bytes:
 
 ```
 cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-srvcp-lossy-buffer priority-group bulk headroom 50000
+cumulus@switch:~$ nv config apply
+```
+
+The following example creates the `service2` priority group for switch priority 2 on the service ports, with a reserved buffer of 2560 bytes and a static shared buffer of 25600 bytes:
+
+```
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-srvcp-lossy-buffer priority-group service2 switch-priority 2
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-srvcp-lossy-buffer priority-group service2 service-pool 0
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-srvcp-lossy-buffer priority-group service2 reserved 2560
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-srvcp-lossy-buffer priority-group service2 shared-bytes 25600
 cumulus@switch:~$ nv config apply
 ```
 
@@ -2534,8 +2522,13 @@ Edit the `/etc/mlx/datapath/qos/qos_infra.conf` file to add the following parame
 | `priority_group.srvcp_lossy.ingress_buffer.reserved` | The lossy priority group reserved buffer allocation for the service ports, in bytes. |
 | `priority_group.srvcp_lossy.ingress_buffer.shared_size` | The lossy priority group static shared buffer allocation for the service ports, in bytes. |
 | `priority_group.srvcp_lossy.ingress_buffer.lossy_headroom` | The lossy priority group headroom allocation for the service ports, in bytes. |
-| `traffic.srvcp_priority_group_list` | The lossy priority groups for the service ports, for example `[srvcp_pg_bulk,srvcp_pg_service4,srvcp_pg_service6]`. A priority group name is `bulk` or `service1` through `service7`. A configured list replaces `priority_group.srvcp_lossy`. |
-| `priority_group.srvcp_pg_<name>.ingress_buffer.lossy_headroom` | The headroom allocation for a lossy priority group in the list, in bytes. |
+| `traffic.srvcp_priority_group_list` | The lossy priority groups for the service ports, for example `[srvcp_pg_service2,srvcp_pg_bulk]`. A priority group name is `srvcp_pg_bulk` or `srvcp_pg_service1` through `srvcp_pg_service7`. A configured list replaces `priority_group.srvcp_lossy`. |
+| `priority_group.srvcp_pg_<name>.id` | The priority group ID. |
+| `priority_group.srvcp_pg_<name>.cos_list` | The switch priorities that the priority group carries. |
+| `priority_group.srvcp_pg_<name>.service_pool` | The service port ingress pool. Service ports have one pool, so the only value is `0`. |
+| `priority_group.srvcp_pg_<name>.ingress_buffer.reserved` | The reserved buffer allocation for a priority group in the list, in bytes. |
+| `priority_group.srvcp_pg_<name>.ingress_buffer.shared_size` | The static shared buffer allocation for a priority group in the list, in bytes. |
+| `priority_group.srvcp_pg_<name>.ingress_buffer.lossy_headroom` | The headroom allocation for a priority group in the list, in bytes. |
 | `priority_group.srvcp_mgmt.ingress_buffer.reserved` | The management priority group reserved buffer allocation for the service ports, in bytes. |
 | `priority_group.srvcp_mgmt.ingress_buffer.shared_size` | The management priority group static shared buffer allocation for the service ports, in bytes. |
 | `priority_group.srvcp_mgmt.ingress_buffer.lossy_headroom` | The management priority group headroom allocation for the service ports, in bytes. |
@@ -2545,6 +2538,22 @@ cumulus@switch:~$ sudo nano /etc/mlx/datapath/qos/qos_infra.conf
 ...
 priority_group.srvcp_lossy.ingress_buffer.lossy_headroom = 50000
 ...
+```
+
+The following example creates the `service2` priority group for switch priority 2 on the service ports, with a reserved buffer of 2560 bytes and a static shared buffer of 25600 bytes. The `srvcp_pg_bulk` priority group carries the other switch priorities:
+
+```
+traffic.srvcp_priority_group_list = [srvcp_pg_service2,srvcp_pg_bulk]
+
+priority_group.srvcp_pg_service2.id = 2
+priority_group.srvcp_pg_service2.cos_list = [2]
+priority_group.srvcp_pg_service2.service_pool = 0
+priority_group.srvcp_pg_service2.ingress_buffer.reserved = 2560
+priority_group.srvcp_pg_service2.ingress_buffer.shared_size = 25600
+
+priority_group.srvcp_pg_bulk.id = 0
+priority_group.srvcp_pg_bulk.cos_list = [0,1,3,4,5,6,7]
+priority_group.srvcp_pg_bulk.service_pool = 0
 ```
 
 To return a parameter to its default, delete or comment out the line.
@@ -2561,31 +2570,20 @@ The default allocations consume part of the pool before you tune anything. The s
 | Remaining pool with lossy traffic only | 1592 KB | 1494 KB |
 | Remaining pool with priority flow control enabled | 1196 KB | 702 KB |
 
-#### Priority Flow Control on Service Ports
+To show the service port ingress pool, run the `nv show qos buffer` command. The pool has hardware pool ID `43` and no service pool ID. The pool size is the space currently available in the pool, so it depends on the service port configuration:
 
-<!-- REVIEW: updated 2026-10-16 after Bhargav Sivalenka's Teams replies. Confirmed: the ingress pool
-     ID is 43 (12 is an SDK-internal number, and egress pool 12 appears in the sample); the
-     service port fields are new leafs on the existing `nv set qos advance-buffer-config
-     default-global` command, not a new command. His first reply said "we have updated the CLIs"
-     with images I cannot read, and he said he will update the remaining points. Still open:
-     1. Keyword names are resolved: the build help shows `ingress-srvcp-*` (see the REVIEW above the
-        NVUE example). Updated 2026-10-19 from the FS (17 Oct): the Linux tab now lists
-        `traffic.srvcp_priority_group_list` and `priority_group.srvcp_pg_<name>.*`. The FS sample shows
-        only `lossy_headroom` and `dynamic_quota` for a named group, so only `lossy_headroom` is
-        listed; whether `reserved` and `shared_size` exist for a named group is not confirmed. The FS
-        says RoCE lossy mode writes `srvcp_pg_bulk` and `srvcp_pg_service1`, and every other mode keeps
-        `srvcp_lossy`; that mode dependency is not documented. Confirm.
-     2. Resolved 2026-10-19: the FS (17 Oct) now deducts the 256 KB traffic queue reservation, so the
-        capacity table shows 1592/1494 KB (lossy only) and 1196/702 KB (PFC), and the worked example
-        (702 KB for four ports) agrees. The FS text still says "ingress-sp-*" in the CLI option names;
-        the build help (`ingress-srvcp-*`) is used, per FS review item 1.
-     3. The switchd warning is now a real log line from Bhargav Sivalenka (16 Oct), used verbatim.
-        It does not name the port, while the specification prose and one specification table say
-        the warning names the port (`swp65s0: hal-port-514`). The count 198176 next to a limit of
-        1946 is as logged. Confirm whether the port name appears in the shipped build.
-     4. The NVUE and cl-consistency-check message strings come from specification tables, not a
-        captured build.
-     Delete this comment before publishing. -->
+```
+cumulus@switch:~$ nv show qos buffer
+Pool Buffers Occupancy Counters
+==================================
+    Hw Pool ID  Service Pool  Pool Type             Direction  Mode    Pool Size  Current Usage  Max Usage
+    ----------  ------------  --------------------  ---------  ------  ---------  -------------  ---------
+...
+    43          -             Service Port Ingress  INGRESS    STATIC  1.52 MB    0 Bytes        0 Bytes
+...
+```
+
+#### Priority Flow Control on Service Ports
 
 Each switch port, including a service port, has a fixed amount of headroom: 1946 cells (498176 bytes). You configure PFC on a service port in the same way as on a regular switch port, including the switch priority, PFC transmit and receive, the interface profile binding, `cable-length`, `port-buffer`, `xon-threshold`, `xoff-threshold`, and `small-packet-probability`; refer to {{<link url="#priority-flow-control-(pfc)" text="priority flow control">}}. The `port-buffer`, `xon-threshold`, and `xoff-threshold` values must stay within the service port pool.
 

@@ -61,3 +61,18 @@ cumulus@switch:~$ nv config apply
 To stop exporting step time estimates, run the `nv unset system telemetry step-time-estimation export state` command. To stop monitoring an interface, run the `nv unset interface <interface-id> telemetry step-time-estimation state` command.
 
 To show step time estimation status and configured parameters, run the `nv show system telemetry step-time-estimation` command.
+
+```
+cumulus@switch:~$ nv show system telemetry step-time-estimation
+                operational  applied
+--------------  -----------  -------
+export                              
+  state         enabled      enabled
+batch-interval  600          600    
+status          DISABLED            
+
+Interfaces
+=============
+No Data
+```
+

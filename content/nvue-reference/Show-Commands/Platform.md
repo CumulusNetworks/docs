@@ -1291,3 +1291,70 @@ Introduced in Cumulus Linux 5.19.0
 ```
 cumulus@switch:~$ nv show platform transceiver swp1 compliance
 ```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show platform transceiver \<transceiver-id\> firmware</h>
+
+Shows the firmware information for the specified transceiver.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<transceiver-id>` |  The transceiver name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show platform transceiver swp1 firmware
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show platform transceiver \<transceiver-id\> firmware files</h>
+
+Shows the firmware files for the specified transceiver.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<transceiver-id>` |  The transceiver name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show platform transceiver swp1 firmware files
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show platform transceiver \<transceiver-id\> firmware files \<file-name\></h>
+
+Shows a specific firmware file for the specified transceiver.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<transceiver-id>` |  The transceiver name. |
+| `<file-name>` |  The firmware file name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show platform transceiver swp1 firmware files transceiver-2.1.bin
+```

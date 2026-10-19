@@ -856,6 +856,28 @@ cumulus@switch:~$ nv set interface swp1 telemetry histogram microburst direction
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set interface \<interface-id\> telemetry step-time-estimation state</h>
+
+Enables and disables step time estimation on the specified interface. You can set a value of `enabled`, or `disabled`. The default setting is `disabled`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp1 telemetry step-time-estimation state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system telemetry adaptive-routing-stats export state</h>
 
 Enables and disables export for adaptive routing statistics. You can specify `enabled` or `disabled`.
@@ -3447,6 +3469,28 @@ cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP2 router sample-
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set system telemetry stats-group \<stats-group-id\> step-time-estimation export state</h>
+
+Enables and disables step time estimation export for the specified statistics group. You can set a value of `enabled`, or `disabled`. The default setting is `disabled`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>` |  The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry stats-group group1 step-time-estimation export state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system telemetry stats-group \<stats-group-id\> wjh export state</h>
 
 Enables and disables export of What Just Happened metrics for the specified statistics group. You can set a value of `enabled`, or `disabled`. The default setting is `disabled`.
@@ -3487,6 +3531,38 @@ Introduced in Cumulus Linux 5.19.0
 
 ```
 cumulus@switch:~$ nv set system telemetry stats-group group1 wjh sample-interval 60
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry step-time-estimation batch-interval</h>
+
+Configures the interval, in seconds, between step time estimation batches. You can specify a value between 300 and 3600. The default value is 300.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry step-time-estimation batch-interval 600
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry step-time-estimation export state</h>
+
+Enables and disables step time estimation export. You can set a value of `enabled`, or `disabled`. The default setting is `disabled`.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry step-time-estimation export state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

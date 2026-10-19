@@ -1904,7 +1904,7 @@ cumulus@switch:~$ nv set system control-plane punt-classifier 1 action drop
 
 ## <h>nv set system control-plane punt-classifier \<rule-id\> match dscp</h>
 
-Configures the list of DSCP ranges that the rule matches for SPXM packets.
+Configures the DSCP values that the rule matches for SPXM packets. You can specify a single value, an ascending range, or a comma-separated list of those, such as 10 or 10-20,30. Each value must be between 0 and 63. The switch applies the same checks as the `nv set system forwarding packet-trim ingress-eligibility dscp` command.
 
 ### Command Syntax
 

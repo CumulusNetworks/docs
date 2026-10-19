@@ -198,6 +198,22 @@ Reboot required to take effect.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action cancel system image</h>
+
+Cancels a pending system image boot-next or rollback.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action cancel system image
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action cancel system image onie</h>
 
 Cancels a pending Cumulus Linux image installation in ONIE.
@@ -1489,6 +1505,22 @@ Introduced in Cumulus Linux 5.14.0
 ```
 cumulus@switch:~$ nv action clear system forwarding packet-trim counters
 Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear system forwarding packet-trim notify-sender link-down counters</h>
+
+Resets the link-down sender notification counters that NVUE displays for packet trimming.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear system forwarding packet-trim notify-sender link-down counters
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3142,6 +3174,29 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action delete platform firmware \<platform-component-id\> files \<file-name\></h>
+
+Deletes the specified firmware file from the switch.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<platform-component-id>` |  The platform component. |
+| `<file-name>` |  The firmware file name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action delete platform firmware BIOS files bios-1.2.bin
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action delete system file-path \<path-id\></h>
 
 Deletes the specified file from the switch.
@@ -4041,6 +4096,29 @@ cumulus@switch:~$ nv action import system security crl uri scp://user:password@h
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action install platform transceiver \<transceiver-id\> firmware files \<file-name\></h>
+
+Installs the specified firmware file on the transceiver.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<transceiver-id>` |  The transceiver name. |
+| `<file-name>` |  The firmware file name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action install platform transceiver swp1 firmware files transceiver-2.1.bin
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action install system image file \<filename\></h>
 
 Installs the specified binary image on the second partition (optimized upgrade).
@@ -4544,6 +4622,22 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action prune system packages archive</h>
+
+Removes older package archives, keeping the installed archive and the one before it for each package. Run the command with the `force` option to prune without a confirmation prompt.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action prune system packages archive
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action pull system docker image \<image-id\></h>
 
 Downloads a Docker image from a registry.
@@ -4756,6 +4850,30 @@ Introduced in Cumulus Linux 5.15.0
 
 ```
 cumulus@switch:~$ nv action remove system docker image nginx tag latest
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action rename platform firmware \<platform-component-id\> files \<file-name\> \<new-name\></h>
+
+Renames the specified firmware file on the switch.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<platform-component-id>` |  The platform component. |
+| `<file-name>` |  The firmware file name. |
+| `<new-name>` |  The new firmware file name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action rename platform firmware BIOS files bios-1.2.bin bios-current.bin
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -5407,6 +5525,30 @@ Introduced in Cumulus Linux 5.9.0
 
 ```
 cumulus@switch:~$ nv action upgrade system packages to latest use-vrf default dry-run
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action upload platform firmware \<platform-component-id\> files \<file-name\> \<remote-url-upload\></h>
+
+Uploads the specified firmware file to a remote server.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<platform-component-id>` |  The platform component. |
+| `<file-name>` |  The firmware file name. |
+| `<remote-url-upload>` |  The URL of the remote server. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action upload platform firmware BIOS files bios-1.2.bin scp://user@192.0.2.1/tmp/
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

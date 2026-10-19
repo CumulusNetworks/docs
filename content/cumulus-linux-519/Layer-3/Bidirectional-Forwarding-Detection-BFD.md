@@ -347,10 +347,11 @@ BFD offload moves BFD packet transmission and reception off the control plane, w
 | `hardware` | Offloaded to switch firmware, which transmits and receives BFD packets with 10 millisecond timer precision independently of CPU load. Spectrum-6 switches and single-hop sessions only. |
 
 {{%notice note%}}
-- BFD offload is opt-in. When you do not set `offload-mode`, BFD runs in the control plane on every platform.
+- BFD offload is opt-in. When you do not set `offload-mode` and the legacy `offload` setting is not enabled, BFD runs in the control plane on every platform.
 - The offload mode is system wide. All BFD sessions use the same mode; you cannot select a mode for an individual session.
 - BFD must be enabled for any of these modes to take effect. Run the `nv set router bfd state enabled` command.
 - You can change the offload mode at runtime. FRR does not restart and sessions do not flap.
+- The `nv set router bfd offload enabled` and `nv set router bfd offload disabled` commands from Cumulus Linux 5.18 and earlier are still supported as legacy configuration and will be phased out in a future release. Use `offload-mode` instead; refer to {{<link url="#upgrade-notes" text="Upgrade Notes">}}.
 {{%/notice%}}
 
 ### Minimum Timer Values
@@ -573,14 +574,23 @@ switch# exit
 
 To show the BFD offload mode, run the `nv show router bfd` command. To show only the mode, run the `nv show router bfd offload-mode` command.
 
+<!-- REVIEW: updated 2026-10-19 from Siddharth Kulkarni's 19 Oct email (nvue MR !5467): `nv show
+     router bfd` now also lists the legacy `offload` setting, which shows `disabled` by default.
+     The `offload disabled` line below is added from his description, not captured from a build, and
+     its position between `state` and `offload-mode` is a guess. Capture the output on a build that
+     includes the MR and fix the order. Delete this comment before publishing. -->
+
 ```
 cumulus@switch:~$ nv show router bfd
               applied
 ------------  ---------------------------
 state         enabled
+offload       disabled
 offload-mode  kernel
 ...
 ```
+
+The `offload` field shows the legacy setting, which is `disabled` by default, even when you set `offload-mode`. If you use `offload-mode`, rely on the `offload-mode` field to check the offload mode; `offload-mode` is the setting in effect.
 
 To show if the BFD session is offloaded, run the `nv show vrf default router bfd peers --view brief` command or the vtysh `show bfd vrf default peers brief json` command.
 
@@ -701,12 +711,34 @@ In Cumulus Linux 5.18 and earlier, this field shows only `offloaded` or `control
 
 ### Upgrade Notes
 
-In Cumulus Linux 5.18 and earlier, you set BFD offload with the `nv set router bfd offload` command. In Cumulus Linux 5.19 and later, you set BFD offload with the `nv set router bfd offload-mode` command. Cumulus Linux translates existing configuration when you upgrade:
+<!-- REVIEW: replaced 2026-10-19 with the text Siddharth Kulkarni proposed in his 19 Oct email (nvue
+     MR !5467, merged to dev on 18 Oct), which reverses the earlier statement that the upgrade
+     translates the legacy setting. Two choices of mine: I wrote "phased out" instead of
+     "deprecated" (the email says "will be deprecated in a future release"); and I put the
+     conflict error in a code block exactly as he gave it, with the page's prompt. The error text
+     is not captured from a build. Confirm both before publishing. Delete this comment before
+     publishing. -->
 
-| Cumulus Linux 5.18 and earlier | Cumulus Linux 5.19 |
-| ------------------------------ | ------------------ |
-| `nv set router bfd offload enabled` | `nv set router bfd offload-mode kernel` |
-| `nv set router bfd offload disabled` | Removed; the `control-plane` default applies. |
+In Cumulus Linux 5.18 and earlier, you set BFD offload with the `nv set router bfd offload enabled` and `nv set router bfd offload disabled` commands. Cumulus Linux 5.19 introduces the `nv set router bfd offload-mode` command, which is the recommended way to configure BFD offload. The `nv set router bfd offload` command is still supported as legacy configuration and will be phased out in a future release.
+
+When you upgrade, Cumulus Linux keeps an existing `nv set router bfd offload` setting unchanged:
+
+- `nv set router bfd offload enabled` is the same as `nv set router bfd offload-mode kernel`.
+- `nv set router bfd offload disabled` is the same as `nv set router bfd offload-mode control-plane` (the default).
+
+To move to `offload-mode`, unset the legacy setting and set the mode in the same apply:
+
+```
+cumulus@switch:~$ nv unset router bfd offload
+cumulus@switch:~$ nv set router bfd offload-mode kernel
+cumulus@switch:~$ nv config apply
+```
+
+Do not configure both settings. If you do, they must agree (`offload enabled` with `offload-mode kernel` or `hardware`, or `offload disabled` with `offload-mode control-plane`); otherwise `nv config apply` rejects the configuration:
+
+```
+BFD `offload enabled` conflicts with `offload-mode control-plane`. Set only `offload-mode`, or make them agree: `offload enabled` goes with `offload-mode kernel` or `hardware`, and `offload disabled` with `offload-mode control-plane`.
+```
 
 Cumulus Linux upgrade never sets the `offload-mode` to `hardware` because hardware offload requires a Spectrum-6 switch. To use hardware offload after you upgrade, set it explicitly.
 

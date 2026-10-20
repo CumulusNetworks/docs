@@ -819,199 +819,6 @@ Reload `switchd` with the `sudo systemctl reload switchd.service` command.
 {{< /tab >}}
 {{< /tabs >}}
 
-<!-- REVIEW: this section sits between Example Configuration and Show Adaptive Routing Settings so
-     that it clusters with Link Utilization, the only other section gated on the custom profile, and
-     stays above the show section. Moving it directly after Link Utilization would split that section
-     from the Example Configuration block that continues its examples. Delete this comment before
-     publishing. -->
-
-### Extended Grading
-
-{{%notice note%}}
-Extended grading is supported only on switches with the Spectrum-6 ASIC.
-{{%/notice%}}
-
-Adaptive routing grades the congestion it observes on each candidate egress port, then forwards the packet to the least congested port. By default, three congestion thresholds divide congestion into four grades. Extended grading adds four more thresholds so that a Spectrum-6 switch divides congestion into eight grades and distinguishes finer differences in queue occupancy when it selects a port.
-
-Extended grading is part of the custom adaptive routing profile, which Cumulus Linux reads from the `/etc/cumulus/switchd.d/ar_profile_custom.conf` file. The thresholds apply to the whole switch; you cannot set them per interface. Extended grading has no NVUE object model, so you configure it either by editing the file directly or by writing the file with an {{<link url="NVUE-Snippets/#flexible-snippets" text="NVUE flexible snippet">}}.
-
-<!-- REVIEW: the spec calls `nv set router adaptive-routing profile profile-custom` an existing
-     command, but no `profile` leaf appears under `nv set router adaptive-routing` anywhere in
-     content/nvue-reference/, and both this page and the reference call the feature the
-     `custom-profile`. Drafted from the spec CLI section per the section-role rule. Confirm the
-     command name and the profile name against a candidate build. Delete this comment before
-     publishing. -->
-
-To select the custom profile, run the `nv set router adaptive-routing profile profile-custom` command:
-
-```
-cumulus@switch:~$ nv set router adaptive-routing profile profile-custom
-cumulus@switch:~$ nv config apply
-```
-
-#### Congestion Thresholds
-
-The custom profile carries the three legacy congestion thresholds `ar.ctl`, `ar.ctm`, and `ar.cth`. On a Spectrum-6 switch, it also carries four extended thresholds. The following table shows the extended threshold keys and the value each one takes when you omit it from the file.
-
-| Key | Value when omitted |
-| --- | ------------------ |
-| `ar.ct4` | The value of `ar.cth`. |
-| `ar.ct5` | The resolved value of `ar.ct4`. |
-| `ar.ct6` | The resolved value of `ar.ct5`. |
-| `ar.ct7` | The resolved value of `ar.ct6`. |
-
-{{%notice note%}}
-- A key needs the `ar.` prefix. Cumulus Linux ignores a key without it.
-- Thresholds are in cells. Cumulus Linux does not convert the values to bytes.
-- Each threshold must be between 0 and 16777215.
-- After Cumulus Linux fills in the omitted values, the seven thresholds must be in non-decreasing order: `ar.ctl` <= `ar.ctm` <= `ar.cth` <= `ar.ct4` <= `ar.ct5` <= `ar.ct6` <= `ar.ct7`. Equal values are valid.
-- Setting any one of `ar.ct4` through `ar.ct7` turns on extended grading and brings all four extended thresholds into effect. The fill is sequential, so a threshold you omit takes the resolved value of the threshold before it, which might itself be a filled value.
-- If you set the same key twice in the file, `switchd` uses the last value and logs a warning.
-- If any threshold is out of range or out of order, `switchd` rejects the entire profile. No value from the file reaches the hardware, including the free and busy grade thresholds, the shaper rates, and the ECMP group size, and the switch keeps the adaptive routing configuration it is already running.
-{{%/notice%}}
-
-Unlike the four extended thresholds, `ar.ctl`, `ar.ctm`, and `ar.cth` have no *value-when-omitted* rule of their own. If you leave one out of the file, Cumulus Linux keeps the value it already has for that key instead of resetting it (200, 1000, and 10000 on a freshly booted switch or the values the switch loaded last). The switch can accept or reject a file that sets only the extended thresholds depending on the configuration set before you apply it.
-
-<!-- REVIEW: whether a profile that sets extended thresholds without all three legacy keys should
-     instead be rejected outright, naming the missing keys, is an open question with MLX-Arch as of
-     this spec revision. If that lands before release, the recommendation below may need to become a
-     hard requirement instead. Delete this comment before publishing. -->
-
-To avoid depending on what the switch previously loads, set `ar.ctl`, `ar.ctm`, and `ar.cth` explicitly in every profile that also sets extended thresholds.
-
-{{%notice warning%}}
-Cumulus Linux does not validate that a threshold value is a number and reads an unparseable value, such as `ar.ct4 = abc`, as 0. In most cases, the resulting 0 breaks the non-decreasing order and `switchd` rejects the whole profile; however, if the unparseable value is `ar.ctl` or if every one of the seven thresholds is unparseable, 0 satisfies the ordering rule and Cumulus Linux accepts the profile with a value you do not intend, with no error and no warning. Check the file for typos before you apply it.
-{{%/notice%}}
-
-#### Configure Extended Grading
-
-<!-- REVIEW: NVIDIA has not published recommended extended threshold values; the spec records them as
-     pending end-to-end characterization. The values below are illustrative only. Replace them with
-     recommended values when they are available, or add a sentence telling the reader to obtain them
-     from NVIDIA. Delete this comment before publishing. -->
-
-The following example configures the four extended thresholds and raises the free grade threshold so that the four additional grades take part in port selection.
-
-{{< tabs "TabID762 ">}}
-{{< tab "NVUE Commands ">}}
-
-1. Create a flexible snippet in `yaml` format:
-
-   ```
-   cumulus@switch:~$ sudo nano /home/cumulus/ar-extended-grading.yaml
-   - set:
-       system:
-         config:
-           snippet:
-             ar-extended-grading:
-               file: "/etc/cumulus/switchd.d/ar_profile_custom.conf"
-               content: |
-                 ar.ctl = 500
-                 ar.ctm = 1000
-                 ar.cth = 2500
-                 ar.ct4 = 5000
-                 ar.ct5 = 10000
-                 ar.ct6 = 20000
-                 ar.ct7 = 40000
-                 ar.p.frt = 7
-                 ar.p.but = 0
-   ```
-
-2. Patch the configuration with the fully qualified path to the file:
-
-   ```
-   cumulus@switch:~$ nv config patch /home/cumulus/ar-extended-grading.yaml
-   ```
-
-3. Apply the configuration:
-
-   ```
-   cumulus@switch:~$ nv config apply
-   ```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Edit the `/etc/cumulus/switchd.d/ar_profile_custom.conf` file:
-
-```
-cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/ar_profile_custom.conf
-ar.ctl = 500
-ar.ctm = 1000
-ar.cth = 2500
-ar.ct4 = 5000
-ar.ct5 = 10000
-ar.ct6 = 20000
-ar.ct7 = 40000
-ar.p.frt = 7
-ar.p.but = 0
-```
-
-Reload `switchd` with the `sudo systemctl reload switchd.service` command.
-
-{{< /tab >}}
-{{< /tabs >}}
-
-<!-- REVIEW: the spec states the accepted range and the consequence of leaving `ar.p.frt` at 4, but
-     never defines what the free and busy grade thresholds do. Add a one-sentence definition from the
-     adaptive routing owner. Delete this comment before publishing. -->
-
-#### Free and Busy Grade Thresholds
-
-The free and busy grade thresholds, `ar.p.frt` and `ar.p.but`, select which grades adaptive routing considers when it picks an egress port. Cumulus Linux accepts a value between 0 and 7 only when you configure extended grading on hardware that supports it, and between 0 and 4 otherwise.
-
-Tune the free and busy grade thresholds together with the extended congestion thresholds. If you configure `ar.ct4` through `ar.ct7` but leave `ar.p.frt` at the default of 4, the switch computes eight grades but adaptive routing only considers grades 0 through 4, so the four additional grades never take part in port selection. Cumulus Linux accepts this configuration and does not warn you.
-
-#### Return to Legacy Grading
-
-To return the switch to three-threshold grading, apply the profile again without the `ar.ct4` through `ar.ct7` lines and with `ar.p.frt` back at 4. Cumulus Linux forgets the extended thresholds and keeps the `ar.ctl`, `ar.ctm`, and `ar.cth` values you tuned. Removing the profile file, and selecting a profile other than the custom profile, also returns the switch to three-threshold grading.
-
-If you remove the extended thresholds but leave `ar.p.frt` above 4, `switchd` logs the mismatch and skips the profile, because 4 is again the highest valid grade.
-
-#### Upgrade Notes
-
-Cumulus Linux 5.19 validates the range and the order of `ar.ctl`, `ar.ctm`, and `ar.cth` in the custom profile, whether or not you configure extended grading. Earlier releases accept these three thresholds without either check. A custom profile that carries an out of range or out of order value is rejected in full after you upgrade. Check the profile file against the rules above before you upgrade the switch.
-
-A value of 5 through 7 already set for `ar.p.frt` or `ar.p.but` stays rejected after you upgrade until you configure extended grading.
-
-#### Verify the Configuration
-
-<!-- REVIEW: sample output below, for both the log line and the switchd configuration node readout,
-     is drafted, not captured. Confirm the readout format on a Spectrum-6 switch. Delete this comment
-     before publishing. -->
-
-NVUE does not validate the contents of the profile file, so `nv config apply` succeeds whether or not `switchd` accepts the profile. `switchd` reports every validation failure to `/var/log/switchd.log` only. After you apply a profile, check the log to confirm that the switch accepts it.
-
-`switchd` logs one summary line, `AR: applied`, on every profile evaluation. It names the full resolved seven-threshold vector and whether extended grading took effect, so check it first:
-
-```
-cumulus@switch:~$ sudo grep "AR: applied" /var/log/switchd.log | tail -1
-AR: applied (ctl=500 ctm=1000 cth=2500 ct4=5000 ct5=10000 ct6=20000 ct7=40000) extended=yes
-```
-
-For a validation failure or other detail, search the wider log:
-
-```
-cumulus@switch:~$ sudo grep -iE "adaptive|extended grading|congestion threshold" /var/log/switchd.log
-```
-
-To see the threshold values in effect, read the `switchd` configuration nodes:
-
-```
-cumulus@switch:~$ cat /cumulus/switchd/config/ar/ct4
-5000
-```
-
-The `nv show router adaptive-routing` command does not show the extended thresholds.
-
-<!-- REVIEW: the spec records the reload transient as an open issue awaiting confirmation from the SDK
-     and firmware teams. Confirm before publishing, or remove the note. Delete this comment before
-     publishing. -->
-
-{{%notice note%}}
-Reprogramming the congestion thresholds on a switch that is carrying traffic causes a brief transient while the new grades take effect.
-{{%/notice%}}
-
 ### ECMP Group Segregation
 
 {{%notice note%}}
@@ -1041,7 +848,19 @@ There is no NVUE command for segregation and no separate setting to turn it on. 
      spec states it. Ask the adaptive routing owner for the full value list so that the table can
      name what the other settings do. Delete this comment before publishing. -->
 
-Before you configure segregation, {{<link url="#enable-adaptive-routing" text="enable adaptive routing">}} and select the custom profile as described in {{<link url="#extended-grading" text="Extended Grading">}}.
+<!-- REVIEW: the spec calls `nv set router adaptive-routing profile profile-custom` an existing
+     command, but no `profile` leaf appears under `nv set router adaptive-routing` anywhere in
+     content/nvue-reference/, and both this page and the reference call the feature the
+     `custom-profile`. Moved here on 2026-10-20 when the Extended Grading section was removed
+     (FR 5018267 is not documented). Confirm the command name and the profile name against a
+     candidate build. Delete this comment before publishing. -->
+
+Before you configure segregation, {{<link url="#enable-adaptive-routing" text="enable adaptive routing">}} and select the custom profile with the `nv set router adaptive-routing profile profile-custom` command:
+
+```
+cumulus@switch:~$ nv set router adaptive-routing profile profile-custom
+cumulus@switch:~$ nv config apply
+```
 
 {{< tabs "TabID763 ">}}
 {{< tab "NVUE Commands ">}}
@@ -1119,177 +938,6 @@ cumulus@switch:~$ sudo grep -iE "port select mode|grouping mode" /var/log/switch
 
 <!-- TODO: capture the switchd log messages for round-robin port selection and segregated grouping on a Spectrum-6 switch and paste them here -->
 
-### Resource Mode and Hybrid Scheduling
-
-{{%notice note%}}
-Hybrid scheduling is supported on switches with the Spectrum-4 and later ASIC. The switch rejects a maximum random ECMP weight percentage above 0 on any other ASIC.
-{{%/notice%}}
-
-The switch holds one hardware entry for each adaptive routing ECMP group. In a large network the table cannot hold an entry for every group, so the switch can merge groups together, which reduces the throughput adaptive routing delivers. Hybrid scheduling reduces merging by moving the ECMP groups that carry the least weight to random forwarding, which leaves room in the table for the groups that carry the most weight to stay adaptive.
-
-<!-- REVIEW: the Adaptive Routing introduction already says that Cumulus Linux "supports ECMP resource
-     optimization for adaptive routing", with no commands and no section behind it. The optimized
-     resource mode documented here might be the NVUE surface for exactly that sentence. Ask the
-     adaptive routing owner, and either link the two or rewrite the introduction sentence.
-     Delete this comment before publishing. -->
-
-Two settings under `nv set router adaptive-routing resource` control this behavior. The resource mode selects which resource allocation algorithm the switch uses, and the maximum random ECMP weight percentage caps the share of ECMP weight the switch can move to random forwarding. Hybrid scheduling is not a third adaptive routing mode; it is the behavior you get when you select the optimized resource mode and set a percentage above 0.
-
-| Resource mode | Percentage | Behavior |
-| ------------- | ---------- | -------- |
-| `legacy` | 0 | The default settings. The switch uses the legacy resource allocation and hybrid scheduling is off. |
-| `optimized` | 0 | The switch uses the optimized resource allocation and hybrid scheduling is off. |
-| `optimized` | 1 through 100 | Hybrid scheduling is on. The switch selects which groups move to random forwarding and rebalances them. |
-| `legacy` | 1 through 100 | Invalid. `nv config apply` rejects the configuration. |
-
-{{%notice note%}}
-- The percentage caps the share of total ECMP **weight** the switch can assign to random forwarding. It is not a guaranteed share of traffic and not a percentage of ECMP groups.
-- The word `optimized` appears twice in the command path for two different reasons. `resource mode optimized` selects the optimized resource mode. `resource optimized max-random-ecmp-weight-percent` sets a parameter that applies to that mode. Setting the percentage does not select the mode.
-- Under `legacy` mode, the switch keeps a percentage of 0 that you set explicitly, but the value has no effect until you also select `optimized` mode.
-- The switch continues to forward traffic that is not adaptive routing eligible by hash. Hybrid scheduling does not turn off hash based forwarding.
-{{%/notice%}}
-
-#### Configure Resource Mode and Hybrid Scheduling
-
-<!-- REVIEW: this section has no Linux tab. Every other adaptive routing section on this page pairs
-     its NVUE tab with a Linux tab that edits /etc/cumulus/switchd.d/adaptive_routing.conf, and NVUE
-     does render these two settings into that file as adaptive_routing.resource_mode and
-     adaptive_routing.max_random_ecmp_weight_percent. The spec puts direct manual edits to those two
-     keys out of scope and states that switchd does not validate them, so the draft documents the
-     NVUE path only. Confirm this is the right call for the page. Delete this comment before
-     publishing. -->
-
-To select the resource mode, run the `nv set router adaptive-routing resource mode` command. To cap the share of ECMP weight the switch can move to random forwarding, run the `nv set router adaptive-routing resource optimized max-random-ecmp-weight-percent <0-100>` command.
-
-The following example selects the optimized resource mode and allows the switch to move up to 70 percent of the ECMP weight to random forwarding, which turns on hybrid scheduling:
-
-```
-cumulus@switch:~$ nv set router adaptive-routing resource mode optimized
-cumulus@switch:~$ nv set router adaptive-routing resource optimized max-random-ecmp-weight-percent 70
-cumulus@switch:~$ nv config apply
-```
-
-To turn off hybrid scheduling but keep the optimized resource mode, set the percentage to 0:
-
-```
-cumulus@switch:~$ nv set router adaptive-routing resource optimized max-random-ecmp-weight-percent 0
-cumulus@switch:~$ nv config apply
-```
-
-To return the switch to the default settings, run the `nv unset router adaptive-routing resource optimized max-random-ecmp-weight-percent` and `nv unset router adaptive-routing resource mode` commands:
-
-```
-cumulus@switch:~$ nv unset router adaptive-routing resource optimized max-random-ecmp-weight-percent
-cumulus@switch:~$ nv unset router adaptive-routing resource mode
-cumulus@switch:~$ nv config apply
-```
-
-<!-- REVIEW: the restart lifecycle below is the largest open item in the spec. Product approval for a
-     disruptive apply is still open: one stakeholder recorded that a switchd restart must not be
-     reintroduced, and the spec says to hold or rescope the feature if the approval does not land.
-     Confirm the approved apply behavior on a candidate build before publishing; if the feature moves
-     to a live apply, this warning and the sentence after it must be rewritten. Delete this comment
-     before publishing. -->
-
-{{%notice warning%}}
-Changing the resource mode or the maximum random ECMP weight percentage restarts the `switchd` service, which disrupts forwarding across the whole switch until `switchd` reinitializes the hardware and replays its forwarding state. A full switch reboot is not required. Plan the change for a maintenance window.
-{{%/notice%}}
-
-<!-- REVIEW: the downgrade sentence below is drafted from a single spec line that states a downgrade to
-     a software version without this feature is not supported. Confirm the release boundary with the
-     adaptive routing owner and name the earliest supported release if there is one. Delete this
-     comment before publishing. -->
-
-{{%notice note%}}
-Cumulus Linux does not support downgrading a switch that is running hybrid scheduling to a release that does not support hybrid scheduling.
-{{%/notice%}}
-
-#### ECMP Support with Hybrid Scheduling
-
-<!-- REVIEW: the table below applies when the percentage is greater than 0, which is how the spec's
-     compatibility summary and matrix both scope it. The spec carries an open item asking whether the
-     same restrictions apply to the optimized resource mode with a percentage of 0. Confirm the scope
-     before publishing and widen the lead-in sentence if the answer is yes. Delete this comment before
-     publishing. -->
-
-While hybrid scheduling is on, the switch restricts which ECMP groups it can program. The following table shows which combinations of ECMP type and next hop type the switch supports when the maximum random ECMP weight percentage is greater than 0.
-
-| ECMP type | Layer 3 router port | Non-layer 3 port | Tunnel next hop | LAG next hop |
-| --------- | ------------------- | ---------------- | --------------- | ------------ |
-| Adaptive, single next hop | Yes | No | No | No |
-| Adaptive, multiple next hops | Yes | No | No | No |
-| Hash based static, single next hop | Yes | Yes | Yes | Yes |
-| Hash based static, multiple next hops | No | No | No | No |
-| Hash based resilient, single next hop | Yes | Yes | Yes | Yes |
-| Hash based resilient, multiple next hops | No | No | No | No |
-| Hash based consistent, single next hop | Yes | Yes | Yes | Yes |
-| Hash based consistent, multiple next hops | No | No | No | No |
-
-<!-- REVIEW: the two paragraphs below describe what a user sees when an existing ECMP group is not
-     compatible. The spec confirms that enabling a positive percentage can make existing groups
-     incompatible during switchd replay, but leaves the preflight check, the resulting switch state,
-     and the recovery procedure open, so the draft tells the reader to check first and stops there.
-     Add the recovery steps when the spec closes that item. The exact log message is also unwritten;
-     capture it on a supported switch and replace the grep pattern. Delete this comment before
-     publishing. -->
-
-Check the ECMP groups the switch already carries before you turn on hybrid scheduling. The switch applies these restrictions when `switchd` restarts, so a group that the table marks unsupported can become incompatible when `switchd` replays its forwarding state, even though the group worked before the change.
-
-When the switch cannot program an ECMP group because hybrid scheduling is on, it logs an error that names the group, the failure, and the corrective action. Do not assume that the switch programmed the routes that depend on that group. Check `/var/log/switchd.log` after you apply the change:
-
-```
-cumulus@switch:~$ sudo grep -iE "hybrid|ecmp" /var/log/switchd.log
-```
-
-<!-- TODO: capture the switchd error message for an ECMP group rejected under hybrid scheduling on a supported switch and paste it here -->
-
-#### Adaptive Routing Profile
-
-Hybrid scheduling runs with the free profile mode, which the custom adaptive routing profile selects with `ar.p.m = 0`. If the profile sets `ar.p.m` to another value while the maximum random ECMP weight percentage is greater than 0, the switch keeps the value in the file, programs the free mode instead, and logs a critical message. After you set the percentage back to 0 and `switchd` restarts, the profile mode in the file takes effect again.
-
-The random profile mode is not the same thing as hybrid scheduling. The random profile mode selects an eligible path at random for adaptive routing eligible traffic; hybrid scheduling moves whole ECMP groups off adaptive routing and onto random ECMP forwarding.
-
-For information about the custom adaptive routing profile and how to write it, refer to {{<link url="#extended-grading" text="Extended Grading">}}.
-
-#### Show the Resource Configuration
-
-<!-- REVIEW: the three readouts below are adapted from the spec rather than captured on hardware.
-     Capture them on a supported switch before publishing. One detail in particular: when you select
-     the optimized resource mode and leave the percentage unset, the spec does not settle whether
-     NVUE renders the implicit 0 or omits the field, so the draft shows only the two cases the spec
-     states. Delete this comment before publishing. -->
-
-To show the adaptive routing resource configuration, run the `nv show router adaptive-routing resource` command:
-
-```
-cumulus@switch:~$ nv show router adaptive-routing resource
-                                operational  applied
-------------------------------  -----------  ---------
-mode                                         optimized
-optimized
-  max-random-ecmp-weight-percent             70
-```
-
-To show the optimized resource mode parameters on their own, run the `nv show router adaptive-routing resource optimized` command:
-
-```
-cumulus@switch:~$ nv show router adaptive-routing resource optimized
-                                operational  applied
-------------------------------  -----------  -------
-max-random-ecmp-weight-percent               70
-```
-
-The indented `optimized` entry holds the parameters that apply to the optimized resource mode; it is not the `mode` setting. The `operational` column is blank because these commands show the configured values only.
-
-When the percentage is at its default, the command omits the `optimized` entry:
-
-```
-cumulus@switch:~$ nv show router adaptive-routing resource
-          operational  applied
---------  -----------  -------
-mode                   legacy
-```
-
 ### Show Adaptive Routing Settings
 
 To show adaptive routing settings, run the `nv show router adaptive-routing` command:
@@ -1302,8 +950,6 @@ state                       enabled       enabled
 ```
 
 To show adaptive routing configuration for an interface, run the `nv show interface <interface-id> router adaptive-routing`.
-
-To show the resource mode and the maximum random ECMP weight percentage, run the `nv show router adaptive-routing resource` command; refer to {{<link url="#show-the-resource-configuration" text="Show the Resource Configuration">}}.
 
 ## Considerations
 

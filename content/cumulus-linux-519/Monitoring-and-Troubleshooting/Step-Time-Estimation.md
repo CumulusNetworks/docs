@@ -29,7 +29,7 @@ To configure step time estimation:
    cumulus@switch:~$ nv config apply
    ```
 
-3. Configure the batch interval, in seconds. This is the interval between successive runs of the algorithm, and therefore the interval between successive exports of the metric. You can set a value between 300 and 3600. The default value is 300 seconds.
+3. Configure the batch interval, in seconds. This is the interval between successive runs of the algorithm, and therefore the interval between successive exports of the metric. You can set a value between 90 and 3600. The default value is 90 seconds.
 
    ```
    cumulus@switch:~$ nv set system telemetry step-time-estimation batch-interval 600

@@ -3537,7 +3537,7 @@ cumulus@switch:~$ nv set system telemetry stats-group group1 wjh sample-interval
 
 ## <h>nv set system telemetry step-time-estimation batch-interval</h>
 
-Configures the interval, in seconds, between step time estimation batches. You can specify a value between 300 and 3600. The default value is 300.
+Configures the interval, in seconds, between step time estimation batches. You can specify a value between 90 and 3600. The default value is 90.
 
 ### Version History
 

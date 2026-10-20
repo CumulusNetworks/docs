@@ -29,7 +29,7 @@ To configure step time estimation:
    cumulus@switch:~$ nv config apply
    ```
 
-3. Configure the batch interval, in seconds. This is the interval between successive runs of the algorithm, and therefore the interval between successive exports of the metric. You can set a value between 300 and 3600. The default value is 300 seconds.
+3. Configure the batch interval, in seconds. This is the interval between successive runs of the algorithm, and therefore the interval between successive exports of the metric. You can set a value between 90 and 3600. The default value is 90 seconds.
 
    ```
    cumulus@switch:~$ nv set system telemetry step-time-estimation batch-interval 600
@@ -54,7 +54,7 @@ To configure step time estimation:
 To correlate an estimate with the server behind the interface, configure {{<link url="Open-Telemetry-Export/#static-labels" text="static labels">}} for the switch and its interfaces. The collector then receives the label descriptions alongside the estimate. For example, label a monitored interface with the identity of its peer:
 
 ```
-cumulus@switch:~$ nv set interface swp1 telemetry label peer description "gpu-host-042"
+cumulus@switch:~$ nv set interface swp1s0 telemetry label peer description "gpu-host-042"
 cumulus@switch:~$ nv config apply
 ```
 

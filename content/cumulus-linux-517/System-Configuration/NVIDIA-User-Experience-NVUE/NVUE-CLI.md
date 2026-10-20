@@ -702,6 +702,17 @@ If there are any issues with the `nv set` or `nv unset` commands, NVUE prints th
 In Cumulus Linux 5.16 and later, NVUE supports both unset and set commands for the same object in a single patch.
 {{%/notice%}}
 
+### Apply a Bulk Configuration
+
+When you configure a large number of settings at once, use the `nv config patch` command with a text file of `nv set` commands instead of running each `nv set` command individually. Applying the same changes in a single patch is considerably faster than running the commands one at a time.
+
+The following example patches the pending configuration with the `nv set` commands in the `/home/cumulus/bulk-config.txt` file, then applies the configuration:
+
+```
+cumulus@switch:~$ nv config patch /home/cumulus/bulk-config.txt
+cumulus@switch:~$ nv config apply
+```
+
 ## Translate a Configuration Revision or File
 
 NVUE provides commands to translate an NVUE configuration revision or yaml file into NVUE commands. The revision ID must be either an integer or a named revision (such as startup or applied). The configuration file must be on the switch and must include the full path to the file containing the configuration you want to translate. The file must be in YAML format and must be accessible with proper read permissions.

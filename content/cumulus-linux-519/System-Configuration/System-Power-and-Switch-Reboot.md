@@ -317,6 +317,22 @@ If the switch has connected hosts configured with ARP timeout values shorter tha
 
 - Configure static ARP entries. Create required static ARP mappings on the affected hosts before initiating ISSU to ensure uninterrupted ARP resolution.
 
+### MAC Address Learning
+
+During the warm boot window, the switch does not learn new MAC addresses in hardware. A MAC address that reaches the switch for the first time during this window, such as a host that comes online or moves to a different port, is not learned until the warm boot completes. MAC addresses the switch learned before the warm boot are preserved.
+
+After the warm boot completes, hardware MAC learning resumes. If traffic is still flowing from the affected hosts, the switch learns their MAC addresses at that point; you do not need to take any action.
+
+<!-- REVIEW: Redmine #5355792. Same scope question as the Spanning Tree Protocol subsection below -
+     the ticket title says "ISSUv2" but the body says only "during the warmboot window", so this is
+     drafted to cover warm boot generally rather than full resource mode alone. That is the safer
+     direction of the two, but confirm with the reporter (Sharanya Singh): if learning is only
+     suspended under full resource mode, this over-warns Spectrum-3 and earlier users. The ticket
+     gives no duration for the window and names no mitigation, so neither is stated. The claim that
+     previously learned MAC addresses survive is drawn from the existing full resource mode
+     description (preserves "complete layer 2 ... hardware state"), not from the ticket - confirm it
+     also holds for a legacy half-resource warm reboot. Delete this comment before publishing. -->
+
 ### Static Routes
 
 When a switch uses a static default route or specific static prefix routes configured only within FRR or through NVUE using the `nv set vrf <vrf-name> router static` command, these routes become temporarily unavailable after a warm reboot while FRR services restart. This can lead to a brief loss of reachability to remote networks.

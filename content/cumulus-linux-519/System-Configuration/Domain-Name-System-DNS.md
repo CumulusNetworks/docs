@@ -118,7 +118,7 @@ The `address` option defaults to `auto`. Automatic selection never replaces an a
 When you configure a source interface without an explicit address, the switch selects one address from that interface for the address family of the nameserver. It excludes addresses that cannot serve as a query source:
 - Host-only addresses in the `127.0.0.0/8` range and `::1`.
 - Link-local addresses in the `169.254.0.0/16` and `fe80::/10` ranges.
-- IPv6 addresses that are tentative, deprecated, or temporary.
+- IPv6 addresses that are tentative, no longer in use, or temporary.
 
 From the addresses that remain, the switch sorts the interface addresses with the NVUE natural sort, the same order `nv config show` displays and `nv config save` writes, then selects the first one. The order does not depend on the order in which you enter the addresses, so the selection is the same in the running configuration, in the saved configuration, after a reboot, and on any switch with the same set of addresses.
 

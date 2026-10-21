@@ -245,7 +245,7 @@ There is no NCLU command for monitoring hardware.
 
 {{%notice note%}}
 
-In earlier versions of Cumulus Linux, you could use the LM-SENSORS MIB to monitor temperature, but that MIB has been deprecated.
+In earlier versions of Cumulus Linux, you can use the LM-SENSORS MIB to monitor temperature, but that MIB has been discontinued.
 
 {{%/notice%}}
 

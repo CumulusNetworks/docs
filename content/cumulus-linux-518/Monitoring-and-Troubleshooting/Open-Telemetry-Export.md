@@ -3402,7 +3402,7 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 | `nvswitch_platform_environment_power_supply_voltage`| Output voltage (PSU output side). Emitted on PSU platforms only; not applicable to input-only PDB/HSC.|
 
 {{%notice note%}}
-On PSU-based platforms, the legacy `psu_*` metric family and the common `power_supply_*` family are emitted together for a three-release migration window. The legacy `psu_*` family is deprecated and will be removed after that window; make sure to migrate your dashboards and queries to `power_supply_*` during the window. The gNMI/OpenConfig PSU representation is unchanged.
+On PSU-based platforms, the legacy `psu_*` metric family and the common `power_supply_*` family are emitted together for a three-release migration window. The legacy `psu_*` family is discontinued and will be removed after that window; make sure to migrate your dashboards and queries to `power_supply_*` during the window. The gNMI/OpenConfig PSU representation is unchanged.
 {{%/notice%}}
 
 {{< /tab >}}

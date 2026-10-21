@@ -103,8 +103,8 @@ Cumulus Linux 5.16.0 contains new features and improvements, and provides bug fi
   - {{<link url="NVUE-API/#http-response-compression" text="HTTP response compression for API responses">}}
 - Telemetry
   - You can now use {{<link url="Open-Telemetry-Export" text="Open telemetry export">}} and {{<link url="gNMI-Streaming" text="gNMI streaming">}} at the same time.
-  - {{<link url="New-and-Updated-Telemetry-Metrics/#gnmi-metrics" text="New, updated, and deprecated gNMI Metrics">}}
-  - {{<link url="New-and-Updated-Telemetry-Metrics/#otel-metrics" text="New and deprecated OTEL Metrics">}}
+  - {{<link url="New-and-Updated-Telemetry-Metrics/#gnmi-metrics" text="New, updated, and discontinued gNMI Metrics">}}
+  - {{<link url="New-and-Updated-Telemetry-Metrics/#otel-metrics" text="New and discontinued OTEL Metrics">}}
 - NVUE:
   - {{<link url="New-and-Removed-NVUE-Commands" text="New and Removed NVUE Commands">}}.
 
@@ -127,7 +127,7 @@ For a list of the earliest Cumulus Linux releases supported for each switch mode
 ### Significant NVUE Command and API Updates
 
 {{%notice warning%}}
-To align with a long-term vision of a common interface between Cumulus Linux, NVIDIA OS (NVOS), and Host-Based Networking, Cumulus Linux 5.15 included significant NVUE command and API updates. If you are upgrading to Cumulus Linux 5.16 from Cumulus Linux 5.14 or earlier, review the list of {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-515/Whats-New/New-and-Changed-NVUE-Commands/" text="New, Changed, and Deprecated NVUE Commands in Cumulus Linux 5.15">}} before you upgrade to ensure a smooth transition.
+To align with a long-term vision of a common interface between Cumulus Linux, NVIDIA OS (NVOS), and Host-Based Networking, Cumulus Linux 5.15 included significant NVUE command and API updates. If you are upgrading to Cumulus Linux 5.16 from Cumulus Linux 5.14 or earlier, review the list of {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-515/Whats-New/New-and-Changed-NVUE-Commands/" text="New, Changed, and Discontinued NVUE Commands in Cumulus Linux 5.15">}} before you upgrade to ensure a smooth transition.
 {{%/notice%}}
 
 ### Maximum Number of NVUE Revisions

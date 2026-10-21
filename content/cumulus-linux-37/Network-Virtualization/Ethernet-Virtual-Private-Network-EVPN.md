@@ -910,7 +910,7 @@ VTEP per subnet, or two for redundancy.
 {{%notice note%}}
 
 An earlier version of this chapter referred to the `advertise-subnet`
-command. That command is deprecated and should not be used.
+command, which is discontinued; do not use it.
 
 {{%/notice%}}
 

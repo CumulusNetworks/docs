@@ -378,6 +378,6 @@ If you don't specify a DNS server and you lose in band connectivity, DNS will no
 
 {{%notice warning%}}
 
-Management VRF has replaced the management namespace functionality in Cumulus Linux. The management namespace feature (used with the `cl-ns-mgmt` utility) has been deprecated, and the `cl-ns-mgmt` command has been removed.
+Management VRF has replaced the management namespace functionality in Cumulus Linux. The management namespace feature (used with the `cl-ns-mgmt` utility) has been discontinued, and the `cl-ns-mgmt` command has been removed.
 
 {{%/notice%}}

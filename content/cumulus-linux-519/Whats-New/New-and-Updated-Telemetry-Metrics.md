@@ -6,7 +6,7 @@ product: Cumulus Linux
 version: "5.19"
 toc: 1
 ---
-The following tables list the new, updated, and deprecated gNMI and OTEL metrics in Cumulus Linux 5.19.
+The following tables list the new, updated, and discontinued gNMI and OTEL metrics in Cumulus Linux 5.19.
 
 ## New gNMI Metrics
 

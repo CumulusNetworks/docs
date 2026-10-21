@@ -8,7 +8,7 @@ toc: 3
 Maintenance mode enables you to take a switch out of production to perform updates or troubleshoot issues. You can put all protocols or all interfaces in maintenance mode.
 
 {{%notice note%}}
-Cumulus Linux 5.13 and later provides new NVUE `nv set maintenance unit` commands and deprecates the `nv action enable system maintenance` commands provided in Cumulus Linux 5.12 and earlier:
+Cumulus Linux 5.13 and later provides new NVUE `nv set maintenance unit` commands and no longer provides the `nv action enable system maintenance` commands available in Cumulus Linux 5.12 and earlier:
 {{%/notice%}}
 
 ## Protocols

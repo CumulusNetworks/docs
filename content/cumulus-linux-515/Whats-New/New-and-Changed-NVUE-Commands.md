@@ -788,9 +788,9 @@ nv show mlag
 {{< /tab >}}
 {{< /tabs >}}
 
-## Deprecated NVUE Commands
+## Discontinued NVUE Commands
 
-The following NVUE commands are deprecated in Cumulus Linux 5.15.
+The following NVUE commands are no longer provided in Cumulus Linux 5.15.
 
 {{< tabs "TabID857 ">}}
 {{< tab "nv show ">}}

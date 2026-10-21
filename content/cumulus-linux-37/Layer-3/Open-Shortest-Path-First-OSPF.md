@@ -122,7 +122,7 @@ OSPF uses the following timers to prevent consecutive SPFs from overburdening th
 
 ### Configure MD5 Authentication for OSPF Neighbors
 
-Simple text passwords have largely been deprecated in FRRouting, in favor of MD5 hash authentication.
+Simple text passwords have largely been discontinued in FRRouting, in favor of MD5 hash authentication.
 
 To configure MD5 authentication:
 

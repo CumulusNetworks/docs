@@ -263,7 +263,7 @@ cumulus@leaf01:mgmt:~$ nv action clear interface swp6 ipv6 neighbor-discovery pr
 ```
 
 {{%notice note%}}
-- A host does not remove the address immediately. RFC 4862 requires a host to keep an address usable for at least two hours after it receives a shorter lifetime, so the address becomes deprecated at once but is not removed from the host until about two hours later.
+- A host does not remove the address immediately. RFC 4862 requires a host to keep an address usable for at least two hours after it receives a shorter lifetime, so the address becomes unavailable at once but is not removed from the host until about two hours later.
 - Lifetime values of 7200 seconds (two hours) or less are equivalent, because of the RFC 4862 rule above. Specify a `valid-lifetime` greater than 7200 to give existing connections a longer drain window before the address is removed.
 - The action signals hosts; it does not remove the prefix from the configuration. If the prefix is still configured on the port, or its address is still installed on the interface, the switch advertises it again on the next periodic router advertisement and the host *un-deprecates* it. To retire a prefix for good, also remove it from the interface with the `nv unset interface <interface-id> ipv6 neighbor-discovery prefix <ipv6-prefix-id>` command.
 {{%/notice%}}

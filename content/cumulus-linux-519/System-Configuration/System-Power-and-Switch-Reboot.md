@@ -331,6 +331,13 @@ iface eth0
  address 10.100.156.254/24
  post-up ip route add 10.100.200.0/24 via 10.100.156.1 vrf mgmt
 ```
+
+### Spanning Tree Protocol
+
+When you run a warm reboot in {{<link url="Upgrading-Cumulus-Linux/#full-resource-mode-issu" text="full resource mode">}} and <span class="a-tooltip">[STP](## "Spanning Tree Protocol")</span> is enabled in the bridge domain, a continuous traffic stream experiences momentary traffic loss. Traffic recovers on its own; you do not need to take any action.
+
+Cumulus Linux enables STP by default on both VLAN-aware and traditional bridges, so this applies unless you disable STP. Refer to {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP" text="Spanning Tree and Rapid Spanning Tree - STP">}}.
+
 <!--
 ## Power Off
 

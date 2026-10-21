@@ -235,7 +235,7 @@ To upgrade the switch:
 ### Package Upgrade
 
 {{%notice note%}}
-- NVUE deprecated the port split command options (2x10G, 2x25G, 2x40G, 2x50G, 2x100G, 2x200G, 4x10G, 4x25G, 4x50G, 4x100G, 8x50G) available in Cumulus Linux 5.3 and earlier. If you use NVUE to configure port breakout speeds in Cumulus 5.3 or earlier, NVUE automatically updates the configuration during upgrade to Cumulus Linux 5.5 and later to use the new format (2x, 4x, 8x).
+- NVUE removed the port split command options (2x10G, 2x25G, 2x40G, 2x50G, 2x100G, 2x200G, 4x10G, 4x25G, 4x50G, 4x100G, 8x50G) available in Cumulus Linux 5.3 and earlier. If you use NVUE to configure port breakout speeds in Cumulus 5.3 or earlier, NVUE automatically updates the configuration during upgrade to Cumulus Linux 5.5 and later to use the new format (2x, 4x, 8x).
 - Cumulus Linux continues to support the old port split format in the `/etc/cumulus/ports.conf` file; however NVIDIA recommends that you use the new format.
 {{%/notice%}}
 

@@ -17,9 +17,9 @@ Cumulus Linux 5.15.1 provides bug fixes.
 Cumulus Linux 5.15.0 contains new features and improvements, and provides bug fixes.
 ### New Features and Enhancements
 
-- {{<link url="#new-changed-and-deprecated-nvue-commands" text="NVUE command changes">}}
+- {{<link url="#new-changed-and-discontinued-nvue-commands" text="NVUE command changes">}}
 - {{<link url="Packet-Trimming/#packet-trimming-counters" text="Packet trimming counters">}}
-- {{<link url="Bidirectional-Forwarding-Detection-BFD" text="FRR-based BFD support">}}. Legacy BFD configuration and routing link state verification with PTMd is now deprecated.
+- {{<link url="Bidirectional-Forwarding-Detection-BFD" text="FRR-based BFD support">}}. Legacy BFD configuration and routing link state verification with PTMd is now discontinued.
 - {{<link url="Latency-Monitoring" text="Switch latency monitoring">}}
 - {{<link url="Docker-with-Cumulus-Linux" text="Enhanced NVUE support for docker containers">}}
 - {{<link url="802.1X-Interfaces/#dynamic-ipv6-multi-tenancy" text="802.1x Dynamic IPv6 Multi-tenancy">}}
@@ -178,7 +178,7 @@ Old Name | New Name|
 | `/interfaces/interface[name]/ethernet/phy/state/lane[lane]/raw-ber` | `/interfaces/interface[name]/phy/channels/channel[id]/ber/state/raw-ber` |
 | `/interfaces/interface[name]/ethernet/phy/state/lane[lane]/raw-errors` | `/interfaces/interface[name]/phy//channels/channel[id]/state/raw-errors` |
 {{< /expand >}}
-   - {{< expand "Deprecated OTEL Metrics" >}}
+   - {{< expand "Discontinued OTEL Metrics" >}}
 |  Name | Removal Reason |
 |------ | ----------- |
 | `nvswitch_interface_discards_port_isolation` | Unsupported on Spectrum switches. |
@@ -228,10 +228,10 @@ Old Name | New Name|
 
 Review the following considerations before you upgrade to Cumulus Linux 5.15.
 
-### New, Changed, and Deprecated NVUE Commands
+### New, Changed, and Discontinued NVUE Commands
 
 {{%notice warning%}}
-To align with a long-term vision of a common interface between Cumulus Linux, Nvidia OS (NVOS), and Host-Based Networking, many NVUE commands in Cumulus Linux 5.15 have changed. Before you upgrade to 5.15, review the list of {{<link url="New-and-Changed-NVUE-Commands" text="New, Changed, and Deprecated NVUE Commands">}} and be sure to make any necessary changes to your automation.
+To align with a long-term vision of a common interface between Cumulus Linux, Nvidia OS (NVOS), and Host-Based Networking, many NVUE commands in Cumulus Linux 5.15 have changed. Before you upgrade to 5.15, review the list of {{<link url="New-and-Changed-NVUE-Commands" text="New, Changed, and Discontinued NVUE Commands">}} and be sure to make any necessary changes to your automation.
 {{%/notice%}}
 
 ### Upgrade Requirements

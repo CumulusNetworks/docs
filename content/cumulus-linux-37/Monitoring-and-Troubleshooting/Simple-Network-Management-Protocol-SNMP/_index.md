@@ -1459,7 +1459,7 @@ SNMPDOPTS=&#39;-y -LS 0-4 d -Lf /dev/null -u snmp -g snmp -I -smux -p /run/snmpd
 </tr>
 <tr>
 <td><p>{{<mib_link url="mibs/LM-SENSORS-MIB.txt" text="LM-SENSORS MIB" >}}</p></td>
-<td><p>Fan speed, temperature sensor values, voltages. This is deprecated since the ENTITY-SENSOR MIB has been added.</p></td>
+<td><p>Fan speed, temperature sensor values, voltages. This is discontinued since the ENTITY-SENSOR MIB has been added.</p></td>
 </tr>
 <tr>
 <td><p>{{<mib_link url="mibs/NET-SNMP-AGENT-MIB.txt" text="NET-SNMP-AGENT-MIB" >}}</p></td>

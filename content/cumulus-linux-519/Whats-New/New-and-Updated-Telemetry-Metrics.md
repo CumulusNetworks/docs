@@ -147,8 +147,6 @@ The following paths are present on a switch with co-packaged optics (CPO) only. 
 | `/components/component[name=<els-id>]/laser-source/state/date-code` | Laser source vendor date code. |
 | `/components/component[name=<els-id>]/laser-source/state/present` | Whether the laser source is present. |
 | `/components/component[name=<els-id>]/laser-source/state/icc-current` | ICC current the laser source draws. |
-| `/interfaces/interface[name=<interface-id>]/state/cpo-module` | The CPO module that carries the interface. |
-| `/interfaces/interface[name=<interface-id>]/state/cpo-channels` | The CPO module channels assigned to the interface. |
 
 {{< /tab >}}
 {{< tab "Back-to-sender on Link Down">}}

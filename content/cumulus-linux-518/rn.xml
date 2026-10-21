@@ -13,6 +13,18 @@
 <td></td>
 </tr>
 <tr>
+<td>5324751</td>
+<td>IPv6 static routes with a link-local next hop might not be programmed in hardware when you convert bridge member ports to routed ports and add static routes through those ports in the same configuration apply.</td>
+<td>5.18.2-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5324348</td>
+<td>Zebra terminates unexpectedly (SIGSEGV) on switches running FRR with SNMP enabled, which causes {{watchfrr }} to restart the entire FRR daemon set. The affected daemon stops reporting SNMP data and the freed-memory access can cause the daemon to crash. </td>
+<td>5.16.3-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5321800, 5322481</td>
 <td>During a package upgrade when upgrading the {{cumulus-overrides}} package, the upgrade moves the container root from {{/var/lib/containerd}} to {{/containerd}}. If any snapshots under {{/var/lib/containerd}} are removed during the container root move, package upgrade fails to update the {{cumulus-overrides}} package. In certain cases snapshots are deleted. After package upgrade encounters this failure, it also stops updating all the packages that depend on {{cumulus-overrides}}.
 To work around this issue, first upgrade the {{cumulus-overrides}} package, then run package upgrade after updating the {{/etc/apt/sources.list}}
@@ -32,9 +44,22 @@ cumulus@switch:~$ nv action reboot system mode &lt;cold|warm&gt;</td>
 <td></td>
 </tr>
 <tr>
+<td>5316646</td>
+<td>On Spectrum-6 switches, adaptive routing port select mode is not set to SEMI_RR (round-robin) after the switch reboots.</td>
+<td>5.18.0-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5315365</td>
 <td>An incomplete, unauthenticated station entry is retained incorrectly and restored after upgrade. This causes a new EAP Identity exchange to start, but the entry is not aged out as expected on the wired interface, resulting in continuous retransmissions.</td>
 <td>5.16.7-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5311631</td>
+<td>DHCPv6 relay might fail to start when a configured upstream interface has no discoverable IPv6 address. This includes admin down interfaces and unnumbered VLAN interfaces created without carrier during  provisioning.
+This failure disrupts DHCPv6 service for all downstream interfaces served by that relay instance, even when other upstreams can reach the server.</td>
+<td>5.18.1-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -65,6 +90,12 @@ cumulus@switch:~$ nv action reboot system mode &lt;cold|warm&gt;</td>
 <td>5299253</td>
 <td>LLDP SNMP polling fails because the generated OID index is not strictly increasing, breaking {{snmpbulkwalk}} and making LLDP neighbor information unreliable. This issue affects long-running switches, especially switches with uptime beyond around 248 days.</td>
 <td>5.11.3-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5299074</td>
+<td>When multiple PDDR (Port Diagnostic Database Register) reads happen at the same time, the ASIC command interface can get stuck on register 0x5031. If this happens, {{switchd}} is terminated while it is in this hung state, which brings down all data ports. You see command-interface timeout on access register 0x5031 in the logs, followed by a fatal firmware health or FW Long Command event.</td>
+<td>5.16.1-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -627,6 +658,12 @@ Pin-Priority: 992</td>
 <tr>
 <td>4841491</td>
 <td>When the Management-Privilege-Level or Cisco-Avpair is not found, a user is created with privilege level 0 instead of privilege level 1.</td>
+<td>5.16.0-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>4802241, 4850432</td>
+<td>You might see error logs on the SN2201 switch while collecting a {{cl-support}} file. This issue has no negative impact.</td>
 <td>5.16.0-5.18.3</td>
 <td></td>
 </tr>
@@ -1372,15 +1409,40 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
+<td>5324751</td>
+<td>IPv6 static routes with a link-local next hop might not be programmed in hardware when you convert bridge member ports to routed ports and add static routes through those ports in the same configuration apply.</td>
+<td>5.18.2-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5324348</td>
+<td>Zebra terminates unexpectedly (SIGSEGV) on switches running FRR with SNMP enabled, which causes {{watchfrr }} to restart the entire FRR daemon set. The affected daemon stops reporting SNMP data and the freed-memory access can cause the daemon to crash. </td>
+<td>5.16.3-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5316939, 5316919</td>
 <td>NVUE user management commands fail when the {{/etc/passwd}} file contains non-UTF-8 characters. </td>
 <td>5.16.8-5.18.3</td>
 <td></td>
 </tr>
 <tr>
+<td>5316646</td>
+<td>On Spectrum-6 switches, adaptive routing port select mode is not set to SEMI_RR (round-robin) after the switch reboots.</td>
+<td>5.18.0-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5315365</td>
 <td>An incomplete, unauthenticated station entry is retained incorrectly and restored after upgrade. This causes a new EAP Identity exchange to start, but the entry is not aged out as expected on the wired interface, resulting in continuous retransmissions.</td>
 <td>5.16.7-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5311631</td>
+<td>DHCPv6 relay might fail to start when a configured upstream interface has no discoverable IPv6 address. This includes admin down interfaces and unnumbered VLAN interfaces created without carrier during  provisioning.
+This failure disrupts DHCPv6 service for all downstream interfaces served by that relay instance, even when other upstreams can reach the server.</td>
+<td>5.18.1-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -1411,6 +1473,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5299253</td>
 <td>LLDP SNMP polling fails because the generated OID index is not strictly increasing, breaking {{snmpbulkwalk}} and making LLDP neighbor information unreliable. This issue affects long-running switches, especially switches with uptime beyond around 248 days.</td>
 <td>5.11.3-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5299074</td>
+<td>When multiple PDDR (Port Diagnostic Database Register) reads happen at the same time, the ASIC command interface can get stuck on register 0x5031. If this happens, {{switchd}} is terminated while it is in this hung state, which brings down all data ports. You see command-interface timeout on access register 0x5031 in the logs, followed by a fatal firmware health or FW Long Command event.</td>
+<td>5.16.1-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -1979,6 +2047,12 @@ Pin-Priority: 992</td>
 <tr>
 <td>4841491</td>
 <td>When the Management-Privilege-Level or Cisco-Avpair is not found, a user is created with privilege level 0 instead of privilege level 1.</td>
+<td>5.16.0-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>4802241, 4850432</td>
+<td>You might see error logs on the SN2201 switch while collecting a {{cl-support}} file. This issue has no negative impact.</td>
 <td>5.16.0-5.18.3</td>
 <td></td>
 </tr>
@@ -2724,15 +2798,34 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
+<td>5324348</td>
+<td>Zebra terminates unexpectedly (SIGSEGV) on switches running FRR with SNMP enabled, which causes {{watchfrr }} to restart the entire FRR daemon set. The affected daemon stops reporting SNMP data and the freed-memory access can cause the daemon to crash. </td>
+<td>5.16.3-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5316939, 5316919</td>
 <td>NVUE user management commands fail when the {{/etc/passwd}} file contains non-UTF-8 characters. </td>
 <td>5.16.8-5.18.3</td>
 <td></td>
 </tr>
 <tr>
+<td>5316646</td>
+<td>On Spectrum-6 switches, adaptive routing port select mode is not set to SEMI_RR (round-robin) after the switch reboots.</td>
+<td>5.18.0-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5315365</td>
 <td>An incomplete, unauthenticated station entry is retained incorrectly and restored after upgrade. This causes a new EAP Identity exchange to start, but the entry is not aged out as expected on the wired interface, resulting in continuous retransmissions.</td>
 <td>5.16.7-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5311631</td>
+<td>DHCPv6 relay might fail to start when a configured upstream interface has no discoverable IPv6 address. This includes admin down interfaces and unnumbered VLAN interfaces created without carrier during  provisioning.
+This failure disrupts DHCPv6 service for all downstream interfaces served by that relay instance, even when other upstreams can reach the server.</td>
+<td>5.18.1-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -2772,6 +2865,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
+<td>5299074</td>
+<td>When multiple PDDR (Port Diagnostic Database Register) reads happen at the same time, the ASIC command interface can get stuck on register 0x5031. If this happens, {{switchd}} is terminated while it is in this hung state, which brings down all data ports. You see command-interface timeout on access register 0x5031 in the logs, followed by a fatal firmware health or FW Long Command event.</td>
+<td>5.16.1-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5298360</td>
 <td>Custom gNMI clients that create a subscription and then tear down the send part of the gRPC can see the subscriptions stop and restart every 3600 seconds, resulting in a brief loss of telemetry data.</td>
 <td>5.18.1-5.18.3</td>
@@ -2784,7 +2883,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
-<td>5281416</td>
+<td>5281416, 5341616</td>
 <td>When a configuration request is submitted through the REST API and RADIUS is configured for AAA authentication, the Calling-Station-Id sent to the RADIUS server incorrectly contains the loopback address (127.0.0.1) instead of the IP address of the originating REST API client .
 
 Due to flow:
@@ -3337,6 +3436,12 @@ Pin-Priority: 992</td>
 <tr>
 <td>4841491</td>
 <td>When the Management-Privilege-Level or Cisco-Avpair is not found, a user is created with privilege level 0 instead of privilege level 1.</td>
+<td>5.16.0-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>4802241, 4850432</td>
+<td>You might see error logs on the SN2201 switch while collecting a {{cl-support}} file. This issue has no negative impact.</td>
 <td>5.16.0-5.18.3</td>
 <td></td>
 </tr>
@@ -4108,14 +4213,8 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5.16.5-5.16.6</td>
 </tr>
 <tr>
-<td>5221592, 5217101</td>
-<td>AR ECMP updates during route deletion might result in ECMP database corruption and ECMP operation failures resulting in the following log messages:
-
-switchd[23072]: hal_mlx_sdk_nexthop_wrap.c:789 ERR ECMP: AR cmd CREATE failed: Entry Already Exists, nexthops 18
-switchd[23072]: hal_mlx_sdk_nexthop_wrap.c:934 ERR ECMP: failed to CREATE adaptive ecmp in hw
-switchd[23072]: hal_mlx_ecmp.c:2426 ERR ECMP: error allocating AR ecmp
-switchd[23072]: hal_mlx_sdk_nexthop_wrap.c:707 ERR ECMP: Failed to set adaptive container attributes for ecmp
-</td>
+<td>5221592, 5217101, 5179104</td>
+<td>Adaptive routing ECMP updates during route deletion might sometimes result in ECMP database corruption followed by ECMP operation failures.</td>
 <td>5.16.5-5.16.6</td>
 </tr>
 <tr>
@@ -4153,9 +4252,21 @@ switchd[23072]: hal_mlx_sdk_nexthop_wrap.c:707 ERR ECMP: Failed to set adaptive 
 <td></td>
 </tr>
 <tr>
+<td>5324348</td>
+<td>Zebra terminates unexpectedly (SIGSEGV) on switches running FRR with SNMP enabled, which causes {{watchfrr }} to restart the entire FRR daemon set. The affected daemon stops reporting SNMP data and the freed-memory access can cause the daemon to crash. </td>
+<td>5.16.3-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5316939, 5316919</td>
 <td>NVUE user management commands fail when the {{/etc/passwd}} file contains non-UTF-8 characters. </td>
 <td>5.16.8-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5316646</td>
+<td>On Spectrum-6 switches, adaptive routing port select mode is not set to SEMI_RR (round-robin) after the switch reboots.</td>
+<td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -4201,6 +4312,12 @@ switchd[23072]: hal_mlx_sdk_nexthop_wrap.c:707 ERR ECMP: Failed to set adaptive 
 <td></td>
 </tr>
 <tr>
+<td>5299074</td>
+<td>When multiple PDDR (Port Diagnostic Database Register) reads happen at the same time, the ASIC command interface can get stuck on register 0x5031. If this happens, {{switchd}} is terminated while it is in this hung state, which brings down all data ports. You see command-interface timeout on access register 0x5031 in the logs, followed by a fatal firmware health or FW Long Command event.</td>
+<td>5.16.1-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5297900</td>
 <td>A BGP prefix remains as the best path in BGP and present in the routing table but missing from the kernel and hardware. As a result, the switch drops traffic to the prefix, even though a good alternate path exists and the next hop group is programmed correctly. To work around this issue, clear the BGP session that provides the current best path to restore the route.</td>
 <td>5.16.3-5.18.0</td>
@@ -4213,7 +4330,7 @@ switchd[23072]: hal_mlx_sdk_nexthop_wrap.c:707 ERR ECMP: Failed to set adaptive 
 <td></td>
 </tr>
 <tr>
-<td>5281416</td>
+<td>5281416, 5341616</td>
 <td>When a configuration request is submitted through the REST API and RADIUS is configured for AAA authentication, the Calling-Station-Id sent to the RADIUS server incorrectly contains the loopback address (127.0.0.1) instead of the IP address of the originating REST API client .
 
 Due to flow:
@@ -4778,6 +4895,12 @@ Pin-Priority: 992</td>
 <tr>
 <td>4841491</td>
 <td>When the Management-Privilege-Level or Cisco-Avpair is not found, a user is created with privilege level 0 instead of privilege level 1.</td>
+<td>5.16.0-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>4802241, 4850432</td>
+<td>You might see error logs on the SN2201 switch while collecting a {{cl-support}} file. This issue has no negative impact.</td>
 <td>5.16.0-5.18.3</td>
 <td></td>
 </tr>

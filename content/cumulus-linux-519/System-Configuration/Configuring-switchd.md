@@ -194,8 +194,6 @@ Restarting the `switchd` service causes all network ports to reset in addition t
 
 ## Pipeline Flush
 
-<!-- REVIEW: The spec states "SPC4 and SCP5 only supported" (the second token looks like a typo). Drafted as Spectrum-4 and Spectrum-5. The spec states no quality level; confirm Beta or GA against the release Redmine query. Delete this comment before publishing. -->
-
 {{%notice note%}}
 Pipeline flush is supported on Spectrum-4 and Spectrum-5 switches.
 {{%/notice%}}

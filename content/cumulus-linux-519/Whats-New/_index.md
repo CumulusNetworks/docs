@@ -28,6 +28,7 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 - {{<link url="Understanding-the-cl-support-Output-File/#collect-the-nvme-nand-debug-log" text="The cl-support file">}} captures the SSD internal NAND debug log on a switch with a Virtium NVMe SSD
 - {{<link url="Patches" text="Patch uninstall returns the switch to the patch installed underneath, and a new command reclaims the space held by superseded patches">}}
 - {{<link url="Quality-of-Service/#pfc-watchdog" text="PFC watchdog detection parameters that distinguish a real deadlock from steady-state congestion">}}
+- {{<link url="Configuring-switchd/#pipeline-flush" text="Pipeline flush to limit how long the switch waits on a stalled ASIC pipeline">}} on Spectrum-4 and Spectrum-5 switches
 - {{<link url="Security-Configuration-Visibility" text="Security configuration report that collects the security configuration of the switch and checks each value against the reference values for the platform">}}
 - {{<link url="Packet-Trimming/#back-to-sender-notification-on-congestion-tail-drop" text="Back-to-sender notification on congestion tail drop">}} on Spectrum-6 switches
 - {{<link url="Packet-Trimming/#back-to-sender-notification-on-link-down" text="Back-to-sender notification when an MRC egress link fails">}}

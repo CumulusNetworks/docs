@@ -2451,6 +2451,7 @@ Cumulus Linux does not support lossless traffic or priority flow control (PFC) o
 
 - When you configure a lossless RoCE mode, Cumulus Linux does not create a lossless priority group on a service port. The service ports keep a lossy priority group.
 - NVUE rejects a PFC profile on a service port when you apply the configuration, with an error such as `qos pfc profile is not supported on service port <port-id>`.
+- PFC settings in the `default-global` profile do not affect service ports.
 
 Use a regular switch port for traffic that requires lossless treatment.
 {{%/notice%}}
@@ -2629,7 +2630,6 @@ Each layer reports a problem in a different place:
      whether the [SRVCP_INGRESS] REPAIR line still uses these fields. The NVUE and
      cl-consistency-check strings above come from FS tables rather than a captured build.
      Delete this comment before publishing. -->
-
 
 To show the pool, mode, and buffer sizes for a service port, run the `nv show interface <interface-id> qos buffer` command. A service port reports hardware pool `43` as its ingress pool instead of the pool a regular port reports. The egress pools are unchanged:
 

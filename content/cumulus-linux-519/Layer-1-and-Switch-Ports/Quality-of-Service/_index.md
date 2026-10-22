@@ -2451,6 +2451,7 @@ Cumulus Linux does not support lossless traffic or priority flow control (PFC) o
 
 - When you configure a lossless RoCE mode, Cumulus Linux does not create a lossless priority group on a service port. The service ports keep a lossy priority group.
 - NVUE rejects a PFC profile on a service port when you apply the configuration, with an error such as `qos pfc profile is not supported on service port <port-id>`.
+- PFC settings in the `default-global` profile do not affect service ports.
 
 Use a regular switch port for traffic that requires lossless treatment.
 {{%/notice%}}
@@ -2630,16 +2631,9 @@ Each layer reports a problem in a different place:
      cl-consistency-check strings above come from FS tables rather than a captured build.
      Delete this comment before publishing. -->
 
-
 To show the pool, mode, and buffer sizes for a service port, run the `nv show interface <interface-id> qos buffer` command. A service port reports hardware pool `43` as its ingress pool instead of the pool a regular port reports. The egress pools are unchanged:
 
-<!-- REVIEW: the sample below was captured before FR 4961156 revision 2.0 removed lossless support
-     from service ports, and its ingress priority group table still shows priority group 1 as
-     Lossless with XON and XOFF values. Under revision 2.0 a service port carries lossy priority
-     groups only, so this row can no longer appear. Recapture the output on a build with the
-     change and replace the sample; do not hand-edit the row, because the Shared Max figures on
-     the other rows were sized against a pool that also held the lossless group.
-     Delete this comment before publishing. -->
+<!-- REVIEW: this sample is the output in revision 2.0 of FR 4961156 (captured on an engineering lab build, adapted to the house prompt). Unlike the earlier sample, it has no lossless priority group, which matches service ports carrying lossy priority groups only. Recapture the output on a release build and confirm the egress tables, which differ from the earlier sample. Delete this comment before publishing. -->
 
 ```
 cumulus@switch:~$ nv show interface swp65s0 qos buffer
@@ -2647,38 +2641,41 @@ Buffer Statistics - Ingress Port
 ===================================
     Hw Pool ID  Mode    Reserved Size  Current Usage  Max Usage  Shared Max
     ----------  ------  -------------  -------------  ---------  ----------
-    43          STATIC  10.00 KB       0 Bytes        512 Bytes  474.25 KB
+    43          STATIC  10.00 KB       0 Bytes        512 Bytes  1.38 MB
 
 Buffer Statistics - Ingress Priority Group
 =============================================
-    priority-group  Pool ID  Mode    Reserved Size  Current Usage  Max Usage  Shared Max  Lossy/Lossless  XON Th    XOFF Th   HR         HR/PL Usage  HR/PL Max
-    --------------  -------  ------  -------------  -------------  ---------  ----------  --------------  --------  --------  ---------  -----------  ---------
-    0               43       STATIC  0 Bytes        0 Bytes        256 Bytes  632.25 KB   Lossy           0 Bytes   0 Bytes   19.00 KB   0 Bytes      256 Bytes
-    1               43       STATIC                 0 Bytes        0 Bytes    355.75 KB   Lossless        29.00 KB  29.00 KB  440.25 KB  0 Bytes      0 Bytes
-    9               43       STATIC  10.00 KB       0 Bytes        512 Bytes  632.25 KB   Lossy           0 Bytes   0 Bytes   10.00 KB   0 Bytes      512 Bytes
- 
+    priority-group  Pool ID  Mode    Reserved Size  Current Usage  Max Usage  Shared Max  Lossy/Lossless  XON Th   XOFF Th  HR        HR/PL Usage  HR/PL Max
+    --------------  -------  ------  -------------  -------------  ---------  ----------  --------------  -------  -------  --------  -----------  ---------
+    0               43       STATIC  0 Bytes        0 Bytes        512 Bytes  1.38 MB     Lossy           0 Bytes  0 Bytes  19.00 KB  0 Bytes      512 Bytes
+    9               43       STATIC  10.00 KB       0 Bytes        256 Bytes  1.38 MB     Lossy           0 Bytes  0 Bytes  10.00 KB  0 Bytes      256 Bytes
+
 Buffer Statistics - Egress Port
 ==================================
     Hw Pool ID  Mode     Reserved Size  Current Usage  Max Usage  Shared Max
-    ----------  -------  -------------  -------------  ---------  --------------
+    ----------  -------  -------------  -------------  ---------  ----------
     12          DYNAMIC  0 Bytes        0 Bytes        512 Bytes  ALPHA_8
-    13          DYNAMIC  10.00 KB       0 Bytes        0 Bytes    ALPHA_4
-    14          DYNAMIC  0 Bytes        0 Bytes        0 Bytes    ALPHA_INFINITY
- 
+    13          DYNAMIC  10.00 KB       0 Bytes        0 Bytes    ALPHA_2
+
 Buffer - Egress Traffic Class
 ================================
     traffic-class  Pool ID  Mode     Reserved Size  Current Usage  Max Usage  Shared Max
-    -------------  -------  -------  -------------  -------------  ---------  --------------
+    -------------  -------  -------  -------------  -------------  ---------  ----------
     0              13       DYNAMIC  1.00 KB        0 Bytes        0 Bytes    ALPHA_1
-    3              14       DYNAMIC  0 Bytes        0 Bytes        0 Bytes    ALPHA_INFINITY
-    6              13       DYNAMIC  2.00 KB        0 Bytes        0 Bytes    ALPHA_1
+    1              13       DYNAMIC  1.00 KB        0 Bytes        0 Bytes    ALPHA_1
+    2              13       DYNAMIC  1.00 KB        0 Bytes        0 Bytes    ALPHA_1
+    3              13       DYNAMIC  1.00 KB        0 Bytes        0 Bytes    ALPHA_1
+    4              13       DYNAMIC  1.00 KB        0 Bytes        0 Bytes    ALPHA_1
+    5              13       DYNAMIC  1.00 KB        0 Bytes        0 Bytes    ALPHA_1
+    6              13       DYNAMIC  1.00 KB        0 Bytes        0 Bytes    ALPHA_1
+    7              13       DYNAMIC  1.00 KB        0 Bytes        0 Bytes    ALPHA_1
     16             12       DYNAMIC  1.00 KB        0 Bytes        512 Bytes  ALPHA_8
- 
+
 Buffer - Egress Multicast
 ============================
     Hw Pool ID  Mode          Reserved Size  Current Usage  Max Usage  Shared Max
     ----------  ------------  -------------  -------------  ---------  ----------
-    10          BUFFER UNITS  0 Bytes        0 Bytes        0 Bytes    infinity
+    10          BUFFER UNITS  10.00 KB       0 Bytes        0 Bytes    90.00 KB
 ```
 
 ## Syntax Checker

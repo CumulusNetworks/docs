@@ -10,12 +10,13 @@ You can install a critical fix within your own maintenance window and back it ou
 
 Patches only contain changed packages and complement rather than replace the standard release; NVIDIA rolls every patch into a subsequent release.
 
-When you install a patch over an existing one, the two form a chain. Uninstalling a patch returns the switch to the patch underneath it rather than to the base image, and you step back through a chain one patch at a time. Only a patch with nothing installed over it returns the switch to the base image.
+When you install a patch over an existing one, the two form a chain. Patches are cumulative within a patch chain. Each patch includes the fixes from the earlier patches it replaces. Uninstalling a patch returns the switch to the patch underneath it rather than to the base image, and you step back through a chain one patch at a time. Uninstalling a patch with no patch underneath it restores the affected packages to their base-image versions.
 
 {{%notice note%}}
 - Upgrading system packages after you install a patch might overwrite the patch fixes; the switch warns you before proceeding.
 - A failed patch install rolls back all touched packages automatically so that the switch is not left in a half-installed state. The switch returns to the patch it was already running, or to the base image if it was not running a patch.
-- Installing and uninstalling a patch might restart affected services or reboot the system. Before you install or uninstall a patch, check the `impact` field in the `nv show system packages archive <archive-id>` command output to understand the expected impact.
+- Installing and uninstalling a patch might restart affected services or trigger a cold reboot. Before you install or uninstall a patch, check the `impact` field in the `nv show system packages archive <archive-id>` command output to understand the expected impact.
+- Warm and fast reboots are not supported for patch installation or uninstallation.
 {{%/notice%}}
 
 ## Install a Patch
@@ -72,7 +73,7 @@ Use the `accept-rollback-to-base` option with caution. When you install a patch 
 {{%/notice%}}
 
 The switch refuses to install a patch in the following cases:
-- The patch does not carry every package that the patch already installed carries. Uninstalling the new patch later leaves those packages behind.
+- The patch is not designed to replace the patch already installed on the switch. A patch can be installed over an existing patch only if it is designed to replace that patch.
 - The patch that this patch supersedes is no longer on the switch. To install anyway, use the `accept-rollback-to-base` option.
 - The root filesystem does not have room for the packages the patch installs. The switch also refuses to fetch a patch without room to unpack it.
 
@@ -202,6 +203,6 @@ patched          yes
 ```
 
 {{%notice note%}}
-- The `patch`​ field in `nv show system version` command output shows only after you install a patch. If there is no installed patch, the command output omits this field.
+- The `patched` field in the `nv show system version` command output shows only after you install a patch. If there is no installed patch, the command output omits this field.
 - The `cat /etc/image-release` command output shows `PATCHED=yes` when the switch includes an installed patch. When there is no installed patch, this field is absent.
 {{%/notice%}}

@@ -574,7 +574,7 @@ fw-rel-38_100_122.bin      /tmp/firmware_downloads/transceiver/fw-rel-38_100_122
 ```
 
 {{%notice warning%}}
-A firmware install is destructive. NVUE does not check that the firmware file matches the module, or that the file is intact, before it burns the file. The install does not ask you to confirm, and it does not warn you if the module has only one usable firmware image and no fallback image. If the install fails or you use a file that does not match the module, the module can become unusable, stop transmitting, and take its link out of service. Do not interrupt the install, and do not use other tools to access the module while the install runs. Install only a firmware file that NVIDIA provides for the exact module type, and plan the install for a maintenance window.
+A firmware install is destructive. NVUE does not check that the firmware file matches the module, or that the file is intact, before it writes the file. The install does not ask you to confirm, and it does not warn you if the module has only one usable firmware image and no fallback image. If the install fails or you use a file that does not match the module, the module can become unusable, stop transmitting, and take its link out of service. Do not interrupt the install, and do not use other tools to access the module while the install runs. Install only a firmware file that NVIDIA provides for the exact module type, and plan the install for a maintenance window.
 {{%/notice%}}
 
 To install a firmware file on a transceiver module, run the `nv action install platform transceiver <transceiver-id> firmware files <file>` command:
@@ -600,7 +600,9 @@ Action failed
 Firmware file not found: fw-rel-38_100_121.bin
 ```
 
-If a firmware install fails after it starts to burn the file, the module might be left without a valid firmware image. In that state, the `nv show platform transceiver <transceiver-id> firmware` command might not show the firmware status, the transceiver reset does not restore the module, and a new install can fail with an error such as `LinkX type not supported for device index 7`. NVUE has no command that recovers the module. Contact NVIDIA Technical Support.
+If the firmware is written successfully but the module fails to activate it, the install action reports a failure. For a module with two firmware banks, the new firmware bank is running but not committed, and you can recover the module. Reset the transceiver with the `nv action reset platform transceiver <transceiver-id>` command, then run the install again.
+
+If a firmware install fails after it starts to write the file, the module might be left without a valid firmware image. In that state, the `nv show platform transceiver <transceiver-id> firmware` command might not show the firmware status, the transceiver reset does not restore the module, and a new install can fail with an error such as `LinkX type not supported for device index 7`. NVUE has no command that recovers the module. Contact NVIDIA Technical Support.
 
 ## Transceiver Thermal Control
 

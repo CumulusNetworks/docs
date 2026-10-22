@@ -192,6 +192,54 @@ Restarting the `switchd` service causes all network ports to reset in addition t
 {{< /tab >}}
 {{< /tabs >}}
 
+## Pipeline Flush
+
+<!-- REVIEW: The spec states "SPC4 and SCP5 only supported" (the second token looks like a typo). Drafted as Spectrum-4 and Spectrum-5. The spec states no quality level; confirm Beta or GA against the release Redmine query. Delete this comment before publishing. -->
+
+{{%notice note%}}
+Pipeline flush is supported on Spectrum-4 and Spectrum-5 switches.
+{{%/notice%}}
+
+During a PFC XOFF storm, or when the switch cannot schedule a traffic class queue, packets can stay in the ASIC pipeline. The switch cannot release hardware resources that those packets still reference, so it waits for the packets to drain, and this wait can block control plane operations such as ACL updates. Pipeline flush limits the wait. When you enable pipeline flush, the ASIC waits for the timeout you configure, then recovers by discarding the packets that block the release, which can drop traffic. By default, pipeline flush is disabled and the switch waits for the packets to drain without discarding them.
+
+{{%notice note%}}
+- Pipeline flush applies to the whole switch. It does not depend on whether individual ports or traffic classes use PFC.
+- A change applies only to later waits. It does not affect a wait that is already in progress.
+- The timeout has an effect only when pipeline flush is enabled.
+- You do not need to restart or reload `switchd`.
+- If the switch cannot apply the setting (for example, on a switch that does not support pipeline flush), the `nv config apply` command fails and the previous configuration stays in effect.
+{{%/notice%}}
+
+### Configure Pipeline Flush
+
+To enable pipeline flush, run the `nv set system forwarding pipeline-flush state enabled` command. To set the timeout (in milliseconds) run the `nv set system forwarding pipeline-flush timeout` command. You can set a value between 50 and 1000 in steps of 10. The default value is 300. NVUE rejects a value outside this range or a value that is not a multiple of 10.
+
+The following example enables pipeline flush and sets the timeout to 200 milliseconds:
+
+```
+cumulus@switch:~$ nv set system forwarding pipeline-flush state enabled
+cumulus@switch:~$ nv set system forwarding pipeline-flush timeout 200
+cumulus@switch:~$ nv config apply
+```
+
+To disable pipeline flush, run the `nv set system forwarding pipeline-flush state disabled` command or the `nv unset system forwarding pipeline-flush state` command. To reset the timeout to the default value, run the `nv unset system forwarding pipeline-flush timeout` command. To reset both settings to the default values, run the `nv unset system forwarding pipeline-flush` command.
+
+{{%notice note%}}
+If the switch cannot release the hardware resources of an ACL after an update, it retries the release at the start of every later ACL install. After 10 failed attempts for the same ACL, the ACL install returns an error, which the `cl-acltool` command reports.
+{{%/notice%}}
+
+### Show Pipeline Flush Settings
+
+To show the pipeline flush state and timeout, run the `nv show system forwarding pipeline-flush` command. To show only one setting, run the `nv show system forwarding pipeline-flush state` or `nv show system forwarding pipeline-flush timeout` command. The `operational` column shows the value that the switch uses and the `applied` column shows the configured value.
+
+```
+cumulus@switch:~$ nv show system forwarding pipeline-flush
+         operational  applied
+-------  -----------  -------
+state    enabled      enabled
+timeout  200          200
+```
+
 ## Show switchd Settings
 
 You can run the following NVUE commands to show the current `switchd` configuration settings.
@@ -200,6 +248,7 @@ You can run the following NVUE commands to show the current `switchd` configurat
 | ------- | ----------- |
 |`nv show system counter polling-interval` | Shows the polling interval for physical and logical interface counters in seconds. |
 |`nv show system forwarding programming` | Shows the log level for data plane programming logs. |
+|`nv show system forwarding pipeline-flush` | Shows the {{<link url="#pipeline-flush" text="pipeline flush">}} state and timeout. |
 |`nv show nve vxlan encapsulation dscp` | Shows the DSCP action and value (if the action is `set`) for the outer header in VXLAN encapsulation.|
 |`nv show nve vxlan decapsulation dscp` | Shows the DSCP action for the outer header in VXLAN decapsulation.|
 |`nv show system acl ` | Shows the ACL mode (atomic or non-atomic). |

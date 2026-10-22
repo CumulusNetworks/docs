@@ -230,7 +230,15 @@ cumulus@switch:~$ nv show platform environment leakage -o json
    }
  }
 ```
-
+<!-- in ES but not 5.19
+{{%notice note%}}
+- The SN6810-LD has two leakage sensors, `leakage1` and `leakage2`. Each sensor shows `normal` or `alert`.
+- The switch software derives the sensor names from the leak bits that the CPLD exposes through hardware management.
+- Both sensors always appear in the command output. If the switch software cannot read the state of a sensor, the sensor shows `alert`. For a sensor that is unplugged, the switch shows the state that the CPLD reports.
+- When a sensor shows `alert`, the `nv show system health` command lists the sensor as an issue and shows the status `Not OK`, the System LED turns amber, and the switch writes a message to syslog.
+- By default, a leak raises an alarm only; the switch does not shut down. The default BMC leak policy is `None`, which means no automatic power-off.
+{{%/notice%}}
+-->
 gNMI and OTEL telemetry lets you subscribe to real-time leakage status and trigger automated alerts. For OTEL metrics, refer to {{<link url="Open-Telemetry-Export/#platform-statistic-format" text="OTEL Telemetry Leakage Sensor Metrics">}}. For gNMI metrics, refer to {{<link url="New-and-Updated-Telemetry-Metrics/#new-gnmi-metrics" text="gNMI Leakage Sensor Metrics">}}.
 
 For information about using out-of-band remote monitoring and management for the Cumulus Linux Spectrum-6 switch, refer to the {{<mib_link url="bmc-user-manual-88.0060.2110/Getting_Started.html" text="BMC user guide.">}}

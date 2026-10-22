@@ -139,6 +139,33 @@ To enable all egress IPv6 packets:
 cumulus@switch:~$ nv set system telemetry control-plane-stats egress ipv6 export state enabled
 ```
 
+<!-- REVIEW: the punt classifier telemetry commands come from Bibhash Kumar's 22 Oct email (FR 5058794). Not provided: the default state and the default sample interval (the specification gives 60 in one place and 10 in another), whether the class needs control-plane-stats export enabled first, and the OTLP metric names. No metric names are documented in the control plane statistic format section or in New and Updated Telemetry Metrics. Delete this comment before publishing. -->
+
+To export the drop counters for the {{<link url="Access-Control-List-Configuration/#control-plane-punt-classifier" text="control plane punt classifier">}}, enable the `punt-classifier` class:
+
+```
+cumulus@switch:~$ nv set system telemetry control-plane-stats class punt-classifier state enabled
+cumulus@switch:~$ nv config apply
+```
+
+To set the sample interval, in seconds, for this class, run the `nv set system telemetry control-plane-stats class punt-classifier sample-interval` command. You can specify a value between 10 and 86400.
+
+```
+cumulus@switch:~$ nv set system telemetry control-plane-stats class punt-classifier sample-interval 60
+cumulus@switch:~$ nv config apply
+```
+
+To export the punt classifier counters to a single destination when you export to more than one collector, enable the class in a statistics group instead of globally:
+
+```
+cumulus@switch:~$ nv set system telemetry stats-group PUNT-GROUP control-plane-stats class punt-classifier state enabled
+cumulus@switch:~$ nv set system telemetry stats-group PUNT-GROUP control-plane-stats class punt-classifier sample-interval 60
+cumulus@switch:~$ nv set system telemetry export otlp grpc destination 10.1.1.100 stats-group PUNT-GROUP
+cumulus@switch:~$ nv config apply
+```
+
+To show the punt classifier telemetry configuration, run the `nv show system telemetry control-plane-stats class punt-classifier` command. Clearing the counters with the `nv action clear system control-plane punt-classifier` command does not change the exported values.
+
 To show control plane statistics, run the `nv show system telemetry control-plane-stats` command.
 
 ```

@@ -1056,7 +1056,7 @@ The control plane punt classifier requires an NVIDIA Spectrum switch whose ASIC 
 
 When an IPv6 next hop becomes unreachable, the switch withdraws the affected route and the traffic falls through to the implicit IPv6 default route, which forwards the packets to the CPU. The control plane policers drop this forwarded traffic, but their counters aggregate every kind of forwarded packet. You cannot separate MRC (Multipath Reliable Connection) traffic from other forwarded traffic such as probes, ping, and packets with no matching route.
 
-The control plane punt classifier matches for packets, counts them, and drops them before the control plane policers, so that each traffic type has its own drop counter. The punt classifier is disabled by default. You enable it by creating one or more rules, where each rule ID has its own packet and byte counters.
+The control plane punt classifier matches for packets, counts them, and drops them before the control plane policers, so that each traffic type has its own drop counter. The punt classifier is disabled by default. You enable it by creating one or more rules. A rule ID is a number between 1 and 65535, and each rule ID has its own packet and byte counters.
 
 {{%notice note%}}
 - A rule matches only packets that the switch forwards because they match the implicit IPv6 default route. IPv6 neighbor discovery and adjacency miss forwards on a link that is up do not match, and the switch resolves them normally.
@@ -1086,7 +1086,9 @@ The following table shows the match options and the action you can set for a rul
 | `match udp-dport <port>` | Yes, for `ipv6` rules | The IPv6 UDP destination port that the rule matches. This option applies only to `ipv6` rules. |
 | `action drop` | Yes | Counts and drops the matching packets. `drop` is the only supported action. |
 
-Cumulus Linux rejects a rule that is incomplete or that mixes match options across packet types. You must set `match packet-type`, `match no-route`, and `action drop` on every rule, `match udp-dport` on every `ipv6` rule, and you cannot set `match dscp` on an `ipv6` rule or `match udp-dport` on an `spxm` rule.
+Cumulus Linux rejects a rule that is incomplete or that mixes match options across packet types. You must set `match packet-type`, `match no-route`, and `action drop` on every rule, `match udp-dport` on every `ipv6` rule, and you cannot set `match dscp` on an `ipv6` rule or `match udp-dport` on an `spxm` rule. You can create only one `spxm` rule on the switch.
+
+<!-- REVIEW: Bibhash's 22 Oct email says action is mandatory on every rule and also says it defaults to drop. Drafted as required, matching the specification's CLI table. Confirm with the developer. Delete this comment before publishing. -->
 
 #### Configure a Control Plane Punt Classifier Rule
 
@@ -1157,15 +1159,16 @@ dropped-bytes    164733120
 last-clear-time  2026-07-10 06:15:02
 ```
 
+To show only the match configuration for a rule, run the `nv show system control-plane punt-classifier <rule-id> match` command.
+
+To export the drop counters with OpenTelemetry, refer to {{<link url="Open-Telemetry-Export/#control-plane-statistics" text="Control Plane Statistics">}}.
+
 #### Clear Control Plane Punt Classifier Counters
 
-<!-- REVIEW: the --view=hardware option below is drafted from one terse spec sentence ("raw values
-     also available via --view=hardware") with no example output or confirmation of which show
-     command it attaches to. Drafted on the rule-counters show command, the one this section
-     otherwise describes. Confirm the exact syntax against a candidate build before publishing. -->
+<!-- REVIEW: the specification says raw values are available "via --view=hardware" with no example output. The 5.19 command list shows a `counters hardware` path under the rule instead, so this section uses the path form. Confirm the exact syntax and its output against a candidate build. The command list also shows an all-rules form of the clear action, which neither the specification nor Bibhash's email describes; drafted from the command list. Delete this comment before publishing. -->
 
 {{%notice note%}}
-The switch clears the software (NVUE) counters; hardware counters remain intact. To show the raw, uncleared hardware counters for a rule, run the `nv show system control-plane punt-classifier <rule-id> counters --view=hardware` command.
+The switch clears the software (NVUE) counters only. The hardware counters, which gNMI and OpenTelemetry export, stay intact, so `nv show` can show 0 while telemetry reports a non-zero lifetime total. To show the raw, uncleared hardware counters for a rule, run the `nv show system control-plane punt-classifier <rule-id> counters hardware` command.
 {{%/notice%}}
 
 To clear the drop counters for a rule, run the `nv action clear system control-plane punt-classifier <rule-id> counters` command:
@@ -1175,6 +1178,8 @@ To clear the drop counters for a rule, run the `nv action clear system control-p
 ```
 cumulus@switch:~$ nv action clear system control-plane punt-classifier 10 counters
 ```
+
+To clear the counters for all rules, run the `nv action clear system control-plane punt-classifier counters` command.
 
 ### Set DSCP on Transit Traffic
 

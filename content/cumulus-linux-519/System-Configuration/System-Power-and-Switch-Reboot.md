@@ -262,15 +262,7 @@ The following features are not supported during warm reboot:
 
 To manage switch resource allocation, you can configure the resource mode to be either `half` or `full`. By default, the resource mode is set to `full`.
 
-On Spectrum-3 and earlier switches, warm reboot and hitless ISSU-based software upgrade require the resource mode to be `half`.
-
-<!-- REVIEW: the two paragraphs below reverse a day 0 prerequisite documented across this
-     page and Upgrading-Cumulus-Linux.md. Full resource mode ISSU is Beta in 5.19 per the
-     Whats-New list. The spec does not state what happens if you run a warm reboot on a
-     Spectrum-3 or earlier switch left in the default full resource mode. Confirm against a
-     candidate build. Delete this comment before publishing. -->
-
-On Spectrum-4 and later switches, warm reboot runs in full resource mode and preserves the complete hardware forwarding state across the reboot, so you do not need to change the resource mode. Refer to {{<link url="Upgrading-Cumulus-Linux/#full-resource-mode-issu" text="Full Resource Mode ISSU">}}.
+Warm reboot and hitless ISSU-based software upgrade require the resource mode to be `half`.
 
 The following example sets the switch resource mode to `half`:
 
@@ -323,15 +315,13 @@ During the warm boot window, the switch does not learn new MAC addresses in hard
 
 After the warm boot completes, hardware MAC learning resumes. If traffic is still flowing from the affected hosts, the switch learns their MAC addresses at that point; you do not need to take any action.
 
-<!-- REVIEW: Redmine #5355792. Same scope question as the Spanning Tree Protocol subsection below -
-     the ticket title says "ISSUv2" but the body says only "during the warmboot window", so this is
-     drafted to cover warm boot generally rather than full resource mode alone. That is the safer
-     direction of the two, but confirm with the reporter (Sharanya Singh): if learning is only
-     suspended under full resource mode, this over-warns Spectrum-3 and earlier users. The ticket
-     gives no duration for the window and names no mitigation, so neither is stated. The claim that
-     previously learned MAC addresses survive is drawn from the existing full resource mode
-     description (preserves "complete layer 2 ... hardware state"), not from the ticket - confirm it
-     also holds for a legacy half-resource warm reboot. Delete this comment before publishing. -->
+<!-- REVIEW: Redmine #5355792. The ticket title says "ISSUv2" and the body says only "during the
+     warmboot window". Full resource mode ISSU is no longer in 5.19, so confirm with the reporter
+     (Sharanya Singh) whether MAC learning is suspended during a legacy (half-resource) warm
+     reboot. If it is not, remove this section. The ticket gives no duration for the window and
+     names no mitigation, so neither is stated. The claim that previously learned MAC addresses
+     survive came from the full resource mode description, not the ticket; confirm it holds for a
+     half-resource warm reboot. Delete this comment before publishing. -->
 
 ### Static Routes
 
@@ -348,11 +338,14 @@ iface eth0
  post-up ip route add 10.100.200.0/24 via 10.100.156.1 vrf mgmt
 ```
 
+<!-- REMOVED FROM 5.19: applied to full resource mode ISSU, which is no longer in 5.19.
+
 ### Spanning Tree Protocol
 
 When you run a warm reboot in {{<link url="Upgrading-Cumulus-Linux/#full-resource-mode-issu" text="full resource mode">}} and <span class="a-tooltip">[STP](## "Spanning Tree Protocol")</span> is enabled in the bridge domain, a continuous traffic stream experiences momentary traffic loss. Traffic recovers on its own; you do not need to take any action.
 
 Cumulus Linux enables STP by default on both VLAN-aware and traditional bridges, so this applies unless you disable STP. Refer to {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP" text="Spanning Tree and Rapid Spanning Tree - STP">}}.
+-->
 
 <!--
 ## Power Off

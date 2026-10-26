@@ -209,7 +209,7 @@ route-map MAP1 permit 10
 {{< /tab >}}
 {{< /tabs >}}
 
-The following example commands configure a route map to match the prefixes defined in `LIST1` and set the nexth hop to 10.10.10.5:
+The following example commands configure a route map to match the prefixes defined in `LIST1` and set the next hop to 10.10.10.5:
 
 {{< tabs "TabID212 ">}}
 {{< tab "NVUE Commands ">}}

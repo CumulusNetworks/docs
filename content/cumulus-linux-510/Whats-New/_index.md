@@ -27,7 +27,7 @@ For a list of approved product releases, refer to the {{<exlink url="https://doc
 
 ### Platforms
 
-NVIDIA SN5400 (400G Spectrum-4) - C2P (connnector-to-power) version only
+NVIDIA SN5400 (400G Spectrum-4) - C2P (connector-to-power) version only
 
 {{%notice note%}}
 {{<link url="Precision-Time-Protocol-PTP" text="PTP">}} and {{<link url="Pulse-Per-Second-PPS" text="PPS">}} on the NVIDIA SN5400 switch are in BETA.

@@ -48,14 +48,14 @@ In the above example, when `leaf03` interface `swp3` goes down to `spine02`, BGP
 
 ### Overlay Routing with W-ECMP
 
-W-ECMP load balances traffic to all possible egress VTEPs based on the weight advertised to reach type-5 EVPN routes originated from outside of the fabric. This scenario is typical for anycast IP routing environments with host-based networking where the same anycast or virtual IP is learned from multiple sources.
+W-ECMP load balances traffic to all possible egress VTEPs based on the weight advertised to reach type-5 EVPN routes originated from outside of the fabric. This scenario is typical for anycast IP routing environments with host-based networking where the switch learns the same anycast or virtual IP from multiple sources.
 
 {{< img src = "/images/cumulus-linux/WECMP-overlay-example.png" >}}
 
 In the above example, when interface `swp2` on `border01` goes down towards the host advertising 10.1.100.5, border01 sends a BGP update with a less preferred weight for the Type-5 EVPN prefix 10.1.100.5/32, influencing how hosts within the fabric hash flows towards the border switches.
 
 {{%notice note%}}
-In W-ECMP overlay routing scenarios, type-5 routes must be learned from an eBGP IPv4 unicast peering between VTEPs and hosts to properly set the link bandwidth extended community reflecting the number of available paths on the originating VTEP.
+In W-ECMP overlay routing scenarios, VTEPs must learn type-5 routes from an eBGP IPv4 unicast peering between VTEPs and hosts to properly set the link bandwidth extended community reflecting the number of available paths on the originating VTEP.
 {{%/notice%}}
 
 ## Configure W-ECMP

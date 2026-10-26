@@ -49,16 +49,16 @@ Two parts of high-speed Ethernet are under *encoding* in the output from the `et
 
   {{<figure src="/images/cumulus-linux/L1ts-NRZ-eyes.jpg" width="600">}}
 
-  - PAM4 encoding has four signal levels signifying two bits (00,01,10,11). These levels are much closer together than the levels in NRZ/PAM2, so signal integrity is an even greater concern. PAM4 encoding is used on 50G lanes.
+  - PAM4 encoding has four signal levels signifying two bits (00,01,10,11). These levels are much closer together than the levels in NRZ/PAM2, so signal integrity is an even greater concern. 50G lanes use PAM4 encoding.
 
   {{<figure src="/images/cumulus-linux/L1ts-PAM4-eyes.jpg">}}
 
-- The way the bits are joined together into a *frame* to be able to facilitate functions like clock recovery and error checking and correction:
-  - 64B/66B: Two control bits with a 1/0 transition are added to the front of a 64 bit frame to ensure that the clock  can sync every 66 bits.
+- The way bits join together into a *frame* to facilitate functions like clock recovery and error checking and correction:
+  - 64B/66B: The encoding adds two control bits with a 1/0 transition to the front of a 64 bit frame to ensure that the clock  can sync every 66 bits.
   - RS-FEC encoding (528,514) or (544,514): Uses 14 or 30 bits to enable correction of bit errors on the receive side (see the {{<link url="#fec" text="FEC">}} section below).
   - BaseR FEC encoding: Steals a bit in the 64B/66B control word to re-encode and add a smaller level of error correction than RS-FEC.
 
-The relationship between lane speed and encoding methods is described in this table:
+This table describes the relationship between lane speed and encoding methods:
 
 | Lane Speed | Encoding |
 | ---------- | -------- |
@@ -76,7 +76,7 @@ The SerDes (Serial/Deserializer) is the component in the port that converts byte
 
 On the ASIC, the 40G, 100G and 200G SerDes devices are 4 lanes; 400G SerDes uses 8 lanes. So an SFP port is actually one lane on a four lane SerDes. Depending on the platform design, this sometimes affects how you can configure and break out SFP ports.
 
-Port speeds are created using the following formulas:
+The following formulas determine port speeds:
 
 | Port Speed | Number of Lanes |
 | ---------- | --------------- |
@@ -92,7 +92,7 @@ Port speeds are created using the following formulas:
 
 ### Active and Passive Modules and Cables
 
-From the point of view of the port, modules and cables can be classified as either *active* or *passive*.
+From the point of view of the port, you can classify modules and cables as either *active* or *passive*.
 
 Active cables and modules contain transmitters that regenerate the bit signals over the cable. All optical modules are active. 10/100/1000BaseT and 10GBaseT are active modules and contain an onboard PHY that handles the BaseT auto-negotiation and TX/RX to the remote BaseT device. For active modules, the port only has to provide a TX signal with a base level of power to the module and the module uses the power it receives on the port power bus to regenerate the signal to the remote side.
 
@@ -104,7 +104,7 @@ Passive cables (copper DACs) connect the port side of the module directly to the
 
 Compliance codes, Ethernet type, Ethmode type, and interface type are all terms for the type of Ethernet technology that the module implements.
 
-For the port to know the characteristics of the module that is inserted, the SFP or QSFP module EEPROMs have a standardized set of data to describe the module characteristics. These values appear in the output of `ethtool -m <swp>`.
+For the port to know the characteristics of the inserted module, the SFP or QSFP module EEPROMs have a standardized set of data to describe the module characteristics. These values appear in the output of `ethtool -m <swp>`.
 
 The compliance codes describe the type of Ethernet technology the module implements, such as 1000Base-T, 10GBase-SR, 10GBase-CR, 40GBase-SR4, and 100GBase-CR4.
 
@@ -114,7 +114,7 @@ The first part of the compliance code gives the full line rate speed of the tech
 - CR: Copper twinax (passive DAC). CR4 uses a bundle of 4 twinax cables for 4 lanes, CR2 uses 2 cables, CR uses 1.
 - SR: Optical short range. SR4 uses a bundle of 4 fibers for 4 lanes.
 - LR: Optical long range. LR4 uses 4 wavelengths over one fiber pair to transmit 4 lanes over long distances (kilometers).
-- xWDM (SWDM, CWDM, DWDM): Optical wavelength multiplexed technologies (various). Multiple lanes are transmitted by different wavelengths.
+- xWDM (SWDM, CWDM, DWDM): Optical wavelength multiplexed technologies (various). Different wavelengths transmit multiple lanes.
 
 An active module with a passive module compliance code or a passive module with an active module compliance code causes the port to be set up incorrectly and may affect signal integrity.
 
@@ -129,13 +129,13 @@ The most useful DDM/DOM values when troubleshooting a problem link are:
 - RX optical power (receiver signal average optical power)
 - TX optical power (laser output power)  
 
-The location of DDM/DOM fields are standardized. If DDM/DOM capability is present on a module, the values are displayed in the output of the NVUE `nv show platform transceiver <interface-id>` command or the Linux `ethtool -m <swp>` command.
+The location of DDM/DOM fields are standardized. If DDM/DOM capability is present on a module, the NVUE `nv show platform transceiver <interface-id>` command or the Linux `ethtool -m <swp>` command displays the values.
 
 For each DDM/DOM value there can be thresholds to mark a high or low *warning* or an *alarm* when the value exceeds that threshold.
 
 An alarm value indicates the level required for the signal to be within the vendor's design tolerance, and the warning level is a little bit closer to expected norms.
 
-When a warning or alarm is triggered, the flag flips from *Off* to *On*. Reading that value with `ethtool -m` or NVIDIA NetQ (or some other monitoring software) resets this flag back to *Off* after it is read.
+When a warning or alarm condition occurs, the flag flips from *Off* to *On*. Reading that value with `ethtool -m` or NVIDIA NetQ (or some other monitoring software) resets this flag back to *Off* after reading it.
 
 ## Auto-negotiation
 
@@ -168,22 +168,22 @@ For DAC cables on speeds higher than 25G, auto-negotiation is unnecessary, but i
 
 ### General Auto-negotiation Guidance
 
-- When auto-negotiation is supported on an Ethernet type, both sides of the link must be configured with the same auto-negotiation setting.
+- When auto-negotiation is supported on an Ethernet type, you must configure both sides of the link with the same auto-negotiation setting.
 - Cumulus Linux sets a default for auto-negotiation and speed, duplex, and FEC for each port based on the ASIC and port speed. On NVIDIA platforms running Cumulus Linux, auto-negotiation defaults to *ON*.
-- If auto-negotiation is *OFF* &mdash; which is called force mode &mdash; then speed, duplex and FEC must also be specified if a non-default value for the port is desired. If auto-negotiation is *ON*, then speed, duplex and FEC should not be specified. The only exception to this is for 1000BASE-X optical interfaces, where speed is *1000* and auto-negotiation is *ON* to get unidirectional link detection.
+- If auto-negotiation is *OFF* &mdash; which is called force mode &mdash; then you must also specify speed, duplex and FEC if you want a non-default value for the port. If auto-negotiation is *ON*, avoid specifying speed, duplex and FEC. The only exception to this is for 1000BASE-X optical interfaces, where speed is *1000* and auto-negotiation is *ON* to get unidirectional link detection.
 - If auto-negotiation is enabled on a link type that does not support auto-negotiation, the port enters *autodetect* mode (see the {{<link url="#autodetect" text="next section">}}) to determine the most likely speed and FEC settings to bring the link up. This feature is usually successful, but if the link does not come up, it might be necessary to disable auto-negotiation and set these link settings manually.
 - There is no concept of auto-negotiation of MTU. To change the MTU from the default setting, {{<link url="Switch-Port-Attributes/#mtu" text="configure it explicitly">}}.
 - Generally, you can ignore the duplex setting, except on 10M/100M links. The default is *Full*. Although you can configure the duplex setting, it has no option except *Full* on speeds higher than 1G and is auto-negotiated on 1000BASE-T links.
 
 ### Autodetect
 
-As a result of the confusion about when auto-negotiation applies to a link type, many Ethernet software vendors, including Cumulus Linux, allow auto-negotiation ON to be configured on every interface type. When auto-negotiation is *ON*, but is not supported on a link type, the port software tries to determine the most likely link settings to bring the link up. Cumulus Linux calls this feature *autodetect*, but it is not directly configurable.
+As a result of the confusion about when auto-negotiation applies to a link type, many Ethernet software vendors, including Cumulus Linux, allow you to configure auto-negotiation ON on every interface type. When auto-negotiation is *ON*, but is not supported on a link type, the port software tries to determine the most likely link settings to bring the link up. Cumulus Linux calls this feature *autodetect*, but it is not directly configurable.
 
 When auto-negotiation is enabled on a port, the behavior is as follows:
 
 - When auto-negotiation is *ON*, the port is always in autodetect mode. The port steps through a list of possible auto-negotiation, speed and FEC settings for the port and module combination until the link comes up. The default configuration is auto-negotiation *ON*.
 
-Autodetect is a local feature. The neighbor is assumed to either be configured with auto-negotiation off and speed, duplex, and FEC set manually, or using some equivalent algorithm to determine the correct speed, duplex, and FEC settings.
+Autodetect is a local feature. Cumulus Linux assumes that the neighbor either has auto-negotiation off and speed, duplex, and FEC set manually, or uses some equivalent algorithm to determine the correct speed, duplex, and FEC settings.
 
 To see the user configured settings for auto-negotiation, speed, duplex and FEC compared to the actual operational state on the port hardware, use the `l1-show` command.
 
@@ -203,11 +203,11 @@ Both sides of a link must have the same FEC encoding algorithm enabled for the l
 
 ### FEC Encoding Algorithms and Settings
 
-- The Reed-Solomon RS-FEC(528,514) algorithm adds 14 bits of encoding information to a 514 bit stream. It replaces and uses the same amount of overhead in the 64B/66B encoding so that the bit rate is not affected. The algorithm can correct 7 bit errors in a 514 bit stream. RS(528,514) is used on 25G (NRZ) lanes, including 25G, 50G-CR2, and 100G-SR4/CR4 interfaces.
+- The Reed-Solomon RS-FEC(528,514) algorithm adds 14 bits of encoding information to a 514 bit stream. It replaces and uses the same amount of overhead in the 64B/66B encoding so that the bit rate is not affected. The algorithm can correct 7 bit errors in a 514 bit stream. The switch uses RS(528,514) on 25G (NRZ) lanes, including 25G, 50G-CR2, and 100G-SR4/CR4 interfaces.
 - The Reed-Solomon RS-FEC(544,514) algorithm adds 30 bits of overhead to correct 14+ bit errors per 514 bits. FEC RS is required on 50G (PAM4) lanes; all 200G, 400G, 100G-CR2 and 50G-CR interfaces.
-- Base-R (also known as FireCode/FC) FEC adds 32 bits per 32 blocks of 64B/66B to correct 11 bits per 2048 bits. It replaces one bit per block, so it uses the same amount of overhead as 64B/66B encoding. It is used in 25G interfaces only. The algorithm executes faster than the RS-FEC algorithm, so latency is reduced. Both RS-FEC and Base-R FEC are implemented in hardware.
+- Base-R (also known as FireCode/FC) FEC adds 32 bits per 32 blocks of 64B/66B to correct 11 bits per 2048 bits. It replaces one bit per block, so it uses the same amount of overhead as 64B/66B encoding. Only 25G interfaces use it. The algorithm executes faster than the RS-FEC algorithm, so it reduces latency. The hardware implements both RS-FEC and Base-R FEC.
 - None/Off: FEC is optional and is often useful on 25G lanes, which includes 100G-SR4/CR4 and 50G-CR2 links. If the cable quality is good enough to achieve a BER of 10<sup>-12</sup> without FEC, then there is no reason to enable it. 10G/40G links should never require FEC. If a 10G/40G link has errors, replace the cable or module that is causing the error.
-- Auto: FEC can be auto-negotiated between 2 devices. When auto-negotiation is *ON*, the default FEC setting is *auto* to enable FEC capability information to be sent and received with the neighbor. The port FEC active/operational setting is set to the result of the negotiation. *Auto* is the default setting on NVIDIA switches (auto-negotiation *ON* is the default setting).
+- Auto: FEC can be auto-negotiated between 2 devices. When auto-negotiation is *ON*, the default FEC setting is *auto* to enable the port to send and receive FEC capability information with the neighbor. The result of the negotiation sets the port FEC active/operational setting. *Auto* is the default setting on NVIDIA switches (auto-negotiation *ON* is the default setting).
 - If auto-negotiation is disabled on 100G and 25G interfaces, you must set FEC to *OFF**, RS, or BaseR to match the neighbor. The FEC default setting of *auto* does not link up when auto-negotiation is disabled.
 
 In some cases, the configured value might be different than the operational value. In such cases, the `l1-show` command displays both values. For example:
@@ -217,35 +217,35 @@ In some cases, the configured value might be different than the operational valu
 
 ## Signal Integrity
 
-The goal of Ethernet protocols and technologies is to enable the bits generated on one side of a link to be received correctly on the other side. The next two sections provide information about what might be happening on the link level when the link is down or bits are not received correctly.
+The goal of Ethernet protocols and technologies is to enable one side of a link to receive correctly the bits generated by the other side. The next two sections provide information about what might be happening on the link level when the link is down or bits are not received correctly.
 
 ### Link State: RX Power, Signal Detection, Signal Lock, Carrier Detection, RX Fault
 
 Various characteristics show the state of a link. All characteristics might not be available to display on all platforms.
 
 - RX power: On optical modules with DDM/DOM capabilities, the module shows the power level of the received signal. Note that a module can receive a signal with plenty of power, but still not be able to recover the data from a signal because it is distorted.
-- Signal detected: A signal is received from the remote device on the local port receiver.
-- Signal lock: The local port receiver is locked onto a good signal that is received from the remote side.
-- Carrier detected: Both ends of the link are able to understand the data being sent to them. The link should be up on both sides.
+- Signal detected: The local port receiver receives a signal from the remote device.
+- Signal lock: The local port receiver is locked onto a good signal that it receives from the remote side.
+- Carrier detected: Both ends of the link are able to understand the data that the other end sends them. The link needs to be up on both sides.
 - RX fault (None, Local, Remote or Local/Remote): The local end or the remote end is alerting that it is not receiving and/or understanding a good signal and bit stream.
   - Local fault indicates the local end does not have signal lock or cannot understand the data sent to it on its RX path.
   - Remote fault indicates that the local end RX path has signal lock and can understand the bit stream from the neighbor, but the remote neighbor is sending alerts over that working path indicating that it has no signal lock or cannot understand the data sent to it over its own RX path.
 
 ### Eyes
 
-When a 1 or a 0 bit is transmitted across a link, it is represented on the electrical side of the port as either a high voltage level or a low voltage level. If an oscilloscope is attached to those leads, as the bit stream is transmitted across it, the transitions between 1 and 0 form a pattern in the shape of an eye.
+When the port transmits a 1 or a 0 bit across a link, the electrical side of the port represents it as either a high voltage level or a low voltage level. If you attach an oscilloscope to those leads, as the bit stream crosses it, the transitions between 1 and 0 form a pattern in the shape of an eye.
 
 {{<figure src="/images/cumulus-linux/L1ts-NRZ-eyes.jpg" width="600">}}
 
-The farther the distance between the 1 and 0, the more open the eye appears. The more open the eye is, the less likely it is for a bit to be misread. When a bit is misread, it causes a bit-error, which results in an FCS error on the entire packet being received. A lower eye measurement generally translates to a larger bit error rate (BER). FEC can correct bit errors up to a point.
+The farther the distance between the 1 and 0, the more open the eye appears. The more open the eye is, the less likely it is for a bit to be misread. When a bit is misread, it causes a bit-error, which results in an FCS error on the entire packet that the port receives. A lower eye measurement generally translates to a larger bit error rate (BER). FEC can correct bit errors up to a point.
 
 Eyes are not measured on fixed copper ports and are not measured when a link is down.
 
 Each hardware vendor implements some quantitative measurement of eyes and some kind of qualitative measurement.
 
-On an NVIDIA switch, the eyes are assigned a height in mV and a grade. For speeds below 100G (NRZ encoding), when the grade goes below 4000, the error rate or stability of the link might be negatively impacted.  
+On an NVIDIA switch, the switch assigns the eyes a height in mV and a grade. For speeds below 100G (NRZ encoding), when the grade goes below 4000, the error rate or stability of the link might be negatively impacted.  
 
-A link might have no stability problems with a measurement below these values, and FEC might correct all errors presented on such a link. For some interface types, FEC is required to remove errors up to BER levels that are expected on the media.
+A link might have no stability problems with a measurement below these values, and FEC might correct all errors presented on such a link. For some interface types, FEC is required to remove errors up to BER levels you expect on the media.
 
 For 50G lanes (200G- and 400G-capable ports), the link uses PAM4 encoding, which has 3 eyes stacked on top of each other and therefore much smaller eye measurements. FEC is required on these links.
 

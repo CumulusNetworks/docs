@@ -224,7 +224,7 @@ cumulus@switch:~$ nv set system ssh-server state disabled
 cumulus@switch:~$ nv config apply
 ```
 
-Run the `nv set system ssh-server state enabled` command to renable the SSH server.
+Run the `nv set system ssh-server state enabled` command to re-enable the SSH server.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -234,7 +234,7 @@ cumulus@switch:~$ sudo systemctl stop ssh.service
 cumulus@switch:~$ sudo systemctl disable ssh.service
 ```
 
-To renable the SSH server:
+To re-enable the SSH server:
 
 ```
 cumulus@switch:~$ sudo systemctl start ssh.service
@@ -258,7 +258,7 @@ cumulus@switch:~$ nv set system ssh-server strict disabled
 cumulus@switch:~$ nv config apply
 ```
 
-To renable strict mode, run the `nv set system ssh-server strict enabled` command.
+To re-enable strict mode, run the `nv set system ssh-server strict enabled` command.
 
 To show if strict mode is `on` or `off`, run the `nv show system ssh-server` command:
 

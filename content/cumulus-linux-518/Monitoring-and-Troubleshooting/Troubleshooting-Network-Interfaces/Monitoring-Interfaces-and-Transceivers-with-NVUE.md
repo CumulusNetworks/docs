@@ -280,7 +280,7 @@ linkdown-reason-status-remote     UNKNOWN_REASON
 {{%notice note%}}
 - Interface fault detection is supported on NVIDIA Spectrum-4 and later platforms.
 - Fault status reported by the `nv show interface status` command is only supported on physical switch ports and breakout interfaces. Fault state is not applicable to logical interfaces such as VLAN sub-interfaces, SVIs, loopback interfaces, VRF interfaces, and bonds.
-- Fault detection data is not retained across reboots or when the `switchd` service is restarted.
+- Fault detection data is not retained across reboots or when you restart the `switchd` service.
 {{%/notice%}}
 
 ## AmBER PHY Health Management

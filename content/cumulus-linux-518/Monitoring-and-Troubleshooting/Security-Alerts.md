@@ -20,7 +20,7 @@ Cumulus Linux can send proactive alerts as SNMPv3 traps to configured trap desti
 - To send security alerts through SNMP traps, you must have at least one SNMPv3 trap destination configured with a valid engine ID (a minimum 5 bytes or 10 hex characters after the 0x prefix).
 - Cumulus Linux reuses trap destinations from the existing SNMP server configuration (`nv set system snmp-server trap-destination`). You do not need to configure a separate alert destination.
 - Only SNMPv3 (`authPriv`) destinations receive traps.
-- Disk full and disk I/O error events are logged to syslog only (no SNMP traps). The `space_left` and `admin_space_left` thresholds provide an early warning through SNMP traps before these critical conditions are reached.
+- Cumulus Linux logs disk full and disk I/O error events to syslog only (no SNMP traps). The `space_left` and `admin_space_left` thresholds provide an early warning through SNMP traps before the switch reaches these critical conditions.
 - A clean `auditd` restart (`sudo service auditd restart`) does not trigger an alert.
 - The security alerts manage only the `alert-related` action parameters in the `auditd` configuration (`space_left_action`, `admin_space_left_action`, `disk_full_action`, `disk_error_action`).
 - If the `auditd.conf` file contains invalid values (for example, if `admin_space_left` has a higher setting than `space_left`), enabling or disabling security alerts fails because the `auditd` service cannot restart. To recover, correct the values in the `/etc/audit/auditd.conf` file, then run the `sudo systemctl reset-failed auditd` and 

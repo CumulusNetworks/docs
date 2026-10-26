@@ -123,7 +123,7 @@ item
     index-51  Debug token status               0x0000000000            valid   never
 ```
 
-The `Measured` column shows at most 24 characters. A longer hex value shows as a sha256 digest with its size. Other long text is cut to 21 characters followed by `...`. To show every field in full, including the reference value, the measured value, a note, and the evidence, run the command with the `-o json` option or use the REST API.
+The `Measured` column shows at most 24 characters. A longer hex value shows as a sha256 digest with its size. The report cuts other long text to 21 characters followed by `...`. To show every field in full, including the reference value, the measured value, a note, and the evidence, run the command with the `-o json` option or use the REST API.
 
 ## Interpret the Report
 

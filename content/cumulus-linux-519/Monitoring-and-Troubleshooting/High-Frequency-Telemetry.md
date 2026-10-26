@@ -104,14 +104,14 @@ e. Enable IPFIX export:
 
 2. Configure streaming HFT parameters:
 
-   Configure the sampling interval for HFT data. The default value is 5000 microseconds. The interval must be specified in microseconds, with a valid range of 100 to 12,750 and in multiples of 50:
+   Configure the sampling interval for HFT data. The default value is 5000 microseconds. Specify the interval in microseconds, in multiples of 50, with a valid range of 100 to 12,750:
 
    ```
    cumulus@switch:~$ nv set system telemetry hft sample-interval-usec 1000
    cumulus@switch:~$ nv config apply
    ```
 
-   Configure the counters that are sampled at the defined interval. The following table lists the available counters.
+   Configure the counters that the switch samples at the defined interval. The following table lists the available counters.
 
    | Counter | Description |
    | -------- | --------- |

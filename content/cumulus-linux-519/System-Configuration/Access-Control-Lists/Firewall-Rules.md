@@ -54,7 +54,7 @@ The following table lists the ports that Cumulus Linux enables by default.
 |UDP | 123 | NTP |
 |UDP| 323 |Chrony |
 |UDP | 161 | SNMP |
-|UDP | 6306 | A multicast socket used internally. |
+|UDP | 6306 | A multicast socket used internally. |
 |UDP | 69 | TFTP |
 |TCP/UDP| 389 | LDAP |
 |UDP |1812,1813 | RADIUS |

@@ -24,12 +24,12 @@ The following example matches Ethernet packets with source MAC address 01:12:34:
 
 ```
 cumulus@switch:~$ nv set acl MACL1 type mac
-cumulus@switch:~$ nv set acl MACL1 rule 1 match mac source-mac b8:ce:f6:3c:62:06  
+cumulus@switch:~$ nv set acl MACL1 rule 1 match mac source-mac b8:ce:f6:3c:62:06  
 cumulus@switch:~$ nv set acl MACL1 rule 1 action source-nat translate-mac 99:de:fc:32:11:01 
 cumulus@switch:~$ nv config apply
 
-cumulus@switch:~$ nv set interface swp5 acl MACL1 outbound  
-cumulus@switch:~$ nv config apply   
+cumulus@switch:~$ nv set interface swp5 acl MACL1 outbound  
+cumulus@switch:~$ nv config apply   
 ```
 
 The following example matches Ethernet packets with destination MAC address 01:12:34:32:11:01 and translates the MAC address to 99:de:fc:32:11:01 on ingress on swp5.
@@ -40,8 +40,8 @@ cumulus@switch:~$ nv set acl MACL2 rule 1 match mac dest-mac 01:12:34:32:11:01
 cumulus@switch:~$ nv set acl MACL2 rule 1 action dest-nat translate-mac 99:de:fc:32:11:01
 cumulus@switch:~$ nv config apply
 
-cumulus@switch:~$ nv set interface swp5 acl MACL2 inbound  
-cumulus@switch:~$ nv config apply   
+cumulus@switch:~$ nv set interface swp5 acl MACL2 inbound  
+cumulus@switch:~$ nv config apply   
 ```
 
 {{< /tab >}}
@@ -65,7 +65,7 @@ The following example matches Ethernet packets with source MAC address 01:12:34:
 ```
 [ebtables]
 
--t nat -A POSTROUTING -s 01:12:34:32:11:01 -j snat --to-source 99:de:fc:32:11:01 –o swp5   
+-t nat -A POSTROUTING -s 01:12:34:32:11:01 -j snat --to-source 99:de:fc:32:11:01 –o swp5   
 ```
 
 The following example matches Ethernet packets with destination MAC address 01:12:34:32:11:01 coming in on swp5 and translates the MAC address to 99:de:fc:32:11:01 on ingress on swp5.
@@ -73,7 +73,7 @@ The following example matches Ethernet packets with destination MAC address 01:1
 ```
 [ebtables]
 
--t nat -A PREROUTING -d 01:12:34:32:11:01 -j dnat --to-dst 99:de:fc:32:11:01 –i swp5  
+-t nat -A PREROUTING -d 01:12:34:32:11:01 -j dnat --to-dst 99:de:fc:32:11:01 –i swp5  
 ```
 
 {{< /tab >}}

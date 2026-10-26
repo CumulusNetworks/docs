@@ -37,7 +37,7 @@ The `nv action fetch system packages archive <url>` command uses the management 
 
 To install a patch, run the `nv action install system packages archive <archive-id>` command. The install command validates, then replaces the targeted packages with their fixed versions. The fixed package versions become the running package versions.
 
-The `<archive-id>` is the archive identifier (for example, rm1234567). To show the archive identifier, run the `nv show system packages archive`​ command after you download the patch. The `Archive` column shows the archive identifier.
+The `<archive-id>` is the archive identifier (for example, rm1234567). To show the archive identifier, run the `nv show system packages archive` command after you download the patch. The `Archive` column shows the archive identifier.
 
 {{%notice note%}}
 A patch targets a specific base image version and platform; the validation process checks both and does not install the patch if there is a mismatch.
@@ -73,7 +73,7 @@ Use the `accept-rollback-to-base` option with caution. When you install a patch 
 {{%/notice%}}
 
 The switch refuses to install a patch in the following cases:
-- The patch is not designed to replace the patch already installed on the switch. A patch can be installed over an existing patch only if it is designed to replace that patch.
+- The patch is not designed to replace the patch already installed on the switch. You can install a patch over an existing patch only if it is designed to replace that patch.
 - The patch that this patch supersedes is no longer on the switch. To install anyway, use the `accept-rollback-to-base` option.
 - The root filesystem does not have room for the packages the patch installs. The switch also refuses to fetch a patch without room to unpack it.
 

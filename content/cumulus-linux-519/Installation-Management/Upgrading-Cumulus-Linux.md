@@ -134,7 +134,7 @@ Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual 
 
 1. Download the Cumulus Linux image with the `nv action fetch system image <remote-url>` command.
 
-   The image files are downloaded to your enterprise support account in a convenient location in your infrasructure. The image location below is just an example; use your remote URL for the download.
+   The image files are downloaded to your enterprise support account in a convenient location in your infrastructure. The image location below is just an example; use your remote URL for the download.
 
    ```
    cumulus@switch:~$ nv action fetch system image http://10.0.1.251/cumulus-linux-5.19.0-mlx-amd64.bin
@@ -445,7 +445,7 @@ user@server:~$ docker run -d --name repo -p 8080:80 -p 8443:8443 -v /local/certp
 If you do not specify your own CA or server certificate, the container uses a self-signed certificate. To run the container with a self-signed certificate, define the following environment variables in your `docker run` command:
 
 - `REPO_HOST=<hostname>` - defines the hostname used to connect to the repository and is added to the Common Name (CN) and Subject Alternative Name (SAN) fields in the self-signed certificates.
-- `REPO_IP=<ip-address>` - defines the IP used to connect to the respository if you do not use a hostname and is also added to the SAN.
+- `REPO_IP=<ip-address>` - defines the IP used to connect to the repository if you do not use a hostname and is also added to the SAN.
 - `FORCE_REISSUE=[0 | 1]` - set to 1 to force reissuing the server certificate when the container starts, applying the configuration defined in the other variables.
 
 The following example runs the container with a self-signed certificate:
@@ -454,7 +454,7 @@ The following example runs the container with a self-signed certificate:
 user@server:~$ sudo docker run -d --name repo -p 8080:80 -p 8443:8443 -e REPO_HOST=hostname.domain -e REPO_IP=10.1.100.1 -e FORCE_REISSUE=1 cumulus-linux-apt-mirror:5.19.0
 ```
 
-3. {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="Import the certificate">}} used for the repository container on the switches you want to upgrade. If you are using a self-signed certificated, you can retrieve it from the container with the curl command: `curl -fsSL http://10.1.1.100:8080/ca.crt`.
+3. {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="Import the certificate">}} used for the repository container on the switches you want to upgrade. If you are using a self-signed certificate, you can retrieve it from the container with the curl command: `curl -fsSL http://10.1.1.100:8080/ca.crt`.
 
 <!--
 Retrieve and install the certificate on the switches you want to upgrade:

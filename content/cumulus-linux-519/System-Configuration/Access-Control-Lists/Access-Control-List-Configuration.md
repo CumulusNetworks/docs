@@ -300,7 +300,7 @@ To create this rule with NVUE, follow the steps below. NVUE adds all options in 
    cumulus@switch:~$ nv config apply
    ```
 
-   - For rules affecting the INPUT or OUPUT chain (-A INPUT or -A OUTPUT), apply the rule to a control plane interface. For example:
+   - For rules affecting the INPUT or OUTPUT chain (-A INPUT or -A OUTPUT), apply the rule to a control plane interface. For example:
 
    ```
    cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 inbound control-plane
@@ -595,7 +595,7 @@ For information about nonatomic and atomic mode, refer to {{<link url="#nonatomi
 
 ## ATCAM Resource Exhaustion
 
-If you see error messages similar to `No More Resources .. Rolling back` when you try to apply ACLs, refer to {{<link url="#troubleshooting-acl-rule-installation-failures" text="Troubleshooting ACL Rule Installation Failures">}} for information on troublshooting and managing resources.
+If you see error messages similar to `No More Resources .. Rolling back` when you try to apply ACLs, refer to {{<link url="#troubleshooting-acl-rule-installation-failures" text="Troubleshooting ACL Rule Installation Failures">}} for information on troubleshooting and managing resources.
 
 ## Supported Rule Types
 
@@ -1478,7 +1478,7 @@ Cumulus Linux supports ACL matches based on inner packet headers inside encapsul
 - You cannot match on both inner and outer packet headers in the same ACL.
 - You cannot combine a VLAN match with inner packet matches.
 - Inner packet matches support hardware forwarded packets only.
-- You can configure matches on inner packet headers with NVUE commmands only. 
+- You can configure matches on inner packet headers with NVUE commands only. 
 {{%/notice%}}
 
 You can use the following inner packet matching options:
@@ -1538,7 +1538,7 @@ Cumulus Linux supports ACL rule matches based on the packet offset.
 - You can configure offset matches only for ACL type ipv4 and ipv6.
 - The Spectrum1 switch does not support matches based on the packet offset.
 - Matches based on the packet offset support hardware forwarded packets only.
-- You can configure matches based on the packet offset with NVUE commmands only. 
+- You can configure matches based on the packet offset with NVUE commands only. 
 {{%/notice%}}
 
 You can use the following packet offset matching options:

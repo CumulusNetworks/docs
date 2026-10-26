@@ -45,7 +45,7 @@ Before you read measurements, generate a fresh set. The switch asks the componen
 <!-- REVIEW: the specification gives this command two ways. Its command-syntax table and its REST
      table both put the component directly after `spdm`, which is the form drafted below; its flow
      descriptions, its "Format:" line and its test cases insert `measurements` between `spdm` and the
-     component. Resolved in favour of the syntax and REST tables, because the REST table defines the
+     component. Resolved in favor of the syntax and REST tables, because the REST table defines the
      object model and its POST endpoint is /generate/system/security/spdm/{component-id}, with no
      measurements node — and because `measurements` is a show leaf everywhere else in the document.
      Confirm against a candidate build. Delete this comment before publishing. -->

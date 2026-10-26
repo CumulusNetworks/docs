@@ -657,7 +657,7 @@ IPV6                      LLADR(MAC)
 fe80::4ab0:2dff:fe60:b8e  48:b0:2d:60:0b:8e
 ```
 
-To show all IPv6 table entries for an interface with additional state details, run the `nv show interface <interface-id> neighbor ipv6 detail` command. The following additional fields are provided for the neighbor:
+To show all IPv6 table entries for an interface with additional state details, run the `nv show interface <interface-id> neighbor ipv6 detail` command. The command provides the following additional fields for the neighbor:
 
 - `State` - The current state of the neighbor entry.
 - `Last Used` - The time since the entry was last used for software forwarding.

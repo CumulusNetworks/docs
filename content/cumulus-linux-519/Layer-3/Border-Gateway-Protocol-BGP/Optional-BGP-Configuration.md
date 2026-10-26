@@ -69,7 +69,7 @@ leaf01(config-router)# neighbor swp51 interface peer-group SPINE
 {{< /tabs >}}
 <!-- vale off -->
 {{%notice note%}}
-If you unset a peer group, make sure that it is not applied to any neighbors. If the peer group is applied to neighbors, configure all parameters, such as the remote AS, directly on the neighbors before removing the peer group.
+If you unset a peer group, make sure that no neighbors use it. If neighbors use the peer group, configure all parameters, such as the remote AS, directly on the neighbors before removing the peer group.
 {{%/notice%}}
 <!-- vale on -->
 
@@ -1731,23 +1731,23 @@ spine01# exit
 Fast route convergence in multi-plane CLOS topologies with connected planes (planes merged at the super spine layer) requires you to configure the SOO source IP address on leaf switches to advertise the SOO route in addition to configuring BGP DC PIC as described in {{<link url="#bgp-dc-prefix-independent-convergence" text="BGP DC Prefix Independent Convergence">}} above. The switch uses the SOO source IP address instead of the router ID.
 
 {{%notice note%}}
-- The SOO source IP address must be unique in the topology so that it does not conflict with the router ID or loopback IP address of any other switch.
+- The SOO source IP address must be unique in the topology so that it does not conflict with the router ID or loopback IP address of any other switch.
 - Only configure the anycast SOO source IP address on leaf switches that have anycast prefixes advertised into BGP.
 - Only anycast IP addresses from these leaf switches are allowed.
 
 {{%/notice%}}
 
-To configure BGP DC PIC anycast, set the SOO source IP address on a leaf. Configuring the same SOO source IP address on multiple leaf switches puts them in the same anycast group.
+To configure BGP DC PIC anycast, set the SOO source IP address on a leaf. Configuring the same SOO source IP address on multiple leaf switches puts them in the same anycast group.
 
 {{< tabs "1654 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
 cumulus@leaf01:~$ nv set vrf default router bgp soo-source 10.10.10.1
-cumulus@leaf01:~$ nv config apply
+cumulus@leaf01:~$ nv config apply
 ```
 
-To unset the SOO source IP address, run the `nv set vrf default router bgp soo-source` command.
+To unset the SOO source IP address, run the `nv set vrf default router bgp soo-source` command.
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
@@ -1757,7 +1757,7 @@ To unset the SOO source IP address, run the `nv set vrf default router b
    ...
    leaf01# configure terminal
    leaf01(config)# router bgp 65101
-   leaf01(config-router)# bgp soo-source 10.10.10.1
+   leaf01(config-router)# bgp soo-source 10.10.10.1
    leaf01(config-router)# end
    leaf01# write memory
    leaf01# exit
@@ -1766,13 +1766,13 @@ To unset the SOO source IP address, run the `nv set vrf default router b
 {{< /tab >}}
 {{< /tabs >}}
 
-If you set the SOO source IP address on a leaf switch before you enable the BGP advertise origin option, the switch starts advertising SOO routes using the configured SOO source IP address.
+If you set the SOO source IP address on a leaf switch before you enable the BGP advertise origin option, the switch starts advertising SOO routes using the configured SOO source IP address.
 
 If you set the SOO source IP address on a leaf switch after enable the BGP advertise origin option:
-- The leaf withdraws the old SOO route (the one with the router ID).
-- The leaf announces a new SOO route using the SOO-source IP address.  
-- All prefix routes are readvertised with the new SOO tag.  
-- All network switches detect this change, remove references to the old SOO route, and install the new SOO route in their routing tables.
+- The leaf withdraws the old SOO route (the one with the router ID).
+- The leaf announces a new SOO route using the SOO-source IP address.  
+- BGP readvertises all prefix routes with the new SOO tag. 
+- All network switches detect this change, remove references to the old SOO route, and install the new SOO route in their routing tables.
 
 ### Show BGP DC PIC Information
 
@@ -2011,7 +2011,7 @@ allow-my-asn
 
 In large scale deployments, route aggregation keeps BGP routing tables manageable by reducing the number of paths. However, when used in multi-plane CLOS topologies with connected planes (planes merged at the super spine layer), leaf switches often advertise one aggregate route covering all of its connected hosts while suppressing more specific routes. When a single link fails and an individual host becomes unreachable, the aggregate remains advertised and the switch continues to send traffic to the failed path with no mechanism to reroute through healthy planes.
 
-BGP conditional disaggregation advertises specific prefixes when a failure is detected, while continuing to advertise the aggregate route. Combined with anycast Site-of-Origin (SOO) matching, this triggers peer plane leafs to conditionally originate specific routes to draw traffic instead of using the aggregate route that might lead to an unreachable destination.
+BGP conditional disaggregation advertises specific prefixes when it detects a failure, while continuing to advertise the aggregate route. Combined with anycast Site-of-Origin (SOO) matching, this triggers peer plane leafs to conditionally originate specific routes to draw traffic instead of using the aggregate route that might lead to an unreachable destination.
 
 {{%notice note%}}
 - You can configure conditional disaggregation in the default VRF only.
@@ -2269,7 +2269,7 @@ To show BGP unreachability signaling for a specific IPv6 route, run the `nv show
 cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unreachability 2001:db8::/64
 ```
 
-To show the unreachable prefixes in the RIB that are sent to LLDP, run the `nv show vrf default router rib unreachable-prefixes` command:
+To show the unreachable prefixes in the RIB that the switch sends to LLDP, run the `nv show vrf default router rib unreachable-prefixes` command:
 
 ```
 cumulus@leaf01:mgmt:~$ nv show vrf default router rib unreachable-prefixes
@@ -3501,7 +3501,7 @@ The vtysh `show ip bgp summary json` command shows the last convergence event.
 
 ## Advertisement Delay
 
-BGP advertisement delay defers outbound BGP updates for a configured time after the first BGP neighbor reaches the established state. During this delay, BGP session establishment, capability negotiation, best-path selection, and FIB programming proceed as normal; only outbound update generation is held. When the timer expires, all queued advertisements are sent to all established neighbors. 
+BGP advertisement delay defers outbound BGP updates for a configured time after the first BGP neighbor reaches the established state. During this delay, BGP session establishment, capability negotiation, best-path selection, and FIB programming proceed as normal; BGP holds only outbound update generation. When the timer expires, BGP sends all queued advertisements to all established neighbors. 
 
 Use advertisement-delay to allow downlink interfaces and access services to stabilize before attracting traffic to the switch. NVIDIA recommends a delay of at least 90 seconds when using 802.1X authentication, and at least 30 seconds in other deployments. When using advertisement-delay, deploy the RADIUS server (if used) in the management VRF for reliable reachability during boot and convergence.
 
@@ -3534,7 +3534,7 @@ leaf01# exit
 {{< /tabs >}}
 
 {{%notice note%}}
-The {{<link url="Optional-BGP-Configuration/#enable-read-only-mode" text="`convergence-wait time`">}} and `advertisement-delay` are independent timers. Each can be configured on its own; you can have neither, only one, or both configured at the same time. Both update-delay and advertisement-delay are triggered when the first BGP peer reaches Established and both re-trigger on startup and when BGP neighbors are cleared.
+The {{<link url="Optional-BGP-Configuration/#enable-read-only-mode" text="`convergence-wait time`">}} and `advertisement-delay` are independent timers. You can configure each one on its own; you can have neither, only one, or both configured at the same time. Both update-delay and advertisement-delay trigger when the first BGP peer reaches Established, and both re-trigger on startup and when you clear BGP neighbors.
 {{%/notice%}}
 
 ## BGP Community Lists

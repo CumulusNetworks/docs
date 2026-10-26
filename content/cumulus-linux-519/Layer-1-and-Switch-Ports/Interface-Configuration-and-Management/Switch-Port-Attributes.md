@@ -757,9 +757,9 @@ Maximum 50G ports: 8
 Maximum 100G ports: 4
 
 {{< /tab >}}
-{{< /tab >}}
-
 {{< /tabs >}}
+
+{{< /tab >}}
 {{< tab "SN2100">}}
 
 16x QSFP28 100G interfaces only support NRZ encoding. You can set all speeds down to 1G.
@@ -809,9 +809,9 @@ Maximum 50G ports: 32
 Maximum 100G ports: 16
 
 {{< /tab >}}
-{{< /tab >}}
-
 {{< /tabs >}}
+
+{{< /tab >}}
 {{< tab "SN2201">}}
 
 48x 1GBase-T ports (RJ45 up to 100m CAT5E/6) and 4x QSFP28 100G interfaces (only support NRZ encoding). You can set all speeds down to 1G.
@@ -864,9 +864,9 @@ Maximum 50G ports: 8
 Maximum 100G ports: 4
 
 {{< /tab >}}
-{{< /tab >}}
-
 {{< /tabs >}}
+
+{{< /tab >}}
 {{< tab "SN2410">}}
 
 48x SFP28 25G and 8x QSFP28 100G interfaces only support NRZ encoding. You can set all speeds down to 1G.
@@ -921,9 +921,9 @@ Maximum 50G ports: 16
 Maximum 100G ports: 8
 
 {{< /tab >}}
-{{< /tab >}}
-
 {{< /tabs >}}
+
+{{< /tab >}}
 {{< tab "SN2700">}}
 
 32x QSFP28 100G interfaces only support NRZ encoding. You can set all speeds down to 1G.
@@ -975,9 +975,9 @@ Maximum 50G ports: 64
 Maximum 100G ports: 32
 
 {{< /tab >}}
-{{< /tab >}}
-
 {{< /tabs >}}
+
+{{< /tab >}}
 {{< tab "SN3420">}}
 
 48x SFP28 25G and 12x QSFP28 100G interfaces only support NRZ encoding. You can set all speeds down to 1G.
@@ -1030,9 +1030,9 @@ Maximum 50G ports: 24
 Maximum 100G ports: 12
 
 {{< /tab >}}
-{{< /tab >}}
-
 {{< /tabs >}}
+
+{{< /tab >}}
 
 <!-- SN3510 PLATFORM DELAYED UNTILL FURTHER NOTICE
 {< tab "SN3510">}}
@@ -1151,9 +1151,9 @@ Maximum 50G ports: 64
 Maximum 100G ports: 32
 
 {{< /tab >}}
-{{< /tab >}}
-
 {{< /tabs >}}
+
+{{< /tab >}}
 {{< tab "SN3700 and SN3750SX">}}
 
 32x QSFP56 200G interfaces support both PAM4 and NRZ encodings. You can set all speeds down to 1G.
@@ -1212,9 +1212,9 @@ Maximum 100G ports: 64
 Maximum 200G ports: 32
 
 {{< /tab >}}
-{{< /tab >}}
-
 {{< /tabs >}}
+
+{{< /tab >}}
 {{< tab "SN4410">}}
 
 SN4410 24xQSFP28-DD interfaces [ports 1-24] support both PAM4 and NRZ encoding with all speeds from 200G down to 1G.
@@ -1296,9 +1296,9 @@ Maximum 200G ports: 64
 Maximum 400G ports: 8
 
 {{< /tab >}}
-{{< /tab >}}
-
 {{< /tabs >}}
+
+{{< /tab >}}
 {{< tab "SN4600C">}}
 
 64x QSFP28 100G interfaces only support NRZ encoding. You can set all speeds down to 1G.
@@ -1350,9 +1350,9 @@ Maximum 50G ports: 128
 Maximum 100G ports: 64
 
 {{< /tab >}}
-{{< /tab >}}
-
 {{< /tabs >}}
+
+{{< /tab >}}
 {{< tab "SN4600">}}
 
 SN4600 64xQSFP56 (200GbE) interfaces support both PAM4 and NRZ encodings with all speeds down to 1G.
@@ -1414,9 +1414,9 @@ Maximum 100G ports: 128
 Maximum 200G ports: 64
 
 {{< /tab >}}
-{{< /tab >}}
-
 {{< /tabs >}}
+
+{{< /tab >}}
 {{< tab "SN4700">}}
 
 SN4700 32x QSFP-DD 400GbE interfaces support both PAM4 and NRZ encodings. You can set all speeds down to 1G.
@@ -1490,9 +1490,9 @@ Maximum 200G ports: 64
 Maximum 400G ports: 32
 
 {{< /tab >}}
-{{< /tab >}}
-
 {{< /tabs >}}
+
+{{< /tab >}}
 {{< tab "SN5400">}}
 
 SN5400 64xQSFP-DD (400GbE) interfaces support both PAM4 and NRZ encodings with all speeds down to 10G.
@@ -1552,9 +1552,9 @@ Maximum 200G ports: 128 (64 ports breakout into 2x)
 Maximum 400G ports: 64
 
 {{< /tab >}}
-{{< /tab >}}
-
 {{< /tabs >}}
+
+{{< /tab >}}
 {{< tab "SN5600 and SN5600D">}}
 
 SN5600 64xOSFP (800GbE) interfaces support both PAM4 and NRZ encodings with all speeds down to 10G.
@@ -1625,9 +1625,9 @@ Maximum 400G ports: 128
 Maximum 800G ports: 64
 
 {{< /tab >}}
-{{< /tab >}}
-
 {{< /tabs >}}
+
+{{< /tab >}}
 {{< tab "SN5610">}}
 
 SN5610 64xOSFP (800GbE) interfaces support both PAM4 and NRZ encodings with all speeds down to 10G.
@@ -1698,9 +1698,9 @@ Maximum 400G ports: 128
 Maximum 800G ports: 64
 
 {{< /tab >}}
-{{< /tab >}}
-
 {{< /tabs >}}
+
+{{< /tab >}}
 {{< tab "SN6600_LD">}}
 
 SN6600_LD 128xOSFP (800GbE) interfaces support PAM4 with all speeds down to 100G.
@@ -1743,7 +1743,7 @@ Cumulus 5.18 does not support 1x break out at 800G. Interfaces are 2x split by d
 {{%/notice%}}
 
 {{< /tab >}}
-{{< /tab >}}
+{{< /tabs >}}
 
 {{< /tab >}}
 {{< /tabs >}}

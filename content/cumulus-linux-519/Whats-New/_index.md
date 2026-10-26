@@ -52,7 +52,7 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
   - {{<link url="Switch-Port-Attributes/#show-the-physical-connector-for-a-port" text="Show the physical connector for a port">}}
   - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#show-transceiver-information" text="Decoded transceiver Ethernet compliance codes">}}
 - Telemetry
- - {{<link url="gNMI-Streaming/#supported-models" text="gNMI component type and name for platform components">}}
+  - {{<link url="gNMI-Streaming/#supported-models" text="gNMI component type and name for platform components">}}
   - {{<link url="Open-Telemetry-Export/#wjh-events-and-metrics" text="WJH events, as OTEL log records, and WJH metrics for OTEL">}}
   - {{<link url="New-and-Updated-Telemetry-Metrics/#new-gnmi-metrics" text="gNMI and OTEL metrics for unreachability AFI SAFI">}}
   - {{<link url="New-and-Updated-Telemetry-Metrics/#new-otel-metrics" text="OTEL metrics for AAA RADIUS login authentication">}}
@@ -61,6 +61,7 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
   - {{<link url="New-and-Updated-Telemetry-Metrics/#new-gnmi-metrics" text="gNMI and OTEL metrics for CPO modules and laser sources">}}
   - {{<link url="New-and-Updated-Telemetry-Metrics/#new-otel-metrics" text="OTEL metrics for trimmed packet sent and dropped counters">}} on Spectrum-6 switches
   - {{<link url="New-and-Updated-Telemetry-Metrics/#new-gnmi-metrics" text="gNMI and OTEL metrics for back-to-sender notification on link down">}} on Spectrum-6 switches
+  - {{<link url="New-and-Updated-Telemetry-Metrics/#new-gnmi-metrics" text="gNMI and OTEL metrics for control plane punt classifier drop counters">}}
 
 ## Release Considerations
 

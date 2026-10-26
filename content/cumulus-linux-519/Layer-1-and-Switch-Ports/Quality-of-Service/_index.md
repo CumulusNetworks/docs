@@ -714,7 +714,7 @@ small-packet-probability 60
 
 ### Lossless Headroom Based on Small Packet Probability
 
-Cumulus Linux calculates the headroom size for lossless priority groups based on the assumption that all packets are small (64 bytes). The switch assumes a 100 percent probability of such packets arriving at line rate. As a result, the configured headroom is often larger than necessary, as traffic typically consists of a mix of packet sizes. On Spectrum-6, the switch assumes a 50 percent probability of such packets arriving at line rate.
+Cumulus Linux calculates the headroom size for lossless priority groups based on the assumption that all packets are small (64 bytes). The switch assumes a 100 percent probability of such packets arriving at line rate. As a result, the configured headroom is often larger than necessary, as traffic typically consists of a mix of packet sizes.
 
 To enable more accurate headroom calculations, providing for better buffer allocation and improved shared buffer utilization, you can configure the probability of small packets on ports applied with a {{<link url="#priority-flow-control-(pfc)" text="priority flow control profile">}}. Based on the configured small packet probability, `switchd` calculates the headroom reservation required for the lossless priority group.
 
@@ -769,20 +769,7 @@ tx                        enable       enable
 rx                        enable       enable 
 [switch-priority]         3            3
 ```
-<!--
-To show the link pause small packet probability setting for a profile, run the `nv show qos link-pause <profile-id>` command. To show the link pause small packet probability setting for an interface, run the `nv show interface <interface-id> qos link-pause` command.
 
-```
-cumulus@switch:~$ nv show qos link-pause default-global
-                           operational  applied
-------------------------  -----------  -------
-cable-length              100          100    
-small-packet-probability  40           40     
-tx                        enable       enable 
-rx                        enable       enable 
-[switch-priority]         3            3
-```
--->
 ### PFC Watchdog
 
 PFC watchdog detects and mitigates pause storms on PFC-enabled ports.
@@ -2606,7 +2593,7 @@ Each layer reports a problem in a different place:
 - NVUE rejects a configuration that exceeds the headroom limit, and `nv config apply` shows `Invalid config`. The error names the interfaces the setting applies to: `swp65s0,swp65s1` for the `default-global` profile, or the interface for a named profile. For example:
 
   ```
-  Service port lossy buffer headroom config cannot exceed port headroom max of 498176 bytes(cells 1946)
+  Service port buffer headroom config cannot exceed port headroom max of 498176 bytes(cells 1946)
   ```
 
 - `cl-consistency-check` rejects a configuration that exceeds the service port pool. `nv config apply` shows the error under `Failure during apply`, after `Validation of consistency-checker failed.`, and rolls back the configuration. For example:

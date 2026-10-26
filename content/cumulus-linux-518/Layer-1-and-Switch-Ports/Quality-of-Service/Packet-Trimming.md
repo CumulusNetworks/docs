@@ -220,7 +220,8 @@ You can show the number of trimmed packets at the global level and the number of
 
 {{%notice note%}}
 - You can show packet trimming counters on switches with Spectrum-4 and later ASICs.
-- Spectrum-4 switches display only the total number of trimmed packets per port and do not provide counters for the number of trimmed packets that were sent successfully on a port.
+- Spectrum-4 switches display only the total number of trimmed packets for each port and do not provide counters for the number of trimmed packets that the switch sent successfully on a port.
+- On Spectrum-4 switches, the trim eligible packets value for each interface is a port statistic that counts unicast packets the switch trims or discards because no buffer is available. The value covers the lifetime of the port and includes discards from periods when packet trimming was disabled; it does not distinguish those discards from trimmed packets.
 {{%/notice%}}
 
 To display the number of trimmed packets at both the global and interface levels, run the `nv show system forwarding packet-trim counters` command:
@@ -270,6 +271,12 @@ To clear the packet trimming counters for a specific interface, run the `nv acti
 ```
 cumulus@switch:~$ nv action clear interface swp1 packet-trim counters
 ```
+
+{{%notice note%}}
+On Spectrum-4 switches, clearing the counters records the current values for each interface and subtracts them from the values the switch shows you. It does not reset the underlying port statistic. If you disable, then reenable packet trimming, the switch discards that baseline and the interface value returns to the running total for the port.
+
+The global `trimmed-packets` counter behaves differently because it belongs to the packet trimming session. Disabling and reenabling packet trimming restarts the global counter at zero. A global counter of zero together with a non-zero interface value is expected on these switches. To bring both to a common baseline, clear the counters again after you reenable packet trimming.
+{{%/notice%}}
 
 ## Troubleshooting
 

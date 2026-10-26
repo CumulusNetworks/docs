@@ -69,7 +69,7 @@ For a list of approved product releases, refer to the {{<exlink url="https://doc
 ### Platforms
 
 - NVIDIA SN2201M (100G Spectrum 1)
-- NVIDIA SN5400 - P2C (power-to-connector) Airflow version; C2P (connnector-to-power) version GA is 5.10.1
+- NVIDIA SN5400 - P2C (power-to-connector) Airflow version; C2P (connector-to-power) version GA is 5.10.1
 
 ### New Features and Enhancements
 

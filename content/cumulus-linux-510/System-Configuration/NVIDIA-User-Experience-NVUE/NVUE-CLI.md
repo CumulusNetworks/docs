@@ -137,7 +137,7 @@ The NVUE monitoring commands show various parts of the network configuration. Fo
 | `nv show evpn` |Shows EVPN configuration. |
 | `nv show interface` |Shows interface configuration and counters. |
 | `nv show mlag` | Shows MLAG configuration. |
-| `nv show nve` | Shows network virtualization configuration, such as VXLAN-specfic MLAG configuration and VXLAN flooding.|
+| `nv show nve` | Shows network virtualization configuration, such as VXLAN-specific MLAG configuration and VXLAN flooding.|
 | `nv show platform` | Shows platform configuration, such as hardware and software components. |
 | `nv show qos` | Shows QoS RoCE configuration.|
 | `nv show router` | Shows router configuration, such as router policies, global BGP and OSPF configuration, PBR, PIM, IGMP, VRR, and VRRP configuration. |
@@ -413,7 +413,7 @@ cumulus@switch:~$ nv config apply
 
 When you disable auto save, you must run the `nv config save` command to save the applied configuration to the startup configuration so that the changes persist after a reboot.
 
-To renable auto save, run the `nv set system config auto-save state enabled` command.
+To re-enable auto save, run the `nv set system config auto-save state enabled` command.
 
 ## Add Configuration Apply Messages
 

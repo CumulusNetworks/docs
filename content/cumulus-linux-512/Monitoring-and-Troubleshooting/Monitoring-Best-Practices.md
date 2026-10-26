@@ -292,7 +292,7 @@ Link and port state interface transitions log to `/var/log/syslog` and `/var/log
 | Interface Element | Monitoring Commands |
 |------------------ |-------------------- |
 | Link state | NVUE: `nv show interface <interface>`<br><br>Linux: `sudo cat /sys/class/net/<interface>/operstate` |
-| Link speed | NVUE: `nv show interface <inteface>`<br><br>Linux: `sudo cat /sys/class/net/<interface>/speed` |
+| Link speed | NVUE: `nv show interface <interface>`<br><br>Linux: `sudo cat /sys/class/net/<interface>/speed` |
 | Port state | NVUE: `nv show interface`<br><br>Linux: `ip link show` |
 | Bond state | NVUE: `nv show interface <bond>`<br><br>Linux: `sudo cat /proc/net/bonding/<bond>` |
 

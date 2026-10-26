@@ -1383,7 +1383,7 @@ The interface statistic data samples that the switch exports to the OTEL collect
 | `nvswitch_interface_discards_ingress_policy_engine` | Interface ingress policy engine discards counter. |
 | `nvswitch_interface_discards_ingress_vlan_membership` | Interface ingress VLAN membership filter discards counter. |
 | `nvswitch_interface_discards_ingress_tag_frame_type` | Interface ingress VLAN tag filter discards counter. |
-| `nvswitch_interface_discards_egress_vlan_membership` | Interface egress VLAN emmbership filter discards counter. |
+| `nvswitch_interface_discards_egress_vlan_membership` | Interface egress VLAN membership filter discards counter. |
 | `nvswitch_interface_discards_loopback_filter` | Interface loopback filter discards counter. |
 | `nvswitch_interface_discards_egress_hoq` | Interface egress head-of-queue timeout discards. |
 | `nvswitch_interface_discards_egress_policy_engine` | Interface egress policy engine discards. |
@@ -1450,7 +1450,7 @@ The interface statistic data samples that the switch exports to the OTEL collect
 | `nvswitch_interface_if_out_octets`| Number of interface out octets.|
 | `nvswitch_interface_if_out_pkts`| Number of interface out unicast packets.|
 | `nvswitch_interface_type`|Link-layer interface type.|
-| `nvswitch_interface_ether_stats_jabbers` | Jabber frames receiverd on this interface.|
+| `nvswitch_interface_ether_stats_jabbers` | Jabber frames received on this interface.|
 | `nvswitch_interface_hw_address_info` | System defined default MAC address for the interface.|
 
 {{< /tab >}}
@@ -2690,7 +2690,7 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 | Name | Description |
 |----- | ----------- |
 | `node_cpu_core_throttles_total` | Number of times a CPU core has been throttled. |
-| `node_cpu_frequency_max_hertz` | Maxiumum CPU thread frequency in hertz. |
+| `node_cpu_frequency_max_hertz` | Maximum CPU thread frequency in hertz. |
 | `node_cpu_frequency_min_hertz` | Minimum CPU thread frequency in hertz. |
 | `node_cpu_guest_seconds_total` | Seconds the CPUs spent in guests for each mode. |
 | `node_cpu_package_throttles_total` | Number of times the CPU package has been throttled. |

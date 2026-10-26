@@ -411,7 +411,7 @@ nv set system aaa user cumulus password 'MyP4$$word'
 nv config apply
 ```
 
-If you have an insecure management network, inclue the following commands in your ZTP script to set the password with an encrypted hash instead of a clear-text password. See {{<link url="User-Accounts#hashed-passwords" text="Hashed Passwords">}} for additional information.
+If you have an insecure management network, include the following commands in your ZTP script to set the password with an encrypted hash instead of a clear-text password. See {{<link url="User-Accounts#hashed-passwords" text="Hashed Passwords">}} for additional information.
 
 ```
  nv set system aaa user <username> hashed-password <password>

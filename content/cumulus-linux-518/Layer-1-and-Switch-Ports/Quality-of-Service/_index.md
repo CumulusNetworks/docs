@@ -2529,7 +2529,7 @@ QoS buffers cleared on swp1.
 Action succeeded
 ```
 
-To clear the Qos buffers on a set of interfaces, run the `nv action clear interface <interface-list> qos buffer` command. You can specify the list of interfaces in a range or in coma seperated list.
+To clear the Qos buffers on a set of interfaces, run the `nv action clear interface <interface-list> qos buffer` command. You can specify the list of interfaces in a range or in a comma-separated list.
 
 ```
 cumulus@switch:~$ nv action clear interface swp1-5,swp20,swp25 qos buffer
@@ -3052,7 +3052,7 @@ cos_egr_queue.cos_7.cpu = 7
 
 ### Configure QoS and Breakout Ports Simultaneously
 
-If you configure btoh breakout ports and QoS settings for breakout interfaces at the same time, errors might occur.
+If you configure both breakout ports and QoS settings for breakout interfaces at the same time, errors might occur.
 
 You must apply breakout port configuration before QoS configuration on the breakout ports. If you are using NVUE, configure breakout ports and perform an `nv config apply` first, then configure QoS settings on the breakout ports followed by another `nv config apply`. If you are using linux file configuration, modify `ports.conf` first, `reload switchd`, then modify `/etc/cumulus/datapath/qos/qos_features.conf` and `reload switchd` a second time.
 

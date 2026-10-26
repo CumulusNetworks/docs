@@ -161,7 +161,7 @@ Restarting the `switchd` service causes all network ports to reset in addition t
 | `stats.vxlan.aggregate` | Enables hardware statistics for VXLANs and specifies the type of statistics needed. You can specify NONE, BRIEF, or DETAIL.</br> The default setting is DETAIL. | restart |
 | `stats.vxlan.member` | Enables hardware statistics for VXLAN members and specifies the type of statistics needed. You can specify NONE, BRIEF, or DETAIL.</br>The default setting is BRIEF. | restart |
 | `stats.vlan.show_internal_vlans` | Show internal VLANs.</br>The default setting is FALSE. | restart |
-| `stats.vdev_hw_poll_interval` | The polling interval in seconds for virtual device hardware statisitcs.</br>The default setting is 5. | restart |
+| `stats.vdev_hw_poll_interval` | The polling interval in seconds for virtual device hardware statistics.</br>The default setting is 5. | restart |
 | `resv_vlan_range` | The internal VLAN range.</br>The default setting is 3725-3999. | restart |
 | `netlink.buf_size` | The netlink socket buffer size in MB.</br>The default setting is 136314880. | restart |
 | `route.delete_dead_routes` | Delete routes on interfaces when the carrier is down.</br>The default setting is TRUE. | restart |

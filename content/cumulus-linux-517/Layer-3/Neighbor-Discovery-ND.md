@@ -44,7 +44,7 @@ leaf01(config-if)# no ipv6 nd suppress-ra
 {{< /tabs >}}
 
 {{%notice note%}}
-- For Stateless Address Auto-Configuration (SLAAC), you must enable Router Advertisment on the interface. The prefix advertised in the Router Advertisement must belong to the /64 subnet.
+- For Stateless Address Auto-Configuration (SLAAC), you must enable Router Advertisement on the interface. The prefix advertised in the Router Advertisement must belong to the /64 subnet.
 - If you configure IPv6 router advertisements in a network where physical interfaces are part of a bridge with VLANs, you must enable IPv6 router advertisements on the VLAN interfaces instead of the physical interfaces.
 {{%/notice%}}
 
@@ -52,7 +52,7 @@ You can configure these optional settings:
 
 - Allow consecutive Router Advertisement packets to transmit more frequently than every three seconds (fast retransmit). You can set this parameter to enabled or disabled. The default setting is enabled.
 - Set the hop limit value advertised in a Router Advertisement message. You can set a value between 0 and 255. The default value is 64.
-- Set the interval between unsolicited multicast router advertisements from the interface. You can set a value between 70 and 1800000 miliseconds. The default value is 600000 miliseconds.
+- Set the interval between unsolicited multicast router advertisements from the interface. You can set a value between 70 and 1800000 milliseconds. The default value is 600000 milliseconds.
 - Set the maximum amount of time that Router Advertisement messages can exist on the route. You can set a value between 0 and 9000 seconds. The default value is 1800.
 - Allow a dynamic host to use a managed protocol, such as DHCPv6 to configure IP addresses automatically (managed configuration). Set this parameter to enabled or disabled. By default, this parameter is not set.
 - Allow a dynamic host to use a managed protocol to configure additional information through DHCPv6. Set this parameter to enabled or disabled. By default, this parameter is not set.
@@ -163,7 +163,7 @@ interface swp1
 To configure IPv6 prefixes, you must specify the IPv6 prefixes you want to include in router advertisements. In addition, you can configure these optional settings:
 - Set the amount of time that the prefix is valid for on-link determination. You can set a value between 0 and 4294967295 seconds. The default value is 2592000.
 - Set the amount of time that addresses generated from a prefix remain preferred. You can set a value between 0 and 4294967295 seconds. The default value is 604800.
-- Enable adverisement to make no statement about prefix on-link or off-link properties. By default, this setting is disabled.
+- Enable advertisement to make no statement about prefix on-link or off-link properties. By default, this setting is disabled.
 - Enable the specified prefix to use IPv6 autoconfiguration. By default, this setting is enabled.
 - Indicate to hosts on the local link that the specified prefix contains a complete IP address by setting the R flag. By default, this setting is disabled.
 
@@ -484,7 +484,7 @@ cumulus@leaf01:mgmt:~$ nv set interface swp51 neighbor ipv6 fe80::4ab0:2dff:fea2
 cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
-You can also set a flag to indicate that the neighbour is a router (`is-router`) or learned externally (`ext_learn`) and set the neighbor state (`delay`, `failed`, `incomplete`, `noarp`, `permanent`, `probe`, `reachable`, or `stale`).
+You can also set a flag to indicate that the neighbor is a router (`is-router`) or learned externally (`ext_learn`) and set the neighbor state (`delay`, `failed`, `incomplete`, `noarp`, `permanent`, `probe`, `reachable`, or `stale`).
 
 ```
 cumulus@leaf01:mgmt:~$ nv set interface swp51 neighbor ipv6 fe80::4ab0:2dff:fea2:4c79 lladdr 00:00:5E:00:53:51 flag is-router

@@ -1123,7 +1123,7 @@ To configure dynamic ECN, determine which traffic classes carry loss-sensitive o
 
   When you set dynamic ECN mode to `relative`, the switch hardware ignores any configured byte-based thresholds. The ASIC begins marking traffic based on percentage thresholds relative to the dynamically allocated buffer allowance of the traffic class, which is continuously recalculated based on current buffer usage and pool occupancy.
 
-  When you set dynamic ECN mode to `absolute`, the switch hardware ignores percentage-based thresholds. The ASIC marks traffic using the configured absolute byte thresholds, which are treated as fixed limits.
+  When you set dynamic ECN mode to `absolute`, the switch hardware ignores percentage-based thresholds. The ASIC marks traffic using the configured absolute byte thresholds, which it treats as fixed limits.
 
 - Configure the minimum ECN marking threshold as a percentage (0 through 100) of the dynamic buffer allowance. The switch marks packets when queue occupancy exceeds this percentage. The default value is 0.
 - Configure the maximum ECN marking threshold as a percentage (0 through 100) of the dynamic buffer allowance. The value must be greater than or equal to the minimum threshold percent. The default value is 100.

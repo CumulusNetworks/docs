@@ -39,7 +39,7 @@ Before you perform an upgrade with ISSU, you must:
 After setting BGP restart and half-resource mode, you can run warm reboot with the `nv action reboot system mode warm` command. Refer to {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="switch reboot mode">}}.
 
 {{%notice note%}}
-Forwarding resources apply to hardware TCAM or KVD resources used for MAC addresses, layer 3 neighbors, and <span class="a-tooltip">[LPM](## "Longest Prefix Match")</span> (IPv4 and IPv6, unicast and multicast) entries. In half-resource mode these are reduced by 50 percent. Refer to {{<link url="Forwarding-Table-Size-and-Profiles" text="Forwarding Table Sizes">}} for platform-specific details.
+Forwarding resources apply to hardware TCAM or KVD resources used for MAC addresses, layer 3 neighbors, and <span class="a-tooltip">[LPM](## "Longest Prefix Match")</span> (IPv4 and IPv6, unicast and multicast) entries. Half-resource mode reduces these by 50 percent. Refer to {{<link url="Forwarding-Table-Size-and-Profiles" text="Forwarding Table Sizes">}} for platform-specific details.
 {{%/notice%}}
 
 To configure the switch in half resource mode:
@@ -423,9 +423,9 @@ The following example runs the container, defining volumes to mount for a CA cer
 user@server:~$ docker run -d --name repo -p 8080:80 -p 8443:8443 -v /local/certpath/ca.crt:/etc/nginx/ca/ca.crt:ro -v /local/certpath/ca.key:/etc/nginx/ca/ca.key:ro cumulus-linux-apt-mirror:5.18.0
 ```
 
-If you do not specify your own CA or server certificate, a self-signed certificate is used. To run the container with a self-signed certificate, define the following environment variables in your `docker run` command:
+If you do not specify your own CA or server certificate, the container uses a self-signed certificate. To run the container with a self-signed certificate, define the following environment variables in your `docker run` command:
 
-- `REPO_HOST=<hostname>` - defines the hostname used to connect to the repository and is added to the Common Name (CN) and Subject Alternative Name (SAN) fields in the self-signed certificates.
+- `REPO_HOST=<hostname>` - defines the hostname used to connect to the repository and adds it to the Common Name (CN) and Subject Alternative Name (SAN) fields in the self-signed certificates.
 - `REPO_IP=<ip-address>` - defines the IP used to connect to the repository if you do not use a hostname and is also added to the SAN.
 - `FORCE_REISSUE=[0 | 1]` - set to 1 to force reissuing the server certificate when the container starts, applying the configuration defined in the other variables.
 
@@ -615,7 +615,7 @@ cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/cumulus-linux-5.18.0
 {{%notice note%}}
 In Cumulus Linux 5.16 and later, NVUE uses IPv6 address normalization, where it stores and looks up all IPv6 addresses in their normalized (canonical) form (for example, 2001:db8::1 instead of 2001:0db8::0001). When you copy the `startup.yaml` file manually from Cumulus Linux 5.15 or earlier to Cumulus Linux 5.16 or later, the file bypasses the standard upgrade translation process. As a result, the configuration might contain unnormalized IPv6 addresses that are valid in earlier Cumulus Linux releases, which might cause failed lookups during NVUE show commands, unexpected configuration mismatches, and failed or silent misconfigurations.
 
-Before you run the `nv config apply startup` command after upgrade, translate the file to ensure all IPv6 addresses are normalized, then replace the `startup.yaml` with the normalized version:
+Before you run the `nv config apply startup` command after upgrade, translate the file to normalize all IPv6 addresses, then replace the `startup.yaml` with the normalized version:
 
 ```
 cumulus@switch:~$ nv config translate filename /home/cumulus/startup.yaml > /home/cumulus/ipv6_normalized_startup.yaml
@@ -623,7 +623,7 @@ cumulus@switch:~$ sudo cp /home/cumulus/ipv6_normalized_startup.yaml /etc/nvue.d
 cumulus@switch:~$ nv config apply startup
 ```
 
-NVUE normalizes IPv6 addresses to their canonical form. However, for IPv4-mapped IPv6 addresses, NVUE normalizes only the IPv6 portion of the address. The IPv4 portion of the address is retained in the IETF-recommended mixed-notation format and remains unchanged. For example, NVUE normalizes the IPv4-mapped IPv6 address 0::ffff:10.0.0.1 to ::ffff:10.0.0.1.
+NVUE normalizes IPv6 addresses to their canonical form. However, for IPv4-mapped IPv6 addresses, NVUE normalizes only the IPv6 portion of the address. NVUE retains the IPv4 portion of the address in the IETF-recommended mixed-notation format and leaves it unchanged. For example, NVUE normalizes the IPv4-mapped IPv6 address 0::ffff:10.0.0.1 to ::ffff:10.0.0.1.
 
 For the full set of normalization rules and an example of configuring an unnormalized address, refer to {{<link url="NVUE-CLI/#ipv6-address-normalization" text="IPv6 Address Normalization">}}.
 {{%/notice%}}

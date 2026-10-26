@@ -1348,7 +1348,7 @@ Source          Group           Proto  Input      Output     TTL  Uptime
 
 To troubleshoot the issue:
 
-1. Validate that the FHR can reach the RP. If the RP and FHR can not communicate, the registration process fails:
+1. Validate that the FHR can reach the RP. If the RP and FHR cannot communicate, the registration process fails:
 
    ```
    cumulus@fhr:~$ ping 10.10.10.101

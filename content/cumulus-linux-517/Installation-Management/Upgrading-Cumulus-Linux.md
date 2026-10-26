@@ -33,7 +33,7 @@ Before you perform an upgrade with ISSU, you must:
 After setting BGP restart and half-resource mode, you can run warm reboot with the `nv action reboot system mode warm` command. Refer to {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="switch reboot mode">}}.
 
 {{%notice note%}}
-Forwarding resources apply to hardware TCAM or KVD resources used for MAC addresses, layer 3 neighbors, and <span class="a-tooltip">[LPM](## "Longest Prefix Match")</span> (IPv4 and IPv6, unicast and multicast) entries. In half-resource mode these are reduced by 50 percent. Refer to {{<link url="Forwarding-Table-Size-and-Profiles" text="Forwarding Table Sizes">}} for platform-specific details.
+Forwarding resources apply to hardware TCAM or KVD resources used for MAC addresses, layer 3 neighbors, and <span class="a-tooltip">[LPM](## "Longest Prefix Match")</span> (IPv4 and IPv6, unicast and multicast) entries. Half-resource mode reduces these by 50 percent. Refer to {{<link url="Forwarding-Table-Size-and-Profiles" text="Forwarding Table Sizes">}} for platform-specific details.
 {{%/notice%}}
 
 To configure the switch in half resource mode:
@@ -583,7 +583,7 @@ To show a list of generated `/etc/default/isc-*` files changed from the previous
 
 4. Restore certificates and the configuration files to the new release:
 
-   a. {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="Reimport all certificates">}} and/or CRLs that were configured in the previous release with the `nv action import system security` command, ensuring you use the same `certificate-id` that was originally assigned to each certificate.
+   a. {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="Reimport all certificates">}} and/or CRLs that you configured in the previous release with the `nv action import system security` command, ensuring you use the same `certificate-id` that was originally assigned to each certificate.
 
    b. Copy the `/etc/nvue.d/startup.yaml` file from the back up process to the switch.
 
@@ -599,7 +599,7 @@ To show a list of generated `/etc/default/isc-*` files changed from the previous
 {{%notice note%}}
 In Cumulus Linux 5.16 and later, NVUE uses IPv6 address normalization, where it stores and looks up all IPv6 addresses in their normalized (canonical) form (for example, 2001:db8::1 instead of 2001:0db8::0001). When you copy the `startup.yaml` file manually from Cumulus Linux 5.15 or earlier to Cumulus Linux 5.16 or later, the file bypasses the standard upgrade translation process. As a result, the configuration might contain unnormalized IPv6 addresses that are valid in earlier Cumulus Linux releases, which might cause failed lookups during NVUE show commands, unexpected configuration mismatches, and failed or silent misconfigurations.
 
-Before you run the `nv config apply startup` command after the upgrade, first translate the file to ensure all IPv6 addresses are normalized, then replace the `startup.yaml` with the normalized version:
+Before you run the `nv config apply startup` command after the upgrade, first translate the file to ensure NVUE normalizes all IPv6 addresses, then replace the `startup.yaml` with the normalized version:
 
 ```
 cumulus@switch:~$ nv config translate filename /home/cumulus/startup.yaml > /home/cumulus/ipv6_normalized_startup.yaml
@@ -607,7 +607,7 @@ cumulus@switch:~$ sudo cp /home/cumulus/ipv6_normalized_startup.yaml /etc/nvue.d
 cumulus@switch:~$ nv config apply startup
 ```
 
-NVUE normalizes IPv6 addresses to their canonical form. However, for IPv4-mapped IPv6 addresses, NVUE normalizes only the IPv6 portion of the address. The IPv4 portion of the address is retained in the IETF-recommended mixed-notation format and remains unchanged. For example, NVUE normalizes the IPv4-mapped IPv6 address 0::ffff:10.0.0.1 to ::ffff:10.0.0.1.
+NVUE normalizes IPv6 addresses to their canonical form. However, for IPv4-mapped IPv6 addresses, NVUE normalizes only the IPv6 portion of the address. NVUE retains the IPv4 portion of the address in the IETF-recommended mixed-notation format and leaves it unchanged. For example, NVUE normalizes the IPv4-mapped IPv6 address 0::ffff:10.0.0.1 to ::ffff:10.0.0.1.
 
 For the full set of normalization rules and an example of configuring an unnormalized address, refer to {{<link url="NVUE-CLI/#ipv6-address-normalization" text="IPv6 Address Normalization">}}.
 

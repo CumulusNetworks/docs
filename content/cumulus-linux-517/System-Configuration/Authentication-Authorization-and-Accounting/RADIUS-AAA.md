@@ -133,7 +133,7 @@ You can configure the following global RADIUS settings and server specific setti
 
 {{%notice infonopad%}}
 - With the default `auth-type` of `mschapv2`, configure your RADIUS server to use PEAP with MSCHAPv2; do not configure md5 authentication.
-- To ensure the correct privilege level is applied to users with MSCHAPv2, if you are using FreeRADIUS, configure `/etc/freeradius/3.0/mods-enabled/eap` with `use_tunneled_reply = yes`. For example:
+- To ensure the switch applies the correct privilege level to users with MSCHAPv2, if you are using FreeRADIUS, configure `/etc/freeradius/3.0/mods-enabled/eap` with `use_tunneled_reply = yes`. For example:
 
 ```
 peap {
@@ -222,7 +222,7 @@ The VSA vendor name (Cisco-AVPair in the example above) can have any content. Th
 NVUE does not provide commands to enable login without local accounts.
 {{%/notice%}}
 
-Cumulus Linux creates local user account information such as a home directory, shell, `uid`, and `gid` automatically during a RADIUS authentication attempt. When a new RADIUS-authenticated user first attempts to log into the switch, an unconfirmed user account is created on the switch, pending successful RADIUS authentication. Once authentication is successful, the user's account information is confirmed and the account will be visible in the `/etc/passwd` file.
+Cumulus Linux creates local user account information such as a home directory, shell, `uid`, and `gid` automatically during a RADIUS authentication attempt. When a new RADIUS-authenticated user first attempts to log into the switch, the switch creates an unconfirmed user account, pending successful RADIUS authentication. After authentication succeeds, the switch confirms the user's account information and the account is visible in the `/etc/passwd` file.
 
 <!--
 An unconfirmed user entry in `/etc/passwd` for a user who attempted authentication but has not yet successfully logged in will contain the string `Unconfirmed`:

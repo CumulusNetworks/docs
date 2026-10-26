@@ -139,8 +139,6 @@ To enable all egress IPv6 packets:
 cumulus@switch:~$ nv set system telemetry control-plane-stats egress ipv6 export state enabled
 ```
 
-<!-- REVIEW: the punt classifier telemetry commands come from Bibhash Kumar's 22 Oct email (FR 5058794). Not provided: the default state and the default sample interval (the specification gives 60 in one place and 10 in another), whether the class needs control-plane-stats export enabled first, and the OTLP metric names. No metric names are documented in the control plane statistic format section or in New and Updated Telemetry Metrics. Delete this comment before publishing. -->
-
 To export the drop counters for the {{<link url="Access-Control-List-Configuration/#control-plane-punt-classifier" text="control plane punt classifier">}}, enable the `punt-classifier` class:
 
 ```
@@ -1604,6 +1602,10 @@ When you enable control plane statistic telemetry, the switch exports the follow
 | `node_netstat_IpExt_InECT0Pkts` | The number of IP datagrams received with the ECN (Explicit Congestion Notification) codepoint "ECT(0)".| 
 | `node_netstat_IpExt_InECT1Pkts` | The number of IP packets received with ECN (Explicit Congestion Notification) capable transport, specifically ECT(1) codepoint.| 
 | `node_netstat_IpExt_InNoECTPkts` | The number of IP packets received with no ECN (Explicit Congestion Notification) capable transport.|
+| `nvswitch_control_plane_punt_classifier_matched_packets` | The number of packets that a {{<link url="Access-Control-List-Configuration/#control-plane-punt-classifier" text="control plane punt classifier">}} rule drops. |
+| `nvswitch_control_plane_punt_classifier_matched_bytes` | The number of bytes that a {{<link url="Access-Control-List-Configuration/#control-plane-punt-classifier" text="control plane punt classifier">}} rule drops. |
+
+The two punt classifier metrics are 64-bit counters. Each one carries a `rule_id` label holding the rule ID, a `packet_type` label (`spxm` or `ipv6`), a `udp_dport` label holding the destination port or `none`, and an `action` label, which is always `drop`. The switch exports these metrics only when you enable the `punt-classifier` class; refer to {{<link url="#control-plane-statistics" text="Control Plane Statistics">}}.
 
 {{< expand "Example JSON data for nvswitch_control_plane_trap_rx_drop:" >}}
 ```

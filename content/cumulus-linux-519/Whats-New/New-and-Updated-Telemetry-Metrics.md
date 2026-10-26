@@ -284,6 +284,16 @@ The switch exports these metrics on Spectrum-6 switches only. For information ab
 | `nvswitch_qos_notify_sender_trimmed_link_down_pkts` | Number of those packets the switch trimmed and sent as a back-to-sender notification. |
 
 {{< /tab >}}
+{{< tab "Control Plane Punt Classifier">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `nvswitch_control_plane_punt_classifier_matched_packets` | The number of packets that a control plane punt classifier rule drops. |
+| `nvswitch_control_plane_punt_classifier_matched_bytes` | The number of bytes that a control plane punt classifier rule drops. |
+
+Both metrics are 64-bit counters and carry four labels: `rule_id`, `packet_type` (`spxm` or `ipv6`), `udp_dport` (the destination port or `none`), and `action`, which is always `drop`. The switch exports them only when you enable the `punt-classifier` class. For information about the feature behind these metrics, refer to {{<link url="Access-Control-List-Configuration/#control-plane-punt-classifier" text="Control Plane Punt Classifier">}}.
+
+{{< /tab >}}
 {{< /tabs >}}
 
 For information about OTEL, refer to {{<link url="Open-Telemetry-Export" text="OTEL Telemetry Export">}}.

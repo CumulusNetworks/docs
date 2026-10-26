@@ -1377,7 +1377,7 @@ leaf01# show bgp vrf default bestpath json
 
 ## Check BGP local-as and aspath Settings
 
-To check BGP local-as and aspath for a specific neighbour, run the NVUE `nv show vrf <vrf-id> router bgp neighbor <neighbour>  address-family <afi> aspath` command or the vtysh `show bgp vrf <vrf-id> neighbors <neighbor> json` command:
+To check BGP local-as and aspath for a specific neighbor, run the NVUE `nv show vrf <vrf-id> router bgp neighbor <neighbour>  address-family <afi> aspath` command or the vtysh `show bgp vrf <vrf-id> neighbors <neighbor> json` command:
 
 ```
 cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp51 local-as

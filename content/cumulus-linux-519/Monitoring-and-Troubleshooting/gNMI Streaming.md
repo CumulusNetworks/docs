@@ -603,7 +603,7 @@ cumulus@switch:mgmt:~$ sudo systemctl start nvued.service
 
 ### Use the gNMI Agent Only
 
-NVIDIA recommends that you collect data with both the gNMI and NetQ agents. However, if you do not want to collect data with both agents or you are not streaming data to NetQ, you can disable the NetQ agent. Cumulus Linux then sents data only to the gNMI agent.
+NVIDIA recommends that you collect data with both the gNMI and NetQ agents. However, if you do not want to collect data with both agents or you are not streaming data to NetQ, you can disable the NetQ agent. Cumulus Linux then sends data only to the gNMI agent.
 
 To disable the NetQ agent:
 

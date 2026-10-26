@@ -17,7 +17,7 @@ Cumulus Linux supports both <span class="a-tooltip">[SPAN](## "Switched Port Ana
 {{%notice note%}}
 On the Spectrum-6 switch:
 - SPAN or ERSPAN egress port mirroring is not supported.
-- When you apply an ACL for selective SPAN on egress, the frames are mirrored when they ingress the switch. The frames do not reflect any forwarding rewrite or encapsulation at port egress.
+- When you apply an ACL for selective SPAN on egress, the switch mirrors the frames when they ingress the switch. The frames do not reflect any forwarding rewrite or encapsulation at port egress.
 {{%/notice%}}
 
 ## SPAN
@@ -543,7 +543,7 @@ To mirror all forwarded TCP packets with only FIN set:
 
 ### ERSPAN and MLAG Bond Redirection
 
-In an MLAG environment, where the ERSPAN session destination IP address is reachable over an MLAG bond, you must disable bond redirection for ERSPAN encapsulated traffic to be sent over the peer link and reach the ERSPAN destination IP address in case the local MLAG link goes down.
+In an MLAG environment, where the ERSPAN session destination IP address is reachable over an MLAG bond, you must disable bond redirection for the switch to send ERSPAN encapsulated traffic over the peer link and reach the ERSPAN destination IP address in case the local MLAG link goes down.
 
 {{%notice info%}}
 Disabling bond redirection:

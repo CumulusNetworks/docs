@@ -20,9 +20,9 @@ You can reactivate automatic `cl-support` file generation with the `nv action ac
 cumulus@switch:~$ nv action activate system tech-support auto-generation
 ```
 
-You can also configure the number of seconds during which failures are counted and the maximum number of failures allowed during that time before automatic `cl-support` file generation deactivates.
+You can also configure the number of seconds during which the switch counts failures and the maximum number of failures allowed during that time before automatic `cl-support` file generation deactivates.
 
-The following example sets number of seconds during which failures are counted to 120 and the maximum number of failures allowed
+The following example sets number of seconds during which the switch counts failures to 120 and the maximum number of failures allowed
 to 5.
 
 ```

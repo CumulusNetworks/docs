@@ -40,9 +40,9 @@ To allow a host that uses a static IP address on a port with IP source guard ena
 
 ## Validate IP Source Guard
 
-IP source guard enforces the DHCP snooping binding table. To validate IP source guard, confirm that bindings are learned and that only bound sources forward traffic. No traffic spoofing is required.
+IP source guard enforces the DHCP snooping binding table. To validate IP source guard, confirm that the switch learns bindings and that only bound sources forward traffic. No traffic spoofing is required.
 
-To confirm that bindings are learned, have the client obtain an address over DHCP, then run the `nv show bridge domain <bridge-id> dhcp-snoop vlan <vlan-id> bind` command for IPv4 or the `nv show bridge domain <bridge-id> dhcp-snoop6 vlan <vlan-id> bind`. The binding is the allow-entry that IP source guard enforces for that host.
+To confirm that the switch learns bindings, have the client obtain an address over DHCP, then run the `nv show bridge domain <bridge-id> dhcp-snoop vlan <vlan-id> bind` command for IPv4 or the `nv show bridge domain <bridge-id> dhcp-snoop6 vlan <vlan-id> bind`. The binding is the allow-entry that IP source guard enforces for that host.
 
 ```
 cumulus@switch:~$ nv show bridge domain br_default dhcp-snoop vlan 100 bind
@@ -51,6 +51,6 @@ Interface  IP address   MAC                State    Lease
 swp1       10.1.1.50    00:02:00:00:00:01  DHCPACK  3542
 ```
 
-To confirm that the bound client forwards traffic normally, send traffic from the client, (ping its gateway or another host). Traffic is forwarded if the source IP address and MAC address match the learned binding.
+To confirm that the bound client forwards traffic normally, send traffic from the client, (ping its gateway or another host). The switch forwards traffic if the source IP address and MAC address match the learned binding.
 
-To confirm an unauthorized source is blocked, connect a host to the same untrusted port and give it a static IP address without obtaining a DHCP lease. Because it has no binding, its traffic is dropped; the host regains connectivity only after it completes DHCP and a binding is installed. This demonstrates enforcement using an unleased source; no address spoofing is required.
+To confirm that the switch blocks an unauthorized source, connect a host to the same untrusted port and give it a static IP address without obtaining a DHCP lease. Because it has no binding, the switch drops its traffic; the host regains connectivity only after it completes DHCP and a binding is installed. This demonstrates enforcement using an unleased source; no address spoofing is required.

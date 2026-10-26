@@ -554,7 +554,7 @@ When you use server-side per-command authorization, Cumulus Linux sends every co
 
 {{%notice note%}}
 - You can use server-side per-command authorization together with specific command authorization so that Cumulus Linux authorizes certain commands locally and forwards all other commands *only* to the TACACS server.
-- If the switch cannot reach any of the configured TACACS servers, the command is denied.
+- If the switch cannot reach any of the configured TACACS servers, the switch denies the command.
 - The switch does not execute commands without explicit server authorization.
 - If you configure the switch domain name with the NVUE `nv set system dns domain` command, you must also configure the `hostname` command as an authorized command for users on the switch and on the TACACS+ server.
 {{%/notice%}}

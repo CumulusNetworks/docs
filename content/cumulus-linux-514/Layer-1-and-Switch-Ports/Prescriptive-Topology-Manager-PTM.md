@@ -295,7 +295,7 @@ N/A   N/A       N/A       N/A         N/A         N/A              N/A          
 N/A   N/A       N/A       N/A         N/A         N/A              N/A              N/A
 ```
 
-To show information about the active BFD sessions that the `ptmd` serice is tracking, use the `-b` option:
+To show information about the active BFD sessions that the `ptmd` service is tracking, use the `-b` option:
 
 ```
 cumulus@switch:~$ sudo ptmctl -b

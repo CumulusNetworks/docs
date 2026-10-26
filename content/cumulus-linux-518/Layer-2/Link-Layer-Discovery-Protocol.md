@@ -396,7 +396,7 @@ A compromised or malicious host connected to a switch port can passively listen 
 - VLAN topology (Port VLAN ID, VLAN Name)
 - System capabilities and enabled functions (System Capabilities)
 
-This information can be leveraged for infrastructure reconnaissance, making lateral movement or targeted attacks significantly easier.
+This information enables infrastructure reconnaissance, making lateral movement or targeted attacks significantly easier.
 
 Cumulus Linux provides granular LLDP TLV control so that you can:
 - Control egress TLVs at the system level by defining a global policy for which optional TLVs the switch includes in its LLDP advertisements across all ports. 

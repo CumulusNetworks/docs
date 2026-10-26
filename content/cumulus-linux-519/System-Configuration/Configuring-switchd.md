@@ -202,7 +202,7 @@ During a PFC XOFF storm, or when the switch cannot schedule a traffic class queu
 
 {{%notice note%}}
 - Pipeline flush applies to the whole switch. It does not depend on whether individual ports or traffic classes use PFC.
-- A change applies only to later waits. It does not affect a wait that is already in progress.
+- A change to the state or the timeout applies only to waits that start after you apply the change. It does not affect a wait that is already in progress; if the switch is already stuck waiting, enabling pipeline flush does not release it.
 - The timeout has an effect only when pipeline flush is enabled.
 - You do not need to restart or reload `switchd`.
 - If the switch cannot apply the setting (for example, on a switch that does not support pipeline flush), the `nv config apply` command fails and the previous configuration stays in effect.

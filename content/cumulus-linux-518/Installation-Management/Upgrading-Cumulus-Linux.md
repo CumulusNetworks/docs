@@ -115,7 +115,7 @@ Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual 
 
 1. Download the Cumulus Linux image with the `nv action fetch system image <remote-url>` command.
 
-   The image files are downloaded to your enterprise support account in a convenient location in your infrastructure. The image location below is just an example; use your remote URL for the download.
+   The image files download to your enterprise support account in a convenient location in your infrastructure. The image location below is just an example; use your remote URL for the download.
 
    ```
    cumulus@switch:~$ nv action fetch system image http://10.0.1.251/cumulus-linux-5.18.0-mlx-amd64.bin

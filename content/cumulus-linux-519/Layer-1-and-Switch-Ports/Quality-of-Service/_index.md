@@ -2593,7 +2593,7 @@ Each layer reports a problem in a different place:
 - NVUE rejects a configuration that exceeds the headroom limit, and `nv config apply` shows `Invalid config`. The error names the interfaces the setting applies to: `swp65s0,swp65s1` for the `default-global` profile, or the interface for a named profile. For example:
 
   ```
-  Service port lossy buffer headroom config cannot exceed port headroom max of 498176 bytes(cells 1946)
+  Service port buffer headroom config cannot exceed port headroom max of 498176 bytes(cells 1946)
   ```
 
 - `cl-consistency-check` rejects a configuration that exceeds the service port pool. `nv config apply` shows the error under `Failure during apply`, after `Validation of consistency-checker failed.`, and rolls back the configuration. For example:

@@ -10,32 +10,6 @@ The following tables list the new, updated, and discontinued gNMI and OTEL metri
 
 ## New gNMI Metrics
 
-<!-- REVIEW: the specification gives only native FRR xpaths for these metrics, and its Scope section
-     says "gNMI subscription using native FRR xpaths". Its High-Level Interactions section, which the
-     specification itself labels "(for context)", instead says the gNMI agent translates an
-     OpenConfig xpath into the FRR-native one, which would mean the client subscribes to something
-     else. Resolved by section role: the XPaths table is the only place that names the identifiers,
-     so the native form below is what the draft emits. Every other gNMI path in this release is
-     OpenConfig, so confirm this against a candidate build. Delete this comment before publishing. -->
-
-<!-- REVIEW: the CPO and Laser Source tab below. The functional specification states the feature adds
-     approximately 96 gNMI xpaths but never lists them; it maps internal metric names to hardware
-     file paths instead. The paths in that tab are transcribed from the 5.19 demo material, which is
-     the only source that gives external paths, and it labels them "Planned for 5.19" at 22 of
-     30 CPO metrics, 6 of 16 optical engine metrics, and 24 of 51 ELS metrics, with four open SDK and
-     firmware bugs. The tab therefore covers roughly half the paths the specification claims and may
-     still list paths that slip. Reconcile it against the final metrics sheet and a candidate build
-     before publishing. That material also shows a /phy subtree under /interfaces/interface[name] for
-     PHY, BER, and FEC diagnostics with no leaf names given anywhere, so this draft omits it; add it
-     if it ships. Delete this comment before publishing. -->
-
-<!-- REVIEW: the per-laser ELS leaves are absent from the CPO and Laser Source tab below on purpose.
-     The specification's object model defines them under laser-source/lasers/laser[index] and the
-     nv show output documents them, but the 5.19 demo material records all 27 per-laser metrics as
-     blocked by an open firmware bug and a dependency. Documenting them as exported would assert
-     a capability the release may not have. Add them if they ship. Delete this comment before
-     publishing. -->
-
 {{< tabs "TabID114 ">}}
 {{< tab "Routing">}}
 
@@ -157,6 +131,26 @@ The switch exports these xPaths on Spectrum-6 switches only. For information abo
 |------ | ----------- |
 | `/components/component[name]/integrated-circuit/pipeline-counters/packet/trim/state/spxm-notify-sender-link-down-pkts` | Number of packets that matched the back-to-sender classifier on link down, both while the route is still in hardware and after FRR withdraws it. Counts notifications the switch attempted, not notifications the switch confirmed the sender received. |
 | `/components/component[name]/integrated-circuit/pipeline-counters/packet/trim/state/notify-sender-trimmed-link-down-pkts` | Number of those packets the switch trimmed and sent as a back-to-sender notification. |
+
+{{< /tab >}}
+{{< tab "Control Plane Punt Classifier">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `/components/component[name]/integrated-circuit/pipeline-counters/control-plane-traffic/vendor/nvidia/spectrum/punt-classifiers/punt-classifier[rule-id]/state/rule-id` | The ID of the punt classifier rule. This is also the list key. |
+| `/components/component[name]/integrated-circuit/pipeline-counters/control-plane-traffic/vendor/nvidia/spectrum/punt-classifiers/punt-classifier[rule-id]/state/matched-packets` | The number of packets that the rule drops. |
+| `/components/component[name]/integrated-circuit/pipeline-counters/control-plane-traffic/vendor/nvidia/spectrum/punt-classifiers/punt-classifier[rule-id]/state/matched-octets` | The number of octets that the rule drops. |
+| `/components/component[name]/integrated-circuit/pipeline-counters/control-plane-traffic/vendor/nvidia/spectrum/punt-classifiers/punt-classifier[rule-id]/state/packet-type` | The packet type that the rule matches: `PACKET_TYPE_SPXM` or `PACKET_TYPE_IPV6`. |
+| `/components/component[name]/integrated-circuit/pipeline-counters/control-plane-traffic/vendor/nvidia/spectrum/punt-classifiers/punt-classifier[rule-id]/state/destination-port` | The IPv6 UDP destination port that the rule matches. Present only for a rule with packet type `PACKET_TYPE_IPV6`. |
+| `/components/component[name]/integrated-circuit/pipeline-counters/control-plane-traffic/vendor/nvidia/spectrum/punt-classifiers/punt-classifier[rule-id]/state/action` | The action that the switch programs for the rule, which is always `ACTION_DROP`. |
+
+{{%notice note%}}
+- Every rule with packet type `PACKET_TYPE_SPXM` shares one counter. Each of those rule IDs reports the same value, so do not add the values together.
+- Each IPv6 UDP destination port has its own counter.
+- The counters cover the CPU egress of one ASIC, so they are per ASIC rather than per front panel interface.
+- These paths are read-only. Configure the punt classifier with the NVUE commands described in {{<link url="Access-Control-List-Configuration/#control-plane-punt-classifier" text="Control Plane Punt Classifier">}}.
+- The DSCP values that a rule matches are not available over gNMI.
+{{%/notice%}}
 
 {{< /tab >}}
 {{< /tabs >}}

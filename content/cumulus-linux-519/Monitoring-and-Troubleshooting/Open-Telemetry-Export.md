@@ -146,7 +146,7 @@ cumulus@switch:~$ nv set system telemetry control-plane-stats class punt-classif
 cumulus@switch:~$ nv config apply
 ```
 
-To set the sample interval, in seconds, for this class, run the `nv set system telemetry control-plane-stats class punt-classifier sample-interval` command. You can specify a value between 10 and 86400.
+To set the sample interval, in seconds, for this class, run the `nv set system telemetry control-plane-stats class punt-classifier sample-interval` command. You can specify a value between 10 and 86400. The default value is 60.
 
 ```
 cumulus@switch:~$ nv set system telemetry control-plane-stats class punt-classifier sample-interval 60

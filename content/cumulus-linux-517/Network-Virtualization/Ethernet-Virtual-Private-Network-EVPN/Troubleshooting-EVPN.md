@@ -422,7 +422,7 @@ remote-vtep-count  1
 local-vtep         10.0.1.12   
 ```
 
-Run the `nv show evpn vni <vni> route-target` command to view route target (RT) information for a specific VNI. When route targets are automatically derived and the same route target is exported and imported, the operational value is displayed as `[both]`:
+Run the `nv show evpn vni <vni> route-target` command to view route target (RT) information for a specific VNI. When route targets are automatically derived and the same route target is exported and imported, the command displays the operational value as `[both]`:
 
 ```
 cumulus@leaf01:mgmt:~$ nv show evpn vni 10 route-target
@@ -431,7 +431,7 @@ cumulus@leaf01:mgmt:~$ nv show evpn vni 10 route-target
 [both]  65101:10             
 ```
 
-When RTs are explicitly configured they the values appear as applied and operational, and any individual RTs that are only imported or exported appear more granularly. In the following example, `11:22` is configured for import, `33:44` for export, and `55:66` for both import and export on VNI 101101:
+When RTs are explicitly configured the values appear as applied and operational, and any individual RTs that are only imported or exported appear more granularly. In the following example, `11:22` is configured for import, `33:44` for export, and `55:66` for both import and export on VNI 101101:
 
 ```
 cumulus@switch:mgmt:~$ nv show evpn vni 101101 route-target

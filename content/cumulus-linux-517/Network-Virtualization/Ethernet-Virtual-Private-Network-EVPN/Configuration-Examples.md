@@ -2908,7 +2908,7 @@ The following example shows an EVPN centralized routing configuration:
 - BGP unnumbered is in the underlay (configured on all leafs and spines)
 - SVIs are configured as gateways on the border leafs
 
-The following images shows traffic flow between tenants. The spines and other devices are omitted for simplicity.
+The following images shows traffic flow between tenants. The images omit the spines and other devices for simplicity.
 
 |   Traffic Flow between server01 and server05  |     |
 | --- | --- |
@@ -5850,7 +5850,7 @@ The following example shows an EVPN symmetric routing configuration, where:
 - BGP unnumbered is in the underlay (configured on all leafs and spines)
 - VRF BLUE and VRF RED are configured on the leafs for traffic flow between tenants for traffic isolation
 
-The following images shows traffic flow between tenants. The spines and other devices are omitted for simplicity.
+The following images shows traffic flow between tenants. The images omit the spines and other devices for simplicity.
 
 |   Traffic Flow between server01 and server04  |     |
 | --- | --- |

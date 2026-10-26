@@ -452,7 +452,7 @@ len-min                  8            8
 
 AAA authentication restrictions are enabled by default to limit login attempts and prevent unauthorized access. After five consecutive failed login attempts, the user account is locked out.
 
-A reattempt timer controls when additional login attempts can be made. Following each failed login, the user must wait 15 seconds before retrying. This restriction remains in effect until the maximum number of consecutive failures is reached, triggering a lockout condition.
+A reattempt timer controls when the user can make additional login attempts. Following each failed login, the user must wait 15 seconds before retrying. This restriction remains in effect until the user reaches the maximum number of consecutive failures, triggering a lockout condition.
 
 {{%notice note%}}
 AAA authentication restrictions apply to authentication attempts to access the switch through the CLI and the {{<link url="NVUE-API" text="NVUE API">}}.

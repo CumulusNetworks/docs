@@ -218,7 +218,7 @@ You can show the number of trimmed packets at the global level and the number of
 {{%notice note%}}
 - You can show packet trimming counters on switches with Spectrum-4 and later ASICs.
 - Spectrum-4 switches show only the total number of trimmed packets at the global, port, and traffic class level; they do not provide separate sent or dropped counters.
-- On Spectrum-4 switches, the per-interface trim eligible packets value is a port statistic that counts unicast packets the switch trims or discards because no buffer is available. The value covers the lifetime of the port and includes discards from periods when packet trimming was disabled; it does not distinguish those discards from trimmed packets.
+- On Spectrum-4 switches, the trim eligible packets value for each interface is a port statistic that counts unicast packets the switch trims or discards because no buffer is available. The value covers the lifetime of the port and includes discards from periods when packet trimming was disabled; it does not distinguish those discards from trimmed packets.
 - Spectrum-6 switches show the number of trimmed packets sent successfully and the number dropped, at the global, port, and traffic class level.
 {{%/notice%}}
 

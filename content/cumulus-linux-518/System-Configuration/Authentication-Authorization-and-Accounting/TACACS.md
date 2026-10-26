@@ -301,7 +301,7 @@ timeout=10
 exclude_users=root,daemon,nobody,cron,radius_user,radius_priv_user,sshd,cumulus,quagga,frr,snmp,www-data,ntp,man,_lldpd,USER1,*
 ```
 
-Cumulus Linux supports the following additional Linux parameters in the `etc/tacplus_nss.conf` file. Currently, there are no equivalent NUVE commands.
+Cumulus Linux supports the following additional Linux parameters in the `etc/tacplus_nss.conf` file. Currently, there are no equivalent NVUE commands.
 
 | Linux Parameter | Description |
 | --------------- | ----------- |

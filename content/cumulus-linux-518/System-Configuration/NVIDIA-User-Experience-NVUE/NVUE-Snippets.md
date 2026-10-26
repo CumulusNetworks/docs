@@ -500,7 +500,7 @@ To create a flexible snippet:
                    action: <action>
    ```
 
-    - You can only set the umast permissions to a new file that you create. Adding the `permissions:` line is optional. The default umask persmissions are 644.
+    - You can only set the umask permissions to a new file that you create. Adding the `permissions:` line is optional. The default umask permissions are 644.
     - You can add a service with an action, such as `start`, `restart`, or `stop`. Adding the `services:` lines is optional; however, if you add the `service:` line, you must specify at least one service.
 
 2. Run the following command to patch the configuration:

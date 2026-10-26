@@ -360,10 +360,10 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 | `/system/control-plane-traffic/ingress/ipv4/counters/in-reassembly-reqd`| *IPv4 ingress packets with reassembly required.|
 | `/system/control-plane-traffic/ingress/ipv4/counters/in-no-routes`| *IPv4 ingress packets with no routes.|
 | `/system/control-plane-traffic/ingress/ipv4/counters/in-octets`| *IPv4 ingress packet octets. |
-| `/system/control-plane-traffic/ingress/ipv4/counters/in-multicast-pkts`| *IPv4 ingress mulicast packets.|
+| `/system/control-plane-traffic/ingress/ipv4/counters/in-multicast-pkts`| *IPv4 ingress multicast packets.|
 | `/system/control-plane-traffic/ingress/ipv4/counters/in-multicast-octets`| *IPv4 ingress multicast packet octets.|
 | `/system/control-plane-traffic/ingress/ipv4/counters/in-broadcast-pkts`| *IPv4 ingress broadcast packets.|
-| `/system/control-plane-traffic/ingress/ipv4/counters/in-truncated-pkts`| *IPv4 ingress truncted packets. |
+| `/system/control-plane-traffic/ingress/ipv4/counters/in-truncated-pkts`| *IPv4 ingress truncated packets. |
 | `/system/control-plane-traffic/egress/ipv4/counters/out-requests`| *IPv4 egress packet requests.|
 | `/system/control-plane-traffic/egress/ipv4/counters/out-discarded-pkts`| *IPv4 egress packets discarded.|
 | `/system/control-plane-traffic/egress/ipv4/counters/out-no-routes`| *IPv4 egress packets with no routes.|
@@ -611,7 +611,7 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 | `/interfaces/interface[name]/state/name​` | The name of the interface.|
 | `/interfaces/interface[name]/state/oper-status` | Current operational state of an interface. |
 | `/interfaces/interface[name]/state/protodown​` | Indicates if the interface is administratively held down by a protocol or system process rather than by user action.|
-| `/interfaces/interface[name]/state/type​` | The inteface type. |
+| `/interfaces/interface[name]/state/type​` | The interface type. |
 | `/interfaces/interface[name]/state/description`| The interface description.|
 | `/interfaces/interface[name]/state/transceiver` | The transceiver on the interface. |
 | `/interfaces/interface[name=swp1]/hold-time/state/counters/ignored-up-events` | *UP events suppressed because debounce timer had not yet expired (transient UP spikes filtered). This metric indicates Noise or short UP spikes being filtered.|
@@ -652,7 +652,7 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 |------ | ----------- |
 | `/qos/packet-trimming/state/counters/trimmed-unicast-pkts`| The number of trimmed packets.|
 | `/qos/interfaces/interface[interface-id]/packet-trimming/state/counters/trimmed-unicast-pkts`| The number packets that were trimmed on the interface.|
-| `/qos/interfaces/interface[interface-id]/packet-trimming/state/counters/trimmed-tx-unicast-pkts`| The number of packets that were trimmed and sent succesfully on the interface.|
+| `/qos/interfaces/interface[interface-id]/packet-trimming/state/counters/trimmed-tx-unicast-pkts`| The number of packets that were trimmed and sent successfully on the interface.|
 | `/qos/interfaces/interface[interface-id]/packet-trimming/output/queues/queue[name]/state/trimmed-unicast-pkts`| The number of packets that were trimmed on the interface queue.|
 
 {{< /tab >}}
@@ -1337,7 +1337,7 @@ cumulus@switch:mgmt:~$ sudo systemctl start nvued.service
 
 ### Use the gNMI Agent Only
 
-NVIDIA recommends that you collect data with both the gNMI and NetQ agents. However, if you do not want to collect data with both agents or you are not streaming data to NetQ, you can disable the NetQ agent. Cumulus Linux then sents data only to the gNMI agent.
+NVIDIA recommends that you collect data with both the gNMI and NetQ agents. However, if you do not want to collect data with both agents or you are not streaming data to NetQ, you can disable the NetQ agent. Cumulus Linux then sends data only to the gNMI agent.
 
 To disable the NetQ agent:
 

@@ -2142,7 +2142,7 @@ The following commands configure:
 - The BGP IPv4 unreachability SAFI, activated for peer-group SPINES.
 - Unreachability advertisements for interfaces matching 10.1.0.0./16.
 - BGP DC PIC with `advertise-origin` and `nhg-per-origin`.
-- BGP unerachable prefix export to LLDP.
+- BGP unreachable prefix export to LLDP.
 
 ```
 cumulus@leaf01:mgmt:~$ sudo vtysh

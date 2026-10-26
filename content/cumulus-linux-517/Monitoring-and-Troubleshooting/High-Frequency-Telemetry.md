@@ -439,7 +439,7 @@ Specify the date and time in `YYYY-MM-DD HH:MM:SS` format.
 ``` 
 cumulus@switch:~$ nv action schedule system telemetry hft job 2024–07-17 10:00:00 duration 30 profile profile1 ports swp1s0-swp9s0
 Action executing ...
-Job schedule successfull.
+Job schedule successfully.
 HFT job schedule successful: job-id 1
 
 Action succeeded
@@ -450,7 +450,7 @@ You can provide a short reason why you are collecting the data. If the descripti
 ```
 cumulus@switch:~$ nv action schedule system telemetry hft job 2024-07-17 10:00:00 duration 30 profile profile1 ports swp1s0-swp9s0 description "bandwidth profiling"
 Action executing ...
-Job schedule successfull.
+Job schedule successfully.
 HFT job schedule successful: job-id 1
 
 Action succeeded
@@ -461,7 +461,7 @@ You can specify `now` for the date and/or time to configure the current date and
 ``` 
 cumulus@switch:~$ nv action schedule system telemetry hft job now 10:00:00 duration 30 profile profile2 ports swp2s0
 Action executing ...
-Job schedule successfull.
+Job schedule successfully.
 HFT job schedule successful: job-id 2
 
 Action succeeded
@@ -473,7 +473,7 @@ The following example configures `profile2` to start immediately, run for 30 sec
 ``` 
 cumulus@switch:~$ nv action schedule system telemetry hft job now now duration 30 profile profile2 ports swp2s0
 Action executing ...
-Job schedule successfull.
+Job schedule successfully.
 HFT job schedule successful: job-id 2
 
 Action succeeded

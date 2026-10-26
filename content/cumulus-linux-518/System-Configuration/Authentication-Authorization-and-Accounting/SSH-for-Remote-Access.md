@@ -230,7 +230,7 @@ cumulus@switch:~$ nv set system ssh-server state disabled
 cumulus@switch:~$ nv config apply
 ```
 
-Run the `nv set system ssh-server state enabled` command to renable the SSH server.
+Run the `nv set system ssh-server state enabled` command to re-enable the SSH server.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}

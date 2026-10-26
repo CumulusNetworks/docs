@@ -14,9 +14,7 @@ You can apply DSCP remarking on trimmed packets:
 - Cumulus Linux supports packet trimming on Spectrum-4 and later.
 - Cumulus Linux supports packet trimming for known unicast IPv4 and IPv6 traffic. Packet trimming does not support ISSU, VXLAN packets or flooding and multicast packets.
 {{%/notice%}}
-<!-- REMOVED FROM 5.18 - WJH NO LONGER IN DOCKER CONTAINER
-Do not enable packet trimming when the NetQ WJH agent is running or with WJH monitor buffer drops configured.
--->
+
 ## Global Level Packet Trimming
 
 Global level packet trimming enables you to use the same DSCP value on all trimmed packets.
@@ -41,17 +39,6 @@ cumulus@switch:~$ nv config apply
 - On Spectrum-4 and Spectrum-5 switches, when you enable packet trimming, one service port is used. By default, this is the last service port on the switch. To change the service port, run the `nv set system forwarding packet-trim service-port <interface-id>` command. For information about service ports on Spectrum-4 switches, refer to {{<link url="Switch-Port-Attributes/#breakout-ports" text="Switch Port Attributes">}}.
 - On a switch that supports two service ports, you can configure a bond on the service ports, then use the bond for the packet trimming service port; for example: `nv set system forwarding packet-trim service-port bond1`.
 - When you enable packet trimming, do not configure packet trimming port eligibility, port security, adaptive routing, QoS, ACLs, PTP, VRR, PBR, telemetry, or histograms on the service port.
-
-<!-- REVIEW: this notice used to describe the service port unconditionally, for every ASIC. Spectrum-6
-     switches trim packets with an on-chip trim agent instead of port recirculation and do not use a
-     service port for packet trimming or back-to-sender on congestion tail drop; the functional
-     specification for BTS on congestion tail drop (FR 4373590, approved 22-09-2026) records this as a
-     release-note withdrawal: "On Spectrum-6, nv set system forwarding packet-trim service-port is no
-     longer offered. The leaf was exposed by accident, did nothing there, and a configuration that set
-     it was never supported." Back-to-sender notification on link down is the exception -- it uses a
-     recirculation session and its own service port on Spectrum-6 too; see that section below.
-     Delete this comment before publishing. -->
-
 {{%/notice%}}
 
 ### Global Level Packet Trimming with Default Profile
@@ -231,6 +218,7 @@ You can show the number of trimmed packets at the global level and the number of
 {{%notice note%}}
 - You can show packet trimming counters on switches with Spectrum-4 and later ASICs.
 - Spectrum-4 switches show only the total number of trimmed packets at the global, port, and traffic class level; they do not provide separate sent or dropped counters.
+- On Spectrum-4 switches, the per-interface trim eligible packets value is a port statistic that counts unicast packets the switch trims or discards because no buffer is available. The value covers the lifetime of the port and includes discards from periods when packet trimming was disabled; it does not distinguish those discards from trimmed packets.
 - Spectrum-6 switches show the number of trimmed packets sent successfully and the number dropped, at the global, port, and traffic class level.
 {{%/notice%}}
 
@@ -307,6 +295,12 @@ To clear the packet trimming counters for a specific interface, run the `nv acti
 ```
 cumulus@switch:~$ nv action clear interface swp1 packet-trim counters
 ```
+
+{{%notice note%}}
+On Spectrum-4 switches, clearing the counters records the current values for each interface and subtracts them from the values the switch shows you. It does not reset the underlying port statistic. If you disable, then reenable packet trimming, the switch discards that baseline and the interface value returns to the running total for the port.
+
+The global `trimmed-packets` counter behaves differently because it belongs to the packet trimming session. Disabling and reenabling packet trimming restarts the global counter at zero. A global counter of zero together with a non-zero interface value is expected on these switches. To bring both to a common baseline, clear the counters again after you reenable packet trimming.
+{{%/notice%}}
 
 ## Back-to-sender Notification on Congestion Tail Drop
 

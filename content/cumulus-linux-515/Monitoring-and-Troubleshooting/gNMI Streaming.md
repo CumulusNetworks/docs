@@ -434,7 +434,7 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 |------ | ----------- |
 | `/qos/packet-trimming/state/counters/trimmed-unicast-pkts`| The number of trimmed packets.|
 | `/qos/interfaces/interface[interface-id]/packet-trimming/state/counters/trimmed-unicast-pkts`| * The number packets that were trimmed on the interface.|
-| `/qos/interfaces/interface[interface-id]/packet-trimming/state/counters/trimmed-tx-unicast-pkts`| * The number of packets that were trimmed and sent succesfully on the interface.|
+| `/qos/interfaces/interface[interface-id]/packet-trimming/state/counters/trimmed-tx-unicast-pkts`| * The number of packets that were trimmed and sent successfully on the interface.|
 | `/qos/interfaces/interface[interface-id]/packet-trimming/output/queues/queue[name]/state/trimmed-unicast-pkts`| * The number of packets that were trimmed on the interface queue.|
 
 {{< /tab >}}
@@ -1007,7 +1007,7 @@ cumulus@switch:mgmt:~$ sudo systemctl start nvued.service
 
 ### Use the gNMI Agent Only
 
-NVIDIA recommends that you collect data with both the gNMI and NetQ agents. However, if you do not want to collect data with both agents or you are not streaming data to NetQ, you can disable the NetQ agent. Cumulus Linux then sents data only to the gNMI agent.
+NVIDIA recommends that you collect data with both the gNMI and NetQ agents. However, if you do not want to collect data with both agents or you are not streaming data to NetQ, you can disable the NetQ agent. Cumulus Linux then sends data only to the gNMI agent.
 
 To disable the NetQ agent:
 

@@ -876,7 +876,7 @@ To disable Tx squelch control, set the `interface.<interface-id>.tx_squelch` par
 
 ## Link Tracking
 
-Link tracking enables you to monitor interfaces automatically and ensure traffic is steered through available redundant paths. This feature prevents traffic blackholing by dynamically managing downlink behavior based on the health of uplinks, ensuring predictable network operations, and improving overall resiliency.
+Link tracking enables you to monitor interfaces automatically and ensure that the switch steers traffic through available redundant paths. This feature prevents traffic blackholing by dynamically managing downlink behavior based on the health of uplinks, ensuring predictable network operations, and improving overall resiliency.
 
 ### Configure and Enable Link Tracking
 
@@ -1063,7 +1063,7 @@ When you enable link tracking after upgrade, any existing `ifplugd` instances ma
 - To remove a target interface from a group, run the `nv unset interface <interface-id> link-tracking group` command.
 - To reset the action back to the default value, run the `nv unset system link-tracking group <group-id> state-change-action` command.
 - To reset the minimum number of watch interfaces to the default value of 1, run the `nv unset system link-tracking group <group-id> min-links` command.
-- To remove a link tracking group, run the `nv unset system link-tracking group <group-id>` command. If the group is associated with a target interface, remove the association with the `nv unset interface <interface-id> link-tracking group` command.
+- To remove a link tracking group, run the `nv unset system link-tracking group <group-id>` command. If the group has a target interface, remove the association with the `nv unset interface <interface-id> link-tracking group` command.
 
 ### Show Link Tracking Information
 
@@ -1193,7 +1193,7 @@ cumulus@switch:~$ sudo ip -d link show swp8
     sx_netdev addrgenmode eui64 numtxqueues 1 numrxqueues 1 gso_max_size 65536 gso_max_segs 65535 tso_max_size 65536 tso_max_segs 65535 gro_max_size 65536 switchid ffffffffff01 last_change 1784260523674 carrier_up_count 7 carrier_down_count 8 carrier_changes 15
 ```
 
-The following example shows the interface state of a target interface after the action is cleared:
+The following example shows the interface state of a target interface after you clear the action:
 
 ```
 cumulus@switch:~$ sudo ip -d link show swp8
@@ -1576,7 +1576,7 @@ cumulus@switch:mgmt:~$ nv show interface status
 Interface  Admin Status  Oper Status  Protodown  Protodown Reason  Fault  
 ---------  ------------  -----------  ---------  ----------------  --------
 ...
-swp45      up            down         disabled                     Local Fault  
+swp45      up            down         disabled                     Local Fault  
 swp46      up            down         disabled                     Remote Fault
 swp47      down          down         disabled                     No Fault   
 swp48      down          down         disabled                     No Fault 
@@ -1600,7 +1600,7 @@ linkdown-reason-status-remote     UNKNOWN_REASON
 {{%notice note%}}
 - Interface fault detection is supported on Spectrum-4 and later.
 - Fault status reported by the `nv show interface status` command is only supported on physical switch ports and breakout interfaces. Fault state is not applicable to logical interfaces such as VLAN sub-interfaces, SVIs, loopback interfaces, VRF interfaces, and bonds.
-- Fault detection data is not retained across reboots or when the `switchd` service is restarted.
+- The switch does not retain fault detection data across reboots or when the `switchd` service restarts.
 {{%/notice%}}
 
 ## Considerations

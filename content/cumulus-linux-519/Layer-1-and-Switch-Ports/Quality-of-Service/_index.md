@@ -513,7 +513,7 @@ Cumulus Linux supports the following flow control mechanisms:
 - Priority Flow Control (PFC), which is an upgrade of link pause that IEEE 802.1bb defines, extends the pause frame concept to act on a per switch priority value basis instead of an entire link. A PFC pause frame indicates to the peer which specific switch priority value to pause, while other switch priority values or queues continue transmitting.
 
 {{%notice note%}}
-You can not configure link pause and PFC on the same port.
+You cannot configure link pause and PFC on the same port.
 {{%/notice%}}
 
 ### Flow Control Buffers
@@ -1118,15 +1118,15 @@ To apply a custom ECN profile to specific interfaces, see [Port Groups](#ecn).
 
 ### Dynamic ECN
 
-Dynamic ECN is a congestion marking mechanism optimized for high-performance traffic, where bursty traffic requires immediate congestion signals to prevent buffer exhaustion. This feature provides extremely fast and aggressive feedback to mitigate microbursts and sudden congestion by triggering ECN marking based on the percentage of available shared buffer instead of static byte thresholds.
+Dynamic ECN is a congestion marking mechanism optimized for high-performance traffic, where bursty traffic requires immediate congestion signals to prevent buffer exhaustion. This feature provides extremely fast and aggressive feedback to mitigate microbursts and sudden congestion by triggering ECN marking based on the percentage of available shared buffer instead of static byte thresholds.
 
 {{%notice note%}}
 - Cumulus Linux supports dynamic ECN on switches with Spectrum-4 and later.
 - ECN marking probability has a hardware granularity of one percent; effective probabilities below one percent do not produce any marking.
 {{%/notice%}}
 
-To configure dynamic ECN, determine which traffic classes carry loss-sensitive or bursty traffic (such as RoCE on traffic class 3), determine the percentage of dynamic buffer allowance you want to trigger congestion marking, then set dynamic ECN:
-- Set the dynamic ECN mode to `relative` for the `default-global` profile to apply system-wide default settings or for a custom profile for specific port groups. The default value is `absolute`. 
+To configure dynamic ECN, determine which traffic classes carry loss-sensitive or bursty traffic (such as RoCE on traffic class 3), determine the percentage of dynamic buffer allowance you want to trigger congestion marking, then set dynamic ECN:
+- Set the dynamic ECN mode to `relative` for the `default-global` profile to apply system-wide default settings or for a custom profile for specific port groups. The default value is `absolute`. 
 
   When you set dynamic ECN mode to `relative`, the switch hardware ignores any configured byte-based thresholds. The ASIC begins marking traffic based on percentage thresholds relative to the dynamically allocated buffer allowance of the traffic class, which is continuously recalculated based on current buffer usage and pool occupancy.
 
@@ -1136,7 +1136,7 @@ To configure dynamic ECN, determine which traffic classes carry loss-sensitive o
 - Configure the maximum ECN marking threshold as a percentage (0 through 100) of the dynamic buffer allowance. The value must be greater than or equal to the minimum threshold percent. The default value is 100.
 <!--
 {{%notice note%}}
-To maintain statistical integrity and prevent mixing `absolute` mark counts with `relative` mark counts in historical data, Cumulus Linux resets ECN counters for the affected traffic class to zero for any mode transition.
+To maintain statistical integrity and prevent mixing `absolute` mark counts with `relative` mark counts in historical data, Cumulus Linux resets ECN counters for the affected traffic class to zero for any mode transition.
 {{%/notice%}}
 -->
 The following commands set dynamic ECN mode to `relative` for the default profile, configure the minimum ECN marking threshold to 20 percent and the maximum ECN marking threshold to 80 percent.

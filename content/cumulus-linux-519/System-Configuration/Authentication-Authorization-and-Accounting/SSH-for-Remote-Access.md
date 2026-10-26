@@ -485,7 +485,7 @@ UnusedConnectionTimeout 5m
 {{%notice note%}}
 The inactive timeout closes a session after the configured number of minutes with no SSH channel activity (keystrokes, command output, or file-transfer bytes reset the timer). The timeout applies to sessions established after being set. You can set the inactive timeout to 0 to disable it. 
 
-The inactive timeout tracks SSH channel activity (not if a remote process is still running); therefore, a long-running command that produces no output for longer than the timeout can be closed; active SCP and SFTP transfers, and any session with ongoing traffic are not affected. An idle connection with no open channel; for example an idle SSH multiplexing master (ControlMaster or ControlPersist), is also closed after the timeout.
+The inactive timeout tracks SSH channel activity (not if a remote process is still running); therefore, the switch can close a session running a long command that produces no output for longer than the timeout; active SCP and SFTP transfers, and any session with ongoing traffic are not affected. An idle connection with no open channel; for example an idle SSH multiplexing master (ControlMaster or ControlPersist), is also closed after the timeout.
 {{%/notice%}}
 
 The following example configures the maximum number of concurrent sessions allowed for the user USER1 and for the user group GROUP1:
@@ -609,7 +609,7 @@ This section describes how to generate an SSH key pair on one system and install
 
 ### Generate an SSH Key Pair
 
-To generate an SSH key pair, run the `ssh-keygen` command and follow the prompts.
+To generate an SSH key pair, run the `ssh-keygen` command and follow the prompts.
 
 {{%notice note%}}
 Cumulus Linux does not support sha1 ssh key exchange methods.
@@ -655,7 +655,7 @@ A public key is a text file with three space separated fields:
 
 | Field | Description |
 | ----- | ----------- |
-| `<type>`  | The algorithm you want to use to hash the key. The algorithm can be `ecdsa-sha2-nistp256`, `ecdsa-sha2-nistp384`, `ecdsa-sha2-nistp521`, `ssh-dss`, `ssh-ed25519`, or `ssh-rsa` (the default value). |
+| `<type>`  | The algorithm you want to use to hash the key. The algorithm can be `ecdsa-sha2-nistp256`, `ecdsa-sha2-nistp384`, `ecdsa-sha2-nistp521`, `ssh-dss`, `ssh-ed25519`, or `ssh-rsa` (the default value). |
 | `<key string>` | A base64 format string for the key. |
 | `<comment>` | A single word string. By default, this is the name of the system that generated the key. NVUE uses the `<comment>` field as the key name. |
 
@@ -677,7 +677,7 @@ cumulus@leaf01:~$ nv config apply
 
 The following example adds an authorized key file from the account `cumulus` on a host to the `cumulus` account on the switch:
 
-1. To copy a previously generated public key to the desired location, run the `ssh-copy-id` command and follow the prompts:
+1. To copy a previously generated public key to the desired location, run the `ssh-copy-id` command and follow the prompts:
 
    ```
    cumulus@host01:~$ ssh-copy-id -i /home/cumulus/.ssh/id_rsa.pub cumulus@leaf02
@@ -690,7 +690,7 @@ The following example adds an authorized key file from the account `cumulus` on 
    Number of key(s) added: 1
    ```
 
-   The `ssh-copy-id` command does not work if the username on the remote switch is different from the username on the local switch. To work around this issue, use the `scp` command instead:
+   The `ssh-copy-id` command does not work if the username on the remote switch is different from the username on the local switch. To work around this issue, use the `scp` command instead:
 
    ```
    cumulus@host01:~$ scp .ssh/id_rsa.pub cumulus@leaf02:.ssh/authorized_keys

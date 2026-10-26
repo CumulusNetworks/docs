@@ -86,7 +86,7 @@ To configure optional settings for each tunnel server:
 - Import and enable a TLS or mTLS certificate for validation. You can also apply a <span class="a-tooltip">[CRL](## "Certificate Revocation List")</span>. For information about importing certificates and CRLs, refer to {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="Security with Certificates and CRLs">}}.
 
 {{%notice note%}}
-When you configure a CA certificate, entity certificate, or CRL, existing dial-out gNMI sessions are disconnected to apply the new certificate configuration.
+When you configure a CA certificate, entity certificate, or CRL, the switch disconnects existing dial-out gNMI sessions to apply the new certificate configuration.
 {{%/notice%}}
 
 The following example sets the address of tunnel server SERVER1 to 10.1.1.10, and enables the tunnel server:
@@ -118,7 +118,7 @@ The source address is optional and applies to one tunnel server, so tunnel serve
 
 {{%notice note%}}
 - Dial-out leaves through the management VRF, so the source address must be reachable there. A loopback address you configure with the `nv set vrf mgmt loopback ip address <ip-address>` command qualifies, and so does the management address itself. Cumulus Linux rejects an address configured in another VRF, such as a loopback address in the default VRF, with `source-address <ip-address> is configured on <interface>, which is not in the mgmt VRF`.
-- The source address must already be configured on the switch, or you must add it in the same `nv config apply` that references it. Cumulus Linux validates the address against the pending configuration rather than the running system, so adding a loopback address and setting it as the source address in the same apply works. If the source address matches nothing on the switch, Cumulus Linux rejects the apply with `source-address <ip-address> is not configured on this switch`.
+- The source address must already exist on the switch, or you must add it in the same `nv config apply` that references it. Cumulus Linux validates the address against the pending configuration rather than the running system, so adding a loopback address and setting it as the source address in the same apply works. If the source address matches nothing on the switch, Cumulus Linux rejects the apply with `source-address <ip-address> is not configured on this switch`.
 - Cumulus Linux rejects the configuration when you run `nv config apply` if the source address is malformed, is an IPv6 link-local address, belongs to a different address family than the tunnel server address, or is a reserved loopback address such as `127.0.0.0/8` or `::1`. A loopback address you configure yourself, such as `10.10.10.1` on `lo` in the management VRF, is not affected by this rejection.
 - Cumulus Linux also rejects an apply that deletes an address while a tunnel server still references it as a source address, with `source-address <ip-address> is being removed from the mgmt VRF while it is still configured as a source address`. To remove the address, remove or repoint the source address in the same apply.
 - If both the source address and a certificate are invalid, Cumulus Linux reports both errors from the same `nv config apply` rather than stopping at the first one.
@@ -254,7 +254,7 @@ tunnel       no
 
 ### RPC Methods
 
-Cumulus Linux supports the following <span class="a-tooltip">[RPC](## "Remote Procedure Call")</span> methods:  
+Cumulus Linux supports the following <span class="a-tooltip">[RPC](## "Remote Procedure Call")</span> methods:  
 - Capabilities
 - Subscription types and options:  
   - STREAM (sample_interval, updates_only, suppress_redundant, and heartbeat_interval)
@@ -301,7 +301,7 @@ User authentication is enabled by default. gNMI subscription requests must inclu
 You can use your gNMI client on a host to request capabilities and data to which the gNMI agent subscribes.
 
 {{%notice note%}}
-- Cumulus Linux processes gNMI client subscription create and delete requests sequentially (one at a time). The switch rejects concurrent subscription requests with a `CANCELLED: System is busy`​ gRPC status and the gNMI client must reinitiate the request with the appropriate backoff. This limitation applies only to subscription setup or teardown. After the subscription establishes, multiple subscriptions run concurrently and stream telemetry data independently.
+- Cumulus Linux processes gNMI client subscription create and delete requests sequentially (one at a time). The switch rejects concurrent subscription requests with a `CANCELLED: System is busy` gRPC status and the gNMI client must reinitiate the request with the appropriate backoff. This limitation applies only to subscription setup or teardown. After the subscription establishes, multiple subscriptions run concurrently and stream telemetry data independently.
 - For better performance, NVIDIA recommends that you enable gzip in your gNMI client tools. For example, for `gnmic`, add `--gzip` to the command line arguments.
 {{%/notice%}}
 
@@ -652,7 +652,7 @@ Cumulus Linux supports the following OpenConfig models:
 | Model| Supported Data |
 | --------- | ------ |
 | {{<exlink url="https://github.com/openconfig/public/blob/master/release/models/interfaces/openconfig-interfaces.yang" text="openconfig-interfaces">}} | Name, Operstatus, AdminStatus, IfIndex, MTU, LoopbackMode, Enabled, Counters (InPkts, OutPkts, InOctets, InUnicastPkts, InDiscards, InMulticastPkts, InBroadcastPkts, InErrors, OutOctets, OutUnicastPkts, OutMulticastPkts, OutBroadcastPkts, OutDiscards, OutErrors) |
-| {{<exlink url="https://github.com/openconfig/public/blob/master/release/models/interfaces/openconfig-if-ethernet.yang" text="openconfig-if-ethernet">}} | AutoNegotiate, PortSpeed, MacAddress, NegotiatedPortSpeed, Counters (InJabberFrames, InOversizeFrames,​ InUndersizeFrames)|
+| {{<exlink url="https://github.com/openconfig/public/blob/master/release/models/interfaces/openconfig-if-ethernet.yang" text="openconfig-if-ethernet">}} | AutoNegotiate, PortSpeed, MacAddress, NegotiatedPortSpeed, Counters (InJabberFrames, InOversizeFrames, InUndersizeFrames)|
 | {{<exlink url="https://github.com/openconfig/public/blob/master/release/models/interfaces/openconfig-if-ethernet-ext.yang" text="openconfig-if-ethernet-ext">}} | Frame size counters (InFrames_64Octets, InFrames_65_127Octets, InFrames_128_255Octets, InFrames_256_511Octets, InFrames_512_1023Octets, InFrames_1024_1518Octets) |
 | {{<exlink url="https://github.com/openconfig/public/blob/master/release/models/system/openconfig-system.yang" text="openconfig-system">}} | Memory, CPU |
 | {{<exlink url="https://github.com/openconfig/public/blob/master/release/models/platform/openconfig-platform.yang" text="openconfig-platform">}} | Platform data (Name, Description, Type, Version). Cumulus Linux reports the component type for the ASIC (`INTEGRATED_CIRCUIT`), transceivers (`TRANSCEIVER`), fans (`FAN`), storage disks (`STORAGE`), and temperature and leakage sensors (`SENSOR`). Because temperature sensors and leakage sensors share the `SENSOR` type, use the component name to tell them apart. |
@@ -1365,8 +1365,8 @@ received sync response 'true' from '10.209.37.123:9339'
 ### Considerations
 
 When using gNMI with Cumulus Linux:
-- The minimum sampling interval is 1 second. If you configure a shorter sampling interval, the switch might not behave as expected.
-- ModelData, Origin, and Extensions fields are ignored in requests and not set in responses.
+- The minimum sampling interval is 1 second. If you configure a shorter sampling interval, the switch might not behave as expected.
+- Cumulus Linux ignores the ModelData, Origin, and Extensions fields in requests and does not set them in responses.
 
 ## Related Information
 

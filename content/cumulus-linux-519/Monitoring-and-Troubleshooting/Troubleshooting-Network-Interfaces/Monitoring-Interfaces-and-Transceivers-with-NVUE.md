@@ -257,7 +257,7 @@ cumulus@switch:mgmt:~$ nv show interface status
 Interface  Admin Status  Oper Status  Protodown  Protodown Reason  Fault  
 ---------  ------------  -----------  ---------  ----------------  --------
 ...
-swp45      up            down         disabled                     Local Fault  
+swp45      up            down         disabled                     Local Fault  
 swp46      up            down         disabled                     Remote Fault
 swp47      down          down         disabled                     No Fault   
 swp48      down          down         disabled                     No Fault 
@@ -281,7 +281,7 @@ linkdown-reason-status-remote     UNKNOWN_REASON
 {{%notice note%}}
 - Interface fault detection is supported on NVIDIA Spectrum-4 and later platforms.
 - Fault status reported by the `nv show interface status` command is only supported on physical switch ports and breakout interfaces. Fault state is not applicable to logical interfaces such as VLAN sub-interfaces, SVIs, loopback interfaces, VRF interfaces, and bonds.
-- Fault detection data is not retained across reboots or when the `switchd` service is restarted.
+- The switch does not retain fault detection data across reboots or when the `switchd` service restarts.
 {{%/notice%}}
 
 ## AmBER PHY Health Management
@@ -329,7 +329,7 @@ To show a tabular summary of PHY health statistics for all switch port interface
 ```
 cumulus@switch$ nv show interface --view ber
 Interface  Eff-BER  Raw-BER  Sym-BER  Sym-Errs  Eff-Errs  Last-Clr(min) 
----------  -------  -------  -------  --------  --------  -------------
+---------  -------  -------  -------  --------  --------  -------------
 swp1       15E-255  15E-255  15E-255  0         0         1            
 swp2       15E-255  15E-255  15E-255  0         0         1            
 swp3       15E-255  15E-255  15E-255  0         0         1            
@@ -602,7 +602,7 @@ Firmware file not found: fw-rel-38_100_121.bin
 
 If the firmware is written successfully but the module fails to activate it, the install action reports a failure. For a module with two firmware banks, the new firmware bank is running but not committed, and you can recover the module. Reset the transceiver with the `nv action reset platform transceiver <transceiver-id>` command, then run the install again.
 
-If a firmware install fails after it starts to write the file, the module might be left without a valid firmware image. In that state, the `nv show platform transceiver <transceiver-id> firmware` command might not show the firmware status, the transceiver reset does not restore the module, and a new install can fail with an error such as `LinkX type not supported for device index 7`. NVUE has no command that recovers the module. Contact NVIDIA Technical Support.
+If a firmware install fails after it starts to write the file, the module might not have a valid firmware image. In that state, the `nv show platform transceiver <transceiver-id> firmware` command might not show the firmware status, the transceiver reset does not restore the module, and a new install can fail with an error such as `LinkX type not supported for device index 7`. NVUE has no command that recovers the module. Contact NVIDIA Technical Support.
 
 ## Transceiver Thermal Control
 
@@ -622,21 +622,21 @@ Setting the temperature thresholds without proper guidance can result in transce
 - Always use the parent transceiver name for configuration; for example, use swp1 not swp1s0.
 {{%/notice%}}
 
-To set the temperature threshold for a single port, run the `nv set platform transceiver <transceiver-id> temperature setpoint` command. You can set a value between 30 and 80. The temperature threshold for an interface must be below the module advertised high warning threshold. If you configure the setpoint to be above the module advertised high temperature warning threshold, the FAN algorithm uses the module advertised threshold.
+To set the temperature threshold for a single port, run the `nv set platform transceiver <transceiver-id> temperature setpoint` command. You can set a value between 30 and 80. The temperature threshold for an interface must be below the module advertised high warning threshold. If you configure the setpoint to be above the module advertised high temperature warning threshold, the FAN algorithm uses the module advertised threshold.
 
 ```
-cumulus@switch:~$ nv set platform transceiver swp2 temperature setpoint 60 
+cumulus@switch:~$ nv set platform transceiver swp2 temperature setpoint 60 
 cumulus@switch:~$ nv config apply
 ```
 
-To set the temperature threshold for a group of ports:
+To set the temperature threshold for a group of ports:
 
 ```
-cumulus@switch:~$ nv set platform transceiver swp2-10 temperature setpoint 60 
+cumulus@switch:~$ nv set platform transceiver swp2-10 temperature setpoint 60 
 cumulus@switch:~$ nv config apply
 ```
 
-To set the temperature threshold for a group of comma-separated ports:
+To set the temperature threshold for a group of comma-separated ports:
 
 ```
 cumulus@switch:~$ nv set platform transceiver swp1,4,5,30 temperature setpoint 65
@@ -648,7 +648,7 @@ cumulus@switch:~$ nv config apply
 - If you try to set the temperature threshold above the module advertised high temperature warning or if the module is not DOM capable, Cumulus Linux reports an invalid configuration warning.
 {{%/notice%}}
 
-To unset the temperature threshold and return to the default value, run the `nv unset platform transceiver <transceiver-id> temperature setpoint` command.
+To unset the temperature threshold and return to the default value, run the `nv unset platform transceiver <transceiver-id> temperature setpoint` command.
 
 {{%notice info%}}
 If you run the `nv unset platform` command, the switch clears out the temperature setpoints for all ports.

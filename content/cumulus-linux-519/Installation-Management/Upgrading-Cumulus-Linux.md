@@ -18,7 +18,7 @@ To upgrade Cumulus Linux, choose one of the three upgrade methods:
 - Upgrade only changed packages with {{<link url="#package-upgrade" text="package upgrade">}} (ISSU support and maintains the current switch configuration).
 
 {{%notice infonopad%}}
-NVIDIA is discontinuing package upgrade in Cumulus Linux 5.20.
+NVIDIA is discontinuing package upgrade in Cumulus Linux 5.20. For more details, refer to {{<link url="Whats-New/#upgrade-requirements" text="Upgrade Requirements">}}.
 {{%/notice%}}
 
 To install a patch (such as a critical bug or CVE), refer to {{<link url="Patches" text="Patches">}}.

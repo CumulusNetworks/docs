@@ -83,7 +83,14 @@ To upgrade to Cumulus Linux 5.19 from a release that does not support package up
 For a list of the earliest Cumulus Linux releases supported for each switch model, refer to [this knowledge base article]({{<ref "/knowledge-base/Support/Support-Offerings/Minimum-Cumulus-Linux-Release-for-Each-Switch-Model" >}}).
 
 {{%notice infonopad%}}
-NVIDIA is discontinuing package upgrade in Cumulus Linux 5.20.
+NVIDIA is discontinuing package upgrade (apt upgrade) in Cumulus Linux 5.20 due to very low adoption, reliability risks, and misalignment with industry best practices. 
+
+If you currently use `apt-get upgrade`, `apt-get dist-upgrade`, or apt-based automation in your upgrade runbooks and CI/CD pipelines, plan to migrate to the following upgrade methods:
+- Optimized image upgrade (cl-img-install and ISSU) for production.
+- ONIE install for initial deployment.
+- Patching for targeted fixes.
+
+NVIDIA recommends completing migration before Cumulus Linux 5.20.0.
 {{%/notice%}}
 
 ### Spectrum-6 BMC Requirements

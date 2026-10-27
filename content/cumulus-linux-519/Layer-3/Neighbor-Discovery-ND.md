@@ -274,7 +274,7 @@ Cumulus Linux rejects the command when the interface does not exist, is not oper
 Removing a prefix from configuration with the `nv unset interface <interface-id> ipv6 neighbor-discovery prefix <ipv6-prefix-id>` command also sends a short burst of router advertisements with a zero lifetime for that prefix, so hosts reliably deprecate it instead of relying on a single advertisement.
 {{%/notice%}}
 
-The `nv show interface <interface-id> ipv6 neighbor-discovery prefix <ipv6-prefix-id>` continues to report the configured lifetimes throughout a burst because a clear does not modify configuration. To confirm a clear reached a host, check the address state on the host with the `ip -6 addr show dev <interface>` command. A deprecated address shows a `preferred_lft` of `0`.
+The `nv show interface <interface-id> ipv6 neighbor-discovery prefix <ipv6-prefix-id>` continues to report the configured lifetimes throughout a burst because a clear does not modify configuration. To confirm a clear reached a host, check the address state on the host with the `ip -6 addr show dev <interface>` command. A cleared address shows a `preferred_lft` of `0`.
 
 ## Recursive DNS Servers
 

@@ -9,7 +9,7 @@ To protect sensitive data at rest, you can configure secure mount directory encr
 
 ### Enable and Manage Encryption
 
-To enable secure mount directory encryption or change the existing encryption password, make sure the USB device is plugged in, then run the `nv action enable system security encryption folder-encrypt password <password>` command. The switch reboots after you run the command.
+To enable secure mount directory encryption or change the existing encryption password, make sure you plug in the USB device, then run the `nv action enable system security encryption folder-encrypt password <password>` command. The switch reboots after you run the command.
 
 ```
 cumulus@switch:~$ nv action enable system security encryption folder-encrypt password MYPASSWORD

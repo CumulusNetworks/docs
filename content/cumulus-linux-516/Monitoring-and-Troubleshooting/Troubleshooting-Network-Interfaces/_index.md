@@ -13,7 +13,7 @@ Monitoring the traffic rate and <span class="a-tooltip">[PPS](## "Packets per Se
 By monitoring both the traffic rate and PPS, you can identify peak usage times and adjust bandwidth allocation or optimize packet paths to ensure low latency and high throughput.
 
 {{%notice note%}}
-- You can monitor the traffic rate and PPS of physical ports that are configured with NVUE.
+- You can monitor the traffic rate and PPS of physical ports that you configure with NVUE.
 - The command outputs provide approximate values.
 {{%/notice%}}
 

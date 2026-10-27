@@ -583,7 +583,7 @@ To show a list of generated `/etc/default/isc-*` files changed from the previous
 
 4. Restore certificates and the configuration files to the new release:
 
-   a. {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="Reimport all certificates">}} and/or CRLs that you configured in the previous release with the `nv action import system security` command, ensuring you use the same `certificate-id` that was originally assigned to each certificate.
+   a. {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="Reimport all certificates">}} and CRLs that you configured in the previous release with the `nv action import system security` command, ensuring you use the same `certificate-id` that was originally assigned to each certificate.
 
    b. Copy the `/etc/nvue.d/startup.yaml` file from the back up process to the switch.
 

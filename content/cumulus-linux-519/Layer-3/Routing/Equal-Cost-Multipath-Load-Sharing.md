@@ -381,13 +381,11 @@ In Cumulus Linux, when a next hop fails or you remove the next hop from an ECMP 
 
 When the set of next hops changes, resilient hashing behaves as follows:
 - When you remove a next hop, Cumulus Linux distributes the assigned buckets to the remaining next hops.
-- When you add a next hop, Cumulus Linux assigns **no** buckets to the new next hop until the load rebalances.
-- The active timer (`active-timer`) sets how long a bucket must be idle before Cumulus Linux can reassign it to the new next hop. The load rebalances when the active timer expires only if inactive buckets are available; until then, the new next hop can remain unpopulated.
-- The maximum unbalanced timer (`max-unbalanced-timer`) sets the longest time Cumulus Linux waits for the load to balance. When this timer expires and the load is still not balanced, Cumulus Linux migrates buckets to the new next hop regardless of bucket activity, so flows on those buckets do not keep their next hop. The default value is 0, which means Cumulus Linux never forces a rebalance and waits for idle buckets.
+- When you add a next hop, Cumulus Linux waits for the active timer to expire before it assigns buckets to the new next hop. The active timer (`active-timer`) sets how long a bucket must be idle before Cumulus Linux can reassign it to the new next hop.
+- If inactive buckets are available when the active timer expires, the new next hop occupies those buckets.
+- If there are no inactive buckets available, the new next hop does not receive any buckets until the maximum unbalanced timer (`max-unbalanced-timer`) expires. This timer sets the longest time Cumulus Linux waits for the load to rebalance. When it expires and the load is still not balanced, Cumulus Linux migrates buckets to the new next hop regardless of bucket activity, so flows on those buckets do not keep their next hop. The default value is 0, which means Cumulus Linux never forces a rebalance and waits for idle buckets.
 
 To set the timers, refer to {{<link url="#configure-resilient-hashing" text="Configure Resilient Hashing">}}.
-
-<!-- REVIEW: Rajesh asked that the diagrams below use a bucket count that matches the supported values (not every bucket needs to show). The four ecmp-reshash-*.png images still show 12 buckets; they live outside the content folder and need new artwork. The sentence below now calls the example simplified. Replace the images, then delete this comment. -->
 
 When you enable resilient hashing, Cumulus Linux assigns next hops in roundrobin fashion to a fixed number of buckets. This simplified example shows 12 buckets and four next hops. The switch uses the number of buckets you configure.
 
@@ -563,25 +561,6 @@ cumulus@switch:~$ systemctl status frr
             ├─4701 /usr/lib/frr/zebra -d -M snmp -A 127.0.0.1 --v6-rr-semantics -s 90000000
             ├─4705 /usr/lib/frr/bgpd -d -M snmp -A 127.0.0.1
             └─4711 /usr/lib/frr/staticd -d -A 127.0.0.1
-```
-
-#### Troubleshoot Resilient Hashing
-
-To confirm whether an ECMP group is actually using a resilient container in hardware, generate a {{<link url="Understanding-the-cl-support-Output-File/#manual-cl-support-file-generation" text="cl-support file">}} and search the `ROUTER_0.json` file it contains.
-
-| To find | Search for |
-| --- | --- |
-| Whether resilient hashing is programmed at all | `"ECMP type": "Resilient"` |
-| The hash buckets for one resilient container | `"ECMP HW Entry"` blocks under that container |
-| Which route uses which container | `"ECMP ID"` under the IPv4 or IPv6 unicast routes |
-| The timer values as currently programmed | `"Active timer (ms)"` and `"Max unbalanced time (ms)"` |
-
-To see the live hardware state on the console instead of waiting for a cl-support file, run:
-
-```
-cumulus@switch:~$ echo true | sudo tee /cumulus/switchd/ctrl/hw/enable
-cumulus@switch:~$ echo true | sudo tee /cumulus/switchd/ctrl/hw/nexthop
-cumulus@switch:~$ sudo cat /cumulus/switchd/run/hw/nexthop/all
 ```
 
 ## Adaptive Routing

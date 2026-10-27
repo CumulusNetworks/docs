@@ -711,14 +711,6 @@ In Cumulus Linux 5.18 and earlier, this field shows only `offloaded` or `control
 
 ### Upgrade Notes
 
-<!-- REVIEW: replaced 2026-10-19 with the text Siddharth Kulkarni proposed in his 19 Oct email (nvue
-     MR !5467, merged to dev on 18 Oct), which reverses the earlier statement that the upgrade
-     translates the legacy setting. Two choices of mine: I wrote "phased out" instead of
-     "deprecated" (the email says "will be deprecated in a future release"); and I put the
-     conflict error in a code block exactly as he gave it, with the page's prompt. The error text
-     is not captured from a build. Confirm both before publishing. Delete this comment before
-     publishing. -->
-
 In Cumulus Linux 5.18 and earlier, you set BFD offload with the `nv set router bfd offload enabled` and `nv set router bfd offload disabled` commands. Cumulus Linux 5.19 introduces the `nv set router bfd offload-mode` command, which is the recommended way to configure BFD offload. Cumulus Linux still supports the `nv set router bfd offload` command as legacy configuration, and NVIDIA plans to remove it in a future release.
 
 When you upgrade, Cumulus Linux keeps an existing `nv set router bfd offload` setting unchanged:

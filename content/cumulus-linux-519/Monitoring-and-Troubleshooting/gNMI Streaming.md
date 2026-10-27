@@ -632,21 +632,6 @@ Cumulus Linux supports the following gNMI {{<exlink url="https://github.com/open
 
 ### Supported Models
 
-<!-- REVIEW: the openconfig-platform row in the table below gains Type and a sentence naming the
-     component types. The specification states no quality level and is a Confluence-style page with
-     no Scope, Known Limitations, or Open Issues sections, so there is nothing to check the claim
-     against except a candidate build. Its component table also has a "Deprecation Details" column
-     whose contents did not survive text extraction; confirm nothing is deprecated before
-     publishing. Delete this comment before publishing. -->
-
-<!-- REVIEW: the openconfig-platform row in the table below does not name a component type for CPO
-     modules, optical engines, or laser sources, which 5.19 adds on switches with co-packaged optics.
-     The CPO functional specification states the feature adds three vendor augmentation modules, a
-     transceiver augment, an ELS augment, and an interface-PHY augment, but it never gives the
-     OpenConfig component type enum values, so nothing is drafted here rather than inventing them.
-     Add the types and the augment names once a candidate build confirms them. Delete this comment
-     before publishing. -->
-
 Cumulus Linux supports the following OpenConfig models:
 <!-- vale off -->
 | Model| Supported Data |

@@ -452,7 +452,7 @@ Pin-Priority: 992</td>
 </tr>
 <tr>
 <td>5175384</td>
-<td>After a restart, NVUE sometimes tries to read ASIC platform resource information too early, before the switch services are fully ready. As a result, the resource query returns empty or invalid data and NVUE logs an unhandled JSON parsing error instead of waiting, retrying, or failing gracefully. This is typically seen when you configure OTEL and run the {{nv config apply}} command while {{switchd}} and {{prometheus-sdk-stats}} are restarting.</td>
+<td>When nv config is applied while switchd is restarting , NVUE FSM tries to read ASIC platform resource information  before the switch services are fully ready. As a result, the resource query returns empty or invalid data and NVUE logs an unhandled JSON parsing error instead of waiting, retrying, or failing gracefully. This is typically seen when you configure OTEL and run the {{nv config apply}} command while {{switchd}} and {{prometheus-sdk-stats}} are restarting.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
@@ -1841,7 +1841,7 @@ Pin-Priority: 992</td>
 </tr>
 <tr>
 <td>5175384</td>
-<td>After a restart, NVUE sometimes tries to read ASIC platform resource information too early, before the switch services are fully ready. As a result, the resource query returns empty or invalid data and NVUE logs an unhandled JSON parsing error instead of waiting, retrying, or failing gracefully. This is typically seen when you configure OTEL and run the {{nv config apply}} command while {{switchd}} and {{prometheus-sdk-stats}} are restarting.</td>
+<td>When nv config is applied while switchd is restarting , NVUE FSM tries to read ASIC platform resource information  before the switch services are fully ready. As a result, the resource query returns empty or invalid data and NVUE logs an unhandled JSON parsing error instead of waiting, retrying, or failing gracefully. This is typically seen when you configure OTEL and run the {{nv config apply}} command while {{switchd}} and {{prometheus-sdk-stats}} are restarting.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
@@ -3230,7 +3230,7 @@ Pin-Priority: 992</td>
 </tr>
 <tr>
 <td>5175384</td>
-<td>After a restart, NVUE sometimes tries to read ASIC platform resource information too early, before the switch services are fully ready. As a result, the resource query returns empty or invalid data and NVUE logs an unhandled JSON parsing error instead of waiting, retrying, or failing gracefully. This is typically seen when you configure OTEL and run the {{nv config apply}} command while {{switchd}} and {{prometheus-sdk-stats}} are restarting.</td>
+<td>When nv config is applied while switchd is restarting , NVUE FSM tries to read ASIC platform resource information  before the switch services are fully ready. As a result, the resource query returns empty or invalid data and NVUE logs an unhandled JSON parsing error instead of waiting, retrying, or failing gracefully. This is typically seen when you configure OTEL and run the {{nv config apply}} command while {{switchd}} and {{prometheus-sdk-stats}} are restarting.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
@@ -4689,7 +4689,7 @@ Pin-Priority: 992</td>
 </tr>
 <tr>
 <td>5175384</td>
-<td>After a restart, NVUE sometimes tries to read ASIC platform resource information too early, before the switch services are fully ready. As a result, the resource query returns empty or invalid data and NVUE logs an unhandled JSON parsing error instead of waiting, retrying, or failing gracefully. This is typically seen when you configure OTEL and run the {{nv config apply}} command while {{switchd}} and {{prometheus-sdk-stats}} are restarting.</td>
+<td>When nv config is applied while switchd is restarting , NVUE FSM tries to read ASIC platform resource information  before the switch services are fully ready. As a result, the resource query returns empty or invalid data and NVUE logs an unhandled JSON parsing error instead of waiting, retrying, or failing gracefully. This is typically seen when you configure OTEL and run the {{nv config apply}} command while {{switchd}} and {{prometheus-sdk-stats}} are restarting.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>

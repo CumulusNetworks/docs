@@ -35,10 +35,17 @@ cumulus@switch:~$ nv set system forwarding packet-trim switch-priority 2
 cumulus@switch:~$ nv config apply
 ```
 
+<!-- REVIEW: scoped the service-port bullets to Spectrum-4 and added the Spectrum-5 and later bullet per the
+     engineering review of 2026-10-27. The last bullet (do not configure eligibility, port security, and so on on
+     the service port) is scoped to Spectrum-4 by inference, because Spectrum-5 and later switches use no service
+     port; the review did not address it. The show output at `service-port swp65` elsewhere on this page might
+     differ on Spectrum-5 and later. Confirm with the feature owners. Delete this comment before publishing. -->
+
 {{%notice note%}}
-- On Spectrum-4 and Spectrum-5 switches, when you enable packet trimming, the switch uses one service port. By default, this is the last service port on the switch. To change the service port, run the `nv set system forwarding packet-trim service-port <interface-id>` command. For information about service ports on Spectrum-4 switches, refer to {{<link url="Switch-Port-Attributes/#breakout-ports" text="Switch Port Attributes">}}.
-- On a switch that supports two service ports, you can configure a bond on the service ports, then use the bond for the packet trimming service port; for example: `nv set system forwarding packet-trim service-port bond1`.
-- When you enable packet trimming, do not configure packet trimming port eligibility, port security, adaptive routing, QoS, ACLs, PTP, VRR, PBR, telemetry, or histograms on the service port.
+- On Spectrum-4 switches, when you enable packet trimming, the switch uses one service port. By default, this is the last service port on the switch. To change the service port, run the `nv set system forwarding packet-trim service-port <interface-id>` command. For information about service ports on Spectrum-4 switches, refer to {{<link url="Switch-Port-Attributes/#breakout-ports" text="Switch Port Attributes">}}.
+- On a Spectrum-4 switch that supports two service ports, you can configure a bond on the service ports, then use the bond for the packet trimming service port; for example: `nv set system forwarding packet-trim service-port bond1`.
+- On Spectrum-5 and later switches, packet trimming does not use a service port and you do not need to configure one; the switch ignores the `nv set system forwarding packet-trim service-port` setting on these platforms. The exception is back-to-sender notification on link down, which uses its own service port. Refer to {{<link url="#back-to-sender-notification-on-link-down" text="Back-to-sender Notification on Link Down">}}.
+- On Spectrum-4 switches, when you enable packet trimming, do not configure packet trimming port eligibility, port security, adaptive routing, QoS, ACLs, PTP, VRR, PBR, telemetry, or histograms on the service port.
 {{%/notice%}}
 
 ### Global Level Packet Trimming with Default Profile
@@ -222,6 +229,11 @@ You can show the number of trimmed packets at the global level and the number of
 - Spectrum-6 switches show the number of trimmed packets sent successfully and the number dropped, at the global, port, and traffic class level.
 {{%/notice%}}
 
+<!-- REVIEW: the engineering review corrected the Spectrum-6 column headers to Trimmed Tx Packets and Trimmed Drop
+     Packets. The Spectrum-4 and Spectrum-5 port-level header below used the same Trimmed TxPackets string, so I
+     changed it to match, assuming one NVUE format string. Confirm on a Spectrum-4 switch. Delete this comment
+     before publishing. -->
+
 To display the number of trimmed packets at both the global and interface levels, run the `nv show system forwarding packet-trim counters` command:
 
 
@@ -231,12 +243,12 @@ Global
  trimmed-packets      20,000 
 Port-Level 
 ------------- 
-Interface  Trim Eligible Packets Trimmed TxPackets 
----------  ------------------  ---------------- 
-swp1        1000                  N/A 
-swp2        2000                  N/A 
-swp3        4000                  N/A 
-swp4        5000                  N/A 
+Interface  Trim Eligible Packets  Trimmed Tx Packets 
+---------  ---------------------  ------------------ 
+swp1       1000                   N/A 
+swp2       2000                   N/A 
+swp3       4000                   N/A 
+swp4       5000                   N/A 
 ```
 
 On Spectrum-6 switches, the same command also shows the number of trimmed packets sent successfully and the number dropped, at the global and port level:
@@ -249,8 +261,8 @@ Global
  trimmed-drop-packets      0
 Port-Level
 -------------
-Interface  Trim Eligible Packets  Trimmed TxPackets  Trimmed Dropped Packets
----------  ---------------------  -----------------  -----------------------
+Interface  Trim Eligible Packets  Trimmed Tx Packets  Trimmed Drop Packets
+---------  ---------------------  ------------------  --------------------
 swp7s0     322                    322                 0
 ```
 
@@ -269,11 +281,11 @@ On Spectrum-6 switches, the same command also shows the number of trimmed packet
 
 ```
 cumulus@switch:~$ nv show interface swp7s0 packet-trim counters
-Traffic Class  Trim Eligible Packets  Trimmed TxPackets  Trimmed Dropped Packets
--------------  ---------------------  ------------------  -----------------------
-1               109                    109                 0
-2               106                    106                 0
-3               107                    107                 0
+Traffic Class  Trim Eligible Packets  Trimmed Tx Packets  Trimmed Drop Packets
+-------------  ---------------------  ------------------  --------------------
+1              109                    109                 0
+2              106                    106                 0
+3              107                    107                 0
 ```
 
 ### Clear Packet Trimming Counters

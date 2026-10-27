@@ -123,6 +123,19 @@ The following paths are present on a switch with co-packaged optics (CPO) only. 
 The telemetry model names the packets or bytes selector `quantity`, where the NVUE command that configures it is `unit`. The two names refer to the same setting; `quantity` avoids a collision with the standard OTEL instrument descriptor field.
 
 {{< /tab >}}
+{{< tab "Packet Trimming">}}
+
+The switch exports these xPaths on Spectrum-6 switches only. For information about the counters behind these metrics, refer to {{<link url="Packet-Trimming/#packet-trimming-counters" text="Packet Trimming Counters">}}.
+
+|  Name | Description |
+|------ | ----------- |
+| `/components/component[name]/integrated-circuit/pipeline-counters/packet/trim/state/out-trim-pkts` | Number of packets that the switch trimmed and sent successfully. |
+| `/components/component[name]/integrated-circuit/pipeline-counters/drop/state/trim-pkts` | Number of packets that the switch trimmed and dropped. |
+| `/interfaces/interface[name]/state/counters/dropped-trim-pkts` | Number of packets that the switch trimmed and dropped on the port. |
+| `/qos/interfaces/interface[interface-id]/output/queues/queue[name]/state/out-trim-pkts` | Number of packets that the switch trimmed and sent successfully on the port and queue. |
+| `/qos/interfaces/interface[interface-id]/output/queues/queue[name]/state/dropped-trim-pkts` | Number of packets that the switch trimmed and dropped on the port and queue. |
+
+{{< /tab >}}
 {{< tab "Platform">}}
 
 |  Name | Description |
@@ -156,6 +169,19 @@ The following metrics are added for unreachability AFI SAFI.
 {{< /tabs >}}
 
 For information about gNMI, refer to {{<link url="gNMI-Streaming" text="gNMI Streaming">}}.
+
+## Updated gNMI Metrics
+
+The switch replaces these packet trimming xPaths with new ones. If you subscribe to the old xPaths, update your subscriptions.
+
+|  Old xPath | New xPath |
+|------ | ----------- |
+| `/qos/packet-trimming/state/counters/trimmed-unicast-pkts` | `/components/component[name]/integrated-circuit/pipeline-counters/packet/trim/state/trim-pkts` |
+| `/qos/interfaces/interface[interface-id]/packet-trimming/state/counters/trimmed-unicast-pkts` | `/interfaces/interface[name]/state/counters/trim-pkts` |
+| `/qos/interfaces/interface[interface-id]/packet-trimming/state/counters/trimmed-tx-unicast-pkts` | `/interfaces/interface[name]/state/counters/out-trim-pkts` |
+| `/qos/interfaces/interface[interface-id]/packet-trimming/output/queues/queue[name]/state/trimmed-unicast-pkts` | `/qos/interfaces/interface[interface-id]/output/queues/queue[name]/state/trim-pkts` |
+
+The switch exports these xPaths on Spectrum-4, Spectrum-5, and Spectrum-6 switches, except `/interfaces/interface[name]/state/counters/out-trim-pkts`, which the switch exports on Spectrum-5 and later switches only.
 
 ## New OTEL Metrics
 

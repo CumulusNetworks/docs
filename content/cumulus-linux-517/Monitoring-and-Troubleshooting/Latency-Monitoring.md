@@ -87,7 +87,7 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{%notice note%}}
-When using {{<link url="Open-Telemetry-Export/#customize-export" text="statistic groups">}} to specify which metrics are exported, add `latency-measurement` to the `stats-group` configuration to include latency metrics:
+When using {{<link url="Open-Telemetry-Export/#customize-export" text="statistic groups">}} to specify which metrics the switch exports, add `latency-measurement` to the `stats-group` configuration to include latency metrics:
 
 ```
 cumulus@switch:~$ nv set system telemetry stats-group <name> latency-measurement export state enabled

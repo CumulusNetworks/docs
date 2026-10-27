@@ -876,7 +876,7 @@ To disable Tx squelch control, set the `interface.<interface-id>.tx_squelch` par
 
 ## Link Tracking
 
-Link tracking enables you to monitor interfaces automatically and ensure traffic is steered through available redundant paths. This feature prevents traffic blackholing by dynamically managing downlink behavior based on the health of uplinks, ensuring predictable network operations, and improving overall resiliency.
+Link tracking enables you to monitor interfaces automatically and ensure the switch steers traffic through available redundant paths. This feature prevents traffic blackholing by dynamically managing downlink behavior based on the health of uplinks, ensuring predictable network operations, and improving overall resiliency.
 
 ### Configure and Enable Link Tracking
 
@@ -1193,7 +1193,7 @@ cumulus@switch:~$ sudo ip -d link show swp8
     sx_netdev addrgenmode eui64 numtxqueues 1 numrxqueues 1 gso_max_size 65536 gso_max_segs 65535 tso_max_size 65536 tso_max_segs 65535 gro_max_size 65536 switchid ffffffffff01 last_change 1784260523674 carrier_up_count 7 carrier_down_count 8 carrier_changes 15
 ```
 
-The following example shows the interface state of a target interface after the action is cleared:
+The following example shows the interface state of a target interface after you clear the action:
 
 ```
 cumulus@switch:~$ sudo ip -d link show swp8
@@ -1600,7 +1600,7 @@ linkdown-reason-status-remote     UNKNOWN_REASON
 {{%notice note%}}
 - Interface fault detection is supported on Spectrum-4 and later.
 - Fault status reported by the `nv show interface status` command is only supported on physical switch ports and breakout interfaces. Fault state is not applicable to logical interfaces such as VLAN sub-interfaces, SVIs, loopback interfaces, VRF interfaces, and bonds.
-- Fault detection data is not retained across reboots or when the `switchd` service is restarted.
+- Fault detection data is not retained across reboots or when the `switchd` service restarts.
 {{%/notice%}}
 
 ## Considerations

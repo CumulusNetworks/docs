@@ -388,7 +388,7 @@ Use CDP only or LLDP only to get the desired behavior of `PortID`, `Description`
 
 ## LLDP TLVs
 
-By default, LLDP implementations transmit a broad set of TLVs including system name, system description, management address, port description, system capabilities, VLAN information, and more. While this is useful for network management and topology discovery, it presents a security concern in environments where host-facing (untrusted) ports might expose sensitive infrastructure details to end hosts.
+By default, LLDP implementations transmit a broad set of TLVs including system name, system description, management address, port description, system capabilities, VLAN information, and more. While this is useful for network management and topology discovery, it presents a security concern in environments where host-facing (untrusted) ports might expose sensitive infrastructure details to end hosts.
 
 A compromised or malicious host connected to a switch port can passively listen to LLDP frames and extract information such as:
 - The switch hostname and operating system version (System Name, System Description)
@@ -396,9 +396,9 @@ A compromised or malicious host connected to a switch port can passively listen 
 - VLAN topology (Port VLAN ID, VLAN Name)
 - System capabilities and enabled functions (System Capabilities)
 
-This information can be leveraged for infrastructure reconnaissance, making lateral movement or targeted attacks significantly easier.
+An attacker can use this information for infrastructure reconnaissance, which makes lateral movement and targeted attacks significantly easier.
 
-Cumulus Linux provides granular LLDP TLV control so that you can:
+Cumulus Linux provides granular LLDP TLV control so that you can:
 - Control egress TLVs at the system level by defining a global policy for which optional TLVs the switch includes in its LLDP advertisements across all ports. 
 - Control egress TLVs for each port by overriding the global policy on specific interfaces (suppress System Name and Management Address only on host-facing ports while keeping full TLV advertisement on fabric or uplink ports).
 - Control ingress TLV processing by defining which TLVs from received LLDP frames to process and store in the neighbor table, limiting information exposure even on the receive side.

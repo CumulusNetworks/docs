@@ -362,7 +362,7 @@ The NVUE object model supports most features on the Cumulus Linux switch. The fo
 | evpn | EVPN configuration. |
 | interface | Interface configuration. |
 | mlag | MLAG configuration. |
-| nve | Network virtualization configuration, such as VXLAN-specfic MLAG configuration and VXLAN flooding. |
+| nve | Network virtualization configuration, such as VXLAN-specific MLAG configuration and VXLAN flooding. |
 | platform | Platform configuration, such as hardware and software components. |
 | qos | QoS RoCE configuration. |
 | router | Router configuration, such as router policies, global BGP and OSPF configuration, PBR, PIM, IGMP, VRR, and VRRP configuration. |
@@ -2026,7 +2026,7 @@ cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure -X GET https://127.
 ```
 
 {{%notice note%}}
-The API `GET` operation output matches the operational revision view (equivalent to `nv show --rev=operational`) and omits unset fields that are shown in the default `nv show` output.
+The API `GET` operation output matches the operational revision view (equivalent to `nv show --rev=operational`) and omits unset fields that the default `nv show` output shows.
 {{%/notice%}}
 
 ### Use Filters in a Query

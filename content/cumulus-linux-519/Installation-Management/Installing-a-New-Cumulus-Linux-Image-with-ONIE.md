@@ -715,7 +715,7 @@ In the Secure Boot menu, you can enable and disable Secure Boot mode. To install
 To access ONIE when Secure Boot is `enabled`, authentication is necessary. The default username and password are both `root`:
 
 ```
-​ONIE: Rescue Mode ...
+ONIE: Rescue Mode ...
 Platform  : x86_64-mlnx_x86-r0
 Version   : 2021.02-5.3.0006-rc3-115200
 Build Date: 2021-05-20T14:27+03:00

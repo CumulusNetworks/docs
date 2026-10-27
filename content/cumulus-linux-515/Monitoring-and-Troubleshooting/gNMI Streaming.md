@@ -76,7 +76,7 @@ To configure optional settings for each tunnel server:
 - Import and enable a TLS or mTLS certificate for validation. You can also apply a <span class="a-tooltip">[CRL](## "Certificate Revocation List")</span>. For information about importing certificates and CRLs, refer to {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="Security with Certificates and CRLs">}}.
 
 {{%notice note%}}
-When you configure a CA certificate, entity certificate, or CRL, existing dial-out gNMI sessions are disconnected to apply the new certificate configuration.
+When you configure a CA certificate, entity certificate, or CRL, the switch disconnects existing dial-out gNMI sessions to apply the new certificate configuration.
 {{%/notice%}}
 
 The following example sets the listening address for tunnel server SERVER1 to 10.1.1.10, and enables the tunnel server:
@@ -434,7 +434,7 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 |------ | ----------- |
 | `/qos/packet-trimming/state/counters/trimmed-unicast-pkts`| The number of trimmed packets.|
 | `/qos/interfaces/interface[interface-id]/packet-trimming/state/counters/trimmed-unicast-pkts`| * The number packets that were trimmed on the interface.|
-| `/qos/interfaces/interface[interface-id]/packet-trimming/state/counters/trimmed-tx-unicast-pkts`| * The number of packets that were trimmed and sent succesfully on the interface.|
+| `/qos/interfaces/interface[interface-id]/packet-trimming/state/counters/trimmed-tx-unicast-pkts`| * The number of packets that were trimmed and sent successfully on the interface.|
 | `/qos/interfaces/interface[interface-id]/packet-trimming/output/queues/queue[name]/state/trimmed-unicast-pkts`| * The number of packets that were trimmed on the interface queue.|
 
 {{< /tab >}}
@@ -1007,7 +1007,7 @@ cumulus@switch:mgmt:~$ sudo systemctl start nvued.service
 
 ### Use the gNMI Agent Only
 
-NVIDIA recommends that you collect data with both the gNMI and NetQ agents. However, if you do not want to collect data with both agents or you are not streaming data to NetQ, you can disable the NetQ agent. Cumulus Linux then sents data only to the gNMI agent.
+NVIDIA recommends that you collect data with both the gNMI and NetQ agents. However, if you do not want to collect data with both agents or you are not streaming data to NetQ, you can disable the NetQ agent. Cumulus Linux then sends data only to the gNMI agent.
 
 To disable the NetQ agent:
 
@@ -1755,7 +1755,7 @@ received sync response 'true' from '10.209.37.123:9339'
 
 When using gNMI with Cumulus Linux:
 - The minimum sampling interval is 1 second. If you configure a shorter sampling interval, the switch might not behave as expected.
-- ModelData, Origin, and Extensions fields are ignored in requests and not set in responses.
+- The switch ignores ModelData, Origin, and Extensions fields in requests and does not set them in responses.
 
 ## Related Information
 

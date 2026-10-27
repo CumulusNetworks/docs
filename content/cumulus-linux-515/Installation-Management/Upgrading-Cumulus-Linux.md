@@ -37,7 +37,7 @@ Before you perform an upgrade with ISSU, you must:
 After setting BGP restart and half-resource mode, you can run warm reboot with the `nv action reboot system mode warm` command. Refer to {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="switch reboot mode">}}.
 
 {{%notice note%}}
-Forwarding resources apply to hardware TCAM or KVD resources used for MAC addresses, layer 3 neighbors, and <span class="a-tooltip">[LPM](## "Longest Prefix Match")</span> (IPv4 and IPv6, unicast and multicast) entries. In half-resource mode these are reduced by 50 percent. Refer to {{<link url="Forwarding-Table-Size-and-Profiles" text="Forwarding Table Sizes">}} for platform-specific details.
+Forwarding resources apply to hardware TCAM or KVD resources used for MAC addresses, layer 3 neighbors, and <span class="a-tooltip">[LPM](## "Longest Prefix Match")</span> (IPv4 and IPv6, unicast and multicast) entries. Half-resource mode reduces these by 50 percent. Refer to {{<link url="Forwarding-Table-Size-and-Profiles" text="Forwarding Table Sizes">}} for platform-specific details.
 {{%/notice%}}
 
 To configure the switch in half resource mode:
@@ -419,7 +419,7 @@ user@server:~$ docker run -d --name repo -p 8080:80 -p 8443:8443 -v /local/certp
 If you do not specify your own CA or server certificate, a self-signed certificate is used. To run the container with a self-signed certificate, define the following environment variables in your `docker run` command:
 
 - `REPO_HOST=<hostname>` - defines the hostname used to connect to the repository and is added to the Common Name (CN) and Subject Alternative Name (SAN) fields in the self-signed certificates.
-- `REPO_IP=<ip-address>` - defines the IP used to connect to the respository if you do not use a hostname and is also added to the SAN.
+- `REPO_IP=<ip-address>` - defines the IP used to connect to the repository if you do not use a hostname and is also added to the SAN.
 - `FORCE_REISSUE=[0 | 1]` - set to 1 to force reissuing the server certificate when the container starts, applying the configuration defined in the other variables.
 
 The following example runs the container with a self-signed certificate:
@@ -428,7 +428,7 @@ The following example runs the container with a self-signed certificate:
 user@server:~$ sudo docker run -d --name repo -p 8080:80 -p 8443:8443 -e REPO_HOST=hostname.domain -e REPO_IP=10.1.100.1 -e FORCE_REISSUE=1 cumulus-linux-apt-mirror:5.15.0
 ```
 
-3. {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="Import the certificate">}} used for the repository container on the switches you want to upgrade. If you are using a self-signed certificated, you can retrieve it from the container with the curl command: `curl -fsSL http://10.1.1.100:8080/ca.crt`.
+3. {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="Import the certificate">}} used for the repository container on the switches you want to upgrade. If you are using a self-signed certificate, you can retrieve it from the container with the curl command: `curl -fsSL http://10.1.1.100:8080/ca.crt`.
 
 <!--
 Retrieve and install the certificate on the switches you want to upgrade:
@@ -582,7 +582,7 @@ To show a list of generated `/etc/default/isc-*` files changed from the previous
 
 4. Restore certificates and the configuration files to the new release:
 
-   a. {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="Reimport all certificates">}} and/or CRLs that were configured in the previous release with the `nv action import system security` command, ensuring you use the same `certificate-id` that was originally assigned to each certificate.
+   a. {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="Reimport all certificates">}} and CRLs that you configured in the previous release with the `nv action import system security` command, ensuring you use the same `certificate-id` that was originally assigned to each certificate.
 
    b. Copy the `/etc/nvue.d/startup.yaml` file from the back up process to the switch.
 

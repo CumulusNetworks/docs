@@ -11,57 +11,34 @@ The following tables list the new, updated, and discontinued gNMI and OTEL metri
 ## New gNMI Metrics
 
 {{< tabs "TabID114 ">}}
-{{< tab "Routing">}}
+{{< tab "Back-to-sender on Link Down">}}
 
-The following metrics are added for unreachability AFI SAFI.
+The switch exports these xPaths on Spectrum-6 switches only. For information about the counters behind these metrics, refer to {{<link url="Packet-Trimming/#show-and-clear-back-to-sender-notification-on-link-down-counters" text="Show and Clear Back-to-sender Notification on Link Down Counters">}}.
 
 |  Name | Description |
 |------ | ----------- |
-| `/network-instances/network-instance[name]/lldp-exception/address-families/address-family[address-family=IPV4]/state/exception-count ` | Number of unreachable IPv4 prefixes the switch holds to export to LLDP, excluding the default route exception. |
-| `/network-instances/network-instance[name]/lldp-exception/address-families/address-family[address-family=IPV4]/state/default-exception-active` | Whether the IPv4 default route exception is active. |
-| `/network-instances/network-instance[name]/lldp-exception/address-families/address-family[address-family=IPV6]/state/exception-count ` | Number of unreachable IPv6 prefixes the switch holds to export to LLDP, excluding the default route exception. |
-| `/network-instances/network-instance[name]/lldp-exception/address-families/address-family[address-family=IPV6]/state/default-exception-active` | Whether the IPv6 default route exception is active. |
-| `/lldp/state/counters/exception-add-total ` | Number of unreachable prefixes sent to LLDP since the routing service started, including resynchronization replays. |
-| `/lldp/state/counters/exception-remove-total` | Number of unreachable prefix withdrawals sent to LLDP since the routing service started. |
-| `/lldp/state/counters/default-exception-add-total` | Number of default route exceptions sent to LLDP since the routing service started, counted separately for each VRF and address family. |
-| `/lldp/state/counters/default-exception-remove-total` | Number of default route exception withdrawals sent to LLDP since the routing service started. |
-| `/network-instances/network-instance[name]/protocols/protocol[identifier=BGP][name=BGP]/bgp/global/afi-safis/afi-safi[afi-safi-name=IPV4_UNREACH]/state/total-prefixes` | Total number of unreachable IPv4 prefixes. |
-| `/network-instances/network-instance[name]/protocols/protocol[identifier=BGP][name=BGP]/bgp/global/afi-safis/afi-safi[afi-safi-name=IPV6_UNREACH]/state/total-prefixes` | Total number of unreachable IPv6 prefixes.|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier=BGP][name=BGP]/bgp/global/afi-safis/afi-safi[afi-safi-name=IPV4_UNREACH]/state/total-prefixes-all` | Total number of all unreachable IPv4 prefixes.|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier=BGP][name=BGP]/bgp/global/afi-safis/afi-safi[afi-safi-name=IPV6_UNREACH]/state/total-prefixes-all ` |  Total number of all unreachable IPv6 prefixes.|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier=BGP][name=BGP]/bgp/global/afi-safis/afi-safi[afi-safi-name=IPV4_UNREACH]/state/total-prefixes-local ` | Total number of unreachable local IPv4 prefixes.|
-| `/network-instances/network-instance[name]/protocols/protocol[identifier=BGP][name=BGP]/bgp/global/afi-safis/afi-safi[afi-safi-name=IPV6_UNREACH]/state/total-prefixes-local ` | Total number of unreachable local IPv6 prefixes.|
+| `/components/component[name]/integrated-circuit/pipeline-counters/packet/trim/state/spxm-notify-sender-link-down-pkts` | Number of packets that matched the back-to-sender classifier on link down, both while the route is still in hardware and after FRR withdraws it. Counts notifications the switch attempted, not notifications the switch confirmed the sender received. |
+| `/components/component[name]/integrated-circuit/pipeline-counters/packet/trim/state/notify-sender-trimmed-link-down-pkts` | Number of those packets the switch trimmed and sent as a back-to-sender notification. |
 
 {{< /tab >}}
-{{< tab "Platform">}}
+{{< tab "Control Plane Punt Classifier">}}
 
 |  Name | Description |
 |------ | ----------- |
-| `/components/component[name]/state/name` | Component instance name. Cumulus Linux 5.19 adds the name for the ASIC and for transceivers. |
-| `/components/component[name]/state/type` | OpenConfig component type. Cumulus Linux 5.19 adds the type for the ASIC, transceivers, fans, storage disks, and temperature and leakage sensors. |
+| `/components/component[name]/integrated-circuit/pipeline-counters/control-plane-traffic/vendor/nvidia/spectrum/punt-classifiers/punt-classifier[rule-id]/state/rule-id` | The ID of the punt classifier rule. This is also the list key. |
+| `/components/component[name]/integrated-circuit/pipeline-counters/control-plane-traffic/vendor/nvidia/spectrum/punt-classifiers/punt-classifier[rule-id]/state/matched-packets` | The number of packets that the rule drops. |
+| `/components/component[name]/integrated-circuit/pipeline-counters/control-plane-traffic/vendor/nvidia/spectrum/punt-classifiers/punt-classifier[rule-id]/state/matched-octets` | The number of octets that the rule drops. |
+| `/components/component[name]/integrated-circuit/pipeline-counters/control-plane-traffic/vendor/nvidia/spectrum/punt-classifiers/punt-classifier[rule-id]/state/packet-type` | The packet type that the rule matches: `PACKET_TYPE_SPXM` or `PACKET_TYPE_IPV6`. |
+| `/components/component[name]/integrated-circuit/pipeline-counters/control-plane-traffic/vendor/nvidia/spectrum/punt-classifiers/punt-classifier[rule-id]/state/destination-port` | The IPv6 UDP destination port that the rule matches. Present only for a rule with packet type `PACKET_TYPE_IPV6`. |
+| `/components/component[name]/integrated-circuit/pipeline-counters/control-plane-traffic/vendor/nvidia/spectrum/punt-classifiers/punt-classifier[rule-id]/state/action` | The action that the switch programs for the rule, which is always `ACTION_DROP`. |
 
-{{< /tab >}}
-{{< tab "Interfaces">}}
-
-|  Name | Description |
-|------ | ----------- |
-| `/interfaces/interface[name=<interface-id>]/step-time-estimation/state/step-time-estimate` | Estimated step time, in seconds, of the AI training workload running on the interface. Requires {{<link url="Step-Time-Estimation" text="step time estimation">}}. |
-
-{{< /tab >}}
-{{< tab "Microburst Histogram">}}
-
-|  Name | Description |
-|------ | ----------- |
-| `/performance/interfaces/interface[name]/histograms/microburst/direction[dir][quantity]`| Per-interface microburst telemetry container. `dir` is `rx` or `tx`; quantity is `packets` or `bytes`.|
-| `/performance/interfaces/interface[name]/histograms/microburst/direction[dir][quantity]/bin[upper-boundary]/count` | Histogram bin count for the most recent collection window.  The value covers a single collection window and resets on read.|
-| `/performance/interfaces/interface[name]/histograms/microburst/direction[dir][quantity]/score` | Burstiness score computed as σ² × μ in bin-index space.|
-| `/performance/interfaces/interface[name]/histograms/microburst/direction[dir][quantity]/mean-bin-index` | Mean bin index μ over the current window.|
-| `/performance/interfaces/interface[name]/histograms/microburst/direction[dir][quantity]/distribution-variance` | Bin-index variance σ² over the current window.|
-| `/performance/interfaces/interface[name]/histograms/microburst/direction[dir][quantity]/peak-value` | Raw `max_watermark` value for the current window. Interpretation depends on quantity.|
-| `/performance/interfaces/interface[name]/histograms/microburst/direction[dir][quantity]/threshold-state` | Operational threshold state for the configured score threshold.|
-| `/performance/interfaces/interface[name]/histograms/microburst/direction[dir][quantity]/last-triggered` | Last time the threshold entered triggered state. Absent or unset if never triggered.|
-
-The telemetry model names the packets or bytes selector `quantity`, where the NVUE command that configures it is `unit`. The two names refer to the same setting; `quantity` avoids a collision with the standard OTEL instrument descriptor field.
+{{%notice note%}}
+- Every rule with packet type `PACKET_TYPE_SPXM` shares one counter. Each of those rule IDs reports the same value, so do not add the values together.
+- Each IPv6 UDP destination port has its own counter.
+- The counters cover the CPU egress of one ASIC, so they are per ASIC rather than per front panel interface.
+- These paths are read-only. Configure the punt classifier with the NVUE commands described in {{<link url="Access-Control-List-Configuration/#control-plane-punt-classifier" text="Control Plane Punt Classifier">}}.
+- The DSCP values that a rule matches are not available over gNMI.
+{{%/notice%}}
 
 {{< /tab >}}
 {{< tab "CPO and Laser Source">}}
@@ -123,52 +100,48 @@ The following paths are present on a switch with co-packaged optics (CPO) only. 
 | `/components/component[name=<els-id>]/laser-source/state/icc-current` | ICC current the laser source draws. |
 
 {{< /tab >}}
-{{< tab "Back-to-sender on Link Down">}}
-
-The switch exports these xPaths on Spectrum-6 switches only. For information about the counters behind these metrics, refer to {{<link url="Packet-Trimming/#show-and-clear-back-to-sender-notification-on-link-down-counters" text="Show and Clear Back-to-sender Notification on Link Down Counters">}}.
+{{< tab "Interfaces">}}
 
 |  Name | Description |
 |------ | ----------- |
-| `/components/component[name]/integrated-circuit/pipeline-counters/packet/trim/state/spxm-notify-sender-link-down-pkts` | Number of packets that matched the back-to-sender classifier on link down, both while the route is still in hardware and after FRR withdraws it. Counts notifications the switch attempted, not notifications the switch confirmed the sender received. |
-| `/components/component[name]/integrated-circuit/pipeline-counters/packet/trim/state/notify-sender-trimmed-link-down-pkts` | Number of those packets the switch trimmed and sent as a back-to-sender notification. |
+| `/interfaces/interface[name=<interface-id>]/step-time-estimation/state/step-time-estimate` | Estimated step time, in seconds, of the AI training workload running on the interface. Requires {{<link url="Step-Time-Estimation" text="step time estimation">}}. |
 
 {{< /tab >}}
-{{< tab "Control Plane Punt Classifier">}}
+{{< tab "Microburst Histogram">}}
 
 |  Name | Description |
 |------ | ----------- |
-| `/components/component[name]/integrated-circuit/pipeline-counters/control-plane-traffic/vendor/nvidia/spectrum/punt-classifiers/punt-classifier[rule-id]/state/rule-id` | The ID of the punt classifier rule. This is also the list key. |
-| `/components/component[name]/integrated-circuit/pipeline-counters/control-plane-traffic/vendor/nvidia/spectrum/punt-classifiers/punt-classifier[rule-id]/state/matched-packets` | The number of packets that the rule drops. |
-| `/components/component[name]/integrated-circuit/pipeline-counters/control-plane-traffic/vendor/nvidia/spectrum/punt-classifiers/punt-classifier[rule-id]/state/matched-octets` | The number of octets that the rule drops. |
-| `/components/component[name]/integrated-circuit/pipeline-counters/control-plane-traffic/vendor/nvidia/spectrum/punt-classifiers/punt-classifier[rule-id]/state/packet-type` | The packet type that the rule matches: `PACKET_TYPE_SPXM` or `PACKET_TYPE_IPV6`. |
-| `/components/component[name]/integrated-circuit/pipeline-counters/control-plane-traffic/vendor/nvidia/spectrum/punt-classifiers/punt-classifier[rule-id]/state/destination-port` | The IPv6 UDP destination port that the rule matches. Present only for a rule with packet type `PACKET_TYPE_IPV6`. |
-| `/components/component[name]/integrated-circuit/pipeline-counters/control-plane-traffic/vendor/nvidia/spectrum/punt-classifiers/punt-classifier[rule-id]/state/action` | The action that the switch programs for the rule, which is always `ACTION_DROP`. |
+| `/performance/interfaces/interface[name]/histograms/microburst/direction[dir][quantity]`| Per-interface microburst telemetry container. `dir` is `rx` or `tx`; quantity is `packets` or `bytes`.|
+| `/performance/interfaces/interface[name]/histograms/microburst/direction[dir][quantity]/bin[upper-boundary]/count` | Histogram bin count for the most recent collection window.  The value covers a single collection window and resets on read.|
+| `/performance/interfaces/interface[name]/histograms/microburst/direction[dir][quantity]/score` | Burstiness score computed as σ² × μ in bin-index space.|
+| `/performance/interfaces/interface[name]/histograms/microburst/direction[dir][quantity]/mean-bin-index` | Mean bin index μ over the current window.|
+| `/performance/interfaces/interface[name]/histograms/microburst/direction[dir][quantity]/distribution-variance` | Bin-index variance σ² over the current window.|
+| `/performance/interfaces/interface[name]/histograms/microburst/direction[dir][quantity]/peak-value` | Raw `max_watermark` value for the current window. Interpretation depends on quantity.|
+| `/performance/interfaces/interface[name]/histograms/microburst/direction[dir][quantity]/threshold-state` | Operational threshold state for the configured score threshold.|
+| `/performance/interfaces/interface[name]/histograms/microburst/direction[dir][quantity]/last-triggered` | Last time the threshold entered triggered state. Absent or unset if never triggered.|
 
-{{%notice note%}}
-- Every rule with packet type `PACKET_TYPE_SPXM` shares one counter. Each of those rule IDs reports the same value, so do not add the values together.
-- Each IPv6 UDP destination port has its own counter.
-- The counters cover the CPU egress of one ASIC, so they are per ASIC rather than per front panel interface.
-- These paths are read-only. Configure the punt classifier with the NVUE commands described in {{<link url="Access-Control-List-Configuration/#control-plane-punt-classifier" text="Control Plane Punt Classifier">}}.
-- The DSCP values that a rule matches are not available over gNMI.
-{{%/notice%}}
+The telemetry model names the packets or bytes selector `quantity`, where the NVUE command that configures it is `unit`. The two names refer to the same setting; `quantity` avoids a collision with the standard OTEL instrument descriptor field.
 
 {{< /tab >}}
-{{< /tabs >}}
+{{< tab "Packet Trimming">}}
 
-For information about gNMI, refer to {{<link url="gNMI-Streaming" text="gNMI Streaming">}}.
-
-## New OTEL Metrics
-
-
-{{< tabs "TabID113 ">}}
-{{< tab "WJH">}}
-
-In addition to the following metrics, the switch also exports two WJH events, `wjh.aggregate_drop` and `wjh.l1`, as OTEL log records, not metrics. For more information, refer to {{<link url="Open-Telemetry-Export/#wjh-events-and-metrics-format" text="WJH Events and Metrics Format">}}.
+The switch exports these xPaths on Spectrum-6 switches only. For information about the counters behind these metrics, refer to {{<link url="Packet-Trimming/#packet-trimming-counters" text="Packet Trimming Counters">}}.
 
 |  Name | Description |
 |------ | ----------- |
-| `nvswitch_wjh_total_events` | The total number of WJH drop-trap events received on the channel, before aggregation. |
-| `nvswitch_wjh_channel_trigger` | Which triggers are enabled for each channel.|
+| `/components/component[name]/integrated-circuit/pipeline-counters/packet/trim/state/out-trim-pkts` | Number of packets that the switch trimmed and sent successfully. |
+| `/components/component[name]/integrated-circuit/pipeline-counters/drop/state/trim-pkts` | Number of packets that the switch trimmed and dropped. |
+| `/interfaces/interface[name]/state/counters/dropped-trim-pkts` | Number of packets that the switch trimmed and dropped on the port. |
+| `/qos/interfaces/interface[interface-id]/output/queues/queue[name]/state/out-trim-pkts` | Number of packets that the switch trimmed and sent successfully on the port and queue. |
+| `/qos/interfaces/interface[interface-id]/output/queues/queue[name]/state/dropped-trim-pkts` | Number of packets that the switch trimmed and dropped on the port and queue. |
+
+{{< /tab >}}
+{{< tab "Platform">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `/components/component[name]/state/name` | Component instance name. Cumulus Linux 5.19 adds the name for the ASIC and for transceivers. |
+| `/components/component[name]/state/type` | OpenConfig component type. Cumulus Linux 5.19 adds the type for the ASIC, transceivers, fans, storage disks, and temperature and leakage sensors. |
 
 {{< /tab >}}
 {{< tab "Routing">}}
@@ -177,54 +150,61 @@ The following metrics are added for unreachability AFI SAFI.
 
 |  Name | Description |
 |------ | ----------- |
-| `nvrouting_bgp_unreach_prefix_count` | Number of prefixes in the BGP unreachability table. |
-| `nvrouting_lldp_exception_count` | Number of unreachable prefixes the switch holds to export to LLDP, excluding the default route exception. |
-| `nvrouting_lldp_default_exception_active_count` | Whether the default route exception is active. |
-| `nvrouting_lldp_exception_add_total` | Number of unreachable prefixes sent to LLDP since the routing service started, including resynchronization replays. |
-| `nvrouting_lldp_exception_remove_total` | Number of unreachable prefix withdrawals sent to LLDP since the routing service started. |
-| `nvrouting_lldp_default_exception_add_total` | Number of default route exceptions sent to LLDP since the routing service started, counted separately for each VRF and address family. |
-| `nvrouting_lldp_default_exception_remove_total` | Number of default route exception withdrawals sent to LLDP since the routing service started. |
-| `nvrouting_lldp_export_channel_connected` | Whether the LLDP export channel is up. |
-| `nvrouting_lldp_export_channel_errors_total` | Number of unreachable prefix updates that failed to reach LLDP since the routing service started. |
+| `/network-instances/network-instance[name]/lldp-exception/address-families/address-family[address-family=IPV4]/state/exception-count ` | Number of unreachable IPv4 prefixes the switch holds to export to LLDP, excluding the default route exception. |
+| `/network-instances/network-instance[name]/lldp-exception/address-families/address-family[address-family=IPV4]/state/default-exception-active` | Whether the IPv4 default route exception is active. |
+| `/network-instances/network-instance[name]/lldp-exception/address-families/address-family[address-family=IPV6]/state/exception-count ` | Number of unreachable IPv6 prefixes the switch holds to export to LLDP, excluding the default route exception. |
+| `/network-instances/network-instance[name]/lldp-exception/address-families/address-family[address-family=IPV6]/state/default-exception-active` | Whether the IPv6 default route exception is active. |
+| `/lldp/state/counters/exception-add-total ` | Number of unreachable prefixes sent to LLDP since the routing service started, including resynchronization replays. |
+| `/lldp/state/counters/exception-remove-total` | Number of unreachable prefix withdrawals sent to LLDP since the routing service started. |
+| `/lldp/state/counters/default-exception-add-total` | Number of default route exceptions sent to LLDP since the routing service started, counted separately for each VRF and address family. |
+| `/lldp/state/counters/default-exception-remove-total` | Number of default route exception withdrawals sent to LLDP since the routing service started. |
+| `/network-instances/network-instance[name]/protocols/protocol[identifier=BGP][name=BGP]/bgp/global/afi-safis/afi-safi[afi-safi-name=IPV4_UNREACH]/state/total-prefixes` | Total number of unreachable IPv4 prefixes. |
+| `/network-instances/network-instance[name]/protocols/protocol[identifier=BGP][name=BGP]/bgp/global/afi-safis/afi-safi[afi-safi-name=IPV6_UNREACH]/state/total-prefixes` | Total number of unreachable IPv6 prefixes.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier=BGP][name=BGP]/bgp/global/afi-safis/afi-safi[afi-safi-name=IPV4_UNREACH]/state/total-prefixes-all` | Total number of all unreachable IPv4 prefixes.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier=BGP][name=BGP]/bgp/global/afi-safis/afi-safi[afi-safi-name=IPV6_UNREACH]/state/total-prefixes-all ` |  Total number of all unreachable IPv6 prefixes.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier=BGP][name=BGP]/bgp/global/afi-safis/afi-safi[afi-safi-name=IPV4_UNREACH]/state/total-prefixes-local ` | Total number of unreachable local IPv4 prefixes.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier=BGP][name=BGP]/bgp/global/afi-safis/afi-safi[afi-safi-name=IPV6_UNREACH]/state/total-prefixes-local ` | Total number of unreachable local IPv6 prefixes.|
 
 {{< /tab >}}
-{{< tab "RADIUS Authentication">}}
+{{< /tabs >}}
+
+For information about gNMI, refer to {{<link url="gNMI-Streaming" text="gNMI Streaming">}}.
+
+## Updated gNMI Metrics
+
+The switch replaces these packet trimming xPaths with new ones. If you subscribe to the old xPaths, update your subscriptions.
+
+|  Old xPath | New xPath |
+|------ | ----------- |
+| `/qos/packet-trimming/state/counters/trimmed-unicast-pkts` | `/components/component[name]/integrated-circuit/pipeline-counters/packet/trim/state/trim-pkts` |
+| `/qos/interfaces/interface[interface-id]/packet-trimming/state/counters/trimmed-unicast-pkts` | `/interfaces/interface[name]/state/counters/trim-pkts` |
+| `/qos/interfaces/interface[interface-id]/packet-trimming/state/counters/trimmed-tx-unicast-pkts` | `/interfaces/interface[name]/state/counters/out-trim-pkts` |
+| `/qos/interfaces/interface[interface-id]/packet-trimming/output/queues/queue[name]/state/trimmed-unicast-pkts` | `/qos/interfaces/interface[interface-id]/output/queues/queue[name]/state/trim-pkts` |
+
+The switch exports these xPaths on Spectrum-4, Spectrum-5, and Spectrum-6 switches, except `/interfaces/interface[name]/state/counters/out-trim-pkts`, which the switch exports on Spectrum-5 and later switches only.
+
+## New OTEL Metrics
+
+
+{{< tabs "TabID113 ">}}
+{{< tab "Back-to-sender on Link Down">}}
+
+The switch exports these metrics on Spectrum-6 switches only. For information about the counters behind these metrics, refer to {{<link url="Packet-Trimming/#show-and-clear-back-to-sender-notification-on-link-down-counters" text="Show and Clear Back-to-sender Notification on Link Down Counters">}}.
 
 |  Name | Description |
 |------ | ----------- |
-| `node_radius_auth_request_total` | Access-Request packets sent to the RADIUS server to authenticate an interactive user login, including retransmissions. |
-| `node_radius_auth_accept_total` | Access-Accept messages received from the RADIUS server. |
-| `node_radius_auth_reject_total` | Access-Reject messages received from the RADIUS server. |
-| `node_radius_auth_timeout_total` | Access-Request messages that timed out and required retransmission. |
-| `node_radius_auth_retransmit_total` | Retransmitted Access-Request messages. |
-| `node_radius_auth_connection_error_total` | Login authentication attempts for which the switch could not reach the RADIUS server. |
-| `node_radius_auth_bad_response_total` | Malformed or otherwise invalid RADIUS responses received during an interactive login. |
-
-Each metric carries a single `server` label holding the RADIUS server address. For information about the counters behind these metrics, refer to {{<link url="RADIUS-AAA/#show-and-clear-radius-counters" text="Show and Clear RADIUS Counters">}}.
+| `nvswitch_qos_spxm_notify_sender_link_down_pkts` | Number of packets that matched the back-to-sender classifier on link down, both while the route is still in hardware and after FRR withdraws it. Counts notifications the switch attempted, not notifications the switch confirmed the sender received. |
+| `nvswitch_qos_notify_sender_trimmed_link_down_pkts` | Number of those packets the switch trimmed and sent as a back-to-sender notification. |
 
 {{< /tab >}}
-{{< tab "Step Time Estimation">}}
+{{< tab "Control Plane Punt Classifier">}}
 
 |  Name | Description |
 |------ | ----------- |
-| `nvswitch_interface_step_time_estimate` | Estimated step time, in seconds, of the AI training workload running on an interface. |
+| `nvswitch_control_plane_punt_classifier_matched_packets` | The number of packets that a control plane punt classifier rule drops. |
+| `nvswitch_control_plane_punt_classifier_matched_bytes` | The number of bytes that a control plane punt classifier rule drops. |
 
-This metric is a gauge carrying a single `interface` label holding the interface name. The switch exports a data point only for an interface for which the algorithm produces an estimate, and exports no metric at all when it produces no estimate for any interface. For information about the feature behind this metric, refer to {{<link url="Step-Time-Estimation" text="Step Time Estimation">}}.
-
-{{< /tab >}}
-{{< tab "Microburst Histogram">}}
-
-|  Name | Description |
-|------ | ----------- |
-| `nvswitch_histogram_interface_microburst` | Per-window microburst histogram distribution. Bucket counts are exported after each poll cycle; temporality is delta. The values are the packet-delta or byte-delta per sampling window, depending on the value of quantity.|
-| `nvswitch_histogram_interface_microburst_score` | Burstiness score σ² × μ for the current window.|
-| `nvswitch_histogram_interface_microburst_mean_bin_index` | Mean bin index μ for the current window.|
-| `nvswitch_histogram_interface_microburst_distribution_variance` | Bin-index variance σ² for the current window.|
-| `nvswitch_histogram_interface_microburst_peak_value` | Peak raw watermark for the current window (packets or bytes, depending on quantity). Omitted when no valid watermark is available for the window.|
-| `nvswitch_histogram_interface_microburst_threshold_state` | Threshold state for the configured score threshold. Omitted when no threshold is configured.|
-| `nvswitch_histogram_interface_microburst_last_triggered` | (Unix epoch) timestamp of the last transition into triggered state. Omitted when the threshold has never triggered.|
-
-Each microburst metric carries an `interface` label, a `direction` label (`rx` or `tx`), and a `quantity` label (`packets` or `bytes`). The telemetry model names this selector `quantity`, where the NVUE command that configures it is `unit`; the two names refer to the same setting. `nvswitch_histogram_interface_microburst` is a histogram and the rest are gauges, with `threshold_state` reporting 0 for clear and 1 for triggered. For information about the feature behind these metrics, refer to {{<link url="ASIC-Monitoring/#microburst-histogram" text="Microburst Histogram">}}.
+Both metrics are 64-bit counters and carry four labels: `rule_id`, `packet_type` (`spxm` or `ipv6`), `udp_dport` (the destination port or `none`), and `action`, which is always `drop`. The switch exports them only when you enable the `punt-classifier` class. For information about the feature behind these metrics, refer to {{<link url="Access-Control-List-Configuration/#control-plane-punt-classifier" text="Control Plane Punt Classifier">}}.
 
 {{< /tab >}}
 {{< tab "CPO and Laser Source">}}
@@ -255,6 +235,21 @@ The switch exports these metrics on a switch with CPO only. Enable them with the
 | `nvswitch_platform_els_icc_current` | ICC current the laser source draws. Carries a `name` label. |
 
 {{< /tab >}}
+{{< tab "Microburst Histogram">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `nvswitch_histogram_interface_microburst` | Per-window microburst histogram distribution. Bucket counts are exported after each poll cycle; temporality is delta. The values are the packet-delta or byte-delta per sampling window, depending on the value of quantity.|
+| `nvswitch_histogram_interface_microburst_score` | Burstiness score σ² × μ for the current window.|
+| `nvswitch_histogram_interface_microburst_mean_bin_index` | Mean bin index μ for the current window.|
+| `nvswitch_histogram_interface_microburst_distribution_variance` | Bin-index variance σ² for the current window.|
+| `nvswitch_histogram_interface_microburst_peak_value` | Peak raw watermark for the current window (packets or bytes, depending on quantity). Omitted when no valid watermark is available for the window.|
+| `nvswitch_histogram_interface_microburst_threshold_state` | Threshold state for the configured score threshold. Omitted when no threshold is configured.|
+| `nvswitch_histogram_interface_microburst_last_triggered` | (Unix epoch) timestamp of the last transition into triggered state. Omitted when the threshold has never triggered.|
+
+Each microburst metric carries an `interface` label, a `direction` label (`rx` or `tx`), and a `quantity` label (`packets` or `bytes`). The telemetry model names this selector `quantity`, where the NVUE command that configures it is `unit`; the two names refer to the same setting. `nvswitch_histogram_interface_microburst` is a histogram and the rest are gauges, with `threshold_state` reporting 0 for clear and 1 for triggered. For information about the feature behind these metrics, refer to {{<link url="ASIC-Monitoring/#microburst-histogram" text="Microburst Histogram">}}.
+
+{{< /tab >}}
 {{< tab "Packet Trimming">}}
 
 The switch exports these metrics on Spectrum-6 switches only. For information about the counters behind these metrics, refer to {{<link url="Packet-Trimming/#packet-trimming-counters" text="Packet Trimming Counters">}}.
@@ -268,24 +263,55 @@ The switch exports these metrics on Spectrum-6 switches only. For information ab
 | `nvswitch_interface_tc_trimmed_drop_unicast_pkts [interface][tc]` | Number of packets that were trimmed and dropped on the interface and traffic class. |
 
 {{< /tab >}}
-{{< tab "Back-to-sender on Link Down">}}
-
-The switch exports these metrics on Spectrum-6 switches only. For information about the counters behind these metrics, refer to {{<link url="Packet-Trimming/#show-and-clear-back-to-sender-notification-on-link-down-counters" text="Show and Clear Back-to-sender Notification on Link Down Counters">}}.
+{{< tab "RADIUS Authentication">}}
 
 |  Name | Description |
 |------ | ----------- |
-| `nvswitch_qos_spxm_notify_sender_link_down_pkts` | Number of packets that matched the back-to-sender classifier on link down, both while the route is still in hardware and after FRR withdraws it. Counts notifications the switch attempted, not notifications the switch confirmed the sender received. |
-| `nvswitch_qos_notify_sender_trimmed_link_down_pkts` | Number of those packets the switch trimmed and sent as a back-to-sender notification. |
+| `node_radius_auth_request_total` | Access-Request packets sent to the RADIUS server to authenticate an interactive user login, including retransmissions. |
+| `node_radius_auth_accept_total` | Access-Accept messages received from the RADIUS server. |
+| `node_radius_auth_reject_total` | Access-Reject messages received from the RADIUS server. |
+| `node_radius_auth_timeout_total` | Access-Request messages that timed out and required retransmission. |
+| `node_radius_auth_retransmit_total` | Retransmitted Access-Request messages. |
+| `node_radius_auth_connection_error_total` | Login authentication attempts for which the switch could not reach the RADIUS server. |
+| `node_radius_auth_bad_response_total` | Malformed or otherwise invalid RADIUS responses received during an interactive login. |
+
+Each metric carries a single `server` label holding the RADIUS server address. For information about the counters behind these metrics, refer to {{<link url="RADIUS-AAA/#show-and-clear-radius-counters" text="Show and Clear RADIUS Counters">}}.
 
 {{< /tab >}}
-{{< tab "Control Plane Punt Classifier">}}
+{{< tab "Routing">}}
+
+The following metrics are added for unreachability AFI SAFI.
 
 |  Name | Description |
 |------ | ----------- |
-| `nvswitch_control_plane_punt_classifier_matched_packets` | The number of packets that a control plane punt classifier rule drops. |
-| `nvswitch_control_plane_punt_classifier_matched_bytes` | The number of bytes that a control plane punt classifier rule drops. |
+| `nvrouting_bgp_unreach_prefix_count` | Number of prefixes in the BGP unreachability table. |
+| `nvrouting_lldp_exception_count` | Number of unreachable prefixes the switch holds to export to LLDP, excluding the default route exception. |
+| `nvrouting_lldp_default_exception_active_count` | Whether the default route exception is active. |
+| `nvrouting_lldp_exception_add_total` | Number of unreachable prefixes sent to LLDP since the routing service started, including resynchronization replays. |
+| `nvrouting_lldp_exception_remove_total` | Number of unreachable prefix withdrawals sent to LLDP since the routing service started. |
+| `nvrouting_lldp_default_exception_add_total` | Number of default route exceptions sent to LLDP since the routing service started, counted separately for each VRF and address family. |
+| `nvrouting_lldp_default_exception_remove_total` | Number of default route exception withdrawals sent to LLDP since the routing service started. |
+| `nvrouting_lldp_export_channel_connected` | Whether the LLDP export channel is up. |
+| `nvrouting_lldp_export_channel_errors_total` | Number of unreachable prefix updates that failed to reach LLDP since the routing service started. |
 
-Both metrics are 64-bit counters and carry four labels: `rule_id`, `packet_type` (`spxm` or `ipv6`), `udp_dport` (the destination port or `none`), and `action`, which is always `drop`. The switch exports them only when you enable the `punt-classifier` class. For information about the feature behind these metrics, refer to {{<link url="Access-Control-List-Configuration/#control-plane-punt-classifier" text="Control Plane Punt Classifier">}}.
+{{< /tab >}}
+{{< tab "Step Time Estimation">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `nvswitch_interface_step_time_estimate` | Estimated step time, in seconds, of the AI training workload running on an interface. |
+
+This metric is a gauge carrying a single `interface` label holding the interface name. The switch exports a data point only for an interface for which the algorithm produces an estimate, and exports no metric at all when it produces no estimate for any interface. For information about the feature behind this metric, refer to {{<link url="Step-Time-Estimation" text="Step Time Estimation">}}.
+
+{{< /tab >}}
+{{< tab "WJH">}}
+
+In addition to the following metrics, the switch also exports two WJH events, `wjh.aggregate_drop` and `wjh.l1`, as OTEL log records, not metrics. For more information, refer to {{<link url="Open-Telemetry-Export/#wjh-events-and-metrics-format" text="WJH Events and Metrics Format">}}.
+
+|  Name | Description |
+|------ | ----------- |
+| `nvswitch_wjh_total_events` | The total number of WJH drop-trap events received on the channel, before aggregation. |
+| `nvswitch_wjh_channel_trigger` | Which triggers are enabled for each channel.|
 
 {{< /tab >}}
 {{< /tabs >}}

@@ -209,7 +209,7 @@ route-map MAP1 permit 10
 {{< /tab >}}
 {{< /tabs >}}
 
-The following example commands configure a route map to match the prefixes defined in `LIST1` and set the nexth hop to 10.10.10.5:
+The following example commands configure a route map to match the prefixes defined in `LIST1` and set the next hop to 10.10.10.5:
 
 {{< tabs "TabID212 ">}}
 {{< tab "NVUE Commands ">}}
@@ -791,7 +791,7 @@ cumulus@leaf01:~$
 The following example configures a route map to allow prefixes that match BGP as the source protocol.
 <!-- vale off -->
 {{%notice note%}}
-When you configure the match source protocol in a route map, the switch only advertises that protocol type to the peers. If you configure route leaking between VRFs and the leaked routes are learned as BGP routes, you need to match the BGP source protocol to advertise that route.
+When you configure the match source protocol in a route map, the switch only advertises that protocol type to the peers. If you configure route leaking between VRFs and the switch learns the leaked routes as BGP routes, you need to match the BGP source protocol to advertise that route.
 {{%/notice%}}
 <!-- vale on -->
 {{< tabs "TabID964 ">}}

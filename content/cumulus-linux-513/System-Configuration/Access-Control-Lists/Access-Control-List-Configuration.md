@@ -300,7 +300,7 @@ To create this rule with NVUE, follow the steps below. NVUE adds all options in 
    cumulus@switch:~$ nv config apply
    ```
 
-   - For rules affecting the INPUT or OUPUT chain (-A INPUT or -A OUTPUT), apply the rule to a control plane interface. For example:
+   - For rules affecting the INPUT or OUTPUT chain (-A INPUT or -A OUTPUT), apply the rule to a control plane interface. For example:
 
    ```
    cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 inbound control-plane
@@ -595,7 +595,7 @@ For information about nonatomic and atomic mode, refer to {{<link url="#nonatomi
 
 ## ATCAM Resource Exhaustion
 
-If you see error messages similar to `No More Resources .. Rolling back` when you try to apply ACLs, refer to {{<link url="#troubleshooting-acl-rule-installation-failures" text="Troubleshooting ACL Rule Installation Failures">}} for information on troublshooting and managing resources.
+If you see error messages similar to `No More Resources .. Rolling back` when you try to apply ACLs, refer to {{<link url="#troubleshooting-acl-rule-installation-failures" text="Troubleshooting ACL Rule Installation Failures">}} for information on troubleshooting and managing resources.
 
 ## Supported Rule Types
 

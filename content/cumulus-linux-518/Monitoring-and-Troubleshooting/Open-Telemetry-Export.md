@@ -25,7 +25,7 @@ When you enable open telemetry, the switch collects and exports [system informat
 
 ### ACL Statistics
 
-When you enable open telemetry for ACL statistics, the switch exports [ACL](#acl-statistic-format) interface metrics (such as packet and byte count) for all the interfaces on which ACLs are applied.
+When you enable open telemetry for ACL statistics, the switch exports [ACL](#acl-statistic-format) interface metrics (such as packet and byte count) for all the interfaces on which you apply ACLs.
 
 ```
 cumulus@switch:~$ nv set system telemetry acl-stats export state enabled 
@@ -858,7 +858,7 @@ To tailor metrics collection to your specific monitoring needs, you can collect 
 To configure granular metric selection, configure a list with the metrics you want to collect, then apply the metric list by either including or excluding the list globally or in each statistics group.
 
 {{%notice note%}}
-The statistics category must be enabled. For example, to configure specific control plane metrics, you must enable the control plane statistics group with the `nv set system telemetry control-plane-stats export state enabled` command. Refer to {{<link url="#configure-open-telemetry" text="Configure Open Telemetry">}}.
+You must enable the statistics category. For example, to configure specific control plane metrics, you must enable the control plane statistics group with the `nv set system telemetry control-plane-stats export state enabled` command. Refer to {{<link url="#configure-open-telemetry" text="Configure Open Telemetry">}}.
 {{%/notice%}}
 
 The following example configures the platform memory metrics `node_memory_MemTotal_bytes` and `node_memory_MemFree_bytes`, and all `nvswitch_env_` and `node_cpu_` metrics in a group called PLATFORM_METRICS.
@@ -979,14 +979,14 @@ You can configure the switch to monitor buffer occupancy for specific traffic cl
 
 1. Configure {{<link url="Open-Telemetry-Export" text="open telemetry">}} and add your collector as a gRPC export destination.
 
-2. Configure the interfaces and traffic classes to monitor for buffer utilization. The following example enables congestion notifications for interface `swp1s0` on traffic classes 1 and 5 when the buffer threshold of 2000 bytes is crossed:
+2. Configure the interfaces and traffic classes to monitor for buffer utilization. The following example enables congestion notifications for interface `swp1s0` on traffic classes 1 and 5 when the buffer crosses the threshold of 2000 bytes:
 
 ```
 cumulus@switch:~$ nv set interface swp1s0 telemetry congestion-event egress-buffer traffic-class 1,5 buffer-threshold 2000
 cumulus@switch:~$ nv config apply
 ```
 
-You can configure the congestion throttle duration to set the interval, in milliseconds, between congestion notifications. The default is 10 seconds (10000ms). When a notification is generated, additional congestion events do not trigger a new notification until the interval expires. The throttle duration is configured in milliseconds. The following example configures the `throttle-duration` to 5 seconds:
+You can configure the congestion throttle duration to set the interval, in milliseconds, between congestion notifications. The default is 10 seconds (10000ms). When the switch generates a notification, additional congestion events do not trigger a new notification until the interval expires. You configure the throttle duration in milliseconds. The following example configures the `throttle-duration` to 5 seconds:
 
 ```
 cumulus@switch:~$ nv set system telemetry congestion-event throttle-duration 5000
@@ -1001,7 +1001,7 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{%notice note%}}
-- When using {{<link url="Open-Telemetry-Export/#customize-export" text="statistic groups">}} to specify which metrics are exported, add `congestion-event` notifications to the `stats-group` configuration to include congestion notifications.
+- When using {{<link url="Open-Telemetry-Export/#customize-export" text="statistic groups">}} to specify which metrics the switch exports, add `congestion-event` notifications to the `stats-group` configuration to include congestion notifications.
 - If you configure congestion notifications while the buffer threshold for a traffic class is already exceeded, the switch does not send notifications until buffer occupancy drops below the threshold and then exceeds the threshold again.
 {{%/notice%}}
 
@@ -1082,7 +1082,7 @@ When you enable 802.1X statistic telemetry, the switch exports the following sta
 
 ### ACL Statistic Format
 
-The switch collects and exports ACL interface statistics for all the interfaces on which ACLs are applied when you configure the `nv set system telemetry acl-stats export state enabled` command.
+The switch collects and exports ACL interface statistics for all the interfaces on which you apply ACLs when you configure the `nv set system telemetry acl-stats export state enabled` command.
 
 | Metric | Description |
 | ---------- | ------- |
@@ -1358,7 +1358,7 @@ When you enable control plane statistic telemetry, the switch exports the follow
 | Name | Description |
 |----- | ----------- |
 | `node_netstat_Ip_InReceives` | The number of IP packets received. | 
-| `node_netstat_Ip_InAddrErrors` | The umber of IP packets dropped upon receipt due to errors in the destination or source IP address.|  
+| `node_netstat_Ip_InAddrErrors` | The number of IP packets dropped upon receipt due to errors in the destination or source IP address.|  
 | `node_netstat_Ip_InDelivers` | The number of received IP packets that were successfully delivered to higher-level protocols (such as TCP or UDP).|  
 | `node_netstat_Ip_InDiscards` | The number of IP packets received but dropped, often due to errors.|  
 | `node_netstat_Ip_InHdrErrors` | The number of input IP packets discarded due to errors in their headers (bad checksums, version mismatch, or invalid length). |  
@@ -1405,7 +1405,7 @@ When you enable control plane statistic telemetry, the switch exports the follow
 | `node_netstat_Tcp_EstabResets` | The number of TCP connections that have directly transitioned from an ESTABLISHED state to a CLOSED state.| 
 | `node_netstat_Tcp_CurrEstab` | The number of TCP connections in the ESTABLISHED or CLOSE-WAIT state.| 
 | `node_netstat_Tcp_OutRsts` | The number of TCP resends.| 
-| `node_netstat_TcpExt_ListenDrops` | The number of TCP listne drops.| 
+| `node_netstat_TcpExt_ListenDrops` | The number of TCP listen drops.| 
 | `node_netstat_TcpExt_ListenOverflows` | The number of TCP listen overflows.| 
 | `node_netstat_TcpExt_TCPTimeouts` | The number of TCP connections that timed out.| 
 | `node_netstat_TcpExt_TCPSynRetrans` | The number of TCP SYN retransmissions.| 
@@ -1841,7 +1841,7 @@ The interface statistic data samples that the switch exports to the OTEL collect
 | `nvswitch_interface_discards_ingress_policy_engine` | Interface ingress policy engine discards counter. |
 | `nvswitch_interface_discards_ingress_vlan_membership` | Interface ingress VLAN membership filter discards counter. |
 | `nvswitch_interface_discards_ingress_tag_frame_type` | Interface ingress VLAN tag filter discards counter. |
-| `nvswitch_interface_discards_egress_vlan_membership` | Interface egress VLAN emmbership filter discards counter. |
+| `nvswitch_interface_discards_egress_vlan_membership` | Interface egress VLAN membership filter discards counter. |
 | `nvswitch_interface_discards_loopback_filter` | Interface loopback filter discards counter. |
 | `nvswitch_interface_discards_egress_hoq` | Interface egress head-of-queue timeout discards. |
 | `nvswitch_interface_discards_egress_policy_engine` | Interface egress policy engine discards. |
@@ -1908,7 +1908,7 @@ The interface statistic data samples that the switch exports to the OTEL collect
 | `nvswitch_interface_if_out_octets`| Number of interface out octets.|
 | `nvswitch_interface_if_out_pkts`| Number of interface out unicast packets.|
 | `nvswitch_interface_type`|Link-layer interface type.|
-| `nvswitch_interface_ether_stats_jabbers` | Jabber frames receiverd on this interface.|
+| `nvswitch_interface_ether_stats_jabbers` | Jabber frames received on this interface.|
 | `nvswitch_interface_hw_address_info` | System defined default MAC address for the interface.|
 
 {{< /tab >}}
@@ -3212,7 +3212,7 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 | Name | Description |
 |----- | ----------- |
 | `node_cpu_core_throttles_total` | Number of times a CPU core has been throttled. |
-| `node_cpu_frequency_max_hertz` | Maxiumum CPU thread frequency in hertz. |
+| `node_cpu_frequency_max_hertz` | Maximum CPU thread frequency in hertz. |
 | `node_cpu_frequency_min_hertz` | Minimum CPU thread frequency in hertz. |
 | `node_cpu_guest_seconds_total` | Seconds the CPUs spent in guests for each mode. |
 | `node_cpu_package_throttles_total` | Number of times the CPU package has been throttled. |
@@ -3402,7 +3402,7 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 | `nvswitch_platform_environment_power_supply_voltage`| Output voltage (PSU output side). Emitted on PSU platforms only; not applicable to input-only PDB/HSC.|
 
 {{%notice note%}}
-On PSU-based platforms, the legacy `psu_*` metric family and the common `power_supply_*` family are emitted together for a three-release migration window. The legacy `psu_*` family is discontinued and will be removed after that window; make sure to migrate your dashboards and queries to `power_supply_*` during the window. The gNMI/OpenConfig PSU representation is unchanged.
+On PSU-based platforms, the switch emits the legacy `psu_*` metric family and the common `power_supply_*` family together for a three-release migration window. Cumulus Linux discontinues the legacy `psu_*` family and removes it after that window; make sure to migrate your dashboards and queries to `power_supply_*` during the window. The gNMI/OpenConfig PSU representation is unchanged.
 {{%/notice%}}
 
 {{< /tab >}}
@@ -6497,7 +6497,7 @@ If you enable {{<link title="What Just Happened (WJH)" text="WJH">}}, you can ex
 -->
 ### Static Label Format
 
-Device static labels are exported in the {{<exlink url="https://opentelemetry.io/docs/specs/otel/resource/sdk/" text="resource">}} metric section of OTLP data:
+The switch exports device static labels in the {{<exlink url="https://opentelemetry.io/docs/specs/otel/resource/sdk/" text="resource">}} metric section of OTLP data:
 
 {{< expand "Example JSON data for static device label:" >}}
 ```
@@ -6526,7 +6526,7 @@ Device static labels are exported in the {{<exlink url="https://opentelemetry.io
 ```
 {{< /expand >}}
 <br>
-Interface static labels are exported as attributes in the gauge metrics for each interface.
+The switch exports interface static labels as attributes in the gauge metrics for each interface.
 
 {{< expand "Example JSON data for static interface label:" >}}
 

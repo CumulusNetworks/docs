@@ -281,7 +281,7 @@ The interface statistic data samples that the switch exports to the OTEL collect
 | `nvswitch_interface_discards_ingress_policy_engine` | Interface ingress policy engine discards counter. |
 | `nvswitch_interface_discards_ingress_vlan_membership` | Interface ingress VLAN membership filter discards counter. |
 | `nvswitch_interface_discards_ingress_tag_frame_type` | Interface ingress VLAN tag filter discards counter. |
-| `nvswitch_interface_discards_egress_vlan_membership` | Interface egress VLAN emmbership filter discards counter. |
+| `nvswitch_interface_discards_egress_vlan_membership` | Interface egress VLAN membership filter discards counter. |
 | `nvswitch_interface_discards_loopback_filter` | Interface loopback filter discards counter. |
 | `nvswitch_interface_discards_egress_general` | Interface egress general discards counter. |
 | `nvswitch_interface_discards_egress_link_down` | Interface egress link down discards counter. |
@@ -331,8 +331,8 @@ The following additional interface traffic class statistics are collected and ex
 |------ | ----------- |
 | `nvswitch_interface_tc_tx_bc_frames` | Interface egress traffic class transmit broadcast frames counter. |
 | `nvswitch_interface_tc_tx_ecn_marked_tc` | Interface egress traffic class transmit ECN marked counter. |
-| `nvswitch_interface_tc_tx_frames` | Interface egress traffic class trasmit frames counter. |
-| `nvswitch_interface_tc_tx_mc_frames` | Interface egress traffic class trasmit multicast frames counter. |
+| `nvswitch_interface_tc_tx_frames` | Interface egress traffic class transmit frames counter. |
+| `nvswitch_interface_tc_tx_mc_frames` | Interface egress traffic class transmit multicast frames counter. |
 | `nvswitch_interface_tc_tx_no_buffer_discard_uc` | Interface egress traffic class transmit unicast no buffer discard counter. |
 | `nvswitch_interface_tc_tx_octet` | Interface egress traffic class transmit bytes counter.|
 | `nvswitch_interface_tc_tx_queue` | Interface egress traffic class transmit queue counter. |
@@ -587,7 +587,7 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 | Name | Description |
 |----- | ----------- |
 | `node_cpu_core_throttles_total` | Number of times a CPU core has been throttled. |
-| `node_cpu_frequency_max_hertz` | Maxiumum CPU thread frequency in hertz. |
+| `node_cpu_frequency_max_hertz` | Maximum CPU thread frequency in hertz. |
 | `node_cpu_frequency_min_hertz` | Minimum CPU thread frequency in hertz. |
 | `node_cpu_guest_seconds_total` | Seconds the CPUs spent in guests for each mode. |
 | `node_cpu_package_throttles_total` | Number of times the CPU package has been throttled. |

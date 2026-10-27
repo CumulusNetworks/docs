@@ -137,7 +137,7 @@ The NVUE monitoring commands show various parts of the network configuration. Fo
 | `nv show evpn` |Shows EVPN configuration. |
 | `nv show interface` |Shows interface configuration and counters. |
 | `nv show mlag` | Shows MLAG configuration. |
-| `nv show nve` | Shows network virtualization configuration, such as VXLAN-specfic MLAG configuration and VXLAN flooding.|
+| `nv show nve` | Shows network virtualization configuration, such as VXLAN-specific MLAG configuration and VXLAN flooding.|
 | `nv show platform` | Shows platform configuration, such as hardware and software components. |
 | `nv show qos` | Shows QoS RoCE configuration.|
 | `nv show router` | Shows router configuration, such as router policies, global BGP and OSPF configuration, PBR, PIM, IGMP, VRR, and VRRP configuration. |
@@ -222,7 +222,7 @@ counters        dot1x-summary   mac             pluggables      small
 **Monitoring Commands and FRR Daemons**
 
 If you run an NVUE show command but the corresponding FRR routing daemons are not running on the switch, you see an error message; for example:
-- If OSPF is not running when you run `nv show vrf <vrf-id> ospf` commands, NVUE returns `Error: The requested item does not exist` because the OSPF deamon is not running in FRR.
+- If OSPF is not running when you run `nv show vrf <vrf-id> ospf` commands, NVUE returns `Error: The requested item does not exist` because the OSPF daemon is not running in FRR.
 - If PIM and IGMP are not running when you run the `nv show interface <interface> ip igmp -o json` command, NVUE returns `Error: The requested item does not exist` because the PIM daemon is not running in FRR.
 - If PIM is running but IGMP is not running when you the `nv show interface <interface> ip igmp group -o json` command, NVUE does not return an error message but shows an empty { } response.
 

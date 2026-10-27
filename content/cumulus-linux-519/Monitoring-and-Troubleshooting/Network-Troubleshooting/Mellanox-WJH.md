@@ -57,7 +57,7 @@ cumulus@switch:~$ nv config apply
 
 ### Filter Traffic Drops
 
-You can filter traffic drops to prevent them from being monitored based on the reason for the drop, the severity level (error, warning, or notice), or IP address.
+You can filter traffic drops to stop the switch from monitoring them, based on the reason for the drop, the severity level (error, warning, or notice), or IP address.
 
 The following table shows the drop reasons on which you can filter:
 
@@ -79,21 +79,21 @@ To filter traffic drops with a specific IP address, run the `nv set system wjh c
 - The `<type>` is `acl`, `buffer`, `l2`, `l3`, or `tunnel`.
 - The `<reason>` can be any reason listed in the table above.
 
-The following example creates a filter called TUNNEL1 that prevents traffic drops from being monitored because the overlay switch source MAC equals the destination MAC:
+The following example creates a filter called TUNNEL1 that stops the switch from monitoring traffic drops when the overlay switch source MAC equals the destination MAC:
 
 ```
 cumulus@switch:~$ nv set system wjh channel forwarding drop-filter TUNNEL1 drop-type tunnel drop-reason overlay-switch-src-mac-equals-dest-mac
 cumulus@switch:~$ nv config apply
 ```
 
-The following example creates a filter called SEVERITY that prevents layer 2 traffic drops from being monitored with the severity level notice:
+The following example creates a filter called SEVERITY that stops the switch from monitoring layer 2 traffic drops with the severity level notice:
 
 ```
 cumulus@switch:~$ nv set system wjh channel forwarding drop-filter SEVERITY drop-type l2 severity notice
 cumulus@switch:~$ nv config apply
 ```
 
-The following example creates a filter called IP-DROPS that prevents traffic drops with the IP address 10.10.10.10 from being monitored:
+The following example creates a filter called IP-DROPS that stops the switch from monitoring traffic drops with the IP address 10.10.10.10:
 
 ```
 cumulus@switch:~$ nv set system wjh channel forwarding drop-filter IP-DROPS ip 10.10.10.10

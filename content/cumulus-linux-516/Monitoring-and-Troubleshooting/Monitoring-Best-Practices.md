@@ -136,7 +136,7 @@ Spectrum 1 CPUs can become overloaded at moderate to high network scale. If your
 
 ### Disk Usage
 
-To monitor disk utilization such as the total storage capacity of the filesystem, the amount of space currently being used, the amount of free space available, the percentage of the filesystem’s total capacity currently in use, and the directory or mount point where the filesystem is attached to the system, run the NVUE `nv show system disk usage` command or the Linux `sudo df` command.
+To monitor disk utilization such as the total storage capacity of the filesystem, the amount of space used, the amount of free space available, the percentage of the filesystem’s total capacity currently in use, and the directory or mount point where the filesystem is attached to the system, run the NVUE `nv show system disk usage` command or the Linux `sudo df` command.
 
 ```
 cumulus@switch:~$ nv show system disk usage 
@@ -292,7 +292,7 @@ Link and port state interface transitions log to `/var/log/syslog` and `/var/log
 | Interface Element | Monitoring Commands |
 |------------------ |-------------------- |
 | Link state | NVUE: `nv show interface <interface-id>`<br><br>Linux: `sudo cat /sys/class/net/<interface-id>/operstate` |
-| Link speed | NVUE: `nv show interface <inteface>`<br><br>Linux: `sudo cat /sys/class/net/<interface-id>/speed` |
+| Link speed | NVUE: `nv show interface <interface>`<br><br>Linux: `sudo cat /sys/class/net/<interface-id>/speed` |
 | Port state | NVUE: `nv show interface`<br><br>Linux: `ip link show` |
 | Bond state | NVUE: `nv show interface <bond>`<br><br>Linux: `sudo cat /proc/net/bonding/<bond>` |
 

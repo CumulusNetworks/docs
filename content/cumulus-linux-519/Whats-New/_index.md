@@ -59,7 +59,8 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
   - {{<link url="ASIC-Monitoring/#microburst-histogram" text="Microburst histogram with per-port burst scoring">}}
   - {{<link url="gNMI-Streaming/#dial-out-source-address" text="Configurable source address for gNMI dial-out connections">}}
   - {{<link url="New-and-Updated-Telemetry-Metrics/#new-gnmi-metrics" text="gNMI and OTEL metrics for CPO modules and laser sources">}}
-  - {{<link url="New-and-Updated-Telemetry-Metrics/#new-otel-metrics" text="OTEL metrics for trimmed packet sent and dropped counters">}} on Spectrum-6 switches
+  - {{<link url="New-and-Updated-Telemetry-Metrics/#new-gnmi-metrics" text="gNMI and OTEL metrics for trimmed packet sent and dropped counters">}} on Spectrum-6 switches
+  - {{<link url="New-and-Updated-Telemetry-Metrics/#updated-gnmi-metrics" text="Updated gNMI xPaths for packet trimming counters">}}
   - {{<link url="New-and-Updated-Telemetry-Metrics/#new-gnmi-metrics" text="gNMI and OTEL metrics for back-to-sender notification on link down">}} on Spectrum-6 switches
   - {{<link url="New-and-Updated-Telemetry-Metrics/#new-gnmi-metrics" text="gNMI and OTEL metrics for control plane punt classifier drop counters">}}
 
@@ -83,7 +84,14 @@ To upgrade to Cumulus Linux 5.19 from a release that does not support package up
 For a list of the earliest Cumulus Linux releases supported for each switch model, refer to [this knowledge base article]({{<ref "/knowledge-base/Support/Support-Offerings/Minimum-Cumulus-Linux-Release-for-Each-Switch-Model" >}}).
 
 {{%notice infonopad%}}
-NVIDIA is discontinuing package upgrade in Cumulus Linux 5.20.
+NVIDIA is discontinuing package upgrade (apt upgrade) in Cumulus Linux 5.20 due to very low adoption, reliability risks, and misalignment with industry best practices. 
+
+If you currently use `apt-get upgrade`, `apt-get dist-upgrade`, or apt-based automation in your upgrade runbooks and CI/CD pipelines, plan to migrate to the following upgrade methods:
+- Optimized image upgrade (cl-img-install and ISSU) for production.
+- ONIE install for initial deployment.
+- Patching for targeted fixes.
+
+NVIDIA recommends completing migration before Cumulus Linux 5.20.0.
 {{%/notice%}}
 
 ### Spectrum-6 BMC Requirements
@@ -143,7 +151,7 @@ In Cumulus Linux 5.18 and later, running the `nv show vrf <vrf-id> router bgp ad
 
 Cumulus Linux 5.19 replaces the BFD offload boolean with an offload mode that selects where BFD packet processing runs; see {{<link url="Bidirectional-Forwarding-Detection-BFD/#bfd-offload" text="BFD Offload">}}.
 
-- Cumulus Linux 5.19 introduces the `nv set router bfd offload-mode <control-plane|kernel|hardware>` command, which is the recommended way to configure BFD offload. The `nv set router bfd offload <enabled|disabled>` command is still supported as legacy configuration and will be phased out in a future release. When you upgrade, Cumulus Linux keeps an existing `offload` setting unchanged; `offload enabled` is the same as `offload-mode kernel` and `offload disabled` is the same as `offload-mode control-plane`. See {{<link url="Bidirectional-Forwarding-Detection-BFD/#upgrade-notes" text="Upgrade Notes">}}.
+- Cumulus Linux 5.19 introduces the `nv set router bfd offload-mode <control-plane|kernel|hardware>` command, which is the recommended way to configure BFD offload. Cumulus Linux still supports the `nv set router bfd offload <enabled|disabled>` command as legacy configuration, and NVIDIA plans to remove it in a future release. When you upgrade, Cumulus Linux keeps an existing `offload` setting unchanged; `offload enabled` is the same as `offload-mode kernel` and `offload disabled` is the same as `offload-mode control-plane`. See {{<link url="Bidirectional-Forwarding-Detection-BFD/#upgrade-notes" text="Upgrade Notes">}}.
 - The per-peer offload field now reports the engine carrying the session. In `nv show vrf <vrf-id> router bfd peers` output, the `Offloaded` column shows `kernel`, `hardware`, or `control-plane`; in vtysh and JSON output, `offload-status` shows the same three values. In Cumulus Linux 5.18 and earlier, this field shows only `offloaded` or `control-plane`. Update any automation or monitoring that matches on the string `offloaded`.
 
 ### RIB-to-FIB Filter Protocol Values

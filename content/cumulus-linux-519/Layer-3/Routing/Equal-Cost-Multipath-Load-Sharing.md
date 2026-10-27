@@ -345,7 +345,7 @@ ecmp_hash_seed = 50
 Run the `cl-ecmpcalc` command to determine a hardware hash result. For example, you can see which path a flow takes through a network. You must provide all fields in the hash, including the ingress interface, layer 3 source IP, layer 3 destination IP, layer 4 source port, and layer 4 destination port.
 
 {{%notice note%}}
-`cl-ecmpcalc` only supports input interfaces that convert to a single physical port in the port tab file, such as the physical switch ports (swp). You can not specify virtual interfaces like bridges, bonds, or subinterfaces.
+`cl-ecmpcalc` only supports input interfaces that convert to a single physical port in the port tab file, such as the physical switch ports (swp). You cannot specify virtual interfaces like bridges, bonds, or subinterfaces.
 {{%/notice%}}
 
 ```
@@ -381,13 +381,11 @@ In Cumulus Linux, when a next hop fails or you remove the next hop from an ECMP 
 
 When the set of next hops changes, resilient hashing behaves as follows:
 - When you remove a next hop, Cumulus Linux distributes the assigned buckets to the remaining next hops.
-- When you add a next hop, Cumulus Linux assigns **no** buckets to the new next hop until the load rebalances.
-- The active timer (`active-timer`) sets how long a bucket must be idle before Cumulus Linux can reassign it to the new next hop. The load rebalances when the active timer expires only if inactive buckets are available; until then, the new next hop can remain unpopulated.
-- The maximum unbalanced timer (`max-unbalanced-timer`) sets the longest time Cumulus Linux waits for the load to balance. When this timer expires and the load is still not balanced, Cumulus Linux migrates buckets to the new next hop regardless of bucket activity, so flows on those buckets do not keep their next hop. The default value is 0, which means Cumulus Linux never forces a rebalance and waits for idle buckets.
+- When you add a next hop, Cumulus Linux waits for the active timer to expire before it assigns buckets to the new next hop. The active timer (`active-timer`) sets how long a bucket must be idle before Cumulus Linux can reassign it to the new next hop.
+- If inactive buckets are available when the active timer expires, the new next hop occupies those buckets.
+- If there are no inactive buckets available, the new next hop does not receive any buckets until the maximum unbalanced timer (`max-unbalanced-timer`) expires. This timer sets the longest time Cumulus Linux waits for the load to rebalance. When it expires and the load is still not balanced, Cumulus Linux migrates buckets to the new next hop regardless of bucket activity, so flows on those buckets do not keep their next hop. The default value is 0, which means Cumulus Linux never forces a rebalance and waits for idle buckets.
 
 To set the timers, refer to {{<link url="#configure-resilient-hashing" text="Configure Resilient Hashing">}}.
-
-<!-- REVIEW: Rajesh asked that the diagrams below use a bucket count that matches the supported values (not every bucket needs to show). The four ecmp-reshash-*.png images still show 12 buckets; they live outside the content folder and need new artwork. The sentence below now calls the example simplified. Replace the images, then delete this comment. -->
 
 When you enable resilient hashing, Cumulus Linux assigns next hops in roundrobin fashion to a fixed number of buckets. This simplified example shows 12 buckets and four next hops. The switch uses the number of buckets you configure.
 
@@ -428,14 +426,14 @@ You can configure route and MAC address hardware resources depending on ECMP buc
 To configure resilient hashing:
 - Set resilient hashing to enabled.
 - Set the number of hash buckets to use for all ECMP routes. On Spectrum switches, you can set the number of buckets to 64, 512, 1024, 2048, or 4096. On NVIDIA Spectrum-2 and later, you can set the number of buckets to 64, 128, 256, 512, 1024, 2048, or 4096. The default value is 64.
-- Set the number of milliseconds an idle bucket waits before being reassigned to a new next hop after a next hop addition event. You can specify a value between 1 and 65535. The default value is 120.
+- Set the number of milliseconds an idle bucket waits before the switch reassigns it to a new next hop after a next hop addition event. You can specify a value between 1 and 65535. The default value is 120.
 - Set the maximum number of milliseconds Cumulus Linux waits before forcing a rebalance across next hops, regardless of bucket activity. You can specify a value between 0 and 4294967294. A value of 0 means Cumulus Linux never forces a rebalance and instead waits indefinitely for an idle bucket. The default value is 0.
 
 {{%notice warning%}}
 Enabling or disabling resilient hashing reloads `switchd` and restarts the FRR service. FRR withdraws and reinstalls every route during the restart. NVUE also configures FRR to stop installing next hop group IDs in the kernel as part of enabling resilient hashing — see {{<link url="#resilient-hashing-and-next-hop-groups" text="Resilient Hashing and Next Hop Groups">}} below. Plan for a brief, fabric-wide disruption when you change the resilient hashing state, and schedule the change for a maintenance window.
 {{%/notice%}}
 
-The following example enables resilient hashing, sets the number of hash buckets to use for all ECMP routes to 512, sets the number of milliseconds an idle bucket waits before being reassigned to a new next hop after a next hop addition event to 500, and sets the maximum number of milliseconds Cumulus Linux waits before forcing a rebalance to 2000.
+The following example enables resilient hashing, sets the number of hash buckets to use for all ECMP routes to 512, sets the number of milliseconds an idle bucket waits before the switch reassigns it to a new next hop after a next hop addition event to 500, and sets the maximum number of milliseconds Cumulus Linux waits before forcing a rebalance to 2000.
 
 {{< tabs "TabID384 ">}}
 {{< tab "NVUE Commands ">}}
@@ -565,25 +563,6 @@ cumulus@switch:~$ systemctl status frr
             └─4711 /usr/lib/frr/staticd -d -A 127.0.0.1
 ```
 
-#### Troubleshoot Resilient Hashing
-
-To confirm whether an ECMP group is actually using a resilient container in hardware, generate a {{<link url="Understanding-the-cl-support-Output-File/#manual-cl-support-file-generation" text="cl-support file">}} and search the `ROUTER_0.json` file it contains.
-
-| To find | Search for |
-| --- | --- |
-| Whether resilient hashing is programmed at all | `"ECMP type": "Resilient"` |
-| The hash buckets for one resilient container | `"ECMP HW Entry"` blocks under that container |
-| Which route uses which container | `"ECMP ID"` under the IPv4 or IPv6 unicast routes |
-| The timer values as currently programmed | `"Active timer (ms)"` and `"Max unbalanced time (ms)"` |
-
-To see the live hardware state on the console instead of waiting for a cl-support file, run:
-
-```
-cumulus@switch:~$ echo true | sudo tee /cumulus/switchd/ctrl/hw/enable
-cumulus@switch:~$ echo true | sudo tee /cumulus/switchd/ctrl/hw/nexthop
-cumulus@switch:~$ sudo cat /cumulus/switchd/run/hw/nexthop/all
-```
-
 ## Adaptive Routing
 
 Adaptive routing is a load balancing feature that improves network utilization for adaptive routing eligible IP packets by selecting forwarding paths dynamically based on the state of the switch, such as queue occupancy and port utilization.
@@ -669,14 +648,14 @@ Reload `switchd` with the `sudo systemctl reload switchd.service` command.
 
 {{%notice note%}}
 - When you enable adaptive routing, Cumulus Linux uses the default profile settings for your switch ASIC type. If you need to make adjustments to the settings, contact NVIDIA Customer Support.
-- Ensure that traffic intended for adaptive routing is routed over ports with adaptive routing enabled. Unexpected route hashing might occur when mixing adaptive routing traffic and regular ECMP routes egressing ports that do not have adaptive routing enabled.
+- Ensure that the switch routes traffic intended for adaptive routing over ports with adaptive routing enabled. Unexpected route hashing might occur when mixing adaptive routing traffic and regular ECMP routes egressing ports that do not have adaptive routing enabled.
 {{%/notice%}}
 
 ### LAG Hash Randomizer
 
 When you enable adaptive routing, Cumulus Linux enables the LAG hash randomizer, which enables packet spraying on layer 3 bonds on the switch for adaptive routing eligible packets coming from the network and destined towards the NICs. This switch functionality aids the packet load balancer on the NICs for end-to-end performance and fully integrates with adaptive routing for congestion avoidance and load balancing, preserving in-order delivery for non-adaptive routing traffic while maximizing bandwidth utilization for adaptive routing flows.
 
-The LAG hash randomizer is used for leaf switches if there is more than one link connected between the switch and the NIC, and there is a bond configured between the switch and the NIC.
+Leaf switches use the LAG hash randomizer if there is more than one link connected between the switch and the NIC, and there is a bond configured between the switch and the NIC.
 
 LAG hash randomizer is supported on a Spectrum-4 or later and only for static layer 3 bonds.
 

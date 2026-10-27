@@ -186,14 +186,14 @@ og: [udp sum ok] SYSLOG, length: 113
 You can control which logs to capture using selectors. A selector enables you to choose options such as facility, program name, severity, filters (with match conditions and actions for log selection), and rate limit, for precise and targeted log management. You define the selectors you want to use for a specific server.
 
 {{%notice infonopad%}}
-In Cumulus Linux versions prior to 5.15, syslog selector configuration applied default values for facility (`daemon`) and severity (`notice`) if they were not explicitly configured. If a selector included a program name, only logs from that program and matching other conditions (`facility`, `severity`, `filter`, `rate-limit`) were forwarded; logs from other programs were dropped. When a selector was defined with only rate-limit or severity, the respective defaults were still applied unless you explicitly configured otherwise.<br><br>
+In Cumulus Linux versions 5.14 and earlier, syslog selector configuration applies default values for facility (`daemon`) and severity (`notice`) if they are not explicitly configured. If a selector includes a program name, Cumulus Linux forwards only logs from that program that also match the other conditions (`facility`, `severity`, `filter`, `rate-limit`) and drops logs from other programs. When you define a selector with only rate-limit or severity, the switch still applies the respective defaults unless you explicitly configure otherwise.<br><br>
 
-Starting with Cumulus Linux 5.15, selector behavior has changed as follows:
+In Cumulus Linux 5.15 and later, selector behavior is as follows:
 
-- **No Default Facility or Severity**: Selectors now require explicit facility and severity values; no defaults are applied. If left unspecified, all facilities and severities are included for log forwarding.
-- **Expanded Program Matching**: When a selector specifies a program name alongside other conditions, logs from the targeted program are forwarded according to those conditions, and logs from all other programs are also forwarded unless excluded by other selectors.
-- **Selectors Without Program Name**: If a selector is configured without a program name, logs matching the explicit conditions (facility, severity, filter, rate-limit) are forwarded, and no hidden defaults are applied. All program names are considered under the filter and rate constraints.
-- **Severity-Only Selectors**: When only severity is specified, logs from all programs and all facilities at that severity or higher are forwarded, without needing to create duplicate selectors for separate facilities.
+- **No Default Facility or Severity**: Selectors now require explicit facility and severity values; Cumulus Linux applies no defaults. If you leave them unspecified, Cumulus Linux includes all facilities and severities for log forwarding.
+- **Expanded Program Matching**: When a selector specifies a program name together with other conditions, the switch forwards logs from the targeted program according to those conditions, and also forwards logs from all other programs unless other selectors exclude them.
+- **Selectors Without Program Name**: If you configure a selector without a program name, the switch forwards logs matching the explicit conditions (facility, severity, filter, rate-limit) and applies no hidden defaults. The switch considers all program names under the filter and rate constraints.
+- **Severity-Only Selectors**: When you specify only severity, the switch forwards logs from all programs and all facilities at that severity or higher, without needing to create duplicate selectors for separate facilities.
 - **Multiple Conditions and Rate-Limiting**: Selectors combining multiple conditions (facility, filters, rate-limits, program name, severity) now forward all logs matching those criteria from all programs, instead of restricting solely to the specified program.
 - **Rate-Limit-Only Selectors**: You can configure selectors with only a rate-limit; no other conditions are silently assumed.
 {{%/notice%}}

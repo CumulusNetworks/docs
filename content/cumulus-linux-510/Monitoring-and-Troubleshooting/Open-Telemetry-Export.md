@@ -128,8 +128,8 @@ The following table describes the interface statistics:
 | `nvswitch_interface_pg_rx_shared_buffer_discard` | Interface ingress priority group receive shared buffer discard counter. |
 | `nvswitch_interface_tc_tx_bc_frames` | Interface egress traffic class transmit broadcast frames counter. |
 | `nvswitch_interface_tc_tx_ecn_marked_tc` | Interface egress traffic class transmit ECN marked counter. |
-| `nvswitch_interface_tc_tx_frames` | Interface egress traffic class trasmit frames counter. |
-| `nvswitch_interface_tc_tx_mc_frames` | Interface egress traffic class trasmit multicast frames counter. |
+| `nvswitch_interface_tc_tx_frames` | Interface egress traffic class transmit frames counter. |
+| `nvswitch_interface_tc_tx_mc_frames` | Interface egress traffic class transmit multicast frames counter. |
 | `nvswitch_interface_tc_tx_no_buffer_discard_uc` | Interface egress traffic class transmit unicast no buffer discard counter. |
 | `nvswitch_interface_tc_tx_octet` | Interface egress traffic class transmit bytes counter.|
 | `nvswitch_interface_tc_tx_queue` | Interface egress traffic class transmit queue counter. |

@@ -25,7 +25,7 @@ When you enable open telemetry, the switch collects and exports [system informat
 
 ### ACL Statistics
 
-When you enable open telemetry for ACL statistics, the switch exports [ACL](#acl-statistic-format) interface metrics (such as packet and byte count) for all the interfaces on which ACLs are applied.
+When you enable open telemetry for ACL statistics, the switch exports [ACL](#acl-statistic-format) interface metrics (such as packet and byte count) for all the interfaces on which you apply ACLs.
 
 ```
 cumulus@switch:~$ nv set system telemetry acl-stats export state enabled 
@@ -744,7 +744,7 @@ cumulus@switch:~$ nv set interface swp1s0 telemetry congestion-event egress-buff
 cumulus@switch:~$ nv config apply
 ```
 
-You can configure the congestion throttle duration to set the interval, in milliseconds, between congestion notifications. The default is 10 seconds (10000ms). When a notification is generated, additional congestion events do not trigger a new notification until the interval expires. The throttle duration is configured in milliseconds. The following example configures the `throttle-duration` to 5 seconds:
+You can configure the congestion throttle duration to set the interval, in milliseconds, between congestion notifications. The default is 10 seconds (10000ms). When the switch generates a notification, additional congestion events do not trigger a new notification until the interval expires. You configure the throttle duration in milliseconds. The following example configures the `throttle-duration` to 5 seconds:
 
 ```
 cumulus@switch:~$ nv set system telemetry congestion-event throttle-duration 5000
@@ -759,7 +759,7 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{%notice note%}}
-- When using {{<link url="Open-Telemetry-Export/#customize-export" text="statistic groups">}} to specify which metrics are exported, add `congestion-event` notifications to the `stats-group` configuration to include congestion notifications.
+- When using {{<link url="Open-Telemetry-Export/#customize-export" text="statistic groups">}} to specify which metrics the switch exports, add `congestion-event` notifications to the `stats-group` configuration to include congestion notifications.
 - If you configure congestion notifications while the buffer threshold for a traffic class is already exceeded, the switch does not send notifications until buffer occupancy drops below the threshold and then exceeds the threshold again.
 {{%/notice%}}
 
@@ -775,7 +775,7 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 
 ### ACL Statistic Format
 
-The switch collects and exports ACL interface statistics for all the interfaces on which ACLs are applied when you configure the `nv set system telemetry acl-stats export state enabled` command.
+The switch collects and exports ACL interface statistics for all the interfaces on which you apply ACLs when you configure the `nv set system telemetry acl-stats export state enabled` command.
 
 | Metric | Description |
 | ---------- | ------- |
@@ -1487,7 +1487,7 @@ The interface statistic data samples that the switch exports to the OTEL collect
 | `nvswitch_interface_discards_ingress_policy_engine` | Interface ingress policy engine discards counter. |
 | `nvswitch_interface_discards_ingress_vlan_membership` | Interface ingress VLAN membership filter discards counter. |
 | `nvswitch_interface_discards_ingress_tag_frame_type` | Interface ingress VLAN tag filter discards counter. |
-| `nvswitch_interface_discards_egress_vlan_membership` | Interface egress VLAN emmbership filter discards counter. |
+| `nvswitch_interface_discards_egress_vlan_membership` | Interface egress VLAN membership filter discards counter. |
 | `nvswitch_interface_discards_loopback_filter` | Interface loopback filter discards counter. |
 | `nvswitch_interface_discards_egress_hoq` | Interface egress head-of-queue timeout discards. |
 | `nvswitch_interface_discards_egress_policy_engine` | Interface egress policy engine discards. |
@@ -1554,7 +1554,7 @@ The interface statistic data samples that the switch exports to the OTEL collect
 | `nvswitch_interface_if_out_octets`| Number of interface out octets.|
 | `nvswitch_interface_if_out_pkts`| Number of interface out unicast packets.|
 | `nvswitch_interface_type`|Link-layer interface type.|
-| `nvswitch_interface_ether_stats_jabbers` | Jabber frames receiverd on this interface.|
+| `nvswitch_interface_ether_stats_jabbers` | Jabber frames received on this interface.|
 | `nvswitch_interface_hw_address_info` | System defined default MAC address for the interface.|
 
 {{< /tab >}}
@@ -2794,7 +2794,7 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 | Name | Description |
 |----- | ----------- |
 | `node_cpu_core_throttles_total` | Number of times a CPU core has been throttled. |
-| `node_cpu_frequency_max_hertz` | Maxiumum CPU thread frequency in hertz. |
+| `node_cpu_frequency_max_hertz` | Maximum CPU thread frequency in hertz. |
 | `node_cpu_frequency_min_hertz` | Minimum CPU thread frequency in hertz. |
 | `node_cpu_guest_seconds_total` | Seconds the CPUs spent in guests for each mode. |
 | `node_cpu_package_throttles_total` | Number of times the CPU package has been throttled. |
@@ -6042,7 +6042,7 @@ When you enable open telemetry with the `nv set system telemetry export otlp sta
 
 ### Static Label Format
 
-Device static labels are exported in the {{<exlink url="https://opentelemetry.io/docs/specs/otel/resource/sdk/" text="resource">}} metric section of OTLP data:
+The switch exports device static labels in the {{<exlink url="https://opentelemetry.io/docs/specs/otel/resource/sdk/" text="resource">}} metric section of OTLP data:
 
 {{< expand "Example JSON data for static device label:" >}}
 ```
@@ -6071,7 +6071,7 @@ Device static labels are exported in the {{<exlink url="https://opentelemetry.io
 ```
 {{< /expand >}}
 <br>
-Interface static labels are exported as attributes in the gauge metrics for each interface.
+The switch exports interface static labels as attributes in the gauge metrics for each interface.
 
 {{< expand "Example JSON data for static interface label:" >}}
 

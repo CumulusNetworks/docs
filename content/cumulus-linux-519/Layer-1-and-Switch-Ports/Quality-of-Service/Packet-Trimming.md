@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 321
 right_toc_levels: 2
 ---
-The Spectrum switch implements a packet trimming mechanism, with which the switch trims and forwards packets that are about to be discarded due to unavailable buffer space. A trimmed packet (with a supplemented mechanism on the host) allows for quick retransmission of the discarded packet.
+The Spectrum switch implements a packet trimming mechanism, with which the switch trims and forwards packets that it is about to discard because buffer space is unavailable. A trimmed packet (with a supplemented mechanism on the host) allows for quick retransmission of the discarded packet.
 
 You can apply DSCP remarking on trimmed packets:
 - At the global level, where all trimmed packets have the same DSCP value.
@@ -35,10 +35,17 @@ cumulus@switch:~$ nv set system forwarding packet-trim switch-priority 2
 cumulus@switch:~$ nv config apply
 ```
 
+<!-- REVIEW: scoped the service-port bullets to Spectrum-4 and added the Spectrum-5 and later bullet per the
+     engineering review of 2026-10-27. The last bullet (do not configure eligibility, port security, and so on on
+     the service port) is scoped to Spectrum-4 by inference, because Spectrum-5 and later switches use no service
+     port; the review did not address it. The show output at `service-port swp65` elsewhere on this page might
+     differ on Spectrum-5 and later. Confirm with the feature owners. Delete this comment before publishing. -->
+
 {{%notice note%}}
-- On Spectrum-4 and Spectrum-5 switches, when you enable packet trimming, one service port is used. By default, this is the last service port on the switch. To change the service port, run the `nv set system forwarding packet-trim service-port <interface-id>` command. For information about service ports on Spectrum-4 switches, refer to {{<link url="Switch-Port-Attributes/#breakout-ports" text="Switch Port Attributes">}}.
-- On a switch that supports two service ports, you can configure a bond on the service ports, then use the bond for the packet trimming service port; for example: `nv set system forwarding packet-trim service-port bond1`.
-- When you enable packet trimming, do not configure packet trimming port eligibility, port security, adaptive routing, QoS, ACLs, PTP, VRR, PBR, telemetry, or histograms on the service port.
+- On Spectrum-4 switches, when you enable packet trimming, the switch uses one service port. By default, this is the last service port on the switch. To change the service port, run the `nv set system forwarding packet-trim service-port <interface-id>` command. For information about service ports on Spectrum-4 switches, refer to {{<link url="Switch-Port-Attributes/#breakout-ports" text="Switch Port Attributes">}}.
+- On a Spectrum-4 switch that supports two service ports, you can configure a bond on the service ports, then use the bond for the packet trimming service port; for example: `nv set system forwarding packet-trim service-port bond1`.
+- On Spectrum-5 and later switches, packet trimming does not use a service port and you do not need to configure one; the switch ignores the `nv set system forwarding packet-trim service-port` setting on these platforms. The exception is back-to-sender notification on link down, which uses its own service port. Refer to {{<link url="#back-to-sender-notification-on-link-down" text="Back-to-sender Notification on Link Down">}}.
+- On Spectrum-4 switches, when you enable packet trimming, do not configure packet trimming port eligibility, port security, adaptive routing, QoS, ACLs, PTP, VRR, PBR, telemetry, or histograms on the service port.
 {{%/notice%}}
 
 ### Global Level Packet Trimming with Default Profile
@@ -222,6 +229,11 @@ You can show the number of trimmed packets at the global level and the number of
 - Spectrum-6 switches show the number of trimmed packets sent successfully and the number dropped, at the global, port, and traffic class level.
 {{%/notice%}}
 
+<!-- REVIEW: the engineering review corrected the Spectrum-6 column headers to Trimmed Tx Packets and Trimmed Drop
+     Packets. The Spectrum-4 and Spectrum-5 port-level header below used the same Trimmed TxPackets string, so I
+     changed it to match, assuming one NVUE format string. Confirm on a Spectrum-4 switch. Delete this comment
+     before publishing. -->
+
 To display the number of trimmed packets at both the global and interface levels, run the `nv show system forwarding packet-trim counters` command:
 
 
@@ -231,12 +243,12 @@ Global
  trimmed-packets      20,000 
 Port-Level 
 ------------- 
-Interface  Trim Eligible Packets Trimmed TxPackets 
----------  ------------------  ---------------- 
-swp1        1000                  N/A 
-swp2        2000                  N/A 
-swp3        4000                  N/A 
-swp4        5000                  N/A 
+Interface  Trim Eligible Packets  Trimmed Tx Packets 
+---------  ---------------------  ------------------ 
+swp1       1000                   N/A 
+swp2       2000                   N/A 
+swp3       4000                   N/A 
+swp4       5000                   N/A 
 ```
 
 On Spectrum-6 switches, the same command also shows the number of trimmed packets sent successfully and the number dropped, at the global and port level:
@@ -249,8 +261,8 @@ Global
  trimmed-drop-packets      0
 Port-Level
 -------------
-Interface  Trim Eligible Packets  Trimmed TxPackets  Trimmed Dropped Packets
----------  ---------------------  -----------------  -----------------------
+Interface  Trim Eligible Packets  Trimmed Tx Packets  Trimmed Drop Packets
+---------  ---------------------  ------------------  --------------------
 swp7s0     322                    322                 0
 ```
 
@@ -269,16 +281,16 @@ On Spectrum-6 switches, the same command also shows the number of trimmed packet
 
 ```
 cumulus@switch:~$ nv show interface swp7s0 packet-trim counters
-Traffic Class  Trim Eligible Packets  Trimmed TxPackets  Trimmed Dropped Packets
--------------  ---------------------  ------------------  -----------------------
-1               109                    109                 0
-2               106                    106                 0
-3               107                    107                 0
+Traffic Class  Trim Eligible Packets  Trimmed Tx Packets  Trimmed Drop Packets
+-------------  ---------------------  ------------------  --------------------
+1              109                    109                 0
+2              106                    106                 0
+3              107                    107                 0
 ```
 
 ### Clear Packet Trimming Counters
 
-You can clear both the global and interface packet trimming counters with the `nv action clear system forwarding packet-trim counters` command. NVIDIA recommends clearing packet trimming counters when you initially enable the feature or configure a new interface for packet trimming.​
+You can clear both the global and interface packet trimming counters with the `nv action clear system forwarding packet-trim counters` command. NVIDIA recommends clearing packet trimming counters when you initially enable the feature or configure a new interface for packet trimming.
 
 ```
 cumulus@switch:~$ nv action clear system forwarding packet-trim counters
@@ -349,7 +361,7 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{%notice note%}}
-- Back-to-sender-enabled ports support at most three distinct sets of eligible traffic classes across the switch; ports with the same set of classes share one hardware resource. A fourth distinct set is refused, naming the ports and the sets involved.
+- Back-to-sender-enabled ports support at most three distinct sets of eligible traffic classes across the switch; ports with the same set of classes share one hardware resource. The switch refuses a fourth distinct set and names the ports and the sets involved.
 - If a DSCP eligible for trimming resolves, through your QoS configuration, onto the traffic class the switch trims to, the switch accepts the configuration but reports a warning in the `nv show system forwarding packet-trim notify-sender` command output.
 - Enable back-to-sender only on traffic classes carrying traffic that leaves the datacenter, and do not enable it on a lossless traffic class. The switch does not check either of these; get them wrong and the feature still applies, just not usefully.
 - If you change QoS or class-of-service configuration after you configure back-to-sender, recheck that your eligible DSCP values still resolve to the traffic class you intend. The switch does not revalidate this automatically.
@@ -393,7 +405,7 @@ TC  Interfaces
 5   swp33-swp48
 ```
 
-If the configuration is refused, the command shows the same view with the columns disagreeing, and the reason in `session-down-reason`:
+If the switch refuses the configuration, the command shows the same view with the columns disagreeing, and the reason in `session-down-reason`:
 
 ```
 cumulus@switch:~$ nv show system forwarding packet-trim notify-sender

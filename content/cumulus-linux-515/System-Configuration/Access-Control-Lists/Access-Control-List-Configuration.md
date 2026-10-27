@@ -300,7 +300,7 @@ To create this rule with NVUE, follow the steps below. NVUE adds all options in 
    cumulus@switch:~$ nv config apply
    ```
 
-   - For rules affecting the INPUT or OUPUT chain (-A INPUT or -A OUTPUT), apply the rule to a control plane interface. For example:
+   - For rules affecting the INPUT or OUTPUT chain (-A INPUT or -A OUTPUT), apply the rule to a control plane interface. For example:
 
    ```
    cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 inbound control-plane
@@ -595,7 +595,7 @@ For information about nonatomic and atomic mode, refer to {{<link url="#nonatomi
 
 ## ATCAM Resource Exhaustion
 
-If you see error messages similar to `No More Resources .. Rolling back` when you try to apply ACLs, refer to {{<link url="#troubleshooting-acl-rule-installation-failures" text="Troubleshooting ACL Rule Installation Failures">}} for information on troublshooting and managing resources.
+If you see error messages similar to `No More Resources .. Rolling back` when you try to apply ACLs, refer to {{<link url="#troubleshooting-acl-rule-installation-failures" text="Troubleshooting ACL Rule Installation Failures">}} for information on troubleshooting and managing resources.
 
 ## Supported Rule Types
 
@@ -663,7 +663,7 @@ Rule 2: `-A FORWARD -o vlan101 -s 00::01 -j DROP`
 
 Rule 3: `-A FORWARD -o vlan101 -p icmp6 -j ACCEPT`
 
-Rule 3 still matches for an icmp6 packet with sip 00:01 going out of vlan101. Rule 1 interferes with the normal function of rule 2 and/or rule 3.
+Rule 3 still matches for an icmp6 packet with sip 00:01 going out of vlan101. Rule 1 interferes with the normal function of rule 2 and, or rule 3.
 
 When you have two adjacent rules with the same match and different output interfaces, such as:
 

@@ -39,10 +39,10 @@ The following tables list the new, updated, and discontinued gNMI and OTEL metri
 | `/system/control-plane-traffic/ingress/ipv4/counters/in-reassembly-reqd`| IPv4 ingress packets with reassembly required.|
 | `/system/control-plane-traffic/ingress/ipv4/counters/in-no-routes`| IPv4 ingress packets with no routes.|
 | `/system/control-plane-traffic/ingress/ipv4/counters/in-octets`| IPv4 ingress packet octets. |
-| `/system/control-plane-traffic/ingress/ipv4/counters/in-multicast-pkts`| IPv4 ingress mulicast packets.|
+| `/system/control-plane-traffic/ingress/ipv4/counters/in-multicast-pkts`| IPv4 ingress multicast packets.|
 | `/system/control-plane-traffic/ingress/ipv4/counters/in-multicast-octets`| IPv4 ingress multicast packet octets.|
 | `/system/control-plane-traffic/ingress/ipv4/counters/in-broadcast-pkts`| IPv4 ingress broadcast packets.|
-| `/system/control-plane-traffic/ingress/ipv4/counters/in-truncated-pkts`| IPv4 ingress truncted packets. |
+| `/system/control-plane-traffic/ingress/ipv4/counters/in-truncated-pkts`| IPv4 ingress truncated packets. |
 | `/system/control-plane-traffic/egress/ipv4/counters/out-requests`| IPv4 egress packet requests.|
 | `/system/control-plane-traffic/egress/ipv4/counters/out-discarded-pkts`| IPv4 egress packets discarded.|
 | `/system/control-plane-traffic/egress/ipv4/counters/out-no-routes`| IPv4 egress packets with no routes.|
@@ -203,7 +203,7 @@ The following tables list the new, updated, and discontinued gNMI and OTEL metri
 |  Name | Description |
 |------ | ----------- |
 | `node_netstat_Ip_InReceives` | The number of IP packets received. | 
-| `node_netstat_Ip_InAddrErrors` | The umber of IP packets dropped upon receipt due to errors in the destination or source IP address.|  
+| `node_netstat_Ip_InAddrErrors` | The number of IP packets dropped upon receipt due to errors in the destination or source IP address.|  
 | `node_netstat_Ip_InDelivers` | The number of received IP packets that were successfully delivered to higher-level protocols (such as TCP or UDP).|  
 | `node_netstat_Ip_InDiscards` | The number of IP packets received but dropped, often due to errors.|  
 | `node_netstat_Ip_InHdrErrors` | The number of input IP packets discarded due to errors in their headers (bad checksums, version mismatch, or invalid length). |  
@@ -250,7 +250,7 @@ The following tables list the new, updated, and discontinued gNMI and OTEL metri
 | `node_netstat_Tcp_EstabResets` |  The number of TCP connections that have directly transitioned from an ESTABLISHED state to a CLOSED state.| 
 | `node_netstat_Tcp_CurrEstab` |  The number of TCP connections in the ESTABLISHED or CLOSE-WAIT state.| 
 | `node_netstat_Tcp_OutRsts` |  The number of TCP resends.| 
-| `node_netstat_TcpExt_ListenDrops` |  The number of TCP listne drops.| 
+| `node_netstat_TcpExt_ListenDrops` |  The number of TCP listen drops.| 
 | `node_netstat_TcpExt_ListenOverflows` |  The number of TCP listen overflows.| 
 | `node_netstat_TcpExt_TCPTimeouts` |  The number of TCP connections that timed out.| 
 | `node_netstat_TcpExt_TCPSynRetrans` |  The number of TCP SYN retransmissions.| 

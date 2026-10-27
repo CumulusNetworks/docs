@@ -443,7 +443,7 @@ IPV4         LLADR(MAC)
 ```
 
 
-To show all IPv4 ARP table entries for an interface with additional state details, run the `nv show interface <interface-id> neighbor ipv4 detail` command. The following additional fields are provided for the neighbor:
+To show all IPv4 ARP table entries for an interface with additional state details, run the `nv show interface <interface-id> neighbor ipv4 detail` command. The command provides the following additional fields for the neighbor:
 
 - `State` - The current state of the neighbor entry.
 - `Last Used` - The time since the entry was last used for software forwarding.

@@ -114,7 +114,7 @@ The first part of the compliance code gives the full line rate speed of the tech
 - CR: Copper twinax (passive DAC). CR4 uses a bundle of 4 twinax cables for 4 lanes, CR2 uses 2 cables, CR uses 1.
 - SR: Optical short range. SR4 uses a bundle of 4 fibers for 4 lanes.
 - LR: Optical long range. LR4 uses 4 wavelengths over one fiber pair to transmit 4 lanes over long distances (kilometers).
-- xWDM (SWDM, CWDM, DWDM): Optical wavelength multiplexed technologies (various). Different wavelengths transmit multiple lanes.
+- xWDM (SWDM, CWDM, DWDM): Optical wavelength multiplexed technologies (various). Different wavelengths carry multiple lanes.
 
 An active module with a passive module compliance code or a passive module with an active module compliance code causes the port to be set up incorrectly and may affect signal integrity.
 
@@ -205,7 +205,7 @@ Both sides of a link must have the same FEC encoding algorithm enabled for the l
 
 - The Reed-Solomon RS-FEC(528,514) algorithm adds 14 bits of encoding information to a 514 bit stream. It replaces and uses the same amount of overhead in the 64B/66B encoding so that the bit rate is not affected. The algorithm can correct 7 bit errors in a 514 bit stream. The switch uses RS(528,514) on 25G (NRZ) lanes, including 25G, 50G-CR2, and 100G-SR4/CR4 interfaces.
 - The Reed-Solomon RS-FEC(544,514) algorithm adds 30 bits of overhead to correct 14+ bit errors per 514 bits. FEC RS is required on 50G (PAM4) lanes; all 200G, 400G, 100G-CR2 and 50G-CR interfaces.
-- Base-R (also known as FireCode/FC) FEC adds 32 bits per 32 blocks of 64B/66B to correct 11 bits per 2048 bits. It replaces one bit per block, so it uses the same amount of overhead as 64B/66B encoding. Only 25G interfaces use it. The algorithm executes faster than the RS-FEC algorithm, so it reduces latency. The hardware implements both RS-FEC and Base-R FEC.
+- Base-R (also known as FireCode/FC) FEC adds 32 bits per 32 blocks of 64B/66B to correct 11 bits per 2048 bits. It replaces one bit per block, so it uses the same amount of overhead as 64B/66B encoding. Only 25G interfaces use it. The algorithm executes faster than the RS-FEC algorithm, so it reduces latency. Both RS-FEC and Base-R FEC run in hardware.
 - None/Off: FEC is optional and is often useful on 25G lanes, which includes 100G-SR4/CR4 and 50G-CR2 links. If the cable quality is good enough to achieve a BER of 10<sup>-12</sup> without FEC, then there is no reason to enable it. 10G/40G links should never require FEC. If a 10G/40G link has errors, replace the cable or module that is causing the error.
 - Auto: FEC can be auto-negotiated between 2 devices. When auto-negotiation is *ON*, the default FEC setting is *auto* to enable the port to send and receive FEC capability information with the neighbor. The result of the negotiation sets the port FEC active/operational setting. *Auto* is the default setting on NVIDIA switches (auto-negotiation *ON* is the default setting).
 - If auto-negotiation is disabled on 100G and 25G interfaces, you must set FEC to *OFF**, RS, or BaseR to match the neighbor. The FEC default setting of *auto* does not link up when auto-negotiation is disabled.
@@ -227,7 +227,7 @@ Various characteristics show the state of a link. All characteristics might not 
 - Signal detected: The local port receiver receives a signal from the remote device.
 - Signal lock: The local port receiver is locked onto a good signal that it receives from the remote side.
 - Carrier detected: Both ends of the link are able to understand the data that the other end sends them. The link needs to be up on both sides.
-- RX fault (None, Local, Remote or Local/Remote): The local end or the remote end is alerting that it is not receiving and/or understanding a good signal and bit stream.
+- RX fault (None, Local, Remote or Local/Remote): The local end or the remote end is alerting that it is not receiving and understanding a good signal and bit stream.
   - Local fault indicates the local end does not have signal lock or cannot understand the data sent to it on its RX path.
   - Remote fault indicates that the local end RX path has signal lock and can understand the bit stream from the neighbor, but the remote neighbor is sending alerts over that working path indicating that it has no signal lock or cannot understand the data sent to it over its own RX path.
 

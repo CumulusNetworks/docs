@@ -1870,7 +1870,7 @@ cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure -X GET https://127.
 ```
 
 {{%notice note%}}
-The API `GET` operation output matches the operational revision view (equivalent to `nv show --rev=operational`) and omits unset fields that are shown in the default `nv show` output.
+The API `GET` operation output matches the operational revision view (equivalent to `nv show --rev=operational`) and omits unset fields that the default `nv show` output shows.
 {{%/notice%}}
 
 ### Use Filters in a Query

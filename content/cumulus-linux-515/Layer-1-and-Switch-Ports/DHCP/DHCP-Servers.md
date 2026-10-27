@@ -617,4 +617,4 @@ cumulus@server02:~$ sudo tail /var/log/syslog | grep dhcpd
 
 ## Considerations
 
-DHCP discover packets transiting the switch are also sent to the CPU for additional processing, then dropped after being switched by the hardware. This causes the `RX_DRP` and `HwIfInDiscards` counters to increment on the interface even though the hardware forwards the packet correctly.
+DHCP discover packets transiting the switch are also sent to the CPU for additional processing, then dropped after the hardware switches them. This causes the `RX_DRP` and `HwIfInDiscards` counters to increment on the interface even though the hardware forwards the packet correctly.

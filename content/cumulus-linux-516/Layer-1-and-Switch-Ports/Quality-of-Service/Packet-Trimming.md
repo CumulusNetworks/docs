@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 321
 right_toc_levels: 2
 ---
-The Spectrum switch implements a packet trimming mechanism, with which the switch trims and forwards packets that are about to be discarded due to unavailable buffer space. A trimmed packet (with a supplemented mechanism on the host) allows for quick retransmission of the discarded packet.
+The Spectrum switch implements a packet trimming mechanism, with which the switch trims and forwards packets that it is about to discard due to unavailable buffer space. A trimmed packet (with a supplemented mechanism on the host) allows for quick retransmission of the discarded packet.
 
 You can apply DSCP remarking on trimmed packets:
 - At the global level, where all trimmed packets have the same DSCP value.
@@ -37,7 +37,7 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{%notice note%}}
-- When you enable packet trimming, one service port is used. By default, this is the last service port on the switch. To change the service port, run the `nv set system forwarding packet-trim service-port <interface-id>` command. For information about service ports on Spectrum-4 switches, refer to {{<link url="Switch-Port-Attributes/#breakout-ports" text="Switch Port Attributes">}}.
+- When you enable packet trimming, the switch uses one service port. By default, this is the last service port on the switch. To change the service port, run the `nv set system forwarding packet-trim service-port <interface-id>` command. For information about service ports on Spectrum-4 switches, refer to {{<link url="Switch-Port-Attributes/#breakout-ports" text="Switch Port Attributes">}}.
 - On a switch that supports two service ports, you can configure a bond on the service ports, then use the bond for the packet trimming service port; for example: `nv set system forwarding packet-trim service-port bond1`.
 - When you enable packet trimming, do not configure packet trimming port eligibility, port security, adaptive routing, QoS, ACLs, PTP, VRR, PBR, telemetry, or histograms on the service port.
 
@@ -219,7 +219,7 @@ You can show the number of trimmed packets at the global level and the number of
 
 {{%notice note%}}
 - You can show packet trimming counters on switches with Spectrum-4 and later ASICs.
-- Spectrum-4 switches display only the total number of trimmed packets per port and do not provide counters for the number of trimmed packets that were sent successfully on a port.
+- Spectrum-4 switches display only the total number of trimmed packets per port and do not provide counters for the number of trimmed packets that the switch sent successfully on a port.
 {{%/notice%}}
 
 To display the number of trimmed packets at both the global and interface levels, run the `nv show system forwarding packet-trim counters` command:

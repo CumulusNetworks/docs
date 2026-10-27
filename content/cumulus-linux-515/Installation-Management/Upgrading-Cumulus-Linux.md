@@ -37,7 +37,7 @@ Before you perform an upgrade with ISSU, you must:
 After setting BGP restart and half-resource mode, you can run warm reboot with the `nv action reboot system mode warm` command. Refer to {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="switch reboot mode">}}.
 
 {{%notice note%}}
-Forwarding resources apply to hardware TCAM or KVD resources used for MAC addresses, layer 3 neighbors, and <span class="a-tooltip">[LPM](## "Longest Prefix Match")</span> (IPv4 and IPv6, unicast and multicast) entries. In half-resource mode these are reduced by 50 percent. Refer to {{<link url="Forwarding-Table-Size-and-Profiles" text="Forwarding Table Sizes">}} for platform-specific details.
+Forwarding resources apply to hardware TCAM or KVD resources used for MAC addresses, layer 3 neighbors, and <span class="a-tooltip">[LPM](## "Longest Prefix Match")</span> (IPv4 and IPv6, unicast and multicast) entries. Half-resource mode reduces these by 50 percent. Refer to {{<link url="Forwarding-Table-Size-and-Profiles" text="Forwarding Table Sizes">}} for platform-specific details.
 {{%/notice%}}
 
 To configure the switch in half resource mode:
@@ -582,7 +582,7 @@ To show a list of generated `/etc/default/isc-*` files changed from the previous
 
 4. Restore certificates and the configuration files to the new release:
 
-   a. {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="Reimport all certificates">}} and/or CRLs that were configured in the previous release with the `nv action import system security` command, ensuring you use the same `certificate-id` that was originally assigned to each certificate.
+   a. {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="Reimport all certificates">}} and CRLs that you configured in the previous release with the `nv action import system security` command, ensuring you use the same `certificate-id` that was originally assigned to each certificate.
 
    b. Copy the `/etc/nvue.d/startup.yaml` file from the back up process to the switch.
 

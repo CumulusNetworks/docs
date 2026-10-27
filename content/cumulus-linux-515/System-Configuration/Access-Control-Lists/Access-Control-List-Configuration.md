@@ -663,7 +663,7 @@ Rule 2: `-A FORWARD -o vlan101 -s 00::01 -j DROP`
 
 Rule 3: `-A FORWARD -o vlan101 -p icmp6 -j ACCEPT`
 
-Rule 3 still matches for an icmp6 packet with sip 00:01 going out of vlan101. Rule 1 interferes with the normal function of rule 2 and/or rule 3.
+Rule 3 still matches for an icmp6 packet with sip 00:01 going out of vlan101. Rule 1 interferes with the normal function of rule 2 and, or rule 3.
 
 When you have two adjacent rules with the same match and different output interfaces, such as:
 

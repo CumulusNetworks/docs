@@ -76,7 +76,7 @@ The SerDes (Serial/Deserializer) is the component in the port that converts byte
 
 On the ASIC, the 40G, 100G and 200G SerDes devices are 4 lanes; 400G SerDes uses 8 lanes. So an SFP port is actually one lane on a four lane SerDes. Depending on the platform design, this sometimes affects how you can configure and break out SFP ports.
 
-The following formulas create port speeds:
+The following formulas calculate port speeds:
 
 | Port Speed | Number of Lanes |
 | ---------- | --------------- |
@@ -114,7 +114,7 @@ The first part of the compliance code gives the full line rate speed of the tech
 - CR: Copper twinax (passive DAC). CR4 uses a bundle of 4 twinax cables for 4 lanes, CR2 uses 2 cables, CR uses 1.
 - SR: Optical short range. SR4 uses a bundle of 4 fibers for 4 lanes.
 - LR: Optical long range. LR4 uses 4 wavelengths over one fiber pair to transmit 4 lanes over long distances (kilometers).
-- xWDM (SWDM, CWDM, DWDM): Optical wavelength multiplexed technologies (various). Different wavelengths transmit multiple lanes.
+- xWDM (SWDM, CWDM, DWDM): Optical wavelength multiplexed technologies (various). Different wavelengths carry multiple lanes.
 
 An active module with a passive module compliance code or a passive module with an active module compliance code causes the port to be set up incorrectly and may affect signal integrity.
 
@@ -227,7 +227,7 @@ Various characteristics show the state of a link. All characteristics might not 
 - Signal detected: The local port receiver receives a signal from the remote device.
 - Signal lock: The local port receiver is locked onto a good signal that is received from the remote side.
 - Carrier detected: Both ends of the link are able to understand the data being sent to them. The link should be up on both sides.
-- RX fault (None, Local, Remote or Local/Remote): The local end or the remote end is alerting that it is not receiving and/or understanding a good signal and bit stream.
+- RX fault (None, Local, Remote or Local/Remote): The local end or the remote end is alerting that it is not receiving and understanding a good signal and bit stream.
   - Local fault indicates the local end does not have signal lock or cannot understand the data sent to it on its RX path.
   - Remote fault indicates that the local end RX path has signal lock and can understand the bit stream from the neighbor, but the remote neighbor is sending alerts over that working path indicating that it has no signal lock or cannot understand the data sent to it over its own RX path.
 

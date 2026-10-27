@@ -667,7 +667,7 @@ Rule 2: `-A FORWARD -o vlan101 -s 00::01 -j DROP`
 
 Rule 3: `-A FORWARD -o vlan101 -p icmp6 -j ACCEPT`
 
-Rule 3 still matches for an icmp6 packet with sip 00:01 going out of vlan101. Rule 1 interferes with the normal function of rule 2 and/or rule 3.
+Rule 3 still matches for an icmp6 packet with sip 00:01 going out of vlan101. Rule 1 interferes with the normal function of rule 2 and, or rule 3.
 
 When you have two adjacent rules with the same match and different output interfaces, such as:
 
@@ -1397,7 +1397,7 @@ cumulus@switch:~$ nv set acl acl1 rule 20 action deny
 Cumulus Linux supports ACL rule matches based on the packet offset.
 
 {{%notice note%}}
-- You can configure a maximum of three different packet offset matches either in a single ACL rule or across three separate ACL rules. You can reuse the same offset match in another ACL rule, which is not considered an extra offset match. The combination of an offset location and a `match-from` value is considered as one offset.
+- You can configure a maximum of three different packet offset matches either in a single ACL rule or across three separate ACL rules. You can reuse the same offset match in another ACL rule, which does not count as an extra offset match. The combination of an offset location and a `match-from` value counts as one offset.
 - You can configure offset matches only for ACL type ipv4 and ipv6.
 - The Spectrum1 switch does not support matches based on the packet offset.
 - Matches based on the packet offset support hardware forwarded packets only.
@@ -1413,7 +1413,7 @@ You can use the following packet offset matching options:
 | `mask` | The mask to be used while matching the value. The mask must be two bytes long and in hexadecimal. The default value is 0xFFFF. |
 | `match-from`| The extraction point for the offset position. You can specify `start-of-packet` (the start of the layer 2 header, which is first byte of the destination MAC address), `start-of-inner-ipv4-header` or `start-of-inner-ipv6-header`.|
 
-The following example creates an ACL permit rule for inbound packets on swp1 that matches the first bytes of inner ipv4 header as 0x12 and first two bytes of UDP header as 0xabcd. The format of the packet is shown below:
+The following example creates an ACL permit rule for inbound packets on swp1 that matches the first bytes of inner ipv4 header as 0x12 and first two bytes of UDP header as 0xabcd. The packet has the following format:
 
 ```
 0         14        34        54        62

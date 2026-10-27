@@ -25,7 +25,7 @@ When you enable open telemetry, the switch collects and exports [system informat
 
 ### ACL Statistics
 
-When you enable open telemetry for ACL statistics, the switch exports [ACL](#acl-statistic-format) interface metrics (such as packet and byte count) for all the interfaces on which ACLs are applied.
+When you enable open telemetry for ACL statistics, the switch exports [ACL](#acl-statistic-format) interface metrics (such as packet and byte count) for all the interfaces on which you apply ACLs.
 
 ```
 cumulus@switch:~$ nv set system telemetry acl-stats export state enabled 
@@ -744,7 +744,7 @@ cumulus@switch:~$ nv set interface swp1s0 telemetry congestion-event egress-buff
 cumulus@switch:~$ nv config apply
 ```
 
-You can configure the congestion throttle duration to set the interval, in milliseconds, between congestion notifications. The default is 10 seconds (10000ms). When a notification is generated, additional congestion events do not trigger a new notification until the interval expires. The throttle duration is configured in milliseconds. The following example configures the `throttle-duration` to 5 seconds:
+You can configure the congestion throttle duration to set the interval, in milliseconds, between congestion notifications. The default is 10 seconds (10000ms). When the switch generates a notification, additional congestion events do not trigger a new notification until the interval expires. You configure the throttle duration in milliseconds. The following example configures the `throttle-duration` to 5 seconds:
 
 ```
 cumulus@switch:~$ nv set system telemetry congestion-event throttle-duration 5000
@@ -759,7 +759,7 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{%notice note%}}
-- When using {{<link url="Open-Telemetry-Export/#customize-export" text="statistic groups">}} to specify which metrics are exported, add `congestion-event` notifications to the `stats-group` configuration to include congestion notifications.
+- When using {{<link url="Open-Telemetry-Export/#customize-export" text="statistic groups">}} to specify which metrics the switch exports, add `congestion-event` notifications to the `stats-group` configuration to include congestion notifications.
 - If you configure congestion notifications while the buffer threshold for a traffic class is already exceeded, the switch does not send notifications until buffer occupancy drops below the threshold and then exceeds the threshold again.
 {{%/notice%}}
 
@@ -775,7 +775,7 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 
 ### ACL Statistic Format
 
-The switch collects and exports ACL interface statistics for all the interfaces on which ACLs are applied when you configure the `nv set system telemetry acl-stats export state enabled` command.
+The switch collects and exports ACL interface statistics for all the interfaces on which you apply ACLs when you configure the `nv set system telemetry acl-stats export state enabled` command.
 
 | Metric | Description |
 | ---------- | ------- |
@@ -6042,7 +6042,7 @@ When you enable open telemetry with the `nv set system telemetry export otlp sta
 
 ### Static Label Format
 
-Device static labels are exported in the {{<exlink url="https://opentelemetry.io/docs/specs/otel/resource/sdk/" text="resource">}} metric section of OTLP data:
+The switch exports device static labels in the {{<exlink url="https://opentelemetry.io/docs/specs/otel/resource/sdk/" text="resource">}} metric section of OTLP data:
 
 {{< expand "Example JSON data for static device label:" >}}
 ```
@@ -6071,7 +6071,7 @@ Device static labels are exported in the {{<exlink url="https://opentelemetry.io
 ```
 {{< /expand >}}
 <br>
-Interface static labels are exported as attributes in the gauge metrics for each interface.
+The switch exports interface static labels as attributes in the gauge metrics for each interface.
 
 {{< expand "Example JSON data for static interface label:" >}}
 

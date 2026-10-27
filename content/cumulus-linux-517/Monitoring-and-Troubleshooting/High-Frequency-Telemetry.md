@@ -456,7 +456,7 @@ HFT job schedule successful: job-id 1
 Action succeeded
 ```
 
-You can specify `now` for the date and/or time to configure the current date and time of day. The following example configures `profile2` to start today at 10:00:00, run for 30 seconds, and collect data on swp2s0.
+You can specify `now` for the date and time to configure the current date and time of day. The following example configures `profile2` to start today at 10:00:00, run for 30 seconds, and collect data on swp2s0.
 
 ``` 
 cumulus@switch:~$ nv action schedule system telemetry hft job now 10:00:00 duration 30 profile profile2 ports swp2s0

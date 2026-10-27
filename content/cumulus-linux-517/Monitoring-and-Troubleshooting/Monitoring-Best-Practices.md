@@ -136,7 +136,7 @@ Spectrum 1 CPUs can become overloaded at moderate to high network scale. If your
 
 ### Disk Usage
 
-To monitor disk utilization such as the total storage capacity of the filesystem, the amount of space currently in use, the amount of free space available, the percentage of the filesystem’s total capacity currently in use, and the directory or mount point where the filesystem is attached to the system, run the NVUE `nv show system disk usage` command or the Linux `sudo df` command.
+To monitor disk utilization such as the total storage capacity of the filesystem, the amount of space used, the amount of free space available, the percentage of the filesystem’s total capacity currently in use, and the directory or mount point where the filesystem is attached to the system, run the NVUE `nv show system disk usage` command or the Linux `sudo df` command.
 
 ```
 cumulus@switch:~$ nv show system disk usage 

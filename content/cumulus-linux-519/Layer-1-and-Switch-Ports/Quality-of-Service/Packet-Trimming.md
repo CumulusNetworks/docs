@@ -121,7 +121,7 @@ If you want to use the {{<link url="#global-level-packet-trimming-with-default-p
   - `lossy-multi-tc-network-group` sets the DSCP remark value to 11 for switch priority 4 on the uplink to the network.
 
 ```
-cumulus@switch:~$ nv set system forwarding packet-trim packet-trim-default
+cumulus@switch:~$ nv set system forwarding packet-trim profile packet-trim-default
 cumulus@leaf01:~$ nv set system forwarding packet-trim remark dscp port-level
 cumulus@leaf01:~$ nv set interface swp1-16 qos remark profile lossy-multi-tc-host-group
 cumulus@leaf01:~$ nv set interface swp17-32 qos remark profile lossy-multi-tc-network-group 
@@ -290,22 +290,16 @@ Traffic Class  Trim Eligible Packets  Trimmed Tx Packets  Trimmed Drop Packets
 
 ### Clear Packet Trimming Counters
 
-You can clear both the global and interface packet trimming counters with the `nv action clear system forwarding packet-trim counters` command. NVIDIA recommends clearing packet trimming counters when you initially enable the feature or configure a new interface for packet trimming.
+To clear the packet trimming counters globally and for all interfaces, run the `nv action clear system forwarding packet-trim counters` command. NVIDIA recommends clearing packet trimming counters when you initially enable the feature or configure a new interface for packet trimming.
 
 ```
 cumulus@switch:~$ nv action clear system forwarding packet-trim counters
 ```
 
-To clear the packet trimming counters globally and for all interfaces, run the `nv action clear packet-trim counters` command:
+To clear the packet trimming counters for a specific interface, run the `nv action clear interface <interface-id> counters packet-trim` command:
 
 ```
-cumulus@switch:~$ nv action clear packet-trim counters
-```
-
-To clear the packet trimming counters for a specific interface, run the `nv action clear interface <interface-id> packet-trim counters` command:
-
-```
-cumulus@switch:~$ nv action clear interface swp1 packet-trim counters
+cumulus@switch:~$ nv action clear interface swp1 counters packet-trim
 ```
 
 {{%notice note%}}

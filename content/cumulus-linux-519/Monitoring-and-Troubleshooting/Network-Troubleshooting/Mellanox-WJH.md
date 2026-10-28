@@ -79,6 +79,12 @@ To filter traffic drops with a specific IP address, run the `nv set system wjh c
 - The `<type>` is `acl`, `buffer`, `l2`, `l3`, or `tunnel`.
 - The `<reason>` can be any reason listed in the table above.
 
+{{%notice note%}}
+- You can configure a maximum of 100 drop filters and 1024 filter entries in total across all channels. An entry is one IP address, or one drop reason or severity under one drop type.
+- If you exceed either limit, NVUE returns an error.
+- Drop filters are new in Cumulus Linux 5.18.0. If a switch already has more than the limit configured when you upgrade, the switch keeps the saved configuration; you can reduce the number of filters and entries but not increase them.
+{{%/notice%}}
+
 The following example creates a filter called TUNNEL1 that stops the switch from monitoring traffic drops when the overlay switch source MAC equals the destination MAC:
 
 ```

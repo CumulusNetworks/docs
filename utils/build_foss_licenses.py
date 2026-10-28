@@ -18,10 +18,16 @@ import csv
 def safe_tar_extractall(tar, path):
     resolved_path = os.path.realpath(path)
     for member in tar.getmembers():
+        # Links could redirect later members outside path; license archives only need files and dirs.
+        if not (member.isfile() or member.isdir()):
+            raise Exception("Unsupported member type in tar archive: {}".format(member.name))
         member_path = os.path.realpath(os.path.join(path, member.name))
         if not member_path.startswith(resolved_path + os.sep) and member_path != resolved_path:
             raise Exception("Path traversal detected in tar archive: {}".format(member.name))
-    tar.extractall(path=path)
+    if hasattr(tarfile, "data_filter"):
+        tar.extractall(path=path, filter="data")
+    else:
+        tar.extractall(path=path)
 
 def product_string(product):
     '''

@@ -317,3 +317,7 @@ In addition to the following metrics, the switch also exports two WJH events, `w
 {{< /tabs >}}
 
 For information about OTEL, refer to {{<link url="Open-Telemetry-Export" text="OTEL Telemetry Export">}}.
+
+## Updated Transceiver Metric
+
+In Cumulus Linux 5.19, the OTEL `nvswitch_platform_transceiver_ethernet_pmd` metric and the gNMI path `/components/component[name=*]/transceiver/state/ethernet-pmd` report the PMD of the transceiver media instead of the host interface:<br>- Optical modules report the advertised media type, such as `ETH_400GBASE_DR4`.<br>- Active optical and active copper cables report `ETH_100G_AOC` or `ETH_100G_ACC` at 100G. Other speeds report `OTHER`.<br>- Passive copper cables report the operating PMD, such as `ETH_100GBASE_CR4`, only while the link is up.<br>For CMIS transceivers (QSFP-DD and OSFP), the reported PMD comes from the first application the module advertises. If the first application is not the full rate of the module, such as a twin-port 800G module that advertises 400GAUI-4, the metric shows the lower rate. If the first application is InfiniBand, an active cable reports its PMD only while the link is up.

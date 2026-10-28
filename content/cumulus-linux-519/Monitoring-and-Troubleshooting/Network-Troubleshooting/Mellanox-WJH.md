@@ -57,17 +57,17 @@ cumulus@switch:~$ nv config apply
 
 ### Filter Traffic Drops
 
-You can filter traffic drops to stop the switch from monitoring them, based on the reason for the drop, the severity level (error, warning, or notice), or IP address.
+You can filter traffic drops based on the drop reason, the severity level (error, warning, or notice), or the IP address. A drop filter hides the matching drops from WJH output (show commands, PCAP files, and telemetry export); it does not change how the switch forwards or drops traffic. WJH drop counters still count the hidden drops, and WJH never hides layer 1 drops.
 
 The following table shows the drop reasons on which you can filter:
 
-| Traffic Drop Type | Drop Reasons |
+| Drop Type | Drop Reasons |
 | ----------------- | ------------ |
-| ACL |egress-cpu-port-acl<br> egress-tunnel-acl<br>ingress-router-acl<br>egress-port-acl<br>ingress-cpu-port-acl<br>ingress-tunnel-acl<br>egress-router-acl<br>ingress-port-acl<br>multi-points-acl |
-| Buffer | packet-latency-threshold-crossed<br>tail-drop<br>port-tc-congestion-threshold-crossed<br>wred |
+| acl |egress-cpu-port-acl<br> egress-tunnel-acl<br>ingress-router-acl<br>egress-port-acl<br>ingress-cpu-port-acl<br>ingress-tunnel-acl<br>egress-router-acl<br>ingress-port-acl<br>multi-points-acl |
+| buffer | packet-latency-threshold-crossed<br>tail-drop<br>port-tc-congestion-threshold-crossed<br>wred |
 | l2 |dest-mac-is-reserved<br>source-mac-is-multicast<br>ingress-spanning-tree-filter<br>source-mac-is-zero<br>ingress-vlan-filtering<br>unicast-egress-port-list-is-empty<br>mlag-port-isolation<br>unicast-mac-table-action-discard<br>multicast-egress-port-list-is-empty<br>vlan-or-vni-lookup-failed<br>port-loopback-filter<br>vlan-tagging-mismatch<br>source-mac-equals-dest-mac |
 | l3 | blackhole-arp<br>blackhole-route<br>checksum-or-ipver-or-ipv4-ihl-too-short<br>dest-ip-is-loopback-addr<br>egress-router-intf-is-disabled<br>ingress-router-intf-is-disabled<br>ipv4-dest-ip-is-link-local<br>ipv4-dest-ip-is-local-network<br>ipv4-routing-table-unicast-miss<br>ipv4-src-ip-is-limited-broadcast<br>ipv6-dest-in-multicast-scope-ffx0<br>ipv6-dest-in-multicast-scope-ffx1<br>ipv6-routing-table-unicast-miss<br>multicast-mac-mismatch<br>non-ip-packet<br>non-routable-pck<br>packet-size-is-larger-than-router-intf-mtu<br>packet-source-ip-cant-be-verified<br>router-interface-loopback<br>src-ip-equals-dest-ip<br>src-ip-is-in-class-e<br>src-ip-is-loopback-addr<br>src-ip-is-multicast<br>src-ip-is-unspecified<br>ttl-value-is-too-small<br>unicast-dest-ip-but-multicast-dest-mac<br>unresolved-neighbor |
-| Tunnel |decapsulation-error<br>encapsulation-port-isolation<br>overlay-switch-src-mac-equals-dest-mac<br>overlay-switch-src-mac-equals-zero<br>overlay-switch-src-mac-is-multicast |
+| tunnel |decapsulation-error<br>encapsulation-port-isolation<br>overlay-switch-src-mac-equals-dest-mac<br>overlay-switch-src-mac-equals-zero<br>overlay-switch-src-mac-is-multicast |
 
 To filter traffic drops due to a specific reason, run the `nv set system wjh channel <channel-id> drop-filter <filter-id> drop-type <type> drop-reason <reason>` command.
 
@@ -75,40 +75,44 @@ To filter traffic drops due to a specific severity, run the `nv set system wjh c
 
 To filter traffic drops with a specific IP address, run the `nv set system wjh channel <channel-id> drop-filter <filter-id> ip <ip-address>` command.
 - The `<channel-id>` is the channel name.
-- The `<filter-id>` is name you want to provide for the filter.
-- The `<type>` is `acl`, `buffer`, `l2`, `l3`, or `tunnel`.
-- The `<reason>` can be any reason listed in the table above.
+- The `<filter-id>` is the name you want to give the drop filter.
+- The `<type>` is `acl`, `buffer`, `l2`, `l3`, or `tunnel`. If the channel has triggers, the drop type must be one of them.
+- The `<reason>` is one of the drop reasons that the table lists for the drop type.
+- The `<severity-level>` is `error`, `warning`, or `notice`.
+- The `<ip-address>` is an IPv4 or IPv6 host address, such as `10.10.10.10`; you cannot specify a prefix.
 
 {{%notice note%}}
-- You can configure a maximum of 100 drop filters and 1024 filter entries in total across all channels. An entry is one IP address, or one drop reason or severity under one drop type.
-- If you exceed either limit, NVUE returns an error.
-- Drop filters are new in Cumulus Linux 5.18.0. If a switch already has more than the limit configured when you upgrade, the switch keeps the saved configuration; you can reduce the number of filters and entries but not increase them.
+- You can configure a maximum of 128 drop filters in total across all channels. All drop filters together can have a maximum of 1024 entries; an entry is one IP address, or one drop reason or severity under one drop type. Both limits include drop filters on channels without triggers and drop filters you configure while WJH is disabled.
+- NVUE checks the limits when you run the `nv config apply` command, not when you run the `nv set` command. If you add drop filters or entries beyond a limit, the `nv config apply` command fails and applies none of the changes in the revision. Unset drop filters or entries and run the `nv config apply` command again, or run the `nv config detach` command to discard all pending changes.
+- Earlier Cumulus Linux releases do not limit drop filters. If the saved configuration has more than 128 drop filters or more than 1024 entries when you upgrade, the switch keeps it. You can keep or reduce a number that is above its limit, but you cannot increase it; NVUE checks the number of drop filters and the number of entries separately. After you apply and save a reduction, the reduced number, or the limit if that is higher, becomes the new maximum. Auto-save is on by default, so to rename or move a drop filter, unset the old one and set the new one, then run the `nv config apply` command once.
 {{%/notice%}}
 
-The following example creates a filter called TUNNEL1 that stops the switch from monitoring traffic drops when the overlay switch source MAC equals the destination MAC:
+The following example creates a drop filter called TUNNEL1 that hides traffic drops when the overlay switch source MAC equals the destination MAC:
 
 ```
 cumulus@switch:~$ nv set system wjh channel forwarding drop-filter TUNNEL1 drop-type tunnel drop-reason overlay-switch-src-mac-equals-dest-mac
 cumulus@switch:~$ nv config apply
 ```
 
-The following example creates a filter called SEVERITY that stops the switch from monitoring layer 2 traffic drops with the severity level notice:
+The following example creates a drop filter called SEVERITY that hides layer 2 traffic drops with the severity level notice:
 
 ```
 cumulus@switch:~$ nv set system wjh channel forwarding drop-filter SEVERITY drop-type l2 severity notice
 cumulus@switch:~$ nv config apply
 ```
 
-The following example creates a filter called IP-DROPS that stops the switch from monitoring traffic drops with the IP address 10.10.10.10:
+The following example creates a drop filter called IP-DROPS that hides traffic drops with the IP address 10.10.10.10:
 
 ```
 cumulus@switch:~$ nv set system wjh channel forwarding drop-filter IP-DROPS ip 10.10.10.10
 cumulus@switch:~$ nv config apply
 ```
 
-To unset a traffic drop filter, run the `nv set system wjh channel <channel-id> drop-filter <filter-id>` command.
+You can add several drop types, drop reasons, severities, and IP addresses to the same drop filter. One drop filter with several values hides the same drops as a separate drop filter for each value, and counts as one drop filter toward the 128 drop filter limit. Each IP address, drop reason, and severity in it still counts as one entry.
 
-To show traffic drop filter configuration, run the `nv show system wjh channel <channel-id> drop-filter` command.
+To unset a drop filter, run the `nv unset system wjh channel <channel-id> drop-filter <filter-id>` command.
+
+To show the drop filter configuration, run the `nv show system wjh channel <channel-id> drop-filter` command.
 
 ```
 cumulus@switch:~$ nv show system wjh channel forwarding drop-filter

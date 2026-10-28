@@ -184,6 +184,10 @@ For more information, see {{<link url="FRRouting/#class-e-address-space-support"
 
 In Cumulus 5.18 and earlier, when you configure multiple parallel IPv6 numbered eBGP sessions between the same pair of switches, you need to configure update-source separately for each session on both switches using the local IPv6 address assigned to the link for that neighbor. If you do not configure this setting, some sessions might remain in an idle state during simultaneous link or session bringup. This issue no longer occurs in Cumulus Linux 5.19 and later and you no longer need to configure this setting.
 
+### WJH Drop Filter Limits
+
+Cumulus Linux now limits WJH drop filters: you can configure a maximum of 128 drop filters in total across all channels, and all drop filters together can have a maximum of 1024 entries (IP addresses, drop reasons, and severities). If the startup configuration exceeds a limit when you upgrade, Cumulus Linux keeps it; you can reduce the number of drop filters or entries, but you cannot increase a number that is above its limit. Refer to {{<link url="Mellanox-WJH/#filter-traffic-drops" text="Filter Traffic Drops">}}.
+
 ### Cumulus VX
 
 NVIDIA no longer releases Cumulus VX as a standalone image. To simulate a Cumulus Linux switch, use {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/nvidia-air/" text="NVIDIA DSX Air">}}.

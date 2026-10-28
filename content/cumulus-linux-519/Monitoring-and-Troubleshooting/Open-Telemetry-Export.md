@@ -3485,6 +3485,8 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 {{< /tab >}}
 {{< tab "Transceivers ">}}
 
+<!-- REVIEW (bug 5095522): Drafted from Prabhu's behavior-change note (27 Oct) and the approved RN text. They differ: Prabhu says passive copper reports the PMD only while the link is up; Raghav's 28 Oct test on a QSFP28 DAC (5.19.0.0039) reported ETH_40GBASE_CR4 with the link down; the RN text says an InfiniBand-first CMIS active cable reports only while the link is up. Confirm with Raghav/Prabhu, then adjust the passive copper and CMIS wording. Delete this comment before publishing. -->
+
 | Metric | Description |
 | ---------- | ------- |
 | `nvswitch_platform_transceiver_vendor_info` | The transceiver vendor information, such as which port the transceiver plugs into, the date of manufacture, the revision, the name of the manufacturer, the manufacturer part number, the serial number, and the IEEE company ID of the vendor.  |
@@ -3502,7 +3504,7 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 | `nvswitch_platform_transceiver_channel_tx_bias_current_alarm` | tx bias current alarm state of tx bias current measure for the channel when compared to the threshold values for the channel defined for the module. This is a bit mask value:<br>Bit 0: tx_bias_hi_al<br>Bit 1: l tx_bias_lo_al<br>Bit 2: tx_bia_hi_war<br>Bit 3: l tx_bias_lo_war |
 | `nvswitch_platform_transceiver_channel_tx_bias_current_threshold_info` | tx bias current thresholds defined for the channel in Amps units and represented by a 32bit decimal value. |
 | `nvswitch_platform_transceiver_firmware_version`| Firmware version information for the transceiver.|
-| `nvswitch_platform_transceiver_ethernet_pmd` | Ethernet PMD information for the transceiver.|
+| `nvswitch_platform_transceiver_ethernet_pmd` | Ethernet PMD information for the transceiver. <b>Note</b>: In Cumulus Linux 5.19, this metric reports the PMD of the transceiver media instead of the host interface:<br>- Optical modules report the advertised media type, such as `ETH_400GBASE_DR4`.<br>- Active optical and active copper cables report `ETH_100G_AOC` or `ETH_100G_ACC` at 100G. Other speeds report `OTHER`.<br>- Passive copper cables report the operating PMD, such as `ETH_100GBASE_CR4`, only while the link is up.<br>For CMIS transceivers (QSFP-DD and OSFP), the reported PMD comes from the first application the module advertises. If the first application is not the full rate of the module, such as a twin-port 800G module that advertises 400GAUI-4, the metric shows the lower rate. If the first application is InfiniBand, an active cable reports its PMD only while the link is up. |
 | `nvswitch_platform_transceiver_physical_channel_state` | Per physical channel LOS and CDR LOL state.|
 | `nvswitch_platform_transceiver_host_lane_state` | Per host lane LOS and CDR LOL state.|
 

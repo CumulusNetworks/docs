@@ -15,6 +15,14 @@ from os import listdir
 import requests
 import csv
 
+def safe_tar_extractall(tar, path):
+    resolved_path = os.path.realpath(path)
+    for member in tar.getmembers():
+        member_path = os.path.realpath(os.path.join(path, member.name))
+        if not member_path.startswith(resolved_path + os.sep) and member_path != resolved_path:
+            raise Exception("Path traversal detected in tar archive: {}".format(member.name))
+    tar.extractall(path=path)
+
 def product_string(product):
     '''
     Take in the product short hand and return the product name.
@@ -271,7 +279,7 @@ def process_foss_tar(product, version):
         exit(1)
 
     tar = tarfile.open("temp.tgz")
-    tar.extractall(path=license_dir)
+    safe_tar_extractall(tar, license_dir)
 
     for file in listdir(tared_folder):
         if file.endswith(".csv") or file.endswith(".txt"):

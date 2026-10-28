@@ -19,9 +19,10 @@ To upgrade a Spectrum-6 switch, perform the upgrade in this order:
 
 1. Upgrade BMC firmware with NVUE, as described in {{<link url="#install-bmc" text="Install BMC">}}.
 2. Upgrade Cumulus Linux. Refer to {{<link url="Upgrading-Cumulus-Linux" text="Upgrading Cumulus Linux">}}.
+3. Power cycle the switch.
 
 {{%notice note%}}
-Upgrade BMC firmware with the NVUE commands in this section. NVIDIA validates BMC firmware upgrades through NVUE only; upgrading BMC firmware through Redfish is not validated.
+Upgrade BMC firmware only with the NVUE commands in this section. NVIDIA validates BMC firmware upgrades through NVUE only; NVIDIA does not validate upgrading BMC firmware through Redfish.
 {{%/notice%}} 
 
 ## Install BMC

@@ -175,7 +175,7 @@ In Cumulus 5.18 and earlier, when you configure multiple parallel IPv6 numbered 
 
 ### WJH Drop Filter Limits
 
-Cumulus Linux now limits WJH drop filters: you can configure a maximum of 128 drop filters in total across all channels, and all drop filters together can have a maximum of 1024 entries (IP addresses, drop reasons, and severities). If the startup configuration exceeds a limit when you upgrade, Cumulus Linux keeps it; you can reduce the number of drop filters or entries, but you cannot increase a number that is above its limit. Refer to {{<link url="Mellanox-WJH/#filter-traffic-drops" text="Filter Traffic Drops">}}.
+Cumulus Linux now limits WJH drop filters: you can configure a maximum of 128 drop filters in total across all channels, and all drop filters together can have a maximum of 1024 entries (IP addresses, drop reasons, and severities). If the startup configuration exceeds a limit when you upgrade, Cumulus Linux keeps it; you can reduce the number of drop filters or entries, but you cannot increase a number that is above its limit. Refer to {{<link title="What Just Happened (WJH)/#filter-traffic-drops" text="Filter Traffic Drops">}}.
 
 ### Cumulus VX
 

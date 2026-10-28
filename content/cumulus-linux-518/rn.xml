@@ -80,7 +80,7 @@
 </tr>
 <tr>
 <td>5324751</td>
-<td>IPv6 static routes with a link-local next hop might not be programmed in hardware when you convert bridge member ports to routed ports and add static routes through those ports in the same configuration apply.</td>
+<td>Sometimes, the switch does not program IPv6 static routes with a link-local next hop in hardware when you convert bridge member ports to routed ports and add static routes through those ports in the same configuration apply.</td>
 <td>5.18.2-5.18.3</td>
 <td></td>
 </tr>
@@ -189,6 +189,12 @@ This failure disrupts DHCPv6 service for all downstream interfaces served by tha
 <td></td>
 </tr>
 <tr>
+<td>5298371, 5298370</td>
+<td>The switch incorrectly advertises a MAC-only EVPN type-2 route with the layer 3 VNI label in the BGP NLRI (Network Layer Reachability Information). Although this does not have any functional impact, it is not the desired RFC behavior.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5298360</td>
 <td>Custom gNMI clients that create a subscription and then tear down the send part of the gRPC can see the subscriptions stop and restart every 3600 seconds, resulting in a brief loss of telemetry data.</td>
 <td>5.18.1-5.18.3</td>
@@ -202,38 +208,7 @@ This failure disrupts DHCPv6 service for all downstream interfaces served by tha
 </tr>
 <tr>
 <td>5281416, 5341616</td>
-<td>When a configuration request is submitted through the REST API and RADIUS is configured for AAA authentication, the Calling-Station-Id sent to the RADIUS server incorrectly contains the loopback address (127.0.0.1) instead of the IP address of the originating REST API client .
-
-Due to flow:
-
-REST API Client
-10.87.221.34
-      |
-      v
-+---------------------+
-| Public NVUE NGINX   |
-| knows original IP   |
-+---------------------+
-      |
-      | auth subrequest
-      | via 127.0.0.1 / ::1
-      v
-+----------------------+
-| Internal NGINX Auth  |
-+----------------------+
-      |
-      v
-   PAM nvueapi
-      |
-      v
- pam_radius_auth
-      |
-      v
-+----------------------+
-|    RADIUS Server     |
-| Calling-Station-Id = |
-| 127.0.0.1 / ::1  X   |
-+----------------------+</td>
+<td>When you submit a configuration request through the REST API and RADIUS is configured for AAA authentication, the {{Calling-Station-Id}} sent to the RADIUS server incorrectly contains the loopback address (127.0.0.1) instead of the IP address of the originating REST API client.</td>
 <td>5.16.6-5.18.3</td>
 <td></td>
 </tr>
@@ -467,7 +442,7 @@ REST API Client
 </tr>
 <tr>
 <td>5185505</td>
-<td>On the Spectrum-6 switch, NVUE fails to display per-interface counters for usb0 although the interface and its counters are shown in the global counters view.</td>
+<td>On the Spectrum-6 switch, NVUE fails to display counters for every interface for usb0 even though the interface and its counters show in the global counters view.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
@@ -485,7 +460,7 @@ REST API Client
 </tr>
 <tr>
 <td>5183654, 5234851</td>
-<td>During a warm APT upgrade, gNMI could restart while the container runtime was being updated, causing a startup failure and automatic cl-support collection before the switch rebooted.</td>
+<td>During a warm APT upgrade, gNMI does restart while the container runtime is being updated, causing a startup failure and automatic cl-support collection before the switch reboots.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
@@ -560,19 +535,19 @@ Pin-Priority: 992</td>
 </tr>
 <tr>
 <td>5175384</td>
-<td>When nv config is applied while switchd is restarting , NVUE FSM tries to read ASIC platform resource information  before the switch services are fully ready. As a result, the resource query returns empty or invalid data and NVUE logs an unhandled JSON parsing error instead of waiting, retrying, or failing gracefully. This is typically seen when you configure OTEL and run the {{nv config apply}} command while {{switchd}} and {{prometheus-sdk-stats}} are restarting.</td>
+<td>If you run the {{nv config apply}} command while {{switchd}} is restarting , NVUE tries to read ASIC platform resource information before the switch services are fully ready. As a result, the resource query returns empty or invalid data and NVUE logs an unhandled JSON parsing error instead of waiting, retrying, or failing gracefully. This is typically seen when you configure OTEL and run the {{nv config apply}} command while {{switchd}} and {{prometheus-sdk-stats}} are restarting.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
 <tr>
 <td>5174873</td>
-<td>On an EVPN MH topology with route leaking, if we enable Layer 3 VXLAN Device Mode from existing Single VXLAN Device for All Layer 3 VNIs model, FDB/mac entry is not installed in hardware for some remote VTEP router macs. This affects L3 VxLAN traffic through the VTEPs whose RMACs are not installed on the DUT.</td>
+<td>In an EVPN multihoming configuration with route leaking, if you enable layer 3 VXLAN device mode from an existing single VXLAN device for all layer 3 VNIs, the switch does not install the FDB MAC entry in hardware for some remote VTEP router MACs. This affects layer 3 VXLAN traffic through the VTEPs whose RMACs are not installed on the DUT.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
 <tr>
 <td>5174595, 5233487</td>
-<td>On an EVPN MH topology with route leaking, if we enable Layer 3 VXLAN Device Mode from existing Single VXLAN Device for All Layer 3 VNIs model, cl-route-check errors are observed. Neighbor entry is not resolved for the next hop and hence traffic on the routes shown in cl-route-check errors will be impacted.</td>
+<td>In an EVPN multihoming configuration with route leaking, if you enable layer 3 VXLAN device mode from  an existing single VXLAN device for all layer 3 VNIs, you see {{cl-route-check}} errors. The switch does not resolve the neighbor entry for the next hop and traffic on the routes shown in the cl-route-check errors are affected.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
@@ -602,7 +577,7 @@ Pin-Priority: 992</td>
 </tr>
 <tr>
 <td>5165432, 5154620</td>
-<td>With EVPN L3VXI mode enabled, routes leaked between tenant vrfs (using import vrfs) are installed without the encap info leading to blackholing of the traffic. </td>
+<td>With EVPN layer 3 VXLAN device mode enabled, the switch installs routes leaked between tenant VRFs (using import VRFs) without the encapsulation information, which results in traffic drops.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
@@ -680,7 +655,7 @@ Pin-Priority: 992</td>
 </tr>
 <tr>
 <td>5107338</td>
-<td>onie-install, onie-select, and cl-image-upgrade now allow only one instance of each to run at the same time, except for read (status check), which you can use at any time.</td>
+<td>The {{sudo onie-install -s}} command sometimes fails when the {{nv show system image}} command is running continuously in background.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
@@ -692,14 +667,13 @@ Pin-Priority: 992</td>
 </tr>
 <tr>
 <td>5095522</td>
-<td>For CMIS transceivers (QSFP-DD, OSFP), the gNMI path /components/component[name=*]/transceiver/state/ethernet-pmd and the OTLP metric nvswitch_platform_transceiver_ethernet_pmd are based on the first application the module advertises. If the first application is not the module's full rate, for example a twin-port 800G module that advertises 400GAUI-4, the reported PMD shows the lower rate. If the first application is InfiniBand, an active cable reports its PMD only while the link is up.</td>
+<td>For CMIS transceivers (QSFP-DD, OSFP), the gNMI path {{/components/component[name=*]/transceiver/state/ethernet-pmd}} and the OTLP metric {{nvswitch_platform_transceiver_ethernet_pmd}} are based on the first application the module advertises. If the first application is not the module's full rate, for example a twin-port 800G module that advertises 400GAUI-4, the reported PMD shows the lower rate. If the first application is InfiniBand, an active cable reports its PMD only while the link is up.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
 <tr>
 <td>5091418, 5269525</td>
-<td>Under high-scale offload-mode transitions, the BFD dataplane plugin's internal outbound message queue can fill up and silently drop session state-change notifications destined for the {{bfdd}} core process. The sessions are fully and correctly programmed in the SDK/hardware in both directions (TX and RX counters advancing normally); however, the state notification informing {{bfdd}} that a session came Up is dropped, so {{bfdd}}'s view of the session stays stuck at Down indefinitely with nothing to re-drive it.
-</td>
+<td>Under high-scale offload-mode transitions, the internal outbound message queue of the BFD dataplane plugin might fill up and silently drop session state-change notifications destined for the {{bfdd}} core process. The sessions are fully and correctly programmed in the hardware in both directions (TX and RX counters advancing normally); however, the switch drops the state notification informing {{bfdd}} that a session came up, so {{bfdd}}'s view of the session stays stuck at Down indefinitely.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
@@ -940,7 +914,7 @@ Pin-Priority: 992</td>
 <td>5.11.2</td>
 </tr>
 <tr>
-<td>4413589, 5298371, 5298370</td>
+<td>4413589</td>
 <td>A MAC-only EVPN type-2 route is wrongly advertised with the layer 3 VNI label in the BGP NLRI (Network Layer Reachability Information). Although this does not have any functional impact, it is not the desired RFC behavior.</td>
 <td>5.13.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
@@ -1590,7 +1564,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 </tr>
 <tr>
 <td>5324751</td>
-<td>IPv6 static routes with a link-local next hop might not be programmed in hardware when you convert bridge member ports to routed ports and add static routes through those ports in the same configuration apply.</td>
+<td>Sometimes, the switch does not program IPv6 static routes with a link-local next hop in hardware when you convert bridge member ports to routed ports and add static routes through those ports in the same configuration apply.</td>
 <td>5.18.2-5.18.3</td>
 <td></td>
 </tr>
@@ -1686,6 +1660,12 @@ This failure disrupts DHCPv6 service for all downstream interfaces served by tha
 <td></td>
 </tr>
 <tr>
+<td>5298371, 5298370</td>
+<td>The switch incorrectly advertises a MAC-only EVPN type-2 route with the layer 3 VNI label in the BGP NLRI (Network Layer Reachability Information). Although this does not have any functional impact, it is not the desired RFC behavior.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5298360</td>
 <td>Custom gNMI clients that create a subscription and then tear down the send part of the gRPC can see the subscriptions stop and restart every 3600 seconds, resulting in a brief loss of telemetry data.</td>
 <td>5.18.1-5.18.3</td>
@@ -1699,38 +1679,7 @@ This failure disrupts DHCPv6 service for all downstream interfaces served by tha
 </tr>
 <tr>
 <td>5281416, 5341616</td>
-<td>When a configuration request is submitted through the REST API and RADIUS is configured for AAA authentication, the Calling-Station-Id sent to the RADIUS server incorrectly contains the loopback address (127.0.0.1) instead of the IP address of the originating REST API client .
-
-Due to flow:
-
-REST API Client
-10.87.221.34
-      |
-      v
-+---------------------+
-| Public NVUE NGINX   |
-| knows original IP   |
-+---------------------+
-      |
-      | auth subrequest
-      | via 127.0.0.1 / ::1
-      v
-+----------------------+
-| Internal NGINX Auth  |
-+----------------------+
-      |
-      v
-   PAM nvueapi
-      |
-      v
- pam_radius_auth
-      |
-      v
-+----------------------+
-|    RADIUS Server     |
-| Calling-Station-Id = |
-| 127.0.0.1 / ::1  X   |
-+----------------------+</td>
+<td>When you submit a configuration request through the REST API and RADIUS is configured for AAA authentication, the {{Calling-Station-Id}} sent to the RADIUS server incorrectly contains the loopback address (127.0.0.1) instead of the IP address of the originating REST API client.</td>
 <td>5.16.6-5.18.3</td>
 <td></td>
 </tr>
@@ -1970,7 +1919,7 @@ REST API Client
 </tr>
 <tr>
 <td>5185505</td>
-<td>On the Spectrum-6 switch, NVUE fails to display per-interface counters for usb0 although the interface and its counters are shown in the global counters view.</td>
+<td>On the Spectrum-6 switch, NVUE fails to display counters for every interface for usb0 even though the interface and its counters show in the global counters view.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
@@ -1988,7 +1937,7 @@ REST API Client
 </tr>
 <tr>
 <td>5183654, 5234851</td>
-<td>During a warm APT upgrade, gNMI could restart while the container runtime was being updated, causing a startup failure and automatic cl-support collection before the switch rebooted.</td>
+<td>During a warm APT upgrade, gNMI does restart while the container runtime is being updated, causing a startup failure and automatic cl-support collection before the switch reboots.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
@@ -2063,19 +2012,19 @@ Pin-Priority: 992</td>
 </tr>
 <tr>
 <td>5175384</td>
-<td>When nv config is applied while switchd is restarting , NVUE FSM tries to read ASIC platform resource information  before the switch services are fully ready. As a result, the resource query returns empty or invalid data and NVUE logs an unhandled JSON parsing error instead of waiting, retrying, or failing gracefully. This is typically seen when you configure OTEL and run the {{nv config apply}} command while {{switchd}} and {{prometheus-sdk-stats}} are restarting.</td>
+<td>If you run the {{nv config apply}} command while {{switchd}} is restarting , NVUE tries to read ASIC platform resource information before the switch services are fully ready. As a result, the resource query returns empty or invalid data and NVUE logs an unhandled JSON parsing error instead of waiting, retrying, or failing gracefully. This is typically seen when you configure OTEL and run the {{nv config apply}} command while {{switchd}} and {{prometheus-sdk-stats}} are restarting.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
 <tr>
 <td>5174873</td>
-<td>On an EVPN MH topology with route leaking, if we enable Layer 3 VXLAN Device Mode from existing Single VXLAN Device for All Layer 3 VNIs model, FDB/mac entry is not installed in hardware for some remote VTEP router macs. This affects L3 VxLAN traffic through the VTEPs whose RMACs are not installed on the DUT.</td>
+<td>In an EVPN multihoming configuration with route leaking, if you enable layer 3 VXLAN device mode from an existing single VXLAN device for all layer 3 VNIs, the switch does not install the FDB MAC entry in hardware for some remote VTEP router MACs. This affects layer 3 VXLAN traffic through the VTEPs whose RMACs are not installed on the DUT.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
 <tr>
 <td>5174595, 5233487</td>
-<td>On an EVPN MH topology with route leaking, if we enable Layer 3 VXLAN Device Mode from existing Single VXLAN Device for All Layer 3 VNIs model, cl-route-check errors are observed. Neighbor entry is not resolved for the next hop and hence traffic on the routes shown in cl-route-check errors will be impacted.</td>
+<td>In an EVPN multihoming configuration with route leaking, if you enable layer 3 VXLAN device mode from  an existing single VXLAN device for all layer 3 VNIs, you see {{cl-route-check}} errors. The switch does not resolve the neighbor entry for the next hop and traffic on the routes shown in the cl-route-check errors are affected.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
@@ -2105,7 +2054,7 @@ Pin-Priority: 992</td>
 </tr>
 <tr>
 <td>5165432, 5154620</td>
-<td>With EVPN L3VXI mode enabled, routes leaked between tenant vrfs (using import vrfs) are installed without the encap info leading to blackholing of the traffic. </td>
+<td>With EVPN layer 3 VXLAN device mode enabled, the switch installs routes leaked between tenant VRFs (using import VRFs) without the encapsulation information, which results in traffic drops.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
@@ -2183,7 +2132,7 @@ Pin-Priority: 992</td>
 </tr>
 <tr>
 <td>5107338</td>
-<td>onie-install, onie-select, and cl-image-upgrade now allow only one instance of each to run at the same time, except for read (status check), which you can use at any time.</td>
+<td>The {{sudo onie-install -s}} command sometimes fails when the {{nv show system image}} command is running continuously in background.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
@@ -2195,14 +2144,13 @@ Pin-Priority: 992</td>
 </tr>
 <tr>
 <td>5095522</td>
-<td>For CMIS transceivers (QSFP-DD, OSFP), the gNMI path /components/component[name=*]/transceiver/state/ethernet-pmd and the OTLP metric nvswitch_platform_transceiver_ethernet_pmd are based on the first application the module advertises. If the first application is not the module's full rate, for example a twin-port 800G module that advertises 400GAUI-4, the reported PMD shows the lower rate. If the first application is InfiniBand, an active cable reports its PMD only while the link is up.</td>
+<td>For CMIS transceivers (QSFP-DD, OSFP), the gNMI path {{/components/component[name=*]/transceiver/state/ethernet-pmd}} and the OTLP metric {{nvswitch_platform_transceiver_ethernet_pmd}} are based on the first application the module advertises. If the first application is not the module's full rate, for example a twin-port 800G module that advertises 400GAUI-4, the reported PMD shows the lower rate. If the first application is InfiniBand, an active cable reports its PMD only while the link is up.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
 <tr>
 <td>5091418, 5269525</td>
-<td>Under high-scale offload-mode transitions, the BFD dataplane plugin's internal outbound message queue can fill up and silently drop session state-change notifications destined for the {{bfdd}} core process. The sessions are fully and correctly programmed in the SDK/hardware in both directions (TX and RX counters advancing normally); however, the state notification informing {{bfdd}} that a session came Up is dropped, so {{bfdd}}'s view of the session stays stuck at Down indefinitely with nothing to re-drive it.
-</td>
+<td>Under high-scale offload-mode transitions, the internal outbound message queue of the BFD dataplane plugin might fill up and silently drop session state-change notifications destined for the {{bfdd}} core process. The sessions are fully and correctly programmed in the hardware in both directions (TX and RX counters advancing normally); however, the switch drops the state notification informing {{bfdd}} that a session came up, so {{bfdd}}'s view of the session stays stuck at Down indefinitely.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
@@ -2443,7 +2391,7 @@ Pin-Priority: 992</td>
 <td>5.11.2</td>
 </tr>
 <tr>
-<td>4413589, 5298371, 5298370</td>
+<td>4413589</td>
 <td>A MAC-only EVPN type-2 route is wrongly advertised with the layer 3 VNI label in the BGP NLRI (Network Layer Reachability Information). Although this does not have any functional impact, it is not the desired RFC behavior.</td>
 <td>5.13.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
@@ -3189,6 +3137,12 @@ This failure disrupts DHCPv6 service for all downstream interfaces served by tha
 <td></td>
 </tr>
 <tr>
+<td>5298371, 5298370</td>
+<td>The switch incorrectly advertises a MAC-only EVPN type-2 route with the layer 3 VNI label in the BGP NLRI (Network Layer Reachability Information). Although this does not have any functional impact, it is not the desired RFC behavior.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5298360</td>
 <td>Custom gNMI clients that create a subscription and then tear down the send part of the gRPC can see the subscriptions stop and restart every 3600 seconds, resulting in a brief loss of telemetry data.</td>
 <td>5.18.1-5.18.3</td>
@@ -3202,38 +3156,7 @@ This failure disrupts DHCPv6 service for all downstream interfaces served by tha
 </tr>
 <tr>
 <td>5281416, 5341616</td>
-<td>When a configuration request is submitted through the REST API and RADIUS is configured for AAA authentication, the Calling-Station-Id sent to the RADIUS server incorrectly contains the loopback address (127.0.0.1) instead of the IP address of the originating REST API client .
-
-Due to flow:
-
-REST API Client
-10.87.221.34
-      |
-      v
-+---------------------+
-| Public NVUE NGINX   |
-| knows original IP   |
-+---------------------+
-      |
-      | auth subrequest
-      | via 127.0.0.1 / ::1
-      v
-+----------------------+
-| Internal NGINX Auth  |
-+----------------------+
-      |
-      v
-   PAM nvueapi
-      |
-      v
- pam_radius_auth
-      |
-      v
-+----------------------+
-|    RADIUS Server     |
-| Calling-Station-Id = |
-| 127.0.0.1 / ::1  X   |
-+----------------------+</td>
+<td>When you submit a configuration request through the REST API and RADIUS is configured for AAA authentication, the {{Calling-Station-Id}} sent to the RADIUS server incorrectly contains the loopback address (127.0.0.1) instead of the IP address of the originating REST API client.</td>
 <td>5.16.6-5.18.3</td>
 <td></td>
 </tr>
@@ -3473,7 +3396,7 @@ REST API Client
 </tr>
 <tr>
 <td>5185505</td>
-<td>On the Spectrum-6 switch, NVUE fails to display per-interface counters for usb0 although the interface and its counters are shown in the global counters view.</td>
+<td>On the Spectrum-6 switch, NVUE fails to display counters for every interface for usb0 even though the interface and its counters show in the global counters view.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
@@ -3491,7 +3414,7 @@ REST API Client
 </tr>
 <tr>
 <td>5183654, 5234851</td>
-<td>During a warm APT upgrade, gNMI could restart while the container runtime was being updated, causing a startup failure and automatic cl-support collection before the switch rebooted.</td>
+<td>During a warm APT upgrade, gNMI does restart while the container runtime is being updated, causing a startup failure and automatic cl-support collection before the switch reboots.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
@@ -3566,19 +3489,19 @@ Pin-Priority: 992</td>
 </tr>
 <tr>
 <td>5175384</td>
-<td>When nv config is applied while switchd is restarting , NVUE FSM tries to read ASIC platform resource information  before the switch services are fully ready. As a result, the resource query returns empty or invalid data and NVUE logs an unhandled JSON parsing error instead of waiting, retrying, or failing gracefully. This is typically seen when you configure OTEL and run the {{nv config apply}} command while {{switchd}} and {{prometheus-sdk-stats}} are restarting.</td>
+<td>If you run the {{nv config apply}} command while {{switchd}} is restarting , NVUE tries to read ASIC platform resource information before the switch services are fully ready. As a result, the resource query returns empty or invalid data and NVUE logs an unhandled JSON parsing error instead of waiting, retrying, or failing gracefully. This is typically seen when you configure OTEL and run the {{nv config apply}} command while {{switchd}} and {{prometheus-sdk-stats}} are restarting.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
 <tr>
 <td>5174873</td>
-<td>On an EVPN MH topology with route leaking, if we enable Layer 3 VXLAN Device Mode from existing Single VXLAN Device for All Layer 3 VNIs model, FDB/mac entry is not installed in hardware for some remote VTEP router macs. This affects L3 VxLAN traffic through the VTEPs whose RMACs are not installed on the DUT.</td>
+<td>In an EVPN multihoming configuration with route leaking, if you enable layer 3 VXLAN device mode from an existing single VXLAN device for all layer 3 VNIs, the switch does not install the FDB MAC entry in hardware for some remote VTEP router MACs. This affects layer 3 VXLAN traffic through the VTEPs whose RMACs are not installed on the DUT.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
 <tr>
 <td>5174595, 5233487</td>
-<td>On an EVPN MH topology with route leaking, if we enable Layer 3 VXLAN Device Mode from existing Single VXLAN Device for All Layer 3 VNIs model, cl-route-check errors are observed. Neighbor entry is not resolved for the next hop and hence traffic on the routes shown in cl-route-check errors will be impacted.</td>
+<td>In an EVPN multihoming configuration with route leaking, if you enable layer 3 VXLAN device mode from  an existing single VXLAN device for all layer 3 VNIs, you see {{cl-route-check}} errors. The switch does not resolve the neighbor entry for the next hop and traffic on the routes shown in the cl-route-check errors are affected.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
@@ -3608,7 +3531,7 @@ Pin-Priority: 992</td>
 </tr>
 <tr>
 <td>5165432, 5154620</td>
-<td>With EVPN L3VXI mode enabled, routes leaked between tenant vrfs (using import vrfs) are installed without the encap info leading to blackholing of the traffic. </td>
+<td>With EVPN layer 3 VXLAN device mode enabled, the switch installs routes leaked between tenant VRFs (using import VRFs) without the encapsulation information, which results in traffic drops.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
@@ -3686,7 +3609,7 @@ Pin-Priority: 992</td>
 </tr>
 <tr>
 <td>5107338</td>
-<td>onie-install, onie-select, and cl-image-upgrade now allow only one instance of each to run at the same time, except for read (status check), which you can use at any time.</td>
+<td>The {{sudo onie-install -s}} command sometimes fails when the {{nv show system image}} command is running continuously in background.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
@@ -3698,14 +3621,13 @@ Pin-Priority: 992</td>
 </tr>
 <tr>
 <td>5095522</td>
-<td>For CMIS transceivers (QSFP-DD, OSFP), the gNMI path /components/component[name=*]/transceiver/state/ethernet-pmd and the OTLP metric nvswitch_platform_transceiver_ethernet_pmd are based on the first application the module advertises. If the first application is not the module's full rate, for example a twin-port 800G module that advertises 400GAUI-4, the reported PMD shows the lower rate. If the first application is InfiniBand, an active cable reports its PMD only while the link is up.</td>
+<td>For CMIS transceivers (QSFP-DD, OSFP), the gNMI path {{/components/component[name=*]/transceiver/state/ethernet-pmd}} and the OTLP metric {{nvswitch_platform_transceiver_ethernet_pmd}} are based on the first application the module advertises. If the first application is not the module's full rate, for example a twin-port 800G module that advertises 400GAUI-4, the reported PMD shows the lower rate. If the first application is InfiniBand, an active cable reports its PMD only while the link is up.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
 <tr>
 <td>5091418, 5269525</td>
-<td>Under high-scale offload-mode transitions, the BFD dataplane plugin's internal outbound message queue can fill up and silently drop session state-change notifications destined for the {{bfdd}} core process. The sessions are fully and correctly programmed in the SDK/hardware in both directions (TX and RX counters advancing normally); however, the state notification informing {{bfdd}} that a session came Up is dropped, so {{bfdd}}'s view of the session stays stuck at Down indefinitely with nothing to re-drive it.
-</td>
+<td>Under high-scale offload-mode transitions, the internal outbound message queue of the BFD dataplane plugin might fill up and silently drop session state-change notifications destined for the {{bfdd}} core process. The sessions are fully and correctly programmed in the hardware in both directions (TX and RX counters advancing normally); however, the switch drops the state notification informing {{bfdd}} that a session came up, so {{bfdd}}'s view of the session stays stuck at Down indefinitely.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
@@ -3946,7 +3868,7 @@ Pin-Priority: 992</td>
 <td>5.11.2</td>
 </tr>
 <tr>
-<td>4413589, 5298371, 5298370</td>
+<td>4413589</td>
 <td>A MAC-only EVPN type-2 route is wrongly advertised with the layer 3 VNI label in the BGP NLRI (Network Layer Reachability Information). Although this does not have any functional impact, it is not the desired RFC behavior.</td>
 <td>5.13.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
@@ -4738,6 +4660,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
+<td>5298371, 5298370</td>
+<td>The switch incorrectly advertises a MAC-only EVPN type-2 route with the layer 3 VNI label in the BGP NLRI (Network Layer Reachability Information). Although this does not have any functional impact, it is not the desired RFC behavior.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5297900</td>
 <td>A BGP prefix remains as the best path in BGP and present in the routing table but missing from the kernel and hardware. As a result, the switch drops traffic to the prefix, even though a good alternate path exists and the next hop group is programmed correctly. To work around this issue, clear the BGP session that provides the current best path to restore the route.</td>
 <td>5.16.5-5.18.0</td>
@@ -4751,38 +4679,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 </tr>
 <tr>
 <td>5281416, 5341616</td>
-<td>When a configuration request is submitted through the REST API and RADIUS is configured for AAA authentication, the Calling-Station-Id sent to the RADIUS server incorrectly contains the loopback address (127.0.0.1) instead of the IP address of the originating REST API client .
-
-Due to flow:
-
-REST API Client
-10.87.221.34
-      |
-      v
-+---------------------+
-| Public NVUE NGINX   |
-| knows original IP   |
-+---------------------+
-      |
-      | auth subrequest
-      | via 127.0.0.1 / ::1
-      v
-+----------------------+
-| Internal NGINX Auth  |
-+----------------------+
-      |
-      v
-   PAM nvueapi
-      |
-      v
- pam_radius_auth
-      |
-      v
-+----------------------+
-|    RADIUS Server     |
-| Calling-Station-Id = |
-| 127.0.0.1 / ::1  X   |
-+----------------------+</td>
+<td>When you submit a configuration request through the REST API and RADIUS is configured for AAA authentication, the {{Calling-Station-Id}} sent to the RADIUS server incorrectly contains the loopback address (127.0.0.1) instead of the IP address of the originating REST API client.</td>
 <td>5.16.6-5.18.3</td>
 <td></td>
 </tr>
@@ -5028,7 +4925,7 @@ REST API Client
 </tr>
 <tr>
 <td>5185505</td>
-<td>On the Spectrum-6 switch, NVUE fails to display per-interface counters for usb0 although the interface and its counters are shown in the global counters view.</td>
+<td>On the Spectrum-6 switch, NVUE fails to display counters for every interface for usb0 even though the interface and its counters show in the global counters view.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
@@ -5046,7 +4943,7 @@ REST API Client
 </tr>
 <tr>
 <td>5183654, 5234851</td>
-<td>During a warm APT upgrade, gNMI could restart while the container runtime was being updated, causing a startup failure and automatic cl-support collection before the switch rebooted.</td>
+<td>During a warm APT upgrade, gNMI does restart while the container runtime is being updated, causing a startup failure and automatic cl-support collection before the switch reboots.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
@@ -5127,19 +5024,19 @@ Pin-Priority: 992</td>
 </tr>
 <tr>
 <td>5175384</td>
-<td>When nv config is applied while switchd is restarting , NVUE FSM tries to read ASIC platform resource information  before the switch services are fully ready. As a result, the resource query returns empty or invalid data and NVUE logs an unhandled JSON parsing error instead of waiting, retrying, or failing gracefully. This is typically seen when you configure OTEL and run the {{nv config apply}} command while {{switchd}} and {{prometheus-sdk-stats}} are restarting.</td>
+<td>If you run the {{nv config apply}} command while {{switchd}} is restarting , NVUE tries to read ASIC platform resource information before the switch services are fully ready. As a result, the resource query returns empty or invalid data and NVUE logs an unhandled JSON parsing error instead of waiting, retrying, or failing gracefully. This is typically seen when you configure OTEL and run the {{nv config apply}} command while {{switchd}} and {{prometheus-sdk-stats}} are restarting.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
 <tr>
 <td>5174873</td>
-<td>On an EVPN MH topology with route leaking, if we enable Layer 3 VXLAN Device Mode from existing Single VXLAN Device for All Layer 3 VNIs model, FDB/mac entry is not installed in hardware for some remote VTEP router macs. This affects L3 VxLAN traffic through the VTEPs whose RMACs are not installed on the DUT.</td>
+<td>In an EVPN multihoming configuration with route leaking, if you enable layer 3 VXLAN device mode from an existing single VXLAN device for all layer 3 VNIs, the switch does not install the FDB MAC entry in hardware for some remote VTEP router MACs. This affects layer 3 VXLAN traffic through the VTEPs whose RMACs are not installed on the DUT.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
 <tr>
 <td>5174595, 5233487</td>
-<td>On an EVPN MH topology with route leaking, if we enable Layer 3 VXLAN Device Mode from existing Single VXLAN Device for All Layer 3 VNIs model, cl-route-check errors are observed. Neighbor entry is not resolved for the next hop and hence traffic on the routes shown in cl-route-check errors will be impacted.</td>
+<td>In an EVPN multihoming configuration with route leaking, if you enable layer 3 VXLAN device mode from  an existing single VXLAN device for all layer 3 VNIs, you see {{cl-route-check}} errors. The switch does not resolve the neighbor entry for the next hop and traffic on the routes shown in the cl-route-check errors are affected.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
@@ -5169,7 +5066,7 @@ Pin-Priority: 992</td>
 </tr>
 <tr>
 <td>5165432, 5154620</td>
-<td>With EVPN L3VXI mode enabled, routes leaked between tenant vrfs (using import vrfs) are installed without the encap info leading to blackholing of the traffic. </td>
+<td>With EVPN layer 3 VXLAN device mode enabled, the switch installs routes leaked between tenant VRFs (using import VRFs) without the encapsulation information, which results in traffic drops.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
@@ -5247,7 +5144,7 @@ Pin-Priority: 992</td>
 </tr>
 <tr>
 <td>5107338</td>
-<td>onie-install, onie-select, and cl-image-upgrade now allow only one instance of each to run at the same time, except for read (status check), which you can use at any time.</td>
+<td>The {{sudo onie-install -s}} command sometimes fails when the {{nv show system image}} command is running continuously in background.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
@@ -5259,14 +5156,13 @@ Pin-Priority: 992</td>
 </tr>
 <tr>
 <td>5095522</td>
-<td>For CMIS transceivers (QSFP-DD, OSFP), the gNMI path /components/component[name=*]/transceiver/state/ethernet-pmd and the OTLP metric nvswitch_platform_transceiver_ethernet_pmd are based on the first application the module advertises. If the first application is not the module's full rate, for example a twin-port 800G module that advertises 400GAUI-4, the reported PMD shows the lower rate. If the first application is InfiniBand, an active cable reports its PMD only while the link is up.</td>
+<td>For CMIS transceivers (QSFP-DD, OSFP), the gNMI path {{/components/component[name=*]/transceiver/state/ethernet-pmd}} and the OTLP metric {{nvswitch_platform_transceiver_ethernet_pmd}} are based on the first application the module advertises. If the first application is not the module's full rate, for example a twin-port 800G module that advertises 400GAUI-4, the reported PMD shows the lower rate. If the first application is InfiniBand, an active cable reports its PMD only while the link is up.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
 <tr>
 <td>5091418, 5269525</td>
-<td>Under high-scale offload-mode transitions, the BFD dataplane plugin's internal outbound message queue can fill up and silently drop session state-change notifications destined for the {{bfdd}} core process. The sessions are fully and correctly programmed in the SDK/hardware in both directions (TX and RX counters advancing normally); however, the state notification informing {{bfdd}} that a session came Up is dropped, so {{bfdd}}'s view of the session stays stuck at Down indefinitely with nothing to re-drive it.
-</td>
+<td>Under high-scale offload-mode transitions, the internal outbound message queue of the BFD dataplane plugin might fill up and silently drop session state-change notifications destined for the {{bfdd}} core process. The sessions are fully and correctly programmed in the hardware in both directions (TX and RX counters advancing normally); however, the switch drops the state notification informing {{bfdd}} that a session came up, so {{bfdd}}'s view of the session stays stuck at Down indefinitely.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
@@ -5507,7 +5403,7 @@ Pin-Priority: 992</td>
 <td>5.11.2</td>
 </tr>
 <tr>
-<td>4413589, 5298371, 5298370</td>
+<td>4413589</td>
 <td>A MAC-only EVPN type-2 route is wrongly advertised with the layer 3 VNI label in the BGP NLRI (Network Layer Reachability Information). Although this does not have any functional impact, it is not the desired RFC behavior.</td>
 <td>5.13.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>

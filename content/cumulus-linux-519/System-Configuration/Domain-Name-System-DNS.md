@@ -65,7 +65,7 @@ You configure the source in one of two ways, which are mutually exclusive on a s
 A nameserver accepts at most one source interface.
 
 {{%notice note%}}
-- The source must be a local address and must belong to the same VRF as the nameserver. The switch rejects a source in a different VRF and a leaked route does not change which VRF owns the address.
+- The source must be an address on the switch, either configured with NVUE or learned through DHCP, and must belong to the same VRF as the nameserver. The switch rejects a source in a different VRF and a leaked route does not change which VRF owns the address.
 - The address family of the source and the nameserver must match. An IPv6 nameserver requires an IPv6 source.
 - Host-only addresses in the `127.0.0.0/8` range and `::1`, and link-local addresses in the `169.254.0.0/16` and `fe80::/10` ranges, cannot source queries. The switch does not route these addresses off the switch.
 - Configuring a source does not create return reachability. You must advertise or install a route so that the nameserver can reach the source address in the same VRF. An unadvertised address times out even when the outbound routing and the source binding are both correct.
@@ -73,13 +73,8 @@ A nameserver accepts at most one source interface.
 - Nameservers that the switch learns through DHCP do not inherit a source. A DHCP refresh can change the global DNS information, and a newly learned nameserver remains unsourced until you configure it with NVUE.
 {{%/notice%}}
 
-<!-- REVIEW: not every on-box query observes the configured source, and the source document does not
-     name the operator-facing mechanism that decides which ones do. Drafted the limitation below
-     without a procedure rather than inventing one. Confirm what the operator runs, then replace the
-     limitation with the procedure. Delete this comment before publishing. -->
-
 {{%notice warning%}}
-A DNS query does not use the configured source unless the application that sends it runs with the resolver view for that VRF. Running a command under `ip vrf exec` alone is not sufficient, so an interactive session, such as a command you run over SSH, sends unsourced queries. A packet capture taken from such a session shows the kernel-selected egress address instead of the address you configured, even when the configuration is correct.
+A DNS query does not use the configured source unless the application that sends it runs with the resolver view for that VRF. Running a command under `ip vrf exec` alone is not sufficient, so an interactive session, such as a command you run over SSH, sends unsourced queries. A packet capture taken from such a session shows the kernel-selected egress address instead of the address you configured, even when the configuration is correct. To run a command with the resolver view of a VRF, use `dns-vrf-exec`. See {{<link url="#run-a-command-with-the-configured-source" text="Run a Command with the Configured Source">}}.
 {{%/notice%}}
 
 ### Configure a Source Address
@@ -113,16 +108,32 @@ cumulus@switch:~$ nv config apply
 
 The `address` option defaults to `auto`. Automatic selection never replaces an address you configure explicitly.
 
+### Use a DHCP-Learned Address as the Source
+
+You can use an address that an interface learns through DHCP or DHCPv6 as the source, with `source-ip`, with `source-interface`, or with `source-interface <interface-id> address <source-ip>`. The same VRF, address family, and scope rules apply as for a configured address.
+
+The interface must hold the lease when you run `nv config apply`. If the address is not present on the interface at that time, the switch rejects the configuration.
+
+The switch uses the address present when you apply the configuration. It does not track later lease changes. If the lease expires or the DHCP server assigns a different address, including after a reboot, queries to that nameserver fail to bind and fail over to the next nameserver until you update the configuration and run `nv config apply` again. To keep the source stable, configure a DHCP reservation for the interface on the DHCP server, or use a configured address such as a loopback address.
+
+The following example sources queries to 192.0.2.1 from the DHCP-learned address 198.51.100.10 on swp1 in VRF BLUE:
+
+```
+cumulus@switch:~$ nv set system dns server 192.0.2.1 vrf BLUE
+cumulus@switch:~$ nv set system dns server 192.0.2.1 source-interface swp1 address 198.51.100.10
+cumulus@switch:~$ nv config apply
+```
+
 ### Automatic Address Selection
 
 When you configure a source interface without an explicit address, the switch selects one address from that interface for the address family of the nameserver. It excludes addresses that cannot serve as a query source:
 - Host-only addresses in the `127.0.0.0/8` range and `::1`.
 - Link-local addresses in the `169.254.0.0/16` and `fe80::/10` ranges.
-- IPv6 addresses that are tentative, no longer in use, or temporary.
+- Addresses learned through DHCP that fail duplicate address detection.
 
-From the addresses that remain, the switch sorts the interface addresses with the NVUE natural sort, the same order `nv config show` displays and `nv config save` writes, then selects the first one. The order does not depend on the order in which you enter the addresses, so the selection is the same in the running configuration, in the saved configuration, after a reboot, and on any switch with the same set of addresses.
+From the addresses that remain, the switch sorts the interface addresses with the NVUE natural sort, the same order `nv config show` displays and `nv config save` writes, then selects the first one. The order does not depend on the order in which you enter the addresses, so the selection is the same in the running configuration, in the saved configuration, after a reboot, and on any switch with the same set of addresses. A DHCP-learned address can change after a reboot or a lease change. See {{<link url="#use-a-dhcp-learned-address-as-the-source" text="Use a DHCP-Learned Address as the Source">}}.
 
-Only addresses present in the NVUE configuration for the interface are candidates. The switch does not select an address that the kernel adds implicitly or that the interface learns through DHCP.
+The switch selects from the addresses in the NVUE configuration for the interface first. If none of them is usable for the address family of the nameserver, the switch selects from the addresses the interface learned through DHCP, sorted in the same way. A configured address always takes precedence over a learned one.
 
 In the following example, the switch selects 10.10.10.2 even though you configure 10.10.10.10 first, because the natural sort orders 10.10.10.2 ahead of 10.10.10.10:
 
@@ -157,7 +168,7 @@ To remove only the explicit address and return the interface to automatic select
 {{%notice note%}}
 A command that deletes an address a nameserver uses as its source stages successfully, but the apply fails. The error names both the address and the nameserver using it, and the address remains on the switch. To remove the address, remove or repoint the DNS source in the same `nv config apply`; NVUE evaluates the final state rather than the individual commands.
 
-This protection covers changes you make with NVUE. If something outside NVUE deletes the address, queries to that nameserver fail to bind and fail over to the next nameserver.
+This protection covers changes you make with NVUE. If something outside NVUE deletes the address, or a DHCP lease for the address expires or changes, queries to that nameserver fail to bind and fail over to the next nameserver.
 {{%/notice%}}
 
 ### Show the DNS Configuration
@@ -165,6 +176,29 @@ This protection covers changes you make with NVUE. If something outside NVUE del
 To show the DNS configuration, run the `nv show system dns` command. To list the configured nameservers, run the `nv show system dns server` command. To show a single nameserver, including its configured source, run the `nv show system dns server <dns-server-id>` command.
 
 For a nameserver that uses a source interface, {{<link url="#automatic-address-selection" text="Automatic Address Selection">}} shows how the output distinguishes the address you configured from the address the switch selected.
+
+### Run a Command with the Configured Source
+
+When a VRF has at least one sourced nameserver, the switch installs the `dns-vrf-exec` command. It runs a command in that VRF with the VRF's resolver view, so the command's DNS queries leave the switch from the configured source address.
+
+`dns-vrf-exec` is not on the default path, so run it with its full path:
+
+```
+/usr/lib/cumulus/dns/dns-vrf-exec <vrf> <command> [args...]
+```
+
+The following example resolves a name through the sourced nameservers of the default VRF, and then fetches a URL through those of the management VRF:
+
+```
+cumulus@switch:~$ /usr/lib/cumulus/dns/dns-vrf-exec default getent hosts example.com
+cumulus@switch:~$ /usr/lib/cumulus/dns/dns-vrf-exec mgmt curl https://example.com
+```
+
+- The command runs as root. If you are not root, `dns-vrf-exec` runs the command with `sudo`, so you need sudo privileges.
+- The resolver view applies only to the command and the processes it starts. Other processes on the switch are not affected.
+- You can run a command in the default VRF from a session in the management VRF.
+- If the VRF has no sourced nameserver, the command fails with `dns-vrf-exec: VRF <vrf> has no source-selected DNS server`.
+- NVUE manages this file. It overwrites local changes whenever you apply a DNS configuration, and removes the file when you remove the last sourced nameserver.
 
 ## Considerations
 

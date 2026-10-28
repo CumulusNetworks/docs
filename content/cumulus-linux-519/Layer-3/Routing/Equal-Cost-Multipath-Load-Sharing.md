@@ -784,51 +784,32 @@ Reload `switchd` with the `sudo systemctl reload switchd.service` command.
 {{< /tab >}}
 {{< /tabs >}}
 
+<!-- NO LONGER SUPPORTED IN 5.19
 ### ECMP Group Segregation
 
-{{%notice note%}}
+{{%/* notice note */%}}
 ECMP group segregation is supported only on switches with the Spectrum-6 ASIC. Earlier ASICs always merge equivalent adaptive routing ECMP groups.
-{{%/notice%}}
+{{%/* /notice */%}}
 
 Adaptive routing can select an egress port in round-robin order, spraying packets across the ports in the group. The round-robin state for a group lives in the ASIC, and by default two adaptive routing ECMP groups that resolve to the same member ports share one hardware entry, and therefore one round-robin pointer. Their traffic distributions are correlated instead of independent. ECMP group segregation gives each adaptive routing ECMP group its own entry and its own round-robin pointer, which improves tail latency. Tail latency matters for AI training, where GPUs synchronize periodically and a single late packet stalls the whole cluster.
 
 Segregation applies only to adaptive routing ECMP groups. Cumulus Linux continues to merge equivalent ECMP groups that are not adaptive routing eligible.
 
-<!-- REVIEW: the sentence below, and the absence of any statement about how routes end up in
-     separate nexthop groups in the first place. The spec's worked example depends on BGP
-     origin-based nexthop groups (`advertise-origin` on the leafs, `nhg-per-origin` on every
-     switch), but neither command appears anywhere in the 5.19 content tree or in
-     content/nvue-reference/, and the spec lists the control plane as out of scope. Confirm with
-     the adaptive routing owner whether this section must document that dependency, and where
-     those commands are documented. Delete this comment before publishing. -->
-
 Segregation keeps apart the ECMP groups that the routing daemon already treats as distinct. Where the routing daemon merges routes into one nexthop group, the switch programs one adaptive routing group and segregation has no effect.
 
 #### Configure ECMP Group Segregation
 
-There is no NVUE command for segregation and no separate setting to turn it on. Cumulus Linux enables segregation when adaptive routing is enabled and the custom adaptive routing profile selects round-robin port selection with `ar.psm`. Cumulus Linux reads the profile from the `/etc/cumulus/switchd.d/ar_profile_custom.conf` file, so you configure it either by editing the file directly or by writing the file with an {{<link url="NVUE-Snippets/#flexible-snippets" text="NVUE flexible snippet">}}.
+There is no NVUE command for segregation and no separate setting to turn it on. Cumulus Linux enables segregation when adaptive routing is enabled and the custom adaptive routing profile selects round-robin port selection with `ar.psm`. Cumulus Linux reads the profile from the `/etc/cumulus/switchd.d/ar_profile_custom.conf` file, so you configure it either by editing the file directly or by writing the file with an {{</* link url="NVUE-Snippets/#flexible-snippets" text="NVUE flexible snippet" */>}}.
 
-<!-- REVIEW: the `ar.psm` key below. The spec gives only the value 1, for round-robin port
-     selection, and never enumerates the other accepted values or names the default. Drafted as the
-     spec states it. Ask the adaptive routing owner for the full value list so that the table can
-     name what the other settings do. Delete this comment before publishing. -->
-
-<!-- REVIEW: the spec calls `nv set router adaptive-routing profile profile-custom` an existing
-     command, but no `profile` leaf appears under `nv set router adaptive-routing` anywhere in
-     content/nvue-reference/, and both this page and the reference call the feature the
-     `custom-profile`. Moved here on 2026-10-20 when the Extended Grading section was removed
-     (FR 5018267 is not documented). Confirm the command name and the profile name against a
-     candidate build. Delete this comment before publishing. -->
-
-Before you configure segregation, {{<link url="#enable-adaptive-routing" text="enable adaptive routing">}} and select the custom profile with the `nv set router adaptive-routing profile profile-custom` command:
+Before you configure segregation, {{</* link url="#enable-adaptive-routing" text="enable adaptive routing" */>}} and select the custom profile with the `nv set router adaptive-routing profile profile-custom` command:
 
 ```
 cumulus@switch:~$ nv set router adaptive-routing profile profile-custom
 cumulus@switch:~$ nv config apply
 ```
 
-{{< tabs "TabID763 ">}}
-{{< tab "NVUE Commands ">}}
+{{</* tabs "TabID763 " */>}}
+{{</* tab "NVUE Commands " */>}}
 
 1. Create a flexible snippet in `yaml` format that sets `ar.psm` to 1:
 
@@ -856,8 +837,8 @@ cumulus@switch:~$ nv config apply
    cumulus@switch:~$ nv config apply
    ```
 
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
+{{</* /tab */>}}
+{{</* tab "Linux Commands " */>}}
 
 Edit the `/etc/cumulus/switchd.d/ar_profile_custom.conf` file:
 
@@ -866,42 +847,23 @@ cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/ar_profile_custom.conf
 ar.psm = 1
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
+{{</* /tab */>}}
+{{</* /tabs */>}}
 
-<!-- REVIEW: the warning below says restart, while every other adaptive routing instruction on this
-     page says reload. The spec states that a change between merged and segregated grouping needs a
-     `switchd` and SDK restart and that the mode is latched at `switchd` init, so the service verb
-     follows the spec rather than the page. Confirm on a candidate build. Delete this comment before
-     publishing. -->
-
-{{%notice warning%}}
+{{%/* notice warning */%}}
 Cumulus Linux latches the grouping mode when `switchd` starts and does not change it while the switch runs. To move between merged and segregated grouping, you must restart `switchd`, which disrupts forwarding across the whole switch. Plan the change for a maintenance window.
 
 Do not change `ar.psm` as part of an ISSU upgrade. ISSU fails when the grouping mode changes during the reconfiguration stage.
-{{%/notice%}}
-
-<!-- REVIEW: the scale paragraph below covers two-level fat trees only, because the spec puts
-     three-level fat trees out of scope and defers the larger hardware group table mode. The spec
-     also describes a global fallback to random port selection when adaptive routing group demand
-     exceeds the table, but places that case out of scope as well, so the draft says nothing about
-     it. Confirm that a two-level statement is enough for the audience of this page. Delete this
-     comment before publishing. -->
+{{%/* /notice */%}}
 
 Segregation consumes more hardware group table entries than merging, because equivalent groups no longer share an entry. On a Spectrum-6 switch in a standard two-level fat tree, the table is large enough for every destination group, including during an ISSU upgrade, when only half the table is available.
-
-<!-- REVIEW: the verification paragraph below is inferred. The spec records that `switchd` logs the
-     port selection mode and the grouping mode it writes to the SDK, but gives no log strings and no
-     show command. Capture the real messages on a Spectrum-6 switch and replace the grep pattern.
-     Delete this comment before publishing. -->
 
 The `nv show router adaptive-routing` command does not show the grouping mode. `switchd` logs the port selection mode it resolves and the grouping mode it programs, so check `/var/log/switchd.log` to confirm which mode the switch is running:
 
 ```
 cumulus@switch:~$ sudo grep -iE "port select mode|grouping mode" /var/log/switchd.log
 ```
-
-<!-- TODO: capture the switchd log messages for round-robin port selection and segregated grouping on a Spectrum-6 switch and paste them here -->
+-->
 
 ### Show Adaptive Routing Settings
 

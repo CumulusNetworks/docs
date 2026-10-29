@@ -599,13 +599,9 @@ cumulus@switch:~$ nv config apply
 swp1: 241.1.1.1/32 is in the reserved class-e range - set router allow-reserved-range class-e to use it
 ```
 
-### Show Class E Address Space Setting
+### Verify Class E Address Space
 
-To show Class E address space setting, run the `nv show router allow-reserved-range class-e` command:
-
-```
-cumulus@switch:~$ nv show router allow-reserved-range class-e
-```
+There is no `nv show router allow-reserved-range class-e` command. Instead, the switch prints the warning described above each time you apply a Class E address on an interface while you do not allow Class E.
 
 You can verify that Class E is working end to end with the same commands you use for any other address range. Confirm that the address and its connected route appear for the interface, and confirm the BGP session establishes and routes install, as described in {{<link url="Border-Gateway-Protocol-BGP" text="Border Gateway Protocol (BGP)">}} and {{<link url="Interface-Configuration-and-Management/#configure-ip-addresses" text="Configure IP Addresses">}}.
 

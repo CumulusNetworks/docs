@@ -7,6 +7,72 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5351903</td>
+<td>gNMI requests that use the * path wildcard are rejected for list keys whose YANG type is not a string. The server validates the literal * token against the key's declared type instead of treating it as a gNMI path wildcard, so the request fails as though the path does not exist.</td>
+<td>5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5346399</td>
+<td>In rare cases, after you delete, then add back a VRF with the same table ID, its default route stays inactive and is not installed, even though BGP selects it as best. To work around this issue, restart FRR with {{sudo systemctl restart frr}}. </td>
+<td>5.16.6-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5345924</td>
+<td>After a link flap, an IPv6 host directly connected to a routed port might become unreachable if a stale neighbour entry for the host is programmed in the ASIC with a DROP action and never removed. To work around this issue, force {{switchd}} to resynchronise its neighbour table from the kernel by running the {{echo 1 &gt; /cumulus/switchd/ctrl/netlink/resync}} command as root. Pinging the affected host from the switch also clears the entry.</td>
+<td>5.16.7-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5345905</td>
+<td>When a link or BGP session between a leaf and a spine goes down and comes back up, the prefixes of hosts connected to that leaf might not move back to the direct path through the leaf. The per-source NHG feature keeps forwarding traffic for those host prefixes over the backup path through another plane, even though BGP selects the direct path as best.</td>
+<td>5.17.0-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5343996</td>
+<td>If a front-panel link changes state during an ISSU warm upgrade, {{switchd}} might retain the pre-upgrade link state for that interface. As a result, Linux and NVUE report an operational state that does not match the hardware after the upgrade completes. To work around this issue, run the {{echo 1 &gt; /cumulus/switchd/ctrl/resync}} command.</td>
+<td>5.16.7-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5341702</td>
+<td>On a switch with FIPS mode enabled and a license file installed, {{switchd}} fails to start. The license check run by {{start-switchd}} (switchd -lic) crashes with a segmentation fault; the WJH service fails and the {{nv config apply}} command returns an error. To resolve this issue, disable FIPS mode and restart the switch.</td>
+<td>5.18.1-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5341681</td>
+<td>After an optimized image upgrade from CL 5.16.5 to 5.18.1 with FIPS enabled, every NVUE {{nv config apply}} fails with {{Unrecoverable internal error}}, and the NVUE REST API (nginx) fails OpenSSL initialization.</td>
+<td>5.18.1-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5341294</td>
+<td>On NVIDIA Spectrum switches, DHCP and DHCPv6 packets with two VLAN tags (QinQ) are dropped instead of being forwarded across the bridge.</td>
+<td>5.16.8-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5340844</td>
+<td>Transceiver data collection takes longer than 60 seconds due to boot time churn. During a steady state, the API returns within 10 to 20 seconds.</td>
+<td>5.16.6-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5338737</td>
+<td>In a large scale configuration, {{switchd}} might take more time to come up and trigger the watchdog timeout.</td>
+<td>5.16.7-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5331128</td>
+<td>On switches with EVPN-VXLAN configured, when a remote MAC address moves from one remote VTEP to another in the same VNI, the hardware forwarding table keeps pointing to the old VTEP. The kernel and the EVPN control plane show the correct new VTEP, but the switch keeps forwarding traffic for that MAC address to the old VTEP.  To work around this issue, restart {{switchd}} with the {{sudo systemctl restart switchd}} command to reprogram the hardware forwarding table. The restart interrupts traffic on the switch, so do it in a maintenance window. With MLAG, restart one peer at a time and wait for it to fully converge before restarting the other.</td>
+<td>5.17.0-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5327622</td>
 <td>A bridge FDB flush does not restore EVPN router MAC entries in the Kernel.</td>
 <td>5.11.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
@@ -14,7 +80,7 @@
 </tr>
 <tr>
 <td>5324751</td>
-<td>IPv6 static routes with a link-local next hop might not be programmed in hardware when you convert bridge member ports to routed ports and add static routes through those ports in the same configuration apply.</td>
+<td>Sometimes, the switch does not program IPv6 static routes with a link-local next hop in hardware when you convert bridge member ports to routed ports and add static routes through those ports in the same configuration apply.</td>
 <td>5.18.2-5.18.3</td>
 <td></td>
 </tr>
@@ -50,6 +116,12 @@ cumulus@switch:~$ nv action reboot system mode &lt;cold|warm&gt;</td>
 <td></td>
 </tr>
 <tr>
+<td>5316062</td>
+<td>Optimized image upgrade fails on a switch when the content of the {{/var/log}} folder becomes very large. The upgrade installer copies the entire {{/var/log}} onto the root filesystem of the new partition, which has a fixed size. A large log directory fills that partition, so the install operation fails. As a result, you will not be able to initiate a switch to the other partition to perform the upgrade.</td>
+<td>5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5315365</td>
 <td>An incomplete, unauthenticated station entry is retained incorrectly and restored after upgrade. This causes a new EAP Identity exchange to start, but the entry is not aged out as expected on the wired interface, resulting in continuous retransmissions.</td>
 <td>5.16.7-5.18.3</td>
@@ -60,6 +132,12 @@ cumulus@switch:~$ nv action reboot system mode &lt;cold|warm&gt;</td>
 <td>DHCPv6 relay might fail to start when a configured upstream interface has no discoverable IPv6 address. This includes admin down interfaces and unnumbered VLAN interfaces created without carrier during  provisioning.
 This failure disrupts DHCPv6 service for all downstream interfaces served by that relay instance, even when other upstreams can reach the server.</td>
 <td>5.18.1-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5309020</td>
+<td>Under heavy data-plane traffic, a firmware write might remain in a pending state longer, resulting in a FATAL ASIC firmware health event ({{FW CR Space timeout}}). </td>
+<td>5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -93,9 +171,27 @@ This failure disrupts DHCPv6 service for all downstream interfaces served by tha
 <td></td>
 </tr>
 <tr>
+<td>5299231</td>
+<td>When a route that uses a next hop group replaces a downstream-VNI (ip-encap) route, the prefix ECMP container of the old flat next hop is never released, keeping its route user and the DVNI RIF in use. A later RIF delete returns {{RESOURCE_IN_USE}} and the RIF/FID stay parked in {{dvni_pending_ht}} with nothing left to retry.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5299163</td>
+<td>On Spectrum-1 switches, concurrent PDDR reads can cause a fatal FW Long Command timeout on register 0x5031. The ASIC resets in a loop, switchd is terminated, and all front-panel ports go down. The health-monitor log shows cause 18 (FW Long Command) with reg_attr_id 0x5031.</td>
+<td>5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5299074</td>
 <td>When multiple PDDR (Port Diagnostic Database Register) reads happen at the same time, the ASIC command interface can get stuck on register 0x5031. If this happens, {{switchd}} is terminated while it is in this hung state, which brings down all data ports. You see command-interface timeout on access register 0x5031 in the logs, followed by a fatal firmware health or FW Long Command event.</td>
 <td>5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5298371, 5298370</td>
+<td>The switch incorrectly advertises a MAC-only EVPN type-2 route with the layer 3 VNI label in the BGP NLRI (Network Layer Reachability Information). Although this does not have any functional impact, it is not the desired RFC behavior.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -112,38 +208,7 @@ This failure disrupts DHCPv6 service for all downstream interfaces served by tha
 </tr>
 <tr>
 <td>5281416, 5341616</td>
-<td>When a configuration request is submitted through the REST API and RADIUS is configured for AAA authentication, the Calling-Station-Id sent to the RADIUS server incorrectly contains the loopback address (127.0.0.1) instead of the IP address of the originating REST API client .
-
-Due to flow:
-
-REST API Client
-10.87.221.34
-      |
-      v
-+---------------------+
-| Public NVUE NGINX   |
-| knows original IP   |
-+---------------------+
-      |
-      | auth subrequest
-      | via 127.0.0.1 / ::1
-      v
-+----------------------+
-| Internal NGINX Auth  |
-+----------------------+
-      |
-      v
-   PAM nvueapi
-      |
-      v
- pam_radius_auth
-      |
-      v
-+----------------------+
-|    RADIUS Server     |
-| Calling-Station-Id = |
-| 127.0.0.1 / ::1  X   |
-+----------------------+</td>
+<td>When you submit a configuration request through the REST API and RADIUS is configured for AAA authentication, the {{Calling-Station-Id}} sent to the RADIUS server incorrectly contains the loopback address (127.0.0.1) instead of the IP address of the originating REST API client.</td>
 <td>5.16.6-5.18.3</td>
 <td></td>
 </tr>
@@ -175,6 +240,12 @@ REST API Client
 <td>5268313</td>
 <td>An offline package upgrade might fail when package scripts attempt to move {{containerd}} storage while the runtime is still running, leaving the upgrade incomplete and dependent services unavailable.</td>
 <td>5.16.8-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5265724</td>
+<td>When many links are down or shut down gracefully on a large cluster, the number of ECMP groups the switch needs can exceed what the AR-LGPT table can optimize. As a result, the GEN0 AR group compression algorithm can remove some ports from forwarding. For example, 16 of 56 ports can be removed on a switch. Because the removed links no longer take part in adaptive routing forwarding, the remaining links carry their traffic and can become overloaded.</td>
+<td>5.16.6-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -264,6 +335,12 @@ REST API Client
 <tr>
 <td>5221340</td>
 <td>When you put a switch in maintenance mode, then warm reboot the switch, it incorrectly starts a new advertisement delay after graceful restart completes. As a result, remote devices see host exceptions change state unnecessarily after the warm reboot.</td>
+<td>5.18.0-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5221267, 5299547</td>
+<td>The gNMI server does not return sample data for endpoint subscriptions under {{interfaces/interface/phy/channels/channel/state}}, such as {{fc-fec-corrected-blocks}} or {{rs-fec-corrected-symbols}}. The server accepts the subscription and sends a {{sync_response}}, but sends no updates.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
@@ -365,7 +442,7 @@ REST API Client
 </tr>
 <tr>
 <td>5185505</td>
-<td>On the Spectrum-6 switch, NVUE fails to display per-interface counters for usb0 although the interface and its counters are shown in the global counters view.</td>
+<td>On the Spectrum-6 switch, NVUE fails to display counters for every interface for usb0 even though the interface and its counters show in the global counters view.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
@@ -383,7 +460,7 @@ REST API Client
 </tr>
 <tr>
 <td>5183654, 5234851</td>
-<td>During a warm APT upgrade, gNMI could restart while the container runtime was being updated, causing a startup failure and automatic cl-support collection before the switch rebooted.</td>
+<td>During a warm APT upgrade, gNMI does restart while the container runtime is being updated, causing a startup failure and automatic cl-support collection before the switch reboots.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
@@ -394,6 +471,12 @@ Package: *
 Pin: release a=cumulus-local-apt-archive
 Pin-Priority: 992</td>
 <td>5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5182960</td>
+<td>In a large 512 interface INTERFACE_MULTIPLEXER configuration, the system looks healthy and the ports show carrier up, but actual traffic cannot pass between directly connected ports. As a result, IPv6 neighbor discovery does not complete and BGP sessions do not establish.</td>
+<td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -452,19 +535,19 @@ Pin-Priority: 992</td>
 </tr>
 <tr>
 <td>5175384</td>
-<td>When nv config is applied while switchd is restarting , NVUE FSM tries to read ASIC platform resource information  before the switch services are fully ready. As a result, the resource query returns empty or invalid data and NVUE logs an unhandled JSON parsing error instead of waiting, retrying, or failing gracefully. This is typically seen when you configure OTEL and run the {{nv config apply}} command while {{switchd}} and {{prometheus-sdk-stats}} are restarting.</td>
+<td>If you run the {{nv config apply}} command while {{switchd}} is restarting , NVUE tries to read ASIC platform resource information before the switch services are fully ready. As a result, the resource query returns empty or invalid data and NVUE logs an unhandled JSON parsing error instead of waiting, retrying, or failing gracefully. This is typically seen when you configure OTEL and run the {{nv config apply}} command while {{switchd}} and {{prometheus-sdk-stats}} are restarting.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
 <tr>
 <td>5174873</td>
-<td>On an EVPN MH topology with route leaking, if we enable Layer 3 VXLAN Device Mode from existing Single VXLAN Device for All Layer 3 VNIs model, FDB/mac entry is not installed in hardware for some remote VTEP router macs. This affects L3 VxLAN traffic through the VTEPs whose RMACs are not installed on the DUT.</td>
+<td>In an EVPN multihoming configuration with route leaking, if you enable layer 3 VXLAN device mode from an existing single VXLAN device for all layer 3 VNIs, the switch does not install the FDB MAC entry in hardware for some remote VTEP router MACs. This affects layer 3 VXLAN traffic through the VTEPs whose RMACs are not installed on the DUT.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
 <tr>
 <td>5174595, 5233487</td>
-<td>On an EVPN MH topology with route leaking, if we enable Layer 3 VXLAN Device Mode from existing Single VXLAN Device for All Layer 3 VNIs model, cl-route-check errors are observed. Neighbor entry is not resolved for the next hop and hence traffic on the routes shown in cl-route-check errors will be impacted.</td>
+<td>In an EVPN multihoming configuration with route leaking, if you enable layer 3 VXLAN device mode from  an existing single VXLAN device for all layer 3 VNIs, you see {{cl-route-check}} errors. The switch does not resolve the neighbor entry for the next hop and traffic on the routes shown in the cl-route-check errors are affected.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
@@ -494,7 +577,7 @@ Pin-Priority: 992</td>
 </tr>
 <tr>
 <td>5165432, 5154620</td>
-<td>With EVPN L3VXI mode enabled, routes leaked between tenant vrfs (using import vrfs) are installed without the encap info leading to blackholing of the traffic. </td>
+<td>With EVPN layer 3 VXLAN device mode enabled, the switch installs routes leaked between tenant VRFs (using import VRFs) without the encapsulation information, which results in traffic drops.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
@@ -524,13 +607,19 @@ Pin-Priority: 992</td>
 </tr>
 <tr>
 <td>5157775</td>
-<td>On Spectrum-6 with 800Gx8 ports, traffic sent at full speed is consistently not fully transmitted, causing packet loss for every frame size. The loss increases as packet size increases, indicating that the egress path can not sustain full line-rate traffic and packets drop on transmit.</td>
+<td>On a Spectrum-6 switch with 800Gx8 ports, the switch does not fully transmit traffic sent at full speed, causing packet loss for every frame size. The loss increases as packet size increases, indicating that the egress path cannot sustain full line-rate traffic and packets drop on transmit.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
 <tr>
 <td>5154524</td>
 <td>The switch system health included the {{ledmgrd}} service in health evaluation incorrectly, causing false {{ServicesStatus: BAD}} results for virtual platforms. </td>
+<td>5.18.0-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5152031</td>
+<td>When you run {{nv set}} or {{nv}} action commands while performing a warm upgrade, Cumulus Linux shows a very generic error message instead of an explicit and actionable message.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
@@ -566,20 +655,25 @@ Pin-Priority: 992</td>
 </tr>
 <tr>
 <td>5107338</td>
-<td>onie-install, onie-select, and cl-image-upgrade now allow only one instance of each to run at the same time, except for read (status check), which you can use at any time.</td>
+<td>The {{sudo onie-install -s}} command sometimes fails when the {{nv show system image}} command is running continuously in background.</td>
+<td>5.18.0-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5107310</td>
+<td>On Spectrum-5 and Spectrum-6 switches, NVUE allows you to configure a vlan-aware bridge with more VLANs than the platform FID budget allows without validation. The configuration applies successfully but the switch silently drops traffic on the VLANs beyond the hardware FID limit at ingress.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
 <tr>
 <td>5095522</td>
-<td>The GNMI xpath {{/components/component[name=*]/transceiver/state/ethernet-pmd}} metric shows data for a specific transceiver port when the queried port has no active link (the link is down).</td>
+<td>For CMIS transceivers (QSFP-DD, OSFP), the gNMI path {{/components/component[name=*]/transceiver/state/ethernet-pmd}} and the OTLP metric {{nvswitch_platform_transceiver_ethernet_pmd}} are based on the first application the module advertises. If the first application is not the module's full rate, for example a twin-port 800G module that advertises 400GAUI-4, the reported PMD shows the lower rate. If the first application is InfiniBand, an active cable reports its PMD only while the link is up.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
 <tr>
 <td>5091418, 5269525</td>
-<td>Under high-scale offload-mode transitions, the BFD dataplane plugin's internal outbound message queue can fill up and silently drop session state-change notifications destined for the {{bfdd}} core process. The sessions are fully and correctly programmed in the SDK/hardware in both directions (TX and RX counters advancing normally); however, the state notification informing {{bfdd}} that a session came Up is dropped, so {{bfdd}}'s view of the session stays stuck at Down indefinitely with nothing to re-drive it.
-</td>
+<td>Under high-scale offload-mode transitions, the internal outbound message queue of the BFD dataplane plugin might fill up and silently drop session state-change notifications destined for the {{bfdd}} core process. The sessions are fully and correctly programmed in the hardware in both directions (TX and RX counters advancing normally); however, the switch drops the state notification informing {{bfdd}} that a session came up, so {{bfdd}}'s view of the session stays stuck at Down indefinitely.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
@@ -1403,6 +1497,66 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5346399</td>
+<td>In rare cases, after you delete, then add back a VRF with the same table ID, its default route stays inactive and is not installed, even though BGP selects it as best. To work around this issue, restart FRR with {{sudo systemctl restart frr}}. </td>
+<td>5.16.6-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5345924</td>
+<td>After a link flap, an IPv6 host directly connected to a routed port might become unreachable if a stale neighbour entry for the host is programmed in the ASIC with a DROP action and never removed. To work around this issue, force {{switchd}} to resynchronise its neighbour table from the kernel by running the {{echo 1 &gt; /cumulus/switchd/ctrl/netlink/resync}} command as root. Pinging the affected host from the switch also clears the entry.</td>
+<td>5.16.7-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5345905</td>
+<td>When a link or BGP session between a leaf and a spine goes down and comes back up, the prefixes of hosts connected to that leaf might not move back to the direct path through the leaf. The per-source NHG feature keeps forwarding traffic for those host prefixes over the backup path through another plane, even though BGP selects the direct path as best.</td>
+<td>5.17.0-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5343996</td>
+<td>If a front-panel link changes state during an ISSU warm upgrade, {{switchd}} might retain the pre-upgrade link state for that interface. As a result, Linux and NVUE report an operational state that does not match the hardware after the upgrade completes. To work around this issue, run the {{echo 1 &gt; /cumulus/switchd/ctrl/resync}} command.</td>
+<td>5.16.7-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5341702</td>
+<td>On a switch with FIPS mode enabled and a license file installed, {{switchd}} fails to start. The license check run by {{start-switchd}} (switchd -lic) crashes with a segmentation fault; the WJH service fails and the {{nv config apply}} command returns an error. To resolve this issue, disable FIPS mode and restart the switch.</td>
+<td>5.18.1-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5341681</td>
+<td>After an optimized image upgrade from CL 5.16.5 to 5.18.1 with FIPS enabled, every NVUE {{nv config apply}} fails with {{Unrecoverable internal error}}, and the NVUE REST API (nginx) fails OpenSSL initialization.</td>
+<td>5.18.1-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5341294</td>
+<td>On NVIDIA Spectrum switches, DHCP and DHCPv6 packets with two VLAN tags (QinQ) are dropped instead of being forwarded across the bridge.</td>
+<td>5.16.8-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5340844</td>
+<td>Transceiver data collection takes longer than 60 seconds due to boot time churn. During a steady state, the API returns within 10 to 20 seconds.</td>
+<td>5.16.6-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5338737</td>
+<td>In a large scale configuration, {{switchd}} might take more time to come up and trigger the watchdog timeout.</td>
+<td>5.16.7-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5331128</td>
+<td>On switches with EVPN-VXLAN configured, when a remote MAC address moves from one remote VTEP to another in the same VNI, the hardware forwarding table keeps pointing to the old VTEP. The kernel and the EVPN control plane show the correct new VTEP, but the switch keeps forwarding traffic for that MAC address to the old VTEP.  To work around this issue, restart {{switchd}} with the {{sudo systemctl restart switchd}} command to reprogram the hardware forwarding table. The restart interrupts traffic on the switch, so do it in a maintenance window. With MLAG, restart one peer at a time and wait for it to fully converge before restarting the other.</td>
+<td>5.17.0-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5327622</td>
 <td>A bridge FDB flush does not restore EVPN router MAC entries in the Kernel.</td>
 <td>5.11.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
@@ -1410,7 +1564,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 </tr>
 <tr>
 <td>5324751</td>
-<td>IPv6 static routes with a link-local next hop might not be programmed in hardware when you convert bridge member ports to routed ports and add static routes through those ports in the same configuration apply.</td>
+<td>Sometimes, the switch does not program IPv6 static routes with a link-local next hop in hardware when you convert bridge member ports to routed ports and add static routes through those ports in the same configuration apply.</td>
 <td>5.18.2-5.18.3</td>
 <td></td>
 </tr>
@@ -1433,6 +1587,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
+<td>5316062</td>
+<td>Optimized image upgrade fails on a switch when the content of the {{/var/log}} folder becomes very large. The upgrade installer copies the entire {{/var/log}} onto the root filesystem of the new partition, which has a fixed size. A large log directory fills that partition, so the install operation fails. As a result, you will not be able to initiate a switch to the other partition to perform the upgrade.</td>
+<td>5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5315365</td>
 <td>An incomplete, unauthenticated station entry is retained incorrectly and restored after upgrade. This causes a new EAP Identity exchange to start, but the entry is not aged out as expected on the wired interface, resulting in continuous retransmissions.</td>
 <td>5.16.7-5.18.3</td>
@@ -1443,6 +1603,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>DHCPv6 relay might fail to start when a configured upstream interface has no discoverable IPv6 address. This includes admin down interfaces and unnumbered VLAN interfaces created without carrier during  provisioning.
 This failure disrupts DHCPv6 service for all downstream interfaces served by that relay instance, even when other upstreams can reach the server.</td>
 <td>5.18.1-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5309020</td>
+<td>Under heavy data-plane traffic, a firmware write might remain in a pending state longer, resulting in a FATAL ASIC firmware health event ({{FW CR Space timeout}}). </td>
+<td>5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -1476,9 +1642,27 @@ This failure disrupts DHCPv6 service for all downstream interfaces served by tha
 <td></td>
 </tr>
 <tr>
+<td>5299231</td>
+<td>When a route that uses a next hop group replaces a downstream-VNI (ip-encap) route, the prefix ECMP container of the old flat next hop is never released, keeping its route user and the DVNI RIF in use. A later RIF delete returns {{RESOURCE_IN_USE}} and the RIF/FID stay parked in {{dvni_pending_ht}} with nothing left to retry.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5299163</td>
+<td>On Spectrum-1 switches, concurrent PDDR reads can cause a fatal FW Long Command timeout on register 0x5031. The ASIC resets in a loop, switchd is terminated, and all front-panel ports go down. The health-monitor log shows cause 18 (FW Long Command) with reg_attr_id 0x5031.</td>
+<td>5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5299074</td>
 <td>When multiple PDDR (Port Diagnostic Database Register) reads happen at the same time, the ASIC command interface can get stuck on register 0x5031. If this happens, {{switchd}} is terminated while it is in this hung state, which brings down all data ports. You see command-interface timeout on access register 0x5031 in the logs, followed by a fatal firmware health or FW Long Command event.</td>
 <td>5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5298371, 5298370</td>
+<td>The switch incorrectly advertises a MAC-only EVPN type-2 route with the layer 3 VNI label in the BGP NLRI (Network Layer Reachability Information). Although this does not have any functional impact, it is not the desired RFC behavior.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -1495,38 +1679,7 @@ This failure disrupts DHCPv6 service for all downstream interfaces served by tha
 </tr>
 <tr>
 <td>5281416, 5341616</td>
-<td>When a configuration request is submitted through the REST API and RADIUS is configured for AAA authentication, the Calling-Station-Id sent to the RADIUS server incorrectly contains the loopback address (127.0.0.1) instead of the IP address of the originating REST API client .
-
-Due to flow:
-
-REST API Client
-10.87.221.34
-      |
-      v
-+---------------------+
-| Public NVUE NGINX   |
-| knows original IP   |
-+---------------------+
-      |
-      | auth subrequest
-      | via 127.0.0.1 / ::1
-      v
-+----------------------+
-| Internal NGINX Auth  |
-+----------------------+
-      |
-      v
-   PAM nvueapi
-      |
-      v
- pam_radius_auth
-      |
-      v
-+----------------------+
-|    RADIUS Server     |
-| Calling-Station-Id = |
-| 127.0.0.1 / ::1  X   |
-+----------------------+</td>
+<td>When you submit a configuration request through the REST API and RADIUS is configured for AAA authentication, the {{Calling-Station-Id}} sent to the RADIUS server incorrectly contains the loopback address (127.0.0.1) instead of the IP address of the originating REST API client.</td>
 <td>5.16.6-5.18.3</td>
 <td></td>
 </tr>
@@ -1558,6 +1711,12 @@ REST API Client
 <td>5268313</td>
 <td>An offline package upgrade might fail when package scripts attempt to move {{containerd}} storage while the runtime is still running, leaving the upgrade incomplete and dependent services unavailable.</td>
 <td>5.16.8-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5265724</td>
+<td>When many links are down or shut down gracefully on a large cluster, the number of ECMP groups the switch needs can exceed what the AR-LGPT table can optimize. As a result, the GEN0 AR group compression algorithm can remove some ports from forwarding. For example, 16 of 56 ports can be removed on a switch. Because the removed links no longer take part in adaptive routing forwarding, the remaining links carry their traffic and can become overloaded.</td>
+<td>5.16.6-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -1653,6 +1812,12 @@ REST API Client
 <tr>
 <td>5221340</td>
 <td>When you put a switch in maintenance mode, then warm reboot the switch, it incorrectly starts a new advertisement delay after graceful restart completes. As a result, remote devices see host exceptions change state unnecessarily after the warm reboot.</td>
+<td>5.18.0-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5221267, 5299547</td>
+<td>The gNMI server does not return sample data for endpoint subscriptions under {{interfaces/interface/phy/channels/channel/state}}, such as {{fc-fec-corrected-blocks}} or {{rs-fec-corrected-symbols}}. The server accepts the subscription and sends a {{sync_response}}, but sends no updates.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
@@ -1754,7 +1919,7 @@ REST API Client
 </tr>
 <tr>
 <td>5185505</td>
-<td>On the Spectrum-6 switch, NVUE fails to display per-interface counters for usb0 although the interface and its counters are shown in the global counters view.</td>
+<td>On the Spectrum-6 switch, NVUE fails to display counters for every interface for usb0 even though the interface and its counters show in the global counters view.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
@@ -1772,7 +1937,7 @@ REST API Client
 </tr>
 <tr>
 <td>5183654, 5234851</td>
-<td>During a warm APT upgrade, gNMI could restart while the container runtime was being updated, causing a startup failure and automatic cl-support collection before the switch rebooted.</td>
+<td>During a warm APT upgrade, gNMI does restart while the container runtime is being updated, causing a startup failure and automatic cl-support collection before the switch reboots.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
@@ -1783,6 +1948,12 @@ Package: *
 Pin: release a=cumulus-local-apt-archive
 Pin-Priority: 992</td>
 <td>5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5182960</td>
+<td>In a large 512 interface INTERFACE_MULTIPLEXER configuration, the system looks healthy and the ports show carrier up, but actual traffic cannot pass between directly connected ports. As a result, IPv6 neighbor discovery does not complete and BGP sessions do not establish.</td>
+<td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -1841,19 +2012,19 @@ Pin-Priority: 992</td>
 </tr>
 <tr>
 <td>5175384</td>
-<td>When nv config is applied while switchd is restarting , NVUE FSM tries to read ASIC platform resource information  before the switch services are fully ready. As a result, the resource query returns empty or invalid data and NVUE logs an unhandled JSON parsing error instead of waiting, retrying, or failing gracefully. This is typically seen when you configure OTEL and run the {{nv config apply}} command while {{switchd}} and {{prometheus-sdk-stats}} are restarting.</td>
+<td>If you run the {{nv config apply}} command while {{switchd}} is restarting , NVUE tries to read ASIC platform resource information before the switch services are fully ready. As a result, the resource query returns empty or invalid data and NVUE logs an unhandled JSON parsing error instead of waiting, retrying, or failing gracefully. This is typically seen when you configure OTEL and run the {{nv config apply}} command while {{switchd}} and {{prometheus-sdk-stats}} are restarting.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
 <tr>
 <td>5174873</td>
-<td>On an EVPN MH topology with route leaking, if we enable Layer 3 VXLAN Device Mode from existing Single VXLAN Device for All Layer 3 VNIs model, FDB/mac entry is not installed in hardware for some remote VTEP router macs. This affects L3 VxLAN traffic through the VTEPs whose RMACs are not installed on the DUT.</td>
+<td>In an EVPN multihoming configuration with route leaking, if you enable layer 3 VXLAN device mode from an existing single VXLAN device for all layer 3 VNIs, the switch does not install the FDB MAC entry in hardware for some remote VTEP router MACs. This affects layer 3 VXLAN traffic through the VTEPs whose RMACs are not installed on the DUT.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
 <tr>
 <td>5174595, 5233487</td>
-<td>On an EVPN MH topology with route leaking, if we enable Layer 3 VXLAN Device Mode from existing Single VXLAN Device for All Layer 3 VNIs model, cl-route-check errors are observed. Neighbor entry is not resolved for the next hop and hence traffic on the routes shown in cl-route-check errors will be impacted.</td>
+<td>In an EVPN multihoming configuration with route leaking, if you enable layer 3 VXLAN device mode from  an existing single VXLAN device for all layer 3 VNIs, you see {{cl-route-check}} errors. The switch does not resolve the neighbor entry for the next hop and traffic on the routes shown in the cl-route-check errors are affected.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
@@ -1883,7 +2054,7 @@ Pin-Priority: 992</td>
 </tr>
 <tr>
 <td>5165432, 5154620</td>
-<td>With EVPN L3VXI mode enabled, routes leaked between tenant vrfs (using import vrfs) are installed without the encap info leading to blackholing of the traffic. </td>
+<td>With EVPN layer 3 VXLAN device mode enabled, the switch installs routes leaked between tenant VRFs (using import VRFs) without the encapsulation information, which results in traffic drops.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
@@ -1913,13 +2084,19 @@ Pin-Priority: 992</td>
 </tr>
 <tr>
 <td>5157775</td>
-<td>On Spectrum-6 with 800Gx8 ports, traffic sent at full speed is consistently not fully transmitted, causing packet loss for every frame size. The loss increases as packet size increases, indicating that the egress path can not sustain full line-rate traffic and packets drop on transmit.</td>
+<td>On a Spectrum-6 switch with 800Gx8 ports, the switch does not fully transmit traffic sent at full speed, causing packet loss for every frame size. The loss increases as packet size increases, indicating that the egress path cannot sustain full line-rate traffic and packets drop on transmit.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
 <tr>
 <td>5154524</td>
 <td>The switch system health included the {{ledmgrd}} service in health evaluation incorrectly, causing false {{ServicesStatus: BAD}} results for virtual platforms. </td>
+<td>5.18.0-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5152031</td>
+<td>When you run {{nv set}} or {{nv}} action commands while performing a warm upgrade, Cumulus Linux shows a very generic error message instead of an explicit and actionable message.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
@@ -1955,20 +2132,25 @@ Pin-Priority: 992</td>
 </tr>
 <tr>
 <td>5107338</td>
-<td>onie-install, onie-select, and cl-image-upgrade now allow only one instance of each to run at the same time, except for read (status check), which you can use at any time.</td>
+<td>The {{sudo onie-install -s}} command sometimes fails when the {{nv show system image}} command is running continuously in background.</td>
+<td>5.18.0-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5107310</td>
+<td>On Spectrum-5 and Spectrum-6 switches, NVUE allows you to configure a vlan-aware bridge with more VLANs than the platform FID budget allows without validation. The configuration applies successfully but the switch silently drops traffic on the VLANs beyond the hardware FID limit at ingress.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
 <tr>
 <td>5095522</td>
-<td>The GNMI xpath {{/components/component[name=*]/transceiver/state/ethernet-pmd}} metric shows data for a specific transceiver port when the queried port has no active link (the link is down).</td>
+<td>For CMIS transceivers (QSFP-DD, OSFP), the gNMI path {{/components/component[name=*]/transceiver/state/ethernet-pmd}} and the OTLP metric {{nvswitch_platform_transceiver_ethernet_pmd}} are based on the first application the module advertises. If the first application is not the module's full rate, for example a twin-port 800G module that advertises 400GAUI-4, the reported PMD shows the lower rate. If the first application is InfiniBand, an active cable reports its PMD only while the link is up.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
 <tr>
 <td>5091418, 5269525</td>
-<td>Under high-scale offload-mode transitions, the BFD dataplane plugin's internal outbound message queue can fill up and silently drop session state-change notifications destined for the {{bfdd}} core process. The sessions are fully and correctly programmed in the SDK/hardware in both directions (TX and RX counters advancing normally); however, the state notification informing {{bfdd}} that a session came Up is dropped, so {{bfdd}}'s view of the session stays stuck at Down indefinitely with nothing to re-drive it.
-</td>
+<td>Under high-scale offload-mode transitions, the internal outbound message queue of the BFD dataplane plugin might fill up and silently drop session state-change notifications destined for the {{bfdd}} core process. The sessions are fully and correctly programmed in the hardware in both directions (TX and RX counters advancing normally); however, the switch drops the state notification informing {{bfdd}} that a session came up, so {{bfdd}}'s view of the session stays stuck at Down indefinitely.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
@@ -2792,6 +2974,66 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5346399</td>
+<td>In rare cases, after you delete, then add back a VRF with the same table ID, its default route stays inactive and is not installed, even though BGP selects it as best. To work around this issue, restart FRR with {{sudo systemctl restart frr}}. </td>
+<td>5.16.6-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5345924</td>
+<td>After a link flap, an IPv6 host directly connected to a routed port might become unreachable if a stale neighbour entry for the host is programmed in the ASIC with a DROP action and never removed. To work around this issue, force {{switchd}} to resynchronise its neighbour table from the kernel by running the {{echo 1 &gt; /cumulus/switchd/ctrl/netlink/resync}} command as root. Pinging the affected host from the switch also clears the entry.</td>
+<td>5.16.7-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5345905</td>
+<td>When a link or BGP session between a leaf and a spine goes down and comes back up, the prefixes of hosts connected to that leaf might not move back to the direct path through the leaf. The per-source NHG feature keeps forwarding traffic for those host prefixes over the backup path through another plane, even though BGP selects the direct path as best.</td>
+<td>5.17.0-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5343996</td>
+<td>If a front-panel link changes state during an ISSU warm upgrade, {{switchd}} might retain the pre-upgrade link state for that interface. As a result, Linux and NVUE report an operational state that does not match the hardware after the upgrade completes. To work around this issue, run the {{echo 1 &gt; /cumulus/switchd/ctrl/resync}} command.</td>
+<td>5.16.7-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5341702</td>
+<td>On a switch with FIPS mode enabled and a license file installed, {{switchd}} fails to start. The license check run by {{start-switchd}} (switchd -lic) crashes with a segmentation fault; the WJH service fails and the {{nv config apply}} command returns an error. To resolve this issue, disable FIPS mode and restart the switch.</td>
+<td>5.18.1-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5341681</td>
+<td>After an optimized image upgrade from CL 5.16.5 to 5.18.1 with FIPS enabled, every NVUE {{nv config apply}} fails with {{Unrecoverable internal error}}, and the NVUE REST API (nginx) fails OpenSSL initialization.</td>
+<td>5.18.1-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5341294</td>
+<td>On NVIDIA Spectrum switches, DHCP and DHCPv6 packets with two VLAN tags (QinQ) are dropped instead of being forwarded across the bridge.</td>
+<td>5.16.8-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5340844</td>
+<td>Transceiver data collection takes longer than 60 seconds due to boot time churn. During a steady state, the API returns within 10 to 20 seconds.</td>
+<td>5.16.6-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5338737</td>
+<td>In a large scale configuration, {{switchd}} might take more time to come up and trigger the watchdog timeout.</td>
+<td>5.16.7-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5331128</td>
+<td>On switches with EVPN-VXLAN configured, when a remote MAC address moves from one remote VTEP to another in the same VNI, the hardware forwarding table keeps pointing to the old VTEP. The kernel and the EVPN control plane show the correct new VTEP, but the switch keeps forwarding traffic for that MAC address to the old VTEP.  To work around this issue, restart {{switchd}} with the {{sudo systemctl restart switchd}} command to reprogram the hardware forwarding table. The restart interrupts traffic on the switch, so do it in a maintenance window. With MLAG, restart one peer at a time and wait for it to fully converge before restarting the other.</td>
+<td>5.17.0-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5327622</td>
 <td>A bridge FDB flush does not restore EVPN router MAC entries in the Kernel.</td>
 <td>5.11.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
@@ -2816,6 +3058,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
+<td>5316062</td>
+<td>Optimized image upgrade fails on a switch when the content of the {{/var/log}} folder becomes very large. The upgrade installer copies the entire {{/var/log}} onto the root filesystem of the new partition, which has a fixed size. A large log directory fills that partition, so the install operation fails. As a result, you will not be able to initiate a switch to the other partition to perform the upgrade.</td>
+<td>5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5315365</td>
 <td>An incomplete, unauthenticated station entry is retained incorrectly and restored after upgrade. This causes a new EAP Identity exchange to start, but the entry is not aged out as expected on the wired interface, resulting in continuous retransmissions.</td>
 <td>5.16.7-5.18.3</td>
@@ -2826,6 +3074,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>DHCPv6 relay might fail to start when a configured upstream interface has no discoverable IPv6 address. This includes admin down interfaces and unnumbered VLAN interfaces created without carrier during  provisioning.
 This failure disrupts DHCPv6 service for all downstream interfaces served by that relay instance, even when other upstreams can reach the server.</td>
 <td>5.18.1-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5309020</td>
+<td>Under heavy data-plane traffic, a firmware write might remain in a pending state longer, resulting in a FATAL ASIC firmware health event ({{FW CR Space timeout}}). </td>
+<td>5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -2865,9 +3119,27 @@ This failure disrupts DHCPv6 service for all downstream interfaces served by tha
 <td></td>
 </tr>
 <tr>
+<td>5299231</td>
+<td>When a route that uses a next hop group replaces a downstream-VNI (ip-encap) route, the prefix ECMP container of the old flat next hop is never released, keeping its route user and the DVNI RIF in use. A later RIF delete returns {{RESOURCE_IN_USE}} and the RIF/FID stay parked in {{dvni_pending_ht}} with nothing left to retry.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5299163</td>
+<td>On Spectrum-1 switches, concurrent PDDR reads can cause a fatal FW Long Command timeout on register 0x5031. The ASIC resets in a loop, switchd is terminated, and all front-panel ports go down. The health-monitor log shows cause 18 (FW Long Command) with reg_attr_id 0x5031.</td>
+<td>5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5299074</td>
 <td>When multiple PDDR (Port Diagnostic Database Register) reads happen at the same time, the ASIC command interface can get stuck on register 0x5031. If this happens, {{switchd}} is terminated while it is in this hung state, which brings down all data ports. You see command-interface timeout on access register 0x5031 in the logs, followed by a fatal firmware health or FW Long Command event.</td>
 <td>5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5298371, 5298370</td>
+<td>The switch incorrectly advertises a MAC-only EVPN type-2 route with the layer 3 VNI label in the BGP NLRI (Network Layer Reachability Information). Although this does not have any functional impact, it is not the desired RFC behavior.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -2884,38 +3156,7 @@ This failure disrupts DHCPv6 service for all downstream interfaces served by tha
 </tr>
 <tr>
 <td>5281416, 5341616</td>
-<td>When a configuration request is submitted through the REST API and RADIUS is configured for AAA authentication, the Calling-Station-Id sent to the RADIUS server incorrectly contains the loopback address (127.0.0.1) instead of the IP address of the originating REST API client .
-
-Due to flow:
-
-REST API Client
-10.87.221.34
-      |
-      v
-+---------------------+
-| Public NVUE NGINX   |
-| knows original IP   |
-+---------------------+
-      |
-      | auth subrequest
-      | via 127.0.0.1 / ::1
-      v
-+----------------------+
-| Internal NGINX Auth  |
-+----------------------+
-      |
-      v
-   PAM nvueapi
-      |
-      v
- pam_radius_auth
-      |
-      v
-+----------------------+
-|    RADIUS Server     |
-| Calling-Station-Id = |
-| 127.0.0.1 / ::1  X   |
-+----------------------+</td>
+<td>When you submit a configuration request through the REST API and RADIUS is configured for AAA authentication, the {{Calling-Station-Id}} sent to the RADIUS server incorrectly contains the loopback address (127.0.0.1) instead of the IP address of the originating REST API client.</td>
 <td>5.16.6-5.18.3</td>
 <td></td>
 </tr>
@@ -2947,6 +3188,12 @@ REST API Client
 <td>5268313</td>
 <td>An offline package upgrade might fail when package scripts attempt to move {{containerd}} storage while the runtime is still running, leaving the upgrade incomplete and dependent services unavailable.</td>
 <td>5.16.8-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5265724</td>
+<td>When many links are down or shut down gracefully on a large cluster, the number of ECMP groups the switch needs can exceed what the AR-LGPT table can optimize. As a result, the GEN0 AR group compression algorithm can remove some ports from forwarding. For example, 16 of 56 ports can be removed on a switch. Because the removed links no longer take part in adaptive routing forwarding, the remaining links carry their traffic and can become overloaded.</td>
+<td>5.16.6-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -3042,6 +3289,12 @@ REST API Client
 <tr>
 <td>5221340</td>
 <td>When you put a switch in maintenance mode, then warm reboot the switch, it incorrectly starts a new advertisement delay after graceful restart completes. As a result, remote devices see host exceptions change state unnecessarily after the warm reboot.</td>
+<td>5.18.0-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5221267, 5299547</td>
+<td>The gNMI server does not return sample data for endpoint subscriptions under {{interfaces/interface/phy/channels/channel/state}}, such as {{fc-fec-corrected-blocks}} or {{rs-fec-corrected-symbols}}. The server accepts the subscription and sends a {{sync_response}}, but sends no updates.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
@@ -3143,7 +3396,7 @@ REST API Client
 </tr>
 <tr>
 <td>5185505</td>
-<td>On the Spectrum-6 switch, NVUE fails to display per-interface counters for usb0 although the interface and its counters are shown in the global counters view.</td>
+<td>On the Spectrum-6 switch, NVUE fails to display counters for every interface for usb0 even though the interface and its counters show in the global counters view.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
@@ -3161,7 +3414,7 @@ REST API Client
 </tr>
 <tr>
 <td>5183654, 5234851</td>
-<td>During a warm APT upgrade, gNMI could restart while the container runtime was being updated, causing a startup failure and automatic cl-support collection before the switch rebooted.</td>
+<td>During a warm APT upgrade, gNMI does restart while the container runtime is being updated, causing a startup failure and automatic cl-support collection before the switch reboots.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
@@ -3172,6 +3425,12 @@ Package: *
 Pin: release a=cumulus-local-apt-archive
 Pin-Priority: 992</td>
 <td>5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5182960</td>
+<td>In a large 512 interface INTERFACE_MULTIPLEXER configuration, the system looks healthy and the ports show carrier up, but actual traffic cannot pass between directly connected ports. As a result, IPv6 neighbor discovery does not complete and BGP sessions do not establish.</td>
+<td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -3230,19 +3489,19 @@ Pin-Priority: 992</td>
 </tr>
 <tr>
 <td>5175384</td>
-<td>When nv config is applied while switchd is restarting , NVUE FSM tries to read ASIC platform resource information  before the switch services are fully ready. As a result, the resource query returns empty or invalid data and NVUE logs an unhandled JSON parsing error instead of waiting, retrying, or failing gracefully. This is typically seen when you configure OTEL and run the {{nv config apply}} command while {{switchd}} and {{prometheus-sdk-stats}} are restarting.</td>
+<td>If you run the {{nv config apply}} command while {{switchd}} is restarting , NVUE tries to read ASIC platform resource information before the switch services are fully ready. As a result, the resource query returns empty or invalid data and NVUE logs an unhandled JSON parsing error instead of waiting, retrying, or failing gracefully. This is typically seen when you configure OTEL and run the {{nv config apply}} command while {{switchd}} and {{prometheus-sdk-stats}} are restarting.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
 <tr>
 <td>5174873</td>
-<td>On an EVPN MH topology with route leaking, if we enable Layer 3 VXLAN Device Mode from existing Single VXLAN Device for All Layer 3 VNIs model, FDB/mac entry is not installed in hardware for some remote VTEP router macs. This affects L3 VxLAN traffic through the VTEPs whose RMACs are not installed on the DUT.</td>
+<td>In an EVPN multihoming configuration with route leaking, if you enable layer 3 VXLAN device mode from an existing single VXLAN device for all layer 3 VNIs, the switch does not install the FDB MAC entry in hardware for some remote VTEP router MACs. This affects layer 3 VXLAN traffic through the VTEPs whose RMACs are not installed on the DUT.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
 <tr>
 <td>5174595, 5233487</td>
-<td>On an EVPN MH topology with route leaking, if we enable Layer 3 VXLAN Device Mode from existing Single VXLAN Device for All Layer 3 VNIs model, cl-route-check errors are observed. Neighbor entry is not resolved for the next hop and hence traffic on the routes shown in cl-route-check errors will be impacted.</td>
+<td>In an EVPN multihoming configuration with route leaking, if you enable layer 3 VXLAN device mode from  an existing single VXLAN device for all layer 3 VNIs, you see {{cl-route-check}} errors. The switch does not resolve the neighbor entry for the next hop and traffic on the routes shown in the cl-route-check errors are affected.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
@@ -3272,7 +3531,7 @@ Pin-Priority: 992</td>
 </tr>
 <tr>
 <td>5165432, 5154620</td>
-<td>With EVPN L3VXI mode enabled, routes leaked between tenant vrfs (using import vrfs) are installed without the encap info leading to blackholing of the traffic. </td>
+<td>With EVPN layer 3 VXLAN device mode enabled, the switch installs routes leaked between tenant VRFs (using import VRFs) without the encapsulation information, which results in traffic drops.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
@@ -3302,13 +3561,19 @@ Pin-Priority: 992</td>
 </tr>
 <tr>
 <td>5157775</td>
-<td>On Spectrum-6 with 800Gx8 ports, traffic sent at full speed is consistently not fully transmitted, causing packet loss for every frame size. The loss increases as packet size increases, indicating that the egress path can not sustain full line-rate traffic and packets drop on transmit.</td>
+<td>On a Spectrum-6 switch with 800Gx8 ports, the switch does not fully transmit traffic sent at full speed, causing packet loss for every frame size. The loss increases as packet size increases, indicating that the egress path cannot sustain full line-rate traffic and packets drop on transmit.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
 <tr>
 <td>5154524</td>
 <td>The switch system health included the {{ledmgrd}} service in health evaluation incorrectly, causing false {{ServicesStatus: BAD}} results for virtual platforms. </td>
+<td>5.18.0-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5152031</td>
+<td>When you run {{nv set}} or {{nv}} action commands while performing a warm upgrade, Cumulus Linux shows a very generic error message instead of an explicit and actionable message.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
@@ -3344,20 +3609,25 @@ Pin-Priority: 992</td>
 </tr>
 <tr>
 <td>5107338</td>
-<td>onie-install, onie-select, and cl-image-upgrade now allow only one instance of each to run at the same time, except for read (status check), which you can use at any time.</td>
+<td>The {{sudo onie-install -s}} command sometimes fails when the {{nv show system image}} command is running continuously in background.</td>
+<td>5.18.0-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5107310</td>
+<td>On Spectrum-5 and Spectrum-6 switches, NVUE allows you to configure a vlan-aware bridge with more VLANs than the platform FID budget allows without validation. The configuration applies successfully but the switch silently drops traffic on the VLANs beyond the hardware FID limit at ingress.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
 <tr>
 <td>5095522</td>
-<td>The GNMI xpath {{/components/component[name=*]/transceiver/state/ethernet-pmd}} metric shows data for a specific transceiver port when the queried port has no active link (the link is down).</td>
+<td>For CMIS transceivers (QSFP-DD, OSFP), the gNMI path {{/components/component[name=*]/transceiver/state/ethernet-pmd}} and the OTLP metric {{nvswitch_platform_transceiver_ethernet_pmd}} are based on the first application the module advertises. If the first application is not the module's full rate, for example a twin-port 800G module that advertises 400GAUI-4, the reported PMD shows the lower rate. If the first application is InfiniBand, an active cable reports its PMD only while the link is up.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
 <tr>
 <td>5091418, 5269525</td>
-<td>Under high-scale offload-mode transitions, the BFD dataplane plugin's internal outbound message queue can fill up and silently drop session state-change notifications destined for the {{bfdd}} core process. The sessions are fully and correctly programmed in the SDK/hardware in both directions (TX and RX counters advancing normally); however, the state notification informing {{bfdd}} that a session came Up is dropped, so {{bfdd}}'s view of the session stays stuck at Down indefinitely with nothing to re-drive it.
-</td>
+<td>Under high-scale offload-mode transitions, the internal outbound message queue of the BFD dataplane plugin might fill up and silently drop session state-change notifications destined for the {{bfdd}} core process. The sessions are fully and correctly programmed in the hardware in both directions (TX and RX counters advancing normally); however, the switch drops the state notification informing {{bfdd}} that a session came up, so {{bfdd}}'s view of the session stays stuck at Down indefinitely.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
@@ -4225,7 +4495,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>5221590, 5217108, 5182789, 5216045, 5215790</td>
 <td>BGP peer sessions might repeatedly flap and re-establish. During outbound TCP connect, the BGP service might clear the local nexthop information for the peer and fail nexthop setup when the remote endpoint is not yet available, which resets the session. Logs might show {{nexthop_set failed with remote: (null) and Transport endpoint is not...}}.</td>
-<td>5.16.1, 5.16.5-5.16.6</td>
+<td>5.16.1, 5.16.5-5.16.7</td>
 </tr>
 <tr>
 <td>5221589, 5221130, 5197572, 5183241</td>
@@ -4244,6 +4514,54 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>5346399</td>
+<td>In rare cases, after you delete, then add back a VRF with the same table ID, its default route stays inactive and is not installed, even though BGP selects it as best. To work around this issue, restart FRR with {{sudo systemctl restart frr}}. </td>
+<td>5.16.6-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5345924</td>
+<td>After a link flap, an IPv6 host directly connected to a routed port might become unreachable if a stale neighbour entry for the host is programmed in the ASIC with a DROP action and never removed. To work around this issue, force {{switchd}} to resynchronise its neighbour table from the kernel by running the {{echo 1 &gt; /cumulus/switchd/ctrl/netlink/resync}} command as root. Pinging the affected host from the switch also clears the entry.</td>
+<td>5.16.7-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5345905</td>
+<td>When a link or BGP session between a leaf and a spine goes down and comes back up, the prefixes of hosts connected to that leaf might not move back to the direct path through the leaf. The per-source NHG feature keeps forwarding traffic for those host prefixes over the backup path through another plane, even though BGP selects the direct path as best.</td>
+<td>5.17.0-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5343996</td>
+<td>If a front-panel link changes state during an ISSU warm upgrade, {{switchd}} might retain the pre-upgrade link state for that interface. As a result, Linux and NVUE report an operational state that does not match the hardware after the upgrade completes. To work around this issue, run the {{echo 1 &gt; /cumulus/switchd/ctrl/resync}} command.</td>
+<td>5.16.7-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5341294</td>
+<td>On NVIDIA Spectrum switches, DHCP and DHCPv6 packets with two VLAN tags (QinQ) are dropped instead of being forwarded across the bridge.</td>
+<td>5.16.8-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5340844</td>
+<td>Transceiver data collection takes longer than 60 seconds due to boot time churn. During a steady state, the API returns within 10 to 20 seconds.</td>
+<td>5.16.6-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5338737</td>
+<td>In a large scale configuration, {{switchd}} might take more time to come up and trigger the watchdog timeout.</td>
+<td>5.16.7-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5331128</td>
+<td>On switches with EVPN-VXLAN configured, when a remote MAC address moves from one remote VTEP to another in the same VNI, the hardware forwarding table keeps pointing to the old VTEP. The kernel and the EVPN control plane show the correct new VTEP, but the switch keeps forwarding traffic for that MAC address to the old VTEP.  To work around this issue, restart {{switchd}} with the {{sudo systemctl restart switchd}} command to reprogram the hardware forwarding table. The restart interrupts traffic on the switch, so do it in a maintenance window. With MLAG, restart one peer at a time and wait for it to fully converge before restarting the other.</td>
+<td>5.17.0-5.18.3</td>
+<td></td>
 </tr>
 <tr>
 <td>5327622</td>
@@ -4270,9 +4588,21 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
+<td>5316062</td>
+<td>Optimized image upgrade fails on a switch when the content of the {{/var/log}} folder becomes very large. The upgrade installer copies the entire {{/var/log}} onto the root filesystem of the new partition, which has a fixed size. A large log directory fills that partition, so the install operation fails. As a result, you will not be able to initiate a switch to the other partition to perform the upgrade.</td>
+<td>5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5315365</td>
 <td>An incomplete, unauthenticated station entry is retained incorrectly and restored after upgrade. This causes a new EAP Identity exchange to start, but the entry is not aged out as expected on the wired interface, resulting in continuous retransmissions.</td>
 <td>5.16.7-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5309020</td>
+<td>Under heavy data-plane traffic, a firmware write might remain in a pending state longer, resulting in a FATAL ASIC firmware health event ({{FW CR Space timeout}}). </td>
+<td>5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -4312,9 +4642,27 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
+<td>5299231</td>
+<td>When a route that uses a next hop group replaces a downstream-VNI (ip-encap) route, the prefix ECMP container of the old flat next hop is never released, keeping its route user and the DVNI RIF in use. A later RIF delete returns {{RESOURCE_IN_USE}} and the RIF/FID stay parked in {{dvni_pending_ht}} with nothing left to retry.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5299163</td>
+<td>On Spectrum-1 switches, concurrent PDDR reads can cause a fatal FW Long Command timeout on register 0x5031. The ASIC resets in a loop, switchd is terminated, and all front-panel ports go down. The health-monitor log shows cause 18 (FW Long Command) with reg_attr_id 0x5031.</td>
+<td>5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5299074</td>
 <td>When multiple PDDR (Port Diagnostic Database Register) reads happen at the same time, the ASIC command interface can get stuck on register 0x5031. If this happens, {{switchd}} is terminated while it is in this hung state, which brings down all data ports. You see command-interface timeout on access register 0x5031 in the logs, followed by a fatal firmware health or FW Long Command event.</td>
 <td>5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5298371, 5298370</td>
+<td>The switch incorrectly advertises a MAC-only EVPN type-2 route with the layer 3 VNI label in the BGP NLRI (Network Layer Reachability Information). Although this does not have any functional impact, it is not the desired RFC behavior.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -4331,38 +4679,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 </tr>
 <tr>
 <td>5281416, 5341616</td>
-<td>When a configuration request is submitted through the REST API and RADIUS is configured for AAA authentication, the Calling-Station-Id sent to the RADIUS server incorrectly contains the loopback address (127.0.0.1) instead of the IP address of the originating REST API client .
-
-Due to flow:
-
-REST API Client
-10.87.221.34
-      |
-      v
-+---------------------+
-| Public NVUE NGINX   |
-| knows original IP   |
-+---------------------+
-      |
-      | auth subrequest
-      | via 127.0.0.1 / ::1
-      v
-+----------------------+
-| Internal NGINX Auth  |
-+----------------------+
-      |
-      v
-   PAM nvueapi
-      |
-      v
- pam_radius_auth
-      |
-      v
-+----------------------+
-|    RADIUS Server     |
-| Calling-Station-Id = |
-| 127.0.0.1 / ::1  X   |
-+----------------------+</td>
+<td>When you submit a configuration request through the REST API and RADIUS is configured for AAA authentication, the {{Calling-Station-Id}} sent to the RADIUS server incorrectly contains the loopback address (127.0.0.1) instead of the IP address of the originating REST API client.</td>
 <td>5.16.6-5.18.3</td>
 <td></td>
 </tr>
@@ -4388,6 +4705,12 @@ REST API Client
 <td>5268313</td>
 <td>An offline package upgrade might fail when package scripts attempt to move {{containerd}} storage while the runtime is still running, leaving the upgrade incomplete and dependent services unavailable.</td>
 <td>5.16.8-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5265724</td>
+<td>When many links are down or shut down gracefully on a large cluster, the number of ECMP groups the switch needs can exceed what the AR-LGPT table can optimize. As a result, the GEN0 AR group compression algorithm can remove some ports from forwarding. For example, 16 of 56 ports can be removed on a switch. Because the removed links no longer take part in adaptive routing forwarding, the remaining links carry their traffic and can become overloaded.</td>
+<td>5.16.6-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -4499,6 +4822,12 @@ REST API Client
 <td></td>
 </tr>
 <tr>
+<td>5221267, 5299547</td>
+<td>The gNMI server does not return sample data for endpoint subscriptions under {{interfaces/interface/phy/channels/channel/state}}, such as {{fc-fec-corrected-blocks}} or {{rs-fec-corrected-symbols}}. The server accepts the subscription and sends a {{sync_response}}, but sends no updates.</td>
+<td>5.18.0-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5221132, 5220825, 5226315</td>
 <td>After you put the switch in maintenance mode, then perform a warm boot, turning maintenance mode off does not fully clear the maintenance state. As a result, the system keeps behaving as if maintenance is still active; the local default route exceptions remain installed and remote devices continue to see shutdown or unreachable indicators indefinitely.</td>
 <td>5.18.0-5.18.3</td>
@@ -4596,7 +4925,7 @@ REST API Client
 </tr>
 <tr>
 <td>5185505</td>
-<td>On the Spectrum-6 switch, NVUE fails to display per-interface counters for usb0 although the interface and its counters are shown in the global counters view.</td>
+<td>On the Spectrum-6 switch, NVUE fails to display counters for every interface for usb0 even though the interface and its counters show in the global counters view.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
@@ -4614,7 +4943,7 @@ REST API Client
 </tr>
 <tr>
 <td>5183654, 5234851</td>
-<td>During a warm APT upgrade, gNMI could restart while the container runtime was being updated, causing a startup failure and automatic cl-support collection before the switch rebooted.</td>
+<td>During a warm APT upgrade, gNMI does restart while the container runtime is being updated, causing a startup failure and automatic cl-support collection before the switch reboots.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
@@ -4625,6 +4954,12 @@ Package: *
 Pin: release a=cumulus-local-apt-archive
 Pin-Priority: 992</td>
 <td>5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5182960</td>
+<td>In a large 512 interface INTERFACE_MULTIPLEXER configuration, the system looks healthy and the ports show carrier up, but actual traffic cannot pass between directly connected ports. As a result, IPv6 neighbor discovery does not complete and BGP sessions do not establish.</td>
+<td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -4689,19 +5024,19 @@ Pin-Priority: 992</td>
 </tr>
 <tr>
 <td>5175384</td>
-<td>When nv config is applied while switchd is restarting , NVUE FSM tries to read ASIC platform resource information  before the switch services are fully ready. As a result, the resource query returns empty or invalid data and NVUE logs an unhandled JSON parsing error instead of waiting, retrying, or failing gracefully. This is typically seen when you configure OTEL and run the {{nv config apply}} command while {{switchd}} and {{prometheus-sdk-stats}} are restarting.</td>
+<td>If you run the {{nv config apply}} command while {{switchd}} is restarting , NVUE tries to read ASIC platform resource information before the switch services are fully ready. As a result, the resource query returns empty or invalid data and NVUE logs an unhandled JSON parsing error instead of waiting, retrying, or failing gracefully. This is typically seen when you configure OTEL and run the {{nv config apply}} command while {{switchd}} and {{prometheus-sdk-stats}} are restarting.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
 <tr>
 <td>5174873</td>
-<td>On an EVPN MH topology with route leaking, if we enable Layer 3 VXLAN Device Mode from existing Single VXLAN Device for All Layer 3 VNIs model, FDB/mac entry is not installed in hardware for some remote VTEP router macs. This affects L3 VxLAN traffic through the VTEPs whose RMACs are not installed on the DUT.</td>
+<td>In an EVPN multihoming configuration with route leaking, if you enable layer 3 VXLAN device mode from an existing single VXLAN device for all layer 3 VNIs, the switch does not install the FDB MAC entry in hardware for some remote VTEP router MACs. This affects layer 3 VXLAN traffic through the VTEPs whose RMACs are not installed on the DUT.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
 <tr>
 <td>5174595, 5233487</td>
-<td>On an EVPN MH topology with route leaking, if we enable Layer 3 VXLAN Device Mode from existing Single VXLAN Device for All Layer 3 VNIs model, cl-route-check errors are observed. Neighbor entry is not resolved for the next hop and hence traffic on the routes shown in cl-route-check errors will be impacted.</td>
+<td>In an EVPN multihoming configuration with route leaking, if you enable layer 3 VXLAN device mode from  an existing single VXLAN device for all layer 3 VNIs, you see {{cl-route-check}} errors. The switch does not resolve the neighbor entry for the next hop and traffic on the routes shown in the cl-route-check errors are affected.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
@@ -4731,7 +5066,7 @@ Pin-Priority: 992</td>
 </tr>
 <tr>
 <td>5165432, 5154620</td>
-<td>With EVPN L3VXI mode enabled, routes leaked between tenant vrfs (using import vrfs) are installed without the encap info leading to blackholing of the traffic. </td>
+<td>With EVPN layer 3 VXLAN device mode enabled, the switch installs routes leaked between tenant VRFs (using import VRFs) without the encapsulation information, which results in traffic drops.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
@@ -4761,13 +5096,19 @@ Pin-Priority: 992</td>
 </tr>
 <tr>
 <td>5157775</td>
-<td>On Spectrum-6 with 800Gx8 ports, traffic sent at full speed is consistently not fully transmitted, causing packet loss for every frame size. The loss increases as packet size increases, indicating that the egress path can not sustain full line-rate traffic and packets drop on transmit.</td>
+<td>On a Spectrum-6 switch with 800Gx8 ports, the switch does not fully transmit traffic sent at full speed, causing packet loss for every frame size. The loss increases as packet size increases, indicating that the egress path cannot sustain full line-rate traffic and packets drop on transmit.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
 <tr>
 <td>5154524</td>
 <td>The switch system health included the {{ledmgrd}} service in health evaluation incorrectly, causing false {{ServicesStatus: BAD}} results for virtual platforms. </td>
+<td>5.18.0-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5152031</td>
+<td>When you run {{nv set}} or {{nv}} action commands while performing a warm upgrade, Cumulus Linux shows a very generic error message instead of an explicit and actionable message.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
@@ -4803,20 +5144,25 @@ Pin-Priority: 992</td>
 </tr>
 <tr>
 <td>5107338</td>
-<td>onie-install, onie-select, and cl-image-upgrade now allow only one instance of each to run at the same time, except for read (status check), which you can use at any time.</td>
+<td>The {{sudo onie-install -s}} command sometimes fails when the {{nv show system image}} command is running continuously in background.</td>
+<td>5.18.0-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5107310</td>
+<td>On Spectrum-5 and Spectrum-6 switches, NVUE allows you to configure a vlan-aware bridge with more VLANs than the platform FID budget allows without validation. The configuration applies successfully but the switch silently drops traffic on the VLANs beyond the hardware FID limit at ingress.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
 <tr>
 <td>5095522</td>
-<td>The GNMI xpath {{/components/component[name=*]/transceiver/state/ethernet-pmd}} metric shows data for a specific transceiver port when the queried port has no active link (the link is down).</td>
+<td>For CMIS transceivers (QSFP-DD, OSFP), the gNMI path {{/components/component[name=*]/transceiver/state/ethernet-pmd}} and the OTLP metric {{nvswitch_platform_transceiver_ethernet_pmd}} are based on the first application the module advertises. If the first application is not the module's full rate, for example a twin-port 800G module that advertises 400GAUI-4, the reported PMD shows the lower rate. If the first application is InfiniBand, an active cable reports its PMD only while the link is up.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
 <tr>
 <td>5091418, 5269525</td>
-<td>Under high-scale offload-mode transitions, the BFD dataplane plugin's internal outbound message queue can fill up and silently drop session state-change notifications destined for the {{bfdd}} core process. The sessions are fully and correctly programmed in the SDK/hardware in both directions (TX and RX counters advancing normally); however, the state notification informing {{bfdd}} that a session came Up is dropped, so {{bfdd}}'s view of the session stays stuck at Down indefinitely with nothing to re-drive it.
-</td>
+<td>Under high-scale offload-mode transitions, the internal outbound message queue of the BFD dataplane plugin might fill up and silently drop session state-change notifications destined for the {{bfdd}} core process. The sessions are fully and correctly programmed in the hardware in both directions (TX and RX counters advancing normally); however, the switch drops the state notification informing {{bfdd}} that a session came up, so {{bfdd}}'s view of the session stays stuck at Down indefinitely.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>

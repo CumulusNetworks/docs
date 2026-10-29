@@ -7,6 +7,42 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5346399</td>
+<td>In rare cases, after you delete, then add back a VRF with the same table ID, its default route stays inactive and is not installed, even though BGP selects it as best. To work around this issue, restart FRR with {{sudo systemctl restart frr}}. </td>
+<td>5.16.6-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5345924</td>
+<td>After a link flap, an IPv6 host directly connected to a routed port might become unreachable if a stale neighbour entry for the host is programmed in the ASIC with a DROP action and never removed. To work around this issue, force {{switchd}} to resynchronise its neighbour table from the kernel by running the {{echo 1 &gt; /cumulus/switchd/ctrl/netlink/resync}} command as root. Pinging the affected host from the switch also clears the entry.</td>
+<td>5.16.7-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5343996</td>
+<td>If a front-panel link changes state during an ISSU warm upgrade, {{switchd}} might retain the pre-upgrade link state for that interface. As a result, Linux and NVUE report an operational state that does not match the hardware after the upgrade completes. To work around this issue, run the {{echo 1 &gt; /cumulus/switchd/ctrl/resync}} command.</td>
+<td>5.16.7-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5341294</td>
+<td>On NVIDIA Spectrum switches, DHCP and DHCPv6 packets with two VLAN tags (QinQ) are dropped instead of being forwarded across the bridge.</td>
+<td>5.16.8-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5340844</td>
+<td>Transceiver data collection takes longer than 60 seconds due to boot time churn. During a steady state, the API returns within 10 to 20 seconds.</td>
+<td>5.16.6-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5338737</td>
+<td>In a large scale configuration, {{switchd}} might take more time to come up and trigger the watchdog timeout.</td>
+<td>5.16.7-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5327622</td>
 <td>A bridge FDB flush does not restore EVPN router MAC entries in the Kernel.</td>
 <td>5.11.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
@@ -25,9 +61,21 @@
 <td></td>
 </tr>
 <tr>
+<td>5316062</td>
+<td>Optimized image upgrade fails on a switch when the content of the {{/var/log}} folder becomes very large. The upgrade installer copies the entire {{/var/log}} onto the root filesystem of the new partition, which has a fixed size. A large log directory fills that partition, so the install operation fails. As a result, you will not be able to initiate a switch to the other partition to perform the upgrade.</td>
+<td>5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5315365</td>
 <td>An incomplete, unauthenticated station entry is retained incorrectly and restored after upgrade. This causes a new EAP Identity exchange to start, but the entry is not aged out as expected on the wired interface, resulting in continuous retransmissions.</td>
 <td>5.16.7-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5309020</td>
+<td>Under heavy data-plane traffic, a firmware write might remain in a pending state longer, resulting in a FATAL ASIC firmware health event ({{FW CR Space timeout}}). </td>
+<td>5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -55,9 +103,27 @@
 <td></td>
 </tr>
 <tr>
+<td>5299231</td>
+<td>When a route that uses a next hop group replaces a downstream-VNI (ip-encap) route, the prefix ECMP container of the old flat next hop is never released, keeping its route user and the DVNI RIF in use. A later RIF delete returns {{RESOURCE_IN_USE}} and the RIF/FID stay parked in {{dvni_pending_ht}} with nothing left to retry.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5299163</td>
+<td>On Spectrum-1 switches, concurrent PDDR reads can cause a fatal FW Long Command timeout on register 0x5031. The ASIC resets in a loop, switchd is terminated, and all front-panel ports go down. The health-monitor log shows cause 18 (FW Long Command) with reg_attr_id 0x5031.</td>
+<td>5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5299074</td>
 <td>When multiple PDDR (Port Diagnostic Database Register) reads happen at the same time, the ASIC command interface can get stuck on register 0x5031. If this happens, {{switchd}} is terminated while it is in this hung state, which brings down all data ports. You see command-interface timeout on access register 0x5031 in the logs, followed by a fatal firmware health or FW Long Command event.</td>
 <td>5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5298371, 5298370</td>
+<td>The switch incorrectly advertises a MAC-only EVPN type-2 route with the layer 3 VNI label in the BGP NLRI (Network Layer Reachability Information). Although this does not have any functional impact, it is not the desired RFC behavior.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -74,38 +140,7 @@
 </tr>
 <tr>
 <td>5281416, 5341616</td>
-<td>When a configuration request is submitted through the REST API and RADIUS is configured for AAA authentication, the Calling-Station-Id sent to the RADIUS server incorrectly contains the loopback address (127.0.0.1) instead of the IP address of the originating REST API client .
-
-Due to flow:
-
-REST API Client
-10.87.221.34
-      |
-      v
-+---------------------+
-| Public NVUE NGINX   |
-| knows original IP   |
-+---------------------+
-      |
-      | auth subrequest
-      | via 127.0.0.1 / ::1
-      v
-+----------------------+
-| Internal NGINX Auth  |
-+----------------------+
-      |
-      v
-   PAM nvueapi
-      |
-      v
- pam_radius_auth
-      |
-      v
-+----------------------+
-|    RADIUS Server     |
-| Calling-Station-Id = |
-| 127.0.0.1 / ::1  X   |
-+----------------------+</td>
+<td>When you submit a configuration request through the REST API and RADIUS is configured for AAA authentication, the {{Calling-Station-Id}} sent to the RADIUS server incorrectly contains the loopback address (127.0.0.1) instead of the IP address of the originating REST API client.</td>
 <td>5.16.6-5.18.3</td>
 <td></td>
 </tr>
@@ -131,6 +166,12 @@ REST API Client
 <td>5268313</td>
 <td>An offline package upgrade might fail when package scripts attempt to move {{containerd}} storage while the runtime is still running, leaving the upgrade incomplete and dependent services unavailable.</td>
 <td>5.16.8-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5265724</td>
+<td>When many links are down or shut down gracefully on a large cluster, the number of ECMP groups the switch needs can exceed what the AR-LGPT table can optimize. As a result, the GEN0 AR group compression algorithm can remove some ports from forwarding. For example, 16 of 56 ports can be removed on a switch. Because the removed links no longer take part in adaptive routing forwarding, the remaining links carry their traffic and can become overloaded.</td>
+<td>5.16.6-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -1683,6 +1724,36 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5346399</td>
+<td>In rare cases, after you delete, then add back a VRF with the same table ID, its default route stays inactive and is not installed, even though BGP selects it as best. To work around this issue, restart FRR with {{sudo systemctl restart frr}}. </td>
+<td>5.16.6-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5345924</td>
+<td>After a link flap, an IPv6 host directly connected to a routed port might become unreachable if a stale neighbour entry for the host is programmed in the ASIC with a DROP action and never removed. To work around this issue, force {{switchd}} to resynchronise its neighbour table from the kernel by running the {{echo 1 &gt; /cumulus/switchd/ctrl/netlink/resync}} command as root. Pinging the affected host from the switch also clears the entry.</td>
+<td>5.16.7-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5343996</td>
+<td>If a front-panel link changes state during an ISSU warm upgrade, {{switchd}} might retain the pre-upgrade link state for that interface. As a result, Linux and NVUE report an operational state that does not match the hardware after the upgrade completes. To work around this issue, run the {{echo 1 &gt; /cumulus/switchd/ctrl/resync}} command.</td>
+<td>5.16.7-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5340844</td>
+<td>Transceiver data collection takes longer than 60 seconds due to boot time churn. During a steady state, the API returns within 10 to 20 seconds.</td>
+<td>5.16.6-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5338737</td>
+<td>In a large scale configuration, {{switchd}} might take more time to come up and trigger the watchdog timeout.</td>
+<td>5.16.7-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5327622</td>
 <td>A bridge FDB flush does not restore EVPN router MAC entries in the Kernel.</td>
 <td>5.11.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
@@ -1695,9 +1766,21 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
+<td>5316062</td>
+<td>Optimized image upgrade fails on a switch when the content of the {{/var/log}} folder becomes very large. The upgrade installer copies the entire {{/var/log}} onto the root filesystem of the new partition, which has a fixed size. A large log directory fills that partition, so the install operation fails. As a result, you will not be able to initiate a switch to the other partition to perform the upgrade.</td>
+<td>5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5315365</td>
 <td>An incomplete, unauthenticated station entry is retained incorrectly and restored after upgrade. This causes a new EAP Identity exchange to start, but the entry is not aged out as expected on the wired interface, resulting in continuous retransmissions.</td>
 <td>5.16.7-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5309020</td>
+<td>Under heavy data-plane traffic, a firmware write might remain in a pending state longer, resulting in a FATAL ASIC firmware health event ({{FW CR Space timeout}}). </td>
+<td>5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -1725,9 +1808,27 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
+<td>5299231</td>
+<td>When a route that uses a next hop group replaces a downstream-VNI (ip-encap) route, the prefix ECMP container of the old flat next hop is never released, keeping its route user and the DVNI RIF in use. A later RIF delete returns {{RESOURCE_IN_USE}} and the RIF/FID stay parked in {{dvni_pending_ht}} with nothing left to retry.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5299163</td>
+<td>On Spectrum-1 switches, concurrent PDDR reads can cause a fatal FW Long Command timeout on register 0x5031. The ASIC resets in a loop, switchd is terminated, and all front-panel ports go down. The health-monitor log shows cause 18 (FW Long Command) with reg_attr_id 0x5031.</td>
+<td>5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5299074</td>
 <td>When multiple PDDR (Port Diagnostic Database Register) reads happen at the same time, the ASIC command interface can get stuck on register 0x5031. If this happens, {{switchd}} is terminated while it is in this hung state, which brings down all data ports. You see command-interface timeout on access register 0x5031 in the logs, followed by a fatal firmware health or FW Long Command event.</td>
 <td>5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5298371, 5298370</td>
+<td>The switch incorrectly advertises a MAC-only EVPN type-2 route with the layer 3 VNI label in the BGP NLRI (Network Layer Reachability Information). Although this does not have any functional impact, it is not the desired RFC behavior.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -1744,38 +1845,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 </tr>
 <tr>
 <td>5281416, 5341616</td>
-<td>When a configuration request is submitted through the REST API and RADIUS is configured for AAA authentication, the Calling-Station-Id sent to the RADIUS server incorrectly contains the loopback address (127.0.0.1) instead of the IP address of the originating REST API client .
-
-Due to flow:
-
-REST API Client
-10.87.221.34
-      |
-      v
-+---------------------+
-| Public NVUE NGINX   |
-| knows original IP   |
-+---------------------+
-      |
-      | auth subrequest
-      | via 127.0.0.1 / ::1
-      v
-+----------------------+
-| Internal NGINX Auth  |
-+----------------------+
-      |
-      v
-   PAM nvueapi
-      |
-      v
- pam_radius_auth
-      |
-      v
-+----------------------+
-|    RADIUS Server     |
-| Calling-Station-Id = |
-| 127.0.0.1 / ::1  X   |
-+----------------------+</td>
+<td>When you submit a configuration request through the REST API and RADIUS is configured for AAA authentication, the {{Calling-Station-Id}} sent to the RADIUS server incorrectly contains the loopback address (127.0.0.1) instead of the IP address of the originating REST API client.</td>
 <td>5.16.6-5.18.3</td>
 <td></td>
 </tr>
@@ -1789,6 +1859,12 @@ REST API Client
 <td>5272447</td>
 <td>Incorrect RMAC and next-hop programming causes invalid EVPN encapsulation for type-5 routes in mixed-mode environments. This might lead to one-way traffic and loss of proper mixed IPv4/IPv6 next-hop interoperability. </td>
 <td>5.11.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5265724</td>
+<td>When many links are down or shut down gracefully on a large cluster, the number of ECMP groups the switch needs can exceed what the AR-LGPT table can optimize. As a result, the GEN0 AR group compression algorithm can remove some ports from forwarding. For example, 16 of 56 ports can be removed on a switch. Because the removed links no longer take part in adaptive routing forwarding, the remaining links carry their traffic and can become overloaded.</td>
+<td>5.16.6-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -3404,6 +3480,18 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5346399</td>
+<td>In rare cases, after you delete, then add back a VRF with the same table ID, its default route stays inactive and is not installed, even though BGP selects it as best. To work around this issue, restart FRR with {{sudo systemctl restart frr}}. </td>
+<td>5.16.6-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5340844</td>
+<td>Transceiver data collection takes longer than 60 seconds due to boot time churn. During a steady state, the API returns within 10 to 20 seconds.</td>
+<td>5.16.6-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5327622</td>
 <td>A bridge FDB flush does not restore EVPN router MAC entries in the Kernel.</td>
 <td>5.11.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
@@ -3412,6 +3500,18 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>5324348</td>
 <td>Zebra terminates unexpectedly (SIGSEGV) on switches running FRR with SNMP enabled, which causes {{watchfrr }} to restart the entire FRR daemon set. The affected daemon stops reporting SNMP data and the freed-memory access can cause the daemon to crash. </td>
+<td>5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5316062</td>
+<td>Optimized image upgrade fails on a switch when the content of the {{/var/log}} folder becomes very large. The upgrade installer copies the entire {{/var/log}} onto the root filesystem of the new partition, which has a fixed size. A large log directory fills that partition, so the install operation fails. As a result, you will not be able to initiate a switch to the other partition to perform the upgrade.</td>
+<td>5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5309020</td>
+<td>Under heavy data-plane traffic, a firmware write might remain in a pending state longer, resulting in a FATAL ASIC firmware health event ({{FW CR Space timeout}}). </td>
 <td>5.16.5-5.18.3</td>
 <td></td>
 </tr>
@@ -3440,9 +3540,27 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
+<td>5299231</td>
+<td>When a route that uses a next hop group replaces a downstream-VNI (ip-encap) route, the prefix ECMP container of the old flat next hop is never released, keeping its route user and the DVNI RIF in use. A later RIF delete returns {{RESOURCE_IN_USE}} and the RIF/FID stay parked in {{dvni_pending_ht}} with nothing left to retry.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5299163</td>
+<td>On Spectrum-1 switches, concurrent PDDR reads can cause a fatal FW Long Command timeout on register 0x5031. The ASIC resets in a loop, switchd is terminated, and all front-panel ports go down. The health-monitor log shows cause 18 (FW Long Command) with reg_attr_id 0x5031.</td>
+<td>5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5299074</td>
 <td>When multiple PDDR (Port Diagnostic Database Register) reads happen at the same time, the ASIC command interface can get stuck on register 0x5031. If this happens, {{switchd}} is terminated while it is in this hung state, which brings down all data ports. You see command-interface timeout on access register 0x5031 in the logs, followed by a fatal firmware health or FW Long Command event.</td>
 <td>5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5298371, 5298370</td>
+<td>The switch incorrectly advertises a MAC-only EVPN type-2 route with the layer 3 VNI label in the BGP NLRI (Network Layer Reachability Information). Although this does not have any functional impact, it is not the desired RFC behavior.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -3459,38 +3577,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 </tr>
 <tr>
 <td>5281416, 5341616</td>
-<td>When a configuration request is submitted through the REST API and RADIUS is configured for AAA authentication, the Calling-Station-Id sent to the RADIUS server incorrectly contains the loopback address (127.0.0.1) instead of the IP address of the originating REST API client .
-
-Due to flow:
-
-REST API Client
-10.87.221.34
-      |
-      v
-+---------------------+
-| Public NVUE NGINX   |
-| knows original IP   |
-+---------------------+
-      |
-      | auth subrequest
-      | via 127.0.0.1 / ::1
-      v
-+----------------------+
-| Internal NGINX Auth  |
-+----------------------+
-      |
-      v
-   PAM nvueapi
-      |
-      v
- pam_radius_auth
-      |
-      v
-+----------------------+
-|    RADIUS Server     |
-| Calling-Station-Id = |
-| 127.0.0.1 / ::1  X   |
-+----------------------+</td>
+<td>When you submit a configuration request through the REST API and RADIUS is configured for AAA authentication, the {{Calling-Station-Id}} sent to the RADIUS server incorrectly contains the loopback address (127.0.0.1) instead of the IP address of the originating REST API client.</td>
 <td>5.16.6-5.18.3</td>
 <td></td>
 </tr>
@@ -3504,6 +3591,12 @@ REST API Client
 <td>5272447</td>
 <td>Incorrect RMAC and next-hop programming causes invalid EVPN encapsulation for type-5 routes in mixed-mode environments. This might lead to one-way traffic and loss of proper mixed IPv4/IPv6 next-hop interoperability. </td>
 <td>5.11.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5265724</td>
+<td>When many links are down or shut down gracefully on a large cluster, the number of ECMP groups the switch needs can exceed what the AR-LGPT table can optimize. As a result, the GEN0 AR group compression algorithm can remove some ports from forwarding. For example, 16 of 56 ports can be removed on a switch. Because the removed links no longer take part in adaptive routing forwarding, the remaining links carry their traffic and can become overloaded.</td>
+<td>5.16.6-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -5156,7 +5249,7 @@ Workaround: Restarting switchd temporarily restores metrics.</td>
 </tr>
 <tr>
 <td>5145970</td>
-<td>After a power event, many links on the switch do not directly lose power but show bad EEPROM errors and you need to reset the links manually.</td>
+<td>On Spectrum-4 switches, the module management firmware might fail to release the internal I2C bus shared by a group of adjacent transceiver ports after a module transaction times out; the affected ports show bad EEPROM errors and stay down until you restart the SDK with the {{systemctl restart sx_sdk.service}} command or power cycle the switch. Resetting the links manually does not recover them.</td>
 <td>5.16.1, 5.16.5</td>
 </tr>
 <tr>
@@ -5200,6 +5293,18 @@ Workaround: Restarting switchd temporarily restores metrics.</td>
 <td></td>
 </tr>
 <tr>
+<td>5316062</td>
+<td>Optimized image upgrade fails on a switch when the content of the {{/var/log}} folder becomes very large. The upgrade installer copies the entire {{/var/log}} onto the root filesystem of the new partition, which has a fixed size. A large log directory fills that partition, so the install operation fails. As a result, you will not be able to initiate a switch to the other partition to perform the upgrade.</td>
+<td>5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5309020</td>
+<td>Under heavy data-plane traffic, a firmware write might remain in a pending state longer, resulting in a FATAL ASIC firmware health event ({{FW CR Space timeout}}). </td>
+<td>5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5299539</td>
 <td> After a factory reset, a switch relying on preserved management IP settings on eth0 might lose its configured network access. This can disrupt connectivity and require manual reconfiguration.</td>
 <td>5.16.1, 5.16.5-5.18.3</td>
@@ -5212,9 +5317,27 @@ Workaround: Restarting switchd temporarily restores metrics.</td>
 <td></td>
 </tr>
 <tr>
+<td>5299231</td>
+<td>When a route that uses a next hop group replaces a downstream-VNI (ip-encap) route, the prefix ECMP container of the old flat next hop is never released, keeping its route user and the DVNI RIF in use. A later RIF delete returns {{RESOURCE_IN_USE}} and the RIF/FID stay parked in {{dvni_pending_ht}} with nothing left to retry.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5299163</td>
+<td>On Spectrum-1 switches, concurrent PDDR reads can cause a fatal FW Long Command timeout on register 0x5031. The ASIC resets in a loop, switchd is terminated, and all front-panel ports go down. The health-monitor log shows cause 18 (FW Long Command) with reg_attr_id 0x5031.</td>
+<td>5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5299074</td>
 <td>When multiple PDDR (Port Diagnostic Database Register) reads happen at the same time, the ASIC command interface can get stuck on register 0x5031. If this happens, {{switchd}} is terminated while it is in this hung state, which brings down all data ports. You see command-interface timeout on access register 0x5031 in the logs, followed by a fatal firmware health or FW Long Command event.</td>
 <td>5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5298371, 5298370</td>
+<td>The switch incorrectly advertises a MAC-only EVPN type-2 route with the layer 3 VNI label in the BGP NLRI (Network Layer Reachability Information). Although this does not have any functional impact, it is not the desired RFC behavior.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -5426,7 +5549,7 @@ Pin-Priority: 992</td>
 </tr>
 <tr>
 <td>5145970</td>
-<td>After a power event, many links on the switch do not directly lose power but show bad EEPROM errors and you need to reset the links manually.</td>
+<td>On Spectrum-4 switches, the module management firmware might fail to release the internal I2C bus shared by a group of adjacent transceiver ports after a module transaction times out; the affected ports show bad EEPROM errors and stay down until you restart the SDK with the {{systemctl restart sx_sdk.service}} command or power cycle the switch. Resetting the links manually does not recover them.</td>
 <td>5.16.1, 5.16.5</td>
 <td>5.16.6-5.18.3</td>
 </tr>
@@ -7076,9 +7199,21 @@ kernel: [899873.236610] sxd_kernel: dev_id=1: Health-Check: New maximum time bet
 <td></td>
 </tr>
 <tr>
+<td>5299231</td>
+<td>When a route that uses a next hop group replaces a downstream-VNI (ip-encap) route, the prefix ECMP container of the old flat next hop is never released, keeping its route user and the DVNI RIF in use. A later RIF delete returns {{RESOURCE_IN_USE}} and the RIF/FID stay parked in {{dvni_pending_ht}} with nothing left to retry.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5299074</td>
 <td>When multiple PDDR (Port Diagnostic Database Register) reads happen at the same time, the ASIC command interface can get stuck on register 0x5031. If this happens, {{switchd}} is terminated while it is in this hung state, which brings down all data ports. You see command-interface timeout on access register 0x5031 in the logs, followed by a fatal firmware health or FW Long Command event.</td>
 <td>5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5298371, 5298370</td>
+<td>The switch incorrectly advertises a MAC-only EVPN type-2 route with the layer 3 VNI label in the BGP NLRI (Network Layer Reachability Information). Although this does not have any functional impact, it is not the desired RFC behavior.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -7197,7 +7332,7 @@ kernel: [899873.236610] sxd_kernel: dev_id=1: Health-Check: New maximum time bet
 </tr>
 <tr>
 <td>5145970</td>
-<td>After a power event, many links on the switch do not directly lose power but show bad EEPROM errors and you need to reset the links manually.</td>
+<td>On Spectrum-4 switches, the module management firmware might fail to release the internal I2C bus shared by a group of adjacent transceiver ports after a module transaction times out; the affected ports show bad EEPROM errors and stay down until you restart the SDK with the {{systemctl restart sx_sdk.service}} command or power cycle the switch. Resetting the links manually does not recover them.</td>
 <td>5.16.1, 5.16.5</td>
 <td>5.16.6-5.18.3</td>
 </tr>
@@ -8861,9 +8996,39 @@ hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Retur
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5327622</td>
+<td>A bridge FDB flush does not restore EVPN router MAC entries in the Kernel.</td>
+<td>5.11.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5299253</td>
 <td>LLDP SNMP polling fails because the generated OID index is not strictly increasing, breaking {{snmpbulkwalk}} and making LLDP neighbor information unreliable. This issue affects long-running switches, especially switches with uptime beyond around 248 days.</td>
 <td>5.11.3-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5299231</td>
+<td>When a route that uses a next hop group replaces a downstream-VNI (ip-encap) route, the prefix ECMP container of the old flat next hop is never released, keeping its route user and the DVNI RIF in use. A later RIF delete returns {{RESOURCE_IN_USE}} and the RIF/FID stay parked in {{dvni_pending_ht}} with nothing left to retry.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5298371, 5298370</td>
+<td>The switch incorrectly advertises a MAC-only EVPN type-2 route with the layer 3 VNI label in the BGP NLRI (Network Layer Reachability Information). Although this does not have any functional impact, it is not the desired RFC behavior.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5272447</td>
+<td>Incorrect RMAC and next-hop programming causes invalid EVPN encapsulation for type-5 routes in mixed-mode environments. This might lead to one-way traffic and loss of proper mixed IPv4/IPv6 next-hop interoperability. </td>
+<td>5.11.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5240427</td>
+<td>At ECMP scale, SDK encounters ECMP errors due to {{No More Resources}} and shows ASSERT messages in the logs.</td>
+<td>5.13.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -9539,6 +9704,12 @@ where only the aggregate should be advertised.</td>
 <td>5.17.0-5.18.3</td>
 </tr>
 <tr>
+<td>4802241, 4850432</td>
+<td>You might see error logs on the SN2201 switch while collecting a {{cl-support}} file. This issue has no negative impact.</td>
+<td>5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>4796280</td>
 <td>When you delete a snippet with a NAS IP address and, or, a NAS identifier, the NVUE configured NAS IP address and NAS identifier do not take into effect in the operational configuration.</td>
 <td>5.16.0-5.16.1, 5.16.5-5.17.0</td>
@@ -9977,7 +10148,7 @@ cumulus@switch:~$ sudo apt install ./cumulus-archive-keyring_4-cl5.6.0u5_all.deb
 cumulus@switch:~$ sudo apt update
 cumulus@switch:~$ sudo apt upgrade
 </td>
-<td>4.0.0-4.4.5, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td>4.0.0-4.4.6, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -10082,7 +10253,7 @@ To work around this issue when using fiber cables:
 <td>3420056</td>
 <td>
 The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1 when you use 10G QSA adaptors. To work around this issue, use 25G QSA adaptors.</td>
-<td>4.4.0-4.4.5, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td>4.4.0-4.4.6, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -10120,7 +10291,7 @@ You can ignore this error; it has no impact on switch functionality.</td>
 <tr>
 <td>3327477</td>
 <td>If you use {{su}} to change to a user specified through TACACS+, the user becomes the local tacacs0 thru tacacs15 user instead of the named user to run {{sudo}} commands. As a result, the named user password might not match the local tacacs0 thru tacacs15 user password.</td>
-<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.6, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -10201,18 +10372,18 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>3084476</td>
 <td> After you disable traffic shaping in the {{/etc/cumulus/datapath/qos/qos_features.conf}} file, the default QOS traffic shaping configuration does not restore. To work around this issue, restart {{switchd}}.</td>
 <td>4.4.3, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
-<td>4.4.4-4.4.5</td>
+<td>4.4.4-4.4.6</td>
 </tr>
 <tr>
 <td>3084027</td>
 <td>Under a high load, you might see ingress drop counters increase. The drops are classified as {{HwIfInDiscards}} in ethtool and shown as {{ingress_general}} in hardware.</td>
-<td>4.3.0-4.4.5, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td>4.3.0-4.4.6, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
 <td>3071652</td>
 <td>On rare occasions, after you reboot or restart {{switchd}} on a Spectrum 1 switch, any 25G connections with Direct Attach Copper (DAC) cables that connect from the switch to a non-NVIDIA device might flap continuously. To work around this issue, bring the affected link administratively down for a few seconds on the non-NVIDIA device, then bring the link back up.</td>
-<td>4.4.4-4.4.5, 5.1.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td>4.4.4-4.4.6, 5.1.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -10230,7 +10401,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>2951110</td>
 <td>The {{net show time ntp servers}} command does not show any output with the management VRF.</td>
-<td>3.7.15-3.7.16, 4.1.1-4.4.5, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td>3.7.15-3.7.16, 4.1.1-4.4.6, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -10238,7 +10409,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>When you run the {{ethtool -m}} or the {{l1-show}} command, the 400G interface optical values do not show. 
 
 </td>
-<td>4.4.0-4.4.5, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td>4.4.0-4.4.6, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -10262,19 +10433,19 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>2736108</td>
 <td>When you change the VRRP advertisement interval on the master, the {{master advertisement interval}} field in the {{show vrrp}} command output does not show the updated value.</td>
-<td>4.4.0-4.4.5, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td>4.4.0-4.4.6, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
 <td>2684925</td>
 <td>The NVUE {{nv show vrf default router bgp peer}} command produces a 404 not found error.</td>
-<td>4.4.0-4.4.5, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td>4.4.0-4.4.6, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
 <td>2671652</td>
 <td>In VXLAN routing environments, you might experience sub-optimal route convergence delays (longer than five seconds) when a prefix transitions to a new ECMP next-hop group. This condition might occur when a VTEP loses ECMP routes through all uplink peerings, then installs the routes through a different path, such as an MLAG peerlink.</td>
-<td>4.4.0-4.4.5, 5.5.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td>4.4.0-4.4.6, 5.5.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 </table>

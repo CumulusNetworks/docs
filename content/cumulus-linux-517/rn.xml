@@ -7,9 +7,99 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5346399</td>
+<td>In rare cases, after you delete, then add back a VRF with the same table ID, its default route stays inactive and is not installed, even though BGP selects it as best. To work around this issue, restart FRR with {{sudo systemctl restart frr}}. </td>
+<td>5.16.6-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5345924</td>
+<td>After a link flap, an IPv6 host directly connected to a routed port might become unreachable if a stale neighbour entry for the host is programmed in the ASIC with a DROP action and never removed. To work around this issue, force {{switchd}} to resynchronise its neighbour table from the kernel by running the {{echo 1 &gt; /cumulus/switchd/ctrl/netlink/resync}} command as root. Pinging the affected host from the switch also clears the entry.</td>
+<td>5.16.7-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5345905</td>
+<td>When a link or BGP session between a leaf and a spine goes down and comes back up, the prefixes of hosts connected to that leaf might not move back to the direct path through the leaf. The per-source NHG feature keeps forwarding traffic for those host prefixes over the backup path through another plane, even though BGP selects the direct path as best.</td>
+<td>5.17.0-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5343996</td>
+<td>If a front-panel link changes state during an ISSU warm upgrade, {{switchd}} might retain the pre-upgrade link state for that interface. As a result, Linux and NVUE report an operational state that does not match the hardware after the upgrade completes. To work around this issue, run the {{echo 1 &gt; /cumulus/switchd/ctrl/resync}} command.</td>
+<td>5.16.7-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5341294</td>
+<td>On NVIDIA Spectrum switches, DHCP and DHCPv6 packets with two VLAN tags (QinQ) are dropped instead of being forwarded across the bridge.</td>
+<td>5.16.8-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5340844</td>
+<td>Transceiver data collection takes longer than 60 seconds due to boot time churn. During a steady state, the API returns within 10 to 20 seconds.</td>
+<td>5.16.6-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5338737</td>
+<td>In a large scale configuration, {{switchd}} might take more time to come up and trigger the watchdog timeout.</td>
+<td>5.16.7-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5331128</td>
+<td>On switches with EVPN-VXLAN configured, when a remote MAC address moves from one remote VTEP to another in the same VNI, the hardware forwarding table keeps pointing to the old VTEP. The kernel and the EVPN control plane show the correct new VTEP, but the switch keeps forwarding traffic for that MAC address to the old VTEP.  To work around this issue, restart {{switchd}} with the {{sudo systemctl restart switchd}} command to reprogram the hardware forwarding table. The restart interrupts traffic on the switch, so do it in a maintenance window. With MLAG, restart one peer at a time and wait for it to fully converge before restarting the other.</td>
+<td>5.17.0-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5327622</td>
+<td>A bridge FDB flush does not restore EVPN router MAC entries in the Kernel.</td>
+<td>5.11.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5324348</td>
+<td>Zebra terminates unexpectedly (SIGSEGV) on switches running FRR with SNMP enabled, which causes {{watchfrr }} to restart the entire FRR daemon set. The affected daemon stops reporting SNMP data and the freed-memory access can cause the daemon to crash. </td>
+<td>5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5316939, 5316919</td>
 <td>NVUE user management commands fail when the {{/etc/passwd}} file contains non-UTF-8 characters. </td>
 <td>5.16.8-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5316062</td>
+<td>Optimized image upgrade fails on a switch when the content of the {{/var/log}} folder becomes very large. The upgrade installer copies the entire {{/var/log}} onto the root filesystem of the new partition, which has a fixed size. A large log directory fills that partition, so the install operation fails. As a result, you will not be able to initiate a switch to the other partition to perform the upgrade.</td>
+<td>5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5315365</td>
+<td>An incomplete, unauthenticated station entry is retained incorrectly and restored after upgrade. This causes a new EAP Identity exchange to start, but the entry is not aged out as expected on the wired interface, resulting in continuous retransmissions.</td>
+<td>5.16.7-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5309020</td>
+<td>Under heavy data-plane traffic, a firmware write might remain in a pending state longer, resulting in a FATAL ASIC firmware health event ({{FW CR Space timeout}}). </td>
+<td>5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5306976</td>
+<td>The gNMI telemetry FEC histogram bin count decreases by 1 or 2 across successive reads on a counter64 path.</td>
+<td>5.16.6-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5301567</td>
+<td>With continuous next hop churn in the network with 9k next hop groups created and deleted repeatedly, {{switchd}} runs into a netlink buffer overflow, which triggers a netlink resync; {{switchd}} encounters an out of memory error.</td>
+<td>5.16.6-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -25,45 +115,38 @@
 <td></td>
 </tr>
 <tr>
+<td>5299231</td>
+<td>When a route that uses a next hop group replaces a downstream-VNI (ip-encap) route, the prefix ECMP container of the old flat next hop is never released, keeping its route user and the DVNI RIF in use. A later RIF delete returns {{RESOURCE_IN_USE}} and the RIF/FID stay parked in {{dvni_pending_ht}} with nothing left to retry.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5299163</td>
+<td>On Spectrum-1 switches, concurrent PDDR reads can cause a fatal FW Long Command timeout on register 0x5031. The ASIC resets in a loop, switchd is terminated, and all front-panel ports go down. The health-monitor log shows cause 18 (FW Long Command) with reg_attr_id 0x5031.</td>
+<td>5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5299074</td>
+<td>When multiple PDDR (Port Diagnostic Database Register) reads happen at the same time, the ASIC command interface can get stuck on register 0x5031. If this happens, {{switchd}} is terminated while it is in this hung state, which brings down all data ports. You see command-interface timeout on access register 0x5031 in the logs, followed by a fatal firmware health or FW Long Command event.</td>
+<td>5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5298371, 5298370</td>
+<td>The switch incorrectly advertises a MAC-only EVPN type-2 route with the layer 3 VNI label in the BGP NLRI (Network Layer Reachability Information). Although this does not have any functional impact, it is not the desired RFC behavior.</td>
+<td>5.14.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5297900</td>
 <td>A BGP prefix remains as the best path in BGP and present in the routing table but missing from the kernel and hardware. As a result, the switch drops traffic to the prefix, even though a good alternate path exists and the next hop group is programmed correctly. To work around this issue, clear the BGP session that provides the current best path to restore the route.</td>
 <td>5.16.5-5.18.0</td>
 <td>5.18.1-5.18.3</td>
 </tr>
 <tr>
-<td>5281416</td>
-<td>When a configuration request is submitted through the REST API and RADIUS is configured for AAA authentication, the Calling-Station-Id sent to the RADIUS server incorrectly contains the loopback address (127.0.0.1) instead of the IP address of the originating REST API client .
-
-Due to flow:
-
-REST API Client
-10.87.221.34
-      |
-      v
-+---------------------+
-| Public NVUE NGINX   |
-| knows original IP   |
-+---------------------+
-      |
-      | auth subrequest
-      | via 127.0.0.1 / ::1
-      v
-+----------------------+
-| Internal NGINX Auth  |
-+----------------------+
-      |
-      v
-   PAM nvueapi
-      |
-      v
- pam_radius_auth
-      |
-      v
-+----------------------+
-|    RADIUS Server     |
-| Calling-Station-Id = |
-| 127.0.0.1 / ::1  X   |
-+----------------------+</td>
+<td>5281416, 5341616</td>
+<td>When you submit a configuration request through the REST API and RADIUS is configured for AAA authentication, the {{Calling-Station-Id}} sent to the RADIUS server incorrectly contains the loopback address (127.0.0.1) instead of the IP address of the originating REST API client.</td>
 <td>5.16.6-5.18.3</td>
 <td></td>
 </tr>
@@ -71,6 +154,12 @@ REST API Client
 <td>5274511</td>
 <td>In scaled configurations, {{switchd}} might crash during EVPN multihoming layer 2 next hop group cleanup causing a daemon restart and brief traffic interruption.</td>
 <td>5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5272447</td>
+<td>Incorrect RMAC and next-hop programming causes invalid EVPN encapsulation for type-5 routes in mixed-mode environments. This might lead to one-way traffic and loss of proper mixed IPv4/IPv6 next-hop interoperability. </td>
+<td>5.11.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -86,6 +175,12 @@ REST API Client
 <td></td>
 </tr>
 <tr>
+<td>5265724</td>
+<td>When many links are down or shut down gracefully on a large cluster, the number of ECMP groups the switch needs can exceed what the AR-LGPT table can optimize. As a result, the GEN0 AR group compression algorithm can remove some ports from forwarding. For example, 16 of 56 ports can be removed on a switch. Because the removed links no longer take part in adaptive routing forwarding, the remaining links carry their traffic and can become overloaded.</td>
+<td>5.16.6-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5240565, 5317534</td>
 <td>Removing the {{cumulus}} user causes the LTTng tracing service to fail when the switch reboots or when the service restarts. Tracing no longer works because the service depends on configuration templates that still reference the deleted cumulus user. This issue can block troubleshooting and diagnostics.</td>
 <td>5.16.7-5.18.2</td>
@@ -95,6 +190,24 @@ REST API Client
 <td>5240513</td>
 <td>Packet trimming appears to be enabled successfully in NVUE, but never becomes operational. The issue occurs because WJH buffer monitoring uses the internal SPAN session that packet trimming also needs.</td>
 <td>5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5240427</td>
+<td>At ECMP scale, SDK encounters ECMP errors due to {{No More Resources}} and shows ASSERT messages in the logs.</td>
+<td>5.13.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5240084</td>
+<td>Adaptive routing ECMP creation fails after more than 3000 adaptive routing ECMPs had already been created, causing repeated SDK internal error messages and leaving the HW ECMP database in an inconsistent state.</td>
+<td>5.13.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5236181</td>
+<td>After an ISSU upgrade, you might see the SDK ECMP errors {{Entry Already Exists}}.</td>
+<td>5.16.7-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -483,6 +596,12 @@ As a result of this issue, both peers in the multihoming pair claim DF (neither 
 <td>5.18.0-5.18.3</td>
 </tr>
 <tr>
+<td>5019111, 5165825</td>
+<td>After an ISSU package upgrade from 5.16.1 to 5.16.6, {{prometheus-sdk-stats}} fail to shut down, which delays warm reboot long enough for peer BGP Graceful Restart timers to expire, causing a significant warm reboot delay and an approximately 20-second traffic outage.</td>
+<td>5.16.1, 5.16.5-5.17.0</td>
+<td>5.18.0-5.18.3</td>
+</tr>
+<tr>
 <td>5018860</td>
 <td>For an MBA authenticated session, the {{auth-type}} shows as {{unknown}} instead of {{MBA}} (MAC Based Authentication) in the gNMI XPath and OTEL metric output.</td>
 <td>5.17.0</td>
@@ -624,6 +743,12 @@ As a result of this issue, both peers in the multihoming pair claim DF (neither 
 <tr>
 <td>4841491</td>
 <td>When the Management-Privilege-Level or Cisco-Avpair is not found, a user is created with privilege level 0 instead of privilege level 1.</td>
+<td>5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>4802241, 4850432</td>
+<td>You might see error logs on the SN2201 switch while collecting a {{cl-support}} file. This issue has no negative impact.</td>
 <td>5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
@@ -1054,7 +1179,7 @@ cumulus@switch:~$ sudo apt install ./cumulus-archive-keyring_4-cl5.6.0u5_all.deb
 cumulus@switch:~$ sudo apt update
 cumulus@switch:~$ sudo apt upgrade
 </td>
-<td>4.0.0-4.4.5, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td>4.0.0-4.4.6, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -1159,7 +1284,7 @@ To work around this issue when using fiber cables:
 <td>3420056</td>
 <td>
 The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1 when you use 10G QSA adaptors. To work around this issue, use 25G QSA adaptors.</td>
-<td>4.4.0-4.4.5, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td>4.4.0-4.4.6, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -1197,7 +1322,7 @@ You can ignore this error; it has no impact on switch functionality.</td>
 <tr>
 <td>3327477</td>
 <td>If you use {{su}} to change to a user specified through TACACS+, the user becomes the local tacacs0 thru tacacs15 user instead of the named user to run {{sudo}} commands. As a result, the named user password might not match the local tacacs0 thru tacacs15 user password.</td>
-<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.6, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -1278,18 +1403,18 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>3084476</td>
 <td> After you disable traffic shaping in the {{/etc/cumulus/datapath/qos/qos_features.conf}} file, the default QOS traffic shaping configuration does not restore. To work around this issue, restart {{switchd}}.</td>
 <td>4.4.3, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
-<td>4.4.4-4.4.5</td>
+<td>4.4.4-4.4.6</td>
 </tr>
 <tr>
 <td>3084027</td>
 <td>Under a high load, you might see ingress drop counters increase. The drops are classified as {{HwIfInDiscards}} in ethtool and shown as {{ingress_general}} in hardware.</td>
-<td>4.3.0-4.4.5, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td>4.3.0-4.4.6, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
 <td>3071652</td>
 <td>On rare occasions, after you reboot or restart {{switchd}} on a Spectrum 1 switch, any 25G connections with Direct Attach Copper (DAC) cables that connect from the switch to a non-NVIDIA device might flap continuously. To work around this issue, bring the affected link administratively down for a few seconds on the non-NVIDIA device, then bring the link back up.</td>
-<td>4.4.4-4.4.5, 5.1.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td>4.4.4-4.4.6, 5.1.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -1307,7 +1432,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>2951110</td>
 <td>The {{net show time ntp servers}} command does not show any output with the management VRF.</td>
-<td>3.7.15-3.7.16, 4.1.1-4.4.5, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td>3.7.15-3.7.16, 4.1.1-4.4.6, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -1315,7 +1440,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>When you run the {{ethtool -m}} or the {{l1-show}} command, the 400G interface optical values do not show. 
 
 </td>
-<td>4.4.0-4.4.5, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td>4.4.0-4.4.6, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -1339,19 +1464,19 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>2736108</td>
 <td>When you change the VRRP advertisement interval on the master, the {{master advertisement interval}} field in the {{show vrrp}} command output does not show the updated value.</td>
-<td>4.4.0-4.4.5, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td>4.4.0-4.4.6, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
 <td>2684925</td>
 <td>The NVUE {{nv show vrf default router bgp peer}} command produces a 404 not found error.</td>
-<td>4.4.0-4.4.5, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td>4.4.0-4.4.6, 5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 <tr>
 <td>2671652</td>
 <td>In VXLAN routing environments, you might experience sub-optimal route convergence delays (longer than five seconds) when a prefix transitions to a new ECMP next-hop group. This condition might occur when a VTEP loses ECMP routes through all uplink peerings, then installs the routes through a different path, such as an MLAG peerlink.</td>
-<td>4.4.0-4.4.5, 5.5.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td>4.4.0-4.4.6, 5.5.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
 </table>
@@ -1732,11 +1857,6 @@ hal_mlx_host_ifc.c:3531 CRIT Restarting switchd to recover from fatal SDK health
 {{default-originate}} with a route map, the default route stops being advertised to those neighbors after an FRR restart, reboot, or after the BGP session re-establishes (after a link flap or a hard clear on the peer). To work around this issue and to ensure that the default route advertises correctly, remove, then readd the {{default-originate}} with the route map command or toggle 
 {{default-route-origination}} off, then on.</td>
 <td>5.11.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.8</td>
-</tr>
-<tr>
-<td>4895247</td>
-<td>PTM does not refresh certain entries and the PTM's neighbor status command (ptmctl -d) continues to show a neighbor that is already gone. This condition clears when the expected neighbor gets discovered.</td>
-<td>5.15.1, 5.16.0-5.16.1, 5.16.5-5.16.8</td>
 </tr>
 <tr>
 <td>4894676</td>

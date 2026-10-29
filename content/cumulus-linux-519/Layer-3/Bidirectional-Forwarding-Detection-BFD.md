@@ -360,7 +360,7 @@ Each offload mode has a lowest supported transmit interval, receive interval, an
 
 | Mode | Minimum transmit and receive interval | Minimum detect multiplier |
 | ---- | ------------------------------------- | ------------------------- |
-| `hardware` | 20 milliseconds | 5 |
+| `hardware` | 50 milliseconds | 3 |
 | `kernel` | 100 milliseconds | 3 |
 | `control-plane` | 300 milliseconds | 3 |
 
@@ -434,9 +434,9 @@ To move to a faster mode, for example from `kernel` to `hardware`, shut down the
 4. With the sessions up, lower the timers to the minimum values for the faster mode:
 
    ```
-   cumulus@switch:~$ nv set router bfd profile BFD1 detect-multiplier 5
-   cumulus@switch:~$ nv set router bfd profile BFD1 min-tx-interval 20
-   cumulus@switch:~$ nv set router bfd profile BFD1 min-rx-interval 20
+   cumulus@switch:~$ nv set router bfd profile BFD1 detect-multiplier 3
+   cumulus@switch:~$ nv set router bfd profile BFD1 min-tx-interval 50
+   cumulus@switch:~$ nv set router bfd profile BFD1 min-rx-interval 50
    cumulus@switch:~$ nv config apply
    ```
 
@@ -513,7 +513,7 @@ switch# exit
 
 ### Offload to Hardware
 
-Under heavy CPU load, such as route churn, ACL updates, or large-scale provisioning, software BFD timers can drift and cause false session flaps, especially at aggressive intervals. In `hardware` mode, the switch firmware transmits and receives BFD packets with 10 millisecond timer precision independently of CPU load, which lets you run intervals as low as 20 milliseconds without false flaps.
+Under heavy CPU load, such as route churn, ACL updates, or large-scale provisioning, software BFD timers can drift and cause false session flaps, especially at aggressive intervals. In `hardware` mode, the switch firmware transmits and receives BFD packets with 10 millisecond timer precision independently of CPU load, which lets you run intervals as low as 50 milliseconds without false flaps.
 
 {{%notice note%}}
 - Hardware offload requires a Spectrum-6 switch. On any other platform, `nv config apply` rejects the configuration and tells you which mode to use instead.

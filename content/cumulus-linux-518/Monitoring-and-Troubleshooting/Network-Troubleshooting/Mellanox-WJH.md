@@ -112,7 +112,7 @@ cumulus@switch:~$ nv show system wjh channel forwarding drop-filter
 
 You can control the rate at which the switch sends events for a channel (the polling interval) and the number of WJH drops and aggregates to maintain in the cache (the aggregate cache size).
 
-The polling interval for a channel can be between 5 and 300 seconds and the cache size between 500 and 5000.
+The polling interval for a channel can be between 5 and 300 seconds and the cache size between 500 and 2500.
 
 The following example sets the aggregation interval for the forwarding channel to 100 seconds and the cache size to 1000:
 

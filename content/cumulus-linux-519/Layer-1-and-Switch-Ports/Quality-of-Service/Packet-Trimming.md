@@ -356,21 +356,23 @@ cumulus@switch:~$ nv config apply
 
 {{%notice note%}}
 - Back-to-sender-enabled ports support at most three distinct sets of eligible traffic classes across the switch; ports with the same set of classes share one hardware resource. The switch refuses a fourth distinct set and names the ports and the sets involved.
-- If a DSCP eligible for trimming resolves, through your QoS configuration, onto the traffic class the switch trims to, the switch accepts the configuration but reports a warning in the `nv show system forwarding packet-trim notify-sender` command output.
+- If a DSCP eligible for trimming resolves, through your QoS configuration, onto the traffic class the switch trims to, the switch accepts the configuration and does not report a warning.
 - Enable back-to-sender only on traffic classes carrying traffic that leaves the datacenter, and do not enable it on a lossless traffic class. The switch does not check either of these; get them wrong and the feature still applies, just not usefully.
 - If you change QoS or class-of-service configuration after you configure back-to-sender, recheck that your eligible DSCP values still resolve to the traffic class you intend. The switch does not revalidate this automatically.
 - Changing any back-to-sender or trim-and-forward parameter briefly interrupts trimming while the switch rebuilds the trim session. Forwarding is not affected.
 - Cumulus Linux does not rate-limit back-to-sender notifications.
 {{%/notice%}}
 
-If the configuration is not valid, `nv config apply` fails and the switch logs the reason to the system log.
+If the configuration is not valid, `nv config apply` fails and reports the reason.
 
-To turn off packet trimming, including back-to-sender notification, without discarding your eligibility configuration, run the `nv unset system forwarding packet-trim state` command:
+To turn off packet trimming, including back-to-sender notification, without discarding your eligibility configuration, run the `nv set system forwarding packet-trim state disabled` command, then run the `nv config apply` command:
 
 ```
-cumulus@switch:~$ nv unset system forwarding packet-trim state
+cumulus@switch:~$ nv set system forwarding packet-trim state disabled
 cumulus@switch:~$ nv config apply
 ```
+
+Do not run the `nv unset system forwarding packet-trim state` command to turn off packet trimming. When the state is not set, it defaults to enabled if anything is configured under `system forwarding packet-trim`, or if `qos roce mode lossy-multi-tc` is enabled with `qos roce state enabled`.
 
 ### Show Back-to-sender Notification on Congestion Tail Drop Configuration
 
@@ -399,18 +401,14 @@ TC  Interfaces
 5   swp33-swp48
 ```
 
-If the switch refuses the configuration, the command shows the same view with the columns disagreeing, and the reason in `session-down-reason`:
+If the switch refuses the configuration, `nv config apply` fails and reports the reason. For example, if the same port and traffic class is in both the trim-and-forward and the back-to-sender eligibility lists:
 
 ```
-cumulus@switch:~$ nv show system forwarding packet-trim notify-sender
-                       operational  applied  pending
----------------------  -----------  -------  -------
-tail-drop
-  state                disabled     enabled  enabled
-  session-down-reason  packet-trim: swp5 TC4 is in both the trim-and-forward
-                        and the BTS eligibility list; a port and traffic class
-                        selects one direction
+cumulus@switch:~$ nv config apply
+TC1 is eligible for both packet-trim egress-eligibility and packet-trim notify-sender tail-drop egress-eligibility on swp17s1. A port and traffic class selects one direction.
 ```
+
+The switch does not apply the configuration, and the `nv show` command does not report a reason. Correct or unset the conflicting eligibility, or run the `nv config detach` command to discard the pending change, and then apply again.
 
 ## Back-to-sender Notification on Link Down
 

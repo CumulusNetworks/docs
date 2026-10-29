@@ -246,35 +246,101 @@ interface swp1
 {{< /tab >}}
 {{< /tabs >}}
 
+### Set Default Prefix Lifetimes
+
+By default, the switch advertises each prefix with a valid lifetime of 2592000 seconds (30 days) and a preferred lifetime of 604800 seconds (7 days). If a host forms an address on the wrong port, for example because it was cabled to the wrong port during cluster bringup, it keeps that address for up to 30 days after you fix the cabling.
+
+To make these addresses expire sooner, set default prefix lifetimes on the interface. The switch uses them for every prefix on the interface that does not have its own lifetimes: the prefixes of the IPv6 addresses on the interface, and any prefix you configure without a valid or preferred lifetime.
+- `valid` is how long the prefix stays valid for on-link determination. You can set a value between 0 and 4294967295 seconds, or `infinite`. The default value is 2592000.
+- `preferred` is how long addresses generated from the prefix stay preferred. You can set a value between 0 and 4294967295 seconds, or `infinite`. The default value is 604800.
+
+The preferred lifetime cannot be greater than the valid lifetime; hosts ignore a prefix that breaks this rule. Set both values before you run `nv config apply`. If you only lower the valid lifetime below 604800 seconds, the configuration fails because the default preferred lifetime is then greater.
+
+The following example sets the valid lifetime to 7200 seconds and the preferred lifetime to 3600 seconds on swp6:
+
+{{< tabs "TabID250 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp6 ipv6 neighbor-discovery prefix-lifetime valid 7200
+cumulus@leaf01:mgmt:~$ nv set interface swp6 ipv6 neighbor-discovery prefix-lifetime preferred 3600
+cumulus@leaf01:mgmt:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+In vtysh, you set both values in one command.
+
+```
+cumulus@leaf01:mgmt:~$ sudo vtysh
+...
+leaf01# configure terminal
+leaf01(config)# interface swp6
+leaf01(config-if)# ipv6 nd prefix-lifetime 7200 3600
+leaf01(config-if)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:mgmt:~$ 
+```
+
+The vtysh commands write to the `/etc/frr/frr.conf` file:
+
+```
+cumulus@leaf01:mgmt:~$ sudo cat /etc/frr/frr.conf
+...
+interface swp6
+ ipv6 nd prefix-lifetime 7200 3600
+ ...
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+To go back to the default lifetimes, run the `nv unset interface <interface-id> ipv6 neighbor-discovery prefix-lifetime` command, or the `no ipv6 nd prefix-lifetime` vtysh command.
+
+To check the lifetimes the switch uses, run the vtysh `show interface <interface>` command:
+
+```
+cumulus@leaf01:mgmt:~$ sudo vtysh -c "show interface swp6"
+...
+  ND derived prefixes advertised with valid 7200 preferred 3600 seconds
+...
+```
+
+{{%notice note%}}
+- When fast retransmit is on (the default), hosts get the new lifetimes within about a second. A change to the lifetimes of a single prefix, with the `nv set interface <interface-id> ipv6 neighbor-discovery prefix <ipv6-prefix-id>` command, waits for the next periodic router advertisement, which can take up to 600 seconds with the default interval.
+- A prefix configured with exactly the default lifetimes (2592000 and 604800) counts as having no lifetimes of its own, so it uses the interface default.
+- RFC 4862 does not let a router cut the remaining valid lifetime of an address that a host already has to less than two hours. A valid lifetime below 7200 seconds only fully applies to addresses that hosts form after the change. The switch logs a warning when you set a valid lifetime other than 0 below 7200 seconds.
+{{%/notice%}}
+
+{{%notice warning%}}
+A short valid lifetime costs availability. If router advertisements stop for any reason, such as a reload, a link flap, or router advertisement suppression, hosts lose the address when the valid lifetime runs out instead of after 30 days. Keep the valid lifetime at three times the router advertisement interval or more, and change the two together. The switch logs a warning when you set a valid lifetime other than 0 below three router advertisement intervals.
+{{%/notice%}}
+
 ### Clear a Stale Prefix
 
 A host can continue holding an address derived from a prefix that its port no longer advertises, for example after you move the host to a different port during servicing. Because a host keeps a SLAAC address across a link flap, and Cumulus Linux advertises prefixes with the RFC 4861 default lifetimes (valid for 2592000 seconds, preferred for 604800 seconds), the stale address otherwise stays usable for up to thirty days.
 
-To make hosts on the link deprecate an address derived from a specific prefix immediately, run the `nv action clear` command. The command re-announces the prefix with a zero lifetime for a short burst of router advertisements; it does not change configuration, so there is nothing to revert afterward. You do not have to specify a prefix that the interface currently advertises — this also includes a host that moved to a port that never advertised the prefix it is holding.
+To make hosts on the link discontinue using an address derived from a specific prefix immediately, run the `nv action clear` command. The command re-announces the prefix with a zero lifetime in two router advertisements, 3 seconds apart; it does not change configuration, so there is nothing to revert afterward. Run the command on the interface that sends the router advertisements: the routed port, or the SVI for hosts in a VLAN. You do not have to specify a prefix that the interface currently advertises — this also includes a host that moved to a port that never advertised the prefix it is holding.
 
 ```
 cumulus@leaf01:mgmt:~$ nv action clear interface swp6 ipv6 neighbor-discovery prefix 2001:db8:dead:beef::/64
 ```
 
-To deprecate the address immediately but leave it valid for a longer drain window so existing connections have time to move off the address, set explicit lifetimes. The following example deprecates the prefix now, but keeps it valid for one day:
-
-```
-cumulus@leaf01:mgmt:~$ nv action clear interface swp6 ipv6 neighbor-discovery prefix 2001:db8:dead:beef::/64 valid-lifetime 86400 preferred-lifetime 0
-```
-
 {{%notice note%}}
-- A host does not remove the address immediately. RFC 4862 requires a host to keep an address usable for at least two hours after it receives a shorter lifetime, so the address becomes unavailable at once but is not removed from the host until about two hours later.
-- Lifetime values of 7200 seconds (two hours) or less are equivalent, because of the RFC 4862 rule above. Specify a `valid-lifetime` greater than 7200 to give existing connections a longer drain window before the address is removed.
-- The action signals hosts; it does not remove the prefix from the configuration. If the prefix is still configured on the port, or its address is still installed on the interface, the switch advertises it again on the next periodic router advertisement and the host *un-deprecates* it. To retire a prefix for good, also remove it from the interface with the `nv unset interface <interface-id> ipv6 neighbor-discovery prefix <ipv6-prefix-id>` command.
+- A host does not remove the address immediately. RFC 4862 keeps the address valid for up to two hours after the host receives a shorter lifetime. The address is no longer unavailable: new connections avoid it, but existing connections keep using it.
+- A non-zero `valid-lifetime` works only for a prefix that the interface already advertises, and the next regular router advertisement restores the configured lifetimes.
+- The action signals hosts; it does not remove the prefix from the configuration. If the prefix is still configured on the port, or its address is still installed on the interface, the switch advertises it again on the next periodic router advertisement and the host makes it available again. To retire a prefix for good, also remove it from the interface with the `nv unset interface <interface-id> ipv6 neighbor-discovery prefix <ipv6-prefix-id>` command.
 {{%/notice%}}
 
 Cumulus Linux rejects the command when the interface does not exist, is not operationally up, or is not advertising router advertisements; when the preferred lifetime exceeds the valid lifetime; and when you specify a non-zero valid lifetime for a prefix the interface does not currently advertise, because that tells hosts to create the address rather than retire it.
 
 {{%notice note%}}
-Removing a prefix from configuration with the `nv unset interface <interface-id> ipv6 neighbor-discovery prefix <ipv6-prefix-id>` command also sends a short burst of router advertisements with a zero lifetime for that prefix, so hosts reliably deprecate it instead of relying on a single advertisement.
+Removing a prefix from configuration with the `nv unset interface <interface-id> ipv6 neighbor-discovery prefix <ipv6-prefix-id>` command also sends three router advertisements with a zero lifetime for that prefix, so hosts reliably discontinue using it instead of relying on a single advertisement. The switch sends them only when the interface is up and the prefix has `autoconfig` enabled, and sends nothing while an interface address in that prefix is still configured.
 {{%/notice%}}
 
-The `nv show interface <interface-id> ipv6 neighbor-discovery prefix <ipv6-prefix-id>` continues to report the configured lifetimes throughout a burst because a clear does not modify configuration. To confirm a clear reached a host, check the address state on the host with the `ip -6 addr show dev <interface>` command. A cleared address shows a `preferred_lft` of `0`.
+The `nv show interface <interface-id> ipv6 neighbor-discovery prefix <ipv6-prefix-id>` continues to report the configured lifetimes throughout the router advertisements because a clear does not modify configuration. To confirm that a clear reached a host, check the address state on the host with the `ip -6 addr show dev <interface>` command. An address no longer in use shows a `preferred_lft` of `0`.
 
 ## Recursive DNS Servers
 

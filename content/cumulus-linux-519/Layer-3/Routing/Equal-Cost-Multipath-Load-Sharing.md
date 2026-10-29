@@ -808,7 +808,8 @@ Reload `switchd` with the `sudo systemctl reload switchd.service` command.
 ### ECMP Group Segregation
 
 {{%notice note%}}
-ECMP group segregation is supported only on switches with the Spectrum-6 ASIC. Earlier ASICs always merge equivalent adaptive routing ECMP groups.
+- In Cumulus Linux 5.19.0, ECMP group segregation is a Beta feature.
+- ECMP group segregation is supported only on switches with the Spectrum-6 ASIC. Earlier ASICs always merge equivalent adaptive routing ECMP groups.
 {{%/notice%}}
 
 Adaptive routing can select an egress port in round-robin order, spraying packets across the ports in the group. The round-robin state for a group lives in the ASIC, and by default two adaptive routing ECMP groups that resolve to the same member ports share one hardware entry, and therefore one round-robin pointer. Their traffic distributions are correlated instead of independent. ECMP group segregation gives each adaptive routing ECMP group its own entry and its own round-robin pointer, which improves tail latency. Tail latency matters for AI training, where GPUs synchronize periodically and a single late packet stalls the whole cluster.

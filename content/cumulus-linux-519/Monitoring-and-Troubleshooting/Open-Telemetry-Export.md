@@ -415,7 +415,7 @@ cumulus@switch:~$ nv config apply
 
 ### Platform Statistics
 
-When you enable platform statistic open telemetry, the switch exports data about the CPU, disk, filesystem, memory, sensor health, transceiver information, and, on a switch with co-packaged optics (CPO), CPO module and laser source information. To enable all [platform statistics](#platform-statistic-format) globally:
+When you enable platform statistic open telemetry, the switch exports data about the CPU, disk, filesystem, memory, sensor health, transceiver information. To enable all [platform statistics](#platform-statistic-format) globally:
 
 ```
 cumulus@switch:~$ nv set system telemetry platform-stats export state enabled
@@ -553,8 +553,6 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Transceivers">}}
 
-On a switch with co-packaged optics (CPO), this class covers the CPO modules and optical engines in place of pluggable transceivers.
-
 To enable transceiver statistics:
 
 ```
@@ -570,7 +568,8 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
-{{< tab "Laser Source">}}
+<!-- NOT SUPPORTED IN 5.19, commented out 2026-10-30 (Ilia Yanover: 5.19 does not officially support CPO). To restore, remove this comment wrapper and undo the escapes: put the inner comment delimiters (written with a slash inserted) and the Hugo shortcodes (written with a slash and asterisk) back to normal.
+{{</* tab "Laser Source" */>}}
 
 Laser source statistics cover the external laser sources (ELS) on a switch with co-packaged optics (CPO). The switch exports ELS inventory, operational and error status, temperature, power consumption, and ICC current. On a switch without CPO hardware, enabling the class has no effect.
 
@@ -590,9 +589,10 @@ cumulus@switch:~$ nv config apply
 
 To return the class to its default settings, run the `nv unset system telemetry platform-stats class laser-source-info` command.
 
-To show the laser source data on the switch itself, see {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#show-laser-sources" text="Show Laser Sources">}}.
+To show the laser source data on the switch itself, see {{</* link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#show-laser-sources" text="Show Laser Sources" */>}}.
 
-{{< /tab >}}
+{{</* /tab */>}}
+-->
 {{< tab "Platform Information">}}
 
 To enable platform information statistics, such as the time of last reboot, the last reboot reason, or hardware details such as the chasis version, model name, part number, serial number, and type:
@@ -3509,9 +3509,10 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 | `nvswitch_platform_transceiver_host_lane_state` | Per host lane LOS and CDR LOL state.|
 
 {{< /tab >}}
-{{< tab "CPO and Laser Source">}}
+<!-- NOT SUPPORTED IN 5.19, commented out 2026-10-30 (Ilia Yanover: 5.19 does not officially support CPO). To restore, remove this comment wrapper and undo the escapes: put the inner comment delimiters (written with a slash inserted) and the Hugo shortcodes (written with a slash and asterisk) back to normal.
+{{</* tab "CPO and Laser Source" */>}}
 
-The switch exports these metrics on a switch with CPO only. Enable them with the `transceiver-info` and `laser-source-info` platform statistic classes, where `transceiver-info` covers the CPO modules and optical engines and `laser-source-info` covers the laser sources; refer to {{<link url="Open-Telemetry-Export/#platform-statistics" text="Platform Statistics">}}.
+The switch exports these metrics on a switch with CPO only. Enable them with the `transceiver-info` and `laser-source-info` platform statistic classes, where `transceiver-info` covers the CPO modules and optical engines and `laser-source-info` covers the laser sources; refer to {{</* link url="Open-Telemetry-Export/#platform-statistics" text="Platform Statistics" */>}}.
 
 |  Name | Description |
 |------ | ----------- |
@@ -3536,7 +3537,8 @@ The switch exports these metrics on a switch with CPO only. Enable them with the
 | `nvswitch_platform_els_temperature_threshold_info` | *Threshold at which the laser source temperature alarm triggers. Carries a `name` label. |
 | `nvswitch_platform_els_icc_current` | *ICC current the laser source draws. Carries a `name` label. |
 
-{{< /tab >}}
+{{</* /tab */>}}
+-->
 {{< tab "Platform Information ">}}
 
 | Metric | Description |

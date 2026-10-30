@@ -632,6 +632,13 @@ Cumulus Linux supports the following gNMI {{<exlink url="https://github.com/open
 
 ### Supported Models
 
+<!-- REVIEW: the openconfig-platform row in the table below gains Type and a sentence naming the
+     component types. The specification states no quality level and is a Confluence-style page with
+     no Scope, Known Limitations, or Open Issues sections, so there is nothing to check the claim
+     against except a candidate build. Its component table also has a "Deprecation Details" column
+     whose contents did not survive text extraction; confirm nothing is deprecated before
+     publishing. Delete this comment before publishing. -->
+
 Cumulus Linux supports the following OpenConfig models:
 <!-- vale off -->
 | Model| Supported Data |

@@ -13,12 +13,6 @@
 <td>5.18.1</td>
 </tr>
 <tr>
-<td>5223707</td>
-<td>Restarting the networking service in an EVPN multihoming configuration leaves the host bonds enabled in configuration but not actually working. After the restart, the bond loses carrier, stops forwarding traffic, and a MAC address that is supposed to stay local gets removed from the local bond and is instead learned through VXLAN/ECMP. In some later observations, Linux shows the MAC address correctly back on the local hostbond, but the hardware still points it to ECMP, showing a software or hardware forwarding mismatch.</td>
-<td>5.16.7-5.19.0</td>
-<td></td>
-</tr>
-<tr>
 <td>5221359</td>
 <td>NVUE accumulates a large number of internal applied checkpoint revision branches or tags, which slows {{nv config apply}} operations over time and increases disk usage.</td>
 <td>5.16.3-5.19.0</td>
@@ -995,7 +989,7 @@ This failure disrupts DHCPv6 service for all downstream interfaces served by tha
 <td>5.18.0-5.18.3</td>
 </tr>
 <tr>
-<td>5281416, 5341616</td>
+<td>5281416</td>
 <td>When you submit a configuration request through the REST API and RADIUS is configured for AAA authentication, the {{Calling-Station-Id}} sent to the RADIUS server incorrectly contains the loopback address (127.0.0.1) instead of the IP address of the originating REST API client.</td>
 <td>5.16.6-5.18.3</td>
 </tr>

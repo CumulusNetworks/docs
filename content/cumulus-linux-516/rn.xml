@@ -121,6 +121,12 @@
 <td></td>
 </tr>
 <tr>
+<td>5298371, 5298370</td>
+<td>The switch incorrectly advertises a MAC-only EVPN type-2 route with the layer 3 VNI label in the BGP NLRI (Network Layer Reachability Information). Although this does not have any functional impact, it is not the desired RFC behavior.</td>
+<td>5.14.0-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5297900</td>
 <td>A BGP prefix remains as the best path in BGP and present in the routing table but missing from the kernel and hardware. As a result, the switch drops traffic to the prefix, even though a good alternate path exists and the next hop group is programmed correctly. To work around this issue, clear the BGP session that provides the current best path to restore the route.</td>
 <td>5.16.3-5.18.0</td>
@@ -134,38 +140,7 @@
 </tr>
 <tr>
 <td>5281416, 5341616</td>
-<td>When a configuration request is submitted through the REST API and RADIUS is configured for AAA authentication, the Calling-Station-Id sent to the RADIUS server incorrectly contains the loopback address (127.0.0.1) instead of the IP address of the originating REST API client .
-
-Due to flow:
-
-REST API Client
-10.87.221.34
-      |
-      v
-+---------------------+
-| Public NVUE NGINX   |
-| knows original IP   |
-+---------------------+
-      |
-      | auth subrequest
-      | via 127.0.0.1 / ::1
-      v
-+----------------------+
-| Internal NGINX Auth  |
-+----------------------+
-      |
-      v
-   PAM nvueapi
-      |
-      v
- pam_radius_auth
-      |
-      v
-+----------------------+
-|    RADIUS Server     |
-| Calling-Station-Id = |
-| 127.0.0.1 / ::1  X   |
-+----------------------+</td>
+<td>When you submit a configuration request through the REST API and RADIUS is configured for AAA authentication, the {{Calling-Station-Id}} sent to the RADIUS server incorrectly contains the loopback address (127.0.0.1) instead of the IP address of the originating REST API client.</td>
 <td>5.16.6-5.18.3</td>
 <td></td>
 </tr>
@@ -1151,7 +1126,7 @@ where only the aggregate should be advertised.</td>
 <td>5.11.2</td>
 </tr>
 <tr>
-<td>4413589, 5298371, 5298370</td>
+<td>4413589</td>
 <td>A MAC-only EVPN type-2 route is wrongly advertised with the layer 3 VNI label in the BGP NLRI (Network Layer Reachability Information). Although this does not have any functional impact, it is not the desired RFC behavior.</td>
 <td>5.13.0-5.18.3</td>
 <td></td>
@@ -1851,6 +1826,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
+<td>5298371, 5298370</td>
+<td>The switch incorrectly advertises a MAC-only EVPN type-2 route with the layer 3 VNI label in the BGP NLRI (Network Layer Reachability Information). Although this does not have any functional impact, it is not the desired RFC behavior.</td>
+<td>5.14.0-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5297900</td>
 <td>A BGP prefix remains as the best path in BGP and present in the routing table but missing from the kernel and hardware. As a result, the switch drops traffic to the prefix, even though a good alternate path exists and the next hop group is programmed correctly. To work around this issue, clear the BGP session that provides the current best path to restore the route.</td>
 <td>5.16.3-5.18.0</td>
@@ -1864,38 +1845,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 </tr>
 <tr>
 <td>5281416, 5341616</td>
-<td>When a configuration request is submitted through the REST API and RADIUS is configured for AAA authentication, the Calling-Station-Id sent to the RADIUS server incorrectly contains the loopback address (127.0.0.1) instead of the IP address of the originating REST API client .
-
-Due to flow:
-
-REST API Client
-10.87.221.34
-      |
-      v
-+---------------------+
-| Public NVUE NGINX   |
-| knows original IP   |
-+---------------------+
-      |
-      | auth subrequest
-      | via 127.0.0.1 / ::1
-      v
-+----------------------+
-| Internal NGINX Auth  |
-+----------------------+
-      |
-      v
-   PAM nvueapi
-      |
-      v
- pam_radius_auth
-      |
-      v
-+----------------------+
-|    RADIUS Server     |
-| Calling-Station-Id = |
-| 127.0.0.1 / ::1  X   |
-+----------------------+</td>
+<td>When you submit a configuration request through the REST API and RADIUS is configured for AAA authentication, the {{Calling-Station-Id}} sent to the RADIUS server incorrectly contains the loopback address (127.0.0.1) instead of the IP address of the originating REST API client.</td>
 <td>5.16.6-5.18.3</td>
 <td></td>
 </tr>
@@ -2887,7 +2837,7 @@ where only the aggregate should be advertised.</td>
 <td>5.11.2</td>
 </tr>
 <tr>
-<td>4413589, 5298371, 5298370</td>
+<td>4413589</td>
 <td>A MAC-only EVPN type-2 route is wrongly advertised with the layer 3 VNI label in the BGP NLRI (Network Layer Reachability Information). Although this does not have any functional impact, it is not the desired RFC behavior.</td>
 <td>5.13.0-5.18.3</td>
 <td></td>
@@ -3608,6 +3558,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
+<td>5298371, 5298370</td>
+<td>The switch incorrectly advertises a MAC-only EVPN type-2 route with the layer 3 VNI label in the BGP NLRI (Network Layer Reachability Information). Although this does not have any functional impact, it is not the desired RFC behavior.</td>
+<td>5.14.0-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5297900</td>
 <td>A BGP prefix remains as the best path in BGP and present in the routing table but missing from the kernel and hardware. As a result, the switch drops traffic to the prefix, even though a good alternate path exists and the next hop group is programmed correctly. To work around this issue, clear the BGP session that provides the current best path to restore the route.</td>
 <td>5.16.3-5.18.0</td>
@@ -3621,38 +3577,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 </tr>
 <tr>
 <td>5281416, 5341616</td>
-<td>When a configuration request is submitted through the REST API and RADIUS is configured for AAA authentication, the Calling-Station-Id sent to the RADIUS server incorrectly contains the loopback address (127.0.0.1) instead of the IP address of the originating REST API client .
-
-Due to flow:
-
-REST API Client
-10.87.221.34
-      |
-      v
-+---------------------+
-| Public NVUE NGINX   |
-| knows original IP   |
-+---------------------+
-      |
-      | auth subrequest
-      | via 127.0.0.1 / ::1
-      v
-+----------------------+
-| Internal NGINX Auth  |
-+----------------------+
-      |
-      v
-   PAM nvueapi
-      |
-      v
- pam_radius_auth
-      |
-      v
-+----------------------+
-|    RADIUS Server     |
-| Calling-Station-Id = |
-| 127.0.0.1 / ::1  X   |
-+----------------------+</td>
+<td>When you submit a configuration request through the REST API and RADIUS is configured for AAA authentication, the {{Calling-Station-Id}} sent to the RADIUS server incorrectly contains the loopback address (127.0.0.1) instead of the IP address of the originating REST API client.</td>
 <td>5.16.6-5.18.3</td>
 <td></td>
 </tr>
@@ -4686,7 +4611,7 @@ where only the aggregate should be advertised.</td>
 <td>5.11.2</td>
 </tr>
 <tr>
-<td>4413589, 5298371, 5298370</td>
+<td>4413589</td>
 <td>A MAC-only EVPN type-2 route is wrongly advertised with the layer 3 VNI label in the BGP NLRI (Network Layer Reachability Information). Although this does not have any functional impact, it is not the desired RFC behavior.</td>
 <td>5.13.0-5.18.3</td>
 <td></td>
@@ -5407,6 +5332,12 @@ Workaround: Restarting switchd temporarily restores metrics.</td>
 <td>5299074</td>
 <td>When multiple PDDR (Port Diagnostic Database Register) reads happen at the same time, the ASIC command interface can get stuck on register 0x5031. If this happens, {{switchd}} is terminated while it is in this hung state, which brings down all data ports. You see command-interface timeout on access register 0x5031 in the logs, followed by a fatal firmware health or FW Long Command event.</td>
 <td>5.16.1-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5298371, 5298370</td>
+<td>The switch incorrectly advertises a MAC-only EVPN type-2 route with the layer 3 VNI label in the BGP NLRI (Network Layer Reachability Information). Although this does not have any functional impact, it is not the desired RFC behavior.</td>
+<td>5.14.0-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -6525,7 +6456,7 @@ where only the aggregate should be advertised.</td>
 <td>5.11.2</td>
 </tr>
 <tr>
-<td>4413589, 5298371, 5298370</td>
+<td>4413589</td>
 <td>A MAC-only EVPN type-2 route is wrongly advertised with the layer 3 VNI label in the BGP NLRI (Network Layer Reachability Information). Although this does not have any functional impact, it is not the desired RFC behavior.</td>
 <td>5.13.0-5.18.3</td>
 <td></td>
@@ -7277,6 +7208,12 @@ kernel: [899873.236610] sxd_kernel: dev_id=1: Health-Check: New maximum time bet
 <td>5299074</td>
 <td>When multiple PDDR (Port Diagnostic Database Register) reads happen at the same time, the ASIC command interface can get stuck on register 0x5031. If this happens, {{switchd}} is terminated while it is in this hung state, which brings down all data ports. You see command-interface timeout on access register 0x5031 in the logs, followed by a fatal firmware health or FW Long Command event.</td>
 <td>5.16.1-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5298371, 5298370</td>
+<td>The switch incorrectly advertises a MAC-only EVPN type-2 route with the layer 3 VNI label in the BGP NLRI (Network Layer Reachability Information). Although this does not have any functional impact, it is not the desired RFC behavior.</td>
+<td>5.14.0-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -8405,7 +8342,7 @@ where only the aggregate should be advertised.</td>
 <td>5.11.2</td>
 </tr>
 <tr>
-<td>4413589, 5298371, 5298370</td>
+<td>4413589</td>
 <td>A MAC-only EVPN type-2 route is wrongly advertised with the layer 3 VNI label in the BGP NLRI (Network Layer Reachability Information). Although this does not have any functional impact, it is not the desired RFC behavior.</td>
 <td>5.13.0-5.18.3</td>
 <td></td>
@@ -9073,6 +9010,12 @@ hal_mlx_port.c:3919 ERR port state set failed for port &lt;#&gt;: Driver's Retur
 <tr>
 <td>5299231</td>
 <td>When a route that uses a next hop group replaces a downstream-VNI (ip-encap) route, the prefix ECMP container of the old flat next hop is never released, keeping its route user and the DVNI RIF in use. A later RIF delete returns {{RESOURCE_IN_USE}} and the RIF/FID stay parked in {{dvni_pending_ht}} with nothing left to retry.</td>
+<td>5.14.0-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5298371, 5298370</td>
+<td>The switch incorrectly advertises a MAC-only EVPN type-2 route with the layer 3 VNI label in the BGP NLRI (Network Layer Reachability Information). Although this does not have any functional impact, it is not the desired RFC behavior.</td>
 <td>5.14.0-5.18.3</td>
 <td></td>
 </tr>
@@ -9943,7 +9886,7 @@ where only the aggregate should be advertised.</td>
 <td>5.11.2</td>
 </tr>
 <tr>
-<td>4413589, 5298371, 5298370</td>
+<td>4413589</td>
 <td>A MAC-only EVPN type-2 route is wrongly advertised with the layer 3 VNI label in the BGP NLRI (Network Layer Reachability Information). Although this does not have any functional impact, it is not the desired RFC behavior.</td>
 <td>5.13.0-5.18.3</td>
 <td></td>

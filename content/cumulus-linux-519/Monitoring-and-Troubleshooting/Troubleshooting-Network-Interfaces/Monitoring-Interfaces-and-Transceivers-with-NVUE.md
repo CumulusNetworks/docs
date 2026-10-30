@@ -551,6 +551,8 @@ When the reset completes successfully, you see syslog messages similar to the fo
 
 You can show and install firmware for a transceiver module directly through NVUE.
 
+NVUE has no command to fetch transceiver firmware. Before you install a firmware file, copy it to the switch yourself, for example with `scp`, into one of the firmware directories that the `nv show platform transceiver <transceiver-id> firmware files` command lists in the File Path column.
+
 To show the current firmware version for a transceiver, upgrade status, and the firmware files available, run the `nv show platform transceiver <transceiver-id> firmware` command:
 
 ```
@@ -888,13 +890,14 @@ tx-bias-current      1     6.750 mA        8.500 mA        8.000 mA        6.000
                      4     6.750 mA        8.500 mA        8.000 mA        6.000 mA        5.492 mA 
 ```
 
+<!-- NOT SUPPORTED IN 5.19, commented out 2026-10-30 (Ilia Yanover: 5.19 does not officially support CPO). To restore, remove this comment wrapper and undo the escapes: put the inner comment delimiters (written with a slash inserted) and the Hugo shortcodes (written with a slash and asterisk) back to normal.
 ## Show CPO Module and Laser Source Information
 
 On a switch with co-packaged optics (CPO), the optics sit inside the switch ASIC package instead of in pluggable modules in the front panel ports, so optical data no longer maps to a single port. Cumulus Linux exposes this hardware through two new commands: `nv show platform cpo`, which holds the CPO modules, and `nv show platform laser-source`, which holds the external laser sources (ELS). Use these commands to inspect module state, per-channel optical power, and per-laser health when you suspect an optical fault.
 
 A CPO module contains two optical engines (OE) and 32 lanes, which the CLI shows as channels. Each laser source is one ELS driving eight lasers. Cumulus Linux reads the mapping between ports, channels, and lasers from the switch firmware instead of assuming a fixed ratio, so the mapping can differ between platforms.
 
-{{%notice note%}}
+{{%/* notice note */%}}
 - The `nv show platform cpo` and `nv show platform laser-source` commands are available on CPO platforms only. On other platforms, use the `nv show platform transceiver` commands described earlier.
 - CPO and laser source data is read-only. There is nothing to configure.
 - On a switch with more than one ASIC, these commands show the CPO modules for every ASIC.
@@ -902,7 +905,7 @@ A CPO module contains two optical engines (OE) and 32 lanes, which the CLI shows
 - When part of a module fails, the operational channels and lasers continue to report, and the failed components show an error status.
 - When Cumulus Linux cannot read or parse a value, it shows `N/A` or `0` for that field and logs the error instead of returning a stale or synthetic value. Run the command again to retry the read.
 - Interface state does not affect these readings. Bringing an interface down, or changing its IP or VLAN configuration, does not change the underlying optical measurements.
-{{%/notice%}}
+{{%/* /notice */%}}
 
 ### Show CPO Modules
 
@@ -1123,4 +1126,5 @@ When you upgrade a switch that has CPO hardware, Cumulus Linux detects the hardw
 
 The scope of the data the transceiver commands return changes on CPO hardware: the switch reports CPO modules instead of front panel transceivers. Adjust any configuration file or script that parses `nv show platform transceiver` output on a CPO switch to use the `nv show platform cpo` and `nv show platform laser-source` commands instead. The output format does not change; it remains key-value pairs.
 
-To export the same data to a monitoring system, see {{<link url="Open-Telemetry-Export/#platform-statistics" text="Platform Statistics">}}.
+To export the same data to a monitoring system, see {{</* link url="Open-Telemetry-Export/#platform-statistics" text="Platform Statistics" */>}}.
+-->

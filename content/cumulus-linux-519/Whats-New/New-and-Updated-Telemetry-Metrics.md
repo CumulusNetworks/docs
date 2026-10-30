@@ -41,9 +41,10 @@ The switch exports these xPaths on Spectrum-6 switches only. For information abo
 {{%/notice%}}
 
 {{< /tab >}}
-{{< tab "CPO and Laser Source">}}
+<!-- NOT SUPPORTED IN 5.19, commented out 2026-10-30 (Ilia Yanover: 5.19 does not officially support CPO). To restore, remove this comment wrapper and undo the escapes: put the inner comment delimiters (written with a slash inserted) and the Hugo shortcodes (written with a slash and asterisk) back to normal.
+{{</* tab "CPO and Laser Source" */>}}
 
-The following paths are present on a switch with co-packaged optics (CPO) only. The `name` key is the CPO module, optical engine, or laser source identifier, such as `cpo1`, `oe1`, or `els1`. For the commands that show the same data on the switch, refer to {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#show-cpo-module-and-laser-source-information" text="Show CPO Module and Laser Source Information">}}.
+The following paths are present on a switch with co-packaged optics (CPO) only. The `name` key is the CPO module, optical engine, or laser source identifier, such as `cpo1`, `oe1`, or `els1`. For the commands that show the same data on the switch, refer to {{</* link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#show-cpo-module-and-laser-source-information" text="Show CPO Module and Laser Source Information" */>}}.
 
 |  Name | Description |
 |------ | ----------- |
@@ -99,7 +100,8 @@ The following paths are present on a switch with co-packaged optics (CPO) only. 
 | `/components/component[name=<els-id>]/laser-source/state/present` | Whether the laser source is present. |
 | `/components/component[name=<els-id>]/laser-source/state/icc-current` | ICC current the laser source draws. |
 
-{{< /tab >}}
+{{</* /tab */>}}
+-->
 {{< tab "Interfaces">}}
 
 |  Name | Description |
@@ -207,9 +209,10 @@ The switch exports these metrics on Spectrum-6 switches only. For information ab
 Both metrics are 64-bit counters and carry four labels: `rule_id`, `packet_type` (`spxm` or `ipv6`), `udp_dport` (the destination port or `none`), and `action`, which is always `drop`. The switch exports them only when you enable the `punt-classifier` class. For information about the feature behind these metrics, refer to {{<link url="Access-Control-List-Configuration/#control-plane-punt-classifier" text="Control Plane Punt Classifier">}}.
 
 {{< /tab >}}
-{{< tab "CPO and Laser Source">}}
+<!-- NOT SUPPORTED IN 5.19, commented out 2026-10-30 (Ilia Yanover: 5.19 does not officially support CPO). To restore, remove this comment wrapper and undo the escapes: put the inner comment delimiters (written with a slash inserted) and the Hugo shortcodes (written with a slash and asterisk) back to normal.
+{{</* tab "CPO and Laser Source" */>}}
 
-The switch exports these metrics on a switch with CPO only. Enable them with the `transceiver-info` and `laser-source-info` platform statistic classes, where `transceiver-info` covers the CPO modules and optical engines and `laser-source-info` covers the laser sources; refer to {{<link url="Open-Telemetry-Export/#platform-statistics" text="Platform Statistics">}}.
+The switch exports these metrics on a switch with CPO only. Enable them with the `transceiver-info` and `laser-source-info` platform statistic classes, where `transceiver-info` covers the CPO modules and optical engines and `laser-source-info` covers the laser sources; refer to {{</* link url="Open-Telemetry-Export/#platform-statistics" text="Platform Statistics" */>}}.
 
 |  Name | Description |
 |------ | ----------- |
@@ -234,7 +237,8 @@ The switch exports these metrics on a switch with CPO only. Enable them with the
 | `nvswitch_platform_els_temperature_threshold_info` | Threshold at which the laser source temperature alarm triggers. Carries a `name` label. |
 | `nvswitch_platform_els_icc_current` | ICC current the laser source draws. Carries a `name` label. |
 
-{{< /tab >}}
+{{</* /tab */>}}
+-->
 {{< tab "Microburst Histogram">}}
 
 |  Name | Description |

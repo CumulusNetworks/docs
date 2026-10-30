@@ -18,7 +18,7 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 
 ### New Features and Enhancements
 
-- FRR upgrade to 10.6
+- FRR upgrade to 10.6.0
 - {{<link url="Inter-subnet-Routing/#prevent-re-export-of-vrf-leaked-evpn-routes" text="Prevent re-export of VRF-leaked EVPN routes">}}
 - {{<link url="FRRouting/#class-e-address-space-support" text="Class E (240.0.0.0/4) address space support">}}
 - {{<link url="EVPN-Enhancements/#evpn-unreachability-with-8021x-dynamic-vrf-assignment" text="Disjoined multiplane support for EVPN unreachability with 802.1X dynamic VRF assignment">}}

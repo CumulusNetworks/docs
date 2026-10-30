@@ -326,6 +326,46 @@ URL            None
 {{< /tab >}}
 {{< /tabs >}}
 
+## Suppress ZTP Console Messages
+
+While ZTP runs, the provisioning framework broadcasts informational, warning, and error messages to the switch console with the Linux `wall` command. Repeated broadcasts can make it difficult to use the console to troubleshoot a provisioning failure or to run other commands. You can stop the switch from printing these messages on the console; the switch continues to write them to syslog, where they remain available for troubleshooting.
+
+The switch prints ZTP messages on the console by default.
+
+{{%notice note%}}
+- The setting affects only the messages that ZTP broadcasts. Messages that other services generate, such as automatic tech support and core file generation, continue to appear on the console.
+- The setting is part of the switch configuration, so it does not carry across an image installation. When ZTP installs a different image and reboots the switch, console printing follows the configuration in the newly installed image.
+{{%/notice%}}
+
+To stop the switch from printing ZTP messages on the console, run the `nv set system log ztp messages state disabled` command:
+
+```
+cumulus@switch:~$ nv set system log ztp messages state disabled
+cumulus@switch:~$ nv config apply
+```
+
+Set this option before you rerun ZTP so that the broadcasts from the new provisioning run stay off the console. To rerun ZTP, refer to {{<link url="/#manually-run-ztp" text="Manually Run ZTP">}}.
+
+To print ZTP messages on the console again, run the `nv set system log ztp messages state enabled` command:
+
+```
+cumulus@switch:~$ nv set system log ztp messages state enabled
+cumulus@switch:~$ nv config apply
+```
+
+To return the setting to its default, run the `nv unset system log ztp messages state` command:
+
+```
+cumulus@switch:~$ nv unset system log ztp messages state
+cumulus@switch:~$ nv config apply
+```
+
+{{%notice note%}}
+On a switch with more than one ASIC, disabling this setting stops ZTP messages from every ASIC namespace from appearing on the console, not only the host namespace.
+{{%/notice%}}
+
+To show the current setting, run the `nv show system log ztp messages` command.
+
 ## Write ZTP Scripts
 
 {{%notice note%}}
@@ -411,7 +451,7 @@ nv set system aaa user cumulus password 'MyP4$$word'
 nv config apply
 ```
 
-If you have an insecure management network, inclue the following commands in your ZTP script to set the password with an encrypted hash instead of a clear-text password. See {{<link url="User-Accounts#hashed-passwords" text="Hashed Passwords">}} for additional information.
+If you have an insecure management network, include the following commands in your ZTP script to set the password with an encrypted hash instead of a clear-text password. See {{<link url="User-Accounts#hashed-passwords" text="Hashed Passwords">}} for additional information.
 
 ```
  nv set system aaa user <username> hashed-password <password>

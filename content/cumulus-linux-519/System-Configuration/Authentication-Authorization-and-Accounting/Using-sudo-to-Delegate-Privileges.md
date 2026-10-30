@@ -24,7 +24,22 @@ Errors in the `sudoers` file can result in losing the ability to elevate privile
 
 By default, users in the *sudo* group can use `sudo` to execute privileged commands. To add users to the sudo group, use the `useradd(8)` or `usermod(8)` command. To see which users belong to the sudo group, see `/etc/group` (`man group(5)`).
 
-You can run any command as `sudo`, including `su`. You must enter a password.
+<!-- REVIEW: this note and the example below it draft FR 4933274, "Passwordless sudo access for local
+     and Radius-authenticated users." The spec states no quality level (no Beta, GA, or Tech Preview) for
+     what is a default behavior change; see the longer REVIEW comment on RADIUS-AAA.md for the same
+     concern about this spec. Delete this comment before publishing. -->
+
+Members of the *sudo* group, including the *cumulus* user, can run any command as `sudo`, including `su`, without a password prompt. Cumulus Linux manages this default through a generated `sudoers` policy at `/etc/sudoers.d/nvue-aaa-passwordless-sudo`, which always contains exactly one rule granting the *sudo* group passwordless access to all commands:
+
+```
+%sudo ALL=(ALL:ALL) NOPASSWD: ALL
+```
+
+NVUE regenerates this file during first boot, at every software upgrade, and on every `nv config apply`, including an apply that changes nothing else. There is no command to disable this default. To grant passwordless access to specific commands for a user who is *not* a member of the *sudo* group, use an RBAC `os-command` {{<link url="Role-Based-Access-Control/#os-command-classes" text="class">}} instead; it adds command-specific grants without narrowing the *sudo* group's permanent access.
+
+{{%notice note%}}
+Because `sudo` evaluates the last matching rule, do not add a manual file to `/etc/sudoers.d/` that is ordered after `nvue-aaa-passwordless-sudo` and overrides its `NOPASSWD` policy. NVUE does not create or modify files under `/etc/sudoers.d/` other than `nvue-aaa-passwordless-sudo`.
+{{%/notice%}}
 
 The example below shows how to use `sudo` as a non-privileged user *cumulus* to bring up an interface:
 
@@ -37,16 +52,15 @@ cumulus@switch:~$ ip link set dev swp1 up
 RTNETLINK answers: Operation not permitted
 
 cumulus@switch:~$ sudo ip link set dev swp1 up
-Password:
 
-umulus@switch:~$ ip link show dev swp1
+cumulus@switch:~$ ip link show dev swp1
 3: swp1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast master br0 state UP mode DEFAULT qlen 500
 link/ether 44:38:39:00:27:9f brd ff:ff:ff:ff:ff:ff
 ```
 
 ## sudoers Examples
 
-The following examples show how you grant as few privileges as necessary to a user or group of users to allow them to perform the required task. Each example uses the system group *noc*; groups include the prefix %.
+The following examples show how you grant as few privileges as necessary to a user or group of users to allow them to perform the required task by editing the `sudoers` file manually. Each example uses the system group *noc*; groups include the prefix %. To grant the same kind of narrow, command-specific access through NVUE configuration instead of a manual `sudoers` file, use an RBAC {{<link url="Role-Based-Access-Control/#os-command-classes" text="os-command class">}}.
 
 When an unprivileged user runs a command, the command must include the `sudo` prefix.
 <!-- vale off -->

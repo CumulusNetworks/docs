@@ -4,6 +4,11 @@ author: NVIDIA
 weight: 50
 toc: 3
 ---
+
+{{%notice infonopad%}}
+Before upgrading Cumulus Linux, review the {{<link url="Whats-New/#release-considerations" text="Release Considerations">}} for the version you intend to upgrade to.
+{{%/notice%}}
+
 {{%notice warning%}}
 The default password for the *cumulus* user account is `cumulus`. The first time you log into Cumulus Linux, you **must** change this default password. Be sure to update any automation scripts before you upgrade. You can use ONIE command line options to change the default password automatically during the Cumulus Linux image installation process. Refer to {{<link url="Installing-a-New-Cumulus-Linux-Image#onie-installation-options" text="ONIE Installation Options">}}.
 {{%/notice%}}
@@ -219,7 +224,7 @@ If you pre-stage your NVUE `startup.yaml` during an {{<link url="Installing-a-Ne
 ### Package Upgrade
 
 {{%notice note%}}
-- NVUE deprecated the port split command options (2x10G, 2x25G, 2x40G, 2x50G, 2x100G, 2x200G, 4x10G, 4x25G, 4x50G, 4x100G, 8x50G) available in Cumulus Linux 5.3 and earlier. If you use NVUE to configure port breakout speeds in Cumulus 5.3 or earlier, NVUE automatically updates the configuration during upgrade to Cumulus Linux 5.5 and later to use the new format (2x, 4x, 8x).
+- NVUE discontinued the port split command options (2x10G, 2x25G, 2x40G, 2x50G, 2x100G, 2x200G, 4x10G, 4x25G, 4x50G, 4x100G, 8x50G) available in Cumulus Linux 5.3 and earlier. If you use NVUE to configure port breakout speeds in Cumulus 5.3 or earlier, NVUE automatically updates the configuration during upgrade to Cumulus Linux 5.5 and later to use the new format (2x, 4x, 8x).
 - Cumulus Linux continues to support the old port split format in the `/etc/cumulus/ports.conf` file; however NVIDIA recommends that you use the new format.
 
 {{%/notice%}}

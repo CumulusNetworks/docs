@@ -2,6 +2,7 @@
 title: NetQ 5.0 Open Source Packages
 author: Cumulus Networks
 weight: -30
+type: foss
 product: Cumulus NetQ
 version: "5.0"
 toc: 1

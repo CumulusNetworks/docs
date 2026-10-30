@@ -2,6 +2,7 @@
 title: Cumulus Linux 3.7 Open Source Packages
 author: NVIDIA
 weight: -30
+type: foss
 product: Cumulus Linux
 version: "3.7"
 toc: 1

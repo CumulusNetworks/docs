@@ -33,13 +33,18 @@
     {{  $.Scratch.SetInMap "version_page_map" (string .Params.version) .Page.RelPermalink }}
 {{ end }}
 
-{{if in .Page.Title "Release Notes" }}
-    <!-- The RN page names include the release version so they never match -->
-    <!-- This will look for page type "rn" and map it to the version, which only matches the RN page -->
-    {{ range where (where .Site.Pages "Params.type" "rn") ".Page.Params.product" .Page.Params.product  }}
+<!-- Some page titles include the release version (for example "Cumulus Linux 5.18 -->
+<!-- Release Notes"), so the title match above never finds them in another version -->
+<!-- and they fall back to the version landing page. Match those on page type instead. -->
+<!-- Only types listed here are version-titled: each must be unique per version, since -->
+<!-- several pages sharing a type would overwrite each other in the map. Rendering-only -->
+<!-- types such as "nojsscroll" must never be added. -->
+{{ $versionTitledTypes := slice "rn" "foss" }}
+{{ if in $versionTitledTypes .Page.Params.type }}
+    {{ range where (where .Site.Pages "Params.type" .Page.Params.type) ".Page.Params.product" .Page.Params.product  }}
         {{  $.Scratch.SetInMap "version_page_map" (string .Params.version) .Page.RelPermalink }}
     {{ end }}
-  {{ end }}
+{{ end }}
 
 
 <div id="product-nav" class="flex">

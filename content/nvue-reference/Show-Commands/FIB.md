@@ -1,7 +1,7 @@
 ---
 title: FIB
 author: Cumulus Networks
-weight: 173
+weight: 270
 
 type: nojsscroll
 ---
@@ -75,6 +75,33 @@ Prefix          Next-hop     Protocol  Scope   Summary
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show vrf \<vrf-id\> router fib ipv4 route \<route-id\></h>
+
+Shows IPv4 FIB table entries for a specific prefix in a VRF.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+| `<route-id>` | The IPv4 prefix. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.16.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default router fib ipv4 route 10.10.10.1/32 
+
+Prefix             Next-hop               Proto  Scope  Summary 
+------------------ ---------------------- ------ ------ ----------------------- 
+10.10.10.1/32      nhid 68                bgp    global Metric: 20
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show vrf \<vrf-id\> router fib ipv6</h>
 
 Shows IPv6 FIB table entries for the specified VRF.
@@ -100,33 +127,6 @@ Prefix      Next-hop       Protocol  Scope   Summary
 fe80::/128  dev vlan30-v0  kernel    global  Metric: 0
 fe80::/64   dev vlan30     kernel    global  Metric: 256
 ff00::/8    dev vlan30     kernel    global  Metric: 256
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show vrf \<vrf-id\> router fib ipv4 route \<route-id\></h>
-
-Shows IPv4 FIB table entries for a specific prefix in a VRF.
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<vrf-id>` | The VRF name. |
-| `<route-id>` | The IPv4 prefix. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.16.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show vrf default router fib ipv4 route 10.10.10.1/32 
-
-Prefix             Next-hop               Proto  Scope  Summary 
------------------- ---------------------- ------ ------ ----------------------- 
-10.10.10.1/32      nhid 68                bgp    global Metric: 20
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

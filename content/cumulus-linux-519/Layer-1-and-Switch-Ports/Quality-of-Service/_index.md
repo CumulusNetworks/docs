@@ -513,7 +513,7 @@ Cumulus Linux supports the following flow control mechanisms:
 - Priority Flow Control (PFC), which is an upgrade of link pause that IEEE 802.1bb defines, extends the pause frame concept to act on a per switch priority value basis instead of an entire link. A PFC pause frame indicates to the peer which specific switch priority value to pause, while other switch priority values or queues continue transmitting.
 
 {{%notice note%}}
-You can not configure link pause and PFC on the same port.
+You cannot configure link pause and PFC on the same port.
 {{%/notice%}}
 
 ### Flow Control Buffers
@@ -715,7 +715,6 @@ small-packet-probability 60
 ### Lossless Headroom Based on Small Packet Probability
 
 Cumulus Linux calculates the headroom size for lossless priority groups based on the assumption that all packets are small (64 bytes). The switch assumes a 100 percent probability of such packets arriving at line rate. As a result, the configured headroom is often larger than necessary, as traffic typically consists of a mix of packet sizes.
-<!--On Spectrum-6, the switch assumes a 50 percent probability of such packets arriving at line rate.-->
 
 To enable more accurate headroom calculations, providing for better buffer allocation and improved shared buffer utilization, you can configure the probability of small packets on ports applied with a {{<link url="#priority-flow-control-(pfc)" text="priority flow control profile">}}. Based on the configured small packet probability, `switchd` calculates the headroom reservation required for the lossless priority group.
 
@@ -770,20 +769,7 @@ tx                        enable       enable
 rx                        enable       enable 
 [switch-priority]         3            3
 ```
-<!--
-To show the link pause small packet probability setting for a profile, run the `nv show qos link-pause <profile-id>` command. To show the link pause small packet probability setting for an interface, run the `nv show interface <interface-id> qos link-pause` command.
 
-```
-cumulus@switch:~$ nv show qos link-pause default-global
-                           operational  applied
-------------------------  -----------  -------
-cable-length              100          100    
-small-packet-probability  40           40     
-tx                        enable       enable 
-rx                        enable       enable 
-[switch-priority]         3            3
-```
--->
 ### PFC Watchdog
 
 PFC watchdog detects and mitigates pause storms on PFC-enabled ports.
@@ -841,7 +827,7 @@ cumulus@switch:~$ sudo systemctl reload switchd
 {{< /tab >}}
 {{< /tabs >}}
 
-You can control the PFC watchdog polling interval and how many polling intervals the PFC watchdog must wait before it mitigates the storm condition. The default polling interval is 100 milliseconds. The default number of polling intervals is 3.
+You can control the PFC watchdog polling interval and how many polling intervals the PFC watchdog must wait before it mitigates the storm condition. The default polling interval is 100 milliseconds. You can specify a value between 100 and 5000. The default number of polling intervals is 3. You can specify a value between 1 and 1000.
 
 The following example sets the PFC watchdog polling interval to 200 milliseconds and the number of polling intervals to 5:
 
@@ -878,6 +864,134 @@ cumulus@switch:~$ echo 200 > /cumulus/switchd/config/pfc_wd/poll_interval
 
 {{< /tab >}}
 {{< /tabs >}}
+
+PFC watchdog distinguishes a real deadlock from steady-state congestion. Instead of declaring a deadlock from received pause alone, the watchdog evaluates up to three conditions in each polling interval and requires every enabled condition to be true before it counts a detection hit:
+
+- The egress queue occupancy is above `transmit-queue-threshold`.
+- The number of frames the queue transmits in the interval is at or below `tx-frames-threshold`.
+- The received pause duration in the interval is above the threshold derived from `rx-pause-duration multiplier`.
+
+Each condition has its own state parameter. When you disable a condition, the watchdog ignores it. A queue that is both occupied and unable to transmit while it receives sustained pause is deadlocked; a queue that continues to transmit is congested but still making progress.
+
+Recovery works the same way. The watchdog requires `recovery-interval` consecutive polling intervals in which received pause frames stay at or below `rx-pause-threshold` before it restores the port.
+
+The following table shows the detection and recovery parameters:
+
+<!-- REVIEW: the range for rx-pause-threshold and tx-frames-threshold value below is drafted as
+     0-100000, from the NVUE handoff email (validated against the ARCH spec, per the email) that
+     also settled the recovery-interval and multiplier defaults below. A later revision of the FS
+     itself (re-checked 2026-09-28; the FS was edited 2026-09-08, after the email), now
+     consistently gives both ranges as 0-65535 in its leaf table and its per-command configuration
+     tables -- the same sections that, for recovery-interval and multiplier, now agree with the
+     values already drafted here. Only a stale, internally-inconsistent block elsewhere in that
+     same FS section (which also wrongly gives recovery-interval a default of 1 and
+     transmit-queue-threshold a default of Enabled) still shows 100000. Confirm which range is
+     correct -- 100000 (email) or 65535 (current FS) -- against a candidate build before
+     publishing, since the two sources now disagree in a way they did not when this was first
+     drafted. Delete this comment before publishing. -->
+
+| Parameter | Default | Range | Description |
+|---|---|---|---|
+| `recovery-interval` | 2 | 1-1000 | Consecutive recovery hits the watchdog requires before it restores the port. |
+| `rx-pause-threshold` | 0 | 0-100000 | Maximum received pause frames in a polling interval for that interval to count as a recovery hit. |
+| `rx-pause-duration state` | enabled | enabled, disabled | Whether the watchdog evaluates the pause duration condition. |
+| `rx-pause-duration multiplier` | 9900 | 1-9999 | Pause duration threshold, as a fraction (multiplier divided by 10000) of the polling interval. |
+| `tx-frames-threshold state` | enabled | enabled, disabled | Whether the watchdog evaluates the transmitted frames condition. |
+| `tx-frames-threshold value` | 0 | 0-100000 | Maximum frames transmitted in a polling interval for that interval to count as a detection hit. |
+| `transmit-queue-threshold state` | disabled | enabled, disabled | Whether the watchdog evaluates the queue occupancy condition. |
+| `transmit-queue-threshold percent` | 0 | 0-100 | Minimum egress queue occupancy, as a percentage, for that interval to count as a detection hit. |
+
+{{%notice note%}}
+- You can only enable `transmit-queue-threshold` when the polling interval is greater than 300 milliseconds.
+- The default multiplier of 9900 sets the pause duration threshold to 99 percent of the polling interval. With the default polling interval of 100 milliseconds, the watchdog counts a detection hit when it receives more than 99 milliseconds of pause in that interval.
+{{%/notice%}}
+
+The following example enables all three detection conditions, sets the queue occupancy threshold to 10 percent, sets the transmitted frames threshold to 10, and requires five consecutive clean intervals before recovery:
+
+<!-- REVIEW: two fuse leaf names in the Linux tab below need checking against a candidate
+     build. The source lists the transmit-queue-threshold value leaf as "tx_frames_threshold",
+     which duplicates the tx-frames-threshold row and is almost certainly a copy/paste error;
+     tx_queue_occupancy_threshold is drafted here from its own _enabled sibling. The
+     recovery-interval leaf is given as "restoration_time", which does not match the NVUE name
+     - plausible as a legacy name, but confirm.
+
+     2026-09-28 recheck: the FS (edited 2026-09-08, after the email this was drafted from) now
+     gives a third spelling for both: transmit-queue-threshold's leaves as
+     "transmit_queue_threshold_enabled, transmit_queue_threshold" (not tx_queue_occupancy_threshold),
+     and recovery-interval's leaf as "recovery_intervals" (not restoration_time). The FS's own
+     §13.2/§13.4 still mark leaf names and the persistent file path as "TBD (Open Item)", so this
+     is a third data point on an still-open question rather than a resolution -- do not treat
+     either the FS's or the email's naming as final without a candidate-build check.
+     Delete this comment before publishing. -->
+
+{{< tabs "TabID2001 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set qos pfc-watchdog polling-interval 400
+cumulus@switch:~$ nv set qos pfc-watchdog transmit-queue-threshold state enabled
+cumulus@switch:~$ nv set qos pfc-watchdog transmit-queue-threshold percent 10
+cumulus@switch:~$ nv set qos pfc-watchdog tx-frames-threshold state enabled
+cumulus@switch:~$ nv set qos pfc-watchdog tx-frames-threshold value 10
+cumulus@switch:~$ nv set qos pfc-watchdog rx-pause-duration state enabled
+cumulus@switch:~$ nv set qos pfc-watchdog rx-pause-duration multiplier 9900
+cumulus@switch:~$ nv set qos pfc-watchdog rx-pause-threshold 0
+cumulus@switch:~$ nv set qos pfc-watchdog recovery-interval 5
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+```
+cumulus@switch:~$ echo 400 > /cumulus/switchd/config/pfc_wd/poll_interval
+cumulus@switch:~$ echo 1 > /cumulus/switchd/config/pfc_wd/tx_queue_occupancy_threshold_enabled
+cumulus@switch:~$ echo 10 > /cumulus/switchd/config/pfc_wd/tx_queue_occupancy_threshold
+cumulus@switch:~$ echo 1 > /cumulus/switchd/config/pfc_wd/tx_frames_threshold_enabled
+cumulus@switch:~$ echo 10 > /cumulus/switchd/config/pfc_wd/tx_frames_threshold
+cumulus@switch:~$ echo 1 > /cumulus/switchd/config/pfc_wd/rx_pause_duration_enabled
+cumulus@switch:~$ echo 9900 > /cumulus/switchd/config/pfc_wd/rx_pause_duration_multiplier
+cumulus@switch:~$ echo 0 > /cumulus/switchd/config/pfc_wd/rx_pause_threshold
+cumulus@switch:~$ echo 5 > /cumulus/switchd/config/pfc_wd/restoration_time
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+To show the PFC watchdog parameters and their applied values, run the `nv show qos pfc-watchdog` command:
+
+<!-- REVIEW: sample output adapted from the source's mock, with the house prompt substituted.
+     The values are a configured switch rather than the defaults in the table above. Capture on
+     a switch and replace before publishing. Delete this comment before publishing. -->
+
+```
+cumulus@switch:~$ nv show qos pfc-watchdog
+                          operational  applied
+------------------------  -----------  --------------
+polling-interval                       0:00:00.100000
+robustness                             10
+recovery-interval                      111
+rx-pause-threshold                     100
+transmit-queue-threshold
+  state                                enabled
+  percent                                10
+tx-frames-threshold
+  state                                enabled
+  value                                100
+rx-pause-duration
+  state                                enabled
+  multiplier                           99
+```
+
+To show an individual parameter, run the `nv show qos pfc-watchdog <parameter>` command. For example, run the `nv show qos pfc-watchdog rx-pause-duration` command:
+
+```
+cumulus@switch:~$ nv show qos pfc-watchdog rx-pause-duration
+            operational  applied
+----------  -----------  -------
+state                    enabled
+multiplier               99
+```
 
 To show if PFC watchdog is on and to show the status for each traffic class, run the `nv show interface <interface-id> qos pfc-watchdog` command:
 
@@ -1004,15 +1118,15 @@ To apply a custom ECN profile to specific interfaces, see [Port Groups](#ecn).
 
 ### Dynamic ECN
 
-Dynamic ECN is a congestion marking mechanism optimized for high-performance traffic, where bursty traffic requires immediate congestion signals to prevent buffer exhaustion. This feature provides extremely fast and aggressive feedback to mitigate microbursts and sudden congestion by triggering ECN marking based on the percentage of available shared buffer instead of static byte thresholds.
+Dynamic ECN is a congestion marking mechanism optimized for high-performance traffic, where bursty traffic requires immediate congestion signals to prevent buffer exhaustion. This feature provides extremely fast and aggressive feedback to mitigate microbursts and sudden congestion by triggering ECN marking based on the percentage of available shared buffer instead of static byte thresholds.
 
 {{%notice note%}}
 - Cumulus Linux supports dynamic ECN on switches with Spectrum-4 and later.
 - ECN marking probability has a hardware granularity of one percent; effective probabilities below one percent do not produce any marking.
 {{%/notice%}}
 
-To configure dynamic ECN, determine which traffic classes carry loss-sensitive or bursty traffic (such as RoCE on traffic class 3), determine the percentage of dynamic buffer allowance you want to trigger congestion marking, then set dynamic ECN:
-- Set the dynamic ECN mode to `relative` for the `default-global` profile to apply system-wide default settings or for a custom profile for specific port groups. The default value is `absolute`. 
+To configure dynamic ECN, determine which traffic classes carry loss-sensitive or bursty traffic (such as RoCE on traffic class 3), determine the percentage of dynamic buffer allowance you want to trigger congestion marking, then set dynamic ECN:
+- Set the dynamic ECN mode to `relative` for the `default-global` profile to apply system-wide default settings or for a custom profile for specific port groups. The default value is `absolute`. 
 
   When you set dynamic ECN mode to `relative`, the switch hardware ignores any configured byte-based thresholds. The ASIC begins marking traffic based on percentage thresholds relative to the dynamically allocated buffer allowance of the traffic class, which is continuously recalculated based on current buffer usage and pool occupancy.
 
@@ -1022,7 +1136,7 @@ To configure dynamic ECN, determine which traffic classes carry loss-sensitive o
 - Configure the maximum ECN marking threshold as a percentage (0 through 100) of the dynamic buffer allowance. The value must be greater than or equal to the minimum threshold percent. The default value is 100.
 <!--
 {{%notice note%}}
-To maintain statistical integrity and prevent mixing `absolute` mark counts with `relative` mark counts in historical data, Cumulus Linux resets ECN counters for the affected traffic class to zero for any mode transition.
+To maintain statistical integrity and prevent mixing `absolute` mark counts with `relative` mark counts in historical data, Cumulus Linux resets ECN counters for the affected traffic class to zero for any mode transition.
 {{%/notice%}}
 -->
 The following commands set dynamic ECN mode to `relative` for the default profile, configure the minimum ECN marking threshold to 20 percent and the maximum ECN marking threshold to 80 percent.
@@ -2309,9 +2423,251 @@ reserved       1200 Bytes       1200 Bytes
 shared-bytes   13.53 KB         13.53 KB 
 ```
 
+### Service Port Buffers
+
+{{%notice note%}}
+Service port buffers apply only to switches with the Spectrum-6 ASIC. On earlier ASICs, service ports use the same buffer model as regular switch ports.
+{{%/notice%}}
+
+On a Spectrum-6 switch, the service ports share a single dedicated ingress buffer pool instead of drawing on the shared buffer that regular switch ports use. A service port is a bonus port; refer to {{<link url="Switch-Port-Attributes/#breakout-ports" text="Switch Port Attributes">}} for the bonus ports on your switch. Cumulus Linux allocates every ingress region on a service port from this pool, including the port reserved buffer, lossy priority group headroom, and the management priority group.
+
+Because a service port cannot borrow from the shared buffer that the regular ports use, its ingress memory is fixed. Under congestion, a service port drops lossy traffic sooner than a regular port does. Excluding the service port memory also makes the shared buffer available to regular ports slightly smaller.
+
+{{%notice warning%}}
+Cumulus Linux does not support lossless traffic or priority flow control (PFC) on a Spectrum-6 service port. The dedicated service port buffer pool is too small to guarantee lossless behavior. Service ports carry lossy traffic only.
+
+- When you configure a lossless RoCE mode, Cumulus Linux does not create a lossless priority group on a service port. The service ports keep a lossy priority group.
+- NVUE rejects a PFC profile on a service port when you apply the configuration, with an error such as `qos pfc profile is not supported on service port <port-id>`.
+- PFC settings in the `default-global` profile do not affect service ports.
+
+Use a regular switch port for traffic that requires lossless treatment.
+{{%/notice%}}
+
+{{%notice note%}}
+- Cumulus Linux does not expose the service port pool as a service pool object. You cannot create, bind, resize, or delete it. The `nv show` commands read it.
+- All service ports on the switch use the same pool. You cannot bind an individual service port to a different pool.
+- Cumulus Linux does not support the shared headroom pool or the port shared buffer on a service port. NVUE rejects `nv set interface <interface-id> qos shared-headroom-pool enabled` before it applies the configuration, with an error such as `shared-headroom-pool config is not supported on service port <port-id>`.
+- Egress pools on service ports are unchanged.
+- On a multi-ASIC switch, service port numbers are local to each ASIC.
+- The service port buffer configuration persists across a reboot, an upgrade, and ISSU.
+{{%/notice%}}
+
+{{< tabs "TabID2440 ">}}
+{{< tab "NVUE Commands ">}}
+
+To change the buffer allocations for the service ports, run the `nv set qos advance-buffer-config default-global <buffer> <option> <value>` command. You can adjust the following buffers and options:
+
+| Buffer | Options | Description |
+| ------ | ------- | ----------- |
+| `ingress-srvcp-service-pool` | `reserved`, `shared-bytes` | The service port pool's port-level reserved and shared buffer allocation, in bytes. |
+| `ingress-srvcp-lossy-buffer priority-group <priority-group-id>` | `headroom`, `name`, `reserved`, `service-pool`, `shared-bytes`, `switch-priority` | The buffer allocation for a lossy priority group on the service ports. |
+| `ingress-srvcp-mgmt-buffer` | `headroom`, `reserved`, `shared-bytes` | The management priority group buffer allocation for the service ports, in bytes. |
+
+For a lossy priority group, the `<priority-group-id>` is `bulk`, `service1` through `service7`, or a string. The options for a lossy priority group are:
+
+| Option | Description |
+| ------ | ----------- |
+| `headroom` | The lossy headroom buffer allocation, in bytes. |
+| `name` | An alias name for the priority group. |
+| `reserved` | The reserved buffer allocation, in bytes. |
+| `service-pool` | The service port ingress pool. Service ports have one pool, so the only value is `0`. |
+| `shared-bytes` | The static shared buffer allocation, in bytes. |
+| `switch-priority` | The switch priority that the priority group carries. |
+
+{{%notice note%}}
+- `shared-alpha` is not available on any service port buffer; Cumulus Linux creates the service port pool as a static pool, so a service port buffer cannot take a dynamic alpha allocation. Set `shared-bytes` directly instead. If you unset `shared-bytes`, Cumulus Linux restores the default for that buffer.
+- `shared-bytes` is a ceiling, not a reservation. When you raise the reserved or headroom allocation of a service port, the available pool shrinks and the ceilings on the other service port buffers adjust to match, with no change to the configured value. The `nv show interface <interface-id> qos buffer` command shows the operational ceiling, not the configured value.
+- The cumulative allocation across the service port pool and its priority groups, for all service ports, must stay within the service port pool size. If a configuration would exceed it, the switch rejects the apply or reduces the allocation; refer to {{<link url="#service-port-buffer-limits" text="Service Port Buffer Limits">}}.
+{{%/notice%}}
+
+The following example sets the headroom of the `bulk` lossy priority group on the service ports to 50000 bytes:
+
+```
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-srvcp-lossy-buffer priority-group bulk headroom 50000
+cumulus@switch:~$ nv config apply
+```
+
+The following example creates the `service2` priority group for switch priority 2 on the service ports, with a reserved buffer of 2560 bytes and a static shared buffer of 25600 bytes:
+
+```
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-srvcp-lossy-buffer priority-group service2 switch-priority 2
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-srvcp-lossy-buffer priority-group service2 service-pool 0
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-srvcp-lossy-buffer priority-group service2 reserved 2560
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-srvcp-lossy-buffer priority-group service2 shared-bytes 25600
+cumulus@switch:~$ nv config apply
+```
+
+To return a setting to its default, run the `nv unset qos advance-buffer-config default-global <buffer> <option>` command:
+
+```
+cumulus@switch:~$ nv unset qos advance-buffer-config default-global ingress-srvcp-lossy-buffer priority-group bulk headroom
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/mlx/datapath/qos/qos_infra.conf` file to add the following parameters.
+
+| Parameter | Description |
+| --------- | ----------- |
+| `port.srvcp_service_pool.0.ingress_buffer.reserved` | The service port pool's port-level reserved buffer allocation, in bytes. |
+| `port.srvcp_service_pool.0.ingress_buffer.shared_size` | The service port pool's port-level static shared buffer allocation, in bytes. |
+| `priority_group.srvcp_lossy.ingress_buffer.reserved` | The lossy priority group reserved buffer allocation for the service ports, in bytes. |
+| `priority_group.srvcp_lossy.ingress_buffer.shared_size` | The lossy priority group static shared buffer allocation for the service ports, in bytes. |
+| `priority_group.srvcp_lossy.ingress_buffer.lossy_headroom` | The lossy priority group headroom allocation for the service ports, in bytes. |
+| `traffic.srvcp_priority_group_list` | The lossy priority groups for the service ports, for example `[srvcp_pg_service2,srvcp_pg_bulk]`. A priority group name is `srvcp_pg_bulk` or `srvcp_pg_service1` through `srvcp_pg_service7`. A configured list replaces `priority_group.srvcp_lossy`. |
+| `priority_group.srvcp_pg_<name>.id` | The priority group ID. |
+| `priority_group.srvcp_pg_<name>.cos_list` | The switch priorities that the priority group carries. |
+| `priority_group.srvcp_pg_<name>.service_pool` | The service port ingress pool. Service ports have one pool, so the only value is `0`. |
+| `priority_group.srvcp_pg_<name>.ingress_buffer.reserved` | The reserved buffer allocation for a priority group in the list, in bytes. |
+| `priority_group.srvcp_pg_<name>.ingress_buffer.shared_size` | The static shared buffer allocation for a priority group in the list, in bytes. |
+| `priority_group.srvcp_pg_<name>.ingress_buffer.lossy_headroom` | The headroom allocation for a priority group in the list, in bytes. |
+| `priority_group.srvcp_mgmt.ingress_buffer.reserved` | The management priority group reserved buffer allocation for the service ports, in bytes. |
+| `priority_group.srvcp_mgmt.ingress_buffer.shared_size` | The management priority group static shared buffer allocation for the service ports, in bytes. |
+| `priority_group.srvcp_mgmt.ingress_buffer.lossy_headroom` | The management priority group headroom allocation for the service ports, in bytes. |
+
+```
+cumulus@switch:~$ sudo nano /etc/mlx/datapath/qos/qos_infra.conf
+...
+priority_group.srvcp_lossy.ingress_buffer.lossy_headroom = 50000
+...
+```
+
+The following example creates the `service2` priority group for switch priority 2 on the service ports, with a reserved buffer of 2560 bytes and a static shared buffer of 25600 bytes. The `srvcp_pg_bulk` priority group carries the other switch priorities:
+
+```
+traffic.srvcp_priority_group_list = [srvcp_pg_service2,srvcp_pg_bulk]
+
+priority_group.srvcp_pg_service2.id = 2
+priority_group.srvcp_pg_service2.cos_list = [2]
+priority_group.srvcp_pg_service2.service_pool = 0
+priority_group.srvcp_pg_service2.ingress_buffer.reserved = 2560
+priority_group.srvcp_pg_service2.ingress_buffer.shared_size = 25600
+
+priority_group.srvcp_pg_bulk.id = 0
+priority_group.srvcp_pg_bulk.cos_list = [0,1,3,4,5,6,7]
+priority_group.srvcp_pg_bulk.service_pool = 0
+```
+
+To return a parameter to its default, delete or comment out the line.
+
+{{< /tab >}}
+{{< /tabs >}}
+
+The default allocations consume part of the pool before you tune anything. The service port pool is 1946 KB, and Cumulus Linux reserves 256 KB of it for the traffic queue, which leaves 1690 KB. Cumulus Linux carves the remaining pool per service port: each service port draws the same fixed 49 KB default lossy allocation, and the switch multiplies that per-port amount by the number of service ports on your platform. It does not divide a single shared total across the ports. The following table shows what the defaults use and what remains, on a switch with two service ports and on a switch with four. The remaining pool includes the 128 KB that always stays unallocated as shared buffer.
+
+| Allocation | Two service ports | Four service ports |
+| ---------- | ----------------- | ------------------ |
+| Pool available after the 256 KB traffic queue reservation | 1690 KB | 1690 KB |
+| Default lossy allocation, including the port reserved buffer and the management priority group | 98 KB | 196 KB |
+| Remaining pool | 1592 KB | 1494 KB |
+
+To show the service port ingress pool, run the `nv show qos buffer` command. The pool has hardware pool ID `43` and no service pool ID. The pool size is the space currently available in the pool, so it depends on the service port configuration:
+
+```
+cumulus@switch:~$ nv show qos buffer
+Pool Buffers Occupancy Counters
+==================================
+    Hw Pool ID  Service Pool  Pool Type             Direction  Mode    Pool Size  Current Usage  Max Usage
+    ----------  ------------  --------------------  ---------  ------  ---------  -------------  ---------
+...
+    43          -             Service Port Ingress  INGRESS    STATIC  1.52 MB    0 Bytes        0 Bytes
+...
+```
+
+#### Service Port Buffer Limits
+
+Each switch port, including a service port, has a fixed amount of headroom: 1946 cells (498176 bytes). When you explicitly set buffer sizes, such as the lossy headroom and the management headroom, in the `default-global` profile or in a named profile, `nv config apply` checks the total against the 1946-cell limit. If the total exceeds the limit, NVUE rejects the change with an error and applies nothing.
+
+The service ports also share the service port pool. After the switch reserves the cells for the traffic queue and the shared floor, all service ports together can use at most 6248 cells (1562 KB). `cl-consistency-check` and `switchd` check the buffer usage of the service ports against this limit. If the usage exceeds the limit, `switchd` reduces the usage of the port until it fits. It removes the excess in the following order and stops as soon as the port fits:
+
+1. The port reserved buffer
+2. The lossy priority group headroom
+3. The lossy priority group reserved buffer (the management priority group counts as lossy in both steps)
+
+If the other service ports already use all 6248 cells, `switchd` sets every buffer field on this port to 0.
+
+Each layer reports a problem in a different place:
+
+- NVUE rejects a configuration that exceeds the headroom limit, and `nv config apply` shows `Invalid config`. The error names the interfaces the setting applies to: `swp65s0,swp65s1` for the `default-global` profile, or the interface for a named profile. For example:
+
+  ```
+  Service port buffer headroom config cannot exceed port headroom max of 498176 bytes(cells 1946)
+  ```
+
+- `cl-consistency-check` rejects a configuration that exceeds the service port pool. `nv config apply` shows the error under `Failure during apply`, after `Validation of consistency-checker failed.`, and rolls back the configuration. For example:
+
+  ```
+  ERROR: The service port buffer configuration is invalid (1604608 bytes asked, allowed 1599488 bytes). 5120 bytes over.
+  ```
+
+- `switchd` logs a warning in the `switchd` journal and in the `/var/log/switchd.log` file when it reduces a buffer or repairs the pool, and the apply succeeds. For example:
+
+  ```
+  WARN Total port headroom count 198176 exceeds the maximum value 1946. Reset the priority group 1 headroom to 1830
+  [SRVCP_INGRESS] REPAIR hal_port=514 avail_bytes=<bytes> asked_bytes=<bytes> exclusive_bytes=<bytes>
+  ```
+
+<!-- REVIEW: FR 4961156 revision 2.0 (21 Oct) removes lossless and PFC support from Spectrum-6
+     service ports, but the FS message tables were not revised with it. The WARN sample above was
+     captured on a 13 Oct build, when a lossless priority group still existed on a service port,
+     and it names priority group 1, which was that lossless group. Confirm with Bhargav Sivalenka
+     what this warning looks like now that service ports carry lossy priority groups only, and
+     whether the [SRVCP_INGRESS] REPAIR line still uses these fields. The NVUE and
+     cl-consistency-check strings above come from FS tables rather than a captured build.
+     Delete this comment before publishing. -->
+
+To show the pool, mode, and buffer sizes for a service port, run the `nv show interface <interface-id> qos buffer` command. A service port reports hardware pool `43` as its ingress pool instead of the pool a regular port reports. The egress pools are unchanged:
+
+<!-- REVIEW: this sample is the output in revision 2.0 of FR 4961156 (captured on an engineering lab build, adapted to the house prompt). Unlike the earlier sample, it has no lossless priority group, which matches service ports carrying lossy priority groups only. Recapture the output on a release build and confirm the egress tables, which differ from the earlier sample. Delete this comment before publishing. -->
+
+```
+cumulus@switch:~$ nv show interface swp65s0 qos buffer
+Buffer Statistics - Ingress Port
+===================================
+    Hw Pool ID  Mode    Reserved Size  Current Usage  Max Usage  Shared Max
+    ----------  ------  -------------  -------------  ---------  ----------
+    43          STATIC  10.00 KB       0 Bytes        512 Bytes  1.38 MB
+
+Buffer Statistics - Ingress Priority Group
+=============================================
+    priority-group  Pool ID  Mode    Reserved Size  Current Usage  Max Usage  Shared Max  Lossy/Lossless  XON Th   XOFF Th  HR        HR/PL Usage  HR/PL Max
+    --------------  -------  ------  -------------  -------------  ---------  ----------  --------------  -------  -------  --------  -----------  ---------
+    0               43       STATIC  0 Bytes        0 Bytes        512 Bytes  1.38 MB     Lossy           0 Bytes  0 Bytes  19.00 KB  0 Bytes      512 Bytes
+    9               43       STATIC  10.00 KB       0 Bytes        256 Bytes  1.38 MB     Lossy           0 Bytes  0 Bytes  10.00 KB  0 Bytes      256 Bytes
+
+Buffer Statistics - Egress Port
+==================================
+    Hw Pool ID  Mode     Reserved Size  Current Usage  Max Usage  Shared Max
+    ----------  -------  -------------  -------------  ---------  ----------
+    12          DYNAMIC  0 Bytes        0 Bytes        512 Bytes  ALPHA_8
+    13          DYNAMIC  10.00 KB       0 Bytes        0 Bytes    ALPHA_2
+
+Buffer - Egress Traffic Class
+================================
+    traffic-class  Pool ID  Mode     Reserved Size  Current Usage  Max Usage  Shared Max
+    -------------  -------  -------  -------------  -------------  ---------  ----------
+    0              13       DYNAMIC  1.00 KB        0 Bytes        0 Bytes    ALPHA_1
+    1              13       DYNAMIC  1.00 KB        0 Bytes        0 Bytes    ALPHA_1
+    2              13       DYNAMIC  1.00 KB        0 Bytes        0 Bytes    ALPHA_1
+    3              13       DYNAMIC  1.00 KB        0 Bytes        0 Bytes    ALPHA_1
+    4              13       DYNAMIC  1.00 KB        0 Bytes        0 Bytes    ALPHA_1
+    5              13       DYNAMIC  1.00 KB        0 Bytes        0 Bytes    ALPHA_1
+    6              13       DYNAMIC  1.00 KB        0 Bytes        0 Bytes    ALPHA_1
+    7              13       DYNAMIC  1.00 KB        0 Bytes        0 Bytes    ALPHA_1
+    16             12       DYNAMIC  1.00 KB        0 Bytes        512 Bytes  ALPHA_8
+
+Buffer - Egress Multicast
+============================
+    Hw Pool ID  Mode          Reserved Size  Current Usage  Max Usage  Shared Max
+    ----------  ------------  -------------  -------------  ---------  ----------
+    10          BUFFER UNITS  10.00 KB       0 Bytes        0 Bytes    90.00 KB
+```
+
 ## Syntax Checker
 
-Cumulus Linux provides a syntax checker for the `/etc/cumulus/datapath/qos/qos_features.conf` and `qos_infra.conf` files to check for errors, such missing parameters or invalid parameter labels and values.
+Cumulus Linux provides a syntax checker for the `/etc/cumulus/datapath/qos/qos_features.conf` and `qos_infra.conf` files to check for errors, such as missing parameters or invalid parameter labels and values.
 
 The syntax checker runs automatically with every `switchd reload`.
 
@@ -2423,7 +2779,7 @@ QoS buffers cleared on swp1.
 Action succeeded
 ```
 
-To clear the Qos buffers on a set of interfaces, run the `nv action clear interface <interface-list> qos buffer` command. You can specify the list of interfaces in a range or in coma seperated list.
+To clear the Qos buffers on a set of interfaces, run the `nv action clear interface <interface-list> qos buffer` command. You can specify the list of interfaces in a range or in a comma-separated list.
 
 ```
 cumulus@switch:~$ nv action clear interface swp1-5,swp20,swp25 qos buffer
@@ -2946,7 +3302,7 @@ cos_egr_queue.cos_7.cpu = 7
 
 ### Configure QoS and Breakout Ports Simultaneously
 
-If you configure btoh breakout ports and QoS settings for breakout interfaces at the same time, errors might occur.
+If you configure both breakout ports and QoS settings for breakout interfaces at the same time, errors might occur.
 
 You must apply breakout port configuration before QoS configuration on the breakout ports. If you are using NVUE, configure breakout ports and perform an `nv config apply` first, then configure QoS settings on the breakout ports followed by another `nv config apply`. If you are using linux file configuration, modify `ports.conf` first, `reload switchd`, then modify `/etc/cumulus/datapath/qos/qos_features.conf` and `reload switchd` a second time.
 

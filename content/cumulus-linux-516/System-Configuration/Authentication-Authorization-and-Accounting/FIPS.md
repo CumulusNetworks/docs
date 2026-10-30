@@ -76,7 +76,7 @@ When you enable FIPS mode, NVUE blocks the following configurations that use non
 
 | Feature | Restriction | Blocked Configuration |
 | ------- | ----------- | --------------------- |
-| SNMP    | MD5 authentication | `nv set system snmp-server username <username> auth-md5` |
+| SNMP    | MD5 authentication.  | `nv set system snmp-server username <username> auth-md5` |
 | SNMP    | SHA authentication | `nv set system snmp-server username <username> auth-sha` |
 | SNMP traps |MD5 authentication | `nv set system snmp-server trap-destination <dest-id> username <username> auth-md5` |
 | SNMP traps | SHA authentication | `nv set system snmp-server trap-destination <dest-id> username <username> auth-sha` |
@@ -91,4 +91,5 @@ When you enable FIPS mode, NVUE blocks the following configurations that use non
 | SSH server | Non-FIPS public key algorithms | `nv set system ssh-server pubkey-accepted-algorithms ssh-ed25519` |
 | Certificates | Non-FIPS algorithms or key sizes |Imported certificates, CAs, and CRLs must use RSA 2048 or more bits, ECDSA P-256, P-384, or P-521, SHA-256, 384, or 512 signatures. |
 
-If you try to enable FIPS with any of these configurations present, NVUE rejects the apply and displays the specific violations.
+- If you try to enable FIPS with any of these configurations present, NVUE rejects the apply and displays the specific violations.
+- To configure authenticated SNMPv3 with FIPS mode enabled, refer to {{<link url="Configure-SNMP/#snmpv3-and-fips-mode" text="SNMPv3 and FIPS Mode">}}.

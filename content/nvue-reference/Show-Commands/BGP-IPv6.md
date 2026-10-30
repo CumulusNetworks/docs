@@ -1,7 +1,7 @@
 ---
 title: BGP IPv6
 author: Cumulus Networks
-weight: 132
+weight: 180
 type: nojsscroll
 
 ---
@@ -341,6 +341,179 @@ cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast loc
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show vrf \<vrf-id\> router bgp address-family ipv6-unicast loc-rib route \<route-id\> path \<path-id\> aspath</h>
+
+Shows the AS paths for the specified IPv6 route in the local RIB.
+
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp address-family ipv6-unicast route <route-id>` command instead.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+| `<route-id>` | The IPv6 address and route prefix in CIDR notation. |
+| `<path-id>` | The path ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib route 2001:db8::1/128 path 2 aspath
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show vrf \<vrf-id\> router bgp address-family ipv6-unicast loc-rib route \<route-id\> path \<path-id\> bestpath</h>
+
+Shows best path information, such as the selection reason, for the specified IPv6 route in the local RIB.
+
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp address-family ipv6-unicast route <route-id>` command instead.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+| `<route-id>` | The IPv6 address and route prefix in CIDR notation. |
+| `<path-id>` | The path ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib route 2001:db8::1/128 path 1 bestpath
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show vrf \<vrf-id\> router bgp address-family ipv6-unicast loc-rib route \<route-id\> path \<path-id\> community</h>
+
+Shows the community names for the community list for the specified IPv6 route path in the local RIB.
+
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp address-family ipv6-unicast route <route-id>` command instead.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+| `<route-id>` | The IPv6 address and route prefix in CIDR notation. |
+| `<path-id>` | The path ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib route 2001:db8::1/128 path 2 community
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show vrf \<vrf-id\> router bgp address-family ipv6-unicast loc-rib route \<route-id\> path \<path-id\> ext-community</h>
+
+Shows the community names for the extended community list for the specified IPv6 route path in the local RIB.
+
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp address-family ipv6-unicast route <route-id>` command instead.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+| `<route-id>` | The IPv6 address and route prefix in CIDR notation. |
+| `<path-id>` | The path ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib route 2001:db8::1/128 path 2 ext-community
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show vrf \<vrf-id\> router bgp address-family ipv6-unicast loc-rib route \<route-id\> path \<path-id\> flags</h>
+
+Shows route path flags for the specified IPv6 route in the local RIB.
+
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp address-family ipv6-unicast route <route-id>` command instead.
+{{%/notice%}}
+
+{{%notice note%}}
+You must add `-o json` at the end of the command to see the output.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+| `<route-id>` | The IPv6 address and route prefix in CIDR notation. |
+| `<path-id>` | The path ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib route 2001:db8::1/128 path 1 flags  -o json
+{}
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show vrf \<vrf-id\> router bgp address-family ipv6-unicast loc-rib route \<route-id\> path \<path-id\> large-community</h>
+
+Shows the community names for the large community list for the specified IPv6 route path in the local RIB.
+
+{{%notice note%}}
+Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp address-family ipv6-unicast route <route-id>` command instead.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+| `<route-id>` | The IPv6 address and route prefix in CIDR notation. |
+| `<path-id>` | The path ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib route 2001:db8::1/128 path 2 large-community
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show vrf \<vrf-id\> router bgp address-family ipv6-unicast loc-rib route \<route-id\> path \<path-id\> nexthop</h>
 
 Shows the next hops for the specified IPv6 route path in the local RIB.
@@ -459,179 +632,6 @@ cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast loc
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show vrf \<vrf-id\> router bgp address-family ipv6-unicast loc-rib route \<route-id\> path \<path-id\> flags</h>
-
-Shows route path flags for the specified IPv6 route in the local RIB.
-
-{{%notice note%}}
-Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp address-family ipv6-unicast route <route-id>` command instead.
-{{%/notice%}}
-
-{{%notice note%}}
-You must add `-o json` at the end of the command to see the output.
-{{%/notice%}}
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<vrf-id>` | The VRF name. |
-| `<route-id>` | The IPv6 address and route prefix in CIDR notation. |
-| `<path-id>` | The path ID. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib route 2001:db8::1/128 path 1 flags  -o json
-{}
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show vrf \<vrf-id\> router bgp address-family ipv6-unicast loc-rib route \<route-id\> path \<path-id\> bestpath</h>
-
-Shows best path information, such as the selection reason, for the specified IPv6 route in the local RIB.
-
-{{%notice note%}}
-Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp address-family ipv6-unicast route <route-id>` command instead.
-{{%/notice%}}
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<vrf-id>` | The VRF name. |
-| `<route-id>` | The IPv6 address and route prefix in CIDR notation. |
-| `<path-id>` | The path ID. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib route 2001:db8::1/128 path 1 bestpath
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show vrf \<vrf-id\> router bgp address-family ipv6-unicast loc-rib route \<route-id\> path \<path-id\> aspath</h>
-
-Shows the AS paths for the specified IPv6 route in the local RIB.
-
-{{%notice note%}}
-Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp address-family ipv6-unicast route <route-id>` command instead.
-{{%/notice%}}
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<vrf-id>` | The VRF name. |
-| `<route-id>` | The IPv6 address and route prefix in CIDR notation. |
-| `<path-id>` | The path ID. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib route 2001:db8::1/128 path 2 aspath
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show vrf \<vrf-id\> router bgp address-family ipv6-unicast loc-rib route \<route-id\> path \<path-id\> community</h>
-
-Shows the community names for the community list for the specified IPv6 route path in the local RIB.
-
-{{%notice note%}}
-Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp address-family ipv6-unicast route <route-id>` command instead.
-{{%/notice%}}
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<vrf-id>` | The VRF name. |
-| `<route-id>` | The IPv6 address and route prefix in CIDR notation. |
-| `<path-id>` | The path ID. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib route 2001:db8::1/128 path 2 community
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show vrf \<vrf-id\> router bgp address-family ipv6-unicast loc-rib route \<route-id\> path \<path-id\> large-community</h>
-
-Shows the community names for the large community list for the specified IPv6 route path in the local RIB.
-
-{{%notice note%}}
-Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp address-family ipv6-unicast route <route-id>` command instead.
-{{%/notice%}}
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<vrf-id>` | The VRF name. |
-| `<route-id>` | The IPv6 address and route prefix in CIDR notation. |
-| `<path-id>` | The path ID. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib route 2001:db8::1/128 path 2 large-community
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show vrf \<vrf-id\> router bgp address-family ipv6-unicast loc-rib route \<route-id\> path \<path-id\> ext-community</h>
-
-Shows the community names for the extended community list for the specified IPv6 route path in the local RIB.
-
-{{%notice note%}}
-Cumulus Linux 5.11 and later no longer provides this command. Use the `nv show vrf <vrf-id> router bgp address-family ipv6-unicast route <route-id>` command instead.
-{{%/notice%}}
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<vrf-id>` | The VRF name. |
-| `<route-id>` | The IPv6 address and route prefix in CIDR notation. |
-| `<path-id>` | The path ID. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib route 2001:db8::1/128 path 2 ext-community
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv show vrf \<vrf-id\> router bgp address-family ipv6-unicast multipaths</h>
 
 Shows BGP IPv6 multipath configuration for the specified VRF.
@@ -734,31 +734,6 @@ ospf6
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute static</h>
-
-Shows configuration information for BGP IPv6 static route redistribution for the specified VRF.
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<vrf-id>` | The VRF name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast redistribute static
-        operational  applied
-------  -----------  -------
-enable               on
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv show vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute connected</h>
 
 Shows configuration information for BGP IPv6 connected route redistribution for the specified VRF.
@@ -830,6 +805,31 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast redistribute ospf6
        operational  applied
+------  -----------  -------
+enable               on
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute static</h>
+
+Shows configuration information for BGP IPv6 static route redistribution for the specified VRF.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast redistribute static
+        operational  applied
 ------  -----------  -------
 enable               on
 ```
@@ -908,6 +908,59 @@ total-paths   46           46
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show vrf \<vrf-id\> router bgp address-family ipv6-unicast route-export</h>
+
+Shows BGP IPv6 route export configuration for the specified VRF.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast route-export
+                operational  applied
+--------------  -----------  -------
+to-evpn                             
+  enable                     off    
+[route-target]  none                
+to-vrf                              
+  [list]        none                
+rd              none
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show vrf \<vrf-id\> router bgp address-family ipv6-unicast route-export to-evpn</h>
+
+Shows configuration for IPv6 prefix-based routing using EVPN type-5 routes. Type-5 routes (or prefix routes) primarily route to destinations outside of the data center fabric. EVPN prefix routes carry the layer 3 VNI and router MAC address and follow the symmetric routing model to route to the destination prefix.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast route-export to-evpn
+No Data
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show vrf \<vrf-id\> router bgp address-family ipv6-unicast route-import</h>
 
 Shows BGP IPv6 route import configuration for the specified VRF.
@@ -980,59 +1033,6 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast route-import from-vrf list
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show vrf \<vrf-id\> router bgp address-family ipv6-unicast route-export</h>
-
-Shows BGP IPv6 route export configuration for the specified VRF.
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<vrf-id>` | The VRF name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast route-export
-                operational  applied
---------------  -----------  -------
-to-evpn                             
-  enable                     off    
-[route-target]  none                
-to-vrf                              
-  [list]        none                
-rd              none
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show vrf \<vrf-id\> router bgp address-family ipv6-unicast route-export to-evpn</h>
-
-Shows configuration for IPv6 prefix-based routing using EVPN type-5 routes. Type-5 routes (or prefix routes) primarily route to destinations outside of the data center fabric. EVPN prefix routes carry the layer 3 VNI and router MAC address and follow the symmetric routing model to route to the destination prefix.
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<vrf-id>` | The VRF name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast route-export to-evpn
-No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1304,31 +1304,6 @@ cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unreachabil
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show vrf \<vrf-id\> router bgp address-family ipv6-unreachability route-count</h>
-
-Shows the BGP unreachability route count.
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<vrf-id>` | The VRF name.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.16.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unreachability route-count
-             operational
------------  -----------
-total-paths  1
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv show vrf \<vrf-id\> router bgp address-family ipv6-unreachability route \<route-id\> path \<path-id\> community</h>
 
 Shows the IPv6 unreachability route path communities.
@@ -1450,25 +1425,27 @@ cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unreachabil
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show vrf <vrf-id> router rib ipv6 unreachable-prefixes</h>
+## <h>nv show vrf \<vrf-id\> router bgp address-family ipv6-unreachability route-count</h>
 
-Shows all IPv6 unreachable prefixes.
+Shows the BGP unreachability route count.
 
 ### Command Syntax
 
 | Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` | The VRF name. |
+| `<vrf-id>` | The VRF name.|
 
 ### Version History
 
-Introduced in Cumulus Linux 5.17.0
+Introduced in Cumulus Linux 5.16.0
 
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router rib ipv6 unreachable-prefixes
-No Data
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unreachability route-count
+             operational
+-----------  -----------
+total-paths  1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2827,6 +2804,30 @@ enable  on
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast default-origination</h>
+
+Shows default route origination configuration for the specified BGP IPv6 peer group.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default router bgp peer-group underlay address-family ipv6-unicast default-route-origination
+No Data
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast default-route-origination</h>
 
 Shows default route origination configuration for the specified BGP IPv6 peer group.
@@ -2854,30 +2855,6 @@ state   disabled
 {{%notice note%}}
 In Cumulus Linux 5.14 and earlier, the command output shows `enabled on` or `enabled off` instead of `state enabled` or `state disabled`.
 {{%/notice%}}
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast default-origination</h>
-
-Shows default route origination configuration for the specified BGP IPv6 peer group.
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<vrf-id>` | The VRF name. |
-| `<peer-group-id>` | The peer group name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show vrf default router bgp peer-group underlay address-family ipv6-unicast default-route-origination
-No Data
-```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -3080,4 +3057,27 @@ cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-famil
 -----------------  -----------  ------- 
 maximum                         6   
 warning-threshold               75
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show vrf <vrf-id> router rib ipv6 unreachable-prefixes</h>
+
+Shows all IPv6 unreachable prefixes.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.17.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default router rib ipv6 unreachable-prefixes
+No Data
 ```

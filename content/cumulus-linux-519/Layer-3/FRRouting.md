@@ -560,6 +560,60 @@ ip-address
 
 You can also run the vtysh `show ip nht vrf <vrf-id> <ip-address>` command.
 
+## Class E Address Space Support
+
+Cumulus Linux treats certain IPv4 ranges such as 240.0.0.0/4 (Class E) as *martian* addresses and does not use them as the source or destination of ordinary traffic. By default the switch does not accept a Class E address on an interface, build a BGP session over one, or accept a route whose next hop is in that range.
+
+You can allow Class E as an ordinary routable address space, for example to address a fabric that has run out of RFC 1918 private space. After you allow Class E, you can configure Class E addresses on interfaces and BGP neighbors the same way you configure any other IPv4 address.
+
+{{%notice note%}}
+- In Cumulus Linux 5.19 and later, the FRR `allow-reserved-ranges` command no longer includes Class E; it now covers only 0.0.0.0/8 and 127.0.0.0/8.
+- FRR treats 240.0.0.0/4 as a valid unicast address space regardless of this setting. A Class E interface address and its connected route can appear in `nv show interface` output and the routing table even when you have not allowed Class E. This setting controls only the control-plane packet filter that determines whether Class E traffic reaches the switch. Leave Class E as a routable address space unset to keep Class E traffic blocked.
+{{%/notice%}}
+
+The two other reserved ranges with real spoofing and loopback-exposure risk, 0.0.0.0/8 and 127.0.0.0/8, always remain blocked. Allowing Class E does not affect these reserved ranges, and there is no NVUE command to unblock them.
+
+To allow Class E as routable address space, run the `nv set router allow-reserved-range` command:
+
+```
+cumulus@switch:~$ nv set router allow-reserved-range class-e
+cumulus@switch:~$ nv config apply
+```
+
+<!-- REVIEW: the spec states NVUE rejects any allow-reserved-range entry other than class-e, but does not show the full command syntax or confirm whether the argument is a single value or a list. Drafted as a single accepted value. Confirm against a candidate build. -->
+
+To stop allowing Class E as routable address space, run the `nv unset router allow-reserved-range class-e` command.
+
+{{%notice note%}}
+- The `nv set router allow-reserved-range class-e` command applies to IPv4 only. Cumulus Linux has no equivalent range for IPv6.
+- Behavior is identical in the default VRF and in every other VRF.
+- Both ends of a BGP session that runs over a Class E address must run Cumulus Linux 5.19 or later.
+- While Class E is not allowed, the control-plane packet filter (instead of the ASIC) drops packets that arrive on a front-panel port with a Class E source address; therefore hardware drop counters for Class E traffic no longer increment.
+{{%/notice%}}
+
+If you configure a Class E address before you allow Class E, Cumulus Linux still applies the configuration but prints a warning:
+
+```
+cumulus@switch:~$ nv set interface swp1 ip address 241.1.1.1/32
+cumulus@switch:~$ nv config apply
+swp1: 241.1.1.1/32 is in the reserved class-e range - set router allow-reserved-range class-e to use it
+```
+
+### Verify Class E Address Space
+
+There is no `nv show router allow-reserved-range class-e` command. Instead, the switch prints the warning described above each time you apply a Class E address on an interface while you do not allow Class E.
+
+You can verify that Class E is working end to end with the same commands you use for any other address range. Confirm that the address and its connected route appear for the interface, and confirm the BGP session establishes and routes install, as described in {{<link url="Border-Gateway-Protocol-BGP" text="Border Gateway Protocol (BGP)">}} and {{<link url="Interface-Configuration-and-Management/#configure-ip-addresses" text="Configure IP Addresses">}}.
+
+### Troubleshoot Class E Address Space
+
+|  Issue | Description |
+|------ | ----------- |
+| BGP does not come up over a Class E address. | Confirm the connected route for the address exists. Without an accepted interface address, BGP has no local address from which to source the session. |
+| The BGP session comes up, then resets. | Check the FRR log for a martian next hop entry, which indicates that the switch on the other end of the session does not have this feature.|
+| BGP is up, but Class E routes are missing.| The routes might be filtered for having a martian next hop. Check the per-neighbor invalid next hop counter.|
+| Ping does not work, but BGP does.| Check the control-plane packet filter and confirm you allow Class E.|
+
 ## Reload the FRR Configuration
 
 {{%notice warning%}}
@@ -629,6 +683,57 @@ The default setting of 1024 open files supports up to 512 BGP peering sessions. 
 NVIDIA recommends you set the value to at least twice the maximum number of BGP peering sessions you expect.
 {{%/notice%}}
 
+<!-- REVIEW: the specification gives two incompatible forms of this command, with different meanings.
+     Its Introduction, Purpose, Scope, Overview, Solution, System design and Observability sections
+     all give a single global knob, `nv set router resource-limit max-file-descriptors <value>`; its
+     Configuration and NVUE config tree sections give a per-protocol knob,
+     `nv set router <protocol> max-fds <value>`, with worked examples for bgp and ospf. Drafted the
+     global form because the mechanism the specification describes can only be global: NVUE renders
+     one MAX_FDS line into /etc/frr/daemons and the FRR startup wrapper applies it with ulimit -n to
+     the shell that launches every daemon, and the specification states "there is no protocol to
+     daemon mapping" and "no FRR change is required". Confirm against a candidate build before
+     publishing. Delete this comment before publishing. -->
+
+<!-- REVIEW: the specification does not say whether the NVUE limit works on its own or whether the
+     systemd LimitNOFILE value in the Linux tab must be raised to at least the same number. Both tabs
+     are therefore presented as they are, with no claim that one replaces the other. Confirm the
+     interaction, and if NVUE alone is sufficient, say so and demote the Linux tab. Delete this
+     comment before publishing. -->
+
+{{< tabs "TabID674 ">}}
+{{< tab "NVUE Commands ">}}
+
+To set the maximum number of open file descriptors for the FRR routing daemons, run the `nv set router resource-limit max-file-descriptors <value>` command. You can specify a value between 1024 and 65536. The default value is 2048. The recommended value is 16384. The setting applies to every daemon that FRR starts, such as `bgpd`, `ospfd`, and `pimd`.
+
+```
+cumulus@switch:~$ nv set router resource-limit max-file-descriptors 8192
+cumulus@switch:~$ nv config apply
+```
+
+{{%notice warning%}}
+Applying this setting restarts the FRR service, which disrupts traffic for every routing protocol running on the switch. Plan the change for a maintenance window.
+{{%/notice%}}
+
+When you apply the configuration, the switch warns you about the restart:
+
+```
+Warning: The frr service will need to be restarted because the list of router services has changed. This will disrupt traffic for any existing routing protocols.
+```
+
+To show the configured limit, run the `nv show router resource-limit` command:
+
+```
+cumulus@switch:~$ nv show router resource-limit
+                      operational  applied
+--------------------  -----------  -------
+max-file-descriptors               8192
+```
+
+To return the daemons to the default limit, run the `nv unset router resource-limit max-file-descriptors` command.
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
 To update the open files setting:
 
 1. Edit the `/lib/systemd/system/frr.service` file and change the `LimitNOFILE` parameter. The following example sets the `LimitNOFILE` parameter to 4096.
@@ -659,6 +764,9 @@ To update the open files setting:
    ```
    cumulus@switch:~$ sudo systemctl restart frr.service
    ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Related Information
 

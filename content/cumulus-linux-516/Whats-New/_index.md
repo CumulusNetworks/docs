@@ -13,6 +13,17 @@ Cumulus Linux 5.16 is tested and validated as part of the Spectrum-X reference a
 For a list of approved product releases, refer to the {{<exlink url="https://docs.nvidia.com/networking/software/spectrumx-solution-stack/index.html" text="NVIDIA Spectrum-X Validated Solution Stack">}}.
 {{%/notice%}}
 
+## What’s New in Cumulus Linux 5.16.8
+
+Cumulus Linux 5.16.8 provides {{<link title="Cumulus Linux 5.16 Release Notes" text="bug fixes">}} and the following new feature:
+
+- Improvements to {{<link url="Quality-of-Service/#pfc-watchdog" text="PFC watchdog">}} deadlock detection
+
+You can upgrade to 5.16.8 from the following versions using optimized image upgrade, package upgrade, and ONIE image install with the `-t` option to migrate your configuration:
+- 5.16.0, 5.16.1, 5.16.3, 5.16.5, 5.16.6, 5.16.7
+- 5.15.1
+- 5.14.0
+
 ## What’s New in Cumulus Linux 5.16.7
 
 Cumulus Linux 5.16.7 provides {{<link title="Cumulus Linux 5.16 Release Notes" text="bug fixes">}}.
@@ -20,13 +31,9 @@ Cumulus Linux 5.16.7 provides {{<link title="Cumulus Linux 5.16 Release Notes" t
 ### Upgrade Requirements
 
 You can upgrade to 5.16.7 from the following versions using optimized image upgrade, package upgrade, and ONIE image install with the `-t` option to migrate your configuration:
-- 5.14.0
+- 5.16.0, 5.16.1, 5.16.3, 5.16.5, 5.16.6
 - 5.15.1
-- 5.16.0
-- 5.16.1
-- 5.16.3
-- 5.16.5
-- 5.16.6
+- 5.14.0
 
 To perform a package upgrade to 5.16.7 with `apt`, add the repository before performing the upgrade:
 
@@ -112,8 +119,8 @@ Cumulus Linux 5.16.0 contains new features and improvements, and provides bug fi
   - {{<link url="NVUE-API/#http-response-compression" text="HTTP response compression for API responses">}}
 - Telemetry
   - You can now use {{<link url="Open-Telemetry-Export" text="Open telemetry export">}} and {{<link url="gNMI-Streaming" text="gNMI streaming">}} at the same time.
-  - {{<link url="New-and-Updated-Telemetry-Metrics/#gnmi-metrics" text="New, updated, and deprecated gNMI Metrics">}}
-  - {{<link url="New-and-Updated-Telemetry-Metrics/#otel-metrics" text="New and deprecated OTEL Metrics">}}
+  - {{<link url="New-and-Updated-Telemetry-Metrics/#gnmi-metrics" text="New, updated, and discontinued gNMI Metrics">}}
+  - {{<link url="New-and-Updated-Telemetry-Metrics/#otel-metrics" text="New and discontinued OTEL Metrics">}}
 - NVUE:
   - {{<link url="New-and-Removed-NVUE-Commands" text="New and Removed NVUE Commands">}}.
 
@@ -136,7 +143,7 @@ For a list of the earliest Cumulus Linux releases supported for each switch mode
 ### Significant NVUE Command and API Updates
 
 {{%notice warning%}}
-To align with a long-term vision of a common interface between Cumulus Linux, NVIDIA OS (NVOS), and Host-Based Networking, Cumulus Linux 5.15 included significant NVUE command and API updates. If you are upgrading to Cumulus Linux 5.16 from Cumulus Linux 5.14 or earlier, review the list of {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-515/Whats-New/New-and-Changed-NVUE-Commands/" text="New, Changed, and Deprecated NVUE Commands in Cumulus Linux 5.15">}} before you upgrade to ensure a smooth transition.
+To align with a long-term vision of a common interface between Cumulus Linux, NVIDIA OS (NVOS), and Host-Based Networking, Cumulus Linux 5.15 included significant NVUE command and API updates. If you are upgrading to Cumulus Linux 5.16 from Cumulus Linux 5.14 or earlier, review the list of {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-515/Whats-New/New-and-Changed-NVUE-Commands/" text="New, Changed, and Discontinued NVUE Commands in Cumulus Linux 5.15">}} before you upgrade to ensure a smooth transition.
 {{%/notice%}}
 
 ### Maximum Number of NVUE Revisions

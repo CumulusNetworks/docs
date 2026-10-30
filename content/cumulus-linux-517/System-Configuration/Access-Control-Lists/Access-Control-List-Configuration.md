@@ -300,7 +300,7 @@ To create this rule with NVUE, follow the steps below. NVUE adds all options in 
    cumulus@switch:~$ nv config apply
    ```
 
-   - For rules affecting the INPUT or OUPUT chain (-A INPUT or -A OUTPUT), apply the rule to a control plane interface. For example:
+   - For rules affecting the INPUT or OUTPUT chain (-A INPUT or -A OUTPUT), apply the rule to a control plane interface. For example:
 
    ```
    cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 inbound control-plane
@@ -595,7 +595,7 @@ For information about nonatomic and atomic mode, refer to {{<link url="#nonatomi
 
 ## ATCAM Resource Exhaustion
 
-If you see error messages similar to `No More Resources .. Rolling back` when you try to apply ACLs, refer to {{<link url="#troubleshooting-acl-rule-installation-failures" text="Troubleshooting ACL Rule Installation Failures">}} for information on troublshooting and managing resources.
+If you see error messages similar to `No More Resources .. Rolling back` when you try to apply ACLs, refer to {{<link url="#troubleshooting-acl-rule-installation-failures" text="Troubleshooting ACL Rule Installation Failures">}} for information on troubleshooting and managing resources.
 
 ## Supported Rule Types
 
@@ -619,6 +619,10 @@ tricolorpolice option:
 Supported chains for the filter table:
 INPUT FORWARD OUTPUT
 ```
+
+### Connection Tracking and Connection State Matching
+
+Cumulus Linux does not offload `conntrack` or `--ctstate` ACL matches to switch hardware for forwarded traffic. ACL rules that rely on connection state do not provide hardware-enforced filtering for transit traffic on switch ports. Use connection state matching only for control plane firewall IPv4 ACLs. For data-plane ACLs, configure stateless matches such as IP addresses, protocol, ports, TCP flags, DSCP, and other documented hardware-supported rule elements.
 
 ### iptables and ip6tables Rule Support
 
@@ -663,7 +667,7 @@ Rule 2: `-A FORWARD -o vlan101 -s 00::01 -j DROP`
 
 Rule 3: `-A FORWARD -o vlan101 -p icmp6 -j ACCEPT`
 
-Rule 3 still matches for an icmp6 packet with sip 00:01 going out of vlan101. Rule 1 interferes with the normal function of rule 2 and/or rule 3.
+Rule 3 still matches for an icmp6 packet with sip 00:01 going out of vlan101. Rule 1 interferes with the normal function of rule 2 and, or rule 3.
 
 When you have two adjacent rules with the same match and different output interfaces, such as:
 
@@ -965,11 +969,11 @@ unknown-ipmc        1000         1024         0            0             0
 ```
 
 - To show configuration and native hardware data counters for a specific control plane policer from the time the switch booted or `switchd` restarted, run the `nv show system control-plane policer <policer-id> native` command.
--To show only control plane policer native hardware data counters from the time the switch booted or `switchd` restarted, run the `nv show system control-plane policer <policer-id> statistics native` command.
+- To show only control plane policer native hardware data counters from the time the switch booted or `switchd` restarted, run the `nv show system control-plane policer <policer-id> statistics native` command.
 
 #### Clear Control Plane Policer Counters
 
-To aid in troubleshoooting control plane traffic issues, you can clear all control plane policer counters and counters for a specific policer ID.
+To aid in troubleshooting control plane traffic issues, you can clear all control plane policer counters and counters for a specific policer ID.
 
 {{%notice note%}}
 The switch clears software (NVUE counters); hardware counters remain intact.
@@ -1337,7 +1341,7 @@ Cumulus Linux supports ACL matches based on inner packet headers inside encapsul
 - You cannot match on both inner and outer packet headers in the same ACL.
 - You cannot combine a VLAN match with inner packet matches.
 - Inner packet matches support hardware forwarded packets only.
-- You can configure matches on inner packet headers with NVUE commmands only. 
+- You can configure matches on inner packet headers with NVUE commands only. 
 {{%/notice%}}
 
 You can use the following inner packet matching options:
@@ -1393,11 +1397,11 @@ cumulus@switch:~$ nv set acl acl1 rule 20 action deny
 Cumulus Linux supports ACL rule matches based on the packet offset.
 
 {{%notice note%}}
-- You can configure a maximum of three different packet offset matches either in a single ACL rule or across three separate ACL rules. You can reuse the same offset match in another ACL rule, which is not considered an extra offset match. The combination of an offset location and a `match-from` value is considered as one offset.
+- You can configure a maximum of three different packet offset matches either in a single ACL rule or across three separate ACL rules. You can reuse the same offset match in another ACL rule, which does not count as an extra offset match. The combination of an offset location and a `match-from` value counts as one offset.
 - You can configure offset matches only for ACL type ipv4 and ipv6.
 - The Spectrum1 switch does not support matches based on the packet offset.
 - Matches based on the packet offset support hardware forwarded packets only.
-- You can configure matches based on the packet offset with NVUE commmands only. 
+- You can configure matches based on the packet offset with NVUE commands only. 
 {{%/notice%}}
 
 You can use the following packet offset matching options:

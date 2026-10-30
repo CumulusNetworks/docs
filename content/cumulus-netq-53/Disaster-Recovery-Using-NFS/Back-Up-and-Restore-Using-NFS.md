@@ -12,7 +12,7 @@ The backup and restore process preserves data related to Cassandra, MongoDB, and
 - The hostnames of all nodes in the target (new) cluster must match the corresponding node hostnames in the source (old) cluster.
 - {{<link title="Set Up the NFS Server" text="Set up an NFS server">}} before performing the steps on this page. The NFS server must be accessible from all nodes in the new cluster. 
 - You must execute the backup and restore script from the cluster's master node.
-- Retrieve the `backup-restore-nfs.sh` script: <!--need to check this 5.1--><p style="text-indent: 40px; margin: 0;">a. Log in to the {{<exlink url="https://nvid.nvidia.com/" text="NVIDIA Application Hub">}}.</p><p style="text-indent: 40px; margin: 0;">b. Select <b>NVIDIA Licensing Portal</b>.</p><p style="text-indent: 40px; margin: 0;">c. Select <b>Software Downloads</b> from the menu.</p><p style="text-indent: 40px; margin: 0;">d. In the search field, enter <b>NetQ</b>.</p><p style="text-indent: 40px; margin: 0;">e. Locate the latest <i>NetQ Upgrade Backup Restore</i> file and select <b>Download</b>.</p><p style="text-indent: 40px; margin: 0;">f. If prompted, read the license agreement and proceed with the download.</p>
+- Retrieve the `backup-restore-nfs.sh` script: <p style="text-indent: 40px; margin: 0;">a. Log in to the {{<exlink url="https://nvid.nvidia.com/" text="NVIDIA Application Hub">}}.</p><p style="text-indent: 40px; margin: 0;">b. Select <b>NVIDIA Licensing Portal</b>.</p><p style="text-indent: 40px; margin: 0;">c. Select <b>Software Downloads</b> from the menu.</p><p style="text-indent: 40px; margin: 0;">d. In the search field, enter <b>NetQ</b>.</p><p style="text-indent: 40px; margin: 0;">e. Locate the latest <i>NetQ Upgrade Backup Restore</i> file and select <b>Download</b>.</p><p style="text-indent: 40px; margin: 0;">f. If prompted, read the license agreement and proceed with the download.</p>
 
 ## Back Up and Restore NetQ Data
 
@@ -83,7 +83,7 @@ NODE_MAP_FILE=/home/nvidia/scripts/nodes.txt \
 bash [LONGHORN_STORAGE_PATH=<path-to-longhorn-storage] backup-restore-nfs.sh --restore
 ```
 
-7. After the restoration process completes, you can install NetQ using the installation command (`netq install`) associated with your {{<link title="Install the NetQ System" text="deployment model">}}. Do not use the `restore` option when running this command: the `restore` option is used exclusively for the {{<link title="Back Up and Restore NetQ" text="general backup and restore">}} process.
+7. After the restoration process completes, you can install NetQ using the installation command (`netq install`) associated with your {{<link title="Install the NetQ System" text="deployment model">}}. Do not use the `restore` option when running this command.
 
 ## Additional Backup and Restore Options
 

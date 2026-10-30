@@ -528,14 +528,14 @@ Cumulus Linux supports adaptive routing with:
 - VXLAN-encapsulated RoCE traffic.
 - Layer 3 interfaces.
 - Next hop router interfaces in the default VRF.
-- The NVIDIA Spectrum-X networking platform, which accelerates AI network performance. For information about NVIDIA Spectrum-X, refer to {{<exlink url="https://www.nvidia.com/en-in/networking/spectrumx/" text="NVIDIA Spectum-X networking platform" >}}.
+- The NVIDIA Spectrum-X networking platform, which accelerates AI network performance. For information about NVIDIA Spectrum-X, refer to {{<exlink url="https://www.nvidia.com/en-in/networking/spectrumx/" text="NVIDIA Spectrum-X networking platform" >}}.
 - For additional implementation requirements for adaptive routing consult the Spectrum-X Deployment Guide.
 
 {{%notice note%}}
 - Adaptive routing does not make use of resilient hashing.
 - Cumulus Linux does not support adaptive routing on layer 3 subinterfaces, SVIs, bonds or bond members.
 - The Spectrum-4 switch does not support adaptive routing on 800G links.
-- Adaptive routing is only suppported on the NVIDIA Spectrum-X networking platform, which accelerates AI network performance. For information about NVIDIA Spectrum-X, refer to {{<exlink url="https://www.nvidia.com/en-in/networking/spectrumx/" text="NVIDIA Spectum-X networking platform" >}}
+- Adaptive routing is only supported on the NVIDIA Spectrum-X networking platform, which accelerates AI network performance. For information about NVIDIA Spectrum-X, refer to {{<exlink url="https://www.nvidia.com/en-in/networking/spectrumx/" text="NVIDIA Spectrum-X networking platform" >}}
 {{%/notice%}}
 
 Cumulus Linux also supports BGP W-ECMP with adaptive routing; see {{<link title="BGP Weighted Equal Cost Multipath/#bgp-w-ecmp-with-adaptive-routing" text="BGP Weighted Equal Cost Multipath. ">}}
@@ -594,7 +594,7 @@ Reload `switchd` with the `sudo systemctl reload switchd.service` command.
 
 {{%notice note%}}
 - When you enable adaptive routing, Cumulus Linux uses the default profile settings for your switch ASIC type. If you need to make adjustments to the settings, contact NVIDIA Customer Support.
-- Ensure that traffic intended for adaptive routing is routed over ports with adaptive routing enabled. Unexpected route hashing might occur when mixing adaptive routing traffic and regular ECMP routes egressing ports that do not have adaptive routing enabled.
+- Ensure that traffic intended for adaptive routing uses ports with adaptive routing enabled. Unexpected route hashing might occur when mixing adaptive routing traffic and regular ECMP routes egressing ports that do not have adaptive routing enabled.
 {{%/notice%}}
 
 ### LAG Hash Randomizer

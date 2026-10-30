@@ -17,6 +17,10 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 - Refer to the {{<link title="NetQ NVLink API Changelog">}} for a comprehensive list of changes
 - View the {{<exlink url="http://docs.nvidia.com/networking-ethernet-software/netq-nvlink-api-530/" text="REST API in Swagger">}}
 
+## Release Considerations
+
+- To back up and restore your NetQ data, follow the procedures in {{<link title="Back Up and Restore Using NFS">}}. The backup and restore process that uses the `vm-backuprestore.sh` script is no longer supported.
+
 
 ## Upgrade Paths
 

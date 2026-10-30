@@ -3,8 +3,9 @@ title: Transceiver and Cable Self-qualification with Cumulus Linux
 author: NVIDIA
 weight: 331
 toc: 4
+draft: true
 ---
-
+<!--REQUEST TO REMOVE THIS OUTDATED KB. Set to draft mode for now-->
 NVIDIA provides this document as a suggested procedure for qualifying a transceiver module or cable as a recommended pluggable. NVIDIA does not actively prevent any non-recommended pluggable from functioning and does not restrict the use of self-qualified pluggables. Customers who wish to use a non-recommended pluggable can follow the suggested procedure outlined in this document. For concerns about pluggables that are not listed, {{<exlink url="https://www.nvidia.com/en-us/contact/sales/" text="contact your NVIDIA">}} sales team.
 
 ## Example Connections

@@ -6,7 +6,7 @@ pageID: 8362715
 ---
 {{%notice warning%}}
 
-As of Cumulus Linux 3.7.4, the lightweight network virtualization feature (LNV) has been deprecated. The feature will be removed in Cumulus Linux 4.0. Use {{<link url="Ethernet-Virtual-Private-Network-EVPN" text="Ethernet virtual private network (EVPN)">}} for network virtualization.
+As of Cumulus Linux 3.7.4, the lightweight network virtualization feature (LNV) has been discontinued. The feature will be removed in Cumulus Linux 4.0. Use {{<link url="Ethernet-Virtual-Private-Network-EVPN" text="Ethernet virtual private network (EVPN)">}} for network virtualization.
 
 {{%/notice%}}
 

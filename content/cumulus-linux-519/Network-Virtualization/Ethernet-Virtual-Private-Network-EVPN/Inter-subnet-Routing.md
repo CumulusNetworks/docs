@@ -111,14 +111,14 @@ When you run the `nv set vrf RED evpn vni 4001` command, NVUE:
 - Creates a layer 3 bridge called `br_l3vni` and creates a new, separate single VXLAN device (`vxlan99`) adding it to the bridge (`br_l3vni`). NVUE does this if there is no configured layer 3 VNI.
 - Creates a layer 3 VNI called `vni4001` in VRF RED.
 - Assigns `vni4001` a VLAN automatically (for example, `3159`).
-- Creates a VLAN interface for this VLAN with `_l3` (layer 3) appended to the interface name (for example, `vlan3159_l3`) in VRF RED. This VLAN interface is represented as a Linux virtual interface, subinterface, or virtual link of type `vlan` in the bridge `br_l3vni` and does not show in the `bridge vlan` command output.
+- Creates a VLAN interface for this VLAN with `_l3` (layer 3) appended to the interface name (for example, `vlan3159_l3`) in VRF RED. This VLAN interface appears as a Linux virtual interface, subinterface, or virtual link of type `vlan` in the bridge `br_l3vni` and does not show in the `bridge vlan` command output.
 - Adds the VLAN (for example, `3159`) to the bridge `br_l3vni`. This VLAN does not show in the `bridge-vids` section of the bridge `br_l3vni` in the `/etc/networks/interfaces` file, but still applies to the bridge.
 - Adds the mapping `vlan3159 <-> vni4001` to the VLAN-VNI map of the single VXLAN device `vxlan99` in bridge `br_l3vni`.
 
 This behavior is different in an MLAG environment. If you configure MLAG and you run the `nv set vrf RED evpn vni 4001` command, NVUE:
 - Creates a layer 3 VNI called `vni4001` in VRF RED.
 - Assigns `vni4001` a VLAN automatically (for example, `4055`) out of the global reserved layer 3 VNI VLAN range.
-- Creates a VLAN interface for this VLAN with `_l3` (layer 3) appended to the interface name (for example, `vlan4055_l3`) in VRF RED. This VLAN interface is represented as a Linux virtual interface, subinterface, or virtual link of type `vlan` in the bridge `br_default` and does not show in the `bridge vlan` command output.
+- Creates a VLAN interface for this VLAN with `_l3` (layer 3) appended to the interface name (for example, `vlan4055_l3`) in VRF RED. This VLAN interface appears as a Linux virtual interface, subinterface, or virtual link of type `vlan` in the bridge `br_default` and does not show in the `bridge vlan` command output.
 - Adds the VLAN (for example, `4055`) to bridge `br_default`. This VLAN does not show in the `bridge-vids` section of the bridge `br_default` in the `/etc/networks/interfaces` file, but still applies to the bridge.
 - Adds the mapping `vlan4055 <-> vni4001` to the VLAN-VNI map of the single VXLAN device `vxlan48` in bridge `br_default`.
 
@@ -190,10 +190,6 @@ When you are using MLAG, the VNIs and VXLAN device must belong to the same bridg
 If you need to convert a layer 2 VNI to a layer 3 VNI, refer to {{<link url="Network-Virtualization/#change-a-layer-2-vni-to-layer-3" text="Change a Layer 2 VNI to Layer 3">}}.
 
 ### Layer 3 VXLAN Device Mode
-
-{{%notice note%}}
-Layer 3 VXLAN device mode is a Beta feature.
-{{%/notice%}}
 
 Instead of using a single VXLAN device for all layer 3 VNIs (as described above), you can configure the switch to use a layer 3 VXLAN device for each VNI. Layer 3 VXLAN mode creates individual VXI devices that are not SVIs and are unrelated to any bridge.
 
@@ -490,8 +486,12 @@ router bgp 65101 vrf RED
 
 Symmetric routing presents a problem in the presence of silent hosts. If the ingress VTEP does not have the destination subnet and the host route does not advertise for the destination host, the ingress VTEP cannot route the packet to its destination. You can overcome this problem by having VTEPs announce the subnet prefixes corresponding to their connected subnets in addition to announcing host routes. Cumulus Linux announces these routes as EVPN prefix (type-5) routes.
 
+A host can become effectively silent if its initial announcement is lost. For example, a host might emit a gratuitous ARP as soon as its interface is administratively up, before an LACP bond negotiates a carrier. Cumulus Linux discards the frame and does not retry it, so the attached VTEP has no neighbor entry and originates no type-2 route for that host.
+
+With the subnet prefix advertised, the switch does not drop traffic to such a host. The ingress VTEP forwards on the advertised prefix, the egress VTEP floods an ARP in the layer 2 VNI to resolve the host, and the type-2 route and its /32 host route appear within a few hundred milliseconds. The cost is added latency on the first packet.
+
 To advertise locally attached subnets:
-<!-- vale off -->
+
 1. Enable advertisement of EVPN prefix (type-5) routes. Refer to {{<link url="#announce-evpn-type-5-routes" text="Prefix-based Routing - EVPN Type-5 Routes">}}, below.<!-- vale on -->
 2. Ensure that the routes corresponding to the connected subnets are in the BGP VRF routing table by injecting them using the `network` command or redistributing them using the `redistribute connected` command.
 
@@ -509,7 +509,7 @@ EVPN prefix routes carry the layer 3 VNI and router MAC address and follow the s
 - When connecting to a WAN edge router to reach destinations outside the data center, deploy specific border or exit leaf switches to originate the type-5 routes.
 - On switches with Spectrum ASICs, centralized routing, symmetric routing, and prefix-based routing only work with Spectrum-A1 and later.
 {{%/notice%}}
-<!-- vale off -->
+
 ### Install EVPN Type-5 Routes
 <!-- vale on -->
 For a switch to install EVPN type-5 routes into the routing table, you must configure layer 3 VNI related information. This configuration is the same as for symmetric routing. You need to:
@@ -560,6 +560,77 @@ end
 
 {{< /tab >}}
 {{< /tabs >}}
+
+### Prevent Re-export of VRF Leaked EVPN Routes
+
+When you configure a switch to announce IP prefixes in the BGP RIB as EVPN type-5 routes, the switch might re-export VRF-leaked routes that originate from the EVPN table as type-5 routes. To prevent the re-export of VRF-leaked EVPN routes, enable the skip EVPN imported setting.
+ 
+- The skip EVPN imported setting affects only EVPN type-5 re-export.
+- The skip EVPN imported setting suppresses re-export when the VRF leak ancestry for the selected unicast path originates in the EVPN table.  
+- Locally originated routes, including locally originated routes leaked from another VRF, remain eligible for type-5 re-export.  
+- You set the skip EVPN imported setting for a specific BGP VRF instance and for either IPv4 or IPv6.
+- The emitted EVPN routes remain standards-compliant type-5 routes. This setting only decides which local paths FRR originates; it does not alter received EVPN route encoding, route-target processing, or peer interoperability. 
+- The skip EVPN imported setting is disabled by default, which preserves Cumulus Linux 5.18 and earlier behavior.
+
+{{< tabs "TabID576 ">}}
+{{< tab "NVUE Commands ">}}
+
+To enable the skip EVPN imported setting, run the `nv set vrf <vrf-id> router bgp address-family <address-family> route-export to-evpn skip-evpn-imported enabled` command, where `<address-family>` is either `ipv4-unicast` or `ipv6-unicast`.
+
+```
+cumulus@leaf01:~$ nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn skip-evpn-imported enabled
+cumulus@leaf01:~$ nv config apply
+```
+
+To disable the skip EVPN imported setting, run the `nv set vrf <vrf-id> router bgp address-family <address-family> route-export to-evpn skip-evpn-imported disabled` command.
+
+To remove the skip EVPN imported configuration and restore the default behavior, run the `nv unset vrf <vrf-id> router bgp address-family <address-family> route-export to-evpn skip-evpn-imported` command.
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+To enable the skip EVPN imported setting, run the vtysh `advertise <address-family> skip-evpn-imported` command.
+
+```
+cumulus@leaf01:~$ sudo vtysh
+leaf01# configure terminal
+leaf01(config)# router bgp 65101 vrf RED
+leaf01(config-router)# address-family l2vpn evpn
+leaf01(config-router-af)#  advertise ipv4 unicast skip-evpn-imported 
+leaf01(config-router-af)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$
+```
+
+The vtysh commands create the following snippet in the `/etc/frr/frr.conf` file:
+
+```
+...
+router bgp 65101 vrf RED
+  address-family l2vpn evpn
+    advertise ipv4 unicast skip-evpn-imported
+  exit-address-family
+end
+...
+```
+
+To disable the skip EVPN imported setting, run the vtysh `no advertise <address-family> unicast skip-evpn-imported` command.
+
+{{< /tab >}}
+{{< /tabs >}}
+
+To show the skip EVPN imported configuration, run the `nv show vrf <vrf-id> router bgp address-family <address-family> route-export to-evpn` command or the vtysh `show running-config bgpd` command.
+
+```
+cumulus@leaf01:~$ nv show vrf RED router bgp address-family ipv4-unicast route-export to-evpn
+                           operational  applied  
+-------------------------  -----------  -------- 
+state                                   enabled  
+route-map                               none     
+default-route-origination  disabled     disabled 
+skip-evpn-imported                      enabled
+```
 
 ### Control RIB Routes
 
@@ -2130,7 +2201,6 @@ cumulus@border01:mgmt:~$ ip route show vrf VRF10
 ### Centralized Routing with ARP Suppression Enabled on the Gateway
 
 In an EVPN centralized routing configuration, where the layer 2 network extends beyond VTEPs, (for example, a host with bridges), the gateway MAC address does not refresh in the network when ARP suppression exists on the gateway. To work around this issue, disable ARP suppression on the centralized gateway.
-<!-- vale off -->
 
 ### Symmetric Routing and the Same SVI IP Address Across Racks
 

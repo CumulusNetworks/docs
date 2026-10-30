@@ -121,8 +121,7 @@ address-family l2vpn evpn
 {{< /tabs >}}
 
 {{%notice note%}}
-- If you delete the RD or RT later, it reverts back to its corresponding default value.
-- Route target auto derivation does not support 4-byte AS numbers; If the router has a 4-byte AS, you must define the RTs manually.
+If you delete the RD or RT later, it reverts back to its corresponding default value.
 {{%/notice%}}
 
 You can configure multiple RT values. In addition, you can configure both the import and export route targets with a single command by using `route-target both`:
@@ -456,6 +455,36 @@ Paths: (2 available, best #1)
 Displayed 2 paths for requested prefix
 ```
 
+### EVPN Unreachability with 802.1X Dynamic VRF Assignment
+
+You can use EVPN unreachability in disjoined planes together with {{<link url="802.1X-Interfaces/#dynamic-vrf-assignment" text="802.1X dynamic VRF assignment">}}, where RADIUS assigns an authenticated interface to a tenant VRF.
+
+When a link goes down on an interface that 802.1X authorized into a tenant VRF, the `hostapd` service deauthorizes the host and moves the interface out of that VRF. Cumulus Linux recognizes that the interface left the VRF because the link went down, and retains the EVPN unreachable route type in the VRF to which the interface is authorized. Remote leaf switches in the plane keep the exception programmed on their GPUs and continue to avoid the plane to reach the affected GPU. Cumulus Linux withdraws the route when the interface comes back up and reauthenticates.
+
+Cumulus Linux distinguishes a link-down event from an ordinary deauthorization. When a host deauthorizes while the link is still up, for example when the tenant job completes, the host has effectively shut down, so Cumulus Linux does not advertise an EVPN unreachable route type for the interface.
+
+{{%notice note%}}
+- All leaf and spine switches in the plane must run Cumulus Linux 5.19 or later.
+- The base VRF of an 802.1X-enabled interface, which is the interface-to-VRF mapping in the `/etc/network/interfaces` file, must be the default VRF or a parking VRF that does not have the BGP unreachability address family configured. Do not use a tenant VRF that has BGP unreachability configured and an `interfaces-match` prefix that covers the IP address of the interface.
+- You must enable the {{<link url="802.1X-Interfaces/#preserve-dynamically-assigned-ipv6-addresses" text="preserve-on-link-down">}} option on the 802.1X IPv6 profile.
+{{%/notice%}}
+
+To show the 802.1X authorization state that BGP uses to make these decisions, run the vtysh `show bgp dot1x interface` command. To show the equivalent state in `zebra`, run the vtysh `show dot1x interface` command. Both commands accept the `json` option.
+
+<!-- REVIEW: sample output adapted from the spec's capture, with the house prompt and the page's uppercase tenant VRF naming. Capture on a switch and confirm the column set and the empty AuthorizedVRF rendering (the spec's table output shows a hyphen where its JSON output shows an empty string) before publishing. -->
+
+```
+cumulus@leaf01:mgmt:~$ sudo vtysh
+leaf01# show bgp dot1x interface
+Interface  Status        PrevStatus    AuthorizedVRF  Reason
+swp5       unauthorized  authorized    -              none
+swp6       unauthorized  unauthorized  TENANT1        link-down
+swp7       unauthorized  unauthorized  TENANT1        none
+swp8       authorized    unauthorized  TENANT2        none
+```
+
+The `Reason` field shows `link-down` when the interface left its authorized VRF because the link went down. This is the state in which Cumulus Linux retains the EVPN unreachable route type. The `AuthorizedVRF` field shows the VRF that holds the retained route.
+
 ### Considerations
 
 - EVPN Multihoming is not supported with unreachability in disjoined planes.
@@ -469,7 +498,6 @@ Displayed 2 paths for requested prefix
 - EVPN unreachability in disjoined planes does not work during a networking restart or forced reboot.
 - Cumulus Linux does not support:
   - Mixing connected and disjoined planes on the same leaf switch.
-  - 802.1x dynamic VRF assignments with EVPN unreachability in disjoined planes.
   - VRF leaking for IPv4 or IPv6 unreachability SAFI.
   - Reporter TLV aggregation procedures for the EVPN unreachable route type.
   - BGP ADD-PATH or multipath for the EVPN unreachable route type.
@@ -487,13 +515,22 @@ Be aware of the following limitations when configuring EVPN unreachability in di
 
 Restarting `switchd` results in network churn. FRR sees interfaces going down, which triggers BGP to start advertising EVPN unreachable routes and brings down peering. BGP withdraws the EVPN unreachable routes and re-establishes BGP sessions after the interfaces are back up operationally.
 
-#### Link Down with Dynamic VRF Assignment on 802.1X Interfaces
-
-When a link with a configured IP address goes down operationally on the leaf switch on only one plane, BGP on the leaf advertises the EVPN unreachable route type for the IP prefix of the interface that is operationally down. However, because the interface is unassigned from the VRF, BGP withdraws the EVPN unreachable route type from the remote leaf switch. Because the remote node still has the aggregate summary route, the leaf switch where the link is down attracts traffic and blocks it instead of rerouting traffic through other healthy planes.
-
 #### Redistributed Route Overlapping with the Interface Match Command
 
 If an interface address redistributed by BGP falls within the IP address range configured in the `bgp advertise-unreach interfaces-match` command and the interface goes down operationally, BGP withdraws the type-5 route and advertise the EVPN unreachable route type for the interface IP address.
+
+<!-- REVIEW: new in this spec revision (the previous pass's spec stated "Known Limitations: None"; the
+     current revision adds this limitation with an explicit note to the spec author to put it in the
+     user guide, referencing RM 5264815). The reproduction steps in the spec are garbled by document
+     extraction -- it names both `nv set system dot1x dynamic-vrf disabled` and `nv set system dot1x
+     dynamic-vrf required` in one run-on sentence, without making clear whether the trigger is
+     disabling the feature, changing between modes, or cycling it. Drafted as "change the mode",
+     which covers all three readings, rather than asserting one specific sequence. Confirm the exact
+     reproduction against a candidate build before publishing, and delete this comment. -->
+
+#### Changing the Dynamic VRF Mode Loses Retained State
+
+If you change the `nv set system dot1x dynamic-vrf` mode while an interface has a retained EVPN unreachable route (its link is down and Cumulus Linux still shows the interface as authorized with reason `link-down`), Cumulus Linux stops tracking the retained state of that interface. The link for the interface remains down, but Cumulus Linux no longer advertises or maintains an EVPN unreachable route or an exception for it on the local or remote leaf switch, so traffic can black-hole until the interface comes back up and reauthenticates.
 
 ## Enable EVPN in an iBGP Environment with an OSPF Underlay
 

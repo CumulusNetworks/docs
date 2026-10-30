@@ -11,13 +11,14 @@ Custom role-based access control consists of the following elements:
 | Element | Description |
 | ------- | ----------- |
 | Role | A virtual identifier for multiple classes (groups). You can assign only one role for a user. For example, for a user that can manage interfaces, you can create a role called `IFMgr`. |
-| Class | A class is similar in concept to a Linux group. Creating and managing classes is the simplest way to configure multiple users simultaneously, especially when configuring permissions.</br></br>A class consists of:<ul><li>Command paths, which Cumulus Linux bases on the objects in the NVUE declarative model and, which are the same as URI paths; for example; you can use the `/vrf/` command path to allow or deny a user access to all VRFs, or `/system/nat` to allow or deny a user access to NAT configuration. Use the tab key to see available command paths (`nv set system aaa class <class-name> command-path / <<press tab>>`).<li>Permissions for the command paths: (`ro`) to run show commands, (`rw`) to run set, unset, and apply commands, (`act`) to run action commands, or (`all`) to run all commands. The default permission setting is `all`.</li></ul>|
+| Class | A class is similar in concept to a Linux group. Creating and managing classes is the simplest way to configure multiple users simultaneously, especially when configuring permissions.</br></br>A class contains exactly one of the following policy types:<ul><li>Command paths, which Cumulus Linux bases on the objects in the NVUE declarative model and, which are the same as URI paths; for example; you can use the `/vrf/` command path to allow or deny a user access to all VRFs, or `/system/nat` to allow or deny a user access to NAT configuration. Use the tab key to see available command paths (`nv set system aaa class <class-name> command-path / <<press tab>>`). Each command path takes a permission of (`ro`) to run show commands, (`rw`) to run set, unset, and apply commands, (`act`) to run action commands, or (`all`) to run all commands. The default permission setting is `all`.<li>{{<link url="#os-command-classes" text="OS commands">}}, complete Linux commands that members of the class become eligible to run with `sudo` and no password prompt.</li></ul>|
 | Action | The action for the class: `allow` or `deny`.  |
 <!-- vale on -->
 {{%notice note%}}
 - You can assign a maximum of 64 classes to a role.
-- You can configure a maximum of 128 command paths for a class.
+- You can configure a maximum of 128 command paths for a class, or a maximum of 128 OS commands for a class.
 - When you configure a command path, you allow or deny a specific schema path and its children. For example the command path `/qos/` allows or denies access to QoS commands, whereas the command path `/qos/egress-scheduler` allows or denies access to QoS egress scheduler commands.
+- A role assigned to a local user can reference both `command-path` and `os-command` classes. A role mapped from a RADIUS privilege level (see {{<link url="RADIUS-AAA/#radius-privilege-level-to-role-mapping" text="RADIUS Privilege-Level-to-Role Mapping">}}) can reference the built-in `sudo`, `nvapply`, and `nvshow` classes and custom `os-command` classes, but cannot reference any other custom `command-path` class.
 {{%/notice%}}
 
 The following example describes the permissions for a role (`role1`) that consists of three classes: `class1`, `class2`, `class3`
@@ -120,6 +121,57 @@ The following command assigns user `admin2` the role `role1`:
 cumulus@leaf01:mgmt:~$ nv set system aaa user admin2 role role1
 cumulus@leaf01:mgmt:~$ nv config apply
 ```
+
+## OS-Command Classes
+
+<!-- REVIEW: this section drafts FR 4933274. Members of the Linux sudo group, including the cumulus
+     user, already get passwordless access to every Linux command by default -- that default behavior
+     itself is documented on Using-sudo-to-Delegate-Privileges.md, not here. An os-command class is for
+     granting passwordless access to specific commands only, to users who are not members of sudo.
+     Delete this comment before publishing. -->
+
+Instead of a command path, a class can contain an `os-command` allow-list: a set of complete Linux commands that members of the class become eligible to run with `sudo` and no password prompt. This is separate from the default passwordless access that members of the Linux `sudo` group already have; use an `os-command` class to grant passwordless access to specific commands only, without adding a user to `sudo`. An `os-command` class does not narrow the access of a user who is also in `sudo` — the grants are additive.
+
+Each `os-command` entry has a unique ID and a `command` value: the absolute path to the executable followed by its allowed arguments, for example `/usr/bin/tail -f /var/log/syslog`. A class can contain the same command value under more than one entry; NVUE does not merge or reject duplicates. A class can contain either `command-path` entries or `os-command` entries, but not both.
+
+The following example creates an `os-command` class that allows members to run two log-monitoring commands, associates it with a role, and assigns the role to a local user who is not a member of the `sudo` group:
+
+```
+cumulus@leaf01:mgmt:~$ nv set system aaa class log-monitor os-command tail-syslog command '/usr/bin/tail -f /var/log/syslog'
+cumulus@leaf01:mgmt:~$ nv set system aaa class log-monitor os-command cat-frr-config command '/usr/bin/cat /etc/frr/frr.conf'
+cumulus@leaf01:mgmt:~$ nv set system aaa role log-monitor-role class log-monitor
+cumulus@leaf01:mgmt:~$ nv set system aaa user alice role log-monitor-role
+cumulus@leaf01:mgmt:~$ nv config apply
+```
+
+`alice` can now run the configured `tail` and `cat` commands through `sudo` without a password prompt:
+
+```
+cumulus@leaf01:mgmt:~$ sudo -n /usr/bin/tail -f /var/log/syslog
+```
+
+A command that is not in the allow-list, such as `sudo systemctl restart frr`, does not receive passwordless access from this class and instead follows any other applicable `sudoers` rules, PAM authentication, and `sudo` timestamp behavior.
+
+To show the OS commands configured for a class, run the `nv show system aaa class` command:
+
+```
+cumulus@leaf01:mgmt:~$ nv show system aaa class
+Class Name   OS Command ID   OS Command                                Action
+-----------  --------------  ----------------------------------------  ------
+log-monitor  tail-syslog     /usr/bin/tail -f /var/log/syslog          allow
+             cat-frr-config  /usr/bin/cat /etc/frr/frr.conf
+```
+
+To remove a single `os-command` entry by its ID, run the `nv unset system aaa class <class> os-command <command-id>` command:
+
+```
+cumulus@leaf01:mgmt:~$ nv unset system aaa class log-monitor os-command tail-syslog
+cumulus@leaf01:mgmt:~$ nv config apply
+```
+
+{{%notice note%}}
+You cannot delete a class while a role still references it. Remove the role's reference to the class and delete the class in the same `nv config apply`.
+{{%/notice%}}
 
 ## Delete Custom Roles
 
@@ -251,6 +303,8 @@ nvapply     /                   all         allow
 nvshow      /                   ro          allow 
 sudo        /                   all         allow 
 ```
+
+`nvapply`, `nvshow`, and `sudo` are built-in classes; you cannot modify or delete them. A role mapped from a RADIUS privilege level can reference these built-in classes and custom `os-command` classes, but not any other custom `command-path` class. For information about the default behavior the `sudo` class reflects, refer to {{<link url="Using-sudo-to-Delegate-Privileges" text="Using sudo to Delegate Privileges">}}.
 
 To show the configuration and state of the command paths for a class, run the `nv show system aaa class <class>` command:
 

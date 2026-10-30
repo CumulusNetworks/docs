@@ -817,7 +817,7 @@ Cumulus Linux records the changes that a neighbor goes through in `syslog` and i
 
 ## Clear BGP Routes
 
-NVUE provides commands to clear and refresh routes in the BGP table. You can clear all routes in the BGP table or all routes for an address family (IPv4, IPv6, or EVPN) in a VRF.
+NVUE provides commands to clear and refresh routes in the BGP table. You can clear all routes in the BGP table or all routes for an address family (IPv4, IPv6, or EVPN) in a VRF. You can also reset the BGP session with a specific neighbor.
 
 The BGP clear commands do not clear counters in the kernel or hardware.
 
@@ -880,6 +880,12 @@ To clear and refresh inbound routes for all neighbors, address families, and VRF
 ```
 cumulus@switch:~$ nv action clear router bgp in prefix-filter
 Action succeeded
+```
+
+To clear the BGP session with a specific neighbor, forcing only that neighbor to restart, run the `nv action clear vrf <vrf-id> router bgp neighbor <neighbor-id>` command. Unlike the commands that specify a direction (`in` or `out`), this command resets the adjacency with the neighbor:
+
+```
+cumulus@leaf01:~$ nv action clear vrf default router bgp neighbor 10.10.10.101
 ```
 
 To clear BGP sessions with all neighbors, forcing the neighbors to restart:

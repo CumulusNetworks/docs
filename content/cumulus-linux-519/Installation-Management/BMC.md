@@ -9,7 +9,27 @@ The Spectrum-6 switch requires <span class="a-tooltip">[BMC](## "Baseboard Manag
 
 You can access BMC either through Cumulus Linux or directly through the BMC RJ45 Ethernet port.
 
-Cumulus Linux includes the BMC package. To update the BMC package files to the latest versions, run the following commands.
+{{%notice infonopad%}}
+If you are upgrading your Spectrum-6 switch, you must upgrade BMC before you upgrade Cumulus Linux.
+{{%/notice%}}
+
+## Upgrade BMC and Cumulus Linux
+
+To upgrade a Spectrum-6 switch, perform the upgrade in this order:
+
+1. Upgrade BMC firmware with NVUE, as described in {{<link url="#install-bmc" text="Install BMC">}}.
+2. Upgrade Cumulus Linux. Refer to {{<link url="Upgrading-Cumulus-Linux" text="Upgrading Cumulus Linux">}}.
+3. Power cycle the switch.
+
+{{%notice note%}}
+Upgrade BMC firmware only with the NVUE commands in this section. NVIDIA validates BMC firmware upgrades through NVUE only; NVIDIA does not validate upgrading BMC firmware through Redfish.
+{{%/notice%}} 
+
+## Install BMC
+
+{{%notice note%}}
+The commands on this page use BMC as the example component, but the `platform firmware` object and the `file-management`, `automatic-update`, and `firmware-source` commands described here apply to every upgradeable platform firmware component, such as BIOS, ASIC, and SSD. Substitute the platform component ID you are working with.
+{{%/notice%}}
 
 To fetch the latest BMC package, run the `nv action fetch platform firmware BMC <remote-url-to-package>` command:
 
@@ -32,7 +52,7 @@ cec1736-ecfw-02.00.0023.0000-n05-dev-initial.fwpkg  /tmp/firmware_downloads/bmc/
 sw_bmc_arm_spc6_ast2600_88.0060.0501.fwpkg          /tmp/firmware_downloads/bmc/sw_bmc_arm_spc6_ast2600_88.0060.0501.fwpkg 
 ```
 
-To install available BMC package files, run the `nv action fetch platform firmware BMC files <package-name>` command.
+To install available BMC package files, run the `nv action install platform firmware BMC files <package-name>` command.
 
 ```
 cumulus@switch:~$ nv action install platform firmware BMC files sw_bmc_arm_spc6_ast2600_88.0060.0501.fwpkg
@@ -44,6 +64,99 @@ Do you want to continue? [y/N] y
  Firmware installation completed for bmc. Version: unknown 
  Action succeeded
 ```
+
+You can add the following optional arguments to the install command:
+
+- `force` — skip the applicable installation checks.
+- `skip-reboot` — install the firmware without automatically resetting the BMC to activate it. By default, installing BMC firmware triggers a BMC reset.
+- `skip-version-check` — install the firmware without checking whether the file's version is compatible with the running system. `skip-version-check` does not change the reboot or confirmation-prompt behavior; `force` and `skip-reboot` remain independent.
+
+The following example installs BMC firmware and skips the version check:
+
+```
+cumulus@switch:~$ nv action install platform firmware BMC files sw_bmc_arm_spc6_ast2600_88.0060.0501.fwpkg skip-version-check
+Action executing ...
+Firmware installation completed for bmc. Version: 88.0060.0501. BMC reset triggered to activate new firmware
+Action succeeded
+```
+
+## Manage Staged Firmware Files
+
+After you fetch a firmware file to the switch, you can delete, rename, or upload a staged firmware file for any platform firmware component, not only BMC. The following examples use the SSD component; substitute the platform component ID you are working with.
+
+To delete a staged firmware file, run the `nv action delete platform firmware <platform-component-id> files <file-id>` command:
+
+```
+cumulus@switch:~$ nv action delete platform firmware SSD files ssd-fw-2.1.bin
+Action executing ...
+Deleting file: ssd-fw-2.1.bin
+Action executing ...
+File delete successfully
+Action succeeded
+```
+
+If the file does not exist, the action fails and names the missing file:
+
+```
+cumulus@switch:~$ nv action delete platform firmware BIOS files missing-fw.rom
+Error: Action failed with the following issue:
+File not found: missing-fw.rom
+```
+
+To rename a staged firmware file, run the `nv action rename platform firmware <platform-component-id> files <file-id> <new-name>` command:
+
+```
+cumulus@switch:~$ nv action rename platform firmware SSD files ssd-fw-2.1.bin ssd-fw-2.1-verified.bin
+Action executing ...
+File renamed successfully
+Action succeeded
+```
+
+To upload a staged firmware file to a remote server, run the `nv action upload platform firmware <platform-component-id> files <file-id> <url>` command. This is the reverse direction of `nv action fetch`, which downloads a file from a remote server onto the switch; `upload` sends a file already staged on the switch out to a remote destination, for example to archive it before you delete it locally.
+
+```
+cumulus@switch:~$ nv action upload platform firmware SSD files ssd-fw-2.1.bin scp://admin@fw-archive.example.com/incoming/
+Action executing ...
+Uploading file ssd-fw-2.1.bin
+Action executing ...
+Successfully uploaded the file: ssd-fw-2.1.bin
+Action succeeded
+```
+
+{{%notice note%}}
+If the destination server requires a username and password, include them in the URL, for example `scp://<username>:<password>@<server>/<path>`. NVIDIA recommends key-based authentication where the destination server supports it, so a password does not appear in `nv config diff` or in the switch command history.
+{{%/notice%}}
+
+## Configure Automatic Firmware Updates
+
+You can configure whether Cumulus Linux automatically updates the staged files for a platform firmware component, and whether a component uses the default firmware source or a custom one you staged yourself. Like the file-management commands above, these settings apply to any platform firmware component, not only BMC.
+
+To enable or disable automatic updates for a component, run the `nv set platform firmware <platform-component-id> auto-update` command. The following example enables automatic updates for BIOS:
+
+```
+cumulus@switch:~$ nv set platform firmware BIOS auto-update enabled
+cumulus@switch:~$ nv config apply
+```
+
+To configure whether a component uses the default firmware source or a custom one, run the `nv set platform firmware <platform-component-id> fw-source` command. Values are `default` and `custom`. The following example sets the ASIC component to use a custom firmware source:
+
+```
+cumulus@switch:~$ nv set platform firmware ASIC fw-source custom
+cumulus@switch:~$ nv config apply
+```
+
+<!-- REVIEW: the spec states NVUE also writes these two settings to /etc/cumulus/<component>-auto-update.conf, and confirms this path for the ASIC and BIOS components specifically (asic-auto-update.conf, bios-auto-update.conf). It does not confirm the equivalent file exists for BMC or SSD. Drafted the ASIC and BIOS examples only, matching the spec; confirm before generalizing further. -->
+
+To confirm the current settings for a component, run the `nv show platform firmware <platform-component-id>` command described below.
+
+To reset `automatic-update` and `firmware-source` settings to the default for every platform firmware component, run the `nv unset platform firmware` command:
+
+```
+cumulus@switch:~$ nv unset platform firmware
+cumulus@switch:~$ nv config apply
+```
+
+<!-- REVIEW: the spec shows only this unscoped form, which resets every component at once, and does not show a per-component nv unset platform firmware <platform-component-id> auto-update or fw-source form. Drafted the unscoped command as shown; confirm whether a scoped form also exists before publishing. -->
 
 ## Show Information About BMC
 
@@ -118,7 +231,15 @@ cumulus@switch:~$ nv show platform environment leakage -o json
    }
  }
 ```
-
+<!-- in ES but not 5.19
+{{%notice note%}}
+- The SN6810-LD has two leakage sensors, `leakage1` and `leakage2`. Each sensor shows `normal` or `alert`.
+- The switch software derives the sensor names from the leak bits that the CPLD exposes through hardware management.
+- Both sensors always appear in the command output. If the switch software cannot read the state of a sensor, the sensor shows `alert`. For a sensor that is unplugged, the switch shows the state that the CPLD reports.
+- When a sensor shows `alert`, the `nv show system health` command lists the sensor as an issue and shows the status `Not OK`, the System LED turns amber, and the switch writes a message to syslog.
+- By default, a leak raises an alarm only; the switch does not shut down. The default BMC leak policy is `None`, which means no automatic power-off.
+{{%/notice%}}
+-->
 gNMI and OTEL telemetry lets you subscribe to real-time leakage status and trigger automated alerts. For OTEL metrics, refer to {{<link url="Open-Telemetry-Export/#platform-statistic-format" text="OTEL Telemetry Leakage Sensor Metrics">}}. For gNMI metrics, refer to {{<link url="New-and-Updated-Telemetry-Metrics/#new-gnmi-metrics" text="gNMI Leakage Sensor Metrics">}}.
 
 For information about using out-of-band remote monitoring and management for the Cumulus Linux Spectrum-6 switch, refer to the {{<mib_link url="bmc-user-manual-88.0060.2110/Getting_Started.html" text="BMC user guide.">}}

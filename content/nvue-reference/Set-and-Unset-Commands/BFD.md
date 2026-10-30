@@ -1,7 +1,7 @@
 ---
 title: BFD
 author: Cumulus Networks
-weight: 519
+weight: 550
 
 type: nojsscroll
 ---
@@ -89,24 +89,6 @@ cumulus@switch:~$ nv set router bfd offload enabled
 {{%notice note%}}
 For single hop static route BFD sessions in offload mode, you need to configure the source address with the `nv set vrf <vrf-id> router static <route-id> distance <distance-id> via <via-id> bfd source <source-address>` command.
 {{%/notice%}}
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set router bfd state</h>
-
-Enables and disables BFD globally on the switch.
-
-BFD provides low overhead and rapid detection of failures in the paths between two network devices. It provides a unified mechanism for link detection over all media and protocol layers. Use BFD to detect failures for IPv4 and IPv6 single or multihop paths between any two network devices, including unidirectional path failure detection.
-
-### Version History
-
-Introduced in Cumulus Linux 5.15.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set router bfd state enabled
-```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -264,17 +246,11 @@ cumulus@switch:~$ nv set router bfd profile BFD1 shutdown enabled
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> bfd profile \<profile-name\></h>
+## <h>nv set router bfd state</h>
 
-Configures BFD for a peer group using the specified BFD profile.
+Enables and disables BFD globally on the switch.
 
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<vrf-id>` |  The VRF name. |
-| `<peer-group-id>` |  The peer group name. |
-| `<profile-name>` |  The profile name. |
+BFD provides low overhead and rapid detection of failures in the paths between two network devices. It provides a unified mechanism for link detection over all media and protocol layers. Use BFD to detect failures for IPv4 and IPv6 single or multihop paths between any two network devices, including unidirectional path failure detection.
 
 ### Version History
 
@@ -283,7 +259,7 @@ Introduced in Cumulus Linux 5.15.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp peer-group fabric bfd profile BFD1
+cumulus@switch:~$ nv set router bfd state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -308,6 +284,55 @@ Introduced in Cumulus Linux 5.15.0
 
 ```
 cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 bfd profile BFD1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> bfd profile \<profile-name\></h>
+
+Configures BFD for a peer group using the specified BFD profile.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |  The VRF name. |
+| `<peer-group-id>` |  The peer group name. |
+| `<profile-name>` |  The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default router bgp peer-group fabric bfd profile BFD1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set vrf \<vrf-id\> router static \<ipv4-prefix\> distance \<integer\> via \<ipv4\> bfd multi-hop</h>
+
+Configures BFD for multihop next-hop tracking through static routes. You can specify `enabled` or `disabled`. BFD operates in single hop mode by default.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |  The VRF name. |
+| `<ipv4-prefix>` |  The IPv4 prefix. |
+| `<integer>` |  The IPv4 prefix. |
+| `<ipv4>` |  The IPv4 prefix. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 distance 2 via 10.0.1.0 bfd multi-hop enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -338,31 +363,6 @@ cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 distance 2 vi
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router static \<ipv4-prefix\> distance \<integer\> via \<ipv4\> bfd multi-hop</h>
-
-Configures BFD for multihop next-hop tracking through static routes. You can specify `enabled` or `disabled`. BFD operates in single hop mode by default.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<vrf-id>` |  The VRF name. |
-| `<ipv4-prefix>` |  The IPv4 prefix. |
-| `<integer>` |  The IPv4 prefix. |
-| `<ipv4>` |  The IPv4 prefix. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.15.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 distance 2 via 10.0.1.0 bfd multi-hop enabled
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set vrf \<vrf-id\> router static \<ipv4-prefix\> distance \<integer\> via \<ipv4\> bfd source</h>
 
 Configures the BFD source for static routes.
@@ -388,6 +388,30 @@ cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 distance 2 vi
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set vrf \<vrf-id\> router static \<ipv4-prefix\> via \<ipv4\> bfd multi-hop</h>
+
+Configures BFD for multihop next-hop tracking through static routes. You can specify `enabled` or `disabled`. BFD operates in single hop mode by default.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |  The VRF name. |
+| `<ipv4-prefix>` |  The IPv4 prefix. |
+| `<ipv4>` |  The IPv4 prefix. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 via 10.0.1.0 bfd multi-hop enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set vrf \<vrf-id\> router static \<ipv4-prefix\> via \<ipv4\> bfd profile \<profile-name\></h>
 
 Associates static routes with BFD to monitor static route reachability. Depending on status of the BFD session, the switch either adds or removes static routes from the Routing Information Base (RIB).
@@ -409,30 +433,6 @@ Introduced in Cumulus Linux 5.15.0
 
 ```
 cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 via 10.0.1.0 bfd profile BFD1 
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set vrf \<vrf-id\> router static \<ipv4-prefix\> via \<ipv4\> bfd multi-hop</h>
-
-Configures BFD for multihop next-hop tracking through static routes. You can specify `enabled` or `disabled`. BFD operates in single hop mode by default.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<vrf-id>` |  The VRF name. |
-| `<ipv4-prefix>` |  The IPv4 prefix. |
-| `<ipv4>` |  The IPv4 prefix. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.15.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 via 10.0.1.0 bfd multi-hop enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

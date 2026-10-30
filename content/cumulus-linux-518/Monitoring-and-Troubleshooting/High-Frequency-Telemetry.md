@@ -84,7 +84,7 @@ c. Configure the VRF where the export destination is reachable. The `default` VR
    cumulus@switch:~$ nv set system telemetry export ipfix vrf RED
    ```
 
-d. Configure the maximum size for an exported IP packet containing HFT over IPFIX to keep the IP packet size under the relevant MTU so that IP fragmentation is not required. You can set a value between 512 and 65535 bytes. The default setting is determined from the outgoing interface MTU.
+d. Configure the maximum size for an exported IP packet containing HFT over IPFIX to keep the IP packet size under the relevant MTU so that IP fragmentation is not required. You can set a value between 512 and 65535 bytes. The switch determines the default setting from the outgoing interface MTU.
 
    ```
    cumulus@switch:~$ nv set system telemetry export ipfix max-ip-packet-size 65535
@@ -102,14 +102,14 @@ e. Enable IPFIX export:
 
 2. Configure streaming HFT parameters:
 
-   Configure the sampling interval for HFT data. The default value is 5000 microseconds. The interval must be specified in microseconds, with a valid range of 100 to 12,750 and in multiples of 50:
+   Configure the sampling interval for HFT data. The default value is 5000 microseconds. You must specify the interval in microseconds, with a valid range of 100 to 12,750 and in multiples of 50:
 
    ```
    cumulus@switch:~$ nv set system telemetry hft sample-interval-usec 1000
    cumulus@switch:~$ nv config apply
    ```
 
-   Configure the counters that are sampled at the defined interval. The following table lists the available counters.
+   Configure the counters that the switch samples at the defined interval. The following table lists the available counters.
 
    | Counter | Description |
    | -------- | --------- |
@@ -439,7 +439,7 @@ Specify the date and time in `YYYY-MM-DD HH:MM:SS` format.
 ``` 
 cumulus@switch:~$ nv action schedule system telemetry hft job 2024–07-17 10:00:00 duration 30 profile profile1 ports swp1s0-swp9s0
 Action executing ...
-Job schedule successfull.
+Job schedule successfully.
 HFT job schedule successful: job-id 1
 
 Action succeeded
@@ -450,18 +450,18 @@ You can provide a short reason why you are collecting the data. If the descripti
 ```
 cumulus@switch:~$ nv action schedule system telemetry hft job 2024-07-17 10:00:00 duration 30 profile profile1 ports swp1s0-swp9s0 description "bandwidth profiling"
 Action executing ...
-Job schedule successfull.
+Job schedule successfully.
 HFT job schedule successful: job-id 1
 
 Action succeeded
 ```
 
-You can specify `now` for the date and/or time to configure the current date and time of day. The following example configures `profile2` to start today at 10:00:00, run for 30 seconds, and collect data on swp2s0.
+You can specify `now` for the date and time to configure the current date and time of day. The following example configures `profile2` to start today at 10:00:00, run for 30 seconds, and collect data on swp2s0.
 
 ``` 
 cumulus@switch:~$ nv action schedule system telemetry hft job now 10:00:00 duration 30 profile profile2 ports swp2s0
 Action executing ...
-Job schedule successfull.
+Job schedule successfully.
 HFT job schedule successful: job-id 2
 
 Action succeeded
@@ -473,7 +473,7 @@ The following example configures `profile2` to start immediately, run for 30 sec
 ``` 
 cumulus@switch:~$ nv action schedule system telemetry hft job now now duration 30 profile profile2 ports swp2s0
 Action executing ...
-Job schedule successfull.
+Job schedule successfully.
 HFT job schedule successful: job-id 2
 
 Action succeeded

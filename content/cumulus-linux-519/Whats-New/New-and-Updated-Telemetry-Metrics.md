@@ -6,279 +6,322 @@ product: Cumulus Linux
 version: "5.19"
 toc: 1
 ---
-The following tables list the new, updated, and deprecated gNMI and OTEL metrics in Cumulus Linux 5.19.
+The following tables list the new, updated, and discontinued gNMI and OTEL metrics in Cumulus Linux 5.19.
 
 ## New gNMI Metrics
 
-{{< tabs "TabID13 ">}}
-{{< tab "802.1X RADIUS Server">}}
+{{< tabs "TabID114 ">}}
+{{< tab "Back-to-sender on Link Down">}}
+
+The switch exports these xPaths on Spectrum-6 switches only. For information about the counters behind these metrics, refer to {{<link url="Packet-Trimming/#show-and-clear-back-to-sender-notification-on-link-down-counters" text="Show and Clear Back-to-sender Notification on Link Down Counters">}}.
 
 |  Name | Description |
 |------ | ----------- |
-| `/system/aaa/server-groups/server-group[name=dot1x]/servers/server[address]/radius/state/counters/access-requests` | Number of authentication access requests that the switch sends to this server for 802.1x. |
-| `/system/aaa/server-groups/server-group[name=dot1x]/servers/server[address]/radius/state/counters/retried-access-requests` | Number of RADIUS Access-Request packets that the switch retransmits to this RADIUS server. The Counter is cumulative across all 802.1x interfaces communicating with this server. |
-| `/system/aaa/server-groups/server-group[name=dot1x]/servers/server[address]/radius/state/counters/timeout-access-requests` |  Number of authentication timeouts to this server. |
-| `/system/aaa/server-groups/server-group[name=dot1x]/servers/server[address]/radius/state/counters/access-accepts` | Number of RADIUS Access-Accept packets (valid or invalid) received from this server. | 
-| `/system/aaa/server-groups/server-group[name=dot1x]/servers/server[address]/radius/state/counters/access-rejects` | Number of RADIUS Access-Reject packets (valid or invalid) received from this server. |
-| `/system/aaa/server-groups/server-group[name=dot1x]/servers/server[address]/radius/state/counters/access-challenges` | Number of RADIUS Access-Challenge packets (valid or invalid) received from this server. |
-| `/system/aaa/server-groups/server-group[name=dot1x]/servers/server[address]/radius/state/counters/access-malformed-responses` | Number of malformed RADIUS Access-Response packets received from this server. |
-| `/system/aaa/server-groups/server-group[name=dot1x]/servers/server[address]/radius/state/counters/access-bad-authenticators` | Number of RADIUS Access-Response packets containing invalid authenticators or signature attributes received from this server. |
-| `/system/aaa/server-groups/server-group[name=dot1x]/servers/server[address]/radius/state/counters/access-unknown-types` | Number of RADIUS packets of unknown type received from this server. |
-| `/system/aaa/server-groups/server-group[name=dot1x]/servers/server[address]/radius/state/counters/access-packets-dropped` | Packets that are dropped either because the UDP frame is too big (more than 4100 bytes) or because the parsed reply has no matching pending request. |
-| `/system/aaa/server-groups/server-group[name=dot1x]/servers/server[address]/radius/state/counters/access-connection-errors` | Number of failures encountered when trying to reach the radius server. |
-| `/system/aaa/server-groups/server-group[name=dot1x]/servers/server[address]/radius/state/counters/access-receive-errors` | Error on the recv() call when trying to fetch the RADIUS server response on the per 802.1x interface. |
-| `/system/aaa/server-groups/server-group[name=dot1x]/servers/server[address]/radius/state/counters/access-vrf-bind-errors` | Number of failures binding the socket to the configured VRF for this server. |
-| `/system/aaa/server-groups/server-group[name=dot1x]/servers/server[address]/radius/state/counters/access-initialization-errors` |  Number of failures (re)initializing the local RADIUS transport on behalf of this server. |
-| `/system/aaa/server-groups/server-group[name=dot1x]/servers/server[address]/radius/state/counters/access-out-queue-drops` | Number of outbound RADIUS requests to this server not be retained on the local retransmit queue. |
-| `/system/aaa/server-groups/server-group[name=dot1x]/servers/server[address]/radius/state/access-pending-requests` | Number of RADIUS Access-Request packets destined for this server that have not yet received a response or been removed from the retransmit list after the maximum number of retransmit attempts.|
-| `/system/aaa/server-groups/server-group[name=dot1x]/servers/server[address]/radius/state/access-round-trip-time` | Round-trip time, in milliseconds, between the most recent Access-Request sent to this server and the corresponding Access-Response received.|
-| `/system/aaa/server-groups/server-group[name=dot1x]/servers/server[address]/radius/state/counters/accounting-requests` | Number of RADIUS Accounting-Request packets that the switch sends to this RADIUS server for 802.1x related session events. The counter is cumulative across all 802.1x interfaces communicating with this server. |
-| /`system/aaa/server-groups/server-group[name=dot1x]/servers/server[address]/radius/state/counters/accounting-start-requests` | Number of RADIUS Accounting-Request packets that the switch sends to this RADIUS server with Acct-Status-Type = Start (per-station session start). The counter is cumulative across all 802.1x interfaces communicating with this server. | 
-| `/system/aaa/server-groups/server-group[name=dot1x]/servers/server[address]/radius/state/counters/accounting-interim-update-requests` | Number of RADIUS Accounting-Request packets that the switch sends to this RADIUS server with Acct-Status-Type = Interim-Update (mid-session updates, driven by the accounting interim interval). The counter is cumulative across all 802.1x interfaces communicating with this server. | 
-| `/system/aaa/server-groups/server-group[name=dot1x]/servers/server[address]/radius/state/counters/accounting-stop-requests` | Number of RADIUS Accounting-Request packets that the switch sends to this RADIUS server with Acct-Status-Type = Stop (per-station session stop). The counter is cumulative across all 802.1x interfaces communicating with this server. |
-| `/system/aaa/server-groups/server-group[name=dot1x]/servers/server[address]/radius/state/counters/accounting-retransmissions` |  Number of RADIUS Accounting-Request packets that the switch retransmits to this RADIUS server when an initial Accounting-Request times out without a response. The counter is cumulative across all 802.1x interfaces communicating with this server.|
-| `/system/aaa/server-groups/server-group[name=dot1x]/servers/server[address]/radius/state/counters/accounting-responses` | Number of RADIUS Accounting-Response packets that the switch receives from this RADIUS server. The counter is cumulative across all 802.1x interfaces communicating with this server. | 
-| `/system/aaa/server-groups/server-group[name=dot1x]/servers/server[address]/radius/state/counters/accounting-timeouts` | Number of RADIUS Accounting-Request packets that timed out waiting for a response from this RADIUS server. The counter is cumulative across all 802.1x interfaces communicating with this server. |
-| `/system/aaa/server-groups/server-group[name=dot1x]/servers/server[address]/radius/state/counters/accounting-malformed-responses` | Number of malformed RADIUS Accounting-Response packets received from this RADIUS server (invalid length, bad packet structure). The counter is cumulative across all 802.1x interfaces communicating with this server. |
-| `/system/aaa/server-groups/server-group[name=dot1x]/servers/server[address]/radius/state/counters/accounting-bad-authenticators` | Number of RADIUS Accounting-Response packets received from this RADIUS server with an invalid Response Authenticator field (RFC 2866 §3). The counter is cumulative across all 802.1x interfaces communicating with this server. |
-| `/system/aaa/server-groups/server-group[name=dot1x]/servers/server[address]/radius/state/counters/accounting-unknown-types` | Number of RADIUS accounting packets of unknown type which were received from this server on the accounting port. |
-| `/system/aaa/server-groups/server-group[name=dot1x]/servers/server[address]/radius/state/counters/accounting-packets-dropped` | Packets that are dropped either because the UDP frame is too big (more than 4100 bytes) or because the parsed reply has no matching pending request. |
-| `/system/aaa/server-groups/server-group[name=dot1x]/servers/server[address]/radius/state/counters/accounting-connection-errors` |  Number of failures encountered when trying to reach the RADIUS server. |
-| `/system/aaa/server-groups/server-group[name=dot1x]/servers/server[address]/radius/state/counters/accounting-receive-errors` | Error on the recv() call when trying to fetch the RADIUS server response on the per 802.1x interface socket. |
-| `/system/aaa/server-groups/server-group[name=dot1x]/servers/server[address]/radius/state/counters/accounting-vrf-bind-errors` | Number of failures binding the socket to the configured VRF for this server.|
-| `/system/aaa/server-groups/server-group[name=dot1x]/servers/server[address]/radius/state/counters/accounting-initialization-errors` | Number of failures (re)initializing the local RADIUS transport on behalf of this server. |
-| `/system/aaa/server-groups/server-group[name=dot1x]/servers/server[address]/radius/state/counters/accounting-out-queue-drops` | Number of outbound RADIUS requests to this server not retained on the local retransmit queue. | 
-| `/system/aaa/server-groups/server-group[name=dot1x]/servers/server[address]/radius/state/accounting-pending-requests` | Number of RADIUS Accounting-Request packets destined for this server that have not yet received a response or been removed from the retransmit list after the maximum number of retransmit attempts. |
-| `/system/aaa/server-groups/server-group[name=dot1x]/servers/server[address]/radius/state/accounting-round-trip-time` | Round-trip time, in milliseconds, between the most recent Accounting-Request sent to this server and the corresponding Accounting-Response received. |
+| `/components/component[name]/integrated-circuit/pipeline-counters/packet/trim/state/spxm-notify-sender-link-down-pkts` | Number of packets that matched the back-to-sender classifier on link down, both while the route is still in hardware and after FRR withdraws it. Counts notifications the switch attempted, not notifications the switch confirmed the sender received. |
+| `/components/component[name]/integrated-circuit/pipeline-counters/packet/trim/state/notify-sender-trimmed-link-down-pkts` | Number of those packets the switch trimmed and sent as a back-to-sender notification. |
 
 {{< /tab >}}
-{{< tab "ASIC Resource">}}
+{{< tab "Control Plane Punt Classifier">}}
 
 |  Name | Description |
 |------ | ----------- |
-| `/components/component/integrated-circuit/utilization/resources/resource[name=<resource_name>]/state/used` | The number of entries used for an ASIC resource. | 
-| `/components/component/integrated-circuit/utilization/resources/resource[name=<resource_name>]/state/free` | The number of free entries available for an ASIC resource. |
-`/components/component/integrated-circuit/utilization/resources/resource[name=<resource_name>]/state/max-limit` | The maximum limit of possible entries for an ASIC resource. |
-| `/components/component/integrated-circuit/utilization/resources/resource[name=<resource_name>]/state/high-watermark` | The highest number of entries used for an ASIC resource.| 
-| `/components/component/integrated-circuit/utilization/resources/resource[name=<resource_name>]/state/last-high-watermark` | The timestamp when the high-watermark was last updated. |
-
-The ASIC resource is one of the following:
-
-| Name | Description |
-|----- | ----------- |
-| `MAC-entries` | Layer 2 MAC address table entries.|
-| `IPv4-Routes` | IPv4 routing table entries.|
-| `IPv6-Routes` | IPv6 routing table entries.|
-| `Total-Mcast-Routes` | Multicast routing entries.|
-| `IPv4-host-entries` | IPv4 neighbor entries. |
-| `IPv6-host-entries` | IPv6 neighbor entries. |
-| `ECMP-nexthops` | Equal-Cost Multi-Path (ECMP) next-hop paths. |
-| `ACL-Regions` | Hardware regions allocated for Access Control Lists (ACLs). |
-| `ACL-18B-Rules-Key` | ACL rules using an 18-byte key. |
-| `ACL-36B-Rules-Key` | ACL rules using a 36-byte key. |
-| `ACL-54B-Rules-Key` | ACL rules using a 54-byte key. |
-| `Flow-Counters` | Hardware counters for tracking specific traffic flows.|
-| `RIF-Basic-Counters` | Basic statistics counters for router interfaces (RIFs). |
-| `RIF-Enhanced-Counters` | Detailed statistics counters for router interfaces (RIFs). |
-
-For example, `/components/component/integrated-circuit/utilization/resources/resource[name=MAC-entries]/state/used`.
+| `/components/component[name]/integrated-circuit/pipeline-counters/control-plane-traffic/vendor/nvidia/spectrum/punt-classifiers/punt-classifier[rule-id]/state/rule-id` | The ID of the punt classifier rule. This is also the list key. |
+| `/components/component[name]/integrated-circuit/pipeline-counters/control-plane-traffic/vendor/nvidia/spectrum/punt-classifiers/punt-classifier[rule-id]/state/matched-packets` | The number of packets that the rule drops. |
+| `/components/component[name]/integrated-circuit/pipeline-counters/control-plane-traffic/vendor/nvidia/spectrum/punt-classifiers/punt-classifier[rule-id]/state/matched-octets` | The number of octets that the rule drops. |
+| `/components/component[name]/integrated-circuit/pipeline-counters/control-plane-traffic/vendor/nvidia/spectrum/punt-classifiers/punt-classifier[rule-id]/state/packet-type` | The packet type that the rule matches: `PACKET_TYPE_SPXM` or `PACKET_TYPE_IPV6`. |
+| `/components/component[name]/integrated-circuit/pipeline-counters/control-plane-traffic/vendor/nvidia/spectrum/punt-classifiers/punt-classifier[rule-id]/state/destination-port` | The IPv6 UDP destination port that the rule matches. Present only for a rule with packet type `PACKET_TYPE_IPV6`. |
+| `/components/component[name]/integrated-circuit/pipeline-counters/control-plane-traffic/vendor/nvidia/spectrum/punt-classifiers/punt-classifier[rule-id]/state/action` | The action that the switch programs for the rule, which is always `ACTION_DROP`. |
 
 {{%notice note%}}
-- ACL maximum limits are dynamic and depend on the distribution of 18B, 36B, and 54B ACL rules.
-- The maximum value for the `IPv6-Routes` ASIC resource represents the number of single-width IPv6 route entries. In hardware, IPv6 routes with prefix lengths from /0 to /64 consume one entry each, whereas routes with prefix lengths from /65 to /128 consume two entries each. As a result, the actual number of free hardware entries depends on the mix of IPv6 route prefix lengths programmed into the table.
+- Every rule with packet type `PACKET_TYPE_SPXM` shares one counter. Each of those rule IDs reports the same value, so do not add the values together.
+- Each IPv6 UDP destination port has its own counter.
+- The counters cover the CPU egress of one ASIC, so they are per ASIC rather than per front panel interface.
+- These paths are read-only. Configure the punt classifier with the NVUE commands described in {{<link url="Access-Control-List-Configuration/#control-plane-punt-classifier" text="Control Plane Punt Classifier">}}.
+- The DSCP values that a rule matches are not available over gNMI.
 {{%/notice%}}
 
 {{< /tab >}}
-{{< tab "Patches">}}
+<!-- NOT SUPPORTED IN 5.19, commented out 2026-10-30 (Ilia Yanover: 5.19 does not officially support CPO). To restore, remove this comment wrapper and undo the escapes: put the inner comment delimiters (written with a slash inserted) and the Hugo shortcodes (written with a slash and asterisk) back to normal.
+{{</* tab "CPO and Laser Source" */>}}
+
+The following paths are present on a switch with co-packaged optics (CPO) only. The `name` key is the CPO module, optical engine, or laser source identifier, such as `cpo1`, `oe1`, or `els1`. For the commands that show the same data on the switch, refer to {{</* link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#show-cpo-module-and-laser-source-information" text="Show CPO Module and Laser Source Information" */>}}.
 
 |  Name | Description |
 |------ | ----------- |
-| `/components/component[name=<archive-id>]/state/name` | The patch archive name. |
-| `/components/component[name=<archive-id>]/state/type` | The type: OPERATING_SYSTEM_UPDATE.|
-| `/components/component[name=<archive-id>]/software-package-archive/state/failure-state` | The failure state:<br>0: none<br>1: PRE_INSTALL_FAILED_ROLLBACK_SUCCESSFULL<br>2: PRE_INSTALL_FAILED_ROLLBACK_FAILED<br>3: PRE_INSTALL_FAILED_ROLLBACK_IN_PROGRESS<br>4: APT_FAILED_ROLLBACK_SUCCESSFULL<br>5: APT_FAILED_ROLLBACK_FAILED<br>6: APT_FAILED_ROLLBACK_IN_PROGRESS<br>7: POST_INSTALL_FAILED_ROLLBACK_SUCCESSFULL<br>8: POST_INSTALL_FAILED_ROLLBACK_FAILED<br>9: POST_INSTALL_FAILED_ROLLBACK_IN_PROGRESS<br>10: UNKNOWN_FAILURE_ROLLBACK_SUCCESSFULL<br>11: UNKNOWN_FAILURE_ROLLBACK_FAILED<br>12: UNKNOWN_FAILURE_ROLLBACK_IN_PROGRESS.|
-| `/components/component[name=<archive-id>]/software-package-archive/state/status` | The installation status:<br>0: not-installed<br>1: installed<br>2: partially-installed<br>3: failed<br>4: operation-in-progress.|
-| `/components/component[name=<archive-id>]/software-package-archive/state/installed-at` | The time a patch archive was installed (Unix timestamp).|
-| `/system/state/installed-software-package-archives` | Installed patch archives.|
+| `/components/component[name=<cpo-id>]/state/name` | CPO module name. |
+| `/components/component[name=<cpo-id>]/state/type` | OpenConfig component type for the CPO module. |
+| `/components/component[name=<cpo-id>]/state/description` | CPO module identifier string. |
+| `/components/component[name=<cpo-id>]/state/firmware-version` | Firmware version of the CPO module. |
+| `/components/component[name=<cpo-id>]/state/oper-status` | Operational status of the CPO module. |
+| `/components/component[name=<cpo-id>]/subcomponents/subcomponent[name]` | The laser source and optical engines that belong to the CPO module. |
+| `/components/component[name=<cpo-id>]/cpo/physical-channels/channel[index]/state/laser-source-input-power/instant` | Power the laser source delivers into the optical engine for the channel. |
+| `/components/component[name=<cpo-id>]/cpo/physical-channels/channel[index]/state/laser-source-input-power/alarm-status` | Whether the laser source input power for the channel is in alarm. |
+| `/components/component[name=<cpo-id>]/cpo/physical-channels/channel[index]/state/laser-source-input-power/alarm-severity` | Severity of the laser source input power alarm for the channel. |
+| `/components/component[name=<cpo-id>]/cpo/physical-channels/channel[index]/state/input-power/instant` | Received optical power on the channel. |
+| `/components/component[name=<cpo-id>]/cpo/physical-channels/channel[index]/state/input-power/alarm-status` | Whether the received optical power on the channel is in alarm. |
+| `/components/component[name=<cpo-id>]/cpo/physical-channels/channel[index]/state/input-power/alarm-severity` | Severity of the received optical power alarm for the channel. |
+| `/components/component[name=<cpo-id>]/cpo/physical-channels/channel[index]/state/output-power/instant` | Transmitted optical power on the channel. |
+| `/components/component[name=<cpo-id>]/cpo/physical-channels/channel[index]/state/output-power/alarm-status` | Whether the transmitted optical power on the channel is in alarm. |
+| `/components/component[name=<cpo-id>]/cpo/physical-channels/channel[index]/state/output-power/alarm-severity` | Severity of the transmitted optical power alarm for the channel. |
+| `/components/component[name=<cpo-id>]/cpo/physical-channels/channel[index]/state/rx-los` | Whether the channel has loss of received signal. |
+| `/components/component[name=<cpo-id>]/cpo/physical-channels/channel[index]/state/tx-failure` | Whether the channel has a transmit failure. |
+| `/components/component[name=<cpo-id>]/cpo/physical-channels/channel[index]/state/fault-opcode` | Advanced troubleshooting fault opcode for the channel. |
+| `/components/component[name=<cpo-id>]/cpo/host-lanes/lane[lane-number]/lane-number` | Host lane number on the CPO module. |
+| `/components/component[name=<cpo-id>]/cpo/host-lanes/lane[lane-number]/state/tx-los` | Whether the host lane has loss of transmitted signal. |
+| `/components/component[name=<cpo-id>]/cpo/host-lanes/lane[lane-number]/state/dp-state` | Data path state of the host lane. |
+| `/components/component[name=<oe-id>]/state/name` | Optical engine name. |
+| `/components/component[name=<oe-id>]/state/description` | Optical engine identifier string. |
+| `/components/component[name=<oe-id>]/state/parent` | The CPO module the optical engine belongs to. |
+| `/components/component[name=<oe-id>]/state/type` | OpenConfig component type for the optical engine. |
+| `/components/component[name=<oe-id>]/state/firmware-version` | Firmware version of the optical engine. |
+| `/components/component[name=<oe-id>]/state/serial-no` | Serial number of the optical engine. |
+| `/components/component[name=<els-id>]/state/name` | Laser source name. |
+| `/components/component[name=<els-id>]/state/description` | Laser source identifier string. |
+| `/components/component[name=<els-id>]/state/parent` | The CPO module the laser source feeds. |
+| `/components/component[name=<els-id>]/state/type` | OpenConfig component type for the laser source. |
+| `/components/component[name=<els-id>]/state/serial-no` | Serial number of the laser source. |
+| `/components/component[name=<els-id>]/state/part-no` | Part number of the laser source. |
+| `/components/component[name=<els-id>]/state/firmware-version` | Firmware version of the laser source. |
+| `/components/component[name=<els-id>]/state/oper-status` | Operational status of the laser source. |
+| `/components/component[name=<els-id>]/state/error-status` | Error status of the laser source. |
+| `/components/component[name=<els-id>]/state/used-power` | Power the laser source consumes. |
+| `/components/component[name=<els-id>]/state/temperature/instant` | Current laser source temperature. |
+| `/components/component[name=<els-id>]/state/temperature/avg` | Average laser source temperature over the interval. |
+| `/components/component[name=<els-id>]/state/temperature/min` | Minimum laser source temperature over the interval. |
+| `/components/component[name=<els-id>]/state/temperature/max` | Maximum laser source temperature over the interval. |
+| `/components/component[name=<els-id>]/state/temperature/interval` | Length of the interval the average, minimum, and maximum cover. |
+| `/components/component[name=<els-id>]/state/temperature/min-time` | Time within the interval at which the minimum occurred. |
+| `/components/component[name=<els-id>]/state/temperature/max-time` | Time within the interval at which the maximum occurred. |
+| `/components/component[name=<els-id>]/state/temperature/alarm-status` | Whether the laser source temperature is in alarm. |
+| `/components/component[name=<els-id>]/state/temperature/alarm-severity` | Severity of the laser source temperature alarm. |
+| `/components/component[name=<els-id>]/state/temperature/alarm-threshold` | Threshold at which the laser source temperature alarm triggers. |
+| `/components/component[name=<els-id>]/laser-source/state/vendor` | Laser source vendor. |
+| `/components/component[name=<els-id>]/laser-source/state/date-code` | Laser source vendor date code. |
+| `/components/component[name=<els-id>]/laser-source/state/present` | Whether the laser source is present. |
+| `/components/component[name=<els-id>]/laser-source/state/icc-current` | ICC current the laser source draws. |
+
+{{</* /tab */>}}
+-->
+{{< tab "Interfaces">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `/interfaces/interface[name=<interface-id>]/step-time-estimation/state/step-time-estimate` | Estimated step time, in seconds, of the AI training workload running on the interface. Requires {{<link url="Step-Time-Estimation" text="step time estimation">}}. |
 
 {{< /tab >}}
-{{< tab "Platform Leakage Sensor">}}
+{{< tab "Microburst Histogram">}}
 
 |  Name | Description |
 |------ | ----------- |
-| `/components/component[name=leakage1]/state/name` | Leakage1 sensor name. Liquid-cooled NVIDIA switch only.|
-| `/components/component[name=leakage1]/state/oper-status` | Leakage1 sensor operational health (ACTIVE on valid reading) Liquid-cooled NVIDIA switch only.|
-| `/components/component[name=leakage1]/state/leakage/alarm-status` | Leakage1 alarm status. Liquid-cooled NVIDIA switch only.|
-| `/components/component[name=leakage2]/state/name` | Leakage2 sensor name. Liquid-cooled NVIDIA switch only.|
-| `/components/component[name=leakage2]/state/oper-status` | Leakage2 sensor operational health (ACTIVE on valid reading) Liquid-cooled NVIDIA switch only.|
-| `/components/component[name=leakage2]/state/leakage/alarm-status` | Leakage2 alarm status. Liquid-cooled NVIDIA switch only.|
+| `/performance/interfaces/interface[name]/histograms/microburst/direction[dir][quantity]`| Per-interface microburst telemetry container. `dir` is `rx` or `tx`; quantity is `packets` or `bytes`.|
+| `/performance/interfaces/interface[name]/histograms/microburst/direction[dir][quantity]/bin[upper-boundary]/count` | Histogram bin count for the most recent collection window.  The value covers a single collection window and resets on read.|
+| `/performance/interfaces/interface[name]/histograms/microburst/direction[dir][quantity]/score` | Burstiness score computed as σ² × μ in bin-index space.|
+| `/performance/interfaces/interface[name]/histograms/microburst/direction[dir][quantity]/mean-bin-index` | Mean bin index μ over the current window.|
+| `/performance/interfaces/interface[name]/histograms/microburst/direction[dir][quantity]/distribution-variance` | Bin-index variance σ² over the current window.|
+| `/performance/interfaces/interface[name]/histograms/microburst/direction[dir][quantity]/peak-value` | Raw `max_watermark` value for the current window. Interpretation depends on quantity.|
+| `/performance/interfaces/interface[name]/histograms/microburst/direction[dir][quantity]/threshold-state` | Operational threshold state for the configured score threshold.|
+| `/performance/interfaces/interface[name]/histograms/microburst/direction[dir][quantity]/last-triggered` | Last time the threshold entered triggered state. Absent or unset if never triggered.|
+
+The telemetry model names the packets or bytes selector `quantity`, where the NVUE command that configures it is `unit`. The two names refer to the same setting; `quantity` avoids a collision with the standard OTEL instrument descriptor field.
 
 {{< /tab >}}
-{{< tab "Platform Power Supply">}}
+{{< tab "Packet Trimming">}}
+
+The switch exports these xPaths on Spectrum-6 switches only. For information about the counters behind these metrics, refer to {{<link url="Packet-Trimming/#packet-trimming-counters" text="Packet Trimming Counters">}}.
 
 |  Name | Description |
 |------ | ----------- |
-| `/components/component[name=PDBn-HSCm]/state/name` |	Component name Power Distribution Board (PDB) hotswap controllers (HSC).|
-| `/components/component[name=PDBn-HSCm]/state/description` | Human-readable description. |
-| `/components/component[name=PDBn-HSCm]/state/type` | Component type; POWER_SUPPLY (derived). |
-| `/components/component[name=PDBn-HSCm]/state/oper-status`	| Operational status (such as ACTIVE).|
-| `/components/component[name=PDBn-HSCm]/power-supply/state/capacity` |	HSC capacity in Watts (per-HSC) — max INPUT power the HSC can handle, not PSU rated OUTPUT.|
-| `/components/component[name=PDBn-HSCm]/power-supply/state/input-voltage` | Input-side voltage at the hotswap controller.|
-| `/components/component[name=PDBn-HSCm]/power-supply/state/input-current` | Input-side current at the hotswap controller. |
-| `/components/component[name=PDBn-HSCm]/power-supply/state/input-power` | Input-side power (normative).|
-
-A hotswap controller has no EEPROM or VPD and a PDB is input-only. The following metrics are not populated for Power Distribution Board (PDB) hotswap controllers (HSC) (PDB-based switches, such as the SN6600_LD - Spectrum-6).
-
-|  Name | Description |
-|------ | ----------- |
-| `/components/component[name=PDBn-HSCm]/state/serial-no` |	No EEPROM on hotswap controller — PSU platforms only; not applicable to input-only PDB/HSC.|
-| `/components/component[name=PDBn-HSCm]/state/part-no` |	No EEPROM on hotswap controller — PSU platforms only; not applicable to input-only PDB/HSC.|
-| `/components/component[name=PDBn-HSCm]/state/mfg-name` |	No source in the platform inventory metric - not populated for PSU components either.|
-| `/components/component[name=PDBn-HSCm]/state/model-name` |	No EEPROM on hotswap controller — PSU platforms only; not applicable to input-only PDB/HSC.|
-| `/components/component[name=PDBn-HSCm]/state/hardware-version` |	No EEPROM on hotswap controller — PSU platforms only; not applicable to input-only PDB/HSC.|
-| `/components/component[name=PDBn-HSCm]/power-supply/state/output-power`| Input-only device (no output metering) — not exposed|
-| `/components/component[name=PDBn-HSCm]/power-supply/state/output-current` |Input-only device (no output metering) — not exposed|
-|`/components/component[name=PDBn-HSCm]/power-supply/state/output-voltage` |Input-only device (no output metering) — not exposed |
-
-On PSU-based switches, the same entities are populated for PSU components:
-
-|  Name | Description |
-|------ | ----------- |
-| `/components/component[name=PSUn]/state/serial-no` | From PSU VPD/EEPROM. |
-| `/components/component[name=PSUn]/state/part-no` | From PSU VPD/EEPROM. |
-| `/components/component[name=PSUn]/state/model-name` | From PSU VPD/EEPROM.|
-| `/components/component[name=PSUn]/state/hardware-version` | From PSU VPD/EEPROM. |
-| `/components/component[name=PSUn]/power-supply/state/output-power` | PSU output side.|
-| `/components/component[name=PSUn]/power-supply/state/output-current` | PSU output side. |
-| `/components/component[name=PSUn]/power-supply/state/output-voltage` | PSU output side. |
+| `/components/component[name]/integrated-circuit/pipeline-counters/packet/trim/state/out-trim-pkts` | Number of packets that the switch trimmed and sent successfully. |
+| `/components/component[name]/integrated-circuit/pipeline-counters/drop/state/trim-pkts` | Number of packets that the switch trimmed and dropped. |
+| `/interfaces/interface[name]/state/counters/dropped-trim-pkts` | Number of packets that the switch trimmed and dropped on the port. |
+| `/qos/interfaces/interface[interface-id]/output/queues/queue[name]/state/out-trim-pkts` | Number of packets that the switch trimmed and sent successfully on the port and queue. |
+| `/qos/interfaces/interface[interface-id]/output/queues/queue[name]/state/dropped-trim-pkts` | Number of packets that the switch trimmed and dropped on the port and queue. |
 
 {{< /tab >}}
-{{< tab "WJH">}}
+{{< tab "Platform">}}
 
 |  Name | Description |
 |------ | ----------- |
-| `/wjh/channels/channel[name]/aggregate-events` | Total number of aggregate events for the channel. |
-| `/wjh/channels/channel[name]/l1-events` | Total number of layer 1 channel events for the channel.|
-| `/wjh/channels/channel[name]/state` | If the channel is enabled.|
-| `/wjh/channels/channel[name]/state/categories` | Total number of categories for the channel. |
-| `/wjh/channels/channel[name]/state/total-events` | Total number of events for the channel. |
-| `/wjh/state/service-state` | The state of the WJH service. |
+| `/components/component[name]/state/name` | Component instance name. Cumulus Linux 5.19 adds the name for the ASIC and for transceivers. |
+| `/components/component[name]/state/type` | OpenConfig component type. Cumulus Linux 5.19 adds the type for the ASIC, transceivers, fans, storage disks, and temperature and leakage sensors. |
+
+{{< /tab >}}
+{{< tab "Routing">}}
+
+The following metrics are added for unreachability AFI SAFI.
+
+|  Name | Description |
+|------ | ----------- |
+| `/network-instances/network-instance[name]/lldp-exception/address-families/address-family[address-family=IPV4]/state/exception-count ` | Number of unreachable IPv4 prefixes the switch holds to export to LLDP, excluding the default route exception. |
+| `/network-instances/network-instance[name]/lldp-exception/address-families/address-family[address-family=IPV4]/state/default-exception-active` | Whether the IPv4 default route exception is active. |
+| `/network-instances/network-instance[name]/lldp-exception/address-families/address-family[address-family=IPV6]/state/exception-count ` | Number of unreachable IPv6 prefixes the switch holds to export to LLDP, excluding the default route exception. |
+| `/network-instances/network-instance[name]/lldp-exception/address-families/address-family[address-family=IPV6]/state/default-exception-active` | Whether the IPv6 default route exception is active. |
+| `/lldp/state/counters/exception-add-total ` | Number of unreachable prefixes sent to LLDP since the routing service started, including resynchronization replays. |
+| `/lldp/state/counters/exception-remove-total` | Number of unreachable prefix withdrawals sent to LLDP since the routing service started. |
+| `/lldp/state/counters/default-exception-add-total` | Number of default route exceptions sent to LLDP since the routing service started, counted separately for each VRF and address family. |
+| `/lldp/state/counters/default-exception-remove-total` | Number of default route exception withdrawals sent to LLDP since the routing service started. |
+| `/network-instances/network-instance[name]/protocols/protocol[identifier=BGP][name=BGP]/bgp/global/afi-safis/afi-safi[afi-safi-name=IPV4_UNREACH]/state/total-prefixes` | Total number of unreachable IPv4 prefixes. |
+| `/network-instances/network-instance[name]/protocols/protocol[identifier=BGP][name=BGP]/bgp/global/afi-safis/afi-safi[afi-safi-name=IPV6_UNREACH]/state/total-prefixes` | Total number of unreachable IPv6 prefixes.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier=BGP][name=BGP]/bgp/global/afi-safis/afi-safi[afi-safi-name=IPV4_UNREACH]/state/total-prefixes-all` | Total number of all unreachable IPv4 prefixes.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier=BGP][name=BGP]/bgp/global/afi-safis/afi-safi[afi-safi-name=IPV6_UNREACH]/state/total-prefixes-all ` |  Total number of all unreachable IPv6 prefixes.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier=BGP][name=BGP]/bgp/global/afi-safis/afi-safi[afi-safi-name=IPV4_UNREACH]/state/total-prefixes-local ` | Total number of unreachable local IPv4 prefixes.|
+| `/network-instances/network-instance[name]/protocols/protocol[identifier=BGP][name=BGP]/bgp/global/afi-safis/afi-safi[afi-safi-name=IPV6_UNREACH]/state/total-prefixes-local ` | Total number of unreachable local IPv6 prefixes.|
 
 {{< /tab >}}
 {{< /tabs >}}
 
 For information about gNMI, refer to {{<link url="gNMI-Streaming" text="gNMI Streaming">}}.
 
+## Updated gNMI Metrics
+
+The switch replaces these packet trimming xPaths with new ones. If you subscribe to the old xPaths, update your subscriptions.
+
+|  Old xPath | New xPath |
+|------ | ----------- |
+| `/qos/packet-trimming/state/counters/trimmed-unicast-pkts` | `/components/component[name]/integrated-circuit/pipeline-counters/packet/trim/state/trim-pkts` |
+| `/qos/interfaces/interface[interface-id]/packet-trimming/state/counters/trimmed-unicast-pkts` | `/interfaces/interface[name]/state/counters/trim-pkts` |
+| `/qos/interfaces/interface[interface-id]/packet-trimming/state/counters/trimmed-tx-unicast-pkts` | `/interfaces/interface[name]/state/counters/out-trim-pkts` |
+| `/qos/interfaces/interface[interface-id]/packet-trimming/output/queues/queue[name]/state/trimmed-unicast-pkts` | `/qos/interfaces/interface[interface-id]/output/queues/queue[name]/state/trim-pkts` |
+
+The switch exports these xPaths on Spectrum-4, Spectrum-5, and Spectrum-6 switches, except `/interfaces/interface[name]/state/counters/out-trim-pkts`, which the switch exports on Spectrum-5 and later switches only.
+
 ## New OTEL Metrics
 
+
 {{< tabs "TabID113 ">}}
-{{< tab "802.1x RADIUS Server">}}
+{{< tab "Back-to-sender on Link Down">}}
+
+The switch exports these metrics on Spectrum-6 switches only. For information about the counters behind these metrics, refer to {{<link url="Packet-Trimming/#show-and-clear-back-to-sender-notification-on-link-down-counters" text="Show and Clear Back-to-sender Notification on Link Down Counters">}}.
 
 |  Name | Description |
 |------ | ----------- |
-| `nvswitch_dot1x_radius_server_errors_total` | All RADIUS error counters from `hostapd`, exposed per server. Each time-series is aggregated across 802.1x interfaces communicating with the server. |
-| `nvswitch_dot1x_radius_server_requests_total` | Number of access and accounting requests. |
-| `nvswitch_dot1x_radius_server_accounting_requests_total` | Number of accounting requests. |
-| `nvswitch_dot1x_radius_server_responses_total`  | Total number of responses. |
-| `nvswitch_dot1x_radius_server_retransmissions_total` | Number of timeout retried access requests and accounting retransmissions. |
-| `nvswitch_dot1x_radius_server_timeouts_total` | Number of timeout access requests and accounting timeouts. |
-| `nvswitch_dot1x_radius_server_pending_requests` | Number of RADIUS requests destined for the server that have not yet received a response or been removed from the retransmit list after the maximum number of retransmit attempts. |
-| `nvswitch_dot1x_radius_server_round_trip_time_ms`  | Most recent round-trip time, in milliseconds, between a RADIUS request and its matching response.  |
-
-To enable the new 802.1x RADIUS Server metrics, refer to {{<link url="Open-Telemetry-Export/#8021x-statistics" text="OTEL Telemetry Export">}}.
+| `nvswitch_qos_spxm_notify_sender_link_down_pkts` | Number of packets that matched the back-to-sender classifier on link down, both while the route is still in hardware and after FRR withdraws it. Counts notifications the switch attempted, not notifications the switch confirmed the sender received. |
+| `nvswitch_qos_notify_sender_trimmed_link_down_pkts` | Number of those packets the switch trimmed and sent as a back-to-sender notification. |
 
 {{< /tab >}}
-{{< tab "ASIC Resource">}}
-
-| Name | Description |
-|----- | ----------- |
-| `nvswitch_platform_asic_resource_used{resource_name="<name>"}` | The number of entries used for an ASIC resource. | 
-| `nvswitch_platform_asic_resource_free{resource_name="<name>"}` | The number of free entries available for an ASIC resource. | 
-| `nvswitch_platform_asic_resource_max_limit{resource_name="<name>"}` | The maximum limit of possible entries for an ASIC resource.|
-| `nvswitch_platform_asic_resource_high_watermark{resource_name="<name>"}` | The highest number of entries used for an ASIC resource. | 
-| `nvswitch_platform_asic_resource_high_watermark_timestamp{resource_name="<name>"}` | The timestamp when the high-watermark was last updated.|
-
-The ASIC resource is one of the following:
-
-| Name | Description |
-|----- | ----------- |
-| `MAC-entries` | Layer 2 MAC address table entries.|
-| `IPv4-Routes` | IPv4 routing table entries.|
-| `IPv6-Routes` | IPv6 routing table entries.|
-| `Total-Mcast-Routes` | Multicast routing entries.|
-| `IPv4-host-entries` | IPv4 neighbor entries. |
-| `IPv6-host-entries` | IPv6 neighbor entries. |
-| `ECMP-nexthops` | Equal-Cost Multi-Path (ECMP) next-hop paths. |
-| `ACL-Regions` | Hardware regions allocated for Access Control Lists (ACLs). |
-| `ACL-18B-Rules-Key` | ACL rules using an 18-byte key. |
-| `ACL-36B-Rules-Key` | ACL rules using a 36-byte key. |
-| `ACL-54B-Rules-Key` | ACL rules using a 54-byte key. |
-| `Flow-Counters` | Hardware counters for tracking specific traffic flows.|
-| `RIF-Basic-Counters` | Basic statistics counters for router interfaces (RIFs). |
-| `RIF-Enhanced-Counters` | Detailed statistics counters for router interfaces (RIFs). |
-
-For example, `nvswitch_platform_asic_resource_free{resource_name="MAC-entries"}`.
-
-{{%notice note%}}
-- ACL maximum limits are dynamic and depend on the distribution of 18B, 36B, and 54B ACL rules.
-- The maximum value for the `IPv6-Routes` ASIC resource represents the number of single-width IPv6 route entries. In hardware, IPv6 routes with prefix lengths from /0 to /64 consume one entry each, whereas routes with prefix lengths from /65 to /128 consume two entries each. As a result, the actual number of free hardware entries depends on the mix of IPv6 route prefix lengths programmed into the table.
-{{%/notice%}}
-
-To enable the new ASIC Resource metrics, refer to {{<link url="Open-Telemetry-Export/#platform-statistics" text="OTEL Telemetry Export">}}.
-
-{{< /tab >}}
-{{< tab "Platform Leakage Sensor">}}
+{{< tab "Control Plane Punt Classifier">}}
 
 |  Name | Description |
 |------ | ----------- |
-| `nvswitch_platform_environment_leak_sensor_status` | Leak sensor status. Liquid-cooled NVIDIA switch only.|
-| `nvswitch_platform_environment_leakage_status` | Leakage status. Liquid-cooled NVIDIA switch only. |
+| `nvswitch_control_plane_punt_classifier_matched_packets` | The number of packets that a control plane punt classifier rule drops. |
+| `nvswitch_control_plane_punt_classifier_matched_bytes` | The number of bytes that a control plane punt classifier rule drops. |
+
+Both metrics are 64-bit counters and carry four labels: `rule_id`, `packet_type` (`spxm` or `ipv6`), `udp_dport` (the destination port or `none`), and `action`, which is always `drop`. The switch exports them only when you enable the `punt-classifier` class. For information about the feature behind these metrics, refer to {{<link url="Access-Control-List-Configuration/#control-plane-punt-classifier" text="Control Plane Punt Classifier">}}.
 
 {{< /tab >}}
-{{< tab "Platform Power Supply">}}
+<!-- NOT SUPPORTED IN 5.19, commented out 2026-10-30 (Ilia Yanover: 5.19 does not officially support CPO). To restore, remove this comment wrapper and undo the escapes: put the inner comment delimiters (written with a slash inserted) and the Hugo shortcodes (written with a slash and asterisk) back to normal.
+{{</* tab "CPO and Laser Source" */>}}
+
+The switch exports these metrics on a switch with CPO only. Enable them with the `transceiver-info` and `laser-source-info` platform statistic classes, where `transceiver-info` covers the CPO modules and optical engines and `laser-source-info` covers the laser sources; refer to {{</* link url="Open-Telemetry-Export/#platform-statistics" text="Platform Statistics" */>}}.
 
 |  Name | Description |
 |------ | ----------- |
-| `nvswitch_platform_environment_power_supply_state` | Operational state of the power component. Enum: 0 ABSENT, 1 OK, 2 FAILED, 3 BAD, 4 HIGH, 5 LOW, 6 CRITICAL, 7 LCRITICAL, 8 UNKNOWN.|
-| `nvswitch_platform_environment_power_supply_capacity` | Power supply capacity in Watts. For input-only Power Distribution Boards (PDBs) this is the hotswap-controller power1_max (max INPUT power the hotswap controller (HSC) can handle, not a PSU rated OUTPUT capacity).
-| `nvswitch_platform_environment_power_supply_input_voltage` | Input-side voltage measured at the hotswap controller. |
-| `nvswitch_platform_environment_power_supply_input_current` | Input-side current measured at the hotswap controller. |
-| `nvswitch_platform_environment_power_supply_power` | Power-supply power in Watts (normative power metric). For input-only PDBs, this is the input-side power surfaced as the gNMI input-power leaf. |
-| `nvswitch_platform_environment_power_supply_current` | Output current (PSU output side). Emitted on PSU platforms only; not applicable to input-only PDB/HSC. |
-| `nvswitch_platform_environment_power_supply_voltage`| Output voltage (PSU output side). Emitted on PSU platforms only; not applicable to input-only PDB/HSC.|
+| `nvswitch_platform_cpo_info` | CPO module inventory. Carries `name`, `type`, `description`, and `fw_version` labels. |
+| `nvswitch_platform_cpo_status` | Operational status of the CPO module. Carries a `name` label. |
+| `nvswitch_platform_cpo_subcomponent_info` | The laser source and optical engines that belong to the CPO module. Carries `name`, `subcomponent_type`, and `subcomponent_name` labels. |
+| `nvswitch_platform_cpo_channel_laser_source_input_power` | Power the laser source delivers into the optical engine for a channel. Carries `name` and `channel` labels. |
+| `nvswitch_platform_cpo_channel_laser_source_input_power_alarm` | Alarm status and severity for the laser source input power on a channel. Carries `name` and `channel` labels. |
+| `nvswitch_platform_cpo_channel_power` | Received and transmitted optical power on a channel. Carries `name`, `channel`, and `direction` labels. |
+| `nvswitch_platform_cpo_channel_power_alarm` | Alarm status and severity for the optical power on a channel. Carries `name`, `channel`, and `direction` labels. |
+| `nvswitch_platform_cpo_channel_state` | Loss of received signal and transmit failure state for a channel. Carries `name`, `channel`, and `state` labels. |
+| `nvswitch_platform_cpo_channel_fault_opcode` | Advanced troubleshooting fault opcode for a channel. Carries `name` and `channel` labels. |
+| `nvswitch_platform_cpo_host_lane_state` | Loss of transmitted signal state for a host lane. Carries `name`, `lane`, and `state` labels. |
+| `nvswitch_platform_cpo_host_lane_dp_state` | Data path state of a host lane. Carries `name` and `lane` labels. |
+| `nvswitch_platform_oe_info` | Optical engine inventory. Carries `name`, `type`, `description`, `serial_no`, `firmware_version`, and `cpo_module` labels. |
+| `nvswitch_platform_els_info` | Laser source inventory. Carries `name`, `type`, `description`, `vendor`, `vendor_rev`, `part_no`, `serial_no`, `date_code`, `firmware_version`, `present`, and `cpo_module` labels. |
+| `nvswitch_platform_els_status` | Operational status of the laser source. Carries a `name` label. |
+| `nvswitch_platform_els_error_status` | Error status of the laser source. Carries `name` and `error_status` labels. |
+| `nvswitch_platform_els_power_consumption` | Power the laser source consumes. Carries a `name` label. |
+| `nvswitch_platform_els_temperature` | Laser source temperature, with the average, minimum, and maximum over the interval. Carries a `name` label. |
+| `nvswitch_platform_els_temperature_alarm` | Alarm status and severity for the laser source temperature. Carries a `name` label. |
+| `nvswitch_platform_els_temperature_threshold_info` | Threshold at which the laser source temperature alarm triggers. Carries a `name` label. |
+| `nvswitch_platform_els_icc_current` | ICC current the laser source draws. Carries a `name` label. |
 
-To enable the new the platform power supply metrics, refer to {{<link url="Open-Telemetry-Export/#platform-statistics" text="OTEL Telemetry Export">}}.
-
-{{< /tab >}}
-{{< tab "Patches">}}
+{{</* /tab */>}}
+-->
+{{< tab "Microburst Histogram">}}
 
 |  Name | Description |
 |------ | ----------- |
-| `nvswitch_platform_package_archive_failure_state` | The failure state if the patch archive installation fails:<br>0: none<br>1: PRE_INSTALL_FAILED_ROLLBACK_SUCCESSFULL<br>2: PRE_INSTALL_FAILED_ROLLBACK_FAILED<br>3: PRE_INSTALL_FAILED_ROLLBACK_IN_PROGRESS<br>4: APT_FAILED_ROLLBACK_SUCCESSFULL<br>5: APT_FAILED_ROLLBACK_FAILED<br>6: APT_FAILED_ROLLBACK_IN_PROGRESS<br>7: POST_INSTALL_FAILED_ROLLBACK_SUCCESSFULL<br>8: POST_INSTALL_FAILED_ROLLBACK_FAILED<br>9: POST_INSTALL_FAILED_ROLLBACK_IN_PROGRESS<br>10: UNKNOWN_FAILURE_ROLLBACK_SUCCESSFULL<br>11: UNKNOWN_FAILURE_ROLLBACK_FAILED<br>12: UNKNOWN_FAILURE_ROLLBACK_IN_PROGRESS|
-| `nvswitch_platform_package_archive_status` | The patch archive status:<br>0: not-installed<br>1: installed<br>2: partially-installed<br>3: failed<br>4: operation-in-progress.|
-| `nvswitch_platform_package_archive_installed_time` | The time the patch archive was installed (Unix timestamp). |
+| `nvswitch_histogram_interface_microburst` | Per-window microburst histogram distribution. Bucket counts are exported after each poll cycle; temporality is delta. The values are the packet-delta or byte-delta per sampling window, depending on the value of quantity.|
+| `nvswitch_histogram_interface_microburst_score` | Burstiness score σ² × μ for the current window.|
+| `nvswitch_histogram_interface_microburst_mean_bin_index` | Mean bin index μ for the current window.|
+| `nvswitch_histogram_interface_microburst_distribution_variance` | Bin-index variance σ² for the current window.|
+| `nvswitch_histogram_interface_microburst_peak_value` | Peak raw watermark for the current window (packets or bytes, depending on quantity). Omitted when no valid watermark is available for the window.|
+| `nvswitch_histogram_interface_microburst_threshold_state` | Threshold state for the configured score threshold. Omitted when no threshold is configured.|
+| `nvswitch_histogram_interface_microburst_last_triggered` | (Unix epoch) timestamp of the last transition into triggered state. Omitted when the threshold has never triggered.|
+
+Each microburst metric carries an `interface` label, a `direction` label (`rx` or `tx`), and a `quantity` label (`packets` or `bytes`). The telemetry model names this selector `quantity`, where the NVUE command that configures it is `unit`; the two names refer to the same setting. `nvswitch_histogram_interface_microburst` is a histogram and the rest are gauges, with `threshold_state` reporting 0 for clear and 1 for triggered. For information about the feature behind these metrics, refer to {{<link url="ASIC-Monitoring/#microburst-histogram" text="Microburst Histogram">}}.
+
+{{< /tab >}}
+{{< tab "Packet Trimming">}}
+
+The switch exports these metrics on Spectrum-6 switches only. For information about the counters behind these metrics, refer to {{<link url="Packet-Trimming/#packet-trimming-counters" text="Packet Trimming Counters">}}.
+
+|  Name | Description |
+|------ | ----------- |
+| `nvswitch_qos_trimmed_tx_unicast_pkts` | Number of packets that were trimmed and sent successfully. |
+| `nvswitch_qos_trimmed_drop_unicast_pkts` | Number of packets that were trimmed and dropped. |
+| `nvswitch_interface_trimmed_drop_unicast_pkts [interface]` | Number of packets that were trimmed and dropped on the interface. |
+| `nvswitch_interface_tc_trimmed_tx_unicast_pkts [interface][tc]` | Number of packets that were trimmed and sent successfully on the interface and traffic class. |
+| `nvswitch_interface_tc_trimmed_drop_unicast_pkts [interface][tc]` | Number of packets that were trimmed and dropped on the interface and traffic class. |
+
+{{< /tab >}}
+{{< tab "RADIUS Authentication">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `node_radius_auth_request_total` | Access-Request packets sent to the RADIUS server to authenticate an interactive user login, including retransmissions. |
+| `node_radius_auth_accept_total` | Access-Accept messages received from the RADIUS server. |
+| `node_radius_auth_reject_total` | Access-Reject messages received from the RADIUS server. |
+| `node_radius_auth_timeout_total` | Access-Request messages that timed out and required retransmission. |
+| `node_radius_auth_retransmit_total` | Retransmitted Access-Request messages. |
+| `node_radius_auth_connection_error_total` | Login authentication attempts for which the switch could not reach the RADIUS server. |
+| `node_radius_auth_bad_response_total` | Malformed or otherwise invalid RADIUS responses received during an interactive login. |
+
+Each metric carries a single `server` label holding the RADIUS server address. For information about the counters behind these metrics, refer to {{<link url="RADIUS-AAA/#show-and-clear-radius-counters" text="Show and Clear RADIUS Counters">}}.
+
+{{< /tab >}}
+{{< tab "Routing">}}
+
+The following metrics are added for unreachability AFI SAFI.
+
+|  Name | Description |
+|------ | ----------- |
+| `nvrouting_bgp_unreach_prefix_count` | Number of prefixes in the BGP unreachability table. |
+| `nvrouting_lldp_exception_count` | Number of unreachable prefixes the switch holds to export to LLDP, excluding the default route exception. |
+| `nvrouting_lldp_default_exception_active_count` | Whether the default route exception is active. |
+| `nvrouting_lldp_exception_add_total` | Number of unreachable prefixes sent to LLDP since the routing service started, including resynchronization replays. |
+| `nvrouting_lldp_exception_remove_total` | Number of unreachable prefix withdrawals sent to LLDP since the routing service started. |
+| `nvrouting_lldp_default_exception_add_total` | Number of default route exceptions sent to LLDP since the routing service started, counted separately for each VRF and address family. |
+| `nvrouting_lldp_default_exception_remove_total` | Number of default route exception withdrawals sent to LLDP since the routing service started. |
+| `nvrouting_lldp_export_channel_connected` | Whether the LLDP export channel is up. |
+| `nvrouting_lldp_export_channel_errors_total` | Number of unreachable prefix updates that failed to reach LLDP since the routing service started. |
+
+{{< /tab >}}
+{{< tab "Step Time Estimation">}}
+
+|  Name | Description |
+|------ | ----------- |
+| `nvswitch_interface_step_time_estimate` | Estimated step time, in seconds, of the AI training workload running on an interface. |
+
+This metric is a gauge carrying a single `interface` label holding the interface name. The switch exports a data point only for an interface for which the algorithm produces an estimate, and exports no metric at all when it produces no estimate for any interface. For information about the feature behind this metric, refer to {{<link url="Step-Time-Estimation" text="Step Time Estimation">}}.
+
+{{< /tab >}}
+{{< tab "WJH">}}
+
+In addition to the following metrics, the switch also exports two WJH events, `wjh.aggregate_drop` and `wjh.l1`, as OTEL log records, not metrics. For more information, refer to {{<link url="Open-Telemetry-Export/#wjh-events-and-metrics-format" text="WJH Events and Metrics Format">}}.
+
+|  Name | Description |
+|------ | ----------- |
+| `nvswitch_wjh_total_events` | The total number of WJH drop-trap events received on the channel, before aggregation. |
+| `nvswitch_wjh_channel_trigger` | Which triggers are enabled for each channel.|
 
 {{< /tab >}}
 {{< /tabs >}}
 
-
 For information about OTEL, refer to {{<link url="Open-Telemetry-Export" text="OTEL Telemetry Export">}}.
 
-## Updated OTEL Metrics
+## Updated Transceiver Metric
 
-|  Old Metric | New Metric |
-|------ | ----------- |
-| `nvswitch_platform_environment_psu_state` | `nvswitch_platform_environment_power_supply_state` |
-| `nvswitch_platform_environment_psu_capacity` | `nvswitch_platform_environment_power_supply_capacity` |
-| `nvswitch_platform_environment_psu_input_voltage` | `nvswitch_platform_environment_power_supply_input_voltage` |
-| `nvswitch_platform_environment_psu_input_current` | `nvswitch_platform_environment_power_supply_input_current` |
-| `nvswitch_platform_environment_psu_power` | `nvswitch_platform_environment_power_supply_power` |
-| `nvswitch_platform_environment_psu_current` |	`nvswitch_platform_environment_power_supply_current` |
-| `nvswitch_platform_environment_psu_voltage` |	`nvswitch_platform_environment_power_supply_voltage` |
-
-{{%notice note%}}
-On PSU-based platforms, the legacy `psu_*` metric family and the common `power_supply_*` family are emitted together for a three-release migration window. The legacy `psu_*` family is deprecated and will be removed after that window; make sure to migrate your dashboards and queries to `power_supply_*` during the window. The gNMI/OpenConfig PSU representation is unchanged.
-{{%/notice%}}
-
-|  Old Metric | New Metric|
-|------ | ----------- |
-| `nvswitch_platform_info_hw_details`|`nvswitch_platform_info_hw_details{serial_no}`: Serial number. Emitted for PSU components; not emitted for PDBn-HSCm (no EEPROM/VPD on a hotswap controller).<br>`nvswitch_platform_info_hw_details{part_no}`: Part number.<br>`nvswitch_platform_info_hw_details{model_name}`: Model name.<br>`nvswitch_platform_info_hw_details{hardware_version}`: Hardware revision.|
+In Cumulus Linux 5.19, the OTEL `nvswitch_platform_transceiver_ethernet_pmd` metric and the gNMI path `/components/component[name=*]/transceiver/state/ethernet-pmd` report the PMD of the transceiver media instead of the host interface:<br>- Optical modules report the advertised media type, such as `ETH_400GBASE_DR4`.<br>- Active optical and active copper cables report `ETH_100G_AOC` or `ETH_100G_ACC` at 100G. Other speeds report `OTHER`.<br>- Passive copper cables report the operating PMD, such as `ETH_100GBASE_CR4`, only while the link is up.<br>For CMIS transceivers (QSFP-DD and OSFP), the reported PMD comes from the first application the module advertises. If the first application is not the full rate of the module, such as a twin-port 800G module that advertises 400GAUI-4, the metric shows the lower rate. If the first application is InfiniBand, an active cable reports its PMD only while the link is up.

@@ -345,7 +345,7 @@ ecmp_hash_seed = 50
 Run the `cl-ecmpcalc` command to determine a hardware hash result. For example, you can see which path a flow takes through a network. You must provide all fields in the hash, including the ingress interface, layer 3 source IP, layer 3 destination IP, layer 4 source port, and layer 4 destination port.
 
 {{%notice note%}}
-`cl-ecmpcalc` only supports input interfaces that convert to a single physical port in the port tab file, such as the physical switch ports (swp). You can not specify virtual interfaces like bridges, bonds, or subinterfaces.
+`cl-ecmpcalc` only supports input interfaces that convert to a single physical port in the port tab file, such as the physical switch ports (swp). You cannot specify virtual interfaces like bridges, bonds, or subinterfaces.
 {{%/notice%}}
 
 ```
@@ -372,22 +372,22 @@ cl-ecmpcalc: error: --sport and --dport required for TCP and UDP frames
 
 ## Resilient Hashing
 
-In Cumulus Linux, when a next hop fails or you remove the next hop from an ECMP pool, the hashing or hash bucket assignment can change. *Resilient hashing* is an alternate way to manage ECMP groups. Cumulus Linux assigns next hops to buckets using their hashing header fields and uses the resulting hash to index into the table of 2^n hash buckets. Because all packets in a given flow have the same header hash value, they all use the same flow bucket.
+In Cumulus Linux, when a next hop fails or you remove the next hop from an ECMP pool, the hashing or hash bucket assignment can change. For deployments where flows must always use the same next hop, this change can cause session failures. *Resilient hashing* is an alternate way to manage ECMP groups. Cumulus Linux assigns next hops to buckets using their hashing header fields and uses the resulting hash to index into the table of 2^n hash buckets. Because all packets in a given flow have the same header hash value, they all use the same flow bucket.
 
 {{%notice note%}}
 - Resilient hashing supports both IPv4 and IPv6 routes.
-- Resilient hashing prevents disruption when you remove next hops but does not prevent disruption when you add next hops.
+- Resilient hashing preserves flow stickiness when you remove next hops. Adding a next hop to an ECMP container does not guarantee flow stickiness.
 {{%/notice%}}
 
-The NVIDIA Spectrum ASIC assigns packets to hash buckets and assigns hash buckets to next hops. The ASIC also runs a background thread that monitors buckets and can migrate buckets between next hops to rebalance the load.
+When the set of next hops changes, resilient hashing behaves as follows:
 - When you remove a next hop, Cumulus Linux distributes the assigned buckets to the remaining next hops.
-- When you add a next hop, Cumulus Linux assigns **no** buckets to the new next hop until the background thread rebalances the load.
-- The load rebalances when the active flow timer expires only if there are inactive hash buckets available; the new next hop can remain unpopulated until the period set in active flow timer expires.
-- When the unbalanced timer expires and the load is not balanced, the thread migrates buckets to different next hops to rebalance the load.
+- When you add a next hop, Cumulus Linux waits for the active timer to expire before it assigns buckets to the new next hop. The active timer (`active-timer`) sets how long a bucket must be idle before Cumulus Linux can reassign it to the new next hop.
+- If inactive buckets are available when the active timer expires, the new next hop occupies those buckets.
+- If there are no inactive buckets available, the new next hop does not receive any buckets until the maximum unbalanced timer (`max-unbalanced-timer`) expires. This timer sets the longest time Cumulus Linux waits for the load to rebalance. When it expires and the load is still not balanced, Cumulus Linux migrates buckets to the new next hop regardless of bucket activity, so flows on those buckets do not keep their next hop. The default value is 0, which means Cumulus Linux never forces a rebalance and waits for idle buckets.
 
-Any flow can migrate to any next hop, depending on flow activity and load balance conditions. Over time, the flow can get pinned, which is the default setting and behavior.
+To set the timers, refer to {{<link url="#configure-resilient-hashing" text="Configure Resilient Hashing">}}.
 
-When you enable resilient hashing, Cumulus Linux assigns next hops in round robin fashion to a fixed number of buckets. In this example, there are 12 buckets and four next hops.
+When you enable resilient hashing, Cumulus Linux assigns next hops in roundrobin fashion to a fixed number of buckets. This simplified example shows 12 buckets and four next hops. The switch uses the number of buckets you configure.
 
 {{< img src = "/images/cumulus-linux/ecmp-reshash-bucket-assignment.png" >}}
 
@@ -395,19 +395,19 @@ Unlike default ECMP hashing, when you need to remove a next hop, the number of h
 
 {{< img src = "/images/cumulus-linux/ecmp-reshash-failure.png" >}}
 
-With 12 buckets and four next hops, instead of reducing the number of buckets, which impacts flows to known good hosts, the remaining next hops replace the failed next hop.
+With 12 buckets and four next hops, instead of reducing the number of buckets, which moves flows to known good hosts to different next hops, the remaining next hops replace the failed next hop.
 
 {{< img src = "/images/cumulus-linux/ecmp-reshash-restore.png" >}}
 
-After you remove the failed next hop, the remaining next hops replace it. This prevents impact to any flows that hash to working next hops.
+After you remove the failed next hop, the remaining next hops replace it. This preserves flow stickiness for all flows that hash to working next hops.
 
-Resilient hashing does not prevent possible impact to existing flows when you add new next hops. Because there are a fixed number of buckets, a new next hop requires reassigning next hops to buckets.
+Resilient hashing does not guarantee flow stickiness when you add new next hops. Because there are a fixed number of buckets, a new next hop requires reassigning next hops to buckets.
 
 {{< img src = "/images/cumulus-linux/ecmp-reshash-add.png" >}}
 
-As a result, some flows hash to new next hops, which can impact anycast deployments.
+As a result, some flows hash to new next hops, which can affect anycast deployments.
 
-Cumulus Linux does *not* enable resilient hashing by default. When you enable resilient hashing, all ECMP groups share 65,536 buckets. An ECMP group is a list of unique next hops that multiple ECMP routes reference.
+Cumulus Linux does *not* enable resilient hashing by default. When you enable resilient hashing, all ECMP groups share a fixed pool of buckets. To see the ECMP resources on the switch, run the `nv show platform asic <asic-id> resource` command. Refer to {{<link url="Resource-Diagnostics" text="Resource Diagnostics">}}. An ECMP group is a list of unique next hops that multiple ECMP routes reference.
 
 {{%notice note%}}
 An ECMP route counts as a single route with multiple next hops.
@@ -416,63 +416,116 @@ An ECMP route counts as a single route with multiple next hops.
 All ECMP routes must use the same number of buckets (you cannot configure the number of buckets per ECMP route).
 
 {{%notice note%}}
-A larger number of ECMP buckets reduces the impact on adding new next hops to an ECMP route. However, the system supports fewer ECMP routes. If you install the maximum number of ECMP routes, new ECMP routes log an error and do not install.
+A larger number of ECMP buckets reduces the number of flows that move to a different next hop when you add a new next hop to an ECMP route. However, the system supports fewer ECMP routes. If you install the maximum number of ECMP routes, new ECMP routes log an error and do not install.
 
 You can configure route and MAC address hardware resources depending on ECMP bucket size changes. See {{%link title="Routing#NVIDIA Spectrum Switches" text="NVIDIA Spectrum routing resources" %}}.
 {{%/notice%}}
 
-To enable resilient hashing:
+### Configure Resilient Hashing
+
+To configure resilient hashing:
+- Set resilient hashing to enabled.
+- Set the number of hash buckets to use for all ECMP routes. On Spectrum switches, you can set the number of buckets to 64, 512, 1024, 2048, or 4096. On NVIDIA Spectrum-2 and later, you can set the number of buckets to 64, 128, 256, 512, 1024, 2048, or 4096. The default value is 64.
+- Set the number of milliseconds an idle bucket waits before the switch reassigns it to a new next hop after a next hop addition event. You can specify a value between 1 and 65535. The default value is 120.
+- Set the maximum number of milliseconds Cumulus Linux waits before forcing a rebalance across next hops, regardless of bucket activity. You can specify a value between 0 and 4294967294. A value of 0 means Cumulus Linux never forces a rebalance and instead waits indefinitely for an idle bucket. The default value is 0.
+
+{{%notice warning%}}
+Enabling or disabling resilient hashing reloads `switchd` and restarts the FRR service. FRR withdraws and reinstalls every route during the restart. NVUE also configures FRR to stop installing next hop group IDs in the kernel as part of enabling resilient hashing — see {{<link url="#resilient-hashing-and-next-hop-groups" text="Resilient Hashing and Next Hop Groups">}} below. Plan for a brief, fabric-wide disruption when you change the resilient hashing state, and schedule the change for a maintenance window.
+{{%/notice%}}
+
+The following example enables resilient hashing, sets the number of hash buckets to use for all ECMP routes to 512, sets the number of milliseconds an idle bucket waits before the switch reassigns it to a new next hop after a next hop addition event to 500, and sets the maximum number of milliseconds Cumulus Linux waits before forcing a rebalance to 2000.
 
 {{< tabs "TabID384 ">}}
 {{< tab "NVUE Commands ">}}
 
-Cumulus Linux does not provide NVUE commands for this setting.
+```
+cumulus@switch:~$ nv set system forwarding resilient-hash state enabled
+cumulus@switch:~$ nv set system forwarding resilient-hash bucket-size 512
+cumulus@switch:~$ nv set system forwarding resilient-hash active-timer 500
+cumulus@switch:~$ nv set system forwarding resilient-hash max-unbalanced-timer 2000
+cumulus@switch:~$ nv config apply
+```
+
+{{%notice note%}}
+Changing the bucket size rebuilds every existing resilient ECMP container. Cumulus Linux does not preserve flow-to-bucket pinning for flows on those containers, so flow stickiness is not preserved for them, even though the change does not reload `switchd` or restart FRR. Changing the active timer or the maximum unbalanced timer applies the new value to existing resilient containers immediately and does not affect flow stickiness for existing flows.
+{{%/notice%}}
+
+To disable resilient hashing, run the `nv set system forwarding resilient-hash state disabled` command.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-1. Edit the `/etc/cumulus/datapath/traffic.conf` file to uncomment and set the `resilient_hash_enable` parameter to `TRUE`.
+Edit the `/etc/cumulus/datapath/traffic.conf` file, then restart `switchd` with the `sudo systemctl restart switchd.service` command.
 
-   You can also set the `resilient_hash_entries_ecmp` parameter to the number of hash buckets to use for all ECMP routes. On Spectrum switches, you can set the number of buckets to 64, 512, 1024, 2048, or 4096. On NVIDIA Spectrum-2 and later, you can set the number of buckets to 64, 128, 256, 512, 1024, 2048, or 4096. The default value is 64.
-
-   ```
-   # Enable resilient hashing
-   resilient_hash_enable = TRUE
-
-   # Resilient hashing flowset entries per ECMP group
-   # 
-   # Mellanox Spectrum platforms:
-   # Valid values - 64, 512, 1024, 2048, 4096
-   #
-   # Mellanox Spectrum2/3 platforms
-   # Valid values -  64, 128, 256, 512, 1024, 2048, 4096
-   #
-   # resilient_hash_entries_ecmp = 64
-   ```
-
-2. {{<link url="Configuring-switchd#restart-switchd" text="Restart">}} the `switchd` service:
-<!-- vale off -->
-{{<cl/restart-switchd>}}
-<!-- vale on -->
-
-3. Resilient hashing in hardware does not work with next hop groups; the switch remaps flows to new next hops when the set of nexthops changes. To work around this issue, configure zebra not to install next hop IDs in the kernel with the following vtysh command:
-
-  ```
-  cumulus@switch:~$ sudo vtysh
-  switch# configure terminal
-  switch(config)# zebra nexthop proto only
-  switch(config)# exit
-  switch# write memory
-  switch# exit
-  cumulus@switch:~$
-  ```
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/datapath/traffic.conf
+# Enable resilient hashing
+resilient_hash_enable = TRUE
+# Resilient hashing flowset entries per ECMP group
+# 
+# Mellanox Spectrum platforms:
+# Valid values - 64, 512, 1024, 2048, 4096
+#
+# Mellanox Spectrum2/3 platforms
+# Valid values -  64, 128, 256, 512, 1024, 2048, 4096
+#
+resilient_hash_entries_ecmp = 512
+#
+resilient_hash_active_timer = 500
+#
+resilient_hash_max-unbalanced-timer = 2000
+```
 
 {{< /tab >}}
 {{< /tabs >}}
 
-**Considerations**
+To show resilient hashing information, such as its state (enabled or disabled), the number of hash buckets, the active timer, and the maximum unbalanced timer, run the `nv show system forwarding resilient-hash` command.
 
-When the router adds or removes ECMP paths, or when the next hop IP address, interface, or tunnel changes, the next hop information for an IPv6 prefix can change. <span class="a-tooltip">[FRR](## "FRRouting")</span> deletes the existing route to that prefix from the kernel, then adds a new route with all the relevant new information. In certain situations, Cumulus Linux does not maintain resilient hashing for IPv6 flows.
+```
+cumulus@switch:~$ nv show system forwarding resilient-hash 
+                      operational  applied 
+--------------------  -----------  ------- 
+state                 enabled      enabled 
+bucket-size           512          512 
+active-timer          500          500 
+max-unbalanced-timer  2000         2000
+```
+
+### Considerations
+
+Be aware of the following considerations when configuring resilient hashing. 
+
+#### Resilient Hashing and Next Hop Groups
+
+Resilient hashing in hardware does not work with next hop groups; the switch remaps flows to new next hops when the set of next hops changes. When you enable resilient hashing through NVUE, NVUE configures zebra not to install next hop IDs in the kernel for you, and restarts FRR to apply the change.
+
+If you configure resilient hashing by editing `/etc/cumulus/datapath/traffic.conf` directly, configure zebra not to install next hop IDs in the kernel yourself with the following vtysh command:
+
+```
+cumulus@switch:~$ sudo vtysh
+switch# configure terminal
+switch(config)# zebra nexthop proto only
+switch(config)# exit
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+#### Adaptive Routing
+
+Resilient hashing and {{<link url="#adaptive-routing" text="adaptive routing">}} are mutually exclusive. If you try to enable resilient hashing while adaptive routing is active, Cumulus Linux rejects the change with `Cannot enable resilient hashing while adaptive routing is active`. If you try to enable adaptive routing while resilient hashing is active, Cumulus Linux rejects the change with `Cannot enable Adaptive Routing while resilient hashing is active`.
+
+#### BGP Data Center Prefix Independent Convergence
+
+Resilient hashing does not support {{<link url="Optional-BGP-Configuration/#bgp-dc-prefix-independent-convergence" text="BGP data center prefix independent convergence (BGP DC PIC)">}}.
+
+#### Upgrade from an Earlier Release
+
+If you configured resilient hashing in an earlier release by editing the `/etc/cumulus/datapath/traffic.conf` file, you must reconfigure resilient hashing after you upgrade.
+
+#### IPv6 Route Replacement
+
+When the router adds or removes ECMP paths, or when the next hop IP address, interface, or tunnel changes, the next hop information for an IPv6 prefix can change. FRR deletes the existing route to that prefix from the kernel, then adds a new route with all the relevant new information. In certain situations, Cumulus Linux does not maintain resilient hashing for IPv6 flows.
 
 To work around this issue, you can enable IPv6 route replacement.
 
@@ -480,21 +533,17 @@ To work around this issue, you can enable IPv6 route replacement.
 For certain configurations, IPv6 route replacement can lead to incorrect forwarding decisions and lost traffic. For example, it is possible for a destination to have next hops with a gateway value with the outbound interface or just the outbound interface itself, without a gateway address. If both types of next hops for the same destination exist, route replacement does not operate correctly; Cumulus Linux adds an additional route entry and next hop but does not delete the previous route entry and next hop.
 {{%/notice%}}
 
-To enable the IPv6 route replacement option:
+To enable the IPv6 route replacement option, in the `/etc/frr/daemons` file, add the `--v6-rr-semantics` configuration option to the zebra daemon definition, then reload FRR with the `sudo systemctl reload frr.service` command.
 
-1. In the `/etc/frr/daemons` file, add the configuration option `--v6-rr-semantics` to the zebra daemon definition. For example:
-
-    ```
-    cumulus@switch:~$ sudo nano /etc/frr/daemons
-    ...
-    vtysh_enable=yes
-    zebra_options=" -M cumulus_mlag -M snmp -A 127.0.0.1 --v6-rr-semantics -s 90000000"
-    bgpd_options=" -M snmp  -A 127.0.0.1"
-    ospfd_options=" -M snmp -A 127.0.0.1"
-    ...
-    ```
-
-2. Reload FRR with the `sudo systemctl reload frr.service` command.
+```
+cumulus@switch:~$ sudo nano /etc/frr/daemons
+...
+vtysh_enable=yes
+zebra_options=" -M cumulus_mlag -M snmp -A 127.0.0.1 --v6-rr-semantics -s 90000000"
+bgpd_options=" -M snmp  -A 127.0.0.1"
+ospfd_options=" -M snmp -A 127.0.0.1"
+...
+```
 
 To verify that IPv6 route replacement, run the `systemctl status frr` command:
 
@@ -528,19 +577,19 @@ With adaptive routing, the switch forwards adaptive routing eligible packets to 
 Cumulus Linux supports ECMP resource optimization for adaptive routing, which addresses the requirement of large numbers of ECMP groups during routing protocol convergence in transient scenarios.
 
 Cumulus Linux supports adaptive routing with:
-- Switches with the Spectrum-4 ASIC at 400G and 200G speeds.
+- Switches with the Spectrum-4 and later ASIC.
 - Adaptive routing eligible {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="RoCE2" >}} unicast traffic.
 - VXLAN-encapsulated RoCE traffic.
 - Layer 3 interfaces.
 - Next hop router interfaces in the default VRF.
-- The NVIDIA Spectrum-X networking platform, which accelerates AI network performance. For information about NVIDIA Spectrum-X, refer to {{<exlink url="https://www.nvidia.com/en-in/networking/spectrumx/" text="NVIDIA Spectum-X networking platform" >}}.
+- The NVIDIA Spectrum-X networking platform, which accelerates AI network performance. For information about NVIDIA Spectrum-X, refer to {{<exlink url="https://www.nvidia.com/en-in/networking/spectrumx/" text="NVIDIA Spectrum-X networking platform" >}}.
 - For additional implementation requirements for adaptive routing consult the Spectrum-X Deployment Guide.
 
 {{%notice note%}}
 - Adaptive routing does not make use of resilient hashing.
 - Cumulus Linux does not support adaptive routing on layer 3 subinterfaces, SVIs, bonds or bond members.
 - The Spectrum-4 switch does not support adaptive routing on 800G links.
-- Adaptive routing is only suppported on the NVIDIA Spectrum-X networking platform, which accelerates AI network performance. For information about NVIDIA Spectrum-X, refer to {{<exlink url="https://www.nvidia.com/en-in/networking/spectrumx/" text="NVIDIA Spectum-X networking platform" >}}.
+- Adaptive routing is only supported on the NVIDIA Spectrum-X networking platform, which accelerates AI network performance. For information about NVIDIA Spectrum-X, refer to {{<exlink url="https://www.nvidia.com/en-in/networking/spectrumx/" text="NVIDIA Spectrum-X networking platform" >}}.
 {{%/notice%}}
 
 Cumulus Linux also supports BGP W-ECMP with adaptive routing; see {{<link title="BGP Weighted Equal Cost Multipath/#bgp-w-ecmp-with-adaptive-routing" text="BGP Weighted Equal Cost Multipath ">}}.
@@ -599,25 +648,25 @@ Reload `switchd` with the `sudo systemctl reload switchd.service` command.
 
 {{%notice note%}}
 - When you enable adaptive routing, Cumulus Linux uses the default profile settings for your switch ASIC type. If you need to make adjustments to the settings, contact NVIDIA Customer Support.
-- Ensure that traffic intended for adaptive routing is routed over ports with adaptive routing enabled. Unexpected route hashing might occur when mixing adaptive routing traffic and regular ECMP routes egressing ports that do not have adaptive routing enabled.
+- Ensure that the switch routes traffic intended for adaptive routing over ports with adaptive routing enabled. Unexpected route hashing might occur when mixing adaptive routing traffic and regular ECMP routes egressing ports that do not have adaptive routing enabled.
 {{%/notice%}}
 
 ### LAG Hash Randomizer
 
 When you enable adaptive routing, Cumulus Linux enables the LAG hash randomizer, which enables packet spraying on layer 3 bonds on the switch for adaptive routing eligible packets coming from the network and destined towards the NICs. This switch functionality aids the packet load balancer on the NICs for end-to-end performance and fully integrates with adaptive routing for congestion avoidance and load balancing, preserving in-order delivery for non-adaptive routing traffic while maximizing bandwidth utilization for adaptive routing flows.
 
-The LAG hash randomizer is used for leaf switches if there is more than one link connected between the switch and the NIC, and there is a bond configured between the switch and the NIC.
+Leaf switches use the LAG hash randomizer if there is more than one link connected between the switch and the NIC, and there is a bond configured between the switch and the NIC.
 
 LAG hash randomizer is supported on a Spectrum-4 or later and only for static layer 3 bonds.
 
 ### Link Utilization
 
-Link utilization, when crossing a threshold, is one of the parameters in the adaptive routing decision. The default link utilization threshold percentage on an interface is 70. If you enable the adaptive routing `custom-profile`, you can change the percentage to a value between 1 and 100.
+Link utilization, when crossing a threshold, is one of the parameters in the adaptive routing decision. The default link utilization threshold percentage on an interface is 70. If you enable the adaptive routing `profile-custom`, you can change the percentage to a value between 1 and 100.
 
 Link utilization is off by default; you must enable the global link utilization setting to use the link utilization thresholds set on adaptive routing interfaces. You cannot enable or disable link utilization per interface.
 
 {{%notice note%}}
-- You can enable link utilization only when you enable the adaptive routing `custom-profile`.
+- You can enable link utilization only when you enable the adaptive routing `profile-custom`.
 {{%/notice%}}
 
 {{< tabs "TabID624 ">}}
@@ -670,7 +719,7 @@ Reload `switchd` with the `sudo systemctl reload switchd.service` command.
 {{< tabs "TabID693 ">}}
 {{< tab "NVUE Commands ">}}
 
-The following example enables adaptive routing on swp1 and swp2. Global link utilization is off (the default setting).
+The following example enables adaptive routing on swp51 and swp52. Global link utilization is off (the default setting).
 
 ```
 cumulus@switch:~$ nv set interface swp51 router adaptive-routing state enabled
@@ -695,7 +744,7 @@ cumulus@switch:~$ nv config apply
 The following example enables adaptive routing on swp51 and swp52. Global link utilization is off (the default setting).
 
 ```
-cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/ad.aptive_routing.conf
+cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/adaptive_routing.conf
 ## Global adaptive-routing enable/disable setting
 adaptive_routing.enable = TRUE
 
@@ -734,6 +783,87 @@ Reload `switchd` with the `sudo systemctl reload switchd.service` command.
 
 {{< /tab >}}
 {{< /tabs >}}
+
+<!-- NO LONGER SUPPORTED IN 5.19
+### ECMP Group Segregation
+
+{{%/* notice note */%}}
+ECMP group segregation is supported only on switches with the Spectrum-6 ASIC. Earlier ASICs always merge equivalent adaptive routing ECMP groups.
+{{%/* /notice */%}}
+
+Adaptive routing can select an egress port in round-robin order, spraying packets across the ports in the group. The round-robin state for a group lives in the ASIC, and by default two adaptive routing ECMP groups that resolve to the same member ports share one hardware entry, and therefore one round-robin pointer. Their traffic distributions are correlated instead of independent. ECMP group segregation gives each adaptive routing ECMP group its own entry and its own round-robin pointer, which improves tail latency. Tail latency matters for AI training, where GPUs synchronize periodically and a single late packet stalls the whole cluster.
+
+Segregation applies only to adaptive routing ECMP groups. Cumulus Linux continues to merge equivalent ECMP groups that are not adaptive routing eligible.
+
+Segregation keeps apart the ECMP groups that the routing daemon already treats as distinct. Where the routing daemon merges routes into one nexthop group, the switch programs one adaptive routing group and segregation has no effect.
+
+#### Configure ECMP Group Segregation
+
+There is no NVUE command for segregation and no separate setting to turn it on. Cumulus Linux enables segregation when adaptive routing is enabled and the custom adaptive routing profile selects round-robin port selection with `ar.psm`. Cumulus Linux reads the profile from the `/etc/cumulus/switchd.d/ar_profile_custom.conf` file, so you configure it either by editing the file directly or by writing the file with an {{</* link url="NVUE-Snippets/#flexible-snippets" text="NVUE flexible snippet" */>}}.
+
+Before you configure segregation, {{</* link url="#enable-adaptive-routing" text="enable adaptive routing" */>}} and select the custom profile with the `nv set router adaptive-routing profile profile-custom` command:
+
+```
+cumulus@switch:~$ nv set router adaptive-routing profile profile-custom
+cumulus@switch:~$ nv config apply
+```
+
+{{</* tabs "TabID763 " */>}}
+{{</* tab "NVUE Commands " */>}}
+
+1. Create a flexible snippet in `yaml` format that sets `ar.psm` to 1:
+
+   ```
+   cumulus@switch:~$ sudo nano /home/cumulus/ar-round-robin.yaml
+   - set:
+       system:
+         config:
+           snippet:
+             ar-round-robin:
+               file: "/etc/cumulus/switchd.d/ar_profile_custom.conf"
+               content: |
+                 ar.psm = 1
+   ```
+
+2. Patch the configuration with the fully qualified path to the file:
+
+   ```
+   cumulus@switch:~$ nv config patch /home/cumulus/ar-round-robin.yaml
+   ```
+
+3. Apply the configuration:
+
+   ```
+   cumulus@switch:~$ nv config apply
+   ```
+
+{{</* /tab */>}}
+{{</* tab "Linux Commands " */>}}
+
+Edit the `/etc/cumulus/switchd.d/ar_profile_custom.conf` file:
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/ar_profile_custom.conf
+ar.psm = 1
+```
+
+{{</* /tab */>}}
+{{</* /tabs */>}}
+
+{{%/* notice warning */%}}
+Cumulus Linux latches the grouping mode when `switchd` starts and does not change it while the switch runs. To move between merged and segregated grouping, you must restart `switchd`, which disrupts forwarding across the whole switch. Plan the change for a maintenance window.
+
+Do not change `ar.psm` as part of an ISSU upgrade. ISSU fails when the grouping mode changes during the reconfiguration stage.
+{{%/* /notice */%}}
+
+Segregation consumes more hardware group table entries than merging, because equivalent groups no longer share an entry. On a Spectrum-6 switch in a standard two-level fat tree, the table is large enough for every destination group, including during an ISSU upgrade, when only half the table is available.
+
+The `nv show router adaptive-routing` command does not show the grouping mode. `switchd` logs the port selection mode it resolves and the grouping mode it programs, so check `/var/log/switchd.log` to confirm which mode the switch is running:
+
+```
+cumulus@switch:~$ sudo grep -iE "port select mode|grouping mode" /var/log/switchd.log
+```
+-->
 
 ### Show Adaptive Routing Settings
 

@@ -8,13 +8,50 @@ This document supports the Cumulus Linux 5.18 release, and lists new features an
 - For a list of open and fixed issues in Cumulus Linux 5.18, see the {{<link title="Cumulus Linux 5.18 Release Notes" text="Cumulus Linux 5.18 Release Notes">}}.
 - To upgrade to Cumulus Linux 5.18, first check the {{<link title="#release-considerations" text="Release Considerations">}} below, then follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
 
+{{%notice note%}}
+- Cumulus Linux 5.18.1 passes testing and validation as part of the Spectrum-X reference architecture release 2.3.1.
+- Cumulus Linux 5.18.2 and 5.18.3 pass testing and validation as part of the Spectrum-X reference architecture release 2.3.2.
+
+For a list of approved product releases, refer to the {{<exlink url="https://docs.nvidia.com/networking/software/spectrumx-solution-stack/index.html" text="NVIDIA Spectrum-X Validated Solution Stack">}}.
+{{%/notice%}}
+
+{{%notice warning%}}
+NVIDIA is introducing new capabilities to Spectrum-6 based switch hardware that requires a special firmware version. Cumulus Linux 5.18.2 and 5.18.3 include the new firmware. NVIDIA requires you to upgrade the SN6600-LD switch to Cumulus Linux 5.18.2 or 5.18.3. Failure to perform this upgrade prevents you from upgrading the switch to future software releases.
+{{%/notice%}}
+
+## What's New in Cumulus Linux 5.18.3
+
+Cumulus Linux 5.18.3 provides a new SDK (4.10.1148), adds support for a new ISSI flash component, and provides bug fixes.
+
+You can upgrade to 5.18.3 from the following versions using optimized image upgrade, package upgrade, and ONIE image install with the -t option to migrate your configuration:
+- 5.16.0, 5.16.1, 5.16.3, 5.16.5, 5.16.6, 5.16.7, 5.16.8
+- 5.17.0
+- 5.18.0, 5.18.1, 5.18.2
+
+## What's New in Cumulus Linux 5.18.2
+
+Cumulus Linux 5.18.2 provides a new SDK and improvements to {{<link url="Quality-of-Service/#pfc-watchdog" text="PFC watchdog">}} deadlock detection.
+
+You can upgrade to 5.18.2 from the following versions using optimized image upgrade, package upgrade, and ONIE image install with the -t option to migrate your configuration:
+- 5.16.0, 5.16.1, 5.16.3, 5.16.5, 5.16.6, 5.16.7, 5.16.8
+- 5.17.0
+- 5.18.0, 5.18.1
+
+## What's New in Cumulus Linux 5.18.1
+
+Cumulus Linux 5.18.1 provides bug fixes.
+
+You can use {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="optimized image upgrade">}} and {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="package upgrade ">}} to upgrade the switch to Cumulus Linux 5.18.1 from the following releases. Package upgrade supports ISSU (warm boot) for these upgrade paths.
+- 5.16.0, 5.16.1, 5.16.3, 5.16.5, 5.16.6, 5.16.7
+- 5.17.0
+- 5.18.0
+
 ## What's New in Cumulus Linux 5.18.0
 
 Cumulus Linux 5.18.0 supports new platforms, contains new features and improvements, and provides bug fixes.
 
-{{%notice note%}}
-Cumulus Linux 5.18.0 is tested and validated as part of the Spectrum-X reference architecture 2.3 release.
-For a list of approved product releases, refer to the {{<exlink url="https://docs.nvidia.com/networking/software/spectrumx-solution-stack/index.html" text="NVIDIA Spectrum-X Validated Solution Stack">}}.
+{{%notice infonopad%}}
+Cumulus Linux 5.18.0 is currently only qualified for **non-Spectrum-X**.
 {{%/notice%}}
 
 ## Platforms
@@ -22,9 +59,9 @@ For a list of approved product releases, refer to the {{<exlink url="https://doc
 
 {{%notice note%}}
 The NVIDIA SN6600_LD switch does not support:
-- Port speed 800Gx8
-- Warmboot
-- PTP
+- 1x break out at 800G. Interfaces are 2x split by default.
+- Warmboot.
+- PTP.
 {{%/notice%}}
 
 Cumulus Linux 5.18.0 is the earliest release in which the NVIDIA SN6600_LD switch is generally available. You must upgrade any engineering sample to Cumulus Linux 5.18 with ONIE.
@@ -39,7 +76,7 @@ Cumulus Linux 5.18.0 is the earliest release in which the NVIDIA SN6600_LD switc
 - {{<link url="EVPN-Multihoming/#svi-ip-address-configuration" text="EVPN Multihoming without a unique SVI IP address">}}
 - {{<link url="RADIUS-AAA/#nas-ip-address-and-identifier" text="RADIUS NAS IP address and identifier configuration">}}
 - {{<link url="Inter-subnet-Routing/#layer-3-vxlan-device-mode" text="Layer 3 VXLAN device mode">}} (Beta)
-- {{<link url="Profile-Based-Configuration" text="Profile-based switch configuration">}} (Beta)
+- {{<link url="Profile-Based-Configuration" text="Profile-based switch configuration">}}
 - {{<link url="Patches" text="Patch infrastructure">}}
 - {{<link url="RDMA-over-Converged-Ethernet-RoCE/#dci-1-profile" text="Data Center Interconnect (DCI-1) QoS profile">}} (Beta)
 - {{<link url="Optional-BGP-Configuration/#bgp-unreachability-safi" text="BGP Unreachability SAFI uses the IANA assigned value of 81 instead of a private value">}} (Beta)

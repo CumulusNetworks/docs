@@ -469,7 +469,7 @@ Cumulus Linux supports the following flow control mechanisms:
 - Priority Flow Control (PFC), which is an upgrade of link pause that IEEE 802.1bb defines, extends the pause frame concept to act on a per switch priority value basis instead of an entire link. A PFC pause frame indicates to the peer which specific switch priority value to pause, while other switch priority values or queues continue transmitting.
 
 {{%notice note%}}
-You can not configure link pause and PFC on the same port.
+You cannot configure link pause and PFC on the same port.
 {{%/notice%}}
 
 ### Flow Control Buffers
@@ -2531,7 +2531,7 @@ cos_egr_queue.cos_7.cpu = 7
 
 ### Configure QoS and Breakout Ports Simultaneously
 
-If you configure btoh breakout ports and QoS settings for breakout interfaces at the same time, errors might occur.
+If you configure both breakout ports and QoS settings for breakout interfaces at the same time, errors might occur.
 
 You must apply breakout port configuration before QoS configuration on the breakout ports. If you are using NVUE, configure breakout ports and perform an `nv config apply` first, then configure QoS settings on the breakout ports followed by another `nv config apply`. If you are using linux file configuration, modify `ports.conf` first, `reload switchd`, then modify `qos_features.conf` and `reload switchd` a second time.
 

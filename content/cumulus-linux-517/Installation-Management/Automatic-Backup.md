@@ -45,7 +45,7 @@ If the backup or restore fails, you see errors.
 
 If the automatic configuration backup results in failure, the `nv config apply` command completes; however, you cannot retry the configuration backup with the same `nv config apply` command.
 
-If the weekly automatic configuration backup results in failure, the error is recorded in the logs and the next scheduled run proceeds normally. To view the logs, run the `journalctl -u nvue-config-backup-weekly.service` command.
+If the weekly automatic configuration backup results in failure, the switch records the error in the logs and the next scheduled run proceeds normally. To view the logs, run the `journalctl -u nvue-config-backup-weekly.service` command.
 
 If the automatic configuration backup reports insufficient space, the switch deletes the oldest snapshots. If the there is still a failure, the switch logs the error and skips the snapshot.
 

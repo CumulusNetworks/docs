@@ -513,7 +513,7 @@ Cumulus Linux supports the following flow control mechanisms:
 - Priority Flow Control (PFC), which is an upgrade of link pause that IEEE 802.1bb defines, extends the pause frame concept to act on a per switch priority value basis instead of an entire link. A PFC pause frame indicates to the peer which specific switch priority value to pause, while other switch priority values or queues continue transmitting.
 
 {{%notice note%}}
-You can not configure link pause and PFC on the same port.
+You cannot configure link pause and PFC on the same port.
 {{%/notice%}}
 
 ### Flow Control Buffers
@@ -715,7 +715,6 @@ small-packet-probability 60
 ### Lossless Headroom Based on Small Packet Probability
 
 Cumulus Linux calculates the headroom size for lossless priority groups based on the assumption that all packets are small (64 bytes). The switch assumes a 100 percent probability of such packets arriving at line rate. As a result, the configured headroom is often larger than necessary, as traffic typically consists of a mix of packet sizes.
-<!--On Spectrum-6, the switch assumes a 50 percent probability of such packets arriving at line rate.-->
 
 To enable more accurate headroom calculations, providing for better buffer allocation and improved shared buffer utilization, you can configure the probability of small packets on ports applied with a {{<link url="#priority-flow-control-(pfc)" text="priority flow control profile">}}. Based on the configured small packet probability, `switchd` calculates the headroom reservation required for the lossless priority group.
 
@@ -879,6 +878,113 @@ cumulus@switch:~$ echo 200 > /cumulus/switchd/config/pfc_wd/poll_interval
 {{< /tab >}}
 {{< /tabs >}}
 
+**In Cumulus Linux 5.18.2**, PFC watchdog distinguishes a real deadlock from steady-state congestion. Instead of declaring a deadlock from a received pause alone, the watchdog evaluates up to three conditions in each polling interval, and requires every enabled condition to be true before it counts a detection hit:
+
+- The egress queue occupancy is above `transmit-queue-threshold`.
+- The number of frames the queue transmits in the interval is at or below `tx-frames-threshold`.
+- The received pause duration in the interval is above the threshold derived from `rx-pause-duration multiplier`.
+
+Each condition has its own state parameter. When you disable a condition, the watchdog ignores it. A queue that is both occupied and unable to transmit while it receives sustained pause is deadlocked; a queue that continues to transmit is congested but still making progress.
+
+Recovery works the same way. The watchdog requires `recovery-interval` consecutive polling intervals in which received pause frames stay at or below `rx-pause-threshold` before it restores the port.
+
+The following table shows the detection and recovery parameters:
+
+| Parameter | Default | Range | Description |
+|---|---|---|---|
+| `recovery-interval` | 2 | 1-1000 | Consecutive recovery hits the watchdog requires before restoring the port. |
+| `rx-pause-threshold` | 0 | 0–65535 | The maximum received pause frames in a polling interval for that interval to count as a recovery hit. |
+| `rx-pause-duration state` | `enabled` | `enabled`, `disabled` | Whether the watchdog evaluates the pause duration condition. |
+| `rx-pause-duration multiplier` | 9900 | 1–9999  | Pause duration threshold, as a fraction (multiplier divided by 10000) of the polling interval. |
+| `tx-frames-threshold state` | `enabled` | `enabled`, `disabled` | Whether the watchdog evaluates the transmitted frames condition. |
+| `tx-frames-threshold value` | 0 | 0-65535 | The maximum frames transmitted in a polling interval for that interval to count as a detection hit. |
+| `transmit-queue-threshold state` | `disabled` | `enabled`, `disabled` | Whether the watchdog evaluates the queue occupancy condition. |
+| `transmit-queue-threshold value` | 0 | 0-100 | The minimum egress queue occupancy, as a percentage, for that interval to count as a detection hit. |
+
+{{%notice note%}}
+- You can only enable `transmit-queue-threshold` when the polling interval is greater than 300 milliseconds.
+- The default multiplier of 9900 sets the pause duration threshold to 99 percent of the polling interval. With the default polling interval of 100 milliseconds, the watchdog counts a detection hit when it receives more than 99 milliseconds of pause in that interval.
+{{%/notice%}}
+
+The following example enables all three detection conditions, sets the queue occupancy threshold to 10 percent, sets the transmitted frames threshold to 10, and requires five consecutive clean intervals before recovery:
+
+<!-- REVIEW: two fuse leaf names in the Linux tab below need checking against a candidate
+     build. The source lists the transmit-queue-threshold value leaf as "tx_frames_threshold",
+     which duplicates the tx-frames-threshold row and is almost certainly a copy/paste error;
+     tx_queue_occupancy_threshold is drafted here from its own _enabled sibling. The
+     recovery-interval leaf is given as "restoration_time", which does not match the NVUE name
+     - plausible as a legacy name, but confirm. Delete this comment before publishing. -->
+
+{{< tabs "TabID2001 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set qos pfc-watchdog polling-interval 400
+cumulus@switch:~$ nv set qos pfc-watchdog transmit-queue-threshold state enabled
+cumulus@switch:~$ nv set qos pfc-watchdog transmit-queue-threshold value 10
+cumulus@switch:~$ nv set qos pfc-watchdog tx-frames-threshold state enabled
+cumulus@switch:~$ nv set qos pfc-watchdog tx-frames-threshold value 10
+cumulus@switch:~$ nv set qos pfc-watchdog rx-pause-duration state enabled
+cumulus@switch:~$ nv set qos pfc-watchdog rx-pause-duration multiplier 9900
+cumulus@switch:~$ nv set qos pfc-watchdog rx-pause-threshold 0
+cumulus@switch:~$ nv set qos pfc-watchdog recovery-interval 5
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+```
+cumulus@switch:~$ echo 400 > /cumulus/switchd/config/pfc_wd/poll_interval
+cumulus@switch:~$ echo 1 > /cumulus/switchd/config/pfc_wd/tx_queue_occupancy_threshold_enabled
+cumulus@switch:~$ echo 10 > /cumulus/switchd/config/pfc_wd/tx_queue_occupancy_threshold
+cumulus@switch:~$ echo 1 > /cumulus/switchd/config/pfc_wd/tx_frames_threshold_enabled
+cumulus@switch:~$ echo 10 > /cumulus/switchd/config/pfc_wd/tx_frames_threshold
+cumulus@switch:~$ echo 1 > /cumulus/switchd/config/pfc_wd/rx_pause_duration_enabled
+cumulus@switch:~$ echo 9900 > /cumulus/switchd/config/pfc_wd/rx_pause_duration_multiplier
+cumulus@switch:~$ echo 0 > /cumulus/switchd/config/pfc_wd/rx_pause_threshold
+cumulus@switch:~$ echo 5 > /cumulus/switchd/config/pfc_wd/restoration_time
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+To show the PFC watchdog parameters and their applied values, run the `nv show qos pfc-watchdog` command. The following example command shows output for Cumulus Linux 5.16.8 that includes the threshold, duration, and recovery interval settings. Cumulus Linux 5.16.7 and earlier does not support these settings.
+
+<!-- REVIEW: sample output adapted from the source email's mock, with the house prompt
+     substituted. The values are a configured switch rather than the defaults in the table
+     above. Capture on a switch and replace before publishing. Delete this comment before
+     publishing. -->
+
+```
+cumulus@switch:~$ nv show qos pfc-watchdog
+                          operational  applied
+------------------------  -----------  --------------
+polling-interval                       0:00:00.100000
+robustness                             10
+recovery-interval                      111
+rx-pause-threshold                     100
+transmit-queue-threshold
+  state                                enabled
+  value                                10
+tx-frames-threshold
+  state                                enabled
+  value                                100
+rx-pause-duration
+  state                                enabled
+  multiplier                           99
+```
+
+To show an individual parameter, run the `nv show qos pfc-watchdog <parameter>` command. For example, run the `nv show qos pfc-watchdog rx-pause-duration` command:
+
+```
+cumulus@switch:~$ nv show qos pfc-watchdog rx-pause-duration
+            operational  applied
+----------  -----------  -------
+state                    enabled
+multiplier               99
+```
+
 To show if PFC watchdog is on and to show the status for each traffic class, run the `nv show interface <interface-id> qos pfc-watchdog` command:
 
 ```
@@ -1016,7 +1122,7 @@ To configure dynamic ECN, determine which traffic classes carry loss-sensitive o
 
   When you set dynamic ECN mode to `relative`, the switch hardware ignores any configured byte-based thresholds. The ASIC begins marking traffic based on percentage thresholds relative to the dynamically allocated buffer allowance of the traffic class, which is continuously recalculated based on current buffer usage and pool occupancy.
 
-  When you set dynamic ECN mode to `absolute`, the switch hardware ignores percentage-based thresholds. The ASIC marks traffic using the configured absolute byte thresholds, which are treated as fixed limits.
+  When you set dynamic ECN mode to `absolute`, the switch hardware ignores percentage-based thresholds. The ASIC marks traffic using the configured absolute byte thresholds, which it treats as fixed limits.
 
 - Configure the minimum ECN marking threshold as a percentage (0 through 100) of the dynamic buffer allowance. The switch marks packets when queue occupancy exceeds this percentage. The default value is 0.
 - Configure the maximum ECN marking threshold as a percentage (0 through 100) of the dynamic buffer allowance. The value must be greater than or equal to the minimum threshold percent. The default value is 100.
@@ -2423,7 +2529,7 @@ QoS buffers cleared on swp1.
 Action succeeded
 ```
 
-To clear the Qos buffers on a set of interfaces, run the `nv action clear interface <interface-list> qos buffer` command. You can specify the list of interfaces in a range or in coma seperated list.
+To clear the Qos buffers on a set of interfaces, run the `nv action clear interface <interface-list> qos buffer` command. You can specify the list of interfaces in a range or in a comma-separated list.
 
 ```
 cumulus@switch:~$ nv action clear interface swp1-5,swp20,swp25 qos buffer
@@ -2946,7 +3052,7 @@ cos_egr_queue.cos_7.cpu = 7
 
 ### Configure QoS and Breakout Ports Simultaneously
 
-If you configure btoh breakout ports and QoS settings for breakout interfaces at the same time, errors might occur.
+If you configure both breakout ports and QoS settings for breakout interfaces at the same time, errors might occur.
 
 You must apply breakout port configuration before QoS configuration on the breakout ports. If you are using NVUE, configure breakout ports and perform an `nv config apply` first, then configure QoS settings on the breakout ports followed by another `nv config apply`. If you are using linux file configuration, modify `ports.conf` first, `reload switchd`, then modify `/etc/cumulus/datapath/qos/qos_features.conf` and `reload switchd` a second time.
 

@@ -6,7 +6,7 @@ product: Cumulus Linux
 version: "5.18"
 toc: 1
 ---
-The following tables list the new, updated, and deprecated gNMI and OTEL metrics in Cumulus Linux 5.18.
+The following tables list the new, updated, and discontinued gNMI and OTEL metrics in Cumulus Linux 5.18.
 
 ## New gNMI Metrics
 
@@ -139,7 +139,7 @@ A hotswap controller has no EEPROM or VPD and a PDB is input-only. The following
 | `/components/component[name=PDBn-HSCm]/power-supply/state/output-current` |Input-only device (no output metering) — not exposed|
 |`/components/component[name=PDBn-HSCm]/power-supply/state/output-voltage` |Input-only device (no output metering) — not exposed |
 
-On PSU-based switches, the same entities are populated for PSU components:
+On PSU-based switches, the switch populates the same entities for PSU components:
 
 |  Name | Description |
 |------ | ----------- |
@@ -276,7 +276,7 @@ For information about OTEL, refer to {{<link url="Open-Telemetry-Export" text="O
 | `nvswitch_platform_environment_psu_voltage` |	`nvswitch_platform_environment_power_supply_voltage` |
 
 {{%notice note%}}
-On PSU-based platforms, the legacy `psu_*` metric family and the common `power_supply_*` family are emitted together for a three-release migration window. The legacy `psu_*` family is deprecated and will be removed after that window; make sure to migrate your dashboards and queries to `power_supply_*` during the window. The gNMI/OpenConfig PSU representation is unchanged.
+On PSU-based platforms, the switch emits the legacy `psu_*` metric family and the common `power_supply_*` family together for a three-release migration window. Cumulus Linux discontinues the legacy `psu_*` family and removes it after that window; make sure to migrate your dashboards and queries to `power_supply_*` during the window. The gNMI/OpenConfig PSU representation is unchanged.
 {{%/notice%}}
 
 |  Old Metric | New Metric|

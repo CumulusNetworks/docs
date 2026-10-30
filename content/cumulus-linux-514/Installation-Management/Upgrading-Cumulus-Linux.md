@@ -4,6 +4,11 @@ author: NVIDIA
 weight: 30
 toc: 3
 ---
+
+{{%notice infonopad%}}
+Before upgrading Cumulus Linux, review the {{<link url="Whats-New/#release-considerations" text="Release Considerations">}} for the version you intend to upgrade to.
+{{%/notice%}}
+
 This guide describes the three methods for upgrading Cumulus Linux. Two of these methods optionally support {{<link url="#issu" text="In-Service-System-Upgrade (ISSU)">}}, enabling you to perform a hitless (sub-second loss of data plane traffic) upgrade.
 
 To upgrade Cumulus Linux, choose one of the three upgrade methods:

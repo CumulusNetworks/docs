@@ -44,15 +44,16 @@ leaf01(config-if)# no ipv6 nd suppress-ra
 {{< /tabs >}}
 
 {{%notice note%}}
-- For Stateless Address Auto-Configuration (SLAAC), you must enable Router Advertisment on the interface. The prefix advertised in the Router Advertisement must belong to the /64 subnet.
+- For Stateless Address Auto-Configuration (SLAAC), you must enable Router Advertisement on the interface. The prefix advertised in the Router Advertisement must belong to the /64 subnet.
 - If you configure IPv6 router advertisements in a network where physical interfaces are part of a bridge with VLANs, you must enable IPv6 router advertisements on the VLAN interfaces instead of the physical interfaces.
+- On interfaces with an 802.1X (dot1x) IPv6 profile configuration, `hostapd` owns and manages the router advertisement suppress state (`ipv6 nd suppress-ra` and `no ipv6 nd suppress-ra`). Do not run the `nv set interface <interface-id> ipv6 neighbor-discovery router-advertisement state enabled` or `nv set interface <interface-id> ipv6 neighbor-discovery router-advertisement state disabled` command on these interfaces; NVUE renders the command as `no ipv6 nd suppress-ra` or `ipv6 nd suppress-ra`, which conflicts with `hostapd` and can leave router advertisement in the wrong state.
 {{%/notice%}}
 
 You can configure these optional settings:
 
 - Allow consecutive Router Advertisement packets to transmit more frequently than every three seconds (fast retransmit). You can set this parameter to enabled or disabled. The default setting is enabled.
 - Set the hop limit value advertised in a Router Advertisement message. You can set a value between 0 and 255. The default value is 64.
-- Set the interval between unsolicited multicast router advertisements from the interface. You can set a value between 70 and 1800000 miliseconds. The default value is 600000 miliseconds.
+- Set the interval between unsolicited multicast router advertisements from the interface. You can set a value between 70 and 1800000 milliseconds. The default value is 600000 milliseconds.
 - Set the maximum amount of time that Router Advertisement messages can exist on the route. You can set a value between 0 and 9000 seconds. The default value is 1800.
 - Allow a dynamic host to use a managed protocol, such as DHCPv6 to configure IP addresses automatically (managed configuration). Set this parameter to enabled or disabled. By default, this parameter is not set.
 - Allow a dynamic host to use a managed protocol to configure additional information through DHCPv6. Set this parameter to enabled or disabled. By default, this parameter is not set.
@@ -163,7 +164,7 @@ interface swp1
 To configure IPv6 prefixes, you must specify the IPv6 prefixes you want to include in router advertisements. In addition, you can configure these optional settings:
 - Set the amount of time that the prefix is valid for on-link determination. You can set a value between 0 and 4294967295 seconds. The default value is 2592000.
 - Set the amount of time that addresses generated from a prefix remain preferred. You can set a value between 0 and 4294967295 seconds. The default value is 604800.
-- Enable adverisement to make no statement about prefix on-link or off-link properties. By default, this setting is disabled.
+- Enable advertisement to make no statement about prefix on-link or off-link properties. By default, this setting is disabled.
 - Enable the specified prefix to use IPv6 autoconfiguration. By default, this setting is enabled.
 - Indicate to hosts on the local link that the specified prefix contains a complete IP address by setting the R flag. By default, this setting is disabled.
 
@@ -245,6 +246,102 @@ interface swp1
 
 {{< /tab >}}
 {{< /tabs >}}
+
+### Set Default Prefix Lifetimes
+
+By default, the switch advertises each prefix with a valid lifetime of 2592000 seconds (30 days) and a preferred lifetime of 604800 seconds (7 days). If a host forms an address on the wrong port, for example because it was cabled to the wrong port during cluster bringup, it keeps that address for up to 30 days after you fix the cabling.
+
+To make these addresses expire sooner, set default prefix lifetimes on the interface. The switch uses them for every prefix on the interface that does not have its own lifetimes: the prefixes of the IPv6 addresses on the interface, and any prefix you configure without a valid or preferred lifetime.
+- `valid` is how long the prefix stays valid for on-link determination. You can set a value between 0 and 4294967295 seconds, or `infinite`. The default value is 2592000.
+- `preferred` is how long addresses generated from the prefix stay preferred. You can set a value between 0 and 4294967295 seconds, or `infinite`. The default value is 604800.
+
+The preferred lifetime cannot be greater than the valid lifetime; hosts ignore a prefix that breaks this rule. Set both values before you run `nv config apply`. If you only lower the valid lifetime below 604800 seconds, the configuration fails because the default preferred lifetime is then greater.
+
+The following example sets the valid lifetime to 7200 seconds and the preferred lifetime to 3600 seconds on swp6:
+
+{{< tabs "TabID250 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp6 ipv6 neighbor-discovery prefix-lifetime valid 7200
+cumulus@leaf01:mgmt:~$ nv set interface swp6 ipv6 neighbor-discovery prefix-lifetime preferred 3600
+cumulus@leaf01:mgmt:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+In vtysh, you set both values in one command.
+
+```
+cumulus@leaf01:mgmt:~$ sudo vtysh
+...
+leaf01# configure terminal
+leaf01(config)# interface swp6
+leaf01(config-if)# ipv6 nd prefix-lifetime 7200 3600
+leaf01(config-if)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:mgmt:~$ 
+```
+
+The vtysh commands write to the `/etc/frr/frr.conf` file:
+
+```
+cumulus@leaf01:mgmt:~$ sudo cat /etc/frr/frr.conf
+...
+interface swp6
+ ipv6 nd prefix-lifetime 7200 3600
+ ...
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+To go back to the default lifetimes, run the `nv unset interface <interface-id> ipv6 neighbor-discovery prefix-lifetime` command, or the `no ipv6 nd prefix-lifetime` vtysh command.
+
+To check the lifetimes the switch uses, run the vtysh `show interface <interface>` command:
+
+```
+cumulus@leaf01:mgmt:~$ sudo vtysh -c "show interface swp6"
+...
+  ND derived prefixes advertised with valid 7200 preferred 3600 seconds
+...
+```
+
+{{%notice note%}}
+- When fast retransmit is on (the default), hosts get the new lifetimes within about a second. A change to the lifetimes of a single prefix, with the `nv set interface <interface-id> ipv6 neighbor-discovery prefix <ipv6-prefix-id>` command, waits for the next periodic router advertisement, which can take up to 600 seconds with the default interval.
+- A prefix configured with exactly the default lifetimes (2592000 and 604800) counts as having no lifetimes of its own, so it uses the interface default.
+- RFC 4862 does not let a router cut the remaining valid lifetime of an address that a host already has to less than two hours. A valid lifetime below 7200 seconds only fully applies to addresses that hosts form after the change. The switch logs a warning when you set a valid lifetime other than 0 below 7200 seconds.
+{{%/notice%}}
+
+{{%notice warning%}}
+A short valid lifetime costs availability. If router advertisements stop for any reason, such as a reload, a link flap, or router advertisement suppression, hosts lose the address when the valid lifetime runs out instead of after 30 days. Keep the valid lifetime at three times the router advertisement interval or more, and change the two together. The switch logs a warning when you set a valid lifetime other than 0 below three router advertisement intervals.
+{{%/notice%}}
+
+### Clear a Stale Prefix
+
+A host can continue holding an address derived from a prefix that its port no longer advertises, for example after you move the host to a different port during servicing. Because a host keeps a SLAAC address across a link flap, and Cumulus Linux advertises prefixes with the RFC 4861 default lifetimes (valid for 2592000 seconds, preferred for 604800 seconds), the stale address otherwise stays usable for up to thirty days.
+
+To make hosts on the link discontinue using an address derived from a specific prefix immediately, run the `nv action clear` command. The command re-announces the prefix with a zero lifetime in two router advertisements, 3 seconds apart; it does not change configuration, so there is nothing to revert afterward. Run the command on the interface that sends the router advertisements: the routed port, or the SVI for hosts in a VLAN. You do not have to specify a prefix that the interface currently advertises — this also includes a host that moved to a port that never advertised the prefix it is holding.
+
+```
+cumulus@leaf01:mgmt:~$ nv action clear interface swp6 ipv6 neighbor-discovery prefix 2001:db8:dead:beef::/64
+```
+
+{{%notice note%}}
+- A host does not remove the address immediately. RFC 4862 keeps the address valid for up to two hours after the host receives a shorter lifetime. The address is no longer unavailable: new connections avoid it, but existing connections keep using it.
+- A non-zero `valid-lifetime` works only for a prefix that the interface already advertises, and the next regular router advertisement restores the configured lifetimes.
+- The action signals hosts; it does not remove the prefix from the configuration. If the prefix is still configured on the port, or its address is still installed on the interface, the switch advertises it again on the next periodic router advertisement and the host makes it available again. To retire a prefix for good, also remove it from the interface with the `nv unset interface <interface-id> ipv6 neighbor-discovery prefix <ipv6-prefix-id>` command.
+{{%/notice%}}
+
+Cumulus Linux rejects the command when the interface does not exist, is not operationally up, or is not advertising router advertisements; when the preferred lifetime exceeds the valid lifetime; and when you specify a non-zero valid lifetime for a prefix the interface does not currently advertise, because that tells hosts to create the address rather than retire it.
+
+{{%notice note%}}
+Removing a prefix from configuration with the `nv unset interface <interface-id> ipv6 neighbor-discovery prefix <ipv6-prefix-id>` command also sends three router advertisements with a zero lifetime for that prefix, so hosts reliably discontinue using it instead of relying on a single advertisement. The switch sends them only when the interface is up and the prefix has `autoconfig` enabled, and sends nothing while an interface address in that prefix is still configured.
+{{%/notice%}}
+
+The `nv show interface <interface-id> ipv6 neighbor-discovery prefix <ipv6-prefix-id>` continues to report the configured lifetimes throughout the router advertisements because a clear does not modify configuration. To confirm that a clear reached a host, check the address state on the host with the `ip -6 addr show dev <interface>` command. An address no longer in use shows a `preferred_lft` of `0`.
 
 ## Recursive DNS Servers
 
@@ -484,7 +581,7 @@ cumulus@leaf01:mgmt:~$ nv set interface swp51 neighbor ipv6 fe80::4ab0:2dff:fea2
 cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
-You can also set a flag to indicate that the neighbour is a router (`is-router`) or learned externally (`ext_learn`) and set the neighbor state (`delay`, `failed`, `incomplete`, `noarp`, `permanent`, `probe`, `reachable`, or `stale`).
+You can also set a flag to indicate that the neighbor is a router (`is-router`) or learned externally (`ext_learn`) and set the neighbor state (`delay`, `failed`, `incomplete`, `noarp`, `permanent`, `probe`, `reachable`, or `stale`).
 
 ```
 cumulus@leaf01:mgmt:~$ nv set interface swp51 neighbor ipv6 fe80::4ab0:2dff:fea2:4c79 lladdr 00:00:5E:00:53:51 flag is-router
@@ -627,7 +724,7 @@ IPV6                      LLADR(MAC)
 fe80::4ab0:2dff:fe60:b8e  48:b0:2d:60:0b:8e
 ```
 
-To show all IPv6 table entries for an interface with additional state details, run the `nv show interface <interface-id> neighbor ipv6 detail` command. The following additional fields are provided for the neighbor:
+To show all IPv6 table entries for an interface with additional state details, run the `nv show interface <interface-id> neighbor ipv6 detail` command. The command provides the following additional fields for the neighbor:
 
 - `State` - The current state of the neighbor entry.
 - `Last Used` - The time since the entry was last used for software forwarding.

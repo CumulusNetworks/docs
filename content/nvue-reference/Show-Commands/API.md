@@ -1,7 +1,7 @@
 ---
 title: API
 author: Cumulus Networks
-weight: 125
+weight: 130
 
 type: nojsscroll
 ---
@@ -35,6 +35,31 @@ connections
   requests           1                     
   waiting            0                     
   writing            1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system api connections</h>
+
+Shows NVUE REST API connection information.
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system api connections
+          operational  applied
+--------  -----------  -------
+accepted  5                   
+active    1                   
+handled   5                   
+reading   0                   
+requests  5                   
+waiting   0                   
+writing   1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -76,31 +101,6 @@ Introduced in Cumulus Linux 5.6.0
 
 ```
 cumulus@switch:~$ nv show system api listening-address localhost
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system api connections</h>
-
-Shows NVUE REST API connection information.
-
-### Version History
-
-Introduced in Cumulus Linux 5.6.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system api connections
-          operational  applied
---------  -----------  -------
-accepted  5                   
-active    1                   
-handled   5                   
-reading   0                   
-requests  5                   
-waiting   0                   
-writing   1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

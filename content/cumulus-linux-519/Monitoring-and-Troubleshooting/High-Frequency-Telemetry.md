@@ -13,6 +13,8 @@ Cumulus Linux provides two different methods to collect and analyze high frequen
 - {{<link url="#streaming-hft-export" text="Stream HFT data">}} to an external collector through {{<link url="Open-Telemetry-Export/#grpc-otlp-export" text="open telemetry export">}} or through {{<link url="Open-Telemetry-Export/#ipfix-export" text="IP Flow Information Export (IPFIX)">}}.
 - {{<link url="#collect-hft-in-json-file" text="Collect HFT data in a JSON format file">}} on the switch filesystem and upload the file to an external location for analysis.
 
+Cumulus Linux can also analyze high frequency telemetry data on the switch and export only the result. {{<link url="Step-Time-Estimation" text="Step time estimation">}} uses this approach to report the step time of an AI training workload without exporting the underlying counters.
+
 {{%notice note%}}
 - Cumulus Linux supports high frequency telemetry on Spectrum-4 and later switches. 
 - Cumulus Linux does not support high frequency telemetry on ports using 8 lanes. On the Spectrum-4 switch, swp1 through swp64 use all 8 lanes; to run high frequency telemetry, you must break out these ports.
@@ -102,14 +104,14 @@ e. Enable IPFIX export:
 
 2. Configure streaming HFT parameters:
 
-   Configure the sampling interval for HFT data. The default value is 5000 microseconds. The interval must be specified in microseconds, with a valid range of 100 to 12,750 and in multiples of 50:
+   Configure the sampling interval for HFT data. The default value is 5000 microseconds. Specify the interval in microseconds, in multiples of 50, with a valid range of 100 to 12,750:
 
    ```
    cumulus@switch:~$ nv set system telemetry hft sample-interval-usec 1000
    cumulus@switch:~$ nv config apply
    ```
 
-   Configure the counters that are sampled at the defined interval. The following table lists the available counters.
+   Configure the counters that the switch samples at the defined interval. The following table lists the available counters.
 
    | Counter | Description |
    | -------- | --------- |
@@ -456,7 +458,7 @@ HFT job schedule successful: job-id 1
 Action succeeded
 ```
 
-You can specify `now` for the date and/or time to configure the current date and time of day. The following example configures `profile2` to start today at 10:00:00, run for 30 seconds, and collect data on swp2s0.
+You can specify `now` for the date and time to configure the current date and time of day. The following example configures `profile2` to start today at 10:00:00, run for 30 seconds, and collect data on swp2s0.
 
 ``` 
 cumulus@switch:~$ nv action schedule system telemetry hft job now 10:00:00 duration 30 profile profile2 ports swp2s0

@@ -376,6 +376,14 @@ The following sections describe how to show the current FEC mode, and how to ena
 
 To show the FEC mode on a switch port, run the NVUE `nv show interface <interface-id> link` command.
 
+<!-- REVIEW: the physical-name row inserted below. The specification's own sample output for this
+     exact command lists physical-name between oper-status-last-change and auto-negotiate; this page's
+     existing (truncated) example has no oper-status-last-change row to anchor against, so
+     physical-name is placed directly after protodown, matching the specification's relative order as
+     closely as the existing excerpt allows. Confirm the exact row position against a candidate build.
+     On a switch without a two-connector port, or on a platform this feature does not cover, expect
+     this row to be absent rather than empty. Delete this comment before publishing. -->
+
 ```
 cumulus@switch:~$ nv show interface swp1 link
                        operational        applied
@@ -383,6 +391,7 @@ cumulus@switch:~$ nv show interface swp1 link
 admin-status           up                        
 oper-status            up                        
 protodown              disabled                  
+physical-name          swp1c1c2                  
 auto-negotiate         disabled           enabled     
 duplex                 full               full   
 speed                  1G                 auto   
@@ -748,9 +757,9 @@ Maximum 50G ports: 8
 Maximum 100G ports: 4
 
 {{< /tab >}}
-{{< /tab >}}
-
 {{< /tabs >}}
+
+{{< /tab >}}
 {{< tab "SN2100">}}
 
 16x QSFP28 100G interfaces only support NRZ encoding. You can set all speeds down to 1G.
@@ -800,9 +809,9 @@ Maximum 50G ports: 32
 Maximum 100G ports: 16
 
 {{< /tab >}}
-{{< /tab >}}
-
 {{< /tabs >}}
+
+{{< /tab >}}
 {{< tab "SN2201">}}
 
 48x 1GBase-T ports (RJ45 up to 100m CAT5E/6) and 4x QSFP28 100G interfaces (only support NRZ encoding). You can set all speeds down to 1G.
@@ -855,9 +864,9 @@ Maximum 50G ports: 8
 Maximum 100G ports: 4
 
 {{< /tab >}}
-{{< /tab >}}
-
 {{< /tabs >}}
+
+{{< /tab >}}
 {{< tab "SN2410">}}
 
 48x SFP28 25G and 8x QSFP28 100G interfaces only support NRZ encoding. You can set all speeds down to 1G.
@@ -912,9 +921,9 @@ Maximum 50G ports: 16
 Maximum 100G ports: 8
 
 {{< /tab >}}
-{{< /tab >}}
-
 {{< /tabs >}}
+
+{{< /tab >}}
 {{< tab "SN2700">}}
 
 32x QSFP28 100G interfaces only support NRZ encoding. You can set all speeds down to 1G.
@@ -966,9 +975,9 @@ Maximum 50G ports: 64
 Maximum 100G ports: 32
 
 {{< /tab >}}
-{{< /tab >}}
-
 {{< /tabs >}}
+
+{{< /tab >}}
 {{< tab "SN3420">}}
 
 48x SFP28 25G and 12x QSFP28 100G interfaces only support NRZ encoding. You can set all speeds down to 1G.
@@ -1021,9 +1030,9 @@ Maximum 50G ports: 24
 Maximum 100G ports: 12
 
 {{< /tab >}}
-{{< /tab >}}
-
 {{< /tabs >}}
+
+{{< /tab >}}
 
 <!-- SN3510 PLATFORM DELAYED UNTILL FURTHER NOTICE
 {< tab "SN3510">}}
@@ -1142,9 +1151,9 @@ Maximum 50G ports: 64
 Maximum 100G ports: 32
 
 {{< /tab >}}
-{{< /tab >}}
-
 {{< /tabs >}}
+
+{{< /tab >}}
 {{< tab "SN3700 and SN3750SX">}}
 
 32x QSFP56 200G interfaces support both PAM4 and NRZ encodings. You can set all speeds down to 1G.
@@ -1203,9 +1212,9 @@ Maximum 100G ports: 64
 Maximum 200G ports: 32
 
 {{< /tab >}}
-{{< /tab >}}
-
 {{< /tabs >}}
+
+{{< /tab >}}
 {{< tab "SN4410">}}
 
 SN4410 24xQSFP28-DD interfaces [ports 1-24] support both PAM4 and NRZ encoding with all speeds from 200G down to 1G.
@@ -1287,9 +1296,9 @@ Maximum 200G ports: 64
 Maximum 400G ports: 8
 
 {{< /tab >}}
-{{< /tab >}}
-
 {{< /tabs >}}
+
+{{< /tab >}}
 {{< tab "SN4600C">}}
 
 64x QSFP28 100G interfaces only support NRZ encoding. You can set all speeds down to 1G.
@@ -1341,9 +1350,9 @@ Maximum 50G ports: 128
 Maximum 100G ports: 64
 
 {{< /tab >}}
-{{< /tab >}}
-
 {{< /tabs >}}
+
+{{< /tab >}}
 {{< tab "SN4600">}}
 
 SN4600 64xQSFP56 (200GbE) interfaces support both PAM4 and NRZ encodings with all speeds down to 1G.
@@ -1405,9 +1414,9 @@ Maximum 100G ports: 128
 Maximum 200G ports: 64
 
 {{< /tab >}}
-{{< /tab >}}
-
 {{< /tabs >}}
+
+{{< /tab >}}
 {{< tab "SN4700">}}
 
 SN4700 32x QSFP-DD 400GbE interfaces support both PAM4 and NRZ encodings. You can set all speeds down to 1G.
@@ -1481,9 +1490,9 @@ Maximum 200G ports: 64
 Maximum 400G ports: 32
 
 {{< /tab >}}
-{{< /tab >}}
-
 {{< /tabs >}}
+
+{{< /tab >}}
 {{< tab "SN5400">}}
 
 SN5400 64xQSFP-DD (400GbE) interfaces support both PAM4 and NRZ encodings with all speeds down to 10G.
@@ -1543,9 +1552,9 @@ Maximum 200G ports: 128 (64 ports breakout into 2x)
 Maximum 400G ports: 64
 
 {{< /tab >}}
-{{< /tab >}}
-
 {{< /tabs >}}
+
+{{< /tab >}}
 {{< tab "SN5600 and SN5600D">}}
 
 SN5600 64xOSFP (800GbE) interfaces support both PAM4 and NRZ encodings with all speeds down to 10G.
@@ -1616,9 +1625,9 @@ Maximum 400G ports: 128
 Maximum 800G ports: 64
 
 {{< /tab >}}
-{{< /tab >}}
-
 {{< /tabs >}}
+
+{{< /tab >}}
 {{< tab "SN5610">}}
 
 SN5610 64xOSFP (800GbE) interfaces support both PAM4 and NRZ encodings with all speeds down to 10G.
@@ -1689,51 +1698,52 @@ Maximum 400G ports: 128
 Maximum 800G ports: 64
 
 {{< /tab >}}
-{{< /tab >}}
-
 {{< /tabs >}}
+
+{{< /tab >}}
 {{< tab "SN6600_LD">}}
 
-800G (800G_4x): 128 ports
+SN6600_LD 128xOSFP (800GbE) interfaces support PAM4 with all speeds down to 100G.
 
-SN6600_LD 128xOSFP (800GbE) interfaces support both PAM4 and NRZ encodings with all speeds down to 100G.
-
-For lower speeds, PAM4 is automatically converted to NRZ encoding.
-
-Bonus ports #65s0 and #65s1 support 100G.
+Bonus port supports 100G.
 
 {{< tabs "SN6600_ports ">}}
 {{< tab "100G ">}}
 
-514x 100G - 514x OSFP break out into 1x - You must disable the adjacent OSFP port.
+514x 100G:
 
-Maximum 100G ports: 514 (512 ports + 2 bonus ports)
+- 64 OSFP data ports break out into 8x 
+- 1 QSFP112 bonus port break out 2x (default mode)
+
+Maximum 100G ports: 514
 
 {{< /tab >}}
 {{< tab "200G ">}}
 
-- 512x 200G - 512x OSFP break out into 1x
-- 256x 200G - 256x OSFP break out into 2x
+512 x 200G: 64 OSFP data ports break out into 8x
 
 Maximum 200G ports: 512
 
 {{< /tab >}}
 {{< tab "400G ">}}
 
-- 128x 400G - 128x OSFP break out into 4x
-- 256x 400G - 256x OSFP break out into 2x
+256 x 400G: 64 x OSFP data ports break out into 4x
 
 Maximum 400G ports: 256
 
 {{< /tab >}}
 {{< tab "800G ">}}
 
-128x 800G - 128x OSFP break out into 4x
+128 x 800G: 64 OSFP data ports break out into 2x (default mode - out of the box)
 
 Maximum 800G ports: 128
 
+{{%notice note%}}
+Cumulus 5.18 does not support 1x break out at 800G. Interfaces are 2x split by default.
+{{%/notice%}}
+
 {{< /tab >}}
-{{< /tab >}}
+{{< /tabs >}}
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -1754,7 +1764,7 @@ You can break out (split) a port using the following options:
 - `4x` splits the port into four interfaces.
 - `8x` splits the port into eight interfaces.
 
-If you split a 100G port into four interfaces and auto-negotiation is enabled (the default setting), Cumulus Linux advertises the speed for each interface up to the maximum speed possible for a 100G port (100/4=25G). You can overide this configuration and set specific speeds for the split ports if necessary.
+If you split a 100G port into four interfaces and auto-negotiation is enabled (the default setting), Cumulus Linux advertises the speed for each interface up to the maximum speed possible for a 100G port (100/4=25G). You can override this configuration and set specific speeds for the split ports if necessary.
 
 {{%notice warning%}}
 - Cumulus Linux 5.4 and later uses a new format for port splitting; instead of 1=100G or 1=4x10G, you specify 1=1x or 1=4x. The new format does not support specifying a speed for breakout ports in the `/etc/cumulus/ports.conf` file. To set a speed, either set the `link-speed` parameter for each split port in the `/etc/network/interfaces` file or run the NVUE `nv set interface <interface-id> link speed <speed>` command.
@@ -1957,6 +1967,57 @@ To remove a breakout port:
 {{< /tab >}}
 {{< /tabs >}}
 
+### Show the Physical Connector for a Port
+
+On Spectrum-4 and later switches whose ports have two physical connectors per transceiver cage, Cumulus Linux exposes a *physical-name* value for each interface. Physical-name encodes the transceiver cage, connector, and, for a breakout port, the sub-interface, so you can correlate a software interface name directly with the physical connector it uses. Cumulus Linux derives physical-name from the Linux altname mechanism.
+
+{{%notice note%}}
+- Physical-name is display-only. You cannot use it to configure or reference an interface in place of the canonical interface name, such as `swp1` or `swp1s0`.
+- Physical-name reflects the current breakout configuration. If you change the breakout mode on a port, Cumulus Linux updates the physical-name values for that port.
+- Physical-name applies only to front-panel ports with a transceiver connector. An interface without one, such as the management interface, has no physical-name value; `nv show interface physical` leaves the column blank for that interface.
+{{%/notice%}}
+
+Physical-name uses the format `swp<cage>c<connector>s<subinterface>`, where:
+
+- `<cage>` is the transceiver cage number, starting from one.
+- `<connector>` is the connector number, starting from one.
+- `<subinterface>` is the sub-interface number, starting from one.
+
+A port that is not broken out spans both connectors, so its physical-name lists both connector numbers instead of a sub-interface number: `swp<cage>c<connector1>c<connector2>`.
+
+The following table shows the physical-name value for each breakout mode on a two-connector port, for hardware where the connectors split the breakout lanes evenly:
+
+| Breakout Mode | Interface | Physical-name |
+|------ | ----------- | ----------- |
+| No breakout (1x) | `swp1` | `swp1c1c2` |
+| 2x | `swp1s0`, `swp1s1` | `swp1c1s1`, `swp1c2s1` |
+| 4x | `swp1s0`—`swp1s3` | `swp1c1s1`, `swp1c1s2`, `swp1c2s1`, `swp1c2s2` |
+| 8x | `swp1s0`—`swp1s7` | `swp1c1s1`, `swp1c1s2`, `swp1c1s3`, `swp1c1s4`, `swp1c2s1`, `swp1c2s2`, `swp1c2s3`, `swp1c2s4` |
+
+{{%notice note%}}
+On some hardware, the lanes of a breakout port do not split evenly between its two connectors — for example, all four sub-interfaces of a 4x breakout might map to a single connector instead of two per connector. The connector distribution depends on how the platform wires that port. Treat the table above as the typical case and the `physical-name` value in `nv show interface <interface-id>` as authoritative for a specific port.
+{{%/notice%}}
+
+To show the physical-name for every port on the switch, run the `nv show interface physical` command:
+
+```
+cumulus@switch:~$ nv show interface physical
+Interface  Physical Interface  Admin Status  Oper Status  Speed  MTU   Duplex  FEC
+---------  -------------------  ------------  -----------  -----  ----  ------  ----
+swp1s0     swp1c1s1             down          down                9216
+swp1s1     swp1c2s1             down          down                9216
+swp3s0     swp3c1s1             down          down                9216
+swp3s1     swp3c1s2             down          down                9216
+swp3s2     swp3c1s3             down          down                9216
+swp3s3     swp3c1s4             down          down                9216
+swp10      swp10c1c2            down          down                9216
+swp61s0    swp61c1s1            up            up           50G    9216  full    rs
+swp61s1    swp61c1s2            up            up           50G    9216  full    rs
+...
+```
+
+The `nv show interface <interface-id>` and `nv show interface <interface-id> link` commands also show physical-name for a single interface, alongside the other operational link attributes for the interface. See {{<link url="#show-the-current-fec-mode" text="Show the Current FEC Mode">}} for an example.
+
 ## Configure Port Lanes
 
 You can override the default behavior for supported speeds and platforms and specify the number of lanes for a port. For example, for the NVIDIA SN4700 switch, the default port speed is 50G (2 lanes, <span class="a-tooltip">[NRZ](## "Non-Return-to-Zero")</span> signaling mode) and 100G (4 lanes, NRZ signaling mode). You can override this setting to 50G (1 lane, <span class="a-tooltip">[PAM4](## "Pulse Amplitude Modulation 4-level")</span> signaling mode) and 100G (2 lanes, PAM4 signaling mode).
@@ -2098,6 +2159,10 @@ bond-members    counters        dot1x-summary   mac             port-security   
 bonds           description     down            mlag-cc         qos-profile     synce-counters  
 brief           detail          lldp            neighbor        small           up
 ```
+
+{{%notice note%}}
+NVUE also accepts a view name positionally, without `--view`. For example, `nv show interface lldp` is equivalent to `nv show interface --view lldp`; in both, `lldp` is a view applied to the interface collection. In `nv show interface swp1 lldp`, however, `swp1` selects an interface instance and `lldp` is a child object of that instance, not a view, so the command can return different fields and a different JSON structure. This is not specific to LLDP; it applies wherever a view name and an object in the data model share a name. For more information, refer to {{<link url="NVUE-CLI/#named-views-positional-view-shorthand-and-object-paths" text="Named Views, Positional View Shorthand, and Object Paths">}}.
+{{%/notice%}}
 
 For example, the `nv show interface --view=small` command lists the interfaces on the switch. The `nv show interface --view=brief` command shows information about each interface on the switch, such as the interface type, speed, remote host and port. The `nv show interface --view=mac` command shows the MAC address of each interface.
 

@@ -303,7 +303,7 @@ cumulus@leaf01:mgmt:~$ nv set interface swp51 neighbor ipv4 10.5.5.51 lladdr 00:
 cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
-You can also set a flag to indicate that the neighbour is a router (`is-router`) or learned externally (`ext_learn`) and set the neighbor state (`delay`, `failed`, `incomplete`, `noarp`, `permanent`, `probe`, `reachable`, or `stale`).
+You can also set a flag to indicate that the neighbor is a router (`is-router`) or learned externally (`ext_learn`) and set the neighbor state (`delay`, `failed`, `incomplete`, `noarp`, `permanent`, `probe`, `reachable`, or `stale`).
 
 ```
 cumulus@leaf01:mgmt:~$ nv set interface swp51 neighbor ipv4 10.5.5.51 lladdr 00:00:5E:00:53:51 flag is-router
@@ -337,7 +337,7 @@ iface swp51
 cumulus@leaf01:mgmt:~$ sudo ifreload -a
 ```
 
-You can also set a flag to indicate that the neighbour is a router (`router`) or learned externally (`extern_learn`) and set the neighbor state (`delay`, `failed`, `incomplete`, `noarp`, `permanent`, `probe`, `reachable`, or `stale`).
+You can also set a flag to indicate that the neighbor is a router (`router`) or learned externally (`extern_learn`) and set the neighbor state (`delay`, `failed`, `incomplete`, `noarp`, `permanent`, `probe`, `reachable`, or `stale`).
 
 ```
 cumulus@leaf01:mgmt:~$ sudo nano /etc/network/interfaces
@@ -443,7 +443,7 @@ IPV4         LLADR(MAC)
 ```
 
 
-To show all IPv4 ARP table entries for an interface with additional state details, run the `nv show interface <interface-id> neighbor ipv4 detail` command. The following additional fields are provided for the neighbor:
+To show all IPv4 ARP table entries for an interface with additional state details, run the `nv show interface <interface-id> neighbor ipv4 detail` command. The command provides the following additional fields for the neighbor:
 
 - `State` - The current state of the neighbor entry.
 - `Last Used` - The time since the entry was last used for software forwarding.

@@ -9,6 +9,8 @@ The NVUE CLI has a flat structure instead of a modal structure. Therefore, you c
 {{%notice warning%}}
 You can choose to configure Cumulus Linux either with NVUE commands **or** Linux commands (with vtysh or by manually editing configuration files). Do **not** run both NVUE configuration commands (such as `nv set`, `nv unset`, `nv action`, and `nv config`) and Linux commands to configure the switch. NVUE commands replace the configuration in files such as `/etc/network/interfaces` and `/etc/frr/frr.conf`, and remove any configuration you add manually or with automation tools like Ansible, Chef, or Puppet.
 
+This also applies to operational actions that affect network behavior, such as bringing an interface up or down. Use the equivalent NVUE command (for example, `nv set interface <interface-id> link state up` or `down`) instead of Linux commands such as `ifup`, `ifdown`, or `ip link set`. NVUE does not track changes you make with Linux commands, so using them for actions that affect network behavior can cause NVUE's view of the switch to diverge from its actual state and lead to unexpected behavior.
+
 If you choose to configure Cumulus Linux with NVUE, you can configure features that do not yet support the NVUE object model by creating snippets. See {{<link url="NVUE-Snippets" text="NVUE Snippets">}}.
 {{%/notice%}}
 
@@ -143,7 +145,7 @@ The NVUE monitoring commands show various parts of the network configuration. Fo
 | `nv show interface` | Shows {{<link url="Interface-Configuration-and-Management/#show-interface-information" text="interface">}} configuration and counters. |
 | `nv show maintenance`| Shows the current maintenance configuration on the switch for all protocols and all interfaces. |
 | `nv show mlag` | Shows {{<link url="Multi-Chassis-Link-Aggregation-MLAG/#troubleshooting" text="MLAG">}} configuration. |
-| `nv show nve` | Shows {{<link url="Network-Virtualization" text="network virtualization (VXLAN)">}} configuration, such as VXLAN-specfic MLAG configuration and VXLAN flooding.|
+| `nv show nve` | Shows {{<link url="Network-Virtualization" text="network virtualization (VXLAN)">}} configuration, such as VXLAN-specific MLAG configuration and VXLAN flooding.|
 | `nv show platform` | Shows {{<link url="Monitoring-Best-Practices/#hardware" text="platform configuration">}}, such as environment, transceiver, and firmware components. |
 | `nv show qos` | Shows {{<link title="RDMA over Converged Ethernet - RoCE/#verify-roce-configuration" text="QoS RoCE">}} configuration.|
 | `nv show router` | Shows router configuration, such as router policies, global BGP and OSPF configuration, PBR, PIM, IGMP, VRR, and VRRP configuration. |
@@ -393,6 +395,10 @@ cumulus@switch:~$ sudo systemctl start nvue-startup.service
 
 When you apply a configuration with `nv config apply`, NVUE also writes to underlying Linux files such as `/etc/network/interfaces` and `/etc/frr/frr.conf`. You can view these configuration files; however, do *not* manually edit them while using NVUE. If you need to configure certain network settings manually or use automation such as Ansible to configure the switch, see {{<link title="#configure-nvue-to-ignore-linux-files" text="Configure NVUE to Ignore Linux Files">}} below.
 
+{{%notice note%}}
+NVUE stores and looks up every IPv6 address in its normalized (canonical) form, so the address that `nv show` returns is not always the address you typed. Refer to {{<link url="/#ipv6-address-normalization" text="IPv6 Address Normalization">}}.
+{{%/notice%}}
+
 ### Default Startup File
 
 NVUE provides a default `/etc/nvue.d/startup.yaml` file that includes configuration such as the switch hostname, default firewall rules, and `cumulus` user account credentials. The file also enables the NVUE API. This file is the factory configuration file that you can restore at any time.
@@ -521,7 +527,7 @@ cumulus@switch:~$ nv config apply
 
 When you disable auto save, you must run the `nv config save` command to save the applied configuration to the startup configuration so that the changes persist after a reboot.
 
-To renable auto save, run the `nv set system config auto-save state enabled` command.
+To re-enable auto save, run the `nv set system config auto-save state enabled` command.
 
 ## Automatic Configuration Backup and Restore
 
@@ -801,6 +807,17 @@ If there are any issues with the `nv set` or `nv unset` commands, NVUE prints th
 In Cumulus Linux 5.16 and later, NVUE supports both unset and set commands for the same object in a single patch.
 {{%/notice%}}
 
+### Apply a Bulk Configuration
+
+When you configure a large number of settings at once, use the `nv config patch` command with a text file of `nv set` commands instead of running each `nv set` command individually. Applying the same changes in a single patch is considerably faster than running the commands one at a time.
+
+The following example patches the pending configuration with the `nv set` commands in the `/home/cumulus/bulk-config.txt` file, then applies the configuration:
+
+```
+cumulus@switch:~$ nv config patch /home/cumulus/bulk-config.txt
+cumulus@switch:~$ nv config apply
+```
+
 ## Translate a Configuration Revision or File
 
 NVUE provides commands to translate an NVUE configuration revision or yaml file into NVUE commands. The revision ID must be either an integer or a named revision (such as startup or applied). The configuration file must be on the switch and must include the full path to the file containing the configuration you want to translate. The file must be in YAML format and must be accessible with proper read permissions.
@@ -858,7 +875,7 @@ To back up and restore the configuration file:
 
 3. After upgrade is complete, restore certificates and the configuration.
 
-   a. {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="Reimport all certificates">}} and/or CRLs that were configured in the previous release with the `nv action import system security` command, ensuring you use the same `certificate-id` that was originally assigned to each certificate.
+   a. {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="Reimport all certificates">}} and CRLs that were configured in the previous release with the `nv action import system security` command, ensuring you use the same `certificate-id` that was originally assigned to each certificate.
 
    b. Copy the `/etc/nvue.d/startup.yaml` file from the back up process to the switch.
 
@@ -899,6 +916,53 @@ cumulus@switch:~$ sudo nano /etc/default/nvued
 NVUE_MAX_REVISIONS=60
 ...
 ```
+
+## IPv6 Address Normalization
+
+ NVUE stores and looks up every IPv6 address in its normalized (canonical) form. NVUE normalizes an address when you configure it, so the address that `nv show` returns is not always the address you typed.
+
+<!-- REVIEW: the four rules in the table below. The page previously gave only two examples,
+     `2001:0db8::0001` to `2001:db8::1` and `0::ffff:10.0.0.1` to `::ffff:10.0.0.1`. The lowercase
+     and zero-run rules are drafted from the canonical form those two examples imply, not from a
+     source that states them. Confirm all four against a switch before publishing. Delete this
+     comment before publishing. -->
+
+The following table shows how NVUE normalizes an IPv6 address.
+
+| Rule | Address you configure | Address NVUE stores and shows |
+| ---- | --------------------- | ----------------------------- |
+| NVUE removes the leading zeros from each group. | `2001:0db8::0001` | `2001:db8::1` |
+| NVUE writes hexadecimal digits in lowercase. | `2001:DB8::1` | `2001:db8::1` |
+| NVUE replaces the longest run of zero groups with `::`. | `2001:db8:0:0:0:0:0:1` | `2001:db8::1` |
+| For an IPv4-mapped address, NVUE normalizes only the IPv6 portion and keeps the IPv4 portion in the IETF-recommended mixed notation. | `0::ffff:10.0.0.1` | `::ffff:10.0.0.1` |
+
+<!-- REVIEW: the worked example below is drafted, not captured. Run these commands on a switch and
+     replace the `nv show` output with the real readout. Delete this comment before publishing. -->
+
+The following example configures an interface address in an unnormalized form:
+
+```
+cumulus@switch:~$ nv set interface swp1 ip address 2001:0DB8:0000:0000:0000:0000:0000:0001/64
+cumulus@switch:~$ nv config apply
+```
+
+The `nv show` command returns the normalized form:
+
+```
+cumulus@switch:~$ nv show interface swp1 ip address
+                    operational          applied
+------------------  -------------------  -------------------
+2001:db8::1/64
+```
+
+<!-- TODO: capture the real `nv show interface swp1 ip address` readout on a switch and replace the block above -->
+
+<!-- REVIEW: this section covers interface addresses only. The feature owner has said that
+     normalization also applies in several other configuration areas and offered to send the list of
+     commands, which has not arrived. Add those areas here when the list is available. Delete this
+     comment before publishing. -->
+
+For information about normalizing the IPv6 addresses in a configuration file that you copy manually during an upgrade, refer to step 4 in {{<link url="Upgrading-Cumulus-Linux/#onie-image-upgrade" text="ONIE Image Upgrade">}}.
 
 ## Session-Based Authentication
 
@@ -1038,7 +1102,7 @@ You import certificates and CRLs onto the switch with the `nv action import syst
 The following example imports a CA certificate bundle with a public key and calls the certificate `tls-cert-1`. The public key is a Base64 ASCII encoded PEM string.
 
 ```
-cumulus@switch:~$ cumulus@switch:~$ nv action import system security ca-certificate tls-cert-1 data """<public-key>""" 
+cumulus@switch:~$ cumulus@switch:~$ nv action import system security ca-certificate tls-cert-1 data """<public-key>""" 
 ```
 
 The following example imports the CRL bundle file `crl.crt` from a remote URI:
@@ -1049,6 +1113,56 @@ cumulus@switch:~$ nv action import system security crl uri scp://user:password@h
 
 - For information about enabling certificates for gNMI, refer to {{<link url="gNMI-Streaming/#gnmi-with-cumulus-linux" text="gNMI streaming with Cumulus Linux">}}.
 - For information about enabling certificates for the NVUE API, refer to {{<link url="NVUE-API/#certificates" text="NVUE API">}}.
+
+## Named Views, Positional View Shorthand, and Object Paths
+
+Some `nv show` commands provide named views, a predefined subset or presentation of the collection data. Specify a named view with the `--view` option:
+
+```
+cumulus@switch:~$ nv show interface --view lldp
+```
+
+NVUE also accepts the view name as a positional argument, without `--view`:
+
+```
+cumulus@switch:~$ nv show interface lldp
+```
+
+These two commands are equivalent; in both, `lldp` is the name of a view applied to the interface collection. Interface views include `brief`, `detail`, `lldp`, `counters`, `rates`, `neighbor`, and others; to list the views available for a command, run the command with `--view` and press Tab, for example `nv show interface --view <<TAB>>`.
+
+{{%notice note%}}
+Do not confuse a named view with a child object under a specific collection instance. In `nv show interface swp1 lldp`, `swp1` selects an interface instance and `lldp` identifies a child object in the NVUE data model, not the `lldp` view. A named view and an object path can share the same name but return different fields and a different JSON structure:
+
+In the following example, `lldp` is a named collection view:
+
+```
+cumulus@switch:~$ nv show interface --view lldp
+```
+
+The following example shows positional shorthand for the same view:
+
+```
+cumulus@switch:~$ nv show interface lldp
+```
+
+In the following example, `lldp` is a child object of the swp1 interface instance, not a view:
+
+```
+cumulus@switch:~$ nv show interface swp1 lldp
+```
+
+This is not specific to LLDP and can occur wherever a named view and an object in the data model share a name, such as `counters`, `rates`, `neighbor`, or `link-tracking`. To make command intent clear, especially in scripts, use the explicit `--view <view-name>` syntax instead of the positional shorthand.
+{{%/notice%}}
+
+A named view projects the fields that view defines and normally keeps the instance keys of the collection. A command that selects a child object instead returns the contents under that object, and normally omits the enclosing collection, instance, and object keys. As a result, two commands that look like the same query at different scopes can return different fields and a different JSON structure.
+
+`--view` and `--filter` serve different purposes: `--view` selects a predefined field projection or presentation, and `--filter` selects collection entries or nested values that match a condition. You can combine them:
+
+```
+cumulus@switch:~$ nv show interface --view detail --filter mtu=1500
+```
+
+A named view can carry its own internal include, omit, or filter rules but that does not make it equivalent to a `--filter` you supply yourself.
 
 ## Filter nv show Command Output
 
@@ -1254,6 +1368,23 @@ NVUE restarts the FRR service when you:
 - Disable the SNMP server with `agentx` configured.
 
 Restarting FRR restarts all the routing protocol daemons that you enable and that are running, which might impact traffic.
+
+## NVUE Config Apply and FRR
+
+When a pending configuration change does not affect any FRR-managed setting, such as a change to an interface description, `nv config apply` does not read or reload FRR. When a pending change does affect an FRR-managed setting, NVUE reads the FRR running configuration, compares it against the pending change, and reloads FRR only when the two differ.
+
+{{%notice note%}}
+- If the switch takes longer than 15 seconds to read the FRR running configuration and longer than 5 seconds to check if the FRR service is active, `nv config apply` does not reload or restart FRR for that apply.
+- Deleting a large number of static routes in a single revision no longer causes `nv config apply` to time out.
+{{%/notice%}}
+
+If FRR is restarting, busy, or stopped when you apply a configuration change, and a routing configuration change in that apply does not take effect, confirm that the FRR service is active:
+
+```
+cumulus@switch:~$ systemctl status frr
+```
+
+Run `nv config apply` again after FRR is active. Check `/var/log/nvued.log` for messages about a timed-out or failed FRR read.
 
 ## File System Commands
 

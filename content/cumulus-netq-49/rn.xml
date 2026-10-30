@@ -100,6 +100,12 @@ restore them after the upgrade.</td>
 <td>4.10.0-4.15.1</td>
 </tr>
 <tr>
+<td>3755207</td>
+<td>When you export digital optics table data from NetQ, some fields might be visible in the UI that are not exported to CSV or JSON files.</td>
+<td>4.9.0-4.15.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3738840</td>
 <td>When you upgrade a Cumulus Linux switch configured for TACACS authentication using NetQ LCM, the switch's TACACS configuration is not restored after upgrade.</td>
 <td>4.8.0-4.9.0</td>

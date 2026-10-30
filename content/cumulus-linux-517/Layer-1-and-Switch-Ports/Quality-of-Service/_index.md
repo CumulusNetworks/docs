@@ -513,7 +513,7 @@ Cumulus Linux supports the following flow control mechanisms:
 - Priority Flow Control (PFC), which is an upgrade of link pause that IEEE 802.1bb defines, extends the pause frame concept to act on a per switch priority value basis instead of an entire link. A PFC pause frame indicates to the peer which specific switch priority value to pause, while other switch priority values or queues continue transmitting.
 
 {{%notice note%}}
-You can not configure link pause and PFC on the same port.
+You cannot configure link pause and PFC on the same port.
 {{%/notice%}}
 
 ### Flow Control Buffers
@@ -1024,7 +1024,7 @@ To configure dynamic ECN, determine which traffic classes carry loss-sensitive o
 
   When you set dynamic ECN mode to `relative`, the switch hardware ignores any configured byte-based thresholds. The ASIC begins marking traffic based on percentage thresholds relative to the dynamically allocated buffer allowance of the traffic class, which is continuously recalculated based on current buffer usage and pool occupancy.
 
-  When you set dynamic ECN mode to `absolute`, the switch hardware ignores percentage-based thresholds. The ASIC marks traffic using the configured absolute byte thresholds, which are treated as fixed limits.
+  When you set dynamic ECN mode to `absolute`, the switch hardware ignores percentage-based thresholds. The ASIC marks traffic using the configured absolute byte thresholds, which the ASIC treats as fixed limits.
 
 - Configure the minimum ECN marking threshold as a percentage (0 through 100) of the dynamic buffer allowance. The switch marks packets when queue occupancy exceeds this percentage. The default value is 0.
 - Configure the maximum ECN marking threshold as a percentage (0 through 100) of the dynamic buffer allowance. The value must be greater than or equal to the minimum threshold percent. The default value is 100.
@@ -2431,7 +2431,7 @@ QoS buffers cleared on swp1.
 Action succeeded
 ```
 
-To clear the Qos buffers on a set of interfaces, run the `nv action clear interface <interface-list> qos buffer` command. You can specify the list of interfaces in a range or in coma seperated list.
+To clear the Qos buffers on a set of interfaces, run the `nv action clear interface <interface-list> qos buffer` command. You can specify the list of interfaces in a range or in a comma-separated list.
 
 ```
 cumulus@switch:~$ nv action clear interface swp1-5,swp20,swp25 qos buffer
@@ -2954,7 +2954,7 @@ cos_egr_queue.cos_7.cpu = 7
 
 ### Configure QoS and Breakout Ports Simultaneously
 
-If you configure btoh breakout ports and QoS settings for breakout interfaces at the same time, errors might occur.
+If you configure both breakout ports and QoS settings for breakout interfaces at the same time, errors might occur.
 
 You must apply breakout port configuration before QoS configuration on the breakout ports. If you are using NVUE, configure breakout ports and perform an `nv config apply` first, then configure QoS settings on the breakout ports followed by another `nv config apply`. If you are using linux file configuration, modify `ports.conf` first, `reload switchd`, then modify `/etc/cumulus/datapath/qos/qos_features.conf` and `reload switchd` a second time.
 

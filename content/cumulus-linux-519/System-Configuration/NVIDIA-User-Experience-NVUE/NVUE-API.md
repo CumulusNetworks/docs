@@ -81,13 +81,13 @@ The following example imports a CA certificate bundle with a public key and call
 {{%/notice%}}
 
 ```
-cumulus@switch:~$ nv action import system security ca-certificate tls-cert-1 data """<public-key>""" 
+cumulus@switch:~$ nv action import system security ca-certificate tls-cert-1 data """<public-key>""" 
 ```
 
 The following example imports an entity certificate and calls the certificate `tls-cert-1`. The certificate is passphrase protected with `mypassphrase`.
 
 ```
-cumulus@switch:~$ nv action import system security certificate tls-cert-1 passphrase mypassphrase uri-bundle scp://user@pass:1.2.3.4:/opt/certs/cert.p12 
+cumulus@switch:~$ nv action import system security certificate tls-cert-1 passphrase mypassphrase uri-bundle scp://user@pass:1.2.3.4:/opt/certs/cert.p12 
 ```
 
 The following example imports an entity certificate with the public key URI `scp://user@pass:1.2.3.4` and private key URI `scp://user@pass:1.2.3.4`, and calls the certificate `tls-cert-1`. The certificate is not passphrase protected.
@@ -362,7 +362,7 @@ The NVUE object model supports most features on the Cumulus Linux switch. The fo
 | evpn | EVPN configuration. |
 | interface | Interface configuration. |
 | mlag | MLAG configuration. |
-| nve | Network virtualization configuration, such as VXLAN-specfic MLAG configuration and VXLAN flooding. |
+| nve | Network virtualization configuration, such as VXLAN-specific MLAG configuration and VXLAN flooding. |
 | platform | Platform configuration, such as hardware and software components. |
 | qos | QoS RoCE configuration. |
 | router | Router configuration, such as router policies, global BGP and OSPF configuration, PBR, PIM, IGMP, VRR, and VRRP configuration. |
@@ -1863,11 +1863,18 @@ To see the views available for a show command, run the command with `--view` and
 
 ```
 cumulus@switch:~$ nv show interface --view <<TAB>>
-acl-statistics  description     lldp            physical        status          
-bond-members    detail          lldp-detail     pluggables      svi             
-bonds           dot1x-counters  mac             port-security   synce-counters  
-brief           dot1x-summary   mlag-cc         qos-profile     up              
-counters        down            neighbor        small           vrf
+acl-statistics            dot1x-ipv6-summary        qos-congestion-control
+ber                       dot1x-summary             qos-profile
+bond-members              down                      qos-roce-counters
+bonds                     link-tracking             qos-roce-status
+brief                     lldp                      qos-roce-status-pool-map
+carrier-stats             lldp-detail               rates
+counters                  mac                       small
+debounce-counters         mlag-cc                   status
+description               neighbor                  svi
+detail                    neighbor-detail           synce-counters
+dom                       physical                  up
+dot1x-counters            port-security             vrf
 ```
 
 ```

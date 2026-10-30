@@ -300,7 +300,7 @@ To create this rule with NVUE, follow the steps below. NVUE adds all options in 
    cumulus@switch:~$ nv config apply
    ```
 
-   - For rules affecting the INPUT or OUPUT chain (-A INPUT or -A OUTPUT), apply the rule to a control plane interface. For example:
+   - For rules affecting the INPUT or OUTPUT chain (-A INPUT or -A OUTPUT), apply the rule to a control plane interface. For example:
 
    ```
    cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 inbound control-plane
@@ -595,7 +595,7 @@ For information about nonatomic and atomic mode, refer to {{<link url="#nonatomi
 
 ## ATCAM Resource Exhaustion
 
-If you see error messages similar to `No More Resources .. Rolling back` when you try to apply ACLs, refer to {{<link url="#troubleshooting-acl-rule-installation-failures" text="Troubleshooting ACL Rule Installation Failures">}} for information on troublshooting and managing resources.
+If you see error messages similar to `No More Resources .. Rolling back` when you try to apply ACLs, refer to {{<link url="#troubleshooting-acl-rule-installation-failures" text="Troubleshooting ACL Rule Installation Failures">}} for information on troubleshooting and managing resources.
 
 ## Supported Rule Types
 
@@ -619,6 +619,9 @@ tricolorpolice option:
 Supported chains for the filter table:
 INPUT FORWARD OUTPUT
 ```
+### Connection Tracking and Connection State Matching
+
+Cumulus Linux does not offload `conntrack` or `--ctstate` ACL matches to switch hardware for forwarded traffic. ACL rules that rely on connection state do not provide hardware-enforced filtering for transit traffic on switch ports. Use connection state matching only for control plane firewall IPv4 ACLs. For data-plane ACLs, configure stateless matches such as IP addresses, protocol, ports, TCP flags, DSCP, and other documented hardware-supported rule elements.
 
 ### iptables and ip6tables Rule Support
 
@@ -663,7 +666,7 @@ Rule 2: `-A FORWARD -o vlan101 -s 00::01 -j DROP`
 
 Rule 3: `-A FORWARD -o vlan101 -p icmp6 -j ACCEPT`
 
-Rule 3 still matches for an icmp6 packet with sip 00:01 going out of vlan101. Rule 1 interferes with the normal function of rule 2 and/or rule 3.
+Rule 3 still matches for an icmp6 packet with sip 00:01 going out of vlan101. Rule 1 interferes with the normal function of rule 2 and, or rule 3.
 
 When you have two adjacent rules with the same match and different output interfaces, such as:
 
@@ -965,11 +968,11 @@ unknown-ipmc        1000         1024         0            0             0
 ```
 
 - To show configuration and native hardware data counters for a specific control plane policer from the time the switch booted or `switchd` restarted, run the `nv show system control-plane policer <policer-id> native` command.
--To show only control plane policer native hardware data counters from the time the switch booted or `switchd` restarted, run the `nv show system control-plane policer <policer-id> statistics native` command.
+- To show only control plane policer native hardware data counters from the time the switch booted or `switchd` restarted, run the `nv show system control-plane policer <policer-id> statistics native` command.
 
 #### Clear Control Plane Policer Counters
 
-To aid in troubleshoooting control plane traffic issues, you can clear all control plane policer counters and counters for a specific policer ID.
+To aid in troubleshooting control plane traffic issues, you can clear all control plane policer counters and counters for a specific policer ID.
 
 {{%notice note%}}
 The switch clears software (NVUE counters); hardware counters remain intact.
@@ -1039,6 +1042,144 @@ Rule  In Packet  In Byte  Out Packet  Out Byte  Summary
 1     0          0 Bytes  0           0 Bytes   match.ip.dest-ip:   9.1.2.3 
 2     0          0 Bytes  0           0 Bytes   match.ip.source-ip: 7.8.2.3 
 ```
+
+### Control Plane Punt Classifier
+
+<!-- REVIEW: the specification states GA for 5.19, but the What's New page states that 5.19.0
+     is qualified for non-Spectrum-X only, and this feature targets Spectrum-X MRC traffic.
+     Confirm the quality level and the platform statement against the 5.19 Redmine execution
+     query. Delete this comment before publishing. -->
+
+{{%notice note%}}
+The control plane punt classifier requires an NVIDIA Spectrum switch whose ASIC supports CPU egress ACL binding. On a switch without this support, Cumulus Linux reports the feature as unsupported and does not install the rule.
+{{%/notice%}}
+
+When an IPv6 next hop becomes unreachable, the switch withdraws the affected route and the traffic falls through to the implicit IPv6 default route, which forwards the packets to the CPU. The control plane policers drop this forwarded traffic, but their counters aggregate every kind of forwarded packet. You cannot separate MRC (Multipath Reliable Connection) traffic from other forwarded traffic such as probes, ping, and packets with no matching route.
+
+The control plane punt classifier matches for packets, counts them, and drops them before the control plane policers, so that each traffic type has its own drop counter. The punt classifier is disabled by default. You enable it by creating one or more rules. A rule ID is a number between 1 and 65535, and each rule ID has its own packet and byte counters.
+
+{{%notice note%}}
+- A rule matches only packets that the switch forwards because they match the implicit IPv6 default route. IPv6 neighbor discovery and adjacency miss forwards on a link that is up do not match, and the switch resolves them normally.
+- A rule matches only the *implicit* IPv6 default route. If you explicitly configure a default or super-net route, including a blackhole or reject route, that route takes precedence and the punt classifier does not count the traffic it handles.
+- Forwarded traffic that does not match a rule continues to use the existing control plane policer handling.
+- The punt classifier does not affect traffic that the switch forwards in hardware.
+- After you delete the last rule, forwarded traffic returns to the default control plane policer handling.
+- If you also enable {{<link url="Packet-Trimming/#back-to-sender-notification-on-link-down" text="back-to-sender notification">}} on link down, back-to-sender matches MRC traffic first. The two features share a counter for this traffic, so the punt classifier still reports accurate packet and byte counts.
+{{%/notice%}}
+
+An `spxm` rule matches an outer IPv6 header with next header 41, one of the configured DSCP values, and an inner UDP destination port of 4791. This packet signature is fixed and you cannot change it. An `ipv6` rule matches a plain IPv6 packet with the UDP destination port that you specify.
+
+The following table shows the match options and the action you can set for a rule.
+
+<!-- REVIEW: the specification lists Open Issues item "Confirm default SPXM DSCP list. The
+     current draft assumes 1,2,3,4?", so the default DSCP list below is stated without values.
+     Add the values after engineering confirms them. The specification also disagrees with
+     itself on whether match dscp is mandatory: the object model tree marks it mandatory, the
+     CLI options table marks it optional with a default. The CLI section governs, so the row
+     below reads optional. Delete this comment before publishing. -->
+
+| Option | Required | Description |
+| ------ | -------- | ----------- |
+| `match packet-type <packet-type>` | Yes | The classifier type. You can specify `spxm` for Spectrum-X MRC traffic or `ipv6` for plain IPv6 UDP traffic. |
+| `match no-route` | Yes | Restricts the rule to packets forwarded because they match the implicit IPv6 default route. |
+| `match dscp <dscp-range-list>` | No | The DSCP values that the rule matches. You can specify a single value, a range, or a comma-separated list in the range 0 to 63, such as *8-15,26,34*. This option applies only to `spxm` rules. If you do not set it, the rule uses a default set of DSCP values. |
+| `match udp-dport <port>` | Yes, for `ipv6` rules | The IPv6 UDP destination port that the rule matches. This option applies only to `ipv6` rules. |
+| `action drop` | Yes | Counts and drops the matching packets. `drop` is the only supported action. |
+
+Cumulus Linux rejects a rule that is incomplete or that mixes match options across packet types. You must set `match packet-type`, `match no-route`, and `action drop` on every rule, `match udp-dport` on every `ipv6` rule, and you cannot set `match dscp` on an `ipv6` rule or `match udp-dport` on an `spxm` rule. You can create only one `spxm` rule on the switch.
+
+<!-- REVIEW: Bibhash's 22 Oct email says action is mandatory on every rule and also says it defaults to drop. Drafted as required, matching the specification's CLI table. Confirm with the developer. Delete this comment before publishing. -->
+
+#### Configure a Control Plane Punt Classifier Rule
+
+To count and drop forwarded MRC traffic, create a rule with the packet type `spxm`. The following example creates rule 10, which matches MRC packets with a DSCP value of 26 or 34:
+
+```
+cumulus@switch:~$ nv set system control-plane punt-classifier 10 match packet-type spxm
+cumulus@switch:~$ nv set system control-plane punt-classifier 10 match no-route
+cumulus@switch:~$ nv set system control-plane punt-classifier 10 match dscp 26,34
+cumulus@switch:~$ nv set system control-plane punt-classifier 10 action drop
+cumulus@switch:~$ nv config apply
+```
+
+`match dscp` uses replace semantics. Each time you set it, the new list replaces the previous list for that rule ID. A rule ID keeps the same counter regardless of how many DSCP values you set.
+
+To count and drop forwarded plain IPv6 UDP traffic, create a rule with the packet type `ipv6` and specify the UDP destination port. Each `ipv6` rule matches one port and has its own counter, so create a separate rule for each port you want to track. The following example creates rule 20, which matches forwarded IPv6 UDP traffic destined for port 5555:
+
+```
+cumulus@switch:~$ nv set system control-plane punt-classifier 20 match packet-type ipv6
+cumulus@switch:~$ nv set system control-plane punt-classifier 20 match no-route
+cumulus@switch:~$ nv set system control-plane punt-classifier 20 match udp-dport 5555
+cumulus@switch:~$ nv set system control-plane punt-classifier 20 action drop
+cumulus@switch:~$ nv config apply
+```
+
+To delete a rule, run the `nv unset system control-plane punt-classifier <rule-id>` command:
+
+```
+cumulus@switch:~$ nv unset system control-plane punt-classifier 10
+cumulus@switch:~$ nv config apply
+```
+
+#### Show Control Plane Punt Classifier Counters
+
+<!-- REVIEW: the three sample outputs in this section are adapted from mock output in the
+     specification, not captured on hardware. Capture them on a switch and replace them.
+     Delete this comment before publishing. -->
+
+To show all punt classifier rules and their drop counters, run the `nv show system control-plane punt-classifier` command:
+
+```
+cumulus@switch:~$ nv show system control-plane punt-classifier
+rule-id  packet-type  match                   dropped-packets  dropped-bytes
+-------  -----------  ----------------------  ---------------  -------------
+10       spxm         no-route dscp 26,34     1053420          164733120
+20       ipv6         no-route udp-dport 5555 22110            3316500
+```
+
+To show the configuration and counters for a specific rule, run the `nv show system control-plane punt-classifier <rule-id>` command:
+
+```
+cumulus@switch:~$ nv show system control-plane punt-classifier 10
+packet-type      spxm
+no-route         yes
+dscp             26,34
+action           drop
+dropped-packets  1053420
+dropped-bytes    164733120
+last-clear-time  2026-07-10 06:15:02
+```
+
+To show only the counters for a specific rule, run the `nv show system control-plane punt-classifier <rule-id> counters` command:
+
+```
+cumulus@switch:~$ nv show system control-plane punt-classifier 10 counters
+dropped-packets  1053420
+dropped-bytes    164733120
+last-clear-time  2026-07-10 06:15:02
+```
+
+To show only the match configuration for a rule, run the `nv show system control-plane punt-classifier <rule-id> match` command.
+
+To export the drop counters with OpenTelemetry, refer to {{<link url="Open-Telemetry-Export/#control-plane-statistics" text="Control Plane Statistics">}}.
+
+#### Clear Control Plane Punt Classifier Counters
+
+<!-- REVIEW: the specification says raw values are available "via --view=hardware" with no example output. The 5.19 command list shows a `counters hardware` path under the rule instead, so this section uses the path form. Confirm the exact syntax and its output against a candidate build. The command list also shows an all-rules form of the clear action, which neither the specification nor Bibhash's email describes; drafted from the command list. Delete this comment before publishing. -->
+
+{{%notice note%}}
+The switch clears the software (NVUE) counters only. The hardware counters, which gNMI and OpenTelemetry export, stay intact, so `nv show` can show 0 while telemetry reports a non-zero lifetime total. To show the raw, uncleared hardware counters for a rule, run the `nv show system control-plane punt-classifier <rule-id> counters hardware` command.
+{{%/notice%}}
+
+To clear the drop counters for a rule, run the `nv action clear system control-plane punt-classifier <rule-id> counters` command:
+
+<!-- TODO: capture the `nv action clear system control-plane punt-classifier <rule-id> counters` command output on a switch and add it to the code block below. -->
+
+```
+cumulus@switch:~$ nv action clear system control-plane punt-classifier 10 counters
+```
+
+To clear the counters for all rules, run the `nv action clear system control-plane punt-classifier counters` command.
 
 ### Set DSCP on Transit Traffic
 
@@ -1337,7 +1478,7 @@ Cumulus Linux supports ACL matches based on inner packet headers inside encapsul
 - You cannot match on both inner and outer packet headers in the same ACL.
 - You cannot combine a VLAN match with inner packet matches.
 - Inner packet matches support hardware forwarded packets only.
-- You can configure matches on inner packet headers with NVUE commmands only. 
+- You can configure matches on inner packet headers with NVUE commands only. 
 {{%/notice%}}
 
 You can use the following inner packet matching options:
@@ -1397,7 +1538,7 @@ Cumulus Linux supports ACL rule matches based on the packet offset.
 - You can configure offset matches only for ACL type ipv4 and ipv6.
 - The Spectrum1 switch does not support matches based on the packet offset.
 - Matches based on the packet offset support hardware forwarded packets only.
-- You can configure matches based on the packet offset with NVUE commmands only. 
+- You can configure matches based on the packet offset with NVUE commands only. 
 {{%/notice%}}
 
 You can use the following packet offset matching options:

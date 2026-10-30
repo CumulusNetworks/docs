@@ -26,9 +26,9 @@ Before you set profile-based configuration, NVIDIA recommends you back up the cu
 
 To set profile‑based configuration on the switch:
 - Specify the role of the switch: `leaf`, `spine-2` (two-tier spine), `spine-3` (three-tier spine), or `super-spine`.
-- Specify the upinks and, or, downlinks. For the direction rules, refer to the table below. The breakout is required. With breakout 4x, parent ports swp1 through swp32 split into sub-interfaces swp1s0 through swp32s3 (128 ports). Breakout 1x keeps ports as-is (swp33 through swp64). All subsequent per-interface commands target the split ports.
+- Specify the uplinks and, or, downlinks. For the direction rules, refer to the table below. The breakout is required. With breakout 4x, parent ports swp1 through swp32 split into sub-interfaces swp1s0 through swp32s3 (128 ports). Breakout 1x keeps ports as-is (swp33 through swp64). All subsequent per-interface commands target the split ports.
 - Optional: For telemetry, set the OTLP export destination.
-- Activate the profile. Make sure to activate the profile **after** you set the upinks and and downlinks. Activating the profile applies the AR, resource, telemetry, and QoS configuration.
+- Activate the profile. Make sure to activate the profile **after** you set the uplinks and downlinks. Activating the profile applies the AR, resource, telemetry, and QoS configuration.
 
 | Role | Direction rules | Notes |
 | ---- | --------------- | ----- |

@@ -1350,7 +1350,7 @@ SN4600 64xQSFP56 (200GbE) interfaces support both PAM4 and NRZ encodings with al
 
 For lower speeds, PAM4 is automatically converted to NRZ encoding.
 
-Only 32xQSFP56 ports can break out into 4xSFP56 (4x50GbE). But, in this case, the adjacent QSFP56 port are blocked (only the first and third or second and fourth rows can break out into 4xSFP56).
+Only 32xQSFP56 ports can break out into 4xSFP56 (4x50GbE). But, in this case, the breakout blocks the adjacent QSFP56 port (only the first and third or second and fourth rows can break out into 4xSFP56).
 
 All 64xQSFP56 ports can break out into 2xQSFP56 (2x100GbE) without blocking ports.
 
@@ -1694,43 +1694,44 @@ Maximum 800G ports: 64
 {{< /tabs >}}
 {{< tab "SN6600_LD">}}
 
-800G (800G_4x): 128 ports
+SN6600_LD 128xOSFP (800GbE) interfaces support PAM4 with all speeds down to 100G.
 
-SN6600_LD 128xOSFP (800GbE) interfaces support both PAM4 and NRZ encodings with all speeds down to 100G.
-
-For lower speeds, PAM4 is automatically converted to NRZ encoding.
-
-Bonus ports #65s0 and #65s1 support 100G.
+Bonus port supports 100G.
 
 {{< tabs "SN6600_ports ">}}
 {{< tab "100G ">}}
 
-514x 100G - 514x OSFP break out into 1x - You must disable the adjacent OSFP port.
+514x 100G:
 
-Maximum 100G ports: 514 (512 ports + 2 bonus ports)
+- 64 OSFP data ports break out into 8x 
+- 1 QSFP112 bonus port break out 2x (default mode)
+
+Maximum 100G ports: 514
 
 {{< /tab >}}
 {{< tab "200G ">}}
 
-- 512x 200G - 512x OSFP break out into 1x
-- 256x 200G - 256x OSFP break out into 2x
+512 x 200G: 64 OSFP data ports break out into 8x
 
 Maximum 200G ports: 512
 
 {{< /tab >}}
 {{< tab "400G ">}}
 
-- 128x 400G - 128x OSFP break out into 4x
-- 256x 400G - 256x OSFP break out into 2x
+256 x 400G: 64 x OSFP data ports break out into 4x
 
 Maximum 400G ports: 256
 
 {{< /tab >}}
 {{< tab "800G ">}}
 
-128x 800G - 128x OSFP break out into 4x
+128 x 800G: 64 OSFP data ports break out into 2x (default mode - out of the box)
 
 Maximum 800G ports: 128
+
+{{%notice note%}}
+Cumulus 5.18 does not support 1x break out at 800G. Interfaces are 2x split by default.
+{{%/notice%}}
 
 {{< /tab >}}
 {{< /tab >}}
@@ -1754,7 +1755,7 @@ You can break out (split) a port using the following options:
 - `4x` splits the port into four interfaces.
 - `8x` splits the port into eight interfaces.
 
-If you split a 100G port into four interfaces and auto-negotiation is enabled (the default setting), Cumulus Linux advertises the speed for each interface up to the maximum speed possible for a 100G port (100/4=25G). You can overide this configuration and set specific speeds for the split ports if necessary.
+If you split a 100G port into four interfaces and auto-negotiation is enabled (the default setting), Cumulus Linux advertises the speed for each interface up to the maximum speed possible for a 100G port (100/4=25G). You can override this configuration and set specific speeds for the split ports if necessary.
 
 {{%notice warning%}}
 - Cumulus Linux 5.4 and later uses a new format for port splitting; instead of 1=100G or 1=4x10G, you specify 1=1x or 1=4x. The new format does not support specifying a speed for breakout ports in the `/etc/cumulus/ports.conf` file. To set a speed, either set the `link-speed` parameter for each split port in the `/etc/network/interfaces` file or run the NVUE `nv set interface <interface-id> link speed <speed>` command.

@@ -340,7 +340,7 @@ ecmp_hash_seed = 50
 Run the `cl-ecmpcalc` command to determine a hardware hash result. For example, you can see which path a flow takes through a network. You must provide all fields in the hash, including the ingress interface, layer 3 source IP, layer 3 destination IP, layer 4 source port, and layer 4 destination port.
 
 {{%notice note%}}
-`cl-ecmpcalc` only supports input interfaces that convert to a single physical port in the port tab file, such as the physical switch ports (swp). You can not specify virtual interfaces like bridges, bonds, or subinterfaces.
+`cl-ecmpcalc` only supports input interfaces that convert to a single physical port in the port tab file, such as the physical switch ports (swp). You cannot specify virtual interfaces like bridges, bonds, or subinterfaces.
 {{%/notice%}}
 
 ```
@@ -528,7 +528,7 @@ Cumulus Linux supports adaptive routing with:
 - VXLAN-encapsulated RoCE traffic.
 - Layer 3 interfaces.
 - Next hop router interfaces in the default VRF.
-- The NVIDIA Spectrum-X networking platform, which accelerates AI network performance. For information about NVIDIA Spectrum-X, refer to {{<exlink url="https://www.nvidia.com/en-in/networking/spectrumx/" text="NVIDIA Spectum-X networking platform" >}}.
+- The NVIDIA Spectrum-X networking platform, which accelerates AI network performance. For information about NVIDIA Spectrum-X, refer to {{<exlink url="https://www.nvidia.com/en-in/networking/spectrumx/" text="NVIDIA Spectrum-X networking platform" >}}.
 
 {{%notice note%}}
 - Adaptive routing does not make use of resilient hashing.
@@ -592,7 +592,7 @@ Reload `switchd` with the `sudo systemctl reload switchd.service` command.
 
 {{%notice note%}}
 - When you enable adaptive routing, Cumulus Linux uses the default profile settings for your switch ASIC type. If you need to make adjustments to the settings, contact NVIDIA Customer Support.
-- Ensure that traffic intended for adaptive routing is routed over ports with adaptive routing enabled. Unexpected route hashing might occur when mixing adaptive routing traffic and regular ECMP routes egressing ports that do not have adaptive routing enabled.
+- Ensure that traffic intended for adaptive routing uses ports with adaptive routing enabled. Unexpected route hashing might occur when mixing adaptive routing traffic and regular ECMP routes egressing ports that do not have adaptive routing enabled.
 {{%/notice%}}
 
 ### Link Utilization

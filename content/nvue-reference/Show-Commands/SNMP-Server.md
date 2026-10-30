@@ -1,7 +1,7 @@
 ---
 title: SNMP Server
 author: Cumulus Networks
-weight: 360
+weight: 550
 type: nojsscroll
 ---
 <style>
@@ -98,347 +98,6 @@ cumulus@switch:~$ nv show system snmp-server listening-address localhost
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system snmp-server username</h>
-
-Shows the SNMP server username configured on the switch.
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system snmp-server username
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system snmp-server username \<username-id\></h>
-
-Shows information about the specified SNMP server username.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<username-id>` | The username for authentication.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system snmp-server username testusernoauth
-           applied          
-----------  -----------------
-[auth-md5]  myauthmd5password
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system snmp-server username \<username-id\> auth-none</h>
-
-Shows information about the specified SNMP server username with no authentication password.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<username-id>` | The username for authentication.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system snmp-server username testusernoauth auth-none
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system snmp-server username \<username-id\> auth-md5</h>
-
-Shows information about the specified SNMP server username with an MD5 password.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<username-id>` | The username for authentication.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system snmp-server username testuserauth auth-md5
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system snmp-server username \<username-id\> auth-md5 \<auth-id\></h>
-
-Shows information about the specified SNMP server username and MD5 password.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<username-id>` | The username for authentication.|
-| `<auth-id>` | The MD5 password.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show nv show system snmp-server username testuserauth auth-md5 myauthmd5password
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system snmp-server username \<username-id\> auth-md5 \<auth-id\> encrypt-des</h>
-
-Shows information about the specified SNMP server username and MD5 password that also includes an AES or DES encryption password to encrypt the contents of the request and response packets.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<username-id>` | The username for authentication.|
-| `<auth-id>` | The MD5 password.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system snmp-server username testuserauth auth-md5 myauthmd5password encrypt-des
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system snmp-server username \<username-id\> auth-md5 \<auth-id\> encrypt-des \<encrypt-id\></h>
-
-Shows information about the specified SNMP server username and MD5 password and the AES or DES encryption password.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<username-id>` | The username for authentication.|
-| `<auth-id>` | The MD5 password.|
-| `<encrypt-id>` | The DES encryption password.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system snmp-server username testuserauth auth-md5 myauthmd5password encrypt-des myencryptsecret
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system snmp-server username \<username-id\> auth-md5 \<auth-id\> encrypt-aes</h>
-
-Shows information about the specified SNMP server username and MD5 password that also includes an AES encryption password to encrypt the contents of the request and response packets.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<username-id>` | The username for authentication.|
-| `<auth-id>` | The MD5 password.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system snmp-server username testuserauth auth-md5 myauthmd5password encrypt-aes
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system snmp-server username \<username-id\> auth-md5 \<auth-id\> encrypt-aes \<encrypt-id\></h>
-
-Shows information about the specified SNMP server username and MD5 password and the AES encryption password.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<username-id>` | The username for authentication.|
-| `<auth-id>` | The MD5 password.|
-| `<encrypt-id>` | The AES encryption password.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system snmp-server username testuserauth auth-md5 myauthmd5password encrypt-aes myencryptsecret
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system snmp-server username \<username-id\> auth-sha</h>
-
-Shows information about the specified SNMP server username with an SHA authentication password.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<username-id>` | The username for authentication.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system snmp-server username limiteduser1 auth-sha
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system snmp-server username \<username-id\> auth-sha \<auth-id\></h>
-
-Shows information about the specified SNMP server username and SHA authentication password.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<username-id>` | The username for authentication.|
-| `<auth-id>` | The SHA authentication password.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system snmp-server username limiteduser1 auth-sha SHApassword1
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system snmp-server username \<username-id\> auth-sha \<auth-id\> encrypt-des</h>
-
-Shows information about the specified SNMP server username and SHA authentication password that also includes an AES or DES encryption password to encrypt the contents of the request and response packets.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<username-id>` | The username for authentication.|
-| `<auth-id>` | The SHA authentication password.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system snmp-server username limiteduser1 auth-sha SHApassword1 encrypt-des
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system snmp-server username \<username-id\> auth-sha \<auth-id\> encrypt-des \<encrypt-id\></h>
-
-Shows information about the SNMP server username with the SHA authentication password and AES or DES encryption password.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<username-id>` | The username for authentication.|
-| `<auth-id>` | The SHA authentication password.|
-| `<encrypt-id>` | The AES or DES encryption password.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system snmp-server username limiteduser1 auth-sha SHApassword1 encrypt-des myencryptsecret
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system snmp-server username \<username-id\> auth-sha \<auth-id\> encrypt-aes</h>
-
-Shows information about the specified SNMP server username and SHA authentication password that also includes an AES encryption password to encrypt the contents of the request and response packets.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<username-id>` | The username for authentication.|
-| `<auth-id>` | The SHA authentication password.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system snmp-server username limiteduser1 auth-sha SHApassword1 encrypt-aes
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system snmp-server username \<username-id\> auth-sha \<auth-id\> encrypt-aes \<encrypt-id\></h>
-
-Shows information about the SNMP server username with the SHA authentication password and AES encryption password.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<username-id>` | The username for authentication.|
-| `<auth-id>` | The SHA authentication password.|
-| `<encrypt-id>` | The AES encryption password.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system snmp-server username limiteduser1 auth-sha SHApassword1 encrypt-aes myencryptsecret
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv show system snmp-server mibs</h>
 
 Shows the SNMP MIBS.
@@ -451,44 +110,6 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv show system snmp-server mibs
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system snmp-server viewname</h>
-
-Shows the configured SNMP server view names. SNMP views are groups of MIB objects that you can associate with user accounts to allow limited access to view and modify SNMP statistics and system configuration.
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system snmp-server viewname
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system snmp-server viewname \<viewname-id\></h>
-
-Shows information about the specified SNMP server view name.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-|`<viewname-id` | The SNMP server view name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system snmp-server viewname cumulusOnly
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -655,57 +276,6 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv show system snmp-server readonly-community-v6 showitall access 2001:db8::1/128
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system snmp-server trap-link-down</h>
-
-Shows the SNMP traps for the interface link down status.
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system snmp-server trap-link-down
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system snmp-server trap-link-up</h>
-
-Shows SNMP traps for the interface link up status.
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system snmp-server trap-link-up
-                 applied
----------------  -------
-check-frequency  15
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system snmp-server trap-snmp-auth-failures</h>
-
-Shows SNMP traps for SNMP authentication failures.
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system snmp-server trap-snmp-auth-failures
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -939,6 +509,444 @@ cumulus@switch:~$ nv show system snmp-server trap-destination localhost communit
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show system snmp-server trap-destination \<trap-destination-id\> username</h>
+
+Shows the list of usernames for the SNMP trap destination.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system snmp-server trap-destination localhost username
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system snmp-server trap-destination \<trap-destination-id\> username \<username-id\></h>
+
+Shows information about the specified username for the SNMP trap destination.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
+|`<username-id>` | The username. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system snmp-server trap-destination localhost username user1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5</h>
+
+Shows the MD5 password for the specified username for the SNMP trap destination.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
+|`<username-id>` | The username. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system snmp-server trap-destination localhost username user1 auth-md5
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5 \<auth-id\></h>
+
+Shows information about the specified username and MD5 password for the SNMP trap destination.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
+|`<username-id>` | The username. |
+|`<auth-id>` | The MD5 password. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system snmp-server trap-destination localhost username user1 auth-md5 user1password
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5 \<auth-id\> encrypt-des</h>
+
+Shows the DES encryption for MD5 authentication for the SNMP trap destination username and MD5 password.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
+|`<username-id>` | The username. |
+|`<auth-id>` | The MD5 password. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system snmp-server trap-destination localhost username user3 auth-md5 user3password encrypt-des
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5 \<auth-id\> encrypt-des \<encrypt-id\></h>
+
+Shows information about the DES encryption for MD5 authentication for the SNMP trap destination username and MD5 password.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
+|`<username-id>` | The username. |
+|`<auth-id>` | The MD5 password. |
+|`<encrypt-id>` | The DES encryption ID for MD5 authentication. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system snmp-server trap-destination localhost username user3 auth-md5 user3password encrypt-des user3encryption
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5 \<auth-id\> encrypt-des \<encrypt-id\> engine-id</h>
+
+Shows the engine ID for DES encryption for MD5 authentication for the SNMP trap destination username and MD5 password.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
+|`<username-id>` | The username. |
+|`<auth-id>` | The MD5 password. |
+|`<encrypt-id>` | The DES encryption ID for MD5 authentication. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system snmp-server trap-destination localhost username user3 auth-md5 user3password encrypt-des user3encryption engine-id
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5 \<auth-id\> encrypt-des \<encrypt-id\> engine-id \<engine-id\></h>
+
+Shows information about the engine ID for DES encryption for MD5 authentication for the SNMP trap destination username and MD5 password.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
+|`<username-id>` | The username. |
+|`<auth-id>` | The MD5 password. |
+|`<encrypt-id>` | The DES encryption ID for MD5 authentication. |
+|`<engine-id>` | The engine ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system snmp-server trap-destination localhost username user3 auth-md5 user3password encrypt-des user3encryption engine-id 0x80001f888070939b14a514da5a00000000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5 \<auth-id\> engine-id</h>
+
+Shows the engine ID for the SNMP trap destination username and MD5 password.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
+|`<username-id>` | The username. |
+|`<auth-id>` | The MD5 password. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system snmp-server trap-destination localhost username user1 auth-md5 user1password engine-id
+
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5 \<auth-id\> engine-id \<engine-id\></h>
+
+Shows information for the engine ID for MD5 authentication for the SNMP trap destination username and MD5 password.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
+|`<username-id>` | The username. |
+|`<auth-id>` | The MD5 password. |
+|`<engine-id>` | The engine ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system snmp-server trap-destination localhost username user1 auth-md5 user1password engine-id 0x80001f888070939b14a514da5a00000000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha</h>
+
+Shows the SHA authentications for the user specified for the SNMP trap destination.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
+|`<username-id>` | The username. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system snmp-server trap-destination localhost username limiteduser1 auth-sha
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha \<auth-id\></h>
+
+Shows information about the specified SHA authentication for the user specified for the SNMP trap destination.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
+|`<username-id>` | The username. |
+|`<auth-id>` | The SHA password. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system snmp-server trap-destination localhost username limiteduser1 auth-sha SHApassword1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha \<auth-id\> encrypt-des</h>
+
+Shows the DES encryptions for the SNMP trap destination username and SHA password.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
+|`<username-id>` | The username. |
+|`<auth-id>` | The SHA password. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system snmp-server trap-destination localhost username user666 auth-sha user666password encrypt-aes
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha \<auth-id\> encrypt-des \<encrypt-id\></h>
+
+Shows information about the DES encryptions for the SNMP trap destination username and SHA password.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
+|`<username-id>` | The username. |
+|`<auth-id>` | The SHA password. |
+|`<encrypt-id>` | The DES encryption ID for SHA authentication. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system snmp-server trap-destination localhost username user666 auth-sha user666password encrypt-aes user666encryption
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha \<auth-id\> encrypt-des \<encrypt-id\> engine-id</h>
+
+Shows the engine IDs for the DES encryptions for the SNMP trap destination username and SHA password.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
+|`<username-id>` | The username. |
+|`<auth-id>` | The SHA password. |
+|`<encrypt-id>` | The DES encryption ID for SHA authentication. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system snmp-server trap-destination localhost username user666 auth-sha user666password encrypt-aes user666encryption engine-id
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha \<auth-id\> encrypt-des \<encrypt-id\> engine-id \<engine-id\></h>
+
+Shows information about the engine ID for the DES encryptions for the SNMP trap destination username and SHA password.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
+|`<username-id>` | The username. |
+|`<auth-id>` | The SHA password. |
+|`<encrypt-id>` | The DES encryption ID for SHA authentication. |
+|`<engine-id>` | The engine ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system snmp-server trap-destination localhost username user666 auth-sha user666password encrypt-aes user666encryption engine-id 0x80001f888070939b14a514da5a00000000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha \<auth-id\> engine-id</h>
+
+Shows the engine IDs for the SNMP trap destination username and SHA password.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
+|`<username-id>` | The username. |
+|`<auth-id>` | The SHA password. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system snmp-server trap-destination localhost username limiteduser1 auth-sha SHApassword1 engine-id
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha \<auth-id\> engine-id \<engine-id\></h>
+
+Shows information about the engine ID for the SNMP trap destination username and SHA password.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
+|`<username-id>` | The username. |
+|`<auth-id>` | The SHA password. |
+|`<engine-id>` | The engine ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system snmp-server trap-destination localhost username limiteduser1 auth-sha SHApassword1 engine-id 0x80001f888070939b14a514da5a00000000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show system snmp-server trap-destination \<trap-destination-id\> vrf</h>
 
 Shows the SNMP server trap destinations configured for all VRFs.
@@ -1127,57 +1135,6 @@ cumulus@switch:~$ nv show system snmp-server trap-destination localhost vrf BLUE
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-md5 \<auth-id\> engine-id</h>
-
-Shows the engine IDs for the SNMP trap destination username and password for the specified VRF.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-|`<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
-|`<vrf-name>` | The VRF name. |
-|`<username-id>` | The username. |
-|`<auth-id>` | The MD5 password. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system snmp-server trap-destination localhost vrf BLUE username myv3user auth-md5 md5password2 engine-id
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-md5 \<auth-id\> engine-id \<engine-id\></h>
-
-Shows information for the specified engine ID associated with the SNMP trap destination username and MD5 password for the specified VRF.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-|`<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
-|`<vrf-name>` | The VRF name. |
-|`<username-id>` | The username. |
-|`<auth-id>` | The MD5 password. |
-|`<engine-id>` | The engine ID. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system snmp-server trap-destination localhost vrf BLUE username myv3user auth-md5 md5password2 engine-id 0x80001f888070939b14a514da5a00000000
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv show system snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-md5 \<auth-id\> encrypt-des</h>
 
 Shows the DES encryptions for MD5 authentication for the SNMP trap destination username and MD5 password.
@@ -1283,6 +1240,57 @@ cumulus@switch:~$ nv show system snmp-server trap-destination localhost vrf BLUE
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show system snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-md5 \<auth-id\> engine-id</h>
+
+Shows the engine IDs for the SNMP trap destination username and password for the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+|`<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
+|`<vrf-name>` | The VRF name. |
+|`<username-id>` | The username. |
+|`<auth-id>` | The MD5 password. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system snmp-server trap-destination localhost vrf BLUE username myv3user auth-md5 md5password2 engine-id
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-md5 \<auth-id\> engine-id \<engine-id\></h>
+
+Shows information for the specified engine ID associated with the SNMP trap destination username and MD5 password for the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+|`<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
+|`<vrf-name>` | The VRF name. |
+|`<username-id>` | The username. |
+|`<auth-id>` | The MD5 password. |
+|`<engine-id>` | The engine ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system snmp-server trap-destination localhost vrf BLUE username myv3user auth-md5 md5password2 engine-id 0x80001f888070939b14a514da5a00000000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show system snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-sha</h>
 
 Shows the SHA authentications for the user specified for the SNMP trap destination.
@@ -1328,57 +1336,6 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv show system snmp-server trap-destination localhost vrf BLUE username myv3user auth-sha SHApassword1
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-sha \<auth-id\> engine-id</h>
-
-Shows the engine IDs for the SNMP trap destination username and SHA password.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
-|`<vrf-name>` | The VRF name. |
-|`<username-id>` | The username. |
-|`<auth-id>` | The SHA authentication password. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system snmp-server trap-destination localhost vrf BLUE username myv3user auth-sha SHApassword1 engine-id
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-sha \<auth-id\> engine-id \<engine-id\></h>
-
-Shows information about the engine ID for the SNMP trap destination username and SHA password.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
-|`<vrf-name>` | The VRF name. |
-|`<username-id>` | The username. |
-|`<auth-id>` | The SHA authentication password. |
-|`<engine-id>` | The engine ID. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system snmp-server trap-destination localhost vrf BLUE username myv3user auth-sha SHApassword1 engine-id 0x80001f888070939b14a514da5a00000000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1487,296 +1444,7 @@ cumulus@switch:~$ nv show system snmp-server trap-destination localhost vrf BLUE
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system snmp-server trap-destination \<trap-destination-id\> username</h>
-
-Shows the list of usernames for the SNMP trap destination.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system snmp-server trap-destination localhost username
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system snmp-server trap-destination \<trap-destination-id\> username \<username-id\></h>
-
-Shows information about the specified username for the SNMP trap destination.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
-|`<username-id>` | The username. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system snmp-server trap-destination localhost username user1
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5</h>
-
-Shows the MD5 password for the specified username for the SNMP trap destination.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
-|`<username-id>` | The username. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system snmp-server trap-destination localhost username user1 auth-md5
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5 \<auth-id\></h>
-
-Shows information about the specified username and MD5 password for the SNMP trap destination.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
-|`<username-id>` | The username. |
-|`<auth-id>` | The MD5 password. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system snmp-server trap-destination localhost username user1 auth-md5 user1password
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5 \<auth-id\> engine-id</h>
-
-Shows the engine ID for the SNMP trap destination username and MD5 password.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
-|`<username-id>` | The username. |
-|`<auth-id>` | The MD5 password. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system snmp-server trap-destination localhost username user1 auth-md5 user1password engine-id
-
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5 \<auth-id\> engine-id \<engine-id\></h>
-
-Shows information for the engine ID for MD5 authentication for the SNMP trap destination username and MD5 password.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
-|`<username-id>` | The username. |
-|`<auth-id>` | The MD5 password. |
-|`<engine-id>` | The engine ID. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system snmp-server trap-destination localhost username user1 auth-md5 user1password engine-id 0x80001f888070939b14a514da5a00000000
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5 \<auth-id\> encrypt-des</h>
-
-Shows the DES encryption for MD5 authentication for the SNMP trap destination username and MD5 password.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
-|`<username-id>` | The username. |
-|`<auth-id>` | The MD5 password. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system snmp-server trap-destination localhost username user3 auth-md5 user3password encrypt-des
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5 \<auth-id\> encrypt-des \<encrypt-id\></h>
-
-Shows information about the DES encryption for MD5 authentication for the SNMP trap destination username and MD5 password.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
-|`<username-id>` | The username. |
-|`<auth-id>` | The MD5 password. |
-|`<encrypt-id>` | The DES encryption ID for MD5 authentication. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system snmp-server trap-destination localhost username user3 auth-md5 user3password encrypt-des user3encryption
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5 \<auth-id\> encrypt-des \<encrypt-id\> engine-id</h>
-
-Shows the engine ID for DES encryption for MD5 authentication for the SNMP trap destination username and MD5 password.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
-|`<username-id>` | The username. |
-|`<auth-id>` | The MD5 password. |
-|`<encrypt-id>` | The DES encryption ID for MD5 authentication. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system snmp-server trap-destination localhost username user3 auth-md5 user3password encrypt-des user3encryption engine-id
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5 \<auth-id\> encrypt-des \<encrypt-id\> engine-id \<engine-id\></h>
-
-Shows information about the engine ID for DES encryption for MD5 authentication for the SNMP trap destination username and MD5 password.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
-|`<username-id>` | The username. |
-|`<auth-id>` | The MD5 password. |
-|`<encrypt-id>` | The DES encryption ID for MD5 authentication. |
-|`<engine-id>` | The engine ID. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system snmp-server trap-destination localhost username user3 auth-md5 user3password encrypt-des user3encryption engine-id 0x80001f888070939b14a514da5a00000000
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha</h>
-
-Shows the SHA authentications for the user specified for the SNMP trap destination.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
-|`<username-id>` | The username. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system snmp-server trap-destination localhost username limiteduser1 auth-sha
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha \<auth-id\></h>
-
-Shows information about the specified SHA authentication for the user specified for the SNMP trap destination.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
-|`<username-id>` | The username. |
-|`<auth-id>` | The SHA password. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system snmp-server trap-destination localhost username limiteduser1 auth-sha SHApassword1
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha \<auth-id\> engine-id</h>
+## <h>nv show system snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-sha \<auth-id\> engine-id</h>
 
 Shows the engine IDs for the SNMP trap destination username and SHA password.
 
@@ -1785,8 +1453,9 @@ Shows the engine IDs for the SNMP trap destination username and SHA password.
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
+|`<vrf-name>` | The VRF name. |
 |`<username-id>` | The username. |
-|`<auth-id>` | The SHA password. |
+|`<auth-id>` | The SHA authentication password. |
 
 ### Version History
 
@@ -1795,12 +1464,12 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show system snmp-server trap-destination localhost username limiteduser1 auth-sha SHApassword1 engine-id
+cumulus@switch:~$ nv show system snmp-server trap-destination localhost vrf BLUE username myv3user auth-sha SHApassword1 engine-id
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha \<auth-id\> engine-id \<engine-id\></h>
+## <h>nv show system snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-sha \<auth-id\> engine-id \<engine-id\></h>
 
 Shows information about the engine ID for the SNMP trap destination username and SHA password.
 
@@ -1809,8 +1478,9 @@ Shows information about the engine ID for the SNMP trap destination username and
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
+|`<vrf-name>` | The VRF name. |
 |`<username-id>` | The username. |
-|`<auth-id>` | The SHA password. |
+|`<auth-id>` | The SHA authentication password. |
 |`<engine-id>` | The engine ID. |
 
 ### Version History
@@ -1820,22 +1490,14 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show system snmp-server trap-destination localhost username limiteduser1 auth-sha SHApassword1 engine-id 0x80001f888070939b14a514da5a00000000
+cumulus@switch:~$ nv show system snmp-server trap-destination localhost vrf BLUE username myv3user auth-sha SHApassword1 engine-id 0x80001f888070939b14a514da5a00000000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha \<auth-id\> encrypt-des</h>
+## <h>nv show system snmp-server trap-link-down</h>
 
-Shows the DES encryptions for the SNMP trap destination username and SHA password.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
-|`<username-id>` | The username. |
-|`<auth-id>` | The SHA password. |
+Shows the SNMP traps for the interface link down status.
 
 ### Version History
 
@@ -1844,23 +1506,14 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show system snmp-server trap-destination localhost username user666 auth-sha user666password encrypt-aes
+cumulus@switch:~$ nv show system snmp-server trap-link-down
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha \<auth-id\> encrypt-des \<encrypt-id\></h>
+## <h>nv show system snmp-server trap-link-up</h>
 
-Shows information about the DES encryptions for the SNMP trap destination username and SHA password.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
-|`<username-id>` | The username. |
-|`<auth-id>` | The SHA password. |
-|`<encrypt-id>` | The DES encryption ID for SHA authentication. |
+Shows SNMP traps for the interface link up status.
 
 ### Version History
 
@@ -1869,23 +1522,17 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show system snmp-server trap-destination localhost username user666 auth-sha user666password encrypt-aes user666encryption
+cumulus@switch:~$ nv show system snmp-server trap-link-up
+                 applied
+---------------  -------
+check-frequency  15
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha \<auth-id\> encrypt-des \<encrypt-id\> engine-id</h>
+## <h>nv show system snmp-server trap-snmp-auth-failures</h>
 
-Shows the engine IDs for the DES encryptions for the SNMP trap destination username and SHA password.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
-|`<username-id>` | The username. |
-|`<auth-id>` | The SHA password. |
-|`<encrypt-id>` | The DES encryption ID for SHA authentication. |
+Shows SNMP traps for SNMP authentication failures.
 
 ### Version History
 
@@ -1894,24 +1541,14 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show system snmp-server trap-destination localhost username user666 auth-sha user666password encrypt-aes user666encryption engine-id
+cumulus@switch:~$ nv show system snmp-server trap-snmp-auth-failures
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha \<auth-id\> encrypt-des \<encrypt-id\> engine-id \<engine-id\></h>
+## <h>nv show system snmp-server username</h>
 
-Shows information about the engine ID for the DES encryptions for the SNMP trap destination username and SHA password.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
-|`<username-id>` | The username. |
-|`<auth-id>` | The SHA password. |
-|`<encrypt-id>` | The DES encryption ID for SHA authentication. |
-|`<engine-id>` | The engine ID. |
+Shows the SNMP server username configured on the switch.
 
 ### Version History
 
@@ -1920,5 +1557,368 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show system snmp-server trap-destination localhost username user666 auth-sha user666password encrypt-aes user666encryption engine-id 0x80001f888070939b14a514da5a00000000
+cumulus@switch:~$ nv show system snmp-server username
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system snmp-server username \<username-id\></h>
+
+Shows information about the specified SNMP server username.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<username-id>` | The username for authentication.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system snmp-server username testusernoauth
+           applied          
+----------  -----------------
+[auth-md5]  myauthmd5password
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system snmp-server username \<username-id\> auth-md5</h>
+
+Shows information about the specified SNMP server username with an MD5 password.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<username-id>` | The username for authentication.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system snmp-server username testuserauth auth-md5
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system snmp-server username \<username-id\> auth-md5 \<auth-id\></h>
+
+Shows information about the specified SNMP server username and MD5 password.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<username-id>` | The username for authentication.|
+| `<auth-id>` | The MD5 password.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show nv show system snmp-server username testuserauth auth-md5 myauthmd5password
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system snmp-server username \<username-id\> auth-md5 \<auth-id\> encrypt-aes</h>
+
+Shows information about the specified SNMP server username and MD5 password that also includes an AES encryption password to encrypt the contents of the request and response packets.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<username-id>` | The username for authentication.|
+| `<auth-id>` | The MD5 password.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system snmp-server username testuserauth auth-md5 myauthmd5password encrypt-aes
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system snmp-server username \<username-id\> auth-md5 \<auth-id\> encrypt-aes \<encrypt-id\></h>
+
+Shows information about the specified SNMP server username and MD5 password and the AES encryption password.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<username-id>` | The username for authentication.|
+| `<auth-id>` | The MD5 password.|
+| `<encrypt-id>` | The AES encryption password.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system snmp-server username testuserauth auth-md5 myauthmd5password encrypt-aes myencryptsecret
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system snmp-server username \<username-id\> auth-md5 \<auth-id\> encrypt-des</h>
+
+Shows information about the specified SNMP server username and MD5 password that also includes an AES or DES encryption password to encrypt the contents of the request and response packets.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<username-id>` | The username for authentication.|
+| `<auth-id>` | The MD5 password.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system snmp-server username testuserauth auth-md5 myauthmd5password encrypt-des
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system snmp-server username \<username-id\> auth-md5 \<auth-id\> encrypt-des \<encrypt-id\></h>
+
+Shows information about the specified SNMP server username and MD5 password and the AES or DES encryption password.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<username-id>` | The username for authentication.|
+| `<auth-id>` | The MD5 password.|
+| `<encrypt-id>` | The DES encryption password.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system snmp-server username testuserauth auth-md5 myauthmd5password encrypt-des myencryptsecret
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system snmp-server username \<username-id\> auth-none</h>
+
+Shows information about the specified SNMP server username with no authentication password.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<username-id>` | The username for authentication.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system snmp-server username testusernoauth auth-none
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system snmp-server username \<username-id\> auth-sha</h>
+
+Shows information about the specified SNMP server username with an SHA authentication password.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<username-id>` | The username for authentication.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system snmp-server username limiteduser1 auth-sha
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system snmp-server username \<username-id\> auth-sha \<auth-id\></h>
+
+Shows information about the specified SNMP server username and SHA authentication password.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<username-id>` | The username for authentication.|
+| `<auth-id>` | The SHA authentication password.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system snmp-server username limiteduser1 auth-sha SHApassword1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system snmp-server username \<username-id\> auth-sha \<auth-id\> encrypt-aes</h>
+
+Shows information about the specified SNMP server username and SHA authentication password that also includes an AES encryption password to encrypt the contents of the request and response packets.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<username-id>` | The username for authentication.|
+| `<auth-id>` | The SHA authentication password.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system snmp-server username limiteduser1 auth-sha SHApassword1 encrypt-aes
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system snmp-server username \<username-id\> auth-sha \<auth-id\> encrypt-aes \<encrypt-id\></h>
+
+Shows information about the SNMP server username with the SHA authentication password and AES encryption password.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<username-id>` | The username for authentication.|
+| `<auth-id>` | The SHA authentication password.|
+| `<encrypt-id>` | The AES encryption password.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system snmp-server username limiteduser1 auth-sha SHApassword1 encrypt-aes myencryptsecret
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system snmp-server username \<username-id\> auth-sha \<auth-id\> encrypt-des</h>
+
+Shows information about the specified SNMP server username and SHA authentication password that also includes an AES or DES encryption password to encrypt the contents of the request and response packets.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<username-id>` | The username for authentication.|
+| `<auth-id>` | The SHA authentication password.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system snmp-server username limiteduser1 auth-sha SHApassword1 encrypt-des
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system snmp-server username \<username-id\> auth-sha \<auth-id\> encrypt-des \<encrypt-id\></h>
+
+Shows information about the SNMP server username with the SHA authentication password and AES or DES encryption password.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<username-id>` | The username for authentication.|
+| `<auth-id>` | The SHA authentication password.|
+| `<encrypt-id>` | The AES or DES encryption password.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system snmp-server username limiteduser1 auth-sha SHApassword1 encrypt-des myencryptsecret
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system snmp-server viewname</h>
+
+Shows the configured SNMP server view names. SNMP views are groups of MIB objects that you can associate with user accounts to allow limited access to view and modify SNMP statistics and system configuration.
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system snmp-server viewname
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system snmp-server viewname \<viewname-id\></h>
+
+Shows information about the specified SNMP server view name.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+|`<viewname-id` | The SNMP server view name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system snmp-server viewname cumulusOnly
 ```

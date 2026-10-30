@@ -1,7 +1,7 @@
 ---
 title: Router Policy
 author: Cumulus Networks
-weight: 350
+weight: 520
 
 type: nojsscroll
 ---
@@ -790,6 +790,98 @@ match
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show router policy route-map \<route-map-id\> rule \<rule-id\> action</h>
+
+Shows the route map rule action.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<route-map-id>` | The route map name. |
+| `<rule-id>` |  The rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show router policy route-map MYROUTEMAP rule 10 action
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show router policy route-map \<route-map-id\> rule \<rule-id\> action deny</h>
+
+Shows the deny action for the specified route map rule.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<route-map-id>` | The route map name. |
+| `<rule-id>` |  The rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show router policy route-map MYROUTEMAP rule 10 action deny
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show router policy route-map \<route-map-id\> rule \<rule-id\> action permit</h>
+
+Shows the permit action for the specified route map rule.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<route-map-id>` | The route map name. |
+| `<rule-id>` |  The rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show router policy route-map MYROUTEMAP rule 10 action permit
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show router policy route-map \<route-map-id\> rule \<rule-id\> action permit exit-policy</h>
+
+Shows the permit action exit policy for the specified route map rule.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<route-map-id>` | The route map name. |
+| `<rule-id>` |  The rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show router policy route-map MYROUTEMAP rule 10 action permit exit-policy
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show router policy route-map \<route-map-id\> rule \<rule-id\> match</h>
 
 Shows the specified route map rule match configuration.
@@ -838,6 +930,102 @@ cumulus@switch:~$ nv show router policy route-map MAP1 rule 10 set
         applied
 ------  -------
 metric  50
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show router policy route-map \<route-map-id\> rule \<rule-id\> set aggregator-as</h>
+
+Shows the set aggregator ASNs for the specified route map rule.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<route-map-id>` | The route map name. |
+| `<rule-id>` |  The rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show router policy route-map MYROUTEMAP rule 10 set aggregator-as
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show router policy route-map \<route-map-id\> rule \<rule-id\> set aggregator-as \<asn-id\></h>
+
+Shows the set configuration for a specific aggregator ASN for the specified route map rule.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<route-map-id>` | The route map name. |
+| `<rule-id>` |  The rule number. |
+| `<asn-id>` |   The autonomous number (ASN). |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show router policy route-map MYROUTEMAP rule 10 set aggregator-as 65101
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show router policy route-map \<route-map-id\> rule \<rule-id\> set aggregator-as \<asn-id\> address</h>
+
+Shows the set ASN IPv4 addresses for the specified route map rule.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<route-map-id>` | The route map name. |
+| `<rule-id>` |  The rule number. |
+| `<asn-id>` |   The autonomous number (ASN). |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show router policy route-map MYROUTEMAP rule 10 set aggregator-as 65101 address
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show router policy route-map \<route-map-id\> rule \<rule-id\> set aggregator-as \<asn-id\> address \<ipv4-address-id\></h>
+
+Shows the configuration for a specific ASN and IPv4 address for the specified route map rule.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<route-map-id>` | The route map name. |
+| `<rule-id>` |  The rule number. |
+| `<asn-id>` |   The autonomous number (ASN). |
+| `<ipv4-address-id>`  | The IPv4 address. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show router policy route-map MYROUTEMAP rule 10 set aggregator-as 65101 address 10.10.10.01
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -955,194 +1143,6 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show router policy route-map MYROUTEMAP rule 10 set large-community 2914:65400:38016
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show router policy route-map \<route-map-id\> rule \<rule-id\> set aggregator-as</h>
-
-Shows the set aggregator ASNs for the specified route map rule.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<route-map-id>` | The route map name. |
-| `<rule-id>` |  The rule number. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show router policy route-map MYROUTEMAP rule 10 set aggregator-as
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show router policy route-map \<route-map-id\> rule \<rule-id\> set aggregator-as \<asn-id\></h>
-
-Shows the set configuration for a specific aggregator ASN for the specified route map rule.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<route-map-id>` | The route map name. |
-| `<rule-id>` |  The rule number. |
-| `<asn-id>` |   The autonomous number (ASN). |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show router policy route-map MYROUTEMAP rule 10 set aggregator-as 65101
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show router policy route-map \<route-map-id\> rule \<rule-id\> set aggregator-as \<asn-id\> address</h>
-
-Shows the set ASN IPv4 addresses for the specified route map rule.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<route-map-id>` | The route map name. |
-| `<rule-id>` |  The rule number. |
-| `<asn-id>` |   The autonomous number (ASN). |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show router policy route-map MYROUTEMAP rule 10 set aggregator-as 65101 address
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show router policy route-map \<route-map-id\> rule \<rule-id\> set aggregator-as \<asn-id\> address \<ipv4-address-id\></h>
-
-Shows the configuration for a specific ASN and IPv4 address for the specified route map rule.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<route-map-id>` | The route map name. |
-| `<rule-id>` |  The rule number. |
-| `<asn-id>` |   The autonomous number (ASN). |
-| `<ipv4-address-id>`  | The IPv4 address. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show router policy route-map MYROUTEMAP rule 10 set aggregator-as 65101 address 10.10.10.01
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show router policy route-map \<route-map-id\> rule \<rule-id\> action</h>
-
-Shows the route map rule action.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<route-map-id>` | The route map name. |
-| `<rule-id>` |  The rule number. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show router policy route-map MYROUTEMAP rule 10 action
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show router policy route-map \<route-map-id\> rule \<rule-id\> action deny</h>
-
-Shows the deny action for the specified route map rule.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<route-map-id>` | The route map name. |
-| `<rule-id>` |  The rule number. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show router policy route-map MYROUTEMAP rule 10 action deny
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show router policy route-map \<route-map-id\> rule \<rule-id\> action permit</h>
-
-Shows the permit action for the specified route map rule.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<route-map-id>` | The route map name. |
-| `<rule-id>` |  The rule number. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show router policy route-map MYROUTEMAP rule 10 action permit
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show router policy route-map \<route-map-id\> rule \<rule-id\> action permit exit-policy</h>
-
-Shows the permit action exit policy for the specified route map rule.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<route-map-id>` | The route map name. |
-| `<rule-id>` |  The rule number. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show router policy route-map MYROUTEMAP rule 10 action permit exit-policy
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

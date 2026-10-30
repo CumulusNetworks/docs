@@ -25,7 +25,7 @@ When you enable open telemetry, the switch collects and exports [system informat
 
 ### ACL Statistics
 
-When you enable open telemetry for ACL statistics, the switch exports [ACL](#acl-statistic-format) interface metrics (such as packet and byte count) for all the interfaces on which ACLs are applied.
+When you enable open telemetry for ACL statistics, the switch exports [ACL](#acl-statistic-format) interface metrics (such as packet and byte count) for all the interfaces to which you apply ACLs.
 
 ```
 cumulus@switch:~$ nv set system telemetry acl-stats export state enabled 
@@ -139,6 +139,31 @@ To enable all egress IPv6 packets:
 cumulus@switch:~$ nv set system telemetry control-plane-stats egress ipv6 export state enabled
 ```
 
+To export the drop counters for the {{<link url="Access-Control-List-Configuration/#control-plane-punt-classifier" text="control plane punt classifier">}}, enable the `punt-classifier` class:
+
+```
+cumulus@switch:~$ nv set system telemetry control-plane-stats class punt-classifier state enabled
+cumulus@switch:~$ nv config apply
+```
+
+To set the sample interval, in seconds, for this class, run the `nv set system telemetry control-plane-stats class punt-classifier sample-interval` command. You can specify a value between 10 and 86400. The default value is 60.
+
+```
+cumulus@switch:~$ nv set system telemetry control-plane-stats class punt-classifier sample-interval 60
+cumulus@switch:~$ nv config apply
+```
+
+To export the punt classifier counters to a single destination when you export to more than one collector, enable the class in a statistics group instead of globally:
+
+```
+cumulus@switch:~$ nv set system telemetry stats-group PUNT-GROUP control-plane-stats class punt-classifier state enabled
+cumulus@switch:~$ nv set system telemetry stats-group PUNT-GROUP control-plane-stats class punt-classifier sample-interval 60
+cumulus@switch:~$ nv set system telemetry export otlp grpc destination 10.1.1.100 stats-group PUNT-GROUP
+cumulus@switch:~$ nv config apply
+```
+
+To show the punt classifier telemetry configuration, run the `nv show system telemetry control-plane-stats class punt-classifier` command. Clearing the counters with the `nv action clear system control-plane punt-classifier` command does not change the exported values.
+
 To show control plane statistics, run the `nv show system telemetry control-plane-stats` command.
 
 ```
@@ -240,14 +265,14 @@ cumulus@switch:~$ nv config apply
 To enable open telemetry for 802.1X operational counters:
 
 ```
-cumulus@switch:~$ nv set system telemetry dot1x-stats class supplicant-counters state enabled
+cumulus@switch:~$ nv set system telemetry dot1x-stats class supplicant-counters state enabled
 cumulus@switch:~$ nv config apply
 ```
 
 To enable open telemetry for informational 802.1X statistics:
 
 ```
-cumulus@switch:~$ nv set system telemetry dot1x-stats class dot1x-info state enabled 
+cumulus@switch:~$ nv set system telemetry dot1x-stats class dot1x-info state enabled 
 cumulus@switch:~$ nv config apply
 ```
 
@@ -261,15 +286,15 @@ cumulus@switch:~$ nv config apply
 To enable open telemetry for RADIUS server 802.1X statistics:
 
 ```
-cumulus@switch:~$ nv set system telemetry dot1x-stats class server-metrics state enabled 
+cumulus@switch:~$ nv set system telemetry dot1x-stats class server-metrics state enabled 
 cumulus@switch:~$ nv config apply
 ```
 
-To export RADIUS server 802.1X statistics, you must also enable the parent 802.1X statistics (`nv set system telemetry dot1x-stats export state enabled`) and 802.1X operational counters (`nv set system telemetry dot1x-stats class dot1x-info state enabled`).
+To export RADIUS server 802.1X statistics, you must also enable the parent 802.1X statistics (`nv set system telemetry dot1x-stats export state enabled`) and 802.1X operational counters (`nv set system telemetry dot1x-stats class dot1x-info state enabled`).
 
 ### Histogram Data
 
-When you enable open telemetry for histogram data, your buffer, counter, and latency {{<link url="ASIC-Monitoring#histogram-collection" text="histogram collection configuration">}} defines the data that the switch exports:
+When you enable open telemetry for histogram data, your buffer, counter, latency, and microburst {{<link url="ASIC-Monitoring#histogram-collection" text="histogram collection configuration">}} defines the data that the switch exports:
 
 ```
 cumulus@switch:~$ nv set system telemetry histogram export state enabled
@@ -390,7 +415,7 @@ cumulus@switch:~$ nv config apply
 
 ### Platform Statistics
 
-When you enable platform statistic open telemetry, the switch exports data about the CPU, disk, filesystem, memory, sensor health, and transceiver information. To enable all [platform statistics](#platform-statistic-format) globally:
+When you enable platform statistic open telemetry, the switch exports data about the CPU, disk, filesystem, memory, sensor health, transceiver information. To enable all [platform statistics](#platform-statistic-format) globally:
 
 ```
 cumulus@switch:~$ nv set system telemetry platform-stats export state enabled
@@ -398,6 +423,29 @@ cumulus@switch:~$ nv config apply
 ```
 
 If you do not want to enable all platform statistics, you can enable or disable individual platform telemetry components or adjust the sample interval for individual components. The default sample interval is 60 seconds.
+
+<!-- REVIEW: the Laser Source tab below, on the class name. The specification is self-contradictory.
+     Its ELS section names the class laser-source-info in its prose, its property table, and its show
+     commands. Its Transceiver section states that the transceiver CLI "remains unchanged"
+     (transceiver-info) but then lists a User commands block using a third name, cpo-info, which
+     appears nowhere else in the document. Resolved by section role: the ELS section is the one that
+     describes the component consuming the string, and it is internally consistent, so this draft
+     emits laser-source-info. Neither laser-source-info nor cpo-info appears in
+     content/nvue-reference/, which is expected for a new class. Confirm the class name against a
+     candidate build before publishing.
+
+     The same contradiction leaves it open which class exports the CPO module and optical engine
+     metrics. The specification files those under its Transceiver section, so the Transceivers tab
+     below now says the class covers CPO modules and optical engines on CPO hardware. If cpo-info
+     turns out to be a real third class rather than an editing artifact, that sentence moves into a
+     tab of its own and the metric tables in New-and-Updated-Telemetry-Metrics.md need the same
+     change. Delete this comment before publishing. -->
+
+<!-- REVIEW: the Laser Source tab below, on availability. The 5.19 demo material records partial metric
+     delivery for this release (22 of 30 CPO metrics, 6 of 16 optical engine metrics, 24 of 51 ELS
+     metrics) with four open hardware and firmware bugs, and it lists the 27 per-laser ELS metrics as
+     blocked. The CLI knob documented here is not in question, but the set of metrics the class
+     actually exports is. Confirm before publishing. Delete this comment before publishing. -->
 
 {{< tabs "TabID393 ">}}
 {{< tab "ASIC Resource">}}
@@ -520,6 +568,31 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
+<!-- NOT SUPPORTED IN 5.19, commented out 2026-10-30 (Ilia Yanover: 5.19 does not officially support CPO). To restore, remove this comment wrapper and undo the escapes: put the inner comment delimiters (written with a slash inserted) and the Hugo shortcodes (written with a slash and asterisk) back to normal.
+{{</* tab "Laser Source" */>}}
+
+Laser source statistics cover the external laser sources (ELS) on a switch with co-packaged optics (CPO). The switch exports ELS inventory, operational and error status, temperature, power consumption, and ICC current. On a switch without CPO hardware, enabling the class has no effect.
+
+To enable laser source statistics:
+
+```
+cumulus@switch:~$ nv set system telemetry platform-stats class laser-source-info state enabled
+cumulus@switch:~$ nv config apply
+```
+
+To adjust the sample interval for laser source statistics, run the `nv set system telemetry platform-stats class laser-source-info sample-interval` command. You can set a value between 60 and 86400 seconds. The default value is 60 seconds.
+
+```
+cumulus@switch:~$ nv set system telemetry platform-stats class laser-source-info sample-interval 100
+cumulus@switch:~$ nv config apply
+```
+
+To return the class to its default settings, run the `nv unset system telemetry platform-stats class laser-source-info` command.
+
+To show the laser source data on the switch itself, see {{</* link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#show-laser-sources" text="Show Laser Sources" */>}}.
+
+{{</* /tab */>}}
+-->
 {{< tab "Platform Information">}}
 
 To enable platform information statistics, such as the time of last reboot, the last reboot reason, or hardware details such as the chasis version, model name, part number, serial number, and type:
@@ -720,6 +793,33 @@ cumulus@switch:~$ nv show system telemetry software-stats systemd export
 state  enabled
 ```
 
+### WJH Events and Metrics
+
+When you enable WJH telemetry, the switch exports {{<link title="What Just Happened (WJH)" text="What Just Happened (WJH)">}} aggregate drop and layer 1 events as formatted OTEL log records. The switch also exports two {{<link url="#wjh-events-and-metrics-format" text="WJH metrics">}} about WJH channels: the total number of dropped packets reported for a channel and which triggers are enabled for each channel. The WJH channel and trigger configuration determines which events the switch produces.
+
+To enable the WJH events and metrics export:
+
+```
+cumulus@switch:~$ nv set system telemetry wjh export state enabled
+cumulus@switch:~$ nv config apply
+```
+
+To enable export of a specific WJH channel, run the `nv set system telemetry wjh channel <channel-name>` command:
+
+```
+cumulus@switch:~$ nv set system telemetry wjh channel acl
+cumulus@switch:~$ nv config apply
+```
+
+You can adjust the WJH metrics sample interval (in seconds). You can specify a value in multiples of 10 up to 60. The default value is 30.
+
+```
+cumulus@switch:~$ nv set system telemetry wjh sample-interval 10
+cumulus@switch:~$ nv config apply
+```
+
+To show WJH metrics configuration, run the `nv show system telemetry wjh` command.
+
 ### gRPC OTLP Export
 
 To configure the open telemetry export destination:
@@ -851,6 +951,18 @@ cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP9 interface-stat
 cumulus@switch:~$ nv config apply
 ```
 
+The following example:
+- Configures STAT-GROUP10 to export WJH metrics.
+- Applies the STAT-GROUP10 configuration to the OTLP destination 10.1.1.100.
+- Sets the sample interval of the WJH metrics to 10 seconds. The default is 30 seconds.
+
+```
+cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP10 wjh export state enabled 
+cumulus@switch:~$ nv set system telemetry export otlp grpc destination 10.1.1.100 stats-group STAT-GROUP10
+cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP10 wjh sample-interval 10
+cumulus@switch:~$ nv config apply
+```
+
 ### Granular Metric Selection
 
 To tailor metrics collection to your specific monitoring needs, you can collect individual metrics instead of all metrics in a category (such as interface, LLDP, platform) or sub category (such as platform memory or CPU). You can include or exclude metrics by name or wildcard, globally or for a destination with a statistics group and at varied collection frequencies.
@@ -858,7 +970,7 @@ To tailor metrics collection to your specific monitoring needs, you can collect 
 To configure granular metric selection, configure a list with the metrics you want to collect, then apply the metric list by either including or excluding the list globally or in each statistics group.
 
 {{%notice note%}}
-The statistics category must be enabled. For example, to configure specific control plane metrics, you must enable the control plane statistics group with the `nv set system telemetry control-plane-stats export state enabled` command. Refer to {{<link url="#configure-open-telemetry" text="Configure Open Telemetry">}}.
+You must enable the statistics category. For example, to configure specific control plane metrics, you must enable the control plane statistics group with the `nv set system telemetry control-plane-stats export state enabled` command. Refer to {{<link url="#configure-open-telemetry" text="Configure Open Telemetry">}}.
 {{%/notice%}}
 
 The following example configures the platform memory metrics `node_memory_MemTotal_bytes` and `node_memory_MemFree_bytes`, and all `nvswitch_env_` and `node_cpu_` metrics in a group called PLATFORM_METRICS.
@@ -979,14 +1091,14 @@ You can configure the switch to monitor buffer occupancy for specific traffic cl
 
 1. Configure {{<link url="Open-Telemetry-Export" text="open telemetry">}} and add your collector as a gRPC export destination.
 
-2. Configure the interfaces and traffic classes to monitor for buffer utilization. The following example enables congestion notifications for interface `swp1s0` on traffic classes 1 and 5 when the buffer threshold of 2000 bytes is crossed:
+2. Configure the interfaces and traffic classes to monitor for buffer utilization. The following example enables congestion notifications for interface `swp1s0` on traffic classes 1 and 5 when the buffer crosses the 2000 byte threshold:
 
 ```
 cumulus@switch:~$ nv set interface swp1s0 telemetry congestion-event egress-buffer traffic-class 1,5 buffer-threshold 2000
 cumulus@switch:~$ nv config apply
 ```
 
-You can configure the congestion throttle duration to set the interval, in milliseconds, between congestion notifications. The default is 10 seconds (10000ms). When a notification is generated, additional congestion events do not trigger a new notification until the interval expires. The throttle duration is configured in milliseconds. The following example configures the `throttle-duration` to 5 seconds:
+You can configure the congestion throttle duration to set the interval, in milliseconds, between congestion notifications. The default is 10 seconds (10000ms). After the switch generates a notification, additional congestion events do not trigger a new notification until the interval expires. The throttle duration is configured in milliseconds. The following example configures the `throttle-duration` to 5 seconds:
 
 ```
 cumulus@switch:~$ nv set system telemetry congestion-event throttle-duration 5000
@@ -1001,7 +1113,7 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{%notice note%}}
-- When using {{<link url="Open-Telemetry-Export/#customize-export" text="statistic groups">}} to specify which metrics are exported, add `congestion-event` notifications to the `stats-group` configuration to include congestion notifications.
+- When using {{<link url="Open-Telemetry-Export/#customize-export" text="statistic groups">}} to specify which metrics the switch exports, add `congestion-event` notifications to the `stats-group` configuration to include congestion notifications.
 - If you configure congestion notifications while the buffer threshold for a traffic class is already exceeded, the switch does not send notifications until buffer occupancy drops below the threshold and then exceeds the threshold again.
 {{%/notice%}}
 
@@ -1082,7 +1194,7 @@ When you enable 802.1X statistic telemetry, the switch exports the following sta
 
 ### ACL Statistic Format
 
-The switch collects and exports ACL interface statistics for all the interfaces on which ACLs are applied when you configure the `nv set system telemetry acl-stats export state enabled` command.
+The switch collects and exports ACL interface statistics for all the interfaces to which you apply ACLs when you configure the `nv set system telemetry acl-stats export state enabled` command.
 
 | Metric | Description |
 | ---------- | ------- |
@@ -1102,15 +1214,43 @@ The switch collects and exports statistics for IPv4, IPv6, layer 2, and layer 4 
 
 The switch collects and exports the adaptive routing, SRv6, and packet trimming statistics when you configure the `nv set system telemetry ai-ethernet-stats export state enabled` command.
 
+<!-- REVIEW: Redmine 5299181 measures ~1.1 increments per RoCEv2 packet on real hardware. Drafted as
+     "for each eligible packet" without a ratio, because a figure from one test run reads as a
+     specified rate once it is on the page, and no platform or traffic profile was recorded with
+     it. Confirm with the ASIC team whether a ratio belongs here. Concerns the
+     nvswitch_ar_congestion_changes row below. Delete this comment before publishing. -->
+
 | Metric | Description |
 | ---------- | ------- |
-| `nvswitch_ar_congestion_changes`  | Number of adaptive routing change events triggered due to congestion or link-down.|
+| `nvswitch_ar_congestion_changes`  | Number of adaptive routing egress port selections. The counter increments for each eligible packet that leaves an ECMP port with adaptive routing enabled. Despite the metric name, the counter does not count congestion events or link-down events.|
 | `nvswitch_srv6_no_sid_drops`| Number of packets dropped due to no matching SID. |
 | `nvswitch_srv6_in_pkts` | Number of packets received for this SID. |
 | `nvswitch_qos_trimmed_unicast_pkts`| Number of packets that were trimmed. To see this metric you must enable packet trimming. Spectrum-3 switches do not support this metric.|
 | `nvswitch_interface_trimmed_unicast_pkts [interface]`| Number of packets that were trimmed on the interface.|
-| `nvswitch_interface_trimmed_tx_unicast_pkts [interface]`| Number of packets that were trimmed and sent successfully on the interface.|
+| `nvswitch_interface_trimmed_tx_unicast_pkts [interface]`| Number of packets that were trimmed and sent successfully on the interface. Spectrum-4 switches do not support this metric.|
 | `nvswitch_interface_tc_trimmed_unicast_pkts [interface][tc]`| Number of packets that were trimmed on the interface and traffic class.|
+| `nvswitch_qos_trimmed_tx_unicast_pkts` | *Number of packets that were trimmed and sent successfully. Spectrum-6 only. |
+| `nvswitch_qos_trimmed_drop_unicast_pkts` | *Number of packets that were trimmed and dropped. Spectrum-6 only. |
+| `nvswitch_interface_trimmed_drop_unicast_pkts [interface]` | *Number of packets that were trimmed and dropped on the interface. Spectrum-6 only. |
+| `nvswitch_interface_tc_trimmed_tx_unicast_pkts [interface][tc]` | *Number of packets that were trimmed and sent successfully on the interface and traffic class. Spectrum-6 only. |
+| `nvswitch_interface_tc_trimmed_drop_unicast_pkts [interface][tc]` | *Number of packets that were trimmed and dropped on the interface and traffic class. Spectrum-6 only. |
+| `nvswitch_qos_spxm_notify_sender_link_down_pkts` | *Number of packets that matched the back-to-sender classifier on link down, both while the route is still in hardware and after FRR withdraws it. Counts notifications the switch attempted, not notifications the switch confirmed the sender received. Spectrum-6 only. |
+| `nvswitch_qos_notify_sender_trimmed_link_down_pkts` | *Number of those packets the switch trimmed and sent as a back-to-sender notification. Spectrum-6 only. |
+
+<!-- REVIEW: Redmine 5299181 establishes only that RoCEv2 traffic increments the counter and TCP
+     traffic does not. Drafted as "traffic that is eligible for adaptive routing, such as RoCEv2"
+     to avoid implying RoCEv2 is the sole eligible class. If RoCEv2 is in fact the only traffic
+     that increments this counter, narrow the first bullet to say so. Delete this comment before
+     publishing. -->
+
+{{%notice note%}}
+`nvswitch_ar_congestion_changes` is a cumulative counter that only increases. Adaptive routing selects an egress port for each packet, so the counter tracks packet forwarding rather than congestion:
+
+- The counter increments at least once for every eligible packet that leaves an ECMP port with adaptive routing enabled. Traffic that is eligible for adaptive routing, such as RoCEv2, increments the counter. The counter stays flat when the ports are idle or carry only TCP traffic.
+- Congestion events and link-down events do not increment the counter. The counter shows no distinct jump when either occurs, and it does not stop increasing during sustained congestion.
+- When congestion occurs, or when an ECMP member goes down, fewer packets leave the port, so the rate at which the counter increases drops.
+
+{{%/notice%}}
 
 {{< expand "Example JSON data for nvswitch_ar_congestion_changes:" >}}
 ```
@@ -1343,7 +1483,7 @@ When you enable control plane statistic telemetry, the switch exports the follow
 | Name | Description |
 |----- | ----------- |
 | `node_netstat_Ip_InReceives` | The number of IP packets received. | 
-| `node_netstat_Ip_InAddrErrors` | The umber of IP packets dropped upon receipt due to errors in the destination or source IP address.|  
+| `node_netstat_Ip_InAddrErrors` | The number of IP packets dropped upon receipt due to errors in the destination or source IP address.|  
 | `node_netstat_Ip_InDelivers` | The number of received IP packets that were successfully delivered to higher-level protocols (such as TCP or UDP).|  
 | `node_netstat_Ip_InDiscards` | The number of IP packets received but dropped, often due to errors.|  
 | `node_netstat_Ip_InHdrErrors` | The number of input IP packets discarded due to errors in their headers (bad checksums, version mismatch, or invalid length). |  
@@ -1390,7 +1530,7 @@ When you enable control plane statistic telemetry, the switch exports the follow
 | `node_netstat_Tcp_EstabResets` | The number of TCP connections that have directly transitioned from an ESTABLISHED state to a CLOSED state.| 
 | `node_netstat_Tcp_CurrEstab` | The number of TCP connections in the ESTABLISHED or CLOSE-WAIT state.| 
 | `node_netstat_Tcp_OutRsts` | The number of TCP resends.| 
-| `node_netstat_TcpExt_ListenDrops` | The number of TCP listne drops.| 
+| `node_netstat_TcpExt_ListenDrops` | The number of TCP listen drops.| 
 | `node_netstat_TcpExt_ListenOverflows` | The number of TCP listen overflows.| 
 | `node_netstat_TcpExt_TCPTimeouts` | The number of TCP connections that timed out.| 
 | `node_netstat_TcpExt_TCPSynRetrans` | The number of TCP SYN retransmissions.| 
@@ -1462,6 +1602,10 @@ When you enable control plane statistic telemetry, the switch exports the follow
 | `node_netstat_IpExt_InECT0Pkts` | The number of IP datagrams received with the ECN (Explicit Congestion Notification) codepoint "ECT(0)".| 
 | `node_netstat_IpExt_InECT1Pkts` | The number of IP packets received with ECN (Explicit Congestion Notification) capable transport, specifically ECT(1) codepoint.| 
 | `node_netstat_IpExt_InNoECTPkts` | The number of IP packets received with no ECN (Explicit Congestion Notification) capable transport.|
+| `nvswitch_control_plane_punt_classifier_matched_packets` | The number of packets that a {{<link url="Access-Control-List-Configuration/#control-plane-punt-classifier" text="control plane punt classifier">}} rule drops. |
+| `nvswitch_control_plane_punt_classifier_matched_bytes` | The number of bytes that a {{<link url="Access-Control-List-Configuration/#control-plane-punt-classifier" text="control plane punt classifier">}} rule drops. |
+
+The two punt classifier metrics are 64-bit counters. Each one carries a `rule_id` label holding the rule ID, a `packet_type` label (`spxm` or `ipv6`), a `udp_dport` label holding the destination port or `none`, and an `action` label, which is always `drop`. The switch exports these metrics only when you enable the `punt-classifier` class; refer to {{<link url="#control-plane-statistics" text="Control Plane Statistics">}}.
 
 {{< expand "Example JSON data for nvswitch_control_plane_trap_rx_drop:" >}}
 ```
@@ -1567,13 +1711,13 @@ When you enable control plane statistic telemetry, the switch exports the follow
 
 ### Histogram Data Format
 <!-- vale on -->
-The histogram data samples that the switch exports to the OTEL collector are {{<exlink url="https://opentelemetry.io/docs/specs/otel/metrics/data-model/#histogram" text="histogram data points">}} that include the {{<link url="ASIC-Monitoring#histogram-collection-example" text="histogram bucket (bin)">}} counts and the respective queue length size boundaries for each bucket. Latency and counter histogram data are also exported, if configured.
+The histogram data samples that the switch exports to the OTEL collector are {{<exlink url="https://opentelemetry.io/docs/specs/otel/metrics/data-model/#histogram" text="histogram data points">}} that include the {{<link url="ASIC-Monitoring#histogram-collection-example" text="histogram bucket (bin)">}} counts and the respective queue length size boundaries for each bucket. Latency, counter, and microburst histogram data are also exported, if configured.
 
 {{% notice note %}}
 Latency histogram bucket counts do not increment in exported telemetry data if there are no packets transmitted in the traffic class during the sample interval.
 {{% /notice %}}
 
-The switch sends a sample with the following names for each interface enabled for ingress and egress buffer, latency, and counter histogram collection:
+The switch sends a sample with the following names for each interface enabled for ingress and egress buffer, latency, counter, and microburst histogram collection:
 
 | Name | Description |
 |----- | ----------- |
@@ -1583,6 +1727,15 @@ The switch sends a sample with the following names for each interface enabled fo
 | `nvswitch_histogram_interface_counter_bucket` | Histogram interface counter bucket. |
 | `nvswitch_histogram_interface_counter_count` | Histogram interface counter count. |
 | `nvswitch_histogram_interface_latency` | Histogram interface latency data. |
+| `nvswitch_histogram_interface_microburst` | *Histogram interface microburst distribution for one direction and quantity. The bucket counts are the packet or byte delta for each sampling window. |
+| `nvswitch_histogram_interface_microburst_score` | *Burstiness score for the current window. |
+| `nvswitch_histogram_interface_microburst_mean_bin_index` | *Mean bin index for the current window. |
+| `nvswitch_histogram_interface_microburst_distribution_variance` | *Bin index variance for the current window. |
+| `nvswitch_histogram_interface_microburst_peak_value` | *Peak raw watermark for the current window, in packets or bytes. Omitted when no valid watermark is available for the window. |
+| `nvswitch_histogram_interface_microburst_threshold_state` | *Threshold state for the configured score threshold, where 0 is clear and 1 is triggered. Omitted when no threshold is configured. |
+| `nvswitch_histogram_interface_microburst_last_triggered` | *Timestamp, in Unix epoch nanoseconds, of the last transition into the triggered state. Omitted when the threshold has never triggered. |
+
+The microburst metrics carry an `interface` label, a `direction` label (`rx` or `tx`), and a `quantity` label (`packets` or `bytes`). The `nvswitch_histogram_interface_microburst` metric is a histogram; the other microburst metrics are gauges. For information about configuring the microburst histogram, refer to {{<link url="ASIC-Monitoring/#microburst-histogram" text="Microburst Histogram">}}.
 
 <!-- vale off -->
 {{< expand "Example JSON data for interface_ingress_buffer:" >}}
@@ -1826,7 +1979,7 @@ The interface statistic data samples that the switch exports to the OTEL collect
 | `nvswitch_interface_discards_ingress_policy_engine` | Interface ingress policy engine discards counter. |
 | `nvswitch_interface_discards_ingress_vlan_membership` | Interface ingress VLAN membership filter discards counter. |
 | `nvswitch_interface_discards_ingress_tag_frame_type` | Interface ingress VLAN tag filter discards counter. |
-| `nvswitch_interface_discards_egress_vlan_membership` | Interface egress VLAN emmbership filter discards counter. |
+| `nvswitch_interface_discards_egress_vlan_membership` | Interface egress VLAN membership filter discards counter. |
 | `nvswitch_interface_discards_loopback_filter` | Interface loopback filter discards counter. |
 | `nvswitch_interface_discards_egress_hoq` | Interface egress head-of-queue timeout discards. |
 | `nvswitch_interface_discards_egress_policy_engine` | Interface egress policy engine discards. |
@@ -1893,7 +2046,7 @@ The interface statistic data samples that the switch exports to the OTEL collect
 | `nvswitch_interface_if_out_octets`| Number of interface out octets.|
 | `nvswitch_interface_if_out_pkts`| Number of interface out unicast packets.|
 | `nvswitch_interface_type`|Link-layer interface type.|
-| `nvswitch_interface_ether_stats_jabbers` | Jabber frames receiverd on this interface.|
+| `nvswitch_interface_ether_stats_jabbers` | Jabber frames received on this interface.|
 | `nvswitch_interface_hw_address_info` | System defined default MAC address for the interface.|
 
 {{< /tab >}}
@@ -3197,7 +3350,7 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 | Name | Description |
 |----- | ----------- |
 | `node_cpu_core_throttles_total` | Number of times a CPU core has been throttled. |
-| `node_cpu_frequency_max_hertz` | Maxiumum CPU thread frequency in hertz. |
+| `node_cpu_frequency_max_hertz` | Maximum CPU thread frequency in hertz. |
 | `node_cpu_frequency_min_hertz` | Minimum CPU thread frequency in hertz. |
 | `node_cpu_guest_seconds_total` | Seconds the CPUs spent in guests for each mode. |
 | `node_cpu_package_throttles_total` | Number of times the CPU package has been throttled. |
@@ -3332,6 +3485,8 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 {{< /tab >}}
 {{< tab "Transceivers ">}}
 
+<!-- REVIEW (bug 5095522): Drafted from Prabhu's behavior-change note (27 Oct) and the approved RN text. They differ: Prabhu says passive copper reports the PMD only while the link is up; Raghav's 28 Oct test on a QSFP28 DAC (5.19.0.0039) reported ETH_40GBASE_CR4 with the link down; the RN text says an InfiniBand-first CMIS active cable reports only while the link is up. Confirm with Raghav/Prabhu, then adjust the passive copper and CMIS wording. Delete this comment before publishing. -->
+
 | Metric | Description |
 | ---------- | ------- |
 | `nvswitch_platform_transceiver_vendor_info` | The transceiver vendor information, such as which port the transceiver plugs into, the date of manufacture, the revision, the name of the manufacturer, the manufacturer part number, the serial number, and the IEEE company ID of the vendor.  |
@@ -3349,13 +3504,41 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 | `nvswitch_platform_transceiver_channel_tx_bias_current_alarm` | tx bias current alarm state of tx bias current measure for the channel when compared to the threshold values for the channel defined for the module. This is a bit mask value:<br>Bit 0: tx_bias_hi_al<br>Bit 1: l tx_bias_lo_al<br>Bit 2: tx_bia_hi_war<br>Bit 3: l tx_bias_lo_war |
 | `nvswitch_platform_transceiver_channel_tx_bias_current_threshold_info` | tx bias current thresholds defined for the channel in Amps units and represented by a 32bit decimal value. |
 | `nvswitch_platform_transceiver_firmware_version`| Firmware version information for the transceiver.|
-| `nvswitch_platform_transceiver_info` | General information for the transceiver.|
-| `nvswitch_platform_transceiver_ethernet_pmd` | Ethernet PMD information for the transceiver.|
+| `nvswitch_platform_transceiver_ethernet_pmd` | Ethernet PMD information for the transceiver. <b>Note</b>: In Cumulus Linux 5.19, this metric reports the PMD of the transceiver media instead of the host interface:<br>- Optical modules report the advertised media type, such as `ETH_400GBASE_DR4`.<br>- Active optical and active copper cables report `ETH_100G_AOC` or `ETH_100G_ACC` at 100G. Other speeds report `OTHER`.<br>- Passive copper cables report the operating PMD, such as `ETH_100GBASE_CR4`, only while the link is up.<br>For CMIS transceivers (QSFP-DD and OSFP), the reported PMD comes from the first application the module advertises. If the first application is not the full rate of the module, such as a twin-port 800G module that advertises 400GAUI-4, the metric shows the lower rate. If the first application is InfiniBand, an active cable reports its PMD only while the link is up. |
 | `nvswitch_platform_transceiver_physical_channel_state` | Per physical channel LOS and CDR LOL state.|
 | `nvswitch_platform_transceiver_host_lane_state` | Per host lane LOS and CDR LOL state.|
-| `nvswitch_platform_transceiver_voltage` | Input voltage as measured by the transceiver |
 
 {{< /tab >}}
+<!-- NOT SUPPORTED IN 5.19, commented out 2026-10-30 (Ilia Yanover: 5.19 does not officially support CPO). To restore, remove this comment wrapper and undo the escapes: put the inner comment delimiters (written with a slash inserted) and the Hugo shortcodes (written with a slash and asterisk) back to normal.
+{{</* tab "CPO and Laser Source" */>}}
+
+The switch exports these metrics on a switch with CPO only. Enable them with the `transceiver-info` and `laser-source-info` platform statistic classes, where `transceiver-info` covers the CPO modules and optical engines and `laser-source-info` covers the laser sources; refer to {{</* link url="Open-Telemetry-Export/#platform-statistics" text="Platform Statistics" */>}}.
+
+|  Name | Description |
+|------ | ----------- |
+| `nvswitch_platform_cpo_info` | *CPO module inventory. Carries `name`, `type`, `description`, and `fw_version` labels. |
+| `nvswitch_platform_cpo_status` | *Operational status of the CPO module. Carries a `name` label. |
+| `nvswitch_platform_cpo_subcomponent_info` | *The laser source and optical engines that belong to the CPO module. Carries `name`, `subcomponent_type`, and `subcomponent_name` labels. |
+| `nvswitch_platform_cpo_channel_laser_source_input_power` | *Power the laser source delivers into the optical engine for a channel. Carries `name` and `channel` labels. |
+| `nvswitch_platform_cpo_channel_laser_source_input_power_alarm` | *Alarm status and severity for the laser source input power on a channel. Carries `name` and `channel` labels. |
+| `nvswitch_platform_cpo_channel_power` | *Received and transmitted optical power on a channel. Carries `name`, `channel`, and `direction` labels. |
+| `nvswitch_platform_cpo_channel_power_alarm` | *Alarm status and severity for the optical power on a channel. Carries `name`, `channel`, and `direction` labels. |
+| `nvswitch_platform_cpo_channel_state` | *Loss of received signal and transmit failure state for a channel. Carries `name`, `channel`, and `state` labels. |
+| `nvswitch_platform_cpo_channel_fault_opcode` | *Advanced troubleshooting fault opcode for a channel. Carries `name` and `channel` labels. |
+| `nvswitch_platform_cpo_host_lane_state` | *Loss of transmitted signal state for a host lane. Carries `name`, `lane`, and `state` labels. |
+| `nvswitch_platform_cpo_host_lane_dp_state` | *Data path state of a host lane. Carries `name` and `lane` labels. |
+| `nvswitch_platform_oe_info` | *Optical engine inventory. Carries `name`, `type`, `description`, `serial_no`, `firmware_version`, and `cpo_module` labels. |
+| `nvswitch_platform_els_info` | *Laser source inventory. Carries `name`, `type`, `description`, `vendor`, `vendor_rev`, `part_no`, `serial_no`, `date_code`, `firmware_version`, `present`, and `cpo_module` labels. |
+| `nvswitch_platform_els_status` | *Operational status of the laser source. Carries a `name` label. |
+| `nvswitch_platform_els_error_status` | *Error status of the laser source. Carries `name` and `error_status` labels. |
+| `nvswitch_platform_els_power_consumption` | *Power the laser source consumes. Carries a `name` label. |
+| `nvswitch_platform_els_temperature` | *Laser source temperature, with the average, minimum, and maximum over the interval. Carries a `name` label. |
+| `nvswitch_platform_els_temperature_alarm` | *Alarm status and severity for the laser source temperature. Carries a `name` label. |
+| `nvswitch_platform_els_temperature_threshold_info` | *Threshold at which the laser source temperature alarm triggers. Carries a `name` label. |
+| `nvswitch_platform_els_icc_current` | *ICC current the laser source draws. Carries a `name` label. |
+
+{{</* /tab */>}}
+-->
 {{< tab "Platform Information ">}}
 
 | Metric | Description |
@@ -3387,7 +3570,7 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 | `nvswitch_platform_environment_power_supply_voltage`| Output voltage (PSU output side). Emitted on PSU platforms only; not applicable to input-only PDB/HSC.|
 
 {{%notice note%}}
-On PSU-based platforms, the legacy `psu_*` metric family and the common `power_supply_*` family are emitted together for a three-release migration window. The legacy `psu_*` family is deprecated and will be removed after that window; make sure to migrate your dashboards and queries to `power_supply_*` during the window. The gNMI/OpenConfig PSU representation is unchanged.
+On PSU-based platforms, the switch emits the legacy `psu_*` metric family and the common `power_supply_*` family together for a three-release migration window. Cumulus Linux removes the legacy `psu_*` family after that window; make sure to migrate your dashboards and queries to `power_supply_*` during the window. The gNMI/OpenConfig PSU representation is unchanged.
 {{%/notice%}}
 
 {{< /tab >}}
@@ -4528,6 +4711,22 @@ When you enable layer 3 routing metrics telemetry, the switch exports the follow
 | `nvrouting_rib_count_pbr_ipv6` | Number of IPv6 PBR routes in the IP routing table. |
 | `nvrouting_rib_count_ospf_ipv6` | Number of IPv6 OSPF routes in the IP routing table. |
 | `nvrouting_rib_nhg_count` | Number of next hop groups in the routing table. |
+| `nvrouting_bgp_unreach_prefix_count*` | *Number of prefixes in the BGP unreachability table. |
+| `nvrouting_lldp_exception_count` | *Number of unreachable prefixes the switch holds to export to LLDP, excluding the default route exception. |
+| `nvrouting_lldp_default_exception_active_count` | *Whether the default route exception is active. |
+| `nvrouting_lldp_exception_add_total` | *Number of unreachable prefixes sent to LLDP since the routing service started, including resynchronization replays. |
+| `nvrouting_lldp_exception_remove_total` | *Number of unreachable prefix withdrawals sent to LLDP since the routing service started. |
+| `nvrouting_lldp_default_exception_add_total` | *Number of default route exceptions sent to LLDP since the routing service started, counted separately for each VRF and address family. |
+| `nvrouting_lldp_default_exception_remove_total` | *Number of default route exception withdrawals sent to LLDP since the routing service started. |
+| `nvrouting_lldp_export_channel_connected` | *Whether the LLDP export channel is up. |
+| `nvrouting_lldp_export_channel_errors_total` | *Number of unreachable prefix updates that failed to reach LLDP since the routing service started. |
+
+{{%notice note%}}
+- The unreachability and LLDP exception metrics carry a `vrf` label. The metrics that report a value for each address family also carry an `afi` label that identifies whether the value is for IPv4 or IPv6.
+- The LLDP exception metrics only report a value in disjoined plane deployments, where the switch signals link failures to NICs with LLDP. In a merged plane deployment, BGP conditional disaggregation handles a link failure instead, the switch generates no LLDP exception, and these metrics stay at zero.
+{{%/notice%}}
+
+For information about the unreachability and LLDP exception metrics, refer to {{<link url="Optional-BGP-Configuration/#bgp-lldp-unreachability-in-disjoined-planes" text="BGP-LLDP Unreachability in Disjoined Planes">}}.
 
 <!-- vale off -->
 {{< expand "Example JSON data for nvrouting_bgp_peer_state:" >}}
@@ -6469,23 +6668,47 @@ When you enable open telemetry with the `nv set system telemetry export otlp sta
 | `node_time_seconds` | System time in seconds since epoch (1970). |
 | `node_os_info` |  Operating system and image information, such as name and version. |
 
-<!--NOW IN 5.19
-### WJH Format
+### WJH Events and Metrics Format
 
-If you enable {{<link title="What Just Happened (WJH)" text="WJH">}}, you can export the following WJH metrics:
+When you enable {{<link url="/#wjh-events-and-metrics" text="WJH events and metrics">}}, the switch exports the following WJH events as OTEL log records. These are log records, not metrics.
 
 |  Name | Description |
 |------ | ----------- |
-| `nvswitch_wjh_total_events_channel_forwarding` | *Total number of forwarding channel events. |
-| `nvswitch_wjh_total_events_channel_acl` | *Total number of ACL channel events.|
-| `nvswitch_wjh_total_events_channel_buffer` | *Total number of buffer channel events. |
--->
+| `wjh.aggregate_drop` | A WJH aggregate drop event. |
+| `wjh.l1` | A WJH layer 1 event. |
+
+{{< expand "Example JSON data for a WJH aggregate drop event:" >}}
+```
+{
+  "timeUnixNano": "1786726338791785172",
+  "observedTimeUnixNano": "1786726338791785172",
+  "severityNumber": 9,
+  "severityText": "NOTICE",
+  "body": { "stringValue": "acl drops: ingress port acl" },
+  "eventName": "wjh.aggregate_drop",
+  "attributes": [
+    { "key": "wjh.event_id",   "value": { "intValue": "27" } },
+    { "key": "wjh.reason_id",  "value": { "intValue": "601" } },
+    { "key": "wjh.non_ip",     "value": { "boolValue": false } },
+    { "key": "wjh.acl_rule_id","value": { "stringValue": "0x2000400000000" } }
+  ]
+}
+```
+{{< /expand >}}
+
+The switch also exports the following metrics:
+
+|  Name | Description |
+|------ | ----------- |
+| `nvswitch_wjh_total_events` | The total number of WJH drop-trap events received on the channel, before aggregation. |
+| `nvswitch_wjh_channel_trigger` | Which triggers are enabled for each channel.|
+
 ### Static Label Format
 
-Device static labels are exported in the {{<exlink url="https://opentelemetry.io/docs/specs/otel/resource/sdk/" text="resource">}} metric section of OTLP data:
+The switch exports device static labels in the {{<exlink url="https://opentelemetry.io/docs/specs/otel/resource/sdk/" text="resource">}} metric section of OTLP data:
 
 {{< expand "Example JSON data for static device label:" >}}
-
+```
 { 
   "resourceMetrics": [ 
     { 
@@ -6508,10 +6731,10 @@ Device static labels are exported in the {{<exlink url="https://opentelemetry.io
     }
   ]
 }
-
+```
 {{< /expand >}}
 <br>
-Interface static labels are exported as attributes in the gauge metrics for each interface.
+The switch exports interface static labels as attributes in the gauge metrics for each interface.
 
 {{< expand "Example JSON data for static interface label:" >}}
 

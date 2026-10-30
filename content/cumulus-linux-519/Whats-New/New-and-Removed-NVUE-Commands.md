@@ -12,155 +12,223 @@ For descriptions and examples of all NVUE commands, refer to the [NVUE Command R
 
 The following NVUE commands are new in Cumulus Linux 5.19.
 
-{{< tabs "TabID49 ">}}
+{{< tabs "TabID15 ">}}
 {{< tab "nv show ">}}
 
 ```
-nv show bridge domain <domain-id> arp-inspection
-nv show bridge domain <domain-id> arp-inspection vlan
-nv show bridge domain <domain-id> arp-inspection vlan <vid>
-nv show bridge domain <domain-id> arp-inspection vlan <vid> interface
-nv show bridge domain <domain-id> arp-inspection vlan <vid> interface <interface-id>
-nv show bridge domain <domain-id> arp-inspection vlan <vid> static-binding
-nv show bridge domain <domain-id> arp-inspection vlan <vid> static-binding <arp-inspection-static-binding-id>
-nv show evpn l3vxi
-nv show interface --view ber
-nv show interface --view dom
-nv show interface link-tracking
-nv show interface <interface-id> link-tracking
-nv show platform inventory BMC
-nv show platform firmware BMC
-nv show platform firmware BMC files
-nv show platform environment leakage
-nv show system aaa radius server <server> counters
-nv show system config backup
-nv show system do-spx
-nv show system do-spx active-profile
-nv show system do-spx profile
-nv show system do-spx profile <profile-id>
-nv show system do-spx profile <profile-id> uplink
-nv show system do-spx profile <profile-id> uplink <interface-id>
-nv show system do-spx profile <profile-id> downlink
-nv show system do-spx profile <profile-id> downlink <interface-id>
-nv show system do-spx profile <profile-id> otlp-destination
-nv show system do-spx profile <profile-id> otlp-destination <destination-id>
-nv show system image
-nv show system image onie
-nv show system link-tracking
-nv show system link-tracking group
-nv show system link-tracking group <group-id>
-nv show system link-tracking group <group-id> watch-interface
-nv show system link-tracking group <group-id> watch-interface <interface-id>
-nv show system packages archive
-nv show system packages archive <id>
-nv show system wjh channel <channel-id> buffer-threshold
-nv show system wjh channel <channel-id> buffer-threshold latency
-nv show system wjh channel <channel-id> buffer-threshold latency tc
-nv show system wjh channel <channel-id> buffer-threshold latency tc <wjh-tc-id>
-nv show system wjh channel <channel-id> buffer-threshold latency tc <wjh-tc-id> interface
-nv show system wjh channel <channel-id> buffer-threshold latency tc <wjh-tc-id> interface <wjh-interface-id>
-nv show system wjh channel <channel-id> buffer-threshold congestion
-nv show system wjh channel <channel-id> buffer-threshold congestion tc
-nv show system wjh channel <channel-id> buffer-threshold congestion tc <wjh-tc-id>
-nv show system wjh channel <channel-id> buffer-threshold congestion tc <wjh-tc-id> interface
-nv show system wjh channel <channel-id> buffer-threshold congestion tc <wjh-tc-id> interface <wjh-interface-id>
-nv show system wjh channel <channel-id> drop-filter
-nv show system wjh channel <channel-id> drop-filter <filter-id>
-nv show system wjh channel <channel-id> drop-filter <filter-id> drop-type
-nv show system wjh channel <channel-id> drop-filter <filter-id> drop-type <drop-filter-drop-type-id>
-nv show system wjh channel <channel-id> drop-filter <filter-id> drop-type <drop-filter-drop-type-id> drop-reason
-nv show system wjh channel <channel-id> drop-filter <filter-id> drop-type <drop-filter-drop-type-id> drop-reason <drop-filter-drop-reason-id>
-nv show system wjh channel <channel-id> drop-filter <filter-id> drop-type <drop-filter-drop-type-id> severity
-nv show system wjh channel <channel-id> drop-filter <filter-id> drop-type <drop-filter-drop-type-id> severity <drop-filter-severity-id>
-nv show system wjh channel <channel-id> drop-filter <filter-id> ip
-nv show system wjh channel <channel-id> drop-filter <filter-id> ip <ip-address-id>
+nv show interface <interface-id> ipv6 neighbor-discovery prefix-lifetime
+nv show interface <interface-id> packet-trim notify-sender
+nv show interface <interface-id> packet-trim notify-sender tail-drop
+nv show interface <interface-id> packet-trim notify-sender tail-drop egress-eligibility
+nv show interface <interface-id> packet-trim notify-sender tail-drop egress-eligibility traffic-class
+nv show interface <interface-id> packet-trim notify-sender tail-drop egress-eligibility traffic-class <tc-id>
+nv show interface <interface-id> packet-trim spxm
+nv show interface <interface-id> packet-trim spxm notify-sender
+nv show interface <interface-id> packet-trim spxm notify-sender link-down
+nv show interface <interface-id> packet-trim spxm notify-sender link-down ingress-eligibility
+nv show interface <interface-id> packet-trim spxm notify-sender link-down ingress-eligibility dscp
+nv show interface <interface-id> packet-trim spxm notify-sender link-down ingress-eligibility dscp <dscp-id>
+nv show interface <interface-id> telemetry histogram microburst
+nv show interface <interface-id> telemetry histogram microburst direction
+nv show interface <interface-id> telemetry histogram microburst direction <if-direction-id>
+nv show interface <interface-id> telemetry histogram microburst direction <if-direction-id> snapshot
+nv show interface <interface-id> telemetry histogram microburst direction <if-direction-id> threshold
+nv show interface <interface-id> telemetry step-time-estimation
+nv show interface <interface-id> transceiver compliance
+nv show platform transceiver <transceiver-id> compliance
+nv show platform transceiver <transceiver-id> firmware
+nv show platform transceiver <transceiver-id> firmware files
+nv show platform transceiver <transceiver-id> firmware files <file>
+nv show qos pfc-watchdog rx-pause-duration
+nv show qos pfc-watchdog transmit-queue-threshold
+nv show qos pfc-watchdog tx-frames-threshold
+nv show router allow-reserved-range
+nv show router allow-reserved-range <allow-reserved-range-id>
+nv show router resource-limit
+nv show system aaa class <class-id> os-command
+nv show system aaa class <class-id> os-command <os-command-id>
+nv show system aaa radius authorization
+nv show system aaa radius authorization <privilege-level-id>
+nv show system control-plane punt-classifier
+nv show system control-plane punt-classifier <rule-id>
+nv show system control-plane punt-classifier <rule-id> counters
+nv show system control-plane punt-classifier <rule-id> counters hardware
+nv show system control-plane punt-classifier <rule-id> match
+nv show system control-plane punt-classifier <rule-id> match no-route
+nv show system dns server <dns-server-id> source-interface
+nv show system dns server <dns-server-id> source-interface <interface-id>
+nv show system forwarding packet-trim ingress-eligibility
+nv show system forwarding packet-trim notify-sender
+nv show system forwarding packet-trim notify-sender link-down
+nv show system forwarding packet-trim notify-sender link-down counters
+nv show system forwarding packet-trim notify-sender link-down counters native
+nv show system forwarding packet-trim notify-sender link-down remark
+nv show system forwarding packet-trim notify-sender tail-drop
+nv show system forwarding packet-trim notify-sender tail-drop remark
+nv show system forwarding resilient-hash
+nv show system log ztp
+nv show system log ztp messages
+nv show system security spdm
+nv show system security spdm <component-id>
+nv show system security spdm <component-id> certificates
+nv show system security spdm <component-id> measurements
+nv show system telemetry control-plane-stats class
+nv show system telemetry control-plane-stats class punt-classifier
+nv show system telemetry histogram microburst
+nv show system telemetry histogram microburst summary
+nv show system telemetry histogram microburst threshold
+nv show system telemetry histogram microburst top
+nv show system telemetry histogram microburst top <microburst-top-count-id>
+nv show system telemetry histogram microburst top <microburst-top-count-id> interface
+nv show system telemetry radius-stats
+nv show system telemetry radius-stats export
+nv show system telemetry stats-group <stats-group-id> control-plane-stats class
+nv show system telemetry stats-group <stats-group-id> control-plane-stats class punt-classifier
+nv show system telemetry stats-group <stats-group-id> radius-stats
+nv show system telemetry stats-group <stats-group-id> radius-stats export
+nv show system telemetry stats-group <stats-group-id> step-time-estimation
+nv show system telemetry stats-group <stats-group-id> step-time-estimation export
+nv show system telemetry stats-group <stats-group-id> wjh
+nv show system telemetry stats-group <stats-group-id> wjh export
+nv show system telemetry step-time-estimation
+nv show system telemetry step-time-estimation export
+nv show system telemetry wjh
+nv show system telemetry wjh channel
+nv show system telemetry wjh channel <channel-id>
+nv show system telemetry wjh export
+nv show system ztp wall-messages
 ```
 
 {{< /tab >}}
 {{< tab "nv set ">}}
 
 ```
-nv set bridge default-vlan <vlan-id>
-nv set bridge domain <domain-id> arp-inspection vlan <vid>
-nv set bridge domain <domain-id> arp-inspection vlan <vid> interface <interface-id>
-nv set bridge domain <domain-id> arp-inspection vlan <vid> static-binding <arp-inspection-static-binding-id>
-nv set bridge domain <domain-id> arp-inspection vlan <vid> static-binding <arp-inspection-static-binding-id> mac <mac>
-nv set bridge domain <domain-id> arp-inspection vlan <vid> static-binding <arp-inspection-static-binding-id> ip <ipv4>
-nv set bridge domain <domain-id> arp-inspection vlan <vid> static-binding <arp-inspection-static-binding-id> port <interface-name>
-nv set bridge domain <domain-id> arp-inspection vlan <vid> state (enabled|disabled)
-nv set evpn l3vxi state
-nv set interface <interface-id> link-tracking group
-nv set interface <interface-id> security ip-source-guard
-nv set maintenance unit system mode
-nv set system aaa radius nas-ip-address <ipv4-address>
-nv set system aaa radius nas-ipv6-address <ipv6-address>
-nv set system aaa radius nas-identifier <identifier>
-nv set system config backup state
-nv set system do-spx profile <profile-id>
-nv set system do-spx profile <profile-id> uplink <interface-id> breakout
-nv set system do-spx profile <profile-id> downlink <interface-id> breakout
-nv set system do-spx profile <profile-id> otlp-destination <destination-id>
-nv set system do-spx profile <profile-id> otlp-destination <destination-id> otlp-port
-nv set system link-tracking group <group-id>
-nv set system link-tracking group <group-id> watch-interface <interface-id>
-nv set system link-tracking group <group-id> min-links
-nv set system link-tracking group <group-id> state-change-action
-nv set system link-tracking state
-nv set system security password-hardening min-char-diff
-nv set system telemetry dot1x-stats class server-metrics state
-nv set system telemetry platform-stats class asic-resource state
-nv set system telemetry platform-stats class asic-resource sample-interval
-nv set system wjh channel buffer aggregate-cache-size
-nv set system wjh channel buffer polling-interval
-nv set system wjh channel <channel-id> buffer-threshold latency tc <wjh-tc-id> interface <wjh-interface-id> high 
-nv set system wjh channel <channel-id> buffer-threshold congestion tc <wjh-tc-id> interface <wjh-interface-id> high
-nv set interface <interface-id> telemetry congestion-event egress-buffer traffic-class <intf-tc-id> buffer-threshold
-nv set system wjh channel <channel-id> drop-filter <filter-id> drop-type <drop-filter-drop-type-id> drop-reason <drop-filter-drop-reason-id>
-nv set system wjh channel <channel-id> drop-filter <filter-id> drop-type <drop-filter-drop-type-id> severity <drop-filter-severity-id>
-nv set system wjh channel <channel-id> drop-filter <filter-id> ip
-nv set vrf <vfr-id> router bgp plane-id
+nv set interface <interface-id> ipv6 neighbor-discovery prefix-lifetime preferred
+nv set interface <interface-id> ipv6 neighbor-discovery prefix-lifetime valid
+nv set interface <interface-id> packet-trim notify-sender tail-drop egress-eligibility traffic-class <tc-id>
+nv set interface <interface-id> packet-trim spxm notify-sender link-down ingress-eligibility dscp <dscp-id>
+nv set interface <interface-id> telemetry histogram microburst direction <if-direction-id>
+nv set interface <interface-id> telemetry histogram microburst direction <if-direction-id> bin-min-boundary
+nv set interface <interface-id> telemetry histogram microburst direction <if-direction-id> histogram-size
+nv set interface <interface-id> telemetry histogram microburst direction <if-direction-id> sample-interval
+nv set interface <interface-id> telemetry histogram microburst direction <if-direction-id> threshold score
+nv set interface <interface-id> telemetry histogram microburst direction <if-direction-id> unit
+nv set interface <interface-id> telemetry step-time-estimation state
+nv set platform firmware <platform-component-id>
+nv set platform firmware <platform-component-id> auto-update
+nv set platform firmware <platform-component-id> fw-source
+nv set qos pfc-watchdog recovery-interval
+nv set qos pfc-watchdog rx-pause-duration multiplier
+nv set qos pfc-watchdog rx-pause-duration state
+nv set qos pfc-watchdog rx-pause-threshold
+nv set qos pfc-watchdog transmit-queue-threshold percent
+nv set qos pfc-watchdog transmit-queue-threshold state
+nv set qos pfc-watchdog tx-frames-threshold state
+nv set qos pfc-watchdog tx-frames-threshold value
+nv set router allow-reserved-range <allow-reserved-range-id>
+nv set router bfd offload-mode
+nv set router resource-limit max-file-descriptors
+nv set system aaa class <class-id> os-command <os-command-id>
+nv set system aaa class <class-id> os-command <os-command-id> command
+nv set system aaa radius authorization <privilege-level-id>
+nv set system aaa radius authorization <privilege-level-id> role
+nv set system control-plane punt-classifier <rule-id>
+nv set system control-plane punt-classifier <rule-id> action drop
+nv set system control-plane punt-classifier <rule-id> match dscp
+nv set system control-plane punt-classifier <rule-id> match no-route
+nv set system control-plane punt-classifier <rule-id> match packet-type
+nv set system control-plane punt-classifier <rule-id> match udp-dport
+nv set system dns server <dns-server-id> source-interface <interface-id>
+nv set system dns server <dns-server-id> source-interface <interface-id> address
+nv set system dns server <dns-server-id> source-ip
+nv set system forwarding packet-trim ingress-eligibility dscp
+nv set system forwarding packet-trim ingress-eligibility interface
+nv set system forwarding packet-trim notify-sender link-down remark dscp
+nv set system forwarding packet-trim notify-sender link-down service-port
+nv set system forwarding packet-trim notify-sender link-down size
+nv set system forwarding packet-trim notify-sender link-down state
+nv set system forwarding packet-trim notify-sender link-down switch-priority
+nv set system forwarding packet-trim notify-sender tail-drop remark dscp
+nv set system forwarding resilient-hash active-timer
+nv set system forwarding resilient-hash bucket-size
+nv set system forwarding resilient-hash max-unbalanced-timer
+nv set system forwarding resilient-hash state
+nv set system grpc-tunnel server <server-name-id> source-address
+nv set system log ztp messages state
+nv set system telemetry control-plane-stats class punt-classifier sample-interval
+nv set system telemetry control-plane-stats class punt-classifier state
+nv set system telemetry histogram microburst bin-min-boundary
+nv set system telemetry histogram microburst histogram-size
+nv set system telemetry histogram microburst sample-interval
+nv set system telemetry histogram microburst threshold score
+nv set system telemetry histogram microburst unit
+nv set system telemetry radius-stats export state
+nv set system telemetry radius-stats sample-interval
+nv set system telemetry stats-group <stats-group-id> control-plane-stats class punt-classifier sample-interval
+nv set system telemetry stats-group <stats-group-id> control-plane-stats class punt-classifier state
+nv set system telemetry stats-group <stats-group-id> radius-stats export state
+nv set system telemetry stats-group <stats-group-id> radius-stats sample-interval
+nv set system telemetry stats-group <stats-group-id> step-time-estimation export state
+nv set system telemetry stats-group <stats-group-id> wjh export state
+nv set system telemetry stats-group <stats-group-id> wjh sample-interval
+nv set system telemetry step-time-estimation batch-interval
+nv set system telemetry step-time-estimation export state
+nv set system telemetry wjh channel <channel-id>
+nv set system telemetry wjh export state
+nv set system telemetry wjh sample-interval
+nv set system ztp wall-messages
+nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-export to-evpn skip-evpn-imported
+nv set vrf <vrf-id> router bgp address-family ipv6-unicast route-export to-evpn skip-evpn-imported
+nv set vrf <vrf-id> router bgp allow-as-sets
+nv set vrf <vrf-id> router bgp neighbor <neighbor-id> connection
 ```
 
 {{< /tab >}}
 {{< tab "nv action ">}}
 
 ```
-nv action activate system do-spx profile <profile-id>
-nv action activate system image onie
-nv action boot-next system image onie install
-nv action boot-next system image onie rescue
-nv action boot-next system image onie uninstall
-nv action cancel system image onie
-nv action clear interface <interface-id> link-tracking protodown
-nv action clear platform asic <asic-id> resource
-nv action clear system aaa radius counters
-nv action clear vrf <vrf-id> router rib ipv4 unreachable-prefixes <ipv4-prefix>
-nv action clear vrf <vrf-id> router rib ipv6 unreachable-prefixes <ipv6-prefix>
-nv action delete system packages archive <id>
-nv action export system wjh packet-buffer <file-name>
-nv action fetch system packages archive <path>
-nv action install system image onie <path> [activate reboot] 
-nv action install system image onie <path> ztp <script> [activate reboot]
-nv action install system image onie <path> startup-config <file-name> [activate reboot]
-nv action install system image onie ftp:<path> activate reboot
-nv action install system packages archive <id>
-nv action restore system config backup <path>
-nv action uninstall system packages archive <archive-id>
-```
-
-{{< /tab >}}
-{{< tab "nv config ">}}
-
-```
-nv config lookup "<search-path>"
+nv action cancel system image
+nv action clear interface <interface-id> ipv6 neighbor-discovery prefix <ipv6-prefix-id>
+nv action clear system control-plane punt-classifier <rule-id> counters
+nv action clear system control-plane punt-classifier counters
+nv action clear system forwarding packet-trim notify-sender link-down counters
+nv action delete platform firmware <platform-component-id> files <file>
+nv action generate system security spdm <component-id> <value>
+nv action install platform transceiver <transceiver-id> firmware files <file>
+nv action prune system packages archive
+nv action reboot system mode power-off
+nv action rename platform firmware <platform-component-id> files <file> <name>
+nv action upload platform firmware <platform-component-id> files <file> <url>
 ```
 
 {{< /tab >}}
 {{< /tabs >}}
 
+## Changed NVUE Commands
+
+| Cumulus Linux 5.19 | Cumulus Linux 5.18 |
+| ------------------ | ------------------ |
+| `nv set router bfd offload-mode (control-plane, kernel, hardware)` | `nv set router bfd offload (enabled, disabled)` |
+| `nv action reboot system mode (halt, cold, immediate, warm, fast, power-cycle, power-off)` | `nv action reboot system mode (halt, cold, immediate, warm, fast, power-cycle)` |
+| `nv set interface <interface-id> link mac-address (<mac>, <mac-unicast>)` | `nv set interface <interface-id> link mac-address <mac>` |
+| `nv set interface <interface-id> qos headroom lossy extra-threshold (256-1818368, 192-1236480)` | `nv set interface <interface-id> qos headroom lossy extra-threshold (192-1236480)` |
+| `nv set router segment-routing static srv6-sid <sid> locator-name <generic-name>` | `nv set router segment-routing static srv6-sid <sid> locator-name <value>` |
+| `nv set system dot1x ipv6-profile <profile-id> property <property-id> value (0-4294967295, <valid-ipv6-profile-property-value>)` | `nv set system dot1x ipv6-profile <profile-id> property <property-id> value (0-18446744073709551615, <valid-ipv6-profile-property-value>)` |
+| `nv action install system packages archive <archive-id> force, dry-run, allow-incompatible, accept-rollback-to-base` | `nv action install system packages archive <archive-id> force, dry-run, allow-incompatible` |
+
 ## Removed NVUE Commands
 
 ```
-nv set system docker state
-nv show system docker state
+nv action power-cycle system
+nv set system wjh channel <channel-id> drop-filter <filter-id> drop-type <drop-filter-drop-type-id> severity <drop-filter-severity-id>
+nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unreachability policy inbound prefix-list
+nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unreachability policy outbound prefix-list
+nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unreachability policy inbound prefix-list
+nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unreachability policy outbound prefix-list
+nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unreachability policy inbound prefix-list
+nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unreachability policy outbound prefix-list
+nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unreachability policy inbound prefix-list
+nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unreachability policy outbound prefix-list
+nv show system wjh channel <channel-id> drop-filter <filter-id> drop-type <drop-filter-drop-type-id> severity
+nv show system wjh channel <channel-id> drop-filter <filter-id> drop-type <drop-filter-drop-type-id> severity <drop-filter-severity-id>
 ```

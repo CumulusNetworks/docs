@@ -51,7 +51,7 @@ cumulus@leaf01:~$
 
 For an unnumbered configuration, you can use a single command to configure a neighbor and attach it to a peer group.
 
-{{< tabs "52 ">}}
+{{< tabs "54 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -69,62 +69,45 @@ leaf01(config-router)# neighbor swp51 interface peer-group SPINE
 {{< /tabs >}}
 <!-- vale off -->
 {{%notice note%}}
-If you unset a peer group, make sure that it is not applied to any neighbors. If the peer group is applied to neighbors, configure all parameters, such as the remote AS, directly on the neighbors before removing the peer group.
+If you unset a peer group, make sure that no neighbors use it. If neighbors use the peer group, configure all parameters, such as the remote AS, directly on the neighbors before removing the peer group.
 {{%/notice%}}
 <!-- vale on -->
 
 ## IPv6-only Unnumbered Peering
 
-To configure a BGP unnumbered peer for IPv6-only peering over a link-local address, you must configure an NVUE snippet. When you configure an NVUE snippet for a `v6only` peering, the `remote-as` and any `peer-group` configuration must be applied with the snippet instead of NVUE CLI commands. If a peer group is configured for the neighbor, the remote-as can be defined in the peer group configuration through NVUE commands.
+You can configure a BGP unnumbered peer for IPv6-only peering over a link-local address and force the BGP session to use IPv6 link-local transport even when the interface also has an IPv4 address configured. Without this configuration, unnumbered BGP on dual-stack interfaces might initiate peering over IPv4 and reject inbound IPv6 peering attempts with a TCP reset, preventing IPv6 BGP sessions from establishing. 
 
-The following example configures the BGP peer group CLIENT1 with soft reconfiguration and community advertisement enabled, and the remote AS set to external. The snippet configuration configures the `v6only` option and applies the peer group to the neighbor: 
+{{< tabs "80 ">}}
+{{< tab "NVUE Commands ">}}
+
+Run the `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> connection v6-lla` command:
 
 ```
-cumulus@leaf01:~$ nv set vrf default router bgp peer-group CLIENT1 address-family ipv4-unicast community-advertise
-cumulus@leaf01:~$ nv set vrf default router bgp peer-group CLIENT1 address-family ipv4-unicast soft-reconfiguration enabled
-cumulus@leaf01:~$ nv set vrf default router bgp peer-group CLIENT1 remote-as external
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 connection v6-lla
 cumulus@leaf01:~$ nv config apply
 ```
 
-Create a .yaml file with the following content:
+To unset a BGP unnumbered peer for IPv6-only peering over a link-local address, run the `nv unset vrf <vrf-id> router bgp neighbor <neighbor-id> connection` command.
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
 
 ```
-- set:
-    system:
-      config:
-        snippet:
-          frr.conf: |
-            router bgp 65101
-            neighbor swp1 interface v6only peer-group CLIENT1
+cumulus@leaf01:~$ sudo vtysh
+...
+leaf01# configure terminal
+leaf01(config)# router bgp 65101
+leaf01(config-router)# neighbor swp51 interface v6only
+leaf01(config-router)# end
+leaf01# write memory
+leaf01# exit
 ```
 
-Patch and apply the snippet:
+{{< /tab >}}
+{{< /tabs >}}
 
-```
-cumulus@leaf01:~$ nv config patch bgp_snippet.yaml
-cumulus@leaf01:~$ nv config apply
-```
+To show the configuration, run the `nv show vrf <vrf-id> router bgp neighbor <neighbor>` command.
 
-The following example configures a `v6only` peering with no peer group applied:
-
-Create a .yaml file with the following content:
-
-```
-- set:
-    system:
-      config:
-        snippet:
-          frr.conf: |
-            router bgp 65101
-            neighbor swp1 interface v6only remote-as external
-```
-
-Patch and apply the snippet:
-
-```
-cumulus@leaf01:~$ nv config patch bgp_snippet.yaml
-cumulus@leaf01:~$ nv config apply
-```
 ## BGP Dynamic Neighbors
 
 *BGP dynamic neighbors* provides BGP peering to remote neighbors within a specified range of IPv4 or IPv6 addresses for a BGP peer group. You can configure each range as a subnet IP address.
@@ -397,9 +380,6 @@ Read thread: on  Write thread: on  FD used: 27
 
 {{< /expand >}}
 
-{{%notice note%}}
-Cumulus Linux does not enforce the MD5 password configured against a BGP listen-range peer group (used to accept and create dynamic BGP neighbors) and accepts connections from peers that do not specify a password.
-{{%/notice%}}
 <!-- asked not to document in 5.6
 ### Password Obfuscation
 
@@ -956,10 +936,6 @@ router bgp 65101
 {{< /tab >}}
 {{< /tabs >}}
 
-{{%notice note%}}
-When you configure multiple parallel IPv6 numbered eBGP sessions between the same pair of switches, some sessions can remain in an Idle state during simultaneous link or session bringup. Affected sessions repeatedly report `Cease/Connection Collision Resolution`. This timing-dependent issue might occur if you do not configure a BGP update source. To work around this issue, configure `update-source` separately for every numbered IPv6 BGP neighbor on both switches, using the local IPv6 address assigned to the link for that neighbor; do not configure a single shared source on the peer group when each parallel link has a different local address. After applying the configuration, clear the affected BGP sessions to remove any existing incorrectly associated connections.
-{{%/notice%}}
-
 ## ECMP
 
 BGP supports equal-cost multipathing ({{<link url="Equal-Cost-Multipath-Load-Sharing" text="ECMP">}}). If a BGP node hears a certain prefix from multiple peers, it has the information necessary to program the routing table and forward traffic for that prefix through all these peers. BGP typically chooses one best path for each prefix and installs that route in the forwarding table.
@@ -1251,6 +1227,57 @@ When you configure suppress route advertisement, NVUE restarts `switchd`.
 {{< /tabs >}}
 
 {{<link url="Upgrading-Cumulus-Linux/#issu" text="ISSU">}} suppresses route advertisement automatically when upgrading or troubleshooting an active switch so that there is minimal disruption to the network.
+
+## BGP VRF Active Check
+
+When you enable BGP VRF active check, BGP blocks advertisements and imports for the IPv4, IPv6, and EVPN address families in any VRF that is inactive. A VRF is inactive when no operationally up interface is bound to it. For example, with {{<link url="802.1X-Interfaces/#dynamic-vrf-assignment" text="802.1X dynamic VRF assignment">}}, a VRF has no operationally up interface until a supplicant authenticates.
+
+VRF active check is a global BGP setting that applies to all VRFs. The default setting is disabled.
+
+{{< tabs "TabID1834 ">}}
+{{< tab "NVUE Commands ">}}
+
+To enable BGP VRF active check, run the `nv set router bgp vrf active-check enabled` command:
+
+```
+cumulus@leaf01:~$ nv set router bgp vrf active-check enabled
+cumulus@leaf01:~$ nv config apply
+```
+
+To disable BGP VRF active check, run the `nv unset router bgp vrf active-check` command. Setting `active-check` to `disabled` has the same effect.
+
+```
+cumulus@leaf01:~$ nv unset router bgp vrf active-check
+cumulus@leaf01:~$ nv config apply
+```
+
+You do not need to restart FRR or the switch.
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@leaf01:~$ sudo vtysh
+...
+leaf01# configure terminal
+leaf01(config)# bgp vrf active-check strict
+leaf01(config)# end
+leaf01# write memory
+leaf01# exit
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+To show the BGP VRF active check setting, run the `nv show router bgp vrf` command. The `nv show router bgp` command output also includes the setting.
+
+```
+cumulus@leaf01:~$ nv show router bgp vrf
+              operational  applied
+------------  -----------  -------
+active-check  enabled      enabled
+```
+
 <!-- vale off -->
 ## BGP add-path
 
@@ -1704,23 +1731,23 @@ spine01# exit
 Fast route convergence in multi-plane CLOS topologies with connected planes (planes merged at the super spine layer) requires you to configure the SOO source IP address on leaf switches to advertise the SOO route in addition to configuring BGP DC PIC as described in {{<link url="#bgp-dc-prefix-independent-convergence" text="BGP DC Prefix Independent Convergence">}} above. The switch uses the SOO source IP address instead of the router ID.
 
 {{%notice note%}}
-- The SOO source IP address must be unique in the topology so that it does not conflict with the router ID or loopback IP address of any other switch.
+- The SOO source IP address must be unique in the topology so that it does not conflict with the router ID or loopback IP address of any other switch.
 - Only configure the anycast SOO source IP address on leaf switches that have anycast prefixes advertised into BGP.
 - Only anycast IP addresses from these leaf switches are allowed.
 
 {{%/notice%}}
 
-To configure BGP DC PIC anycast, set the SOO source IP address on a leaf. Configuring the same SOO source IP address on multiple leaf switches puts them in the same anycast group.
+To configure BGP DC PIC anycast, set the SOO source IP address on a leaf. Configuring the same SOO source IP address on multiple leaf switches puts them in the same anycast group.
 
 {{< tabs "1654 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
 cumulus@leaf01:~$ nv set vrf default router bgp soo-source 10.10.10.1
-cumulus@leaf01:~$ nv config apply
+cumulus@leaf01:~$ nv config apply
 ```
 
-To unset the SOO source IP address, run the `nv set vrf default router bgp soo-source` command.
+To unset the SOO source IP address, run the `nv set vrf default router bgp soo-source` command.
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
@@ -1730,7 +1757,7 @@ To unset the SOO source IP address, run the `nv set vrf default router b
    ...
    leaf01# configure terminal
    leaf01(config)# router bgp 65101
-   leaf01(config-router)# bgp soo-source 10.10.10.1
+   leaf01(config-router)# bgp soo-source 10.10.10.1
    leaf01(config-router)# end
    leaf01# write memory
    leaf01# exit
@@ -1739,13 +1766,13 @@ To unset the SOO source IP address, run the `nv set vrf default router b
 {{< /tab >}}
 {{< /tabs >}}
 
-If you set the SOO source IP address on a leaf switch before you enable the BGP advertise origin option, the switch starts advertising SOO routes using the configured SOO source IP address.
+If you set the SOO source IP address on a leaf switch before you enable the BGP advertise origin option, the switch starts advertising SOO routes using the configured SOO source IP address.
 
 If you set the SOO source IP address on a leaf switch after enable the BGP advertise origin option:
-- The leaf withdraws the old SOO route (the one with the router ID).
-- The leaf announces a new SOO route using the SOO-source IP address.  
-- All prefix routes are readvertised with the new SOO tag.  
-- All network switches detect this change, remove references to the old SOO route, and install the new SOO route in their routing tables.
+- The leaf withdraws the old SOO route (the one with the router ID).
+- The leaf announces a new SOO route using the SOO-source IP address.  
+- BGP readvertises all prefix routes with the new SOO tag. 
+- All network switches detect this change, remove references to the old SOO route, and install the new SOO route in their routing tables.
 
 ### Show BGP DC PIC Information
 
@@ -1984,7 +2011,7 @@ allow-my-asn
 
 In large scale deployments, route aggregation keeps BGP routing tables manageable by reducing the number of paths. However, when used in multi-plane CLOS topologies with connected planes (planes merged at the super spine layer), leaf switches often advertise one aggregate route covering all of its connected hosts while suppressing more specific routes. When a single link fails and an individual host becomes unreachable, the aggregate remains advertised and the switch continues to send traffic to the failed path with no mechanism to reroute through healthy planes.
 
-BGP conditional disaggregation advertises specific prefixes when a failure is detected, while continuing to advertise the aggregate route. Combined with anycast Site-of-Origin (SOO) matching, this triggers peer plane leafs to conditionally originate specific routes to draw traffic instead of using the aggregate route that might lead to an unreachable destination.
+BGP conditional disaggregation advertises specific prefixes when it detects a failure, while continuing to advertise the aggregate route. Combined with anycast Site-of-Origin (SOO) matching, this triggers peer plane leafs to conditionally originate specific routes to draw traffic instead of using the aggregate route that might lead to an unreachable destination.
 
 {{%notice note%}}
 - You can configure conditional disaggregation in the default VRF only.
@@ -2141,7 +2168,7 @@ cumulus@leaf01:mgmt:~$ nv config apply
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
-{{< tabs "TabID1776 ">}}
+{{< tabs "TabID1837 ">}}
 {{< tab "Leaf Configuration ">}}
 
 The following commands configure:
@@ -2152,7 +2179,7 @@ The following commands configure:
 - The BGP IPv4 unreachability SAFI, activated for peer-group SPINES.
 - Unreachability advertisements for interfaces matching 10.1.0.0./16.
 - BGP DC PIC with `advertise-origin` and `nhg-per-origin`.
-- BGP unerachable prefix export to LLDP.
+- BGP unreachable prefix export to LLDP.
 
 ```
 cumulus@leaf01:mgmt:~$ sudo vtysh
@@ -2242,7 +2269,7 @@ To show BGP unreachability signaling for a specific IPv6 route, run the `nv show
 cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unreachability 2001:db8::/64
 ```
 
-To show the unreachable prefixes in the RIB that are sent to LLDP, run the `nv show vrf default router rib unreachable-prefixes` command:
+To show the unreachable prefixes in the RIB that the switch sends to LLDP, run the `nv show vrf default router rib unreachable-prefixes` command:
 
 ```
 cumulus@leaf01:mgmt:~$ nv show vrf default router rib unreachable-prefixes
@@ -2308,6 +2335,13 @@ leaf01# show bgp ipv6 unreachability detail json
   ]
 }
 ```
+
+<!-- REVIEW: the specification never asks for a cross-reference from this page. Added because a
+     reader troubleshooting unreachability here has no other way to learn the counters exist.
+     A reviewer might prefer it in Considerations above, or not at all. Delete this comment before
+     publishing. -->
+
+To monitor unreachability and LLDP exception state continuously, the switch exports counters for the BGP unreachability table and the LLDP export channel as {{<link url="Open-Telemetry-Export/#routing-metrics-format" text="routing metrics">}}. Enable the routing telemetry service to collect them; the counters require no additional configuration.
 
 ### Clear Stale Aggregate Route Exceptions
 
@@ -2529,7 +2563,7 @@ router bgp 65101
 {{< /tab >}}
 {{< /tabs >}}
 
-## BGP Input and Ouput Message Queue Limit
+## BGP Input and Output Message Queue Limit
 
 You can configure the input and the output message queue limit for all peers. For both the input and output queue limit, you can set a value between 1 and 4294967295 messages. The default setting is 10000.
 
@@ -3288,7 +3322,7 @@ You can configure the following graceful BGP restart timers.
 | `stalepath-time` | The number of seconds to hold stale routes for a restarting peer. You can set a value between 1 and 4095. The default is 360 seconds.|
 
 {{%notice note%}}
-To avoid traffic loss during warm boot in an EVPN multihoming configuration with multihop BGP sessions, increase the `restart-time` timer to more than 180 seconds on all multihoming configured switches.
+To avoid traffic loss during warm boot, increase the `restart-time` timer to more than 180 seconds on all BGP configured peer switches.
 {{%/notice%}}
 
 The following example commands set the `restart-time` to 400 seconds, `pathselect-defer-time` to 300 seconds, and `stalepath-time` to 400 seconds:
@@ -3467,7 +3501,7 @@ The vtysh `show ip bgp summary json` command shows the last convergence event.
 
 ## Advertisement Delay
 
-BGP advertisement delay defers outbound BGP updates for a configured time after the first BGP neighbor reaches the established state. During this delay, BGP session establishment, capability negotiation, best-path selection, and FIB programming proceed as normal; only outbound update generation is held. When the timer expires, all queued advertisements are sent to all established neighbors. 
+BGP advertisement delay defers outbound BGP updates for a configured time after the first BGP neighbor reaches the established state. During this delay, BGP session establishment, capability negotiation, best-path selection, and FIB programming proceed as normal; BGP holds only outbound update generation. When the timer expires, BGP sends all queued advertisements to all established neighbors. 
 
 Use advertisement-delay to allow downlink interfaces and access services to stabilize before attracting traffic to the switch. NVIDIA recommends a delay of at least 90 seconds when using 802.1X authentication, and at least 30 seconds in other deployments. When using advertisement-delay, deploy the RADIUS server (if used) in the management VRF for reliable reachability during boot and convergence.
 
@@ -3478,7 +3512,7 @@ The following example configures BGP advertisement delay:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set vrf default bgp advertisement-delay time 90
+cumulus@leaf01:~$ nv set vrf default router bgp advertisement-delay time 90
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -3500,7 +3534,7 @@ leaf01# exit
 {{< /tabs >}}
 
 {{%notice note%}}
-The {{<link url="Optional-BGP-Configuration/#enable-read-only-mode" text="`convergence-wait time`">}} and `advertisement-delay` are independent timers. Each can be configured on its own; you can have neither, only one, or both configured at the same time. Both update-delay and advertisement-delay are triggered when the first BGP peer reaches Established and both re-trigger on startup and when BGP neighbors are cleared.
+The {{<link url="Optional-BGP-Configuration/#enable-read-only-mode" text="`convergence-wait time`">}} and `advertisement-delay` are independent timers. You can configure each one on its own; you can have neither, only one, or both configured at the same time. Both update-delay and advertisement-delay trigger when the first BGP peer reaches Established, and both re-trigger on startup and when you clear BGP neighbors.
 {{%/notice%}}
 
 ## BGP Community Lists

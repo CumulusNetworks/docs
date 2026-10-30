@@ -165,7 +165,7 @@ On NVIDIA Spectrum-2 switches and later, if you enable multiple VLAN-aware bridg
 
 ## Configure the Default VLAN Identifier
 
-Cumulus Linux uses VLAN 1 as the default VLAN identifier for both trunk and access ports. VLAN 1 is often used for in-band management and carries critical control plane protocols like Spanning Tree Protocol (STP). Because it is a globally known default, it is a primary target for VLAN hopping and double-tagging attacks, where an unauthorized user can bypass layer 2 isolation to gain access to other segments. To avoid using VLAN 1 in Cumulus Linux for user data and management traffic and to mitigate security risks, you can configure the default VLAN identifier (PVID) to override the default VLAN 1.
+Cumulus Linux uses VLAN 1 as the default VLAN identifier for both trunk and access ports. VLAN 1 is often used for in-band management and carries critical control plane protocols like Spanning Tree Protocol (STP). Because it is a globally known default, it is a primary target for VLAN hopping and double-tagging attacks, where an unauthorized user can bypass layer 2 isolation to gain access to other segments. To avoid using VLAN 1 in Cumulus Linux for user data and management traffic and to mitigate security risks, you can configure the default VLAN identifier (PVID) to override the default VLAN 1.
 
 Changing the default VLAN from VLAN 1 to a different identifier supports DoD security requirements.
 - The default VLAN applies to all bridge instances that do not have a specific PVID configured.
@@ -181,7 +181,7 @@ cumulus@switch:~$ nv set bridge default-vlan 101
 cumulus@switch:~$ nv config apply
 ```
 
-To unset the default VLAN and use VLAN 1, run the `nv unset bridge default-vlan` command.
+To unset the default VLAN and use VLAN 1, run the `nv unset bridge default-vlan` command.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}

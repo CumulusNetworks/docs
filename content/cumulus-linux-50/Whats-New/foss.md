@@ -2,6 +2,7 @@
 title: Cumulus Linux 5.0 Open Source Packages
 author: NVIDIA
 weight: -30
+type: foss
 product: Cumulus Linux
 version: "5.0"
 toc: 1

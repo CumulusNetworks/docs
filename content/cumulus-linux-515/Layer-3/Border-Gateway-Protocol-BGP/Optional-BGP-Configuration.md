@@ -75,7 +75,7 @@ If you unset a peer group, make sure that it is not applied to any neighbors. If
 
 ## IPv6-only Unnumbered Peering
 
-To configure a BGP unnumbered peer for IPv6-only peering over a link-local address, you must configure an NVUE snippet. When you configure an NVUE snippet for a `v6only` peering, the `remote-as` and any `peer-group` configuration must be applied with the snippet instead of NVUE CLI commands. If a peer group is configured for the neighbor, the remote-as can be defined in the peer group configuration through NVUE commands.
+To configure a BGP unnumbered peer for IPv6-only peering over a link-local address, you must configure an NVUE snippet. When you configure an NVUE snippet for a `v6only` peering, you must apply the `remote-as` and any `peer-group` configuration with the snippet instead of NVUE CLI commands. If you configure a peer group for the neighbor, you can define the remote-as in the peer group configuration through NVUE commands.
 
 The following example configures the BGP peer group CLIENT1 with soft reconfiguration and community advertisement enabled, and the remote AS set to external. The snippet configuration configures the `v6only` option and applies the peer group to the neighbor: 
 
@@ -2538,7 +2538,7 @@ You can configure the following graceful BGP restart timers.
 | `stalepath-time` | The number of seconds to hold stale routes for a restarting peer. You can set a value between 1 and 4095. The default is 360 seconds.|
 
 {{%notice note%}}
-To avoid traffic loss during warm boot in an EVPN multihoming configuration with multihop BGP sessions, increase the `restart-time` timer to more than 180 seconds on all multihoming configured switches.
+To avoid traffic loss during warm boot, increase the `restart-time` timer to more than 180 seconds on all BGP configured peer switches.
 {{%/notice%}}
 
 The following example commands set the `restart-time` to 400 seconds, `pathselect-defer-time` to 300 seconds, and `stalepath-time` to 400 seconds:

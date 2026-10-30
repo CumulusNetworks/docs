@@ -26,7 +26,7 @@ Below are the MIBs supported by Cumulus Linux, as well as suggested uses for the
 | {{<mib_link url="mibs/IP-MIB.txt" text="IP-MIB (includes ICMP)">}} | IPv4, IPv4 addresses counters, netmasks. |
 | {{<mib_link url="mibs/IPV6-MIB.txt" text="IPv6-MIB">}} | IPv6 counters. |
 | {{<mib_link url="mibs/LLDP-MIB.txt" text="LLDP-MIB">}} | Layer 2 neighbor information from `lldpd` (you need to {{<link url="Link-Layer-Discovery-Protocol#enable-the-snmp-subagent-in-lldp" text="enable the SNMP subagent">}} in LLDP). You need to start `lldpd` with the `-x` option to enable connectivity to `snmpd`(AgentX). |
-| {{<mib_link url="mibs/LM-SENSORS-MIB.txt" text="LM-SENSORS MIB">}} | Fan speed, temperature sensor values, voltages. This is deprecated since the ENTITY-SENSOR MIB has been added. |
+| {{<mib_link url="mibs/LM-SENSORS-MIB.txt" text="LM-SENSORS MIB">}} | Fan speed, temperature sensor values, voltages. This is discontinued since the ENTITY-SENSOR MIB has been added. |
 | {{<mib_link url="mibs/NET-SNMP-AGENT-MIB.txt" text="NET-SNMP-AGENT-MIB">}} | Agent timers, user, group config. |
 | {{<mib_link url="mibs/NET-SNMP-VACM-MIB.txt" text="NET-SNMP-VACM-MIB">}} | Agent timers, user, group config. |
 | {{<mib_link url="mibs/NOTIFICATION-LOG-MIB.txt" text="NOTIFICATION-LOG-MIB">}} | Local logging. |

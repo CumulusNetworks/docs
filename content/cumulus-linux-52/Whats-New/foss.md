@@ -2,6 +2,7 @@
 title: Cumulus Linux 5.2 Packages
 author: NVIDIA
 weight: -30
+type: foss
 product: Cumulus Linux
 version: "5.2"
 toc: 1

@@ -25,7 +25,7 @@ To enable specific types of traps, create the following configurations in `/etc/
 
 ### Define Access Credentials
 <!-- vale off -->
-Although the traps are sent to an SNMPv2c receiver, the SNMPv3 username is still required to authorize the DisMan service. Starting with Net-SNMP 5.3, `snmptrapd` no longer accepts all traps by default. You must configure `snmptrapd` with authorized SNMPv1 and v2c community strings and, or SNMPv3 users. Non-authorized traps and informs are dropped.
+Although the traps are sent to an SNMPv2c receiver, the SNMPv3 username is still required to authorize the DisMan service. Starting with Net-SNMP 5.3, `snmptrapd` no longer accepts all traps by default. You must configure `snmptrapd` with authorized SNMPv1 and v2c community strings and, or SNMPv3 users. `snmptrapd` drops non-authorized traps and informs.
 <!-- vale on -->
 Follow the steps in {{<link url="Configure-SNMP/#configure-the-snmpv3-username">}} to define the username. You can refer to the {{<exlink url="http://www.net-snmp.org/docs/man/snmptrapd.conf.html" text="snmptrapd.conf(5) manual page">}} for more information.
 

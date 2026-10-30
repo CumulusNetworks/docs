@@ -87,6 +87,7 @@ link
   fec                                         auto     
   mtu                      9216               9216     
   [breakout]                                           
+  physical-name            swp1c1c2                    
   state                    up                 up       
   stats                                                
     carrier-transitions    4                           
@@ -256,7 +257,7 @@ cumulus@switch:mgmt:~$ nv show interface status
 Interface  Admin Status  Oper Status  Protodown  Protodown Reason  Fault  
 ---------  ------------  -----------  ---------  ----------------  --------
 ...
-swp45      up            down         disabled                     Local Fault  
+swp45      up            down         disabled                     Local Fault  
 swp46      up            down         disabled                     Remote Fault
 swp47      down          down         disabled                     No Fault   
 swp48      down          down         disabled                     No Fault 
@@ -280,7 +281,7 @@ linkdown-reason-status-remote     UNKNOWN_REASON
 {{%notice note%}}
 - Interface fault detection is supported on NVIDIA Spectrum-4 and later platforms.
 - Fault status reported by the `nv show interface status` command is only supported on physical switch ports and breakout interfaces. Fault state is not applicable to logical interfaces such as VLAN sub-interfaces, SVIs, loopback interfaces, VRF interfaces, and bonds.
-- Fault detection data is not retained across reboots or when the `switchd` service is restarted.
+- The switch does not retain fault detection data across reboots or when the `switchd` service restarts.
 {{%/notice%}}
 
 ## AmBER PHY Health Management
@@ -328,7 +329,7 @@ To show a tabular summary of PHY health statistics for all switch port interface
 ```
 cumulus@switch$ nv show interface --view ber
 Interface  Eff-BER  Raw-BER  Sym-BER  Sym-Errs  Eff-Errs  Last-Clr(min) 
----------  -------  -------  -------  --------  --------  -------------
+---------  -------  -------  -------  --------  --------  -------------
 swp1       15E-255  15E-255  15E-255  0         0         1            
 swp2       15E-255  15E-255  15E-255  0         0         1            
 swp3       15E-255  15E-255  15E-255  0         0         1            
@@ -421,6 +422,19 @@ Datapath State
     5     0          
     6     0          
     7     0
+```
+
+In the text output, the `ethernet-compliance-code`, `ext-ethernet-compliance-code`, `active-set-host-compliance-code`, and `active-set-media-compliance-code` fields show the standard name that Cumulus Linux decodes from the code instead of the raw value. The following excerpt shows these fields:
+
+```
+cumulus@switch:~$ nv show interface swp1 link phy detail
+...
+ethernet-compliance-code          400GBASE-DR4 (Clause 124)
+ext-ethernet-compliance-code      IB NDR (Arch.Spec.Vol.2)
+...
+active-set-host-compliance-code   800GAUI-8 L C2M (Annex 120G)
+active-set-media-compliance-code  800GBASE-DR8 (Clause 124)
+...
 ```
 
 {{%notice note%}}
@@ -533,6 +547,65 @@ When the reset completes successfully, you see syslog messages similar to the fo
 - If a cable is faulty, the `nv action reset platform transceiver <transceiver-id` command completes successfully, but the details of the transceiver do not show until you resolve the issue or reboot the system if necessary,
 {{%/notice%}}
 
+## Manage Transceiver Firmware
+
+You can show and install firmware for a transceiver module directly through NVUE.
+
+NVUE has no command to fetch transceiver firmware. Before you install a firmware file, copy it to the switch yourself, for example with `scp`, into one of the firmware directories that the `nv show platform transceiver <transceiver-id> firmware files` command lists in the File Path column.
+
+To show the current firmware version for a transceiver, upgrade status, and the firmware files available, run the `nv show platform transceiver <transceiver-id> firmware` command:
+
+```
+cumulus@switch:~$ nv show platform transceiver swp1 firmware
+                     operational
+-------------------  ---------------------
+actual-firmware      38.100.121
+fw-upgrade-status    ok
+[files]              fw-rel-38_100_121.bin
+[files]              fw-rel-38_100_122.bin
+```
+
+To show only the available firmware files and their paths, run the `nv show platform transceiver <transceiver-id> firmware files` command. Add a file name to show a single file:
+
+```
+cumulus@switch:~$ nv show platform transceiver swp1 firmware files
+Available Firmware Files  File Path
+-------------------------  --------------------------------------------------------------
+fw-rel-38_100_121.bin      /etc/fae_platform_firmware/transceiver/fw-rel-38_100_121.bin
+fw-rel-38_100_122.bin      /tmp/firmware_downloads/transceiver/fw-rel-38_100_122.bin
+```
+
+{{%notice warning%}}
+A firmware install is destructive. NVUE does not check that the firmware file matches the module, or that the file is intact, before it writes the file. The install does not ask you to confirm, and it does not warn you if the module has only one usable firmware image and no fallback image. If the install fails or you use a file that does not match the module, the module can become unusable, stop transmitting, and take its link out of service. Do not interrupt the install, and do not use other tools to access the module while the install runs. Install only a firmware file that NVIDIA provides for the exact module type, and plan the install for a maintenance window.
+{{%/notice%}}
+
+To install a firmware file on a transceiver module, run the `nv action install platform transceiver <transceiver-id> firmware files <file>` command:
+
+```
+cumulus@switch:~$ nv action install platform transceiver swp1 firmware files fw-rel-38_100_121.bin
+Action executing ...
+Burning fw-rel-38_100_121.bin on swp1 ...
+Firmware burned on swp1 (mt4129_pciconf0_cable_0).
+Action succeeded
+```
+
+{{%notice note%}}
+After a successful install, the module restarts automatically to activate the new firmware. The link goes down for up to a minute while the module restarts. You do not need to reset the transceiver.
+{{%/notice%}}
+
+If the specified file is not staged for that transceiver, the action fails:
+
+```
+cumulus@switch:~$ nv action install platform transceiver swp1 firmware files fw-rel-38_100_121.bin
+Action executing ...
+Action failed
+Firmware file not found: fw-rel-38_100_121.bin
+```
+
+If the firmware is written successfully but the module fails to activate it, the install action reports a failure. For a module with two firmware banks, the new firmware bank is running but not committed, and you can recover the module. Reset the transceiver with the `nv action reset platform transceiver <transceiver-id>` command, then run the install again.
+
+If a firmware install fails after it starts to write the file, the module might not have a valid firmware image. In that state, the `nv show platform transceiver <transceiver-id> firmware` command might not show the firmware status, the transceiver reset does not restore the module, and a new install can fail with an error such as `LinkX type not supported for device index 7`. NVUE has no command that recovers the module. Contact NVIDIA Technical Support.
+
 ## Transceiver Thermal Control
 
 To optimize transceiver thermal performance and maintain a cooler operating environment before reaching critical temperatures, you can set temperature thresholds for fan activation in the FAN algorithm,
@@ -551,21 +624,21 @@ Setting the temperature thresholds without proper guidance can result in transce
 - Always use the parent transceiver name for configuration; for example, use swp1 not swp1s0.
 {{%/notice%}}
 
-To set the temperature threshold for a single port, run the `nv set platform transceiver <transceiver-id> temperature setpoint` command. You can set a value between 30 and 80. The temperature threshold for an interface must be below the module advertised high warning threshold. If you configure the setpoint to be above the module advertised high temperature warning threshold, the FAN algorithm uses the module advertised threshold.
+To set the temperature threshold for a single port, run the `nv set platform transceiver <transceiver-id> temperature setpoint` command. You can set a value between 30 and 80. The temperature threshold for an interface must be below the module advertised high warning threshold. If you configure the setpoint to be above the module advertised high temperature warning threshold, the FAN algorithm uses the module advertised threshold.
 
 ```
-cumulus@switch:~$ nv set platform transceiver swp2 temperature setpoint 60 
+cumulus@switch:~$ nv set platform transceiver swp2 temperature setpoint 60 
 cumulus@switch:~$ nv config apply
 ```
 
-To set the temperature threshold for a group of ports:
+To set the temperature threshold for a group of ports:
 
 ```
-cumulus@switch:~$ nv set platform transceiver swp2-10 temperature setpoint 60 
+cumulus@switch:~$ nv set platform transceiver swp2-10 temperature setpoint 60 
 cumulus@switch:~$ nv config apply
 ```
 
-To set the temperature threshold for a group of comma-separated ports:
+To set the temperature threshold for a group of comma-separated ports:
 
 ```
 cumulus@switch:~$ nv set platform transceiver swp1,4,5,30 temperature setpoint 65
@@ -577,7 +650,7 @@ cumulus@switch:~$ nv config apply
 - If you try to set the temperature threshold above the module advertised high temperature warning or if the module is not DOM capable, Cumulus Linux reports an invalid configuration warning.
 {{%/notice%}}
 
-To unset the temperature threshold and return to the default value, run the `nv unset platform transceiver <transceiver-id> temperature setpoint` command.
+To unset the temperature threshold and return to the default value, run the `nv unset platform transceiver <transceiver-id> temperature setpoint` command.
 
 {{%notice info%}}
 If you run the `nv unset platform` command, the switch clears out the temperature setpoints for all ports.
@@ -622,58 +695,79 @@ To show a detailed view of module information for all ports that includes cable 
 To show hardware capabilities and measurement information on the module in a particular port, run the `nv show platform transceiver <transceiver-id>` command:
 
 ```
-cumulus@switch:~$ nv show platform transceiver swp2
-cable-type             : Active cable 
-cable-length           : 3m 
-supported-cable-length : 0m om1, 0m om2, 0m om3, 3m om4, 0m om5 
-diagnostics-status     : Diagnostic Data Available 
-status                 : plugged_enabled 
-error-status           : N/A 
-vendor-date-code       : 210215__ 
-identifier             : QSFP28 
-vendor-rev             : B2 
-vendor-name            : Mellanox 
-vendor-pn              : MFA1A00-C003 
-vendor-sn              : MT2108FT02204 
-temperature: 
-  temperature           : 42.56 C 
-  high-alarm-threshold  : 80.00 C 
-  low-alarm-threshold   : -10.00 C 
-  high-warning-threshold: 70.00 C 
-  low-warning-threshold : 0.00 C
-  temperature-setpoint  : 60.00 C
-  alarm                 : Off 
-voltage: 
-  voltage               : 3.2862 V 
-  high-alarm-threshold  : 3.5000 V 
-  low-alarm-threshold   : 3.1000 V 
-  high-warning-threshold: 3.4650 V 
-  low-warning-threshold : 3.1350 V
-  alarm                 : Off 
-channel: 
-  channel-1: 
-    rx-power: 
-        power                 : 0.8625 mW / -0.64 dBm 
-        high-alarm-threshold  : 5.40 dBm 
-        low-alarm-threshold   : -13.31 dBm 
-        high-warning-threshold: 2.40 dBm 
-        low-warning-threshold : -10.30 dBm 
-        alarm                 : Off 
-    tx-power: 
-        power                 : 0.8988 mW / -0.46 dBm 
-        high-alarm-threshold  : 5.40 dBm 
-        low-alarm-threshold   : -11.40 dBm 
-        high-warning-threshold: 2.40 dBm 
-        low-warning-threshold : -8.40 dBm 
-        alarm                 : Off 
-    tx-bias-current: 
-        current               : 6.750 mA 
-        high-alarm-threshold  : 8.500 mA 
-        low-alarm-threshold   : 5.492 mA 
-        high-warning-threshold: 8.000 mA 
-        low-warning-threshold : 6.000 mA 
+cumulus@switch:~$ nv show platform transceiver swp1
+cable-type                  : Optical module
+supported-cable-length      : 0m om1, 0m om2, 0m om3, 0m om4, 0m om5
+supported-cable-length-smf  : 500.0m
+diagnostics-status          : Diagnostic Data Available
+status                      : Inserted
+error-status                : N/A
+vendor-date-code            : 251217
+identifier                  : OSFP
+vendor-rev                  : A4
+vendor-name                 : NVIDIA
+vendor-pn                   : MMS4X00-NM-FLT
+vendor-sn                   : MT2550NT02HC3
+vendor-oui                  : 48:b0:2d
+revision-compliance         : Rev. 4.0
+pmd-type                    : ETH_100GBASE_CR
+compliance:
+  ethernet                  : 400GBASE-DR4 (Clause 124)
+  extended                  : IB NDR (Arch.Spec.Vol.2)
+temp-flags:
+  high-alarm                : False
+  low-alarm                 : False
+  high-warning              : False
+  low-warning               : False
+vcc-flags:
+  high-alarm                : False
+  low-alarm                 : False
+  high-warning              : False
+  low-warning               : False
+flag-in-use                 : False
+temperature:
+  temperature               : 37.25 C
+  high-alarm-threshold      : 80.00 C
+  low-alarm-threshold       : -10.00 C
+  high-warning-threshold    : 70.00 C
+  low-warning-threshold     : 0.00 C
+  alarm                     : Off
+voltage:
+  voltage                   : 3.4045 V
+  high-alarm-threshold      : 3.5000 V
+  low-alarm-threshold       : 3.1000 V
+  high-warning-threshold    : 3.4650 V
+  low-warning-threshold     : 3.1350 V
+  alarm                     : Off
+channel:
+  channel-1:
+    rx-power:
+        power                 : 1.8771 mW / 2.73 dBm
+        high-alarm-threshold  : 5.00 dBm
+        low-alarm-threshold   : -6.00 dBm
+        high-warning-threshold: 4.00 dBm
+        low-warning-threshold : -5.00 dBm
         alarm                 : Off
-...  
+    tx-power:
+        power                 : 1.3848 mW / 1.41 dBm
+        high-alarm-threshold  : 5.00 dBm
+        low-alarm-threshold   : -2.00 dBm
+        high-warning-threshold: 4.00 dBm
+        low-warning-threshold : -1.00 dBm
+        alarm                 : Off
+    tx-bias-current:
+        current               : 98.848 mA
+        high-alarm-threshold  : 480.000 mA
+        low-alarm-threshold   : 40.000 mA
+        high-warning-threshold: 460.000 mA
+        low-warning-threshold : 60.000 mA
+        alarm                 : Off
+    rx-cdr-lol    : False
+    rx-los        : False
+    tx-cdr-lol    : False
+    tx-los        : False
+    tx-fault      : False
+...
 ```
 
 {{%notice note%}}
@@ -684,36 +778,49 @@ channel:
 You can also show transceiver data in a more condensed format with the `nv show interface <interface-id> transceiver` command:
 
 ```
-cumulus@switch:~$ nv show interface swp1 transceiver
-cable-type             : Active cable 
-cable-length           : 3m 
-supported-cable-length : 0m om1, 0m om2, 0m om3, 3m om4, 0m om5 
-diagnostics-status     : Diagnostic Data Available 
-status                 : plugged_enabled 
-error-status           : N/A 
-revision-compliance    : SFF-8636 Rev 2.5/2.6/2.7 
-vendor-date-code       : 210215__ 
-identifier             : QSFP28 
-vendor-rev             : B2 
-vendor-oui             : 00:02:c9 
-vendor-name            : Mellanox 
-vendor-pn              : MFA1A00-C003 
-vendor-sn              : MT2108FT02204 
-temperature            : 42.56 degrees C / 108.61 degrees F 
-voltage                : 3.2888 V 
-ch-1-rx-power          : 0.8625 mW / -0.64 dBm 
-ch-1-tx-power          : 0.8988 mW / -0.46 dBm 
-ch-1-tx-bias-current   : 6.750 mA 
-ch-2-rx-power          : 0.8385 mW / -0.76 dBm 
-ch-2-tx-power          : 0.9154 mW / -0.38 dBm 
-ch-2-tx-bias-current   : 6.750 mA 
-ch-3-rx-power          : 0.8556 mW / -0.68 dBm 
-ch-3-tx-power          : 0.9537 mW / -0.21 dBm 
-ch-3-tx-bias-current   : 6.750 mA 
-ch-4-rx-power          : 0.8576 mW / -0.67 dBm 
-ch-4-tx-power          : 0.9695 mW / -0.13 dBm 
-ch-4-tx-bias-current   : 6.750 mA 
+cumulus@switch:~$ nv show interface swp1s0 transceiver
+cable-type                  : Optical module
+supported-cable-length      : 0m om1, 0m om2, 0m om3, 0m om4, 0m om5
+supported-cable-length-smf  : 500.0m
+diagnostics-status          : Diagnostic Data Available
+status                      : Inserted
+error-status                : N/A
+revision-compliance         : Rev. 4.0
+vendor-date-code            : 251217
+identifier                  : OSFP 8X Pluggable Transceiver
+vendor-rev                  : A4
+vendor-oui                  : 48:b0:2d
+vendor-name                 : NVIDIA
+vendor-pn                   : MMS4X00-NM-FLT
+vendor-sn                   : MT2550NT02HC3
+pmd-type                    : ETH_100GBASE_CR
+compliance:
+  ethernet                  : 400GBASE-DR4 (Clause 124)
+  extended                  : IB NDR (Arch.Spec.Vol.2)
+temperature                 : 37.25 degrees C / 99.06 degrees F
+voltage                     : 3.4045 V
+ch-1-rx-power               : 1.8689 mW / 2.72 dBm
+ch-1-tx-power               : 1.3848 mW / 1.41 dBm
+ch-1-tx-bias-current        : 98.848 mA
 ```
+
+To show the Ethernet standards that a module supports, run the `nv show platform transceiver <transceiver-id> compliance` command or the `nv show interface <interface-id> transceiver compliance` command. Cumulus Linux decodes the compliance codes that the module reports into standard names, so you do not need to look up the codes in a specification. The compliance section also appears in the output of the `nv show platform transceiver <transceiver-id>` and `nv show interface <interface-id> transceiver` commands.
+
+```
+cumulus@switch:~$ nv show platform transceiver swp1 compliance
+compliance:
+  ethernet                  : 400GBASE-DR4 (Clause 124)
+  extended                  : IB NDR (Arch.Spec.Vol.2)
+```
+
+To show compliance for a range of interfaces, specify the range in the command; for example, `nv show interface swp1-32 transceiver compliance`.
+
+{{%notice note%}}
+- Ethernet compliance is a bitmap. If a module sets more than one bit, the command lists every standard that the module supports, from the highest nominal speed to the lowest, then alphabetically for standards with the same speed.
+- The command lists only the standards in the Cumulus Linux mapping table. It ignores vendor-specific and unrecognized codes and does not show a placeholder or a hexadecimal value for them. A module that implements a newer standard might not list it until a later release adds the standard.
+- If no transceiver is present, or Cumulus Linux cannot read the module, the compliance section is empty or does not appear, and the command completes without an error.
+- To see the raw compliance codes, use `ethtool -m` or the JSON output of the `nv show interface <interface-id> link phy detail` command.
+{{%/notice%}}
 
 To show channel information for the module in a particular port, run the `nv show platform transceiver <transceiver-id> channel` command. To show specific channel information for the module in a particular port, run the `nv show platform transceiver <transceiver-id> channel <channel-id>` command.
 
@@ -782,3 +889,242 @@ tx-bias-current      1     6.750 mA        8.500 mA        8.000 mA        6.000
                      3     6.750 mA        8.500 mA        8.000 mA        6.000 mA        5.492 mA 
                      4     6.750 mA        8.500 mA        8.000 mA        6.000 mA        5.492 mA 
 ```
+
+<!-- NOT SUPPORTED IN 5.19, commented out 2026-10-30 (Ilia Yanover: 5.19 does not officially support CPO). To restore, remove this comment wrapper and undo the escapes: put the inner comment delimiters (written with a slash inserted) and the Hugo shortcodes (written with a slash and asterisk) back to normal.
+## Show CPO Module and Laser Source Information
+
+On a switch with co-packaged optics (CPO), the optics sit inside the switch ASIC package instead of in pluggable modules in the front panel ports, so optical data no longer maps to a single port. Cumulus Linux exposes this hardware through two new commands: `nv show platform cpo`, which holds the CPO modules, and `nv show platform laser-source`, which holds the external laser sources (ELS). Use these commands to inspect module state, per-channel optical power, and per-laser health when you suspect an optical fault.
+
+A CPO module contains two optical engines (OE) and 32 lanes, which the CLI shows as channels. Each laser source is one ELS driving eight lasers. Cumulus Linux reads the mapping between ports, channels, and lasers from the switch firmware instead of assuming a fixed ratio, so the mapping can differ between platforms.
+
+{{%/* notice note */%}}
+- The `nv show platform cpo` and `nv show platform laser-source` commands are available on CPO platforms only. On other platforms, use the `nv show platform transceiver` commands described earlier.
+- CPO and laser source data is read-only. There is nothing to configure.
+- On a switch with more than one ASIC, these commands show the CPO modules for every ASIC.
+- When a module is absent, the entry can still appear with whatever subcomponent state is available. Cumulus Linux does not report a missing value as valid data.
+- When part of a module fails, the operational channels and lasers continue to report, and the failed components show an error status.
+- When Cumulus Linux cannot read or parse a value, it shows `N/A` or `0` for that field and logs the error instead of returning a stale or synthetic value. Run the command again to retry the read.
+- Interface state does not affect these readings. Bringing an interface down, or changing its IP or VLAN configuration, does not change the underlying optical measurements.
+{{%/* /notice */%}}
+
+### Show CPO Modules
+
+To show a summary of every CPO module on the switch, including its status, firmware version, the ports it carries, and the laser source and optical engines it uses, run the `nv show platform cpo` command:
+
+```
+cumulus@switch:~$ nv show platform cpo
+CPO   Status    Error-status         FW Version  Ports      Laser Source  Optical Engines
+----  --------  -------------------  ----------  ---------  ------------  ---------------
+cpo1  inserted  fiber contaminated   42.40.15    swp1-swp4  els1          oe1, oe2
+cpo2  inserted  N/A                  42.40.15    swp5-swp8  els2          oe3, oe4
+```
+
+To show all the data for one module, run the `nv show platform cpo <cpo-id>` command. The output covers all 32 channels of both optical engines, so it runs to between 100 and 200 lines:
+
+```
+cumulus@switch:~$ nv show platform cpo cpo1
+status         : inserted
+error-status   : fiber contaminated
+identifier     : CPO Virtual Module
+fw-version     : 42.40.15
+ports          : swp1,swp2,swp3,swp4
+laser-source   : els1
+optical-engine:
+  oe1:
+    identifier   : OE 16x
+    serial-number: MT2219FT03171
+    temperature  : 36.8
+  oe2:
+    identifier   : OE 16x
+    serial-number: MT2219FT031712
+    temperature  : 36.8
+threshold:
+  laser-source-input-power:
+    high-alarm  : 2.0
+    low-alarm   : -6.0
+    high-warning: 1.0
+    low-warning : -5.0
+  rx-power:
+    high-alarm  : 2.0
+    low-alarm   : -8.0
+    high-warning: 1.0
+    low-warning : -7.0
+  tx-power:
+    high-alarm  : 2.0
+    low-alarm   : -6.0
+    high-warning: 1.0
+    low-warning : -5.0
+channel:
+  channel-1:
+    laser-source-input-power:
+      power         : -1.0
+      alarm-status  : off
+      alarm-severity: none
+    rx-power:
+      power         : -1.0
+      alarm-status  : off
+      alarm-severity: none
+    tx-power:
+      power         : -0.6
+      alarm-status  : off
+      alarm-severity: none
+    rx-los              : false
+    tx-los              : false
+    tx-fault            : false
+    advanced-fault-opcode: none
+    dp-state            : initialized
+  channel-2:
+...
+  channel-32:
+...
+```
+
+For each channel, `laser-source-input-power` is the power the laser source delivers into the optical engine, `rx-power` and `tx-power` are the received and transmitted optical power, and each of the three carries an `alarm-status` and an `alarm-severity` derived from the module thresholds. The `rx-los` and `tx-los` fields report loss of signal in each direction, `tx-fault` reports a transmit failure, and `dp-state` reports the state of the data path.
+
+Because the full view is long, three child commands limit the output:
+
+- `nv show platform cpo <cpo-id> channel` shows the `channel` block only.
+- `nv show platform cpo <cpo-id> optical-engine` shows the `optical-engine` block only.
+- `nv show platform cpo <cpo-id> threshold` shows the `threshold` block only.
+
+```
+cumulus@switch:~$ nv show platform cpo cpo1 optical-engine
+optical-engine:
+  oe1:
+    identifier   : OE 16x
+    serial-number: MT2219FT03171
+    temperature  : 36.8
+  oe2:
+    identifier   : OE 16x
+    serial-number: MT2219FT031712
+    temperature  : 36.8
+```
+
+### Show CPO Information for an Interface
+
+To show only the part of a CPO module that carries a particular interface, run the `nv show interface <interface-id> cpo` command. The output has the same shape as the module view, adds a `parent` field naming the module, and restricts the channels and the optical engine to those the switch firmware assigns to that interface:
+
+```
+cumulus@switch:~$ nv show interface swp1 cpo
+status         : inserted
+error-status   : fiber contaminated
+identifier     : CPO Virtual Module
+fw-version     : 42.40.15
+ports          : swp1,swp2,swp3,swp4
+laser-source   : els1
+parent         : cpo1
+optical-engine:
+  oe1:
+    identifier   : OE 16x
+    serial-number: MT2219FT03171
+    temperature  : 36.8
+threshold:
+...
+channel:
+  channel-1:
+...
+  channel-8:
+...
+```
+
+### Show Laser Sources
+
+A laser source is not a transceiver, so it has its own commands. To list the laser sources on the switch with their vendor information and firmware version, run the `nv show platform laser-source` command:
+
+```
+cumulus@switch:~$ nv show platform laser-source
+Laser-source  Identifier  Vendor name  Vendor PN      Vendor SN      Vendor revision  FW Version
+------------  ----------  -----------  -------------  -------------  ---------------  ----------
+els1          ELS         NVIDIA       MCP7Y60-H01A   MT2233VS02221  A4               42.40.15
+els2          ELS         NVIDIA       MCP7Y60-H01B   MT2233VS02222  A4               42.40.15
+```
+
+To show the detail for one laser source, including its temperature, power consumption, thresholds, and the state of all eight lasers, run the `nv show platform laser-source <laser-source-id>` command:
+
+```
+cumulus@switch:~$ nv show platform laser-source els1
+status           : inserted
+error-status     : laser_fiber_contaminated
+vendor-date-code : 220505
+identifier       : ELS
+vendor-name      : NVIDIA
+vendor-rev       : A4
+vendor-pn        : MCP7Y60-H01A
+vendor-sn        : MT2443FT01035
+fw-version       : 42.40.15
+parent           : cpo1
+temperature      : 28.00
+power-consumption: 3.52
+icc-current      : 122
+threshold:
+  optical-power:
+    high-alarm  : 1.0
+    low-alarm   : -5.0
+    high-warning: 0.0
+    low-warning : -3.0
+  bias-current:
+    high-alarm  : 14.0
+    low-alarm   : 8.0
+    high-warning: 13.0
+    low-warning : 9.0
+laser:
+  laser-1:
+    enabled          : enabled
+    oper-status      : off
+    error-status     : laser_fiber_contaminated
+    power-restriction: off
+    health:
+      laser-age   : 50
+      laser-health: 25
+      tec-health  : 15
+    laser-optical-power:
+      target        : 1.50
+      power         : 32
+      alarm-status  : off
+      alarm-severity: none
+    laser-bias-current:
+      current       : 12.2
+      alarm-status  : off
+      alarm-severity: none
+    frequency-error  : 2.3
+    laser-mpd-current: 0.12
+    tec:
+      current    : 55
+      voltage    : 2.9
+      temperature: 23.5
+  laser-2:
+...
+  laser-8:
+...
+```
+
+The `parent` field names the CPO module the laser source feeds. For each laser, `enabled` is the administrative state and `oper-status` is the state the hardware reports, so a laser you enable that has not yet finished ramping shows `enabled` with an `oper-status` other than `on`. The `health` block reports the age of the laser and health values for the laser and its thermoelectric cooler (TEC), and the `tec` block reports the current, voltage, and temperature of that cooler.
+
+As with the CPO commands, two child commands limit the output:
+
+- `nv show platform laser-source <laser-source-id> laser` shows the `laser` block only.
+- `nv show platform laser-source <laser-source-id> threshold` shows the `threshold` block only.
+
+```
+cumulus@switch:~$ nv show platform laser-source els1 threshold
+threshold:
+  optical-power:
+    high-alarm  : 1.0
+    low-alarm   : -5.0
+    high-warning: 0.0
+    low-warning : -3.0
+  bias-current:
+    high-alarm  : 14.0
+    low-alarm   : 8.0
+    high-warning: 13.0
+    low-warning : 9.0
+```
+
+### Upgrade Notes
+
+When you upgrade a switch that has CPO hardware, Cumulus Linux detects the hardware and uses the CPO display automatically. You do not need to enable anything.
+
+The scope of the data the transceiver commands return changes on CPO hardware: the switch reports CPO modules instead of front panel transceivers. Adjust any configuration file or script that parses `nv show platform transceiver` output on a CPO switch to use the `nv show platform cpo` and `nv show platform laser-source` commands instead. The output format does not change; it remains key-value pairs.
+
+To export the same data to a monitoring system, see {{</* link url="Open-Telemetry-Export/#platform-statistics" text="Platform Statistics" */>}}.
+-->

@@ -319,13 +319,13 @@ The packaged docker wrapper classifies supported docker container creation comma
 
 The `cumulus-docker-resource-tier-governance.service` service reads the current policy, programs the Restricted and Limited slice limits, and reconciles existing governance-managed containers when you apply policy. If you install the Docker Compose plugin, Docker compose workloads are also governed at creation time.
 
-Governance does not move running container processes between control groups. If an existing governance-managed container needs to change tiers, the service recreates it in the correct slice. If the container is supervised by `systemd`, the service restarts the owning unit so the container is recreated through its normal service lifecycle.
+Governance does not move running container processes between control groups. If an existing governance-managed container needs to change tiers, the service recreates it in the correct slice. If `systemd` supervises the container, the service restarts the owning unit so the container is recreated through its normal `systemd` service lifecycle.
 
 ### Governance Configuration
 
 Governance uses these configuration files:
 
-- `/etc/cumulus/docker/resource-tier-governance/whitelist.json` controls which images are classified as Trusted or Limited.
+- `/etc/cumulus/docker/resource-tier-governance/whitelist.json` controls which images the service classifies as Trusted or Limited.
 - `/etc/cumulus/docker/resource-tier-governance/quotas.conf` controls the aggregate CPU and memory percentages for the Restricted and Limited tiers.
 
 Images that are not listed in either the Trusted or Limited tier default to the Restricted tier.
@@ -407,9 +407,9 @@ Use `systemctl reload` instead of `systemctl restart` for normal policy updates.
 
 ### Considerations
 
-- Existing containers are reconsidered only when you apply governance with a service action such as `start`, `reload`, `restart`, or `stop`.
+- The service reconsiders existing containers only when you apply governance with a service action such as `start`, `reload`, `restart`, or `stop`.
 - Editing the `/etc/cumulus/docker/resource-tier-governance/whitelist.json` file  or the `/etc/cumulus/docker/resource-tier-governance/quotas.conf` file does not retier existing containers until you apply governance again.
-- Containers created before you install the governance wrapper, or other containers without governance metadata, are treated as unmanaged and are left untouched. To bring these containers under governance, stop and remove them, then recreate them.
+- The service treats containers created before you install the governance wrapper, or other containers without governance metadata, as unmanaged and leaves them untouched. To bring these containers under governance, stop and remove them, then recreate them.
 - Containers created with an explicit Docker `--cgroup-parent` or `Compose cgroup_parent` remain under user control and are not re-tiered by governance.
 - Retiering an existing container can require a stop, remove, and recreate operation or, for workloads that `systemd` supervises, a restart of the owning unit. Plan policy changes accordingly for stateful or production workloads.
 - Governance enforces aggregate ceilings per tier. It does not provide guaranteed minimum CPU or memory reservations for each container inside a tier.
@@ -436,4 +436,4 @@ cumulus@switch:~$ systemctl show docker-restricted.slice -p CPUQuotaPerSecUSec -
 cumulus@switch:~$ systemctl show docker-limited.slice -p CPUQuotaPerSecUSec -p MemoryMax
 ```
 
-The authoritative CPU and memory limits are applied to the slice, not to the individual container scope. Verify both container placement and slice properties when checking governance behavior.
+Governance applies the authoritative CPU and memory limits to the slice, not to the individual container scope. Verify both container placement and slice properties when checking governance behavior.

@@ -28,6 +28,7 @@ pdfhidden: True
 | 3771124 | When you reconfigure a VNI to map to a different VRF or remove and recreate a VNI in the same VRF, NetQ EVPN validations might incorrectly indicate a failure for the VRF consistency test. | 4.9.0 | 4.10.0-4.15.1|
 | 3769936, 3976289, 4122250 | When there is a NetQ interface validation failure for admin state mismatch, the validation failure might clear unexpectedly while one side of the link is still administratively down. | 4.9.0-4.13.0 | 4.14.0-4.15.1|
 | 3760442 | When you export events from NetQ to a CSV file, the timestamp of the exported events does not match the timestamp reported in the NetQ UI based on the user profile's time zone setting. | 4.9.0 | 4.10.0-4.15.1|
+| 3755207 | When you export digital optics table data from NetQ, some fields might be visible in the UI that are not exported to CSV or JSON files. | 4.9.0-4.15.1 | |
 | 3738840 | When you upgrade a Cumulus Linux switch configured for TACACS authentication using NetQ LCM, the switch's TACACS configuration is not restored after upgrade. | 4.8.0-4.9.0 | 4.10.0-4.15.1|
 | 3721754, 3721794 | After you decommission a switch, the switch's interfaces are still displayed in the NetQ UI in the Interfaces view. | 4.9.0-4.10.1 | 4.11.0-4.15.1|
 | 3613811 | LCM operations using in-band management are unsupported on switches that use eth0 connected to an out-of-band network. To work around this issue, configure NetQ to use out-of-band management in the <code>mgmt</code> VRF on Cumulus Linux switches when interface eth0 is in use. | 4.8.0-4.15.1 | |

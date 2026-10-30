@@ -175,11 +175,11 @@ Peers 5, using 100 KiB of memory
 Peer groups 1, using 64 bytes of memory
 
 Neighbor              V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd   PfxSnt Desc
-leaf02(peerlink.4094) 4      65102     28196     28210      126    0    0 12:27:35           12       13 FRRouting/10.0.3
-spine01(swp51)        4      65199     28187     28195      126    0    0 23:19:30            9       13 FRRouting/10.0.3
-spine02(swp52)        4      65199     28216     28222      126    0    0 12:27:36            9       13 FRRouting/10.0.3
-spine03(swp53)        4      65199     28185     28195      126    0    0 23:19:30            9       13 FRRouting/10.0.3
-spine04(swp54)        4      65199     28217     28222      126    0    0 12:27:34            9       13 FRRouting/10.0.3
+leaf02(peerlink.4094) 4      65102     28196     28210      126    0    0 12:27:35           12       13 FRRouting/10.6.0
+spine01(swp51)        4      65199     28187     28195      126    0    0 23:19:30            9       13 FRRouting/10.6.0
+spine02(swp52)        4      65199     28216     28222      126    0    0 12:27:36            9       13 FRRouting/10.6.0
+spine03(swp53)        4      65199     28185     28195      126    0    0 23:19:30            9       13 FRRouting/10.6.0
+spine04(swp54)        4      65199     28217     28222      126    0    0 12:27:34            9       13 FRRouting/10.6.0
 
 Total number of neighbors 5
 
@@ -191,11 +191,11 @@ Peers 5, using 100 KiB of memory
 Peer groups 1, using 64 bytes of memory
 
 Neighbor              V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd   PfxSnt Desc
-leaf02(peerlink.4094) 4      65102     28196     28210       46    0    0 12:27:35           57       81 FRRouting/10.0.3
-spine01(swp51)        4      65199     28187     28195       46    0    0 23:19:30           57       81 FRRouting/10.0.3
-spine02(swp52)        4      65199     28216     28222       46    0    0 12:27:36           57       81 FRRouting/10.0.3
-spine03(swp53)        4      65199     28185     28195       46    0    0 23:19:30           57       81 FRRouting/10.0.3
-spine04(swp54)        4      65199     28217     28222       46    0    0 12:27:34           57       81 FRRouting/10.0.3
+leaf02(peerlink.4094) 4      65102     28196     28210       46    0    0 12:27:35           57       81 FRRouting/10.6.0
+spine01(swp51)        4      65199     28187     28195       46    0    0 23:19:30           57       81 FRRouting/10.6.0
+spine02(swp52)        4      65199     28216     28222       46    0    0 12:27:36           57       81 FRRouting/10.6.0
+spine03(swp53)        4      65199     28185     28195       46    0    0 23:19:30           57       81 FRRouting/10.6.0
+spine04(swp54)        4      65199     28217     28222       46    0    0 12:27:34           57       81 FRRouting/10.6.0
 
 Total number of neighbors 5
 ```
@@ -261,11 +261,11 @@ Peers 5, using 100 KiB of memory
 Peer groups 1, using 64 bytes of memory
 
 Neighbor              V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd   PfxSnt Desc
-leaf02(peerlink.4094) 4      65102     28280     28294       46    0    0 12:31:48           57       81 FRRouting/10.0.3
-spine01(swp51)        4      65199     28271     28279       46    0    0 23:23:43           57       81 FRRouting/10.0.3
-spine02(swp52)        4      65199     28301     28307       46    0    0 12:31:49           57       81 FRRouting/10.0.3
-spine03(swp53)        4      65199     28270     28279       46    0    0 23:23:43           57       81 FRRouting/10.0.3
-spine04(swp54)        4      65199     28301     28306       46    0    0 12:31:47           57       81 FRRouting/10.0.3
+leaf02(peerlink.4094) 4      65102     28280     28294       46    0    0 12:31:48           57       81 FRRouting/10.6.0
+spine01(swp51)        4      65199     28271     28279       46    0    0 23:23:43           57       81 FRRouting/10.6.0
+spine02(swp52)        4      65199     28301     28307       46    0    0 12:31:49           57       81 FRRouting/10.6.0
+spine03(swp53)        4      65199     28270     28279       46    0    0 23:23:43           57       81 FRRouting/10.6.0
+spine04(swp54)        4      65199     28301     28306       46    0    0 12:31:47           57       81 FRRouting/10.6.0
 
 Total number of neighbors 5
 ```
@@ -431,7 +431,7 @@ cumulus@leaf01:mgmt:~$ nv show evpn vni 10 route-target
 [both]  65101:10             
 ```
 
-When RTs are explicitly configured they the values appear as applied and operational, and any indivdual RTs that are only imported or exported appear more granularly. In the following example, `11:22` is configured for import, `33:44` for export, and `55:66` for both import and export on VNI 101101:
+When you explicitly configure RTs, the values appear as applied and operational, and any individual RTs that you only import or export appear more granularly. In the following example, `11:22` is configured for import, `33:44` for export, and `55:66` for both import and export on VNI 101101:
 
 ```
 cumulus@switch:mgmt:~$ nv show evpn vni 101101 route-target
@@ -919,7 +919,7 @@ Route                                                                   rd      
 
 ## Show a Specific EVPN Route
 
-To drill down on a specific route for more information, run the vtysh `show bgp l2vpn evpn route rd <rd-value>` command. This command displays all EVPN routes with that RD and with the path attribute details for each path. Additional filtering is possible based on route type or by specifying the MAC and/or IP address. The following example shows the specific MAC/IP route of server05. The output shows that this remote host is behind VTEP 10.10.10.3 and is reachable through four paths; one through each spine switch. This example is from a symmetric routing configuration, so the route shows both the layer 2 VNI (20) and the layer 3 VNI (4001), as well as the EVPN route target attributes corresponding to each and the associated router MAC address.
+To drill down on a specific route for more information, run the vtysh `show bgp l2vpn evpn route rd <rd-value>` command. This command displays all EVPN routes with that RD and with the path attribute details for each path. Additional filtering is possible based on route type or by specifying the MAC and IP address. The following example shows the specific MAC/IP route of server05. The output shows that this remote host is behind VTEP 10.10.10.3 and is reachable through four paths; one through each spine switch. This example is from a symmetric routing configuration, so the route shows both the layer 2 VNI (20) and the layer 3 VNI (4001), as well as the EVPN route target attributes corresponding to each and the associated router MAC address.
 
 ```
 cumulus@leaf01:mgmt:~$ sudo vtysh

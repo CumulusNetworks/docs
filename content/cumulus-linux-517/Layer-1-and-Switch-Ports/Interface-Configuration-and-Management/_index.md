@@ -89,6 +89,10 @@ iface swp1
 
 If you configure an interface in the `/etc/network/interfaces` file, you can bring it down administratively with the `ifdown swp1` command, then bring the interface back up with the `ifup swp1` command. These changes do not persist after a reboot. After a reboot, the configuration present in `/etc/network/interfaces` takes effect.
 
+{{%notice warning%}}
+The `ifup` and `ifdown` commands change the interface state outside of NVUE. NVUE does not track changes you make with Linux commands, so using `ifup` or `ifdown` to bring an interface up or down can cause NVUE's view of the switch to diverge from its actual state, which can result in unexpected network behavior. To bring an interface up or down in a way that NVUE tracks, use the NVUE commands instead (see the NVUE Commands tab above).
+{{%/notice%}}
+
 {{%notice note%}}
 - By default, the `ifupdown` and `ifup` commands are quiet. Use the verbose option (`-v`) to show commands as they execute when you bring an interface down or up.
 - For configurations at scale, you can run the `ifreload -a --diff` command to apply only current configuration changes instead of processing the entire `/etc/network/interfaces` file.
@@ -1231,7 +1235,7 @@ linkdown-reason-status-remote     UNKNOWN_REASON
 {{%notice note%}}
 - Interface fault detection is supported on NVIDIA Spectrum-4 and later platforms.
 - Fault status reported by the `nv show interface status` command is only supported on physical switch ports and breakout interfaces. Fault state is not applicable to logical interfaces such as VLAN sub-interfaces, SVIs, loopback interfaces, VRF interfaces, and bonds.
-- Fault detection data is not retained across reboots or when the `switchd` service is restarted.
+- Fault detection data is not retained across reboots or when the `switchd` service restarts.
 {{%/notice%}}
 
 

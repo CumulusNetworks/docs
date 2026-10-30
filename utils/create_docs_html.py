@@ -4,7 +4,7 @@ Build Hugo offline HTML docs and zip selected content for distribution.
 
 Run from any directory; paths are resolved relative to the repository root.
 
-Use --noRN to skip utils/build_rns.py (same as declining regeneration when prompted).
+Use --noRN to skip utils/build_rns_internal.py (same as declining regeneration when prompted).
 '''
 
 from __future__ import annotations
@@ -19,7 +19,7 @@ from distutils.version import LooseVersion
 from pathlib import Path
 
 REQUIRED_BRANCH = "generate-offlinedocs"
-BUILD_RNS_SCRIPT = "utils/build_rns.py"
+BUILD_RNS_SCRIPT = "utils/build_rns_internal.py"
 
 RN_MARKDOWN_LINE = re.compile(r"^Building markdown for (.+?)\s+(.+?)\s*$")
 
@@ -390,7 +390,7 @@ def main() -> None:
     else:
         rn_choice = input(
             "\nRegenerate release notes with {!s}?\n"
-            "  (Downloads JSON from CloudFront and rewrites RN markdown in content/.)\n"
+            "  (Downloads JSON from the internal penta-02 server and rewrites RN markdown in content/.)\n"
             "[Y/n]: ".format(BUILD_RNS_SCRIPT)
         ).strip().lower()
         skip_rn = rn_choice in ("n", "no")

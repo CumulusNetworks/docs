@@ -250,6 +250,52 @@ If you are not using ISSU, reboot with a {{<link url="System-Power-and-Switch-Re
 {{< /tab >}}
 {{< /tabs >}}
 
+### Cancel boot-next
+
+After you run `nv action boot-next system image other` (or `cl-image-upgrade -a`) to set the switch to boot into the upgraded partition, you can cancel the change before you reboot. The next boot then stays on the current partition.
+
+You can only cancel before the reboot. The cancel command selects the running partition again, withdraws the pending changeover, and removes the state and markers that `boot-next` creates.
+
+{{< tabs "TabID-cancel-boot-next ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv action cancel system image
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+```
+cumulus@switch:~$ cl-image-upgrade -c
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+If NVUE cannot cancel the boot-next, it provides a message with the reason.
+
+### Carry Forward Additional Files
+
+Optimized image upgrade does not copy all the `/etc` directory to the upgraded partition. The upgrade copies the files that packages and NVUE declare, plus the files that you specify. The upgrade does not copy files to the upgraded partition that you create or edit outside NVUE that you do not specify.
+
+To copy additional files to the upgraded partition, create a configuration file in the `/etc/cumulus/upgrade-carry-forward.d/` directory with a name in the format `<name>.conf`. Each line contains `carry-forward <path>`.
+
+The upgrade reads the declarations from the partition you are leaving, so they take effect without any copy in the new image.
+
+The following example carries forward a file that you created outside NVUE and a directory with custom scripts:
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/upgrade-carry-forward.d/custom.conf
+# Files created outside NVUE
+carry-forward /etc/myapp/myapp.conf
+carry-forward /etc/myapp/scripts/
+```
+
+{{%notice warning%}}
+Do not declare partition specific files (`/etc/fstab`, `/etc/passwd`, `/etc/shadow`, `/etc/group`, `/etc/gshadow`, `/etc/image-release`, `/etc/machine-id`) or broad patterns such as `/etc/*`. Declared files overwrite the upgraded partition's own copy without any check. For `/etc/fstab`, the next boot of that partition mounts and checks the wrong device.
+{{%/notice%}}
+
 ## Package Upgrade
 
 Cumulus Linux completely embraces the Linux and Debian upgrade workflow, where you use an installer to install a base image, then perform any upgrades within that release train with package upgrade. Any packages that change after the base install get upgraded in place from the repository. All switch configuration files remain untouched, or in rare cases merged during the package upgrade.

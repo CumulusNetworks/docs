@@ -37,6 +37,7 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
   <!-- NOT SUPPORTED IN 5.19, commented out 2026-10-28: - {{</* link url="Equal-Cost-Multipath-Load-Sharing/#ecmp-group-segregation" text="Adaptive routing ECMP group segregation for round-robin port selection on Spectrum-6 switches" */>}} -->
 - {{<link url="Quality-of-Service/#service-port-buffers" text="Dedicated service port ingress buffers on Spectrum-6 switches">}}
 - {{<link url="Domain-Name-System-DNS/#dns-query-source-address" text="Configurable source address for DNS queries, so that queries leave the switch from a stable loopback identity">}}
+- {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="Optimized image upgrade options to cancel a pending boot-next and to declare additional files to carry forward to the upgraded partition">}}. Optimized image upgrade no longer copies all of the `/etc` directory.
 <!-- NOT SUPPORTED IN 5.19, commented out 2026-10-30: - {{</* link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#show-cpo-module-and-laser-source-information" text="CPO module and laser source visibility on switches with co-packaged optics" */>}} -->
 - {{<link url="Packet-Trimming/#packet-trimming-counters" text="Trimmed packet sent and dropped counters at the global, port, and traffic class level">}} on Spectrum-6 switches
 - NVUE

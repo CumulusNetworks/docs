@@ -962,7 +962,7 @@ In Cumulus Linux 5.19, the link tracking configuration file and the way Cumulus 
   carry-forward /etc/default/ifplugd
   ```
 
-  Refer to {{<link title="Upgrading-Cumulus-Linux/#carry-forward-additional-files" text="Carry Forward Additional Files">}}.
+  Refer to {{<link url="Upgrading-Cumulus-Linux/#carry-forward-additional-files" text="Carry Forward Additional Files">}}.
 
 To retain custom interface lists or action logic not supported by link tracking, you can configure traditional snippets.
 

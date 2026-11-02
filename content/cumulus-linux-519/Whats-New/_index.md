@@ -34,11 +34,9 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 - {{<link url="Packet-Trimming/#back-to-sender-notification-on-congestion-tail-drop" text="Back-to-sender notification on congestion tail drop">}} on Spectrum-6 switches
 - {{<link url="Packet-Trimming/#back-to-sender-notification-on-link-down" text="Back-to-sender notification when an MRC egress link fails">}}
 - {{<link url="Step-Time-Estimation" text="Step time estimation for AI training workloads">}}
-  <!-- NOT SUPPORTED IN 5.19, commented out 2026-10-28: - {{</* link url="Equal-Cost-Multipath-Load-Sharing/#ecmp-group-segregation" text="Adaptive routing ECMP group segregation for round-robin port selection on Spectrum-6 switches" */>}} -->
 - {{<link url="Quality-of-Service/#service-port-buffers" text="Dedicated service port ingress buffers on Spectrum-6 switches">}}
 - {{<link url="Domain-Name-System-DNS/#dns-query-source-address" text="Configurable source address for DNS queries, so that queries leave the switch from a stable loopback identity">}}
 - {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="Optimized image upgrade options to cancel a pending boot-next and to declare additional files to carry forward to the upgraded partition">}}. Optimized image upgrade no longer copies all of the `/etc` directory.
-<!-- NOT SUPPORTED IN 5.19, commented out 2026-10-30: - {{</* link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#show-cpo-module-and-laser-source-information" text="CPO module and laser source visibility on switches with co-packaged optics" */>}} -->
 - {{<link url="Packet-Trimming/#packet-trimming-counters" text="Trimmed packet sent and dropped counters at the global, port, and traffic class level">}} on Spectrum-6 switches
 - NVUE
   - {{<link url="Using-sudo-to-Delegate-Privileges" text="Passwordless sudo access by default">}} for members of the sudo group, and {{<link url="Role-Based-Access-Control/#os-command-classes" text="RBAC os-command allow-lists">}} for granular passwordless access to specific commands (Beta)
@@ -61,7 +59,6 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
   - {{<link url="New-and-Updated-Telemetry-Metrics/#new-otel-metrics" text="OTEL metrics for AAA RADIUS login authentication">}}
   - {{<link url="ASIC-Monitoring/#microburst-histogram" text="Microburst histogram with per-port burst scoring">}}
   - {{<link url="gNMI-Streaming/#dial-out-source-address" text="Configurable source address for gNMI dial-out connections">}}
-  <!-- NOT SUPPORTED IN 5.19, commented out 2026-10-30: - {{</* link url="New-and-Updated-Telemetry-Metrics/#new-gnmi-metrics" text="gNMI and OTEL metrics for CPO modules and laser sources" */>}} -->
   - {{<link url="New-and-Updated-Telemetry-Metrics/#new-gnmi-metrics" text="gNMI and OTEL metrics for trimmed packet sent and dropped counters">}} on Spectrum-6 switches
   - {{<link url="New-and-Updated-Telemetry-Metrics/#updated-gnmi-metrics" text="Updated gNMI xPaths for packet trimming counters">}}
   - {{<link url="New-and-Updated-Telemetry-Metrics/#new-gnmi-metrics" text="gNMI and OTEL metrics for back-to-sender notification on link down">}} on Spectrum-6 switches
@@ -191,6 +188,21 @@ In Cumulus 5.18 and earlier, when you configure multiple parallel IPv6 numbered 
 ### WJH Drop Filter Limits
 
 Cumulus Linux now limits WJH drop filters: you can configure a maximum of 128 drop filters in total across all channels, and all drop filters together can have a maximum of 1024 entries (IP addresses, drop reasons, and severities). If the startup configuration exceeds a limit when you upgrade, Cumulus Linux keeps it; you can reduce the number of drop filters or entries, but you cannot increase a number that is above its limit. Refer to {{<link title="What Just Happened (WJH)/#filter-traffic-drops" text="Filter Traffic Drops">}}.
+
+### Link Tracking Customized Files
+
+During upgrade to Cumulus Linux 5.19, the upgrade process does not carry forward customized `/etc/ifplugd/action.d/ifupdown` and `/etc/default/ifplugd` files by default. The switch uses the default configurations from the new image instead.
+
+To preserve customizations, add a carry-forward entry for each required file in a configuration file under `/etc/cumulus/upgrade-carry-forward.d/` on the partition from which you are upgrading. For example:
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/upgrade-carry-forward.d/custom.conf
+# Customized Files
+carry-forward /etc/ifplugd/ifplugd.action
+carry-forward /etc/default/ifplugd
+```
+
+Refer to {{<link title="Upgrading-Cumulus-Linux/#carry-forward-additional-files" text="Carry Forward Additional Files">}}.
 
 ### Cumulus VX
 

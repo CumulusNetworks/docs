@@ -8,6 +8,7 @@ type: nojsscroll
 <style>
 h { color: RGB(118,185,0)}
 </style>
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv show dhcp-server-v4 vrf \<vrf-id\> subnet \<subnet-id\> domain-name-server \<server-id\></h>
@@ -1119,6 +1120,33 @@ cumulus@switch:~$ nv show service dhcp-server6 default storage-servers domain-na
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show service dhcp-server6 \<vrf-id\> pool \<pool-id\> range</h>
+
+Shows the IPv6 DHCP IP address range assignments.
+
+{{%notice note%}}
+In Cumulus Linux 5.15 and later, this command is `nv show vrf <vrf-id> dhcp-server-v6 subnet <subnet-id> range`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+| `<pool-id>` | The DHCP6 pool subnet. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show service dhcp-server6 default storage-servers range
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show service dhcp-server6 \<vrf-id\> pool \<pool-id\> range \<range-id\></h>
 
 Shows information about a specific IPv6 DHCP IP address range assignment.
@@ -1143,33 +1171,6 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show service dhcp-server6 default storage-servers range 0:0:0:0:0:ffff:0a01:0a64
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show service dhcp-server6 \<vrf-id\> pool \<pool-id\> range></h>
-
-Shows the IPv6 DHCP IP address range assignments.
-
-{{%notice note%}}
-In Cumulus Linux 5.15 and later, this command is `nv show vrf <vrf-id> dhcp-server-v6 subnet <subnet-id> range`.
-{{%/notice%}}
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<vrf-id>` | The VRF name. |
-| `<pool-id>` | The DHCP6 pool subnet. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show service dhcp-server6 default storage-servers range
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2018,6 +2019,33 @@ cumulus@switch:~$ nv show vrf default dhcp-server-v6 subnet 2001:db8::1/128 doma
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show vrf \<vrf-id\> dhcp-server-v6 subnet \<subnet-id\> range</h>
+
+Shows the IPv6 DHCP IP address range assignments.
+
+{{%notice note%}}
+In Cumulus Linux 5.14 and earlier, this command is `nv set service dhcp-server6 <vrf-id> pool <pool-id> range`.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+| `<subnet-id>` | The DHCP6 pool subnet. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.15.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show vrf default dhcp-server-v6 subnet 2001:db8::1/128 range
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show vrf \<vrf-id\> dhcp-server-v6 subnet \<subnet-id\> range \<range-id\></h>
 
 Shows information about a specific IPv6 DHCP IP address range assignment.
@@ -2042,31 +2070,4 @@ Introduced in Cumulus Linux 5.15.0
 
 ```
 cumulus@switch:~$ nv show vrf default dhcp-server-v6 subnet 2001:db8::1/128 range 0:0:0:0:0:ffff:0a01:0a64
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show vrf \<vrf-id\> dhcp-server-v6 subnet \<subnet-id\> range></h>
-
-Shows the IPv6 DHCP IP address range assignments.
-
-{{%notice note%}}
-In Cumulus Linux 5.14 and earlier, this command is `nv set service dhcp-server6 <vrf-id> pool <pool-id> range`.
-{{%/notice%}}
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<vrf-id>` | The VRF name. |
-| `<subnet-id>` | The DHCP6 pool subnet. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.15.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show vrf default dhcp-server-v6 subnet 2001:db8::1/128 range
 ```

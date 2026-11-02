@@ -83,7 +83,7 @@ cumulus@switch:~$ nv set interface swp1-51 latency-measurement traffic-class 0 p
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> latency-measurement traffic-class \<tc-id\> protocol \<protocol-id\> dscp <dscp></h>
+## <h>nv set interface \<interface-id\> latency-measurement traffic-class \<tc-id\> protocol \<protocol-id\> dscp \<dscp\></h>
 
 Configures latency monitoring for a specific traffic class DSCP on an interface for IPv4 or IPv6 traffic.
 
@@ -2493,6 +2493,29 @@ cumulus@switch:~$ nv set system telemetry snapshot port-group all-packet-pg
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set system telemetry snapshot port-group \<port-group-id\> interface \<interface-id\></h>
+
+Configures the interfaces on which you want to monitor interface and buffer statistics. Specify `all` to monitor all interfaces.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<port-group-id>`| The port group ID. |
+| `interface-id>`| The name of the interface. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry snapshot port-group packet-all-pg interface all
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system telemetry snapshot port-group \<port-group-id\> snapshot-file count</h>
 
 Configures the number of snapshots that you can create before the first snapshot file is overwritten.
@@ -2511,6 +2534,28 @@ Introduced in Cumulus Linux 5.11.0
 
 ```
 cumulus@switch:~$ nv set system telemetry snapshot port-group all-packet-pg snapshot-file count 80
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry snapshot port-group \<port-group-id\> snapshot-file name</h>
+
+Configures the name of the snapshot file for all interface packet and buffer statistics.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<port-group-id>`| The port group ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.11.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry snapshot port-group all-packet-pg snapshot-file name /var/run/cumulus/all_packet_stats1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2537,52 +2582,7 @@ cumulus@switch:~$ nv set system telemetry snapshot port-group all-packet-pg stat
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system telemetry snapshot port-group \<port-group-id\>interface \<interface-id\></h>
-
-Configures the interfaces on which you want to monitor interface and buffer statistics. Specify `all` to monitor all interfaces.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<port-group-id>`| The port group ID. |
-| `interface-id>`| The name of the interface. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.11.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system telemetry snapshot port-group packet-all-pg interface all
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system telemetry snapshot port-group \<port-group-id\>snapshot-file name</h>
-
-Configures the name of the snapshot file for all interface packet and buffer statistics.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<port-group-id>`| The port group ID. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.11.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system telemetry snapshot port-group all-packet-pg snapshot-file name /var/run/cumulus/all_packet_stats1
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system telemetry snapshot port-group \<port-group-id\>stats-type</h>
+## <h>nv set system telemetry snapshot port-group \<port-group-id\> stats-type</h>
 
 Configures the type of packet and buffer statistics you want to collect. You can collect the following data types:
 - All, good, and dropped packets, and the ingress and egress queue occupancy (`packet-all`)
@@ -2608,7 +2608,7 @@ cumulus@switch:~$ nv set system telemetry snapshot port-group packet-all-pg stat
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system telemetry snapshot port-group \<port-group-id\>threshold \<threshold-stats-id\> action collect port-group <value></h>
+## <h>nv set system telemetry snapshot port-group \<port-group-id\> threshold \<threshold-stats-id\> action collect port-group \<value\></h>
 
 Configures the action to collect information for the port group statistics type; `packet-congestion-drops` or `packet-error-drops`.
 
@@ -2631,7 +2631,7 @@ cumulus@switch:~$ nv set system telemetry snapshot port-group all-packet-pg thre
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system telemetry snapshot port-group \<port-group-id\>threshold \<threshold-stats-id\> action log</h>
+## <h>nv set system telemetry snapshot port-group \<port-group-id\> threshold \<threshold-stats-id\> action log</h>
 
 Configures the action to log for the statistics type; `packet-congestion-drops` or `packet-error-drops`.
 
@@ -2654,7 +2654,7 @@ cumulus@switch:~$ nv set system telemetry snapshot port-group all-packet-pg thre
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system telemetry snapshot port-group \<port-group-id\>threshold \<threshold-stats-id\> value</h>
+## <h>nv set system telemetry snapshot port-group \<port-group-id\> threshold \<threshold-stats-id\> value</h>
 
 Configures the threshold value for the statistics type; `packet-congestion-drops` or `packet-error-drops`.
 
@@ -2677,7 +2677,7 @@ cumulus@switch:~$ nv set system telemetry snapshot port-group all-packet-pg thre
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system telemetry snapshot port-group \<port-group-id\>timer-interval</h>
+## <h>nv set system telemetry snapshot port-group \<port-group-id\> timer-interval</h>
 
 Configures the interval timer (how often to send the interface statistics to the snapshot file). There is no default value for this setting. If you do not configure this setting, you must configure the collect action. You also have the option to send a message to the `/var/log/syslog` file.
 
@@ -3447,7 +3447,7 @@ cumulus@switch:~$ nv set system telemetry stats-group STAT-GROUP1 router export 
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system telemetry stats-group \<stats-group-id\> router sample-interval <interval></h>
+## <h>nv set system telemetry stats-group \<stats-group-id\> router sample-interval \<interval\></h>
 
 Configures the sample interval for the custom statistics group for router statistics. You can specify a value between 1 and 86400. The default value is 1.
 

@@ -415,7 +415,7 @@ cumulus@switch:~$ nv set system aaa tacacs server 192.168.0.30 priority 5
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system aaa tacacs server \<server-id\> secret \secret-key\></h>
+## <h>nv set system aaa tacacs server \<server-id\> secret \<secret-key\></h>
 
 Configures the TACACS server secret key shared between the TACACS+ server and client.
 

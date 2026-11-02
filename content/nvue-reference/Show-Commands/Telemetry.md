@@ -3225,7 +3225,7 @@ No Data
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system telemetry snapshot port-group \<port-group-id\> threshold <threshold-stats-id> action collect</h>
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> threshold \<threshold-stats-id\> action collect</h>
 
 Shows port group threshold collect action configuration.
 

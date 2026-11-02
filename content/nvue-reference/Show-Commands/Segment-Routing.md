@@ -137,7 +137,7 @@ no-sid-dropped-packets  0
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show router segment-routing srv6 stats sid <sid></h>
+## <h>nv show router segment-routing srv6 stats sid \<sid\></h>
 
 Shows counter values for a specific SRv6 segment identifier.
 
@@ -172,7 +172,7 @@ cumulus@switch:~$ nv show router segment-routing static
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show router segment-routing static srv6-sid <sid></h>
+## <h>nv show router segment-routing static srv6-sid \<sid\></h>
 
 Shows information about a specific SRv6 static segment identifier.
 

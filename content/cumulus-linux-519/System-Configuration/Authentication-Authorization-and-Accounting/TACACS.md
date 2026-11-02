@@ -90,7 +90,7 @@ cumulus@switch:~$ nv set system aaa tacacs server SERVER1 prefer-ip-version 6
 ...
 ```
 
-If you configure more than one TACACS+ server, you need to set the priority for each server. If the switch cannot establish a connection with the server that has the highest priority, it tries to establish a connection with the next highest priority server. The server with the lower number has the higher prioritity. In the example below, server 192.168.0.30 with a priority value of 5 has a higher priority than server 192.168.1.30, which has a priority value of 10.
+If you configure more than one TACACS+ server, you need to set the priority for each server. If the switch cannot establish a connection with the server that has the highest priority, it tries to establish a connection with the next highest priority server. The server with the lower number has the higher priority. In the example below, server 192.168.0.30 with a priority value of 5 has a higher priority than server 192.168.1.30, which has a priority value of 10.
 
 ```
 cumulus@switch:~$ nv set system aaa tacacs server 192.168.0.30 priority 5

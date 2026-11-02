@@ -250,7 +250,7 @@ If you encounter errors with the `topology.dot` file, you can use `dot` (include
 
 Open the topology file with Graphviz to ensure that it is readable and that the file format is correct.
 
-If you edit the `topology.dot` file from a Windows system, be sure to doublecheck the file formatting; there might be extra characters that keep the graph from working correctly.
+If you edit the `topology.dot` file from a Windows system, be sure to double-check the file formatting; there might be extra characters that keep the graph from working correctly.
 {{%/notice%}}
 
 ## Basic Topology Example

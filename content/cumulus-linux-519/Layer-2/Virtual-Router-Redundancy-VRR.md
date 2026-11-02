@@ -99,7 +99,7 @@ cumulus@switch:mgmt:~$ nv set system global fabric-id 255
 cumulus@switch:mgmt:~$ nv config apply
 ```
 
-To override the global setting for a specific VLAN, run the `nv set interface <vlan> ipv4 vrr mac-address <mac-address>` command or the `nv set interface <vlan> ipv6 vrr mac-address <mac-address>` command:
+To override the global setting for a specific VLAN, run the `nv set interface <vlan-id> ipv4 vrr mac-address <mac-address>` command or the `nv set interface <vlan-id> ipv6 vrr mac-address <mac-address>` command:
 
 ```
 cumulus@switch:mgmt:~$ nv set interface vlan10 ipv4 vrr mac-address 00:00:5E:00:01:00

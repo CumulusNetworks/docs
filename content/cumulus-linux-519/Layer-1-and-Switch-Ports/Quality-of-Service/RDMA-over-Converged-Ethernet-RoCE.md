@@ -442,7 +442,7 @@ tx-stats
     unicast-no-buffer-discard  663060754115           Tx buffer discards for RoCE traffic
 ```
 
-To show the RoCE pools status for an interface, run the `nv show interface <interface> qos roce status pool-map` command. To show the RoCE pools status for all interfaces, run the `nv show interface qos-roce-status-pool-map` command.
+To show the RoCE pools status for an interface, run the `nv show interface <interface-id> qos roce status pool-map` command. To show the RoCE pools status for all interfaces, run the `nv show interface qos-roce-status-pool-map` command.
 
 ```
 cumulus@switch:mgmt:~$ nv show interface qos-roce-status-pool-map

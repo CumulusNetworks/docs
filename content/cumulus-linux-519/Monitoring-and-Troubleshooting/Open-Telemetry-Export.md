@@ -595,7 +595,7 @@ To show the laser source data on the switch itself, see {{</* link url="Monitori
 -->
 {{< tab "Platform Information">}}
 
-To enable platform information statistics, such as the time of last reboot, the last reboot reason, or hardware details such as the chasis version, model name, part number, serial number, and type:
+To enable platform information statistics, such as the time of last reboot, the last reboot reason, or hardware details such as the chassis version, model name, part number, serial number, and type:
 
 ```
 cumulus@switch:~$ nv set system telemetry platform-stats class platform-info state enabled
@@ -1117,7 +1117,7 @@ cumulus@switch:~$ nv config apply
 - If you configure congestion notifications while the buffer threshold for a traffic class is already exceeded, the switch does not send notifications until buffer occupancy drops below the threshold and then exceeds the threshold again.
 {{%/notice%}}
 
-To show congestion notification configuration, run the `nv show system telemetry congestion-event` command, and to view congestion event data for a specific port, run the `nv show interface <interface> telemetry congestion-event` command.
+To show congestion notification configuration, run the `nv show system telemetry congestion-event` command, and to view congestion event data for a specific port, run the `nv show interface <interface-id> telemetry congestion-event` command.
 
 ## Telemetry Data Format
 
@@ -6775,11 +6775,11 @@ cumulus@switch:~$ nv show system telemetry health
                                      operational
 ---------------------------          -----------
 service-status    
-  nv-telemtry-service                active                      
+  nv-telemetry-service                active                      
   platform-stats-service             active
   histogram-export-service           active
   sdk-stats-service                  active
-  routing-telemtry-service           inactive
+  routing-telemetry-service           inactive
 internal-metrics 
   process 
     cpu-seconds                      3020

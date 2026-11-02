@@ -264,7 +264,7 @@ swp48      down          down         disabled                     No Fault
 ...
 ```
 
-To view additional fault information for a specific interface, run the `nv show interface <interface> link phy detail` command:
+To view additional fault information for a specific interface, run the `nv show interface <interface-id> link phy detail` command:
 
 ```
 cumulus@switch:mgmt:~$ nv show interface swp45 link phy detail

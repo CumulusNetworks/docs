@@ -1909,7 +1909,7 @@ spine01# exit
 
 ### Show BGP Unreachability SAFI Information
 
-To show if BGP unreachability SAFI is enabled on the switch, run the `nv show vrf <vrf> router bgp address-family <address-family>-unreachability` command:
+To show if BGP unreachability SAFI is enabled on the switch, run the `nv show vrf <vrf-id> router bgp address-family <address-family>-unreachability` command:
 
 ```
 cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv6-unreachability 
@@ -1932,9 +1932,9 @@ cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv6-unreachabil
 [interfaces-match]  2001:1:1::/48  2001:1:1::/48
 ```
 
-- To show the global BGP unreachability route count, run the `nv show vrf <vrf> router bgp address-family <address-family>-unreachability route-count` command.
-- For a specific neighbor, run the `nv show vrf <vrf> router bgp neighbor <neighbor-id> address-family <address-family>-unreachability route-count` command.
-- For a specific peer group, run the `nv show vrf <vrf> router bgp peer-group <peer-group-id> address-family <address-family>-unreachability route-count` command.
+- To show the global BGP unreachability route count, run the `nv show vrf <vrf-id> router bgp address-family <address-family>-unreachability route-count` command.
+- For a specific neighbor, run the `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family <address-family>-unreachability route-count` command.
+- For a specific peer group, run the `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family <address-family>-unreachability route-count` command.
 
 ```
 cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv6-unreachability route-count
@@ -1961,7 +1961,7 @@ best-routes     0
 usable          0
 ```
 
-To show global BGP unreachability routes, run the `nv show vrf <vrf> router bgp address-family <address-family>-unreachability route` command.
+To show global BGP unreachability routes, run the `nv show vrf <vrf-id> router bgp address-family <address-family>-unreachability route` command.
 
 ```
 cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv6-unreachability route
@@ -1978,9 +1978,9 @@ Prefix            PathCount  MultipathCount  DestFlags
 Running the `nv show vrf <vrf-id> router bgp address-family <address-family>-unreachability route -o json` command is equivalent to running the vtysh `show bgp vrf <vrf-id> ipv6 unreachability json brief` command. Therefore, certain fields, such as path details and reporter AS, do not show. To show a more detailed view, run the `nv show vrf <vrf-id> router bgp address-family <address-family>-unreachability route <prefix> -o json` command.
 {{%/notice%}}
 
-To show the BGP unreachability prefix limits for a peer, run the `nv show vrf <vrf> router bgp neighbor <neighbor-id> address-family <address-family>-unreachability prefix-limits` command.
+To show the BGP unreachability prefix limits for a peer, run the `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family <address-family>-unreachability prefix-limits` command.
 
-For a peer group, run the `nv show vrf <vrf> router bgp peer-group <peer-group-id> address-family <address-family>-unreachability prefix-limits` command.
+For a peer group, run the `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family <address-family>-unreachability prefix-limits` command.
 
 ```
 cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unreachability prefix-limits 
@@ -1991,9 +1991,9 @@ inbound
   warning-threshold               75
 ```
 
-To show the BGP unreachability AS path configuration for a peer, run the `nv show vrf <vrf> router bgp neighbor <neighbor-id> address-family <address-family>-unreachability aspath` command.
+To show the BGP unreachability AS path configuration for a peer, run the `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family <address-family>-unreachability aspath` command.
 
-For a peer group, run the `nv show vrf <vrf> router bgp peer-group <peer-group-id> address-family <address-family>-unreachability aspath` command.
+For a peer group, run the `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family <address-family>-unreachability aspath` command.
 
 ```
 cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unreachability aspath
@@ -2030,7 +2030,7 @@ To enable BGP conditional disaggregation on the leaf:
 {{< tabs "TabID1702 ">}}
 {{< tab "NVUE Commands ">}}
 
-Run the `nv set vrf <vrf> router bgp address-family ipv6-unicast conditional-disaggregation` command for IPv6 or the `nv set vrf <vrf> router bgp address-family ip4-unicast conditional-disaggregation` command for IPv4.
+Run the `nv set vrf <vrf-id> router bgp address-family ipv6-unicast conditional-disaggregation` command for IPv6 or the `nv set vrf <vrf-id> router bgp address-family ipv4-unicast conditional-disaggregation` command for IPv4.
 
 ```
 cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv6-unicast conditional-disaggregation

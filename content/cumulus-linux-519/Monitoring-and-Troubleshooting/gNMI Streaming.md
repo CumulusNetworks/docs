@@ -1163,7 +1163,7 @@ The gNMI Agent supports `Capabilities` and `STREAM` subscribe requests for WJH e
 
 ### WJH Drop Reasons
 <!-- vale off -->
-The data that NetQ sends to the gNMI agent is in the form of WJH drop reasons. The SDK generates the drop reasons and Cumulus Linux stores them in the `/usr/etc/wjh_lib_conf.xml` file. Use this file as a guide to filter for specific reason types (L1, ACL, and so on), reason IDs, or event severeties.
+The data that NetQ sends to the gNMI agent is in the form of WJH drop reasons. The SDK generates the drop reasons and Cumulus Linux stores them in the `/usr/etc/wjh_lib_conf.xml` file. Use this file as a guide to filter for specific reason types (L1, ACL, and so on), reason IDs, or event severities.
 
 #### Layer 1 Drop Reasons
 

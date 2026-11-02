@@ -664,7 +664,7 @@ For OSPF, redistribution loads the database unnecessarily with type-5 LSAs. Only
 
 ## Configuration Examples
 
-This section provides example route map configurations. The examples do not include commands to apply a route map; for the commands to apply a route map, refer to {{<link url="#apply-a-route-map" text="Appy a Route Map">}}.
+This section provides example route map configurations. The examples do not include commands to apply a route map; for the commands to apply a route map, refer to {{<link url="#apply-a-route-map" text="Apply a Route Map">}}.
 
 ### Match AS Path List
 

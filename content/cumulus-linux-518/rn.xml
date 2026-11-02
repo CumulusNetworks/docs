@@ -7,9 +7,33 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5358735, 5341619</td>
+<td>The NVIDIA SN5600D switch reports {{PMIC-12-COMEX-VCORE-OUT1}} failed after a warm reset.</td>
+<td>5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5358616</td>
+<td>When you disable STP, the switch saves but does not program the bridge STP priority, which causes the MLAG secondary bonds to enter protocol-down.</td>
+<td>5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5355864</td>
+<td>With dynamic NAT, the NAT table gradually fills with stale entries. After the table fills up, the switch rejects new NAT flows and those connections fail. {{switchd}} also logs repeated {{Failed to send delete command to kernel}} errors on every aging poll. The condition persists until you restart {{switchd}}.</td>
+<td>5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5351903</td>
 <td>gNMI requests that use the * path wildcard are rejected for list keys whose YANG type is not a string. The server validates the literal * token against the key's declared type instead of treating it as a gNMI path wildcard, so the request fails as though the path does not exist.</td>
 <td>5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5346603</td>
+<td>Factory-reset breaks DHCP option 61:  a missing switch Serial Number from DHCP discovery breaks DHCP IP provisioning.</td>
+<td>5.18.1-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -153,6 +177,12 @@ This failure disrupts DHCPv6 service for all downstream interfaces served by tha
 <td></td>
 </tr>
 <tr>
+<td>5302815</td>
+<td>The switch exporter transmits incorrect zero values into telemetry, which downstream systems interpret as legitimate counter resets. This results in false spikes in reported adaptive routing congestion metrics, compromising telemetry accuracy and potentially misleading monitoring and analysis.</td>
+<td>5.18.0-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5301567</td>
 <td>With continuous next hop churn in the network with 9k next hop groups created and deleted repeatedly, {{switchd}} runs into a netlink buffer overflow, which triggers a netlink resync; {{switchd}} encounters an out of memory error.</td>
 <td>5.16.6-5.18.3</td>
@@ -270,6 +300,12 @@ This failure disrupts DHCPv6 service for all downstream interfaces served by tha
 <td>5240427</td>
 <td>At ECMP scale, SDK encounters ECMP errors due to {{No More Resources}} and shows ASSERT messages in the logs.</td>
 <td>5.13.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5240426</td>
+<td>NVUE does not limit the number of WJH drop filters or drop filter entries (IP addresses, drop reasons, and severities), which might lead to high memory usage in NVUE. </td>
+<td>5.18.1-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -1491,6 +1527,24 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5358735, 5341619</td>
+<td>The NVIDIA SN5600D switch reports {{PMIC-12-COMEX-VCORE-OUT1}} failed after a warm reset.</td>
+<td>5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5358616</td>
+<td>When you disable STP, the switch saves but does not program the bridge STP priority, which causes the MLAG secondary bonds to enter protocol-down.</td>
+<td>5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5346603</td>
+<td>Factory-reset breaks DHCP option 61:  a missing switch Serial Number from DHCP discovery breaks DHCP IP provisioning.</td>
+<td>5.18.1-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5346399</td>
 <td>In rare cases, after you delete, then add back a VRF with the same table ID, its default route stays inactive and is not installed, even though BGP selects it as best. To work around this issue, restart FRR with {{sudo systemctl restart frr}}. </td>
 <td>5.16.6-5.18.3</td>
@@ -1618,6 +1672,12 @@ This failure disrupts DHCPv6 service for all downstream interfaces served by tha
 <td></td>
 </tr>
 <tr>
+<td>5302815</td>
+<td>The switch exporter transmits incorrect zero values into telemetry, which downstream systems interpret as legitimate counter resets. This results in false spikes in reported adaptive routing congestion metrics, compromising telemetry accuracy and potentially misleading monitoring and analysis.</td>
+<td>5.18.0-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5301567</td>
 <td>With continuous next hop churn in the network with 9k next hop groups created and deleted repeatedly, {{switchd}} runs into a netlink buffer overflow, which triggers a netlink resync; {{switchd}} encounters an out of memory error.</td>
 <td>5.16.6-5.18.3</td>
@@ -1741,6 +1801,12 @@ This failure disrupts DHCPv6 service for all downstream interfaces served by tha
 <td>5240427</td>
 <td>At ECMP scale, SDK encounters ECMP errors due to {{No More Resources}} and shows ASSERT messages in the logs.</td>
 <td>5.13.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5240426</td>
+<td>NVUE does not limit the number of WJH drop filters or drop filter entries (IP addresses, drop reasons, and severities), which might lead to high memory usage in NVUE. </td>
+<td>5.18.1-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -2962,6 +3028,24 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5358735, 5341619</td>
+<td>The NVIDIA SN5600D switch reports {{PMIC-12-COMEX-VCORE-OUT1}} failed after a warm reset.</td>
+<td>5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5358616</td>
+<td>When you disable STP, the switch saves but does not program the bridge STP priority, which causes the MLAG secondary bonds to enter protocol-down.</td>
+<td>5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5346603</td>
+<td>Factory-reset breaks DHCP option 61:  a missing switch Serial Number from DHCP discovery breaks DHCP IP provisioning.</td>
+<td>5.18.1-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5346399</td>
 <td>In rare cases, after you delete, then add back a VRF with the same table ID, its default route stays inactive and is not installed, even though BGP selects it as best. To work around this issue, restart FRR with {{sudo systemctl restart frr}}. </td>
 <td>5.16.6-5.18.3</td>
@@ -3089,6 +3173,12 @@ This failure disrupts DHCPv6 service for all downstream interfaces served by tha
 <td>5.18.2-5.18.3</td>
 </tr>
 <tr>
+<td>5302815</td>
+<td>The switch exporter transmits incorrect zero values into telemetry, which downstream systems interpret as legitimate counter resets. This results in false spikes in reported adaptive routing congestion metrics, compromising telemetry accuracy and potentially misleading monitoring and analysis.</td>
+<td>5.18.0-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5301567</td>
 <td>With continuous next hop churn in the network with 9k next hop groups created and deleted repeatedly, {{switchd}} runs into a netlink buffer overflow, which triggers a netlink resync; {{switchd}} encounters an out of memory error.</td>
 <td>5.16.6-5.18.3</td>
@@ -3212,6 +3302,12 @@ This failure disrupts DHCPv6 service for all downstream interfaces served by tha
 <td>5240427</td>
 <td>At ECMP scale, SDK encounters ECMP errors due to {{No More Resources}} and shows ASSERT messages in the logs.</td>
 <td>5.13.1-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5240426</td>
+<td>NVUE does not limit the number of WJH drop filters or drop filter entries (IP addresses, drop reasons, and severities), which might lead to high memory usage in NVUE. </td>
+<td>5.18.1-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -4498,6 +4594,18 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5358735, 5341619</td>
+<td>The NVIDIA SN5600D switch reports {{PMIC-12-COMEX-VCORE-OUT1}} failed after a warm reset.</td>
+<td>5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5358616</td>
+<td>When you disable STP, the switch saves but does not program the bridge STP priority, which causes the MLAG secondary bonds to enter protocol-down.</td>
+<td>5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5346399</td>
 <td>In rare cases, after you delete, then add back a VRF with the same table ID, its default route stays inactive and is not installed, even though BGP selects it as best. To work around this issue, restart FRR with {{sudo systemctl restart frr}}. </td>
 <td>5.16.6-5.18.3</td>
@@ -4604,6 +4712,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>On Spectrum-6 switches running Cumulus Linux 5.18.0 or 5.18.1, an internal firmware image layout issue prevents you from upgrading to future releases. You must upgrade to 5.18.2 before you upgrade to a future release to ensure that firmware upgrade does not fail.</td>
 <td>5.18.0-5.18.1</td>
 <td>5.18.2-5.18.3</td>
+</tr>
+<tr>
+<td>5302815</td>
+<td>The switch exporter transmits incorrect zero values into telemetry, which downstream systems interpret as legitimate counter resets. This results in false spikes in reported adaptive routing congestion metrics, compromising telemetry accuracy and potentially misleading monitoring and analysis.</td>
+<td>5.18.0-5.18.3</td>
+<td></td>
 </tr>
 <tr>
 <td>5301567</td>

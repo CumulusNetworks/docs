@@ -279,13 +279,25 @@ To copy additional files to the upgraded partition, create a configuration file 
 
 The upgrade reads the declarations from the partition you are leaving, so they take effect without any copy in the new image.
 
-The following example carries forward a file that you created outside NVUE and a directory with custom scripts:
+A declaration carries files only. A directory name carries nothing, and there is no recursion, so add one line for each directory level. The `#` character starts a comment.
+
+| Declaration | What the upgrade carries |
+| ----------- | ------------------------ |
+| `carry-forward /etc/myapp/app.conf` | This one file. |
+| `carry-forward /etc/myapp/*.conf` | Every `.conf` file directly in `/etc/myapp`. |
+| `carry-forward /etc/myapp/scripts/*` | Every file directly in `scripts`, including hidden files (names that start with a dot). The upgrade does not carry subdirectories of `scripts` or their contents. |
+| `carry-forward /etc/myapp/scripts/*/*` | Files exactly one level below `scripts`, for example `scripts/sub/mid.sh`. |
+| `carry-forward /etc/myapp/scripts/` or `carry-forward /etc/myapp/scripts` | Nothing. The path is a directory, not a file. |
+| `carry-forward /etc/myapp/scripts/**` | The same as `scripts/*`. The `**` pattern is not recursive. |
+
+The following example carries forward a file that you created outside NVUE and the files in a directory of custom scripts, including the files one level below it:
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/upgrade-carry-forward.d/custom.conf
 # Files created outside NVUE
 carry-forward /etc/myapp/myapp.conf
-carry-forward /etc/myapp/scripts/
+carry-forward /etc/myapp/scripts/*
+carry-forward /etc/myapp/scripts/*/*
 ```
 
 {{%notice warning%}}

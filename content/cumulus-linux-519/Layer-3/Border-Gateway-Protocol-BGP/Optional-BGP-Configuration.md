@@ -1230,7 +1230,7 @@ When you configure suppress route advertisement, NVUE restarts `switchd`.
 
 ## BGP VRF Active Check
 
-When you enable BGP VRF active check, BGP blocks advertisements and imports for the IPv4, IPv6, and EVPN address families in any VRF that is inactive. A VRF is inactive when no operationally up interface is bound to it. For example, with {{<link url="802.1X-Interfaces/#dynamic-vrf-assignment" text="802.1X dynamic VRF assignment">}}, a VRF has no operationally up interface until a supplicant authenticates.
+When you enable BGP VRF active check, BGP blocks advertisements and imports for the IPv4, IPv6, and EVPN address families in any VRF that is inactive. A VRF is inactive when it has no operationally up interface. For example, with {{<link url="802.1X-Interfaces/#dynamic-vrf-assignment" text="802.1X dynamic VRF assignment">}}, a VRF has no operationally up interface until a supplicant authenticates.
 
 VRF active check is a global BGP setting that applies to all VRFs. The default setting is disabled.
 
@@ -1839,7 +1839,7 @@ cumulus@leaf01:~$ nv config apply
 {{< /tab >}}
 {{< tab "Spine Configuration ">}}
 
-The following example enables BGP unreachability SAFI for IPv6 globally and on peer groups UNDERLAY-LEAF and UNDERLAY-SUPERSPINE (for IPv4, run `address-family ipv4-unreachability` commands). For peer group UNDERLAY-LEAF, the prefix limit is set to a maximum of 6.
+The following example enables BGP unreachability SAFI for IPv6 globally and on peer groups UNDERLAY-LEAF and UNDERLAY-SUPERSPINE (for IPv4, run `address-family ipv4-unreachability` commands). For peer group UNDERLAY-LEAF, the example sets the prefix limit to a maximum of 6.
 
 ```
 cumulus@spine01:~$ nv set vrf default router bgp address-family ipv6-unreachability state enabled
@@ -1885,7 +1885,7 @@ leaf01# exit
 {{< /tab >}}
 {{< tab "Spine Configuration">}}
 
-The following example enables BGP unreachability SAFI for IPv6 globally and on peer groups UNDERLAY-LEAF and UNDERLAY-SUPERSPINE (for IPv4, run the `address-family ipv4 unreachability` command). For peer group UNDERLAY-LEAF, the prefix limit is set to a maximum of 6.
+The following example enables BGP unreachability SAFI for IPv6 globally and on peer groups UNDERLAY-LEAF and UNDERLAY-SUPERSPINE (for IPv4, run the `address-family ipv4 unreachability` command). For peer group UNDERLAY-LEAF, the example sets the prefix limit to a maximum of 6.
 
 ```
 cumulus@spine01:~$ sudo vtysh

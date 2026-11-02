@@ -7,8 +7,8 @@ toc: 3
 
 Cumulus Linux provides these reboot and power modes:
 - **immediate** reboots the switch immediately without notifying any running processes. Use this mode to reboot as quickly as possible, skipping graceful shutdown to avoid delays or to avoid the switch from hanging.
-- **halt** shuts down the operating system and halts the CPU. The switch is no longer reachable over the network but switch hardware might remain powered. Use this mode for a graceful complete shutdown during planned maintenance when you must shut down the operating system fully but an operating system level halt is sufficient. You cannot connect to the switch until power cycled through a remote PDU connection.
-- **power-off** powers off the switch completely (complete electrical power-off). Use this mode to power off the switch for planned maintenance when you require the switch to be powered off fully. You cannot connect to the switch until power cycled through a remote PDU connection. The SN2700 switch does not support `power-off`. 
+- **halt** shuts down the operating system and halts the CPU. The switch is no longer reachable over the network but switch hardware might remain powered. Use this mode for a graceful complete shutdown during planned maintenance when you must shut down the operating system fully but an operating system level halt is sufficient. You cannot connect to the switch until you power cycle it through a remote PDU connection.
+- **power-off** powers off the switch completely (complete electrical power-off). Use this mode to power off the switch for planned maintenance when you need to power off the switch fully. You cannot connect to the switch until you power cycle it through a remote PDU connection. The SN2700 switch does not support `power-off`. 
 - **power-cycle** lets you power cycle the switch to recover from certain conditions, such as a thermal ASIC shutdown due to high temperatures.
 - **cold** restarts the system and resets all the hardware devices on the switch (including the switching ASIC). This is the default restart mode on the switch.
 - **fast** restarts the system more efficiently with minimal impact to traffic by reloading the kernel and software stack without a hard reset of the hardware. During a fast restart, the system decouples from the network to the extent possible using existing protocol extensions before recovering to the operational mode of the system. The switch restarts the kernel and software stack without touching the forwarding entries or the switching ASIC; therefore, the data plane is not affected as the software stack restarts. Traffic outage is much lower in this mode as there is a momentary interruption after reboot, while the system reinitializes.
@@ -256,7 +256,7 @@ The following features are not supported during warm reboot:
 
 ### Resource Allocation
 
-To manage switch resource allocation, you can configure the resource mode to be either `half` or `full`. By default, the resource mode is set to `full`.
+To manage switch resource allocation, you can configure the resource mode to be either `half` or `full`. By default, the resource mode is `full`.
 
 Warm reboot and hitless ISSU-based software upgrade require the resource mode to be `half`.
 
@@ -291,7 +291,7 @@ Restart the switchd service with the `sudo systemctl restart switchd.service` co
 
 ### BGP Graceful Restart
 
-When you restart the switch in warm reboot mode, BGP only performs a graceful restart if the BGP graceful restart option is set to `full`. To set BGP graceful restart to full, run the `nv set router bgp graceful-restart mode full` command, then apply the configuration with `nv config apply`. For more information about BGP graceful restart, refer to {{<link url="Optional-BGP-Configuration/#graceful-bgp-restart" text="Optional BGP Configuration">}}.
+When you restart the switch in warm reboot mode, BGP only performs a graceful restart if you set the BGP graceful restart option to `full`. To set BGP graceful restart to full, run the `nv set router bgp graceful-restart mode full` command, then apply the configuration with `nv config apply`. For more information about BGP graceful restart, refer to {{<link url="Optional-BGP-Configuration/#graceful-bgp-restart" text="Optional BGP Configuration">}}.
 
  You must set the {{<link url="Optional-BGP-Configuration/#restart-timers" text="BGP graceful restart timer">}} to 180 seconds or more to accommodate ISSU.
 
@@ -307,7 +307,7 @@ If the switch has connected hosts configured with ARP timeout values shorter tha
 
 ### MAC Address Learning
 
-During the warm boot window, the switch does not learn new MAC addresses in hardware. A MAC address that reaches the switch for the first time during this window, such as a host that comes online or moves to a different port, is not learned until the warm boot completes. MAC addresses the switch learned before the warm boot are preserved.
+During the warm boot window, the switch does not learn new MAC addresses in hardware. A MAC address that reaches the switch for the first time during this window, such as a host that comes online or moves to a different port, is not learned until the warm boot completes. The switch preserves MAC addresses it learned before the warm boot.
 
 After the warm boot completes, hardware MAC learning resumes. If traffic is still flowing from the affected hosts, the switch learns their MAC addresses at that point; you do not need to take any action.
 

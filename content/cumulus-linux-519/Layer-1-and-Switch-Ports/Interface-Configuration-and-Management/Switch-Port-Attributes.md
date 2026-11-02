@@ -43,7 +43,7 @@ cumulus@switch:~$ nv set interface swp1 link auto-negotiate enabled
 cumulus@switch:~$ nv config apply
 ```
 
-If you set the link speed for a port and set auto-negotiation to `disabled`, the link comes up with auto-negotiation `disabled` and force mode is set. The switch does not advertise the configured link speed setting to the other side of the connection.
+If you set the link speed for a port and set auto-negotiation to `disabled`, the link comes up with auto-negotiation `disabled` and in force mode. The switch does not advertise the configured link speed setting to the other side of the connection.
 
 ```
 cumulus@switch:~$ nv set interface swp1 link speed 400G
@@ -74,7 +74,7 @@ iface swp1
 ...
 ```
 
-If you set the link speed for a port and set auto-negotiation `disabled`, the link comes up with auto-negotiation `disabled` and force mode is set. The switch does not advertise the configured link speed setting to the other side of the connection.
+If you set the link speed for a port and set auto-negotiation `disabled`, the link comes up with auto-negotiation `disabled` and in force mode. The switch does not advertise the configured link speed setting to the other side of the connection.
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -100,7 +100,7 @@ iface swp1
 
 {{%notice note%}}
 - In Cumulus Linux 5.14 and later, if you run the `nv set interface swp1 link speed` command without setting auto-negotiation, the link comes up with auto-negotiation `enabled` and the switch advertises the configured link speed setting to the other side of the connection.
-- In Cumulus Linux 5.13 and earlier if you run the `nv set interface swp1 link speed` command without setting auto-negotiation, force mode is set and the switch does not advertise the configured link speed setting to the other side of the connection.
+- In Cumulus Linux 5.13 and earlier if you run the `nv set interface swp1 link speed` command without setting auto-negotiation, the switch uses force mode and does not advertise the configured link speed setting to the other side of the connection.
 {{%/notice%}}
 
 ## MTU
@@ -595,7 +595,7 @@ A runtime configuration is non-persistent. The configuration you create does not
 
 100GBASE-DR1 modules, such as NVIDIA MMS1V70-CM, include internal RS FEC processing, which the software does not control. When using these optics, you must either set the FEC setting to `off` or leave it unset for the link to function.
 
-400GBASE-DR4 modules, such as NVIDIA MMS1V00-WM, require RS FEC. The switch automatically enables FEC if it is set to `off`.
+400GBASE-DR4 modules, such as NVIDIA MMS1V00-WM, require RS FEC. The switch automatically enables FEC if FEC is `off`.
 
 You typically use these optics to interconnect 4x SN2700 uplinks to a single SN4700 breakout downlink. The following configuration shows an explicit FEC example. You can leave the FEC settings unset for autodetection.
 
@@ -1359,7 +1359,7 @@ SN4600 64xQSFP56 (200GbE) interfaces support both PAM4 and NRZ encodings with al
 
 For lower speeds, PAM4 is automatically converted to NRZ encoding.
 
-Only 32xQSFP56 ports can break out into 4xSFP56 (4x50GbE). But, in this case, the adjacent QSFP56 port are blocked (only the first and third or second and fourth rows can break out into 4xSFP56).
+Only 32xQSFP56 ports can break out into 4xSFP56 (4x50GbE). But, in this case, you cannot use the adjacent QSFP56 port (only the first and third or second and fourth rows can break out into 4xSFP56).
 
 All 64xQSFP56 ports can break out into 2xQSFP56 (2x100GbE) without blocking ports.
 

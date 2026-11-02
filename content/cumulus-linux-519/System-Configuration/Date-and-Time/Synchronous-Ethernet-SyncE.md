@@ -74,8 +74,8 @@ Basic SyncE configuration requires you:
 
 The basic configuration shown below uses the default SyncE settings:
 <!-- - The {{<link url="#ql-for-the-switch" text="QL">}} for the switch is set to `option 1`, which includes PRC, SSU-A, SSU-B, SEC and DNU.-->
-- The {{<link url="#frequency-source-priority" text="frequency source priority">}} on the interface is set to 100.
-- The {{<link url="#wait-to-restore-time" text="amount of time SyncE waits">}} after the interface comes up before using the interface for synchronization is set to 5 minutes.
+- The {{<link url="#frequency-source-priority" text="frequency source priority">}} on the interface is 100.
+- The {{<link url="#wait-to-restore-time" text="amount of time SyncE waits">}} after the interface comes up before using the interface for synchronization is 5 minutes.
 
 {{< tabs "TabID33 ">}}
 {{< tab "NVUE Commands ">}}

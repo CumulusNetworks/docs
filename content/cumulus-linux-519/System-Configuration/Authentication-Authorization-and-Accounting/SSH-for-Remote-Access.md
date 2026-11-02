@@ -483,7 +483,7 @@ UnusedConnectionTimeout 5m
 {{< /tabs >}}
 
 {{%notice note%}}
-The inactive timeout closes a session after the configured number of minutes with no SSH channel activity (keystrokes, command output, or file-transfer bytes reset the timer). The timeout applies to sessions established after being set. You can set the inactive timeout to 0 to disable it. 
+The inactive timeout closes a session after the configured number of minutes with no SSH channel activity (keystrokes, command output, or file-transfer bytes reset the timer). The timeout applies to sessions you establish after you set it. You can set the inactive timeout to 0 to disable it. 
 
 The inactive timeout tracks SSH channel activity (not if a remote process is still running); therefore, the switch can close a session running a long command that produces no output for longer than the timeout; active SCP and SFTP transfers, and any session with ongoing traffic are not affected. An idle connection with no open channel; for example an idle SSH multiplexing master (ControlMaster or ControlPersist), is also closed after the timeout.
 {{%/notice%}}

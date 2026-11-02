@@ -249,7 +249,7 @@ interface swp1
 
 ### Set Default Prefix Lifetimes
 
-By default, the switch advertises each prefix with a valid lifetime of 2592000 seconds (30 days) and a preferred lifetime of 604800 seconds (7 days). If a host forms an address on the wrong port, for example because it was cabled to the wrong port during cluster bringup, it keeps that address for up to 30 days after you fix the cabling.
+By default, the switch advertises each prefix with a valid lifetime of 2592000 seconds (30 days) and a preferred lifetime of 604800 seconds (7 days). If a host forms an address on the wrong port, for example because someone cabled it to the wrong port during cluster bringup, it keeps that address for up to 30 days after you fix the cabling.
 
 To make these addresses expire sooner, set default prefix lifetimes on the interface. The switch uses them for every prefix on the interface that does not have its own lifetimes: the prefixes of the IPv6 addresses on the interface, and any prefix you configure without a valid or preferred lifetime.
 - `valid` is how long the prefix stays valid for on-link determination. You can set a value between 0 and 4294967295 seconds, or `infinite`. The default value is 2592000.

@@ -1098,7 +1098,7 @@ cumulus@switch:~$ nv set interface swp1s0 telemetry congestion-event egress-buff
 cumulus@switch:~$ nv config apply
 ```
 
-You can configure the congestion throttle duration to set the interval, in milliseconds, between congestion notifications. The default is 10 seconds (10000ms). After the switch generates a notification, additional congestion events do not trigger a new notification until the interval expires. The throttle duration is configured in milliseconds. The following example configures the `throttle-duration` to 5 seconds:
+You can configure the congestion throttle duration to set the interval, in milliseconds, between congestion notifications. The default is 10 seconds (10000ms). After the switch generates a notification, additional congestion events do not trigger a new notification until the interval expires. You configure the throttle duration in milliseconds. The following example configures the `throttle-duration` to 5 seconds:
 
 ```
 cumulus@switch:~$ nv set system telemetry congestion-event throttle-duration 5000

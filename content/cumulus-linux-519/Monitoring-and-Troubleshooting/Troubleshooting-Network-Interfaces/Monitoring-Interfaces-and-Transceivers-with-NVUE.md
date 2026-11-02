@@ -602,7 +602,7 @@ Action failed
 Firmware file not found: fw-rel-38_100_121.bin
 ```
 
-If the firmware is written successfully but the module fails to activate it, the install action reports a failure. For a module with two firmware banks, the new firmware bank is running but not committed, and you can recover the module. Reset the transceiver with the `nv action reset platform transceiver <transceiver-id>` command, then run the install again.
+If the switch writes the firmware successfully but the module fails to activate it, the install action reports a failure. For a module with two firmware banks, the new firmware bank is running but not committed, and you can recover the module. Reset the transceiver with the `nv action reset platform transceiver <transceiver-id>` command, then run the install again.
 
 If a firmware install fails after it starts to write the file, the module might not have a valid firmware image. In that state, the `nv show platform transceiver <transceiver-id> firmware` command might not show the firmware status, the transceiver reset does not restore the module, and a new install can fail with an error such as `LinkX type not supported for device index 7`. NVUE has no command that recovers the module. Contact NVIDIA Technical Support.
 

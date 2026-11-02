@@ -80,13 +80,13 @@ b. Specify the interval in seconds for IPFIX template and metadata export. You c
    cumulus@switch:~$ nv set system telemetry export ipfix template-metadata-interval 40
    ```
 
-c. Configure the VRF where the export destination is reachable. The `default` VRF is the value set by the `nv set system telemetry export vrf` command. If no value is set with `nv set system telemetry export vrf` command, the default value is `default`.
+c. Configure the VRF where the export destination is reachable. The `default` VRF is the value set by the `nv set system telemetry export vrf` command. If you do not set a value with the `nv set system telemetry export vrf` command, the default value is `default`.
 
    ```
    cumulus@switch:~$ nv set system telemetry export ipfix vrf RED
    ```
 
-d. Configure the maximum size for an exported IP packet containing HFT over IPFIX to keep the IP packet size under the relevant MTU so that IP fragmentation is not required. You can set a value between 512 and 65535 bytes. The default setting is determined from the outgoing interface MTU.
+d. Configure the maximum size for an exported IP packet containing HFT over IPFIX to keep the IP packet size under the relevant MTU so that IP fragmentation is not required. You can set a value between 512 and 65535 bytes. The switch determines the default setting from the outgoing interface MTU.
 
    ```
    cumulus@switch:~$ nv set system telemetry export ipfix max-ip-packet-size 65535

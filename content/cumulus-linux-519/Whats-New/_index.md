@@ -192,7 +192,7 @@ carry-forward /etc/ifplugd/ifplugd.action
 carry-forward /etc/default/ifplugd
 ```
 
-Refer to {{<link title="Upgrading-Cumulus-Linux/#carry-forward-additional-files" text="Carry Forward Additional Files">}}.
+Refer to {{<link url="Upgrading-Cumulus-Linux/#carry-forward-additional-files" text="Carry Forward Additional Files">}}.
 
 ### Cumulus VX
 

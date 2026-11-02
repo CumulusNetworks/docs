@@ -355,7 +355,7 @@ LIMITED_DOCKER_RESOURCE_QUOTA=50
 
 ### Enable and Disable Governance
 
-The Docker Resource Tiering Governance system is installed and enabled by default. To disable governance immediately and prevent it from being enabled again at boot, stop and disable the service:
+Cumulus Linux installs and enables the Docker Resource Tiering Governance system by default. To disable governance immediately and prevent it from being enabled again at boot, stop and disable the service:
 
 ```
 cumulus@switch:~$ sudo systemctl stop cumulus-docker-resource-tier-governance.service

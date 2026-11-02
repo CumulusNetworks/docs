@@ -244,7 +244,7 @@ cumulus@switch:~$ nv set system control-plane acl API-PROTECT inbound
 
 ### JWT-based Authentication
 
-The NVUE REST API supports <span class="a-tooltip">[JWT](## "JSON Web Token")</span>-based authentication, which is a compact way of representing claims in Json format. The claims are signed and a digital signature (Message Authentication Code) is added to the token in a <span class="a-tooltip">[JWS](## "JSON Web Signature")</span> structure.  
+The NVUE REST API supports <span class="a-tooltip">[JWT](## "JSON Web Token")</span>-based authentication, which is a compact way of representing claims in Json format. The server signs the claims and adds a digital signature (Message Authentication Code) to the token in a <span class="a-tooltip">[JWS](## "JSON Web Signature")</span> structure.  
 
 When you make an API request, you include the token in the authorization header so that the switch can verify that the token is valid.
 
@@ -2093,7 +2093,7 @@ cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure -X GET https://127.
 ```
 
 {{%notice note%}}
-The API `GET` operation output matches the operational revision view (equivalent to `nv show --rev=operational`) and omits unset fields that are shown in the default `nv show` output.
+The API `GET` operation output matches the operational revision view (equivalent to `nv show --rev=operational`) and omits unset fields that the default `nv show` output shows.
 {{%/notice%}}
 
 ### Use Filters in a Query

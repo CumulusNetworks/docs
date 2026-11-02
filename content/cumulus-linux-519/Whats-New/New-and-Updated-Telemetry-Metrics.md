@@ -148,7 +148,7 @@ The switch exports these xPaths on Spectrum-6 switches only. For information abo
 {{< /tab >}}
 {{< tab "Routing">}}
 
-The following metrics are added for unreachability AFI SAFI.
+Cumulus Linux adds the following metrics for unreachability AFI SAFI.
 
 |  Name | Description |
 |------ | ----------- |
@@ -284,7 +284,7 @@ Each metric carries a single `server` label holding the RADIUS server address. F
 {{< /tab >}}
 {{< tab "Routing">}}
 
-The following metrics are added for unreachability AFI SAFI.
+Cumulus Linux adds the following metrics for unreachability AFI SAFI.
 
 |  Name | Description |
 |------ | ----------- |

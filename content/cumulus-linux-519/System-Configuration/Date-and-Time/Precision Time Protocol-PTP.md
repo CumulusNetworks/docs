@@ -355,7 +355,7 @@ Cumulus Linux provides several ways to modify the default basic global configura
 - Modify the parameters directly with NVUE commands.
 - Modify the Linux `/etc/ptp4l.conf` file.
 
-When a predefined profile is set, NVUE does not allow you to configure global parameters. Do not edit the Linux `/etc/ptp4l.conf` file to modify the global parameters when a predefined profile is in use. For information about profiles, see {{<link url="#ptp-profiles" text="PTP Profiles">}}.
+When you set a predefined profile, NVUE does not allow you to configure global parameters. Do not edit the Linux `/etc/ptp4l.conf` file to modify the global parameters when a predefined profile is in use. For information about profiles, see {{<link url="#ptp-profiles" text="PTP Profiles">}}.
 
 ### Clock Domains
 

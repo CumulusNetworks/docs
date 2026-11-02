@@ -589,7 +589,7 @@ To configure all SVIs on the switch to be perpetually up, add the `bridge-always
 {{< /tab >}}
 {{< /tabs >}}
 
-With bridge always up is set to `on`, even when an interface is down, the bridge remains up:
+With bridge always up set to `on`, even when an interface is down, the bridge remains up:
 
 ```
 cumulus@switch:~$ ip link show bond1
@@ -600,7 +600,7 @@ cumulus@switch:~$ ip link show br_default
     link/ether 8:b0:2d:4e:ad:89 brd ff:ff:ff:ff:ff:ff
 ```
 
-To show if bridge always up is set to `on` for all SVIs on the switch, run the `nv show system global svi-force-up` command:
+To show if bridge always up is `on` for all SVIs on the switch, run the `nv show system global svi-force-up` command:
 
 ```
 cumulus@switch:~$ nv show system global svi-force-up
@@ -609,7 +609,7 @@ cumulus@switch:~$ nv show system global svi-force-up
 state   enabled      enabled
 ```
 
-To show if bridge always up is set to `on` for SVIs in a specific bridge, run the `nv show bridge domain <bridge-id> svi-force-up` command:
+To show if bridge always up is `on` for SVIs in a specific bridge, run the `nv show bridge domain <bridge-id> svi-force-up` command:
 
 ```
 cumulus@switch:~$ nv show bridge domain br_default svi-force-up

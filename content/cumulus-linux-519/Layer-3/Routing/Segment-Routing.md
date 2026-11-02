@@ -138,7 +138,7 @@ protocol      static
 
 ### Show Segment Routing Endpoints
 
-Segment routing endpoints are installed as IPv6 routes into the RIB and FIB. To show segment routing endpoints, view the
+Cumulus Linux installs segment routing endpoints as IPv6 routes into the RIB and FIB. To show segment routing endpoints, view the
 IPv6 RIB with the `nv show vrf <vrf-id> router rib ipv6 route` command. You can view a specific route with the `nv show vrf <vrf-id> router rib ipv6 route <route-id>` command.
 
 ### Show Segment Routing Statistics

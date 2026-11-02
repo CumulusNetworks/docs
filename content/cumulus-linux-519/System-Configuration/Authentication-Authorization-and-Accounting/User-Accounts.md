@@ -108,7 +108,7 @@ cumulus@switch:~$ sudo adduser admin2 nvapply
 
 {{%notice note%}}
 - When you run Linux commands to add a new user, you must create a home directory for the user with the `-m` option. NVUE commands create a home directory automatically.
-- If you run Linux commands to configure a user password with five or fewer characters, Cumulus Linux logs the message `BAD PASSWORD: The password is shorter than 6 characters`. If you disable password security, this is only a warning and the password is set. If you enable password security, the short password is not set.
+- If you run Linux commands to configure a user password with five or fewer characters, Cumulus Linux logs the message `BAD PASSWORD: The password is shorter than 6 characters`. If you disable password security, this is only a warning and Cumulus Linux sets the password. If you enable password security, the short password is not set.
 {{%/notice%}}
 
 {{< /tab >}}
@@ -131,7 +131,7 @@ You can also create custom roles and assign a custom role to a user. See {{<link
 
 Instead of a plain text password, you can provide a hashed password for a local user.
 
-You must specify the hashed password in Linux `crypt` format; the password must be a minimum of 15 to 20 characters long and must include special characters, digits, lowercase alphabetic letters, and more. Typically, the password format is set to `$id$salt$hashed`, where `$id` is the hashing algorithm. In GNU or Linux:
+You must specify the hashed password in Linux `crypt` format; the password must be a minimum of 15 to 20 characters long and must include special characters, digits, lowercase alphabetic letters, and more. Typically, the password format is `$id$salt$hashed`, where `$id` is the hashing algorithm. In GNU or Linux:
   - `$1$` is MD5
   - `$2a$` is Blowfish
   - `$2y$` is Blowfish
@@ -463,9 +463,9 @@ min-char-diff            8            8
 
 ## AAA Authentication Restrictions
 
-AAA authentication restrictions are enabled by default to limit login attempts and prevent unauthorized access. After five consecutive failed login attempts, the user account is locked out.
+AAA authentication restrictions are enabled by default to limit login attempts and prevent unauthorized access. After five consecutive failed login attempts, Cumulus Linux locks out the user account.
 
-A reattempt timer controls when you can make additional login attempts. Following each failed login, the user must wait 15 seconds before retrying. This restriction remains in effect until the maximum number of consecutive failures is reached, triggering a lockout condition.
+A reattempt timer controls when you can make additional login attempts. Following each failed login, the user must wait 15 seconds before retrying. This restriction remains in effect until the user reaches the maximum number of consecutive failures, which triggers a lockout.
 
 {{%notice note%}}
 AAA authentication restrictions apply to authentication attempts to access the switch through the CLI and the {{<link url="NVUE-API" text="NVUE API">}}.
@@ -484,7 +484,7 @@ cumulus@switch:mgmt:~$ nv set system aaa authentication restrictions lockout-rea
 cumulus@switch:mgmt:~$ nv config apply
 ```
 
-To change the maximum number of failed login attempts before a user is locked out, adjust the `lockout-attempts` parameter:
+To change the maximum number of failed login attempts before Cumulus Linux locks out a user, adjust the `lockout-attempts` parameter:
 
 ```
 cumulus@switch:mgmt:~$ nv set system aaa authentication restrictions lockout-attempts 10
@@ -502,7 +502,7 @@ cumulus@switch:mgmt:~$ nv set system aaa authentication restrictions fail-delay 
 cumulus@switch:mgmt:~$ nv config apply
 ```
 
-To clear the restriction state for a user that is locked out, run the `nv action clear system aaa authentication restrictions user <username>` command:
+To clear the restriction state for a locked-out user, run the `nv action clear system aaa authentication restrictions user <username>` command:
 
 ```
 cumulus@switch:mgmt:~$ nv action clear system aaa authentication restrictions user testuser
@@ -513,7 +513,7 @@ Successfully cleared user name testuser
 Action succeeded
 ```
 
-To clear the restriction state for all users that are locked out, run the `nv action clear system aaa authentication restrictions` command:
+To clear the restriction state for all locked-out users, run the `nv action clear system aaa authentication restrictions` command:
 
 ```
 cumulus@switch:mgmt:~$ nv action clear system aaa authentication restrictions 

@@ -289,7 +289,7 @@ Showing BFD monitored static routes:
 {{< /tabs >}}
 
 {{%notice note%}}
-- BFD with static routes is supported only when a next-hop IP address is specified.
+- BFD with static routes is supported only when you specify a next-hop IP address.
 - BFD operates in single hop mode by default. You must configure `multi-hop enabled` to use BFD for multihop next-hop tracking through static routes.
 {{%/notice%}}
 

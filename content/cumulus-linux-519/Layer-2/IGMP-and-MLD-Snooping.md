@@ -166,8 +166,8 @@ OMF increases memory usage, which can impact scaling on Spectrum 1 switches.
 
 For large multicast environments, the default <span class="a-tooltip">[CoPP](## "Control Plane Policing")</span> policer might be too restrictive. You can adjust the policer to improve multicast convergence.
 
-- For IGMP, both the default forwarding rate and the default burst rate are set to 1000 packets per second.
-- For MLD, the default forwarding rate is set to 300 packets per second and the default burst rate is set to 100 packets per second.
+- For IGMP, both the default forwarding rate and the default burst rate are 1000 packets per second.
+- For MLD, the default forwarding rate is 300 packets per second and the default burst rate is 100 packets per second.
 
 To tune the IGMP and MLD forwarding and burst rates:
 

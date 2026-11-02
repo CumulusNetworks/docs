@@ -686,7 +686,7 @@ When a link transitions up or down, the debounce timer starts. The switch report
 
 {{%notice note%}}
 - You can configure link debounce timers on physical switch ports only.
-- The maximum debounce timer values are limited by SDK capabilities (5000ms).
+- The SDK limits the maximum debounce timer values to 5000ms.
 - NVIDIA recommends that you use identical or similar debounce timer values on both ends of the link.
 - Link debounce and link flap protection are complementary features that work at different time scales. Link debounce filters transient noise and micro-interruptions whereas link flap protection detects excessive legitimate state transitions and protects the system by placing the interface into a protodown state. If you configure both features, set the link flap protection interval to be significantly larger than the debounce timers to ensure proper coordination.
 {{%/notice%}}

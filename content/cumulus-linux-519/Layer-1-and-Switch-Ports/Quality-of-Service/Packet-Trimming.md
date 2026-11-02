@@ -305,7 +305,7 @@ cumulus@switch:~$ nv action clear interface swp1 counters packet-trim
 {{%notice note%}}
 On Spectrum-4 switches, clearing the counters records the current values for each interface and subtracts them from the values the switch shows you. It does not reset the underlying port statistic. If you disable, then reenable packet trimming, the switch discards that baseline and the interface value returns to the running total for the port.
 
-The global `trimmed-packets` counter behaves differently because it belongs to the packet trimming session. Disabling and reenabling packet trimming restarts the global counter at zero. A global counter of zero together with a non-zero interface value is expected on these switches. To bring both to a common baseline, clear the counters again after you reenable packet trimming.
+The global `trimmed-packets` counter behaves differently because it belongs to the packet trimming session. Disabling and reenabling packet trimming restarts the global counter at zero. Expect a global counter of zero together with a non-zero interface value on these switches. To bring both to a common baseline, clear the counters again after you reenable packet trimming.
 {{%/notice%}}
 
 ## Back-to-sender Notification on Congestion Tail Drop
@@ -319,7 +319,7 @@ A congested Spectrum-6 switch can discard a RoCEv2 packet at an egress shared bu
 
 Back-to-sender notification on congestion tail drop is a property of packet trimming: you select it, instead of the existing trim-and-forward behavior, for a specific combination of egress port and traffic class. A combination you do not select for back-to-sender continues to trim-and-forward as it does today, and no combination does both. Unlike Spectrum-4, where the whole switch chooses one behavior, a Spectrum-6 switch can run both at once, on different port and traffic class combinations.
 
-This feature is designed for XGS `dci-custom` deployments, where long-haul, inter-datacenter traffic runs on its own lossy traffic class. Enable back-to-sender only on the traffic class and ports that carry that long-haul traffic; the commands below do not require the `dci-custom` profile, but nothing checks that you scoped back-to-sender correctly.
+This feature targets XGS `dci-custom` deployments, where long-haul, inter-datacenter traffic runs on its own lossy traffic class. Enable back-to-sender only on the traffic class and ports that carry that long-haul traffic; the commands below do not require the `dci-custom` profile, but nothing checks that you scoped back-to-sender correctly.
 
 {{%notice note%}}
 Back-to-sender notification on congestion tail drop has no counters or telemetry of its own. Notifications count as trimmed packets on the same {{<link url="#packet-trimming-counters" text="packet trimming counters">}} that already report trim-and-forward, using the same metric and gNMI path names.
@@ -333,7 +333,7 @@ To enable and configure back-to-sender notification on congestion tail drop:
 - Enable packet trimming and set its shared truncation size and switch priority, if you have not already. Refer to {{<link url="#global-level-packet-trimming" text="Global Level Packet Trimming">}}.
 - Select the egress ports and traffic class you want back-to-sender notification on, instead of trim-and-forward. This setting is required; until you set it, every trim-eligible combination stays trim-and-forward.
 - Optionally, set the DSCP value the switch marks on the notification. You can specify a value between 0 and 63, or `port-level` to use the port-level remark profile. If you do not set this, the switch uses the value from the XGS parameter template.
-- Optionally, set a device-wide DSCP eligibility filter, and the ingress interfaces it applies to. This filter is shared between back-to-sender and trim-and-forward. If you do not set a filter, every DSCP is eligible.
+- Optionally, set a device-wide DSCP eligibility filter, and the ingress interfaces it applies to. Back-to-sender and trim-and-forward share this filter. If you do not set a filter, every DSCP is eligible.
 
 ```
 cumulus@switch:~$ nv set system forwarding packet-trim state enabled
@@ -372,7 +372,7 @@ cumulus@switch:~$ nv set system forwarding packet-trim state disabled
 cumulus@switch:~$ nv config apply
 ```
 
-Do not run the `nv unset system forwarding packet-trim state` command to turn off packet trimming. When the state is not set, it defaults to enabled if anything is configured under `system forwarding packet-trim`, or if `qos roce mode lossy-multi-tc` is enabled with `qos roce state enabled`.
+Do not run the `nv unset system forwarding packet-trim state` command to turn off packet trimming. When the state is not set, it defaults to enabled if you configure anything under `system forwarding packet-trim`, or if `qos roce mode lossy-multi-tc` is enabled with `qos roce state enabled`.
 
 ### Show Back-to-sender Notification on Congestion Tail Drop Configuration
 

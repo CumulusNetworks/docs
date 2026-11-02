@@ -11,7 +11,7 @@ You configure the following for SNMPv3 trap and inform messages:
 
 - The trap destination IP address; the VRF name is optional.
 - The authentication type and password. The encryption type and password are optional.
-- The engine ID and username pair for the Cumulus Linux switch sending the traps. The *inform* keyword specifies an inform message where the SNMP agent waits for an acknowledgement. You can find this at the end of the `/var/lib/snmp/snmpd.conf` file labeled *oldEngineID*. Configure this same engine ID/username (with authentication and encryption passwords) for the trap daemon receiving the trap to validate the received trap.
+- The engine ID and username pair for the Cumulus Linux switch sending the traps. The *inform* keyword specifies an inform message where the SNMP agent waits for an acknowledgment. You can find this at the end of the `/var/lib/snmp/snmpd.conf` file labeled *oldEngineID*. Configure this same engine ID/username (with authentication and encryption passwords) for the trap daemon receiving the trap to validate the received trap.
 
 ## Generate Event Notification Traps
 

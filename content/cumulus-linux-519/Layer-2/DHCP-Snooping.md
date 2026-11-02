@@ -33,9 +33,9 @@ cumulus@switch:~$ nv set bridge domain br_default dhcp-snoop vlan 10 trust swp3
 cumulus@switch:~$ nv config apply
 ```
 
-For IPv6, run the `nv set bridge domain <bridge> dhcp-snoop6 vlan <vlan>` command.
+For IPv6, run the `nv set bridge domain <bridge-id> dhcp-snoop6 vlan <vlan-id>` command.
 
-To disable DHCP snooping on a VLAN under a bridge, run the `nv unset bridge domain <bridge> dhcp-snoop vlan <vlan>` command for IPv4 or the `nv unset bridge domain <bridge> dhcp-snoop6 vlan <vlan>` command for IPv6.
+To disable DHCP snooping on a VLAN under a bridge, run the `nv unset bridge domain <bridge-id> dhcp-snoop vlan <vlan-id>` command for IPv4 or the `nv unset bridge domain <bridge-id> dhcp-snoop6 vlan <vlan-id>` command for IPv6.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -93,7 +93,7 @@ cumulus@switch:~$ sudo nano /etc/dhcpsnoop/dhcp_snoop.json
 
 ## Show the DHCP Snooping Table
 
-To show the DHCP snooping table, run the `nv show bridge domain <bridge> dhcp-snoop` command for IPv4 or the `nv show bridge domain <bridge> dhcp-snoop6` command for IPv6.
+To show the DHCP snooping table, run the `nv show bridge domain <bridge-id> dhcp-snoop` command for IPv4 or the `nv show bridge domain <bridge-id> dhcp-snoop6` command for IPv6.
 
 The following example shows the DHCP snooping table for IPv4:
 
@@ -106,7 +106,7 @@ DHCP Snooping Table
     10    swp1  10.1.10.100  48:b0:2d:fa:6b:a1  ACK    3600   br_default
 ```
 
-To show the DHCP snooping table for a specific VLAN, run the `nv show bridge domain <bridge> dhcp-snoop vlan <vlan-ID>` command for IPv4 or the `nv show bridge domain <bridge> dhcp-snoop6 vlan <vlan-id>` command for IPv6.
+To show the DHCP snooping table for a specific VLAN, run the `nv show bridge domain <bridge-id> dhcp-snoop vlan <vlan-id>` command for IPv4 or the `nv show bridge domain <bridge-id> dhcp-snoop6 vlan <vlan-id>` command for IPv6.
 
 The following example shows the IPv4 DHCP snooping table for VLAN 10:
 
@@ -125,7 +125,7 @@ DHCP Snooping Vlan Bind Table
     swp1  10.1.10.100  48:b0:2d:fa:6b:a1  ACK    3300   br_default
 ```
 
-To show trusted port information in the DHCP snooping table, run the `nv show bridge domain <bridge-id> dhcp-snoop trust-ports` command for IPv4 or the `nv show bridge domain <bridge> dhcp-snoop6 trust-ports` command for IPv6.
+To show trusted port information in the DHCP snooping table, run the `nv show bridge domain <bridge-id> dhcp-snoop trust-ports` command for IPv4 or the `nv show bridge domain <bridge-id> dhcp-snoop6 trust-ports` command for IPv6.
 
 The following example shows the trusted port information in the IPv4 DHCP snooping table:
 

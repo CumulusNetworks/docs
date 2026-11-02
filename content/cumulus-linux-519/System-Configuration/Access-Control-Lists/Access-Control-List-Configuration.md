@@ -1809,7 +1809,7 @@ ACL Name  Rule ID  In Packets  In Bytes  Out Packets  Out Bytes
 EXAMPLE   10       0           0 Bytes 
 ```
 
-To show the match, action, and statistics for an ACL rule on an interface, run the `nv show interface <interface> acl <acl-id>` command:
+To show the match, action, and statistics for an ACL rule on an interface, run the `nv show interface <interface-id> acl <acl-id>` command:
 
 ```
 cumulus@switch:~$ nv show interface swp1 acl EXAMPLE
@@ -1824,7 +1824,7 @@ Rule  In Packet   In Byte          Out Packet  Out Byte         Action          
                                                                                                                  source-mac-mask   : ff:ff:ff:ff:ff:ff
 ```
 
-To show the match, action, and statistics for an inbound rule, run the `nv show interface <interface> acl <acl-id> inbound` command. For an outbound rule, run the `nv show interface <interface> acl <acl-id> outbound` command.
+To show the match, action, and statistics for an inbound rule, run the `nv show interface <interface-id> acl <acl-id> inbound` command. For an outbound rule, run the `nv show interface <interface-id> acl <acl-id> outbound` command.
 
 ```
 cumulus@switch:~$ nv show interface swp1 acl EXAMPLE inbound
@@ -1852,7 +1852,7 @@ mac
   dest-mac-mask    ff:ff:ff:ff:ff:ff  ff:ff:ff:ff:ff:ff  ff:ff:ff:ff:ff:ff
 ```
 
-To show the match, action, and statistics for an inbound control plane rule, or an outbound control plane rule, run the `nv show interface <interface> acl <acl-id> inbound control-plane` or `nv show interface <interface> acl <acl-id> outbound control-plane`command.
+To show the match, action, and statistics for an inbound control plane rule, or an outbound control plane rule, run the `nv show interface <interface-id> acl <acl-id> inbound control-plane` or `nv show interface <interface-id> acl <acl-id> outbound control-plane`command.
 
 ```
 cumulus@switch:~$ nv show interface swp2 acl EXAMPLE3 inbound control-plane 

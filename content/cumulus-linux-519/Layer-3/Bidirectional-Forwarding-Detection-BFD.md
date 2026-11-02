@@ -458,7 +458,7 @@ cumulus@switch:~$ nv set router bfd offload-mode kernel
 cumulus@switch:~$ nv config apply
 ```
 
-For single hop static route BFD sessions in offload mode, you need to configure the source address with the `nv set vrf <vrf> router static <route-id> distance <distance-id> via <via-id> bfd profile <profile-id>` and `nv set vrf <vrf> router static <route-id> distance <distance-id> via <via-id> bfd source <source-address>` commands; for example:
+For single hop static route BFD sessions in offload mode, you need to configure the source address with the `nv set vrf <vrf-id> router static <route-id> distance <distance-id> via <via-id> bfd profile <profile-id>` and `nv set vrf <vrf-id> router static <route-id> distance <distance-id> via <via-id> bfd source <source-address>` commands; for example:
 
 ```
 cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 distance 2 via 10.0.1.0 bfd profile BFD1

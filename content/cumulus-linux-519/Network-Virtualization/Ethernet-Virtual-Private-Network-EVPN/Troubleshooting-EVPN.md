@@ -11,10 +11,10 @@ This section provides various commands to help you examine your EVPN configurati
 You can use various NVUE or Linux commands to examine interfaces, VLAN mappings and the bridge MAC forwarding database known to the Linux kernel. You can also use these commands to examine the neighbor cache and the routing table (for the underlay or for a specific tenant VRF). Some of the key commands are:
 
 - `ip [-d] link show type vxlan` (Linux)
-- `nv show bridge domain <domain> mac-table` (NVUE) or `bridge [-s] fdb show` (Linux)
-- `nv show bridge domain <domain> vlan` (NVUE) or `bridge vlan show` (Linux)
+- `nv show bridge domain <bridge-id> mac-table` (NVUE) or `bridge [-s] fdb show` (Linux)
+- `nv show bridge domain <bridge-id> vlan` (NVUE) or `bridge vlan show` (Linux)
 - `nv show bridge vlan-vni-map` (NVUE)
-- `nv show bridge domain <bridge> vlan-vni-map` (NVUE)
+- `nv show bridge domain <bridge-id> vlan-vni-map` (NVUE)
 - `nv show interface neighbor` (NVUE) or `ip neighbor show` (Linux)
 - `ip route show [table <vrf-id>]` (Linux)
 
@@ -29,7 +29,7 @@ cumulus@leaf01:~$ ip -d link show type vxlan
 ...
 ```
 
-The following shows example output for the `nv show bridge domain <domain> mac-table` command:
+The following shows example output for the `nv show bridge domain <bridge-id> mac-table` command:
 <!-- vale off -->
 ```
 cumulus@leaf01:mgmt:~$ nv show bridge domain br_default mac-table
@@ -697,7 +697,7 @@ vlan
     4063                  1       vxlan48    
 ```
 
-You can drill down and show information about a specific vlan with the `nv show evpn access-vlan-info vlan <vlan>` command.
+You can drill down and show information about a specific vlan with the `nv show evpn access-vlan-info vlan <vlan-id>` command.
 
 ## Show the VRF Routing Table in FRR
 

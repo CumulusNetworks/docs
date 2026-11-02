@@ -221,7 +221,7 @@ cumulus@switch:~$ nv config apply
 {{%notice note%}}
 - You can configure only one address; either IPv4 or IPv6.
 - For IPv6, set the trunk port transport mode to IPv6.
-- When you enable PTP on a bridge port, you must also enable PTP on the VLAN configured for the port with the `nv set bridge domain <domain> vlan <vlan-id> ptp state enabled` command.
+- When you enable PTP on a bridge port, you must also enable PTP on the VLAN configured for the port with the `nv set bridge domain <bridge-id> vlan <vlan-id> ptp state enabled` command.
 - Layer 2 and layer 3 PTP transport cannot coexist.
 - When you configure PTP layer 3 transport, you must configure:
   - An SVI for VLAN-based routing.

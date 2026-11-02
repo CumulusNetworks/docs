@@ -38,7 +38,7 @@ cumulus@switch:~$ nv set bridge domain br_default stp mode pvrst
 cumulus@switch:~$ nv config apply
 ```
 
-To revert the mode to the default setting (RSTP), run the `nv unset bridge domain <bridge> stp mode` command.
+To revert the mode to the default setting (RSTP), run the `nv unset bridge domain <bridge-id> stp mode` command.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -744,7 +744,7 @@ To show the reason for the port protodown, run the `ip -p -j link show <interfac
 cumulus@switch:~$ ip -p -j link show swp5
 ```
 
-To recover from the `protodown` state, remove the protodown reason and protodown from the interface with the NVUE `nv action clear interface <interface-id> bridge domain <domain> stp bpduguardviolation` command or the Linux `mstpctl clearbpduguardviolation <bridge> <interface-id>` command.
+To recover from the `protodown` state, remove the protodown reason and protodown from the interface with the NVUE `nv action clear interface <interface-id> bridge domain <bridge-id> stp bpduguardviolation` command or the Linux `mstpctl clearbpduguardviolation <bridge> <interface-id>` command.
 
 {{%notice note%}}
 - Bringing up the disabled port does not correct the problem if the configuration on the connected end station does not resolve.
@@ -906,7 +906,7 @@ cumulus@switch:~$ nv set bridge domain br_default stp force-protocol-version stp
 cumulus@switch:~$ nv config apply
 ```
 
-To change the setting back to the default, run the `nv set bridge domain <domain> stp force-protocol-version rstp` command.
+To change the setting back to the default, run the `nv set bridge domain <bridge-id> stp force-protocol-version rstp` command.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -1174,7 +1174,7 @@ clag-isl             : no          clag-isl-oper-up  : no
 clag-dual-conn-mac   : 00:00:00:00:00:00
 ```
 
-To show the root ID and root cost for the bridge, run the `nv show bridge domain <bridge> stp root` command.
+To show the root ID and root cost for the bridge, run the `nv show bridge domain <bridge-id> stp root` command.
 
 The following command shows the output in PVRST mode:
 

@@ -208,7 +208,7 @@ cumulus@switch:~$ sudo nano /etc/network/interfaces
 ...
 auto bridge
 iface bridge
-    # bridge-ports includes all ports related to VxLAN and CLAG.
+    # bridge-ports includes all ports related to VXLAN and CLAG.
     # does not include the Peerlink.4094 subinterface
     bridge-ports bond01 bond02 peerlink vni13 vni24 vxlan4001
     bridge-pvid 1

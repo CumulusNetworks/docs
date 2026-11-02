@@ -1154,7 +1154,7 @@ state               enabled
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show vrf <vrf-id> router bgp address-family ipv6-unreachability advertise-origin</h>
+## <h>nv show vrf \<vrf-id\> router bgp address-family ipv6-unreachability advertise-origin</h>
 
 Shows the BGP unreachability advertise-origin configuration.
 
@@ -1176,7 +1176,7 @@ cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unreachabil
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show vrf <vrf-id> router bgp address-family ipv6-unreachability advertise-unreach</h>
+## <h>nv show vrf \<vrf-id\> router bgp address-family ipv6-unreachability advertise-unreach</h>
 
 Shows the BGP unreachability aggregate prefix and the included interfaces for which unreachability is conditionally advertised.
 
@@ -1201,7 +1201,7 @@ cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unreachabil
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show vrf <vrf-id> router bgp address-family ipv6-unreachability advertise-unreach interfaces-match</h>
+## <h>nv show vrf \<vrf-id\> router bgp address-family ipv6-unreachability advertise-unreach interfaces-match</h>
 
 Shows the interfaces for which unreachability is conditionally advertised.
 
@@ -3061,7 +3061,7 @@ warning-threshold               75
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show vrf <vrf-id> router rib ipv6 unreachable-prefixes</h>
+## <h>nv show vrf \<vrf-id\> router rib ipv6 unreachable-prefixes</h>
 
 Shows all IPv6 unreachable prefixes.
 

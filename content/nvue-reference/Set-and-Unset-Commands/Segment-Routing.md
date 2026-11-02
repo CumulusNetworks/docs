@@ -245,7 +245,7 @@ cumulus@switch:~$ nv set router segment-routing static srv6-sid 2001:db8:1:1::10
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set router segment-routing static srv6-sid <sid> locator-name</h>
+## <h>nv set router segment-routing static srv6-sid \<sid\> locator-name</h>
 
 Configures the static segment identifier locator name. The static segment identifier must be part of the locator prefix.
 

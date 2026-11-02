@@ -7,6 +7,29 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5364675</td>
+<td>In FIPS mode, if you delete the {{/etc/ssl/openssl.cnf}} file before the switch reboots, the NVUE service might fail to start.</td>
+<td>5.19.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5358735, 5341619</td>
+<td>The NVIDIA SN5600D switch reports {{PMIC-12-COMEX-VCORE-OUT1}} failed after a warm reset.</td>
+<td>5.16.1-5.19.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5343803</td>
+<td>If you change BGP update source configuration or disable nexthop-connected-check on an IPv4 BGP neighbor or peer group with BFD while the session is established, BGP resets and comes back up, but BFD does not register again. The remote router's session stays Down and BFD no longer protects the BGP session. IPv6 neighbors are not affected.To work around this issue, remove BFD from the neighbor, then re-add it, using two separate {{nv config apply}} commands
+cumulus@switch:~$ nv unset vrf &lt;vrf&gt; router bgp neighbor &lt;peer&gt; bfd
+cumulus@switch:~$ nv config apply
+cumulus@switch:~$ nv set vrf &lt;vrf&gt; router bgp neighbor &lt;peer&gt; bfd profile &lt;profile&gt;
+cumulus@switch:~$ nv config apply
+If BFD is configured on a peer group, do the same on the peer group.</td>
+<td>5.19.0</td>
+<td></td>
+</tr>
+<tr>
 <td>5240151</td>
 <td>On the Spectrum-6 switch, running {{bmc-cli collect-all}}  does not successfully collect all available BMC data. The command completes, but only 27 out of 41 collection tasks are successful.</td>
 <td>5.19.0</td>
@@ -816,6 +839,16 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Affects </th>
 </tr>
 <tr>
+<td>5358616</td>
+<td>When you disable STP, the switch saves but does not program the bridge STP priority, which causes the MLAG secondary bonds to enter protocol-down.</td>
+<td>5.16.5-5.18.3</td>
+</tr>
+<tr>
+<td>5355864</td>
+<td>With dynamic NAT, the NAT table gradually fills with stale entries. After the table fills up, the switch rejects new NAT flows and those connections fail. {{switchd}} also logs repeated {{Failed to send delete command to kernel}} errors on every aging poll. The condition persists until you restart {{switchd}}.</td>
+<td>5.18.3</td>
+</tr>
+<tr>
 <td>5351903</td>
 <td>gNMI requests that use the * path wildcard are rejected for list keys whose YANG type is not a string. The server validates the literal * token against the key's declared type instead of treating it as a gNMI path wildcard, so the request fails as though the path does not exist.</td>
 <td>5.18.3</td>
@@ -949,6 +982,11 @@ This failure disrupts DHCPv6 service for all downstream interfaces served by tha
 <td></td>
 </tr>
 <tr>
+<td>5302815</td>
+<td>The switch exporter transmits incorrect zero values into telemetry, which downstream systems interpret as legitimate counter resets. This results in false spikes in reported adaptive routing congestion metrics, compromising telemetry accuracy and potentially misleading monitoring and analysis.</td>
+<td>5.18.0-5.18.3</td>
+</tr>
+<tr>
 <td>5301567</td>
 <td>With continuous next hop churn in the network with 9k next hop groups created and deleted repeatedly, {{switchd}} runs into a netlink buffer overflow, which triggers a netlink resync; {{switchd}} encounters an out of memory error.</td>
 <td>5.16.6-5.18.3</td>
@@ -1057,6 +1095,11 @@ This failure disrupts DHCPv6 service for all downstream interfaces served by tha
 <td>5240427</td>
 <td>At ECMP scale, SDK encounters ECMP errors due to {{No More Resources}} and shows ASSERT messages in the logs.</td>
 <td>5.13.1-5.18.3</td>
+</tr>
+<tr>
+<td>5240426</td>
+<td>NVUE does not limit the number of WJH drop filters or drop filter entries (IP addresses, drop reasons, and severities), which might lead to high memory usage in NVUE. </td>
+<td>5.18.1-5.18.3</td>
 </tr>
 <tr>
 <td>5240084</td>

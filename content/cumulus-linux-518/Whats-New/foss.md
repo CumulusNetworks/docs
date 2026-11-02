@@ -21,7 +21,7 @@ Cumulus Linux 5.18.3 contains the following core switch package versions:
 | kernel (`linux-image`) | 6.1.174-1 | Linux kernel package |
 | FRR | 10.0.3 | FRRouting package|
 | Telemetry | 91.1.14.14 | Telemetry package |
-| BMC (Baseboard Management Controller)| 88.0060.2112 | BMC hardware management package for the Spectrum-6 switch |
+| BMC (Baseboard Management Controller)| 88.0060.2112 and 88.0060.2114| BMC hardware management package for the Spectrum-6 switch |
 | BMC ERoT (External Root of Trust)| 02.00.0034.0000_n05 | ERoT hardware management security package for the Spectrum-6 switch | 
 
 ## 5.18.2 Packages

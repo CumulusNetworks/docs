@@ -219,7 +219,6 @@ nv action upload platform firmware <platform-component-id> files <file> <url>
 ## Removed NVUE Commands
 
 ```
-nv action power-cycle system
 nv set system wjh channel <channel-id> drop-filter <filter-id> drop-type <drop-filter-drop-type-id> severity <drop-filter-severity-id>
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unreachability policy inbound prefix-list
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unreachability policy outbound prefix-list

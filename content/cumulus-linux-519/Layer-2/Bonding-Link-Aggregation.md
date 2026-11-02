@@ -62,7 +62,7 @@ cumulus@switch:~$ ifreload -a
 
 {{%notice note%}}
 - By default, the bond uses IEEE 802.3ad link aggregation mode. To configure the bond in balance-xor mode, see {{<link url="#optional-configuration" text="Optional Configuration">}} below.
-- If the bond is *not* going to be part of a bridge, you must specify an IP address.
+- If the bond is *not* part of a bridge, you must specify an IP address.
 - Make sure the name of the bond adheres to Linux interface naming conventions and is unique within the switch.
 - To temporarily bring up a bond even when there is no LACP partner, use {{<link title="LACP Bypass">}}.
 

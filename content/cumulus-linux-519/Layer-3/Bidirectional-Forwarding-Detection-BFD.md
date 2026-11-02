@@ -29,7 +29,7 @@ cumulus@switch:~$ nv config apply
 To disable BFD, run the `nv set router bfd state disabled` command.
 
 {{%notice note%}}
-When you change the BFD state, the FRR service will restart, affecting all configured routing protocols.
+When you change the BFD state, the FRR service restarts, affecting all configured routing protocols.
 {{%/notice%}}
 
 {{< /tab >}}

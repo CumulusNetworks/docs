@@ -65,7 +65,7 @@ You can run the `nv action install system packages archive <archive-id>` command
 - `accept-rollback-to-base` installs the patch when the patch it supersedes is no longer on the switch.
 
 {{%notice warning%}}
-Use the `allow-incompatible` option with caution as it overrides the compatibility checks and forces the installation; NVIDIA cannot guarantee that the system will work as expected after installation.
+Use the `allow-incompatible` option with caution as it overrides the compatibility checks and forces the installation; NVIDIA cannot guarantee that the system works as expected after installation.
 {{%/notice%}}
 
 {{%notice warning%}}

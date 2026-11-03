@@ -44,7 +44,7 @@ Before you perform an upgrade with ISSU, you must:
 - Configure the switch in half-resource mode to perform a warm reboot. This change is disruptive due to `switchd` restart and must be a day 0 configuration.
 - Review support limitations and additional {{<link url="System-Power-and-Switch-Reboot/#warm-reboot-and-issu-considerations" text="warm reboot and ISSU considerations">}}.
 
-After setting BGP restart and half-resource mode, you can run warm reboot with the `nv action reboot system mode warm` command. Refer to {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="switch reboot mode">}}.
+After setting BGP restart and half-resource mode, you can run warm reboot with the `nv action reboot system mode warm` command. Refer to {{<link url="System-Power-and-Switch-Reboot/#reboot-commands" text="switch reboot mode">}}.
 
 {{%notice note%}}
 Forwarding resources apply to hardware TCAM or KVD resources used for MAC addresses, layer 3 neighbors, and <span class="a-tooltip">[LPM](## "Longest Prefix Match")</span> (IPv4 and IPv6, unicast and multicast) entries. In half-resource mode, the switch reduces these by 50 percent. Refer to {{<link url="Forwarding-Table-Size-and-Profiles" text="Forwarding Table Sizes">}} for platform-specific details.
@@ -164,13 +164,13 @@ Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual 
    cumulus@switch:~$ nv action boot-next system image other 
    ```
 
-4. Reboot the switch. If you configured the switch resource mode to half for {{<link url="#issu" text="ISSU">}}, reboot with warm mode for a hitless upgrade:
+4. Reboot the switch. If you configured the switch resource mode to half for {{<link url="#upgrades-with-issu" text="ISSU">}}, reboot with warm mode for a hitless upgrade:
 
 ```
     cumulus@switch:~$ nv action reboot system mode warm
 ```
 
-If you are not using ISSU, reboot with a {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="cold reboot">}}:
+If you are not using ISSU, reboot with a {{<link url="System-Power-and-Switch-Reboot/#reboot-commands" text="cold reboot">}}:
 
 ```
     cumulus@switch:~$ nv action reboot system
@@ -235,13 +235,13 @@ To activate the other partition at next boot, run the `cl-image-upgrade -a` comm
 cumulus@switch:~$ cl-image-upgrade -a 
 ```
 
-3. Reboot the switch. If you configured the switch resource mode to half for {{<link url="#issu" text="ISSU">}}, reboot with warm mode for a hitless upgrade:
+3. Reboot the switch. If you configured the switch resource mode to half for {{<link url="#upgrades-with-issu" text="ISSU">}}, reboot with warm mode for a hitless upgrade:
 
 ```
     cumulus@switch:~$ sudo csmgrctl -wf
 ```
 
-If you are not using ISSU, reboot with a {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="cold reboot">}}:
+If you are not using ISSU, reboot with a {{<link url="System-Power-and-Switch-Reboot/#reboot-commands" text="cold reboot">}}:
 
 ```
     cumulus@switch:~$ sudo reboot
@@ -366,7 +366,7 @@ If you configured the switch resource mode to half for {{<link url="#upgrades-wi
     cumulus@switch:~$ nv action reboot system mode warm
 ```
 
-If you are not using ISSU, reboot with a {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="cold reboot">}}:
+If you are not using ISSU, reboot with a {{<link url="System-Power-and-Switch-Reboot/#reboot-commands" text="cold reboot">}}:
 
 ```
     cumulus@switch:~$ nv action reboot system
@@ -440,13 +440,13 @@ If you are not using ISSU, reboot with a {{<link url="System-Power-and-Switch-Re
     *** System reboot required ***
     ```
 
-If you configured the switch resource mode to half for {{<link url="#issu" text="ISSU">}}, reboot with warm mode for a hitless upgrade:
+If you configured the switch resource mode to half for {{<link url="#upgrades-with-issu" text="ISSU">}}, reboot with warm mode for a hitless upgrade:
 
 ```
 cumulus@switch:~$ sudo csmgrctl -wf
 ```
 
-If you are not using ISSU, reboot with a {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="cold reboot">}}:
+If you are not using ISSU, reboot with a {{<link url="System-Power-and-Switch-Reboot/#reboot-commands" text="cold reboot">}}:
 
 ```
 cumulus@switch:~$ sudo reboot

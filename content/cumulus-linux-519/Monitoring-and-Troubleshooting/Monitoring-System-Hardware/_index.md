@@ -187,7 +187,7 @@ For more information, read `man smond` and `man smonctl`.
 Run the `sensors` command to monitor the health of your switch hardware, such as power, temperature and fan speeds. This command executes `{{<exlink url="https://en.wikipedia.org/wiki/Lm_sensors" text="lm-sensors">}}`.
 
 {{%notice note%}}
-Even though you can use the `sensors` command to monitor the health of your switch hardware, NVIDIA recommends you use the `smond` daemon to monitor hardware health. See {{<link url="#smond-daemon" text="smond Daemon">}}
+Even though you can use the `sensors` command to monitor the health of your switch hardware, NVIDIA recommends you use the `smond` daemon to monitor hardware health. See {{<link url="#smond" text="smond Daemon">}}
 above.
 {{%/notice%}}
 

@@ -184,7 +184,7 @@ For more information, read `man smond` and `man smonctl`.
 
 ## sensors Command
 
-Run the `sensors` command to monitor the health of your switch hardware, such as power, temperature and fan speeds. This command executes `{{<exlink url="https://en.wikipedia.org/wiki/Lm_sensors" text="lm-sensors">}}`.
+Run the `sensors` command to monitor the health of your switch hardware, such as power, temperature and fan speeds. This command executes `lm-sensors`.
 
 {{%notice note%}}
 Even though you can use the `sensors` command to monitor the health of your switch hardware, NVIDIA recommends you use the `smond` daemon to monitor hardware health. See {{<link url="#smond" text="smond Daemon">}}
@@ -321,5 +321,4 @@ The SDK health monitoring service (`cumulus-sdk-health-mon`) handles recovery an
 {{%/notice%}}
 
 - {{<exlink url="http://packages.debian.org/search?keywords=lshw" text="packages.debian.org/search?keywords=lshw">}}
-- {{<exlink url="https://en.wikipedia.org/wiki/Lm_sensors" text="lm-sensors.org">}}
 - {{<exlink url="http://net-snmp.sourceforge.net/wiki/index.php/Tutorials" text="Net-SNMP tutorials">}}

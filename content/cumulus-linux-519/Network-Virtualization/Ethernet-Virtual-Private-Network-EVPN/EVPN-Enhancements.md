@@ -466,12 +466,9 @@ Cumulus Linux distinguishes a link-down event from an ordinary deauthorization. 
 {{%notice note%}}
 - All leaf and spine switches in the plane must run Cumulus Linux 5.19 or later.
 - The base VRF of an 802.1X-enabled interface, which is the interface-to-VRF mapping in the `/etc/network/interfaces` file, must be the default VRF or a parking VRF that does not have the BGP unreachability address family configured. Do not use a tenant VRF that has BGP unreachability configured and an `interfaces-match` prefix that covers the IP address of the interface.
-- You must enable the {{<link url="802.1X-Interfaces/#preserve-dynamically-assigned-ipv6-addresses" text="preserve-on-link-down">}} option on the 802.1X IPv6 profile.
 {{%/notice%}}
 
 To show the 802.1X authorization state that BGP uses to make these decisions, run the vtysh `show bgp dot1x interface` command. To show the equivalent state in `zebra`, run the vtysh `show dot1x interface` command. Both commands accept the `json` option.
-
-<!-- REVIEW: sample output adapted from the spec's capture, with the house prompt and the page's uppercase tenant VRF naming. Capture on a switch and confirm the column set and the empty AuthorizedVRF rendering (the spec's table output shows a hyphen where its JSON output shows an empty string) before publishing. -->
 
 ```
 cumulus@leaf01:mgmt:~$ sudo vtysh

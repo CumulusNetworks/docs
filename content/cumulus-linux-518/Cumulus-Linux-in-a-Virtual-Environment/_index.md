@@ -19,7 +19,7 @@ Due to hardware specific implementations, virtual environments do **not** suppor
 | Feature | Supported in a Virtual Environment |
 | -----------------------------------------------------| ------------|
 |{{<link url="Access-Control-Lists" text="Access Control Lists ">}}|<font color="red">No</font> |
-|{{<link url="Upgrading-Cumulus-Linux/#issu" text="In-Service-System-Upgrade-ISSU">}}| <font color="red">No</font> |
+|{{<link url="Upgrading-Cumulus-Linux/#upgrades-with-issu" text="In-Service-System-Upgrade-ISSU">}}| <font color="red">No</font> |
 |{{<link url="Precision-Time-Protocol-PTP" >}}| <font color="red">No</font> |
 |{{<link url="Port-Security" >}}| <font color="red">No</font> |
 |{{<link url="SPAN-and-ERSPAN" >}}| <font color="red">No</font> |
@@ -57,7 +57,7 @@ SimX is a specialized simulation platform developed by NVIDIA to emulate network
 | Feature | DSX AIR VM | SIMIX in DSX AIR|
 | -----------------------------------------------------| ------------| --------------|
 |{{<link url="Access-Control-Lists" text="Access Control Lists ">}}|<font color="red">No</font> | <font color="green">yes</font>|
-|{{<link url="Upgrading-Cumulus-Linux/#issu" text="In-Service-System-Upgrade-ISSU">}} | <font color="red">No</font> | <font color="red">No</font> |
+|{{<link url="Upgrading-Cumulus-Linux/#upgrades-with-issu" text="In-Service-System-Upgrade-ISSU">}} | <font color="red">No</font> | <font color="red">No</font> |
 |{{<link url="Precision-Time-Protocol-PTP" >}}| <font color="red">No</font> | <font color="green">yes</font> |
 |{{<link url="Port-Security" >}}| <font color="red">No</font> | <font color="green">yes</font> |
 |{{<link url="SPAN-and-ERSPAN" >}}| <font color="red">No</font> | <font color="green">yes</font> |

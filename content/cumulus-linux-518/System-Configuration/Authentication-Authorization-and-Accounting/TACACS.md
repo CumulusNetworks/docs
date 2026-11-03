@@ -39,7 +39,7 @@ NVUE automatically installs the TACACS+ packages; you do **not** have to manuall
 {{< /tab >}}
 
 {{< tab "Linux Commands ">}}
-If you use Linux commands to configure TACACS+, you must install the TACACS+ packages. You can install the TACACS+ packages even if the switch is not connected to the internet; the packages are in the `cumulus-local-apt-archive` repository in the {{<link url="Adding-and-Updating-Packages#add-packages-from-the-cumulus-linux-local-archive" text="Cumulus Linux image">}}.
+If you use Linux commands to configure TACACS+, you must install the TACACS+ packages. You can install the TACACS+ packages even if the switch is not connected to the internet; the packages are in the `cumulus-local-apt-archive` repository in the {{<link url="Adding-and-Updating-Packages#add-a-package" text="Cumulus Linux image">}}.
 
 To install all required packages, run these commands:
 

@@ -12,7 +12,7 @@ NVIDIA recommends that you use the {{<link url="Interface-Configuration-and-Mana
 
 ## Install ifplugd
 
-You can install this package even if the switch does not connect to the internet. The package is in the `cumulus-local-apt-archive` repository on the {{<link url="Adding-and-Updating-Packages#add-packages-from-the-cumulus-linux-local-archive" text="Cumulus Linux image">}}.
+You can install this package even if the switch does not connect to the internet. The package is in the `cumulus-local-apt-archive` repository on the {{<link url="Adding-and-Updating-Packages#add-a-package" text="Cumulus Linux image">}}.
 
 To install `ifplugd`:
 

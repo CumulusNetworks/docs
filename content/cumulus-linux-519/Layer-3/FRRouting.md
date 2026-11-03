@@ -107,7 +107,7 @@ Back up `frr.conf` (or any configuration files you want to remove) before procee
 
 ## Interface IP Addresses and VRFs
 
-FRR inherits the IP addresses and any associated routing tables for the network interfaces from the `/etc/network/interfaces` file. This is the recommended way to define the addresses; do **not** create interfaces using FRR. For more information, see {{<link url="Interface-Configuration-and-Management/#configure-ip-addresses" text="Configure IP Addresses">}} and {{<link url="Virtual-Routing-and-Forwarding-VRF">}}.
+FRR inherits the IP addresses and any associated routing tables for the network interfaces from the `/etc/network/interfaces` file. This is the recommended way to define the addresses; do **not** create interfaces using FRR. For more information, see {{<link url="Interface-Configuration-and-Management/#interface-ip-addresses" text="Configure IP Addresses">}} and {{<link url="Virtual-Routing-and-Forwarding-VRF">}}.
 
 ## vtysh Modal CLI
 
@@ -603,7 +603,7 @@ swp1: 241.1.1.1/32 is in the reserved class-e range - set router allow-reserved-
 
 There is no `nv show router allow-reserved-range class-e` command. Instead, the switch prints the warning described above each time you apply a Class E address on an interface while you do not allow Class E.
 
-You can verify that Class E is working end to end with the same commands you use for any other address range. Confirm that the address and its connected route appear for the interface, and confirm the BGP session establishes and routes install, as described in {{<link url="Border-Gateway-Protocol-BGP" text="Border Gateway Protocol (BGP)">}} and {{<link url="Interface-Configuration-and-Management/#configure-ip-addresses" text="Configure IP Addresses">}}.
+You can verify that Class E is working end to end with the same commands you use for any other address range. Confirm that the address and its connected route appear for the interface, and confirm the BGP session establishes and routes install, as described in {{<link url="Border-Gateway-Protocol-BGP" text="Border Gateway Protocol (BGP)">}} and {{<link url="Interface-Configuration-and-Management/#interface-ip-addresses" text="Configure IP Addresses">}}.
 
 ### Troubleshoot Class E Address Space
 

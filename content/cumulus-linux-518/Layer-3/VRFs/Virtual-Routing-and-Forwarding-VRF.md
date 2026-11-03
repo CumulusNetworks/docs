@@ -1152,5 +1152,5 @@ You can also show routes in a VRF using the `ip [-6] route show vrf <vrf-id>` co
 
 - Cumulus Linux bases table selection on the incoming interface only; packet attributes or output-interface-based selection are not available.
 - Setting the router ID outside of BGP using the `router-id` option causes all BGP instances to get the same router ID. If you want each BGP instance to have its own router ID, specify the `router-id` under the BGP instance using `bgp router-id`. If you specify both `router-id` and `bgp router-id`, the ID under the BGP instance overrides the one you provide outside BGP.
-- You cannot configure {{<link url="Basic-Configuration/#enable-evpn-between-bgp-neighbors" text="EVPN address families">}} within a VRF.
+- You cannot configure EVPN address families within a VRF.
 - When you take down a VRF using `ifdown`, Cumulus Linux removes all routes associated with that VRF from FRR but it does *not* remove the routes from the kernel.

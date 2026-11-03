@@ -19,10 +19,10 @@ Cumulus Linux fully supports EVPN as the control plane for VXLAN, including for 
 - Host MAC and IP address exchange using EVPN type-2 (MAC and IP advertisement) routes.
 - {{<link url="EVPN-Enhancements#extended-mobility" text="Host/VM mobility">}} support (MAC and IP moves) through exchange of the MAC Mobility Extended community.
 - Dual-attached hosts via {{<link url="VXLAN-Active-active-Mode" text="VXLAN active-active mode">}}. {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} synchronizes MAC addresses between the peer switches.
-- {{<link url="Basic-Configuration#arp-and-nd-suppression" text="ARP/ND suppression">}} is on VNIs by default, which enables VTEPs to suppress <span class="a-tooltip">[ARP](## "Address Resolution Protocol")</span> flooding over VXLAN tunnels.
+- {{<link url="EVPN-Enhancements#arp-and-nd-suppression" text="ARP/ND suppression">}} is on VNIs by default, which enables VTEPs to suppress <span class="a-tooltip">[ARP](## "Address Resolution Protocol")</span> flooding over VXLAN tunnels.
 - Exchange of {{<link url="EVPN-Enhancements#configure-static-mac-addresses" text="static MAC addresses">}} through EVPN.
 - {{<link url="Inter-subnet-Routing" text="Inter-subnet routing">}} for both IPv4 and IPv6 hosts: Distributed symmetric routing between different subnets and centralized routing.
-- {{<link url="Inter-subnet-Routing#prefix-based-routing-evpn-type-5-routes" text="Prefix-based routing">}} using EVPN type-5 routes (EVPN IP prefix route).
+- {{<link url="Inter-subnet-Routing#prefix-based-routing" text="Prefix-based routing">}} using EVPN type-5 routes (EVPN IP prefix route).
 - Layer 3 multi-tenancy.
 - IPv6 tenant routing.
 - <span class="a-tooltip">[ECMP](## "Equal Cost Multi Path")</span> for overlay networks on NVIDIA Spectrum-A1 ASICs. ECMP occurs in the overlay when there are multiple next hops.

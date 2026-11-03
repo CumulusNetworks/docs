@@ -299,7 +299,7 @@ To configure high frequency telemetry:
 1. Enable telemetry with the `nv set system telemetry state enabled` command.
 2. {{<link url="#configure-data-collection" text="Configure data collection">}}.
 3. {{<link url="#configure-json-data-export" text="Configure data export">}}.
-4. {{<link url="#configure-the-schedule" text="Configure the schedule">}}.
+4. {{<link url="#configure-the-job-schedule" text="Configure the schedule">}}.
 
 ### Configure Data Collection
 

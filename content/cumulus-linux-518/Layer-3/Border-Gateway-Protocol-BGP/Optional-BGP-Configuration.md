@@ -1250,7 +1250,7 @@ When you configure suppress route advertisement, NVUE restarts `switchd`.
 {{< /tab >}}
 {{< /tabs >}}
 
-{{<link url="Upgrading-Cumulus-Linux/#issu" text="ISSU">}} suppresses route advertisement automatically when upgrading or troubleshooting an active switch so that there is minimal disruption to the network.
+{{<link url="Upgrading-Cumulus-Linux/#upgrades-with-issu" text="ISSU">}} suppresses route advertisement automatically when upgrading or troubleshooting an active switch so that there is minimal disruption to the network.
 
 ## BGP VRF Active Check
 
@@ -1632,7 +1632,7 @@ When you configure BGP DC PIC, Cumulus Linux assigns one next hop group for each
 - Do not configure the router ID and network address with the same value.
 - The BGP router ID and the aggregate address must not be in the same subnet.
 - Do not use martian addresses as the BGP router ID when you enable BGP DC PIC.
-- You need additional ECMP hardware resources for BGP DC PIC. Refer to {{<link url="Equal-Cost-Multipath-Load-Sharing/#ecmp-resource-sharing-during-next-hop-group-updates" text="Additional ECMP resource optimization for next hop groups">}}
+- You need additional ECMP hardware resources for BGP DC PIC. Refer to {{<link url="BGP-Weighted-Equal-Cost-Multipath/#ecmp-resource-sharing-during-next-hop-group-updates" text="Additional ECMP resource optimization for next hop groups">}}
 {{%/notice%}}
 
 To configure BGP DC PIC:
@@ -3273,7 +3273,7 @@ To set graceful BGP restart back to the default setting (helper-only mode), run 
 ### Disable Graceful Restart
 
 {{%notice info%}}
-If you disable graceful BGP restart, you cannot achieve a switch restart or switch software upgrade with minimal traffic loss in a BGP configuration. Refer to {{<link url="Upgrading-Cumulus-Linux/#issu" text="ISSU">}} for more information.
+If you disable graceful BGP restart, you cannot achieve a switch restart or switch software upgrade with minimal traffic loss in a BGP configuration. Refer to {{<link url="Upgrading-Cumulus-Linux/#upgrades-with-issu" text="ISSU">}} for more information.
 {{%/notice%}}
 
 {{< tabs "TabID2189 ">}}

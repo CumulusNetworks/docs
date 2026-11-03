@@ -26,7 +26,7 @@ When you run **Linux commands** to configure QoS, you must apply QoS changes to 
 cumulus@switch:~$ sudo systemctl reload switchd.service
 ```
 
-Unlike the `restart` command, the `reload switchd.service` command does not impact traffic forwarding except when the `qos_infra.conf` file changes, or when the switch [pauses frames](#pause-frames) or controls [priority flow](#priority-flow-control-pfc), which require modifications to the ASIC buffer and might result in momentary packet loss.
+Unlike the `restart` command, the `reload switchd.service` command does not impact traffic forwarding except when the `qos_infra.conf` file changes, or when the switch [pauses frames](#link-pause) or controls [priority flow](#priority-flow-control-pfc), which require modifications to the ASIC buffer and might result in momentary packet loss.
 
 NVUE reloads the `switchd` service automatically. You do **not** have to run the `reload switchd.service` command to apply changes when configuring QoS with NVUE commands.
 
@@ -300,7 +300,7 @@ To apply a custom profile to specific interfaces, see [Port Groups](#port-groups
 You can mark or remark traffic in two ways:
 
  * Use ingress COS or DSCP to remark an existing 802.1p COS or DSCP value to a new value.
- * Use [iptables](#iptables) to match packets and set 802.1p COS or DSCP values (policy-based marking).
+ * Use [iptables](#policy-based-marking) to match packets and set 802.1p COS or DSCP values (policy-based marking).
 
 <!-- vale off -->
 ### 802.1p or DSCP for Marking
@@ -1520,7 +1520,7 @@ For example, to configure a dual-rate, three-color policer, with a 3 Mbps CIR, 5
 
 ## Port Groups
 
-Cumulus Linux supports profiles (port groups) for all features including [ECN](#explicit-congestion-notification-ecn) and [RED](#random-early-detection-red). Profiles apply similar QoS configurations to a set of ports.
+Cumulus Linux supports profiles (port groups) for all features including [ECN](#congestion-control-ecn) and [RED](#congestion-control-ecn). Profiles apply similar QoS configurations to a set of ports.
 
 {{% notice note %}}
 - Configurations with a profile override the global settings for the ingress ports in the port group.

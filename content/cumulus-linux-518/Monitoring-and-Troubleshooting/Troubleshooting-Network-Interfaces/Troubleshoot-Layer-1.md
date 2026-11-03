@@ -154,7 +154,7 @@ Only about half of all modern link types support auto-negotiation. The next subs
 
 ### Ethernet Link Types and Auto-negotiation
 
-1000BASE-T and 10GBASE-T fixed copper ports require auto-negotiation for 1G and 10G speeds. This is the default setting; you cannot disable auto-negotiation for 1G speeds. Disabling auto-negotiation on these ports requires setting the speed to 100Mbps or 10Mbps and the correct {{<link url="Switch-Port-Attributes/#port-speed-and-duplex-mode" text="duplex">}} setting.
+1000BASE-T and 10GBASE-T fixed copper ports require auto-negotiation for 1G and 10G speeds. This is the default setting; you cannot disable auto-negotiation for 1G speeds. Disabling auto-negotiation on these ports requires setting the speed to 100Mbps or 10Mbps and the correct {{<link url="Switch-Port-Attributes/#auto-negotiation-and-link-speed" text="duplex">}} setting.
 
 1000BASE-T SFPs have an onboard PHY that performs auto-negotiation automatically on the RJ45 side without involving the port. Do not change the default auto-negotiation setting on these ports; on NVIDIA switches, auto-negotiation is *ON*.
 

@@ -450,7 +450,7 @@ Cumulus Linux does not provide NVUE commands for this setting.
    # resilient_hash_entries_ecmp = 64
    ```
 
-2. {{<link url="Configuring-switchd#restart-switchd" text="Restart">}} the `switchd` service:
+2. {{<link url="Configuring-switchd#configure-switchd-settings" text="Restart">}} the `switchd` service:
 <!-- vale off -->
 {{<cl/restart-switchd>}}
 <!-- vale on -->

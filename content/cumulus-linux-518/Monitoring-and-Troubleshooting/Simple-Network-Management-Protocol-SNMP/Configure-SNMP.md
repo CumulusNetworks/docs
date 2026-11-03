@@ -424,7 +424,7 @@ NVIDIA strongly recommends you change this password to something else.
 
 - `default` allows connections from any system.
 - `localhost` allows requests only from the local host. A restricted source can either be a specific hostname (or address), or a subnet, represented as IP/MASK (like 10.10.10.0/255.255.255.0), or IP/BITS (like 10.10.10.0/24), or the IPv6 equivalents.
-- `-V` restricts viewing to a specific {{<link url="#configure-an-snmp-view-name" text="view">}}. For example, `systemonly` is one SNMP view. This is a user-defined value.
+- `-V` restricts viewing to a specific {{<link url="#configure-an-snmp-view-definition" text="view">}}. For example, `systemonly` is one SNMP view. This is a user-defined value.
 
 Edit the `/etc/snmp/snmpd.conf` file and add the community string.
 

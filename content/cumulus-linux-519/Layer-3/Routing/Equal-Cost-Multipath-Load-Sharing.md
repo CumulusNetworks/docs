@@ -123,7 +123,7 @@ switch# show nexthop-group global grp2 json
 
 You can configure custom hashing to specify what to include in the hash calculation during load balancing between:
 - Multiple next hops of a layer 3 route (ECMP hashing).
-- Multiple interfaces that are members of the same bond (bond or LAG hashing). For bond hashing, see {{<link url="Bonding-Link-Aggregation/#load-balancing" text="Bonding - Link Aggregation" >}}.
+- Multiple interfaces that are members of the same bond (bond or LAG hashing). For bond hashing, see {{<link url="Bonding-Link-Aggregation/#custom-hashing" text="Bonding - Link Aggregation" >}}.
 
 For ECMP load balancing between multiple next hops of a layer 3 route, you can hash on these fields:
 

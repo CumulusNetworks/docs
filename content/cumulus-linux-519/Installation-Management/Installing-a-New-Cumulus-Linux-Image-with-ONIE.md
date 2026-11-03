@@ -289,7 +289,7 @@ Follow the steps below to install the Cumulus Linux image referencing a local fi
     onie# /etc/init.d/discover.sh stop
     ```
 
-4. Use {{<exlink url="http://en.wikipedia.org/wiki/Secure_copy" text="scp">}} to copy the Cumulus Linux image to the switch.
+4. Use scp to copy the Cumulus Linux image to the switch.
 
 5. Run the installer manually from ONIE:
 

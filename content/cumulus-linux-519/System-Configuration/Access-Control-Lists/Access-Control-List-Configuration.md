@@ -13,7 +13,7 @@ Cumulus Linux provides several tools to configure <span class="a-tooltip">[ACLs]
 
 ### Chains
 
-ACLs in Cumulus Linux classify and control packets to, from, and across the switch, asserting policies at layer 2, 3 and 4 of the {{<exlink url="https://en.wikipedia.org/wiki/OSI_model" text="OSI model">}} by inspecting packet and frame headers according to a list of rules. The `iptables`, `ip6tables`, and `ebtables` userspace applications provide syntax you use to define rules.
+ACLs in Cumulus Linux classify and control packets to, from, and across the switch, asserting policies at layer 2, 3 and 4 of the OSI model by inspecting packet and frame headers according to a list of rules. The `iptables`, `ip6tables`, and `ebtables` userspace applications provide syntax you use to define rules.
 
 The rules inspect or operate on packets at several points (*chains*) in the life of the packet through the system:
 
@@ -1183,7 +1183,7 @@ To clear the counters for all rules, run the `nv action clear system control-pla
 
 ### Set DSCP on Transit Traffic
 
-The following examples use the *mangle* table to modify the packet as it transits the switch. DSCP is in {{<exlink url="https://en.wikipedia.org/wiki/Differentiated_services#Configuration_guidelines" text="decimal notation">}} in the examples below.
+The following examples use the *mangle* table to modify the packet as it transits the switch. DSCP is in decimal notation in the examples below.
 
 {{< tabs "1015 ">}}
 {{< tab "NVUE Commands ">}}

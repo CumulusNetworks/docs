@@ -523,46 +523,6 @@ Resilient hashing does not support {{<link url="Optional-BGP-Configuration/#bgp-
 
 If you configured resilient hashing in an earlier release by editing the `/etc/cumulus/datapath/traffic.conf` file, you must reconfigure resilient hashing after you upgrade.
 
-#### IPv6 Route Replacement
-
-When the router adds or removes ECMP paths, or when the next hop IP address, interface, or tunnel changes, the next hop information for an IPv6 prefix can change. FRR deletes the existing route to that prefix from the kernel, then adds a new route with all the relevant new information. In certain situations, Cumulus Linux does not maintain resilient hashing for IPv6 flows.
-
-To work around this issue, you can enable IPv6 route replacement.
-
-{{%notice info%}}
-For certain configurations, IPv6 route replacement can lead to incorrect forwarding decisions and lost traffic. For example, it is possible for a destination to have next hops with a gateway value with the outbound interface or just the outbound interface itself, without a gateway address. If both types of next hops for the same destination exist, route replacement does not operate correctly; Cumulus Linux adds an additional route entry and next hop but does not delete the previous route entry and next hop.
-{{%/notice%}}
-
-To enable the IPv6 route replacement option, in the `/etc/frr/daemons` file, add the `--v6-rr-semantics` configuration option to the zebra daemon definition, then reload FRR with the `sudo systemctl reload frr.service` command.
-
-```
-cumulus@switch:~$ sudo nano /etc/frr/daemons
-...
-vtysh_enable=yes
-zebra_options=" -M cumulus_mlag -M snmp -A 127.0.0.1 --v6-rr-semantics -s 90000000"
-bgpd_options=" -M snmp  -A 127.0.0.1"
-ospfd_options=" -M snmp -A 127.0.0.1"
-...
-```
-
-To verify that IPv6 route replacement, run the `systemctl status frr` command:
-
-```
-cumulus@switch:~$ systemctl status frr
-
-    ● frr.service - FRRouting
-      Loaded: loaded (/lib/systemd/system/frr.service; enabled; vendor preset: enabled)
-      Active: active (running) since Mon 2020-02-03 20:02:33 UTC; 3min 8s ago
-        Docs: https://frrouting.readthedocs.io/en/latest/setup.html
-      Process: 4675 ExecStart=/usr/lib/frr/frrinit.sh start (code=exited, status=0/SUCCESS)
-      Memory: 14.4M
-      CGroup: /system.slice/frr.service
-            ├─4685 /usr/lib/frr/watchfrr -d zebra bgpd staticd
-            ├─4701 /usr/lib/frr/zebra -d -M snmp -A 127.0.0.1 --v6-rr-semantics -s 90000000
-            ├─4705 /usr/lib/frr/bgpd -d -M snmp -A 127.0.0.1
-            └─4711 /usr/lib/frr/staticd -d -A 127.0.0.1
-```
-
 ## Adaptive Routing
 
 Adaptive routing is a load balancing feature that improves network utilization for adaptive routing eligible IP packets by selecting forwarding paths dynamically based on the state of the switch, such as queue occupancy and port utilization.

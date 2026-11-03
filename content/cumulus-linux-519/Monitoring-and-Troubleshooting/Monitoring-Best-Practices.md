@@ -336,7 +336,7 @@ Spanning tree is a protocol that prevents loops in a layer 2 infrastructure. In 
 
 | Interface Counter Element | Monitoring Commands | Interval Poll |
 |-------------------------- |-------------------- |-------------- |
-| STP TCN Transitions | NVUE: `nv show bridge domain <bridge> stp`<br><br>Linux: `mstpctl showbridge json`<br>`mstpctl showport` | 60 seconds |
+| STP TCN Transitions | NVUE: `nv show bridge domain <bridge-id> stp`<br><br>Linux: `mstpctl showbridge json`<br>`mstpctl showport` | 60 seconds |
 | MLAG peer state | NVUE: `nv show mlag`<br><br>Linux: `clagctl status`<br>`sudo clagd -j`<br>`sudo cat /var/log/clagd.log` | 60 seconds |
 | MLAG peer MACs | NVUE: `nv show mlag`<br><br>Linux: `clagctl dumppeermacs`<br>`clagctl dumpourmacs` |300 seconds |
 

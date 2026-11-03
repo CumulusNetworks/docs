@@ -1534,7 +1534,7 @@ cumulus@switch:~$ nv set acl acl1 rule 20 action deny
 Cumulus Linux supports ACL rule matches based on the packet offset.
 
 {{%notice note%}}
-- You can configure a maximum of three different packet offset matches either in a single ACL rule or across three separate ACL rules. You can reuse the same offset match in another ACL rule, which is not considered an extra offset match. The combination of an offset location and a `match-from` value is considered as one offset.
+- You can configure a maximum of three different packet offset matches either in a single ACL rule or across three separate ACL rules. You can reuse the same offset match in another ACL rule, which is not considered an extra offset match. The combination of an offset location and a `match-from` value counts as one offset.
 - You can configure offset matches only for ACL type ipv4 and ipv6.
 - The Spectrum1 switch does not support matches based on the packet offset.
 - Matches based on the packet offset support hardware forwarded packets only.
@@ -1550,7 +1550,7 @@ You can use the following packet offset matching options:
 | `mask` | The mask to be used while matching the value. The mask must be two bytes long and in hexadecimal. The default value is 0xFFFF. |
 | `match-from`| The extraction point for the offset position. You can specify `start-of-packet` (the start of the layer 2 header, which is first byte of the destination MAC address), `start-of-inner-ipv4-header` or `start-of-inner-ipv6-header`.|
 
-The following example creates an ACL permit rule for inbound packets on swp1 that matches the first bytes of inner ipv4 header as 0x12 and first two bytes of UDP header as 0xabcd. The format of the packet is shown below:
+The following example creates an ACL permit rule for inbound packets on swp1 that matches the first bytes of inner ipv4 header as 0x12 and first two bytes of UDP header as 0xabcd. The packet has the following format:
 
 ```
 0         14        34        54        62
@@ -1809,7 +1809,7 @@ ACL Name  Rule ID  In Packets  In Bytes  Out Packets  Out Bytes
 EXAMPLE   10       0           0 Bytes 
 ```
 
-To show the match, action, and statistics for an ACL rule on an interface, run the `nv show interface <interface> acl <acl-id>` command:
+To show the match, action, and statistics for an ACL rule on an interface, run the `nv show interface <interface-id> acl <acl-id>` command:
 
 ```
 cumulus@switch:~$ nv show interface swp1 acl EXAMPLE
@@ -1824,7 +1824,7 @@ Rule  In Packet   In Byte          Out Packet  Out Byte         Action          
                                                                                                                  source-mac-mask   : ff:ff:ff:ff:ff:ff
 ```
 
-To show the match, action, and statistics for an inbound rule, run the `nv show interface <interface> acl <acl-id> inbound` command. For an outbound rule, run the `nv show interface <interface> acl <acl-id> outbound` command.
+To show the match, action, and statistics for an inbound rule, run the `nv show interface <interface-id> acl <acl-id> inbound` command. For an outbound rule, run the `nv show interface <interface-id> acl <acl-id> outbound` command.
 
 ```
 cumulus@switch:~$ nv show interface swp1 acl EXAMPLE inbound
@@ -1852,7 +1852,7 @@ mac
   dest-mac-mask    ff:ff:ff:ff:ff:ff  ff:ff:ff:ff:ff:ff  ff:ff:ff:ff:ff:ff
 ```
 
-To show the match, action, and statistics for an inbound control plane rule, or an outbound control plane rule, run the `nv show interface <interface> acl <acl-id> inbound control-plane` or `nv show interface <interface> acl <acl-id> outbound control-plane`command.
+To show the match, action, and statistics for an inbound control plane rule, or an outbound control plane rule, run the `nv show interface <interface-id> acl <acl-id> inbound control-plane` or `nv show interface <interface-id> acl <acl-id> outbound control-plane`command.
 
 ```
 cumulus@switch:~$ nv show interface swp2 acl EXAMPLE3 inbound control-plane 

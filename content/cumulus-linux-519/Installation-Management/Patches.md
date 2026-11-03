@@ -65,11 +65,11 @@ You can run the `nv action install system packages archive <archive-id>` command
 - `accept-rollback-to-base` installs the patch when the patch it supersedes is no longer on the switch.
 
 {{%notice warning%}}
-Use the `allow-incompatible` option with caution as it overrides the compatibility checks and forces the installation; NVIDIA cannot guarantee that the system will work as expected after installation.
+Use the `allow-incompatible` option with caution as it overrides the compatibility checks and forces the installation; NVIDIA cannot guarantee that the system works as expected after installation.
 {{%/notice%}}
 
 {{%notice warning%}}
-Use the `accept-rollback-to-base` option with caution. When you install a patch this way, uninstalling it later returns the affected packages to their base-image versions instead of to the patch underneath, so the fix that patch carried is lost. The `allow-incompatible` option does not override this check.
+Use the `accept-rollback-to-base` option with caution. When you install a patch this way, uninstalling it later returns the affected packages to their base-image versions instead of to the patch underneath, so you lose the fix that patch carried. The `allow-incompatible` option does not override this check.
 {{%/notice%}}
 
 The switch refuses to install a patch in the following cases:
@@ -86,7 +86,7 @@ Neither the `force` option nor the `allow-incompatible` option overrides a disk 
 To uninstall a patch, run the `nv action uninstall system packages archive <archive-id>` command. The switch removes the patch, restores the patch installed underneath it, and makes the result take effect as a single operation. Where no patch is underneath, the affected packages return to their base-image versions.
 
 {{%notice note%}}
-- You can only uninstall the patch on top of a chain. If another patch is installed over it, the switch refuses the command and names the patch you must remove first.
+- You can only uninstall the patch on top of a chain. If you installed another patch over it, the switch refuses the command and names the patch you must remove first.
 - To reach an earlier patch, uninstall the patches above it one at a time. You cannot step directly to an arbitrary earlier patch.
 - Uninstalling a patch does not remove it from the switch; you can install it again or step back to it later. Refer to {{<link url="#reclaim-patch-space" text="Reclaim Patch Space">}}.
 - If the patch underneath is no longer on the switch, the affected packages return to their base-image versions and the fix that patch carries does not restore.

@@ -761,7 +761,7 @@ Cumulus Linux enables ARP and ND suppression by default on all VNIs to reduce AR
 
 ### ND Suppression and IPv6 Address Reuse
 
-If you disable ND suppression and reuse IPv6 addresses, IPv6 duplicate address detection fails and the address remains tentative and not useable. The following example shows an IPv6 duplicate address detection failure on vlan10:
+If you disable ND suppression and reuse IPv6 addresses, IPv6 duplicate address detection fails and the address remains tentative and not usable. The following example shows an IPv6 duplicate address detection failure on vlan10:
 
 ```
 cumulus@switch:~$ ip address show vlan10 | grep dad

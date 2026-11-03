@@ -38,7 +38,7 @@ Members of the *sudo* group, including the *cumulus* user, can run any command a
 NVUE regenerates this file during first boot, at every software upgrade, and on every `nv config apply`, including an apply that changes nothing else. There is no command to disable this default. To grant passwordless access to specific commands for a user who is *not* a member of the *sudo* group, use an RBAC `os-command` {{<link url="Role-Based-Access-Control/#os-command-classes" text="class">}} instead; it adds command-specific grants without narrowing the *sudo* group's permanent access.
 
 {{%notice note%}}
-Because `sudo` evaluates the last matching rule, do not add a manual file to `/etc/sudoers.d/` that is ordered after `nvue-aaa-passwordless-sudo` and overrides its `NOPASSWD` policy. NVUE does not create or modify files under `/etc/sudoers.d/` other than `nvue-aaa-passwordless-sudo`.
+Because `sudo` evaluates the last matching rule, do not add a manual file to `/etc/sudoers.d/` that sorts after `nvue-aaa-passwordless-sudo` and overrides its `NOPASSWD` policy. NVUE does not create or modify files under `/etc/sudoers.d/` other than `nvue-aaa-passwordless-sudo`.
 {{%/notice%}}
 
 The example below shows how to use `sudo` as a non-privileged user *cumulus* to bring up an interface:

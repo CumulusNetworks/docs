@@ -270,7 +270,7 @@ begin  4000         4000
 end    4064         4064
 ```
 
-Do not use this range of VLANs in the same bridge as your MLAG interfaces and layer 3 VNIs. You can configure the range with the `nv set system global reserved vlan l3-vni-vlan begin <vlan>` and `nv set system global reserved vlan l3-vni-vlan end <vlan>` commands. For more information, see {{<link url="Inter-subnet-Routing/#symmetric-routing" text="symmetric routing">}}.
+Do not use this range of VLANs in the same bridge as your MLAG interfaces and layer 3 VNIs. You can configure the range with the `nv set system global reserved vlan l3-vni-vlan begin <vlan-id>` and `nv set system global reserved vlan l3-vni-vlan end <vlan-id>` commands. For more information, see {{<link url="Inter-subnet-Routing/#symmetric-routing" text="symmetric routing">}}.
 
 {{%notice note%}}
 The global reserved layer 3 VNI VLAN range does not apply to switches that you configure manually with Linux commands instead of NVUE or for symmetric routing deployments without MLAG.
@@ -547,7 +547,7 @@ cumulus@switch:~$ nv set system global svi-force-up state enabled
 cumulus@switch:~$ nv config apply
 ```
 
-To configure SVIs in a specific bridge to be perpetually up, run the `nv set bridge domain <bridge> svi-force-up state enabled` command:
+To configure SVIs in a specific bridge to be perpetually up, run the `nv set bridge domain <bridge-id> svi-force-up state enabled` command:
 
 ```
 cumulus@switch:~$ nv set bridge domain br_default svi-force-up state enabled
@@ -555,7 +555,7 @@ cumulus@switch:~$ nv config apply
 ```
 
 - To configure all SVIs on the switch to be perpetually down, run the `nv set system global svi-force-up state disabled` command.
-- To configure the SVIs in a specific bridge to be perpetually down, run the `nv set bridge domain <bridge> svi-force-up state disabled` command.
+- To configure the SVIs in a specific bridge to be perpetually down, run the `nv set bridge domain <bridge-id> svi-force-up state disabled` command.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -589,7 +589,7 @@ To configure all SVIs on the switch to be perpetually up, add the `bridge-always
 {{< /tab >}}
 {{< /tabs >}}
 
-With bridge always up is set to `on`, even when an interface is down, the bridge remains up:
+With bridge always up set to `on`, even when an interface is down, the bridge remains up:
 
 ```
 cumulus@switch:~$ ip link show bond1
@@ -600,7 +600,7 @@ cumulus@switch:~$ ip link show br_default
     link/ether 8:b0:2d:4e:ad:89 brd ff:ff:ff:ff:ff:ff
 ```
 
-To show if bridge always up is set to `on` for all SVIs on the switch, run the `nv show system global svi-force-up` command:
+To show if bridge always up is `on` for all SVIs on the switch, run the `nv show system global svi-force-up` command:
 
 ```
 cumulus@switch:~$ nv show system global svi-force-up
@@ -609,7 +609,7 @@ cumulus@switch:~$ nv show system global svi-force-up
 state   enabled      enabled
 ```
 
-To show if bridge always up is set to `on` for SVIs in a specific bridge, run the `nv show bridge domain <domain-id> svi-force-up` command:
+To show if bridge always up is `on` for SVIs in a specific bridge, run the `nv show bridge domain <bridge-id> svi-force-up` command:
 
 ```
 cumulus@switch:~$ nv show bridge domain br_default svi-force-up
@@ -749,7 +749,7 @@ Edit the `/etc/network/interfaces` file to **remove** the line `ipv6-addrgen off
 
 ## MAC Address for a Bridge
 
-To configure a MAC address for a bridge, run the `nv set bridge domain <bridge> mac-address <mac-address>` command.
+To configure a MAC address for a bridge, run the `nv set bridge domain <bridge-id> mac-address <mac-address>` command.
 
 The following example configures the bridge `br_default` with MAC address `00:00:5E:00:53:00`:
 
@@ -761,7 +761,7 @@ cumulus@switch:~$ nv set bridge domain br_default mac-address 00:00:5E:00:53:00
 cumulus@switch:~$ nv config apply
 ```
 
-To unset the MAC address for a bridge, run the `nv unset bridge domain <bridge> mac-address <mac-address>` command.
+To unset the MAC address for a bridge, run the `nv unset bridge domain <bridge-id> mac-address <mac-address>` command.
 
 ```
 cumulus@switch:~$ nv unset bridge domain br_default mac-address
@@ -824,7 +824,7 @@ iface br_default
 {{< /tab >}}
 {{< /tabs >}}
 
-To show the bridge aging configuration setting, run the `nv show bridge domain <domain>` command or the Linux `sudo ip -d link show <bridge-domain>` command.
+To show the bridge aging configuration setting, run the `nv show bridge domain <bridge-id>` command or the Linux `sudo ip -d link show <bridge-domain>` command.
 
 ```
 cumulus@switch:~$ nv show bridge domain br_default
@@ -839,7 +839,7 @@ vlan-vni-offset               0
 ...
 ```
 
-To reset bridge aging to the default value (1800 seconds), run the `nv unset bridge domain <domain> ageing` command.
+To reset bridge aging to the default value (1800 seconds), run the `nv unset bridge domain <bridge-id> ageing` command.
 
 ## Clear Dynamic MAC Address Entries
 
@@ -900,7 +900,7 @@ The matching FDB entries were deleted successfully.
 
 ### Clear A Specific Dynamic MAC Address for an Interface, VLAN, or Interface and VLAN
 
-To clear a specific dynamic MAC addresses for a VLAN, run the `nv action clear bridge domain <domain-id> mac-table dynamic mac <mac-address> vlan <vlan-id>` command:
+To clear a specific dynamic MAC addresses for a VLAN, run the `nv action clear bridge domain <bridge-id> mac-table dynamic mac <mac-address> vlan <vlan-id>` command:
 
 ```
 cumulus@switch:~$ nv action clear bridge domain br_default mac-table dynamic mac 00:00:0A:BB:28:FC vlan 10
@@ -908,7 +908,7 @@ Action executing ...
 The matching FDB entries were deleted successfully.
 ```
 
-To clear a specific dynamic MAC address for an interface, run the `nv action clear bridge domain <domain-id> mac-table dynamic mac <mac-address> interface <interface-id>` command:
+To clear a specific dynamic MAC address for an interface, run the `nv action clear bridge domain <bridge-id> mac-table dynamic mac <mac-address> interface <interface-id>` command:
 
 ```
 cumulus@switch:~$ nv action clear bridge domain br_default mac-table dynamic mac 00:00:0A:BB:28:FC interface swp1
@@ -916,7 +916,7 @@ Action executing ...
 The matching FDB entries were deleted successfully. 
 ```
 
-To clear a specific dynamic MAC address for a VLAN and interface, run the `nv action clear bridge domain <domain-id> mac-table dynamic mac <mac-address> vlan <vlan-id interface <interface-id>` command:
+To clear a specific dynamic MAC address for a VLAN and interface, run the `nv action clear bridge domain <bridge-id> mac-table dynamic mac <mac-address> vlan <vlan-id interface <interface-id>` command:
 
 ```
 cumulus@switch:~$ nv action clear bridge domain br_default mac-table dynamic mac 00:00:0A:BB:28:FC vlan 10 interface swp1
@@ -966,14 +966,14 @@ cumulus@switch:~$ nv set bridge domain br_default arp-inspection vlan 10 state e
 cumulus@switch:~$ nv config apply
 ```
 
-To set a trusted port, run the `nv set bridge domain <bridge> arp-inspection vlan <vid> interface <port>` command. The listed ports have no DAI filters and the packets pass through the switch.
+To set a trusted port, run the `nv set bridge domain <bridge-id> arp-inspection vlan <vlan-id> interface <port>` command. The listed ports have no DAI filters and the packets pass through the switch.
 
 ```
 cumulus@switch:~$ nv set bridge domain br_default arp-inspection vlan 10 interface swp2
 cumulus@switch:~$ nv config apply
 ```
 
-To configure dynamic ARP inspection for static MAC to IP and port bindings for hosts not using DHCP, run the `nv set bridge domain <bridge> arp-inspection vlan <vid> static-binding <name> mac`, `nv set bridge domain <bridge> arp-inspection vlan <vid> static-binding <name> ip`, and `nv set bridge domain <bridge> arp-inspection vlan <vid> static-binding <name> port` commands:
+To configure dynamic ARP inspection for static MAC to IP and port bindings for hosts not using DHCP, run the `nv set bridge domain <bridge-id> arp-inspection vlan <vlan-id> static-binding <name> mac`, `nv set bridge domain <bridge-id> arp-inspection vlan <vlan-id> static-binding <name> ip`, and `nv set bridge domain <bridge-id> arp-inspection vlan <vlan-id> static-binding <name> port` commands:
 
 ```
 cumulus@switch:~$ nv set bridge domain br_default arp-inspection vlan 10 static-binding server1 mac 00:02:00:00:00:05
@@ -984,7 +984,7 @@ cumulus@switch:~$ nv config apply
 
 To disable dynamic ARP inspection, run the `nv set bridge domain br_default arp-inspection vlan <vlan-id> state disabled` command.
 
-To show dynamic ARP inspection information such as the state, interfaces, and bindings, run the `nv show bridge domain <bridge> arp-inspection` command.
+To show dynamic ARP inspection information such as the state, interfaces, and bindings, run the `nv show bridge domain <bridge-id> arp-inspection` command.
 
 ```
 cumulus@switch:~$ nv show bridge domain br_default arp-inspection
@@ -995,7 +995,7 @@ ARP Inspection Table
     10    disabled  swp2          server1  00:02:00:00:00:05  192.0.2.42  swp2
 ```
 
-To show dynamic ARP inspection information for all VLANs, run the `nv show bridge domain <bridge> arp-inspection vlan` command. To show dynamic ARP inspection information for a specific VLAN, run the `nv show bridge domain <bridge> arp-inspection vlan <vid>` command:
+To show dynamic ARP inspection information for all VLANs, run the `nv show bridge domain <bridge-id> arp-inspection vlan` command. To show dynamic ARP inspection information for a specific VLAN, run the `nv show bridge domain <bridge-id> arp-inspection vlan <vlan-id>` command:
 
 ```
 cumulus@switch:~$ nv show bridge domain br_default arp-inspection vlan 10
@@ -1016,7 +1016,7 @@ ARP Inspection Static Bindings
     server1  00:02:00:00:00:05  192.0.2.42  swp2
 ```
 
-To show dynamic ARP inspection information for all VLAN interfaces, run the `nv show bridge domain <bridge> arp-inspection vlan <vid> interface` command. To show dynamic ARP inspection information for a specific VLAN interface, run the `nv show bridge domain <bridge> arp-inspection vlan <vid> interface <interface-id>` command.
+To show dynamic ARP inspection information for all VLAN interfaces, run the `nv show bridge domain <bridge-id> arp-inspection vlan <vlan-id> interface` command. To show dynamic ARP inspection information for a specific VLAN interface, run the `nv show bridge domain <bridge-id> arp-inspection vlan <vlan-id> interface <interface-id>` command.
 
 ```
 cumulus@switch:~$ nv show bridge domain br_default arp-inspection vlan 10 interface
@@ -1025,7 +1025,7 @@ Port
 swp2
 ```
 
-To show dynamic ARP inspection information for all static bindings, run the `nv show bridge domain <bridge> arp-inspection vlan <vid> static-binding` command. To show dynamic ARP inspection information for a specific static binding, run the `nv show bridge domain <bridge> arp-inspection vlan <vid> static-binding <name>` command.
+To show dynamic ARP inspection information for all static bindings, run the `nv show bridge domain <bridge-id> arp-inspection vlan <vlan-id> static-binding` command. To show dynamic ARP inspection information for a specific static binding, run the `nv show bridge domain <bridge-id> arp-inspection vlan <vlan-id> static-binding <name>` command.
 
 ```
 cumulus@switch:~$ nv show bridge domain br_default arp-inspection vlan 10 static-binding
@@ -1045,7 +1045,7 @@ domain                       port
 br_default      swp1,swp2,swp3
 ```
 
-To show port information for a specific bridge, run the NVUE `nv show bridge domain <domain-name> port` command:
+To show port information for a specific bridge, run the NVUE `nv show bridge domain <bridge-id> port` command:
 
 ```
 cumulus@switch:~$ nv show bridge domain br_default port
@@ -1073,7 +1073,7 @@ br_default    swp1              10    untagged
                                 30      tagged
 ```
 
-To show VLAN information for a specific bridge, run the NVUE `nv show bridge domain <domain-name> port vlan` command or the Linux `bridge -d vlan show` command:
+To show VLAN information for a specific bridge, run the NVUE `nv show bridge domain <bridge-id> port vlan` command or the Linux `bridge -d vlan show` command:
 
 ```
 cumulus@switch:~$ nv show bridge domain br_default port vlan

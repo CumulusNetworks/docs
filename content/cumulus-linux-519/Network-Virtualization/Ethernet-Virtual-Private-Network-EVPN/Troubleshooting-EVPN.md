@@ -11,10 +11,10 @@ This section provides various commands to help you examine your EVPN configurati
 You can use various NVUE or Linux commands to examine interfaces, VLAN mappings and the bridge MAC forwarding database known to the Linux kernel. You can also use these commands to examine the neighbor cache and the routing table (for the underlay or for a specific tenant VRF). Some of the key commands are:
 
 - `ip [-d] link show type vxlan` (Linux)
-- `nv show bridge domain <domain> mac-table` (NVUE) or `bridge [-s] fdb show` (Linux)
-- `nv show bridge domain <domain> vlan` (NVUE) or `bridge vlan show` (Linux)
+- `nv show bridge domain <bridge-id> mac-table` (NVUE) or `bridge [-s] fdb show` (Linux)
+- `nv show bridge domain <bridge-id> vlan` (NVUE) or `bridge vlan show` (Linux)
 - `nv show bridge vlan-vni-map` (NVUE)
-- `nv show bridge domain <bridge> vlan-vni-map` (NVUE)
+- `nv show bridge domain <bridge-id> vlan-vni-map` (NVUE)
 - `nv show interface neighbor` (NVUE) or `ip neighbor show` (Linux)
 - `ip route show [table <vrf-id>]` (Linux)
 
@@ -29,7 +29,7 @@ cumulus@leaf01:~$ ip -d link show type vxlan
 ...
 ```
 
-The following shows example output for the `nv show bridge domain <domain> mac-table` command:
+The following shows example output for the `nv show bridge domain <bridge-id> mac-table` command:
 <!-- vale off -->
 ```
 cumulus@leaf01:mgmt:~$ nv show bridge domain br_default mac-table
@@ -422,7 +422,7 @@ remote-vtep-count  1
 local-vtep         10.0.1.12   
 ```
 
-Run the `nv show evpn vni <vni> route-target` command to view route target (RT) information for a specific VNI. When route targets are automatically derived and the same route target is exported and imported, the operational value is displayed as `[both]`:
+Run the `nv show evpn vni <vni> route-target` command to view route target (RT) information for a specific VNI. When route targets are automatically derived and the switch exports and imports the same route target, the operational value shows as `[both]`:
 
 ```
 cumulus@leaf01:mgmt:~$ nv show evpn vni 10 route-target
@@ -431,7 +431,7 @@ cumulus@leaf01:mgmt:~$ nv show evpn vni 10 route-target
 [both]  65101:10             
 ```
 
-When you explicitly configure RTs, the values appear as applied and operational, and any individual RTs that you only import or export appear more granularly. In the following example, `11:22` is configured for import, `33:44` for export, and `55:66` for both import and export on VNI 101101:
+When you explicitly configure RTs, the values appear as applied and operational, and any individual RTs that you only import or export appear more granularly. In the following example, VNI 101101 imports `11:22`, exports `33:44`, and both imports and exports `55:66`:
 
 ```
 cumulus@switch:mgmt:~$ nv show evpn vni 101101 route-target
@@ -697,7 +697,7 @@ vlan
     4063                  1       vxlan48    
 ```
 
-You can drill down and show information about a specific vlan with the `nv show evpn access-vlan-info vlan <vlan>` command.
+You can drill down and show information about a specific vlan with the `nv show evpn access-vlan-info vlan <vlan-id>` command.
 
 ## Show the VRF Routing Table in FRR
 

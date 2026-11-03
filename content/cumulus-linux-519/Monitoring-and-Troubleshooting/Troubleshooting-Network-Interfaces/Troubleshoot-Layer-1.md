@@ -53,7 +53,7 @@ Two parts of high-speed Ethernet are under *encoding* in the output from the `et
 
   {{<figure src="/images/cumulus-linux/L1ts-PAM4-eyes.jpg">}}
 
-- The way the bits are joined together into a *frame* to be able to facilitate functions like clock recovery and error checking and correction:
+- The way the bits join together into a *frame* to facilitate functions like clock recovery and error checking and correction:
   - 64B/66B: The encoding adds two control bits with a 1/0 transition to the front of a 64 bit frame to ensure that the clock can sync every 66 bits.
   - RS-FEC encoding (528,514) or (544,514): Uses 14 or 30 bits to enable correction of bit errors on the receive side (see the {{<link url="#fec" text="FEC">}} section below).
   - BaseR FEC encoding: Steals a bit in the 64B/66B control word to re-encode and add a smaller level of error correction than RS-FEC.
@@ -116,7 +116,7 @@ The first part of the compliance code gives the full line rate speed of the tech
 - LR: Optical long range. LR4 uses 4 wavelengths over one fiber pair to transmit 4 lanes over long distances (kilometers).
 - xWDM (SWDM, CWDM, DWDM): Optical wavelength multiplexed technologies (various). Different wavelengths carry multiple lanes.
 
-An active module with a passive module compliance code or a passive module with an active module compliance code causes the port to be set up incorrectly and may affect signal integrity.
+An active module with a passive module compliance code or a passive module with an active module compliance code causes the switch to set up the port incorrectly and may affect signal integrity.
 
 Some modules have vendor specific coding, are older, or use a proprietary vendor technology that is not listed in the standards. As a result, they are not recognized by default and need to be overridden to the correct compliance code. On NVIDIA switches, the port firmware automatically overrides certain supported modules to the correct compliance code.
 
@@ -170,7 +170,7 @@ For DAC cables on speeds higher than 25G, auto-negotiation is unnecessary, but i
 
 - When auto-negotiation is supported on an Ethernet type, you must configure both sides of the link with the same auto-negotiation setting.
 - Cumulus Linux sets a default for auto-negotiation and speed, duplex, and FEC for each port based on the ASIC and port speed. On NVIDIA platforms running Cumulus Linux, auto-negotiation defaults to *ON*.
-- If auto-negotiation is *OFF* &mdash; which is called force mode &mdash; then you must also specify speed, duplex, and FEC if you want a non-default value for the port. If auto-negotiation is *ON*, do not specify speed, duplex, or FEC. The only exception to this is for 1000BASE-X optical interfaces, where speed is *1000* and auto-negotiation is *ON* to get unidirectional link detection.
+- If auto-negotiation is *OFF* &mdash; known as force mode &mdash; then you must also specify speed, duplex, and FEC if you want a non-default value for the port. If auto-negotiation is *ON*, do not specify speed, duplex, or FEC. The only exception to this is for 1000BASE-X optical interfaces, where speed is *1000* and auto-negotiation is *ON* to get unidirectional link detection.
 - If auto-negotiation is enabled on a link type that does not support auto-negotiation, the port enters *autodetect* mode (see the {{<link url="#autodetect" text="next section">}}) to determine the most likely speed and FEC settings to bring the link up. This feature is usually successful, but if the link does not come up, it might be necessary to disable auto-negotiation and set these link settings manually.
 - There is no concept of auto-negotiation of MTU. To change the MTU from the default setting, {{<link url="Switch-Port-Attributes/#mtu" text="configure it explicitly">}}.
 - Generally, you can ignore the duplex setting, except on 10M/100M links. The default is *Full*. Although you can configure the duplex setting, it has no option except *Full* on speeds higher than 1G and is auto-negotiated on 1000BASE-T links.
@@ -207,7 +207,7 @@ Both sides of a link must have the same FEC encoding algorithm enabled for the l
 - The Reed-Solomon RS-FEC(544,514) algorithm adds 30 bits of overhead to correct 14+ bit errors per 514 bits. FEC RS is required on 50G (PAM4) lanes; all 200G, 400G, 100G-CR2 and 50G-CR interfaces.
 - Base-R (also known as FireCode/FC) FEC adds 32 bits per 32 blocks of 64B/66B to correct 11 bits per 2048 bits. It replaces one bit per block, so it uses the same amount of overhead as 64B/66B encoding. It applies to 25G interfaces only. The algorithm executes faster than the RS-FEC algorithm, so it reduces latency. The switch implements both RS-FEC and Base-R FEC in hardware.
 - None/Off: FEC is optional and is often useful on 25G lanes, which includes 100G-SR4/CR4 and 50G-CR2 links. If the cable quality is good enough to achieve a BER of 10<sup>-12</sup> without FEC, then there is no reason to enable it. 10G/40G links should never require FEC. If a 10G/40G link has errors, replace the cable or module that is causing the error.
-- Auto: FEC can be auto-negotiated between 2 devices. When auto-negotiation is *ON*, the default FEC setting is *auto*, so that the switch sends and receives FEC capability information with the neighbor. The port FEC active/operational setting is set to the result of the negotiation. *Auto* is the default setting on NVIDIA switches (auto-negotiation *ON* is the default setting).
+- Auto: FEC can be auto-negotiated between 2 devices. When auto-negotiation is *ON*, the default FEC setting is *auto*, so that the switch sends and receives FEC capability information with the neighbor. The negotiation result determines the port FEC active/operational setting. *Auto* is the default setting on NVIDIA switches (auto-negotiation *ON* is the default setting).
 - If auto-negotiation is disabled on 100G and 25G interfaces, you must set FEC to *OFF**, RS, or BaseR to match the neighbor. The FEC default setting of *auto* does not link up when auto-negotiation is disabled.
 
 In some cases, the configured value might be different than the operational value. In such cases, the `l1-show` command displays both values. For example:

@@ -686,7 +686,7 @@ When a link transitions up or down, the debounce timer starts. The switch report
 
 {{%notice note%}}
 - You can configure link debounce timers on physical switch ports only.
-- The maximum debounce timer values are limited by SDK capabilities (5000ms).
+- The SDK limits the maximum debounce timer values to 5000ms.
 - NVIDIA recommends that you use identical or similar debounce timer values on both ends of the link.
 - Link debounce and link flap protection are complementary features that work at different time scales. Link debounce filters transient noise and micro-interruptions whereas link flap protection detects excessive legitimate state transitions and protects the system by placing the interface into a protodown state. If you configure both features, set the link flap protection interval to be significantly larger than the debounce timers to ensure proper coordination.
 {{%/notice%}}
@@ -696,7 +696,7 @@ To configure the link debounce timers, run the commands below. The hold timers a
 {{< tabs "TabID837 ">}}
 {{< tab "NVUE Commands ">}}
 
-Run the `nv set interface <interface> link debounce up` and `nv set interface <interface> link debounce down` commands.
+Run the `nv set interface <interface-id> link debounce up` and `nv set interface <interface-id> link debounce down` commands.
 If you configure one direction only, the other direction uses the default value of 10 milliseconds.
 
 ```
@@ -705,7 +705,7 @@ cumulus@switch:~$ nv set interface swp1 link debounce down 1000
 cumulus@switch:~$ nv config apply
 ```
 
-To unset the link debounce hold timers, run the `nv unset interface <interface> link debounce` command.
+To unset the link debounce hold timers, run the `nv unset interface <interface-id> link debounce` command.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -825,16 +825,16 @@ Tx squelch control is a PHY‑level feature that controls if the local port cont
 {{< tabs "TabID773 ">}}
 {{< tab "NVUE Commands ">}}
 
-To enable Tx squelch control, run the `nv set interface <interface> link tx-squelch enabled` command. The default setting is `auto`, which enables the switch to decide the correct configuration.
+To enable Tx squelch control, run the `nv set interface <interface-id> link tx-squelch enabled` command. The default setting is `auto`, which enables the switch to decide the correct configuration.
 
 ```
 cumulus@switch:~$ nv set interface swp1 link tx-squelch enabled 
 cumulus@switch:~$ nv config apply
 ```
 
-To disable Tx squelch control, run the `nv set interface <interface> link tx-squelch disabled` command.
+To disable Tx squelch control, run the `nv set interface <interface-id> link tx-squelch disabled` command.
 
-To show if Tx squelch control is enabled, run the `nv show interface <interface> link` command:
+To show if Tx squelch control is enabled, run the `nv show interface <interface-id> link` command:
 
 ```
 cumulus@switch:~$ nv show interface swp1 link
@@ -1518,7 +1518,7 @@ swp48      down          down         disabled                     No Fault
 ...
 ```
 
-To view additional fault information for a specific interface, run the `nv show interface <interface> link phy detail` command:
+To view additional fault information for a specific interface, run the `nv show interface <interface-id> link phy detail` command:
 
 ```
 cumulus@switch:mgmt:~$ nv show interface swp45 link phy detail

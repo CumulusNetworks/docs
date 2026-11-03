@@ -48,7 +48,7 @@ In the above example, when `leaf03` interface `swp3` goes down to `spine02`, BGP
 
 ### Overlay Routing with W-ECMP
 
-W-ECMP load balances traffic to all possible egress VTEPs based on the weight advertised to reach type-5 EVPN routes originated from outside of the fabric. This scenario is typical for anycast IP routing environments with host-based networking where the same anycast or virtual IP is learned from multiple sources.
+W-ECMP load balances traffic to all possible egress VTEPs based on the weight advertised to reach type-5 EVPN routes originated from outside of the fabric. This scenario is typical for anycast IP routing environments with host-based networking where the switch learns the same anycast or virtual IP from multiple sources.
 
 {{< img src = "/images/cumulus-linux/WECMP-overlay-example.png" >}}
 

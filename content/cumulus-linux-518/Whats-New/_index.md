@@ -93,7 +93,7 @@ Cumulus Linux 5.18.0 is the earliest release in which the NVIDIA SN6600_LD switc
   - {{<link url="BMC" text="BMC commands for Spectrum-6 switches">}}
   - {{<link url="RADIUS-AAA/#show-and-clear-radius-counters" text="NVUE commands to show and clear RADIUS counters">}}
   - {{<link url="Resource-Diagnostics/#clear-resource-metrics" text="NVUE action command to clear resource metrics for a specific ASIC">}}
-  - {{<link url="Resource-Diagnostics/#monitor-routes-in-cumulus-linux-hardware" text="Updated nv show platform asic <asic-id> resource command output">}}
+  - {{<link url="Resource-Diagnostics/#monitor-resources-in-cumulus-linux-hardware" text="Updated nv show platform asic <asic-id> resource command output">}}
   - Applying FRR configuration changes to the `/etc/frr/daemons` file with NVUE now results in an FRR reload instead of an FRR restart, minimizing service disruption.
   - {{<link url="New-and-Removed-NVUE-Commands/" text="New NVUE command list">}}
 - Security

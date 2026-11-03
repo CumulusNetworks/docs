@@ -251,7 +251,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands" >}}
 
-Three directives define an internal SNMPv3 username that you need for `snmpd` to retrieve information and send built-in traps or for traps you configure with the `monitor` command (see {{<link url="Configure-SNMP-Traps/#snmpv3-trap-and-inform-messages" text="below">}}):
+Three directives define an internal SNMPv3 username that you need for `snmpd` to retrieve information and send built-in traps or for traps you configure with the `monitor` command (see {{<link url="Configure-SNMP-Traps/#snmpv3-trap-and-inform-messages" text="SNMPv3 Trap and Inform Messages">}}).
 - `createuser` is the default SNMPv3 username.
 - `iquerysecName` is the default SNMPv3 username you use when making internal queries to retrieve monitored expressions, either to evaluate the monitored expression or build a notification payload. These internal queries always use SNMPv3, even if you query the agent using SNMPv1 or SNMPv2c. The `iquerysecname` directive only defines which user to use.
 - `rouser` is the username for these SNMPv3 queries.

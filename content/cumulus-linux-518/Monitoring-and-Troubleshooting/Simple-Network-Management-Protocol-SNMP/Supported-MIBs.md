@@ -25,7 +25,7 @@ The following table lists the relevant Cumulus Linux network monitoring MIBs:
 | {{<mib_link url="mibs/cumulus-linux-510/IP-FORWARD-MIB.txt" text="IP-FORWARD-MIB">}} | IP routing table. |
 | {{<mib_link url="mibs/cumulus-linux-510/IP-MIB.txt" text="IP-MIB (includes ICMP)">}} | IPv4, IPv4 addresses counters, netmasks. |
 | {{<mib_link url="mibs/cumulus-linux-510/IPV6-MIB.txt" text="IPv6-MIB">}} | IPv6 counters. |
-| {{<mib_link url="mibs/cumulus-linux-510/LLDP-MIB.txt" text="LLDP-MIB">}} | Layer 2 neighbor information from `lldpd` (you need to {{<link url="Link-Layer-Discovery-Protocol#enable-the-snmp-subagent-in-lldp" text="enable the SNMP subagent">}} in LLDP). You need to start `lldpd` with the `-x` option to enable connectivity to `snmpd`(AgentX). |
+| {{<mib_link url="mibs/cumulus-linux-510/LLDP-MIB.txt" text="LLDP-MIB">}} | Layer 2 neighbor information from `lldpd` (you need to {{<link url="Link-Layer-Discovery-Protocol#snmp-subagent" text="enable the SNMP subagent">}} in LLDP). You need to start `lldpd` with the `-x` option to enable connectivity to `snmpd`(AgentX). |
 | {{<mib_link url="mibs/cumulus-linux-510/LM-SENSORS-MIB.txt" text="LM-SENSORS MIB">}} | Fan speed, temperature sensor values, voltages. The ENTITY-SENSOR MIB replaces this MIB. |
 | {{<mib_link url="mibs/cumulus-linux-510/NET-SNMP-AGENT-MIB.txt" text="NET-SNMP-AGENT-MIB">}} | Agent timers, user, group config. |
 | {{<mib_link url="mibs/cumulus-linux-510/NET-SNMP-VACM-MIB.txt" text="NET-SNMP-VACM-MIB">}} | Agent timers, user, group config. |

@@ -33,7 +33,7 @@ NVUE automatically installs the RADIUS AAA packages; you do **not** have to inst
 {{< /tab >}}
 
 {{< tab "Linux Commands ">}}
-If you use Linux commands to configure RADIUS AAA, you must install the RADIUS `libnss-mapuser` and `libpam-radius-auth` packages before you start configuration. The packages are in the `cumulus-local-apt-archive` repository, which is {{<link url="Adding-and-Updating-Packages#add-packages-from-the-cumulus-linux-local-archive" text="embedded">}} in the Cumulus Linux image. You can install the packages even when the switch is not connected to the internet.
+If you use Linux commands to configure RADIUS AAA, you must install the RADIUS `libnss-mapuser` and `libpam-radius-auth` packages before you start configuration. The packages are in the `cumulus-local-apt-archive` repository, which is {{<link url="Adding-and-Updating-Packages#add-a-package" text="embedded">}} in the Cumulus Linux image. You can install the packages even when the switch is not connected to the internet.
 
 To install the RADIUS packages:
 

@@ -12,7 +12,7 @@ Cumulus Linux supports uN (End with NEXT-CSID) and uA (End.X with NEXT-CSID) end
 
 {{%notice note%}}
 Cumulus Linux supports segment routing:
-- On the Spectrum-4 switch only.
+- On Spectrum-4 and later.
 - In the default VRF only.
 {{%/notice%}}
 

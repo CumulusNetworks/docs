@@ -41,7 +41,7 @@ Cumulus Linux supports two methods that can use ISSU:
 
 Before you perform an upgrade with ISSU, you must:
 - Set BGP graceful restart mode to full (`nv set router bgp graceful-restart mode full`) to maintain traffic flow through the switch. This change is disruptive due to BGP neighbor reset and must be a day 0 configuration.
-- Configure the switch in half-resource mode to perform a warm reboot. This change is disruptive due to `switchd` restart and must be a day 0 configuration.
+- On a Spectrum-3 or earlier switch, configure the switch in half-resource mode to perform a warm reboot. This change is disruptive due to `switchd` restart and must be a day 0 configuration.
 - Review support limitations and additional {{<link url="System-Power-and-Switch-Reboot/#warm-reboot-and-issu-considerations" text="warm reboot and ISSU considerations">}}.
 
 After setting BGP restart and half-resource mode, you can run warm reboot with the `nv action reboot system mode warm` command. Refer to {{<link url="System-Power-and-Switch-Reboot/#reboot-commands" text="switch reboot mode">}}.
@@ -50,7 +50,7 @@ After setting BGP restart and half-resource mode, you can run warm reboot with t
 Forwarding resources apply to hardware TCAM or KVD resources used for MAC addresses, layer 3 neighbors, and <span class="a-tooltip">[LPM](## "Longest Prefix Match")</span> (IPv4 and IPv6, unicast and multicast) entries. In half-resource mode, the switch reduces these by 50 percent. Refer to {{<link url="Forwarding-Table-Size-and-Profiles" text="Forwarding Table Sizes">}} for platform-specific details.
 {{%/notice%}}
 
-To configure the switch in half resource mode:
+To configure the switch in half resource mode (required on Spectrum-3 and earlier):
 
 {{< tabs "TabID40 ">}}
 {{< tab "NVUE Commands ">}}
@@ -87,8 +87,6 @@ Cumulus Linux does *not* support the following features during warm reboot:
 - LACP bonds. LACP control plane sessions might time out before warm reboot completes. Use static LAG to keep bonds up with sub-second convergence during a warm reboot.
 {{%/notice%}}
 
-<!-- REMOVED FROM 5.19: Full Resource Mode ISSU is no longer in 5.19.
-
 ### Full Resource Mode ISSU
 
 {{%notice note%}}
@@ -100,7 +98,6 @@ On Spectrum-4 and later, the switch performs the warm reboot in full resource mo
 On Spectrum-3 and earlier switches, you must set the resource mode to `half` before you run a warm reboot.
 
 Cumulus Linux selects the mechanism from the configured resource mode. There is no command to enable full resource mode ISSU. If the switch cannot restore its hardware state after the reboot, it falls back to a cold boot, which interrupts traffic. To see the outcome of the last reboot, run the `nv show system reboot` command; refer to {{<link url="System-Power-and-Switch-Reboot/#show-reboot-information" text="Show Reboot Information">}}.
--->
 
 ## Before You Upgrade
 

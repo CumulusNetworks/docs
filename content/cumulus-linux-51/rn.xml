@@ -916,7 +916,7 @@ Fan4(Fan 4): BAD fan:6720 RPM (max = 25000 RPM, min = 4500 RPM, limit_variance =
 </tr>
 <tr>
 <td>2823307</td>
-<td>Cumuls Linux does not support a bond with more than 64 ports.  Any configuration with more than 64 ports in a bond changes all ports to down when you apply the configuration. </td>
+<td>Cumulus Linux does not support a bond with more than 64 ports.  Any configuration with more than 64 ports in a bond changes all ports to down when you apply the configuration. </td>
 <td>5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>

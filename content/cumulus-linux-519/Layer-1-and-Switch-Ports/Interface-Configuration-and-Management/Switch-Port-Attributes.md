@@ -2332,7 +2332,7 @@ If auto-negotiation is disabled on 100G and 25G interfaces, you must set FEC to 
 
 ### Auto-negotiation with PAM4 on Spectrum-4 and later Switches
 
-- When you connect an NVIDIA Spectrum-4 switch to another NVIDIA Spectrum-4 switch with PAM4 modulation, you must enable auto-negotiation.
+- When you connect an NVIDIA switch with Spectrum-4 or later to another NVIDIA switch with Spectrum-4 or later with PAM4 modulation, you must enable auto-negotiation.
 - When you use any PAM4 DAC cable, you must enable auto-negotiation.
 
 ### NVIDIA SN5600 Switch and Force Mode

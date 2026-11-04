@@ -64,7 +64,7 @@ cumulus@switch:~$ nv set system forwarding packet-trim profile packet-trim-defau
 cumulus@switch:~$ nv config apply
 ```
 
-After setting the default packet trimming profile, you can also modify any of the {{<link url="#configure-packet-trimming" text="individual settings">}}.
+After setting the default packet trimming profile, you can also modify any of the {{<link url="#global-level-packet-trimming" text="individual settings">}}.
 
 To disable packet trimming, run the `nv set system forwarding packet-trim state disabled` command.
 

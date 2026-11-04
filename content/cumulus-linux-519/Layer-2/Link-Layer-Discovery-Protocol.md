@@ -1127,4 +1127,3 @@ To show the TLV policy that LLDP applies on an interface, including which entrie
 ## Related Information
 
 - {{<exlink url="http://vincentbernat.github.io/lldpd/" text="GitHub - lldpd project">}}
-- {{<exlink url="http://en.wikipedia.org/wiki/Link_Layer_Discovery_Protocol" text="Wikipedia - Link Layer Discovery Protocol">}}

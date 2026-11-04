@@ -10,7 +10,7 @@ High frequency telemetry enables you to collect counters at very short sampling 
 High frequency telemetry data provides time-series data that traditional histograms cannot provide. This data can help you understand the shape of the traffic pattern and identify any variability, or jitter in the traffic.
 
 Cumulus Linux provides two different methods to collect and analyze high frequency telemetry data:
-- {{<link url="#streaming-hft-export" text="Stream HFT data">}} to an external collector through {{<link url="Open-Telemetry-Export/#grpc-otlp-export" text="open telemetry export">}} or through {{<link url="Open-Telemetry-Export/#ipfix-export" text="IP Flow Information Export (IPFIX)">}}.
+- {{<link url="#streaming-hft-export" text="Stream HFT data">}} to an external collector through {{<link url="Open-Telemetry-Export/#grpc-otlp-export" text="open telemetry export">}} or through IP Flow Information Export (IPFIX).
 - {{<link url="#collect-hft-in-json-file" text="Collect HFT data in a JSON format file">}} on the switch filesystem and upload the file to an external location for analysis.
 
 Cumulus Linux can also analyze high frequency telemetry data on the switch and export only the result. {{<link url="Step-Time-Estimation" text="Step time estimation">}} uses this approach to report the step time of an AI training workload without exporting the underlying counters.
@@ -301,7 +301,7 @@ To configure high frequency telemetry:
 1. Enable telemetry with the `nv set system telemetry state enabled` command.
 2. {{<link url="#configure-data-collection" text="Configure data collection">}}.
 3. {{<link url="#configure-json-data-export" text="Configure data export">}}.
-4. {{<link url="#configure-the-schedule" text="Configure the schedule">}}.
+4. {{<link url="#configure-the-job-schedule" text="Configure the schedule">}}.
 
 ### Configure Data Collection
 

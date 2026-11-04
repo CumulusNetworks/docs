@@ -246,46 +246,6 @@ To get the route for any VRF, run the `ip route get <ip-address> oif <vrf-id>` c
 cumulus@switch:~$ ip route get <ip-address> oif mgmt
 ```
 
-<!-- vale off -->
-## mgmt Interface Class
-<!-- vale on -->
-`ifupdown2` uses {{<link url="Interface-Configuration-and-Management#ifupdown2-interface-classes" text="interface classes">}} to create a user-defined grouping for interfaces. The special class *mgmt* is available to separate the management interfaces of the switch from the data interfaces. This allows you to manage the data interfaces by default using `ifupdown2` commands. Performing operations on the *mgmt* interfaces requires specifying the `--allow-mgmt` option, which prevents inadvertent outages on the management interfaces. Cumulus Linux by default brings up all interfaces in both the *auto* (default) class and the *mgmt* interface class when the switch boots.
-
-You configure the management interface in the `/etc/network/interfaces` file. The example below adds the management interface eth0 and the management VRF stanzas to the *mgmt* interface class:
-
-```
-...
-auto lo
-iface lo inet loopback
-
-allow-mgmt eth0
-iface eth0 inet dhcp
-    vrf mgmt
-
-allow-mgmt mgmt
-iface mgmt
-    address 127.0.0.1/8
-    address ::1/128
-    vrf-table auto
-...
-```
-
-When you run `ifupdown2` commands against the interfaces in the mgmt class, include `--allow=mgmt` with the commands. For example, to see which interfaces are in the mgmt interface class, run:
-
-```
-cumulus@switch:~$ ifquery l --allow=mgmt
-eth0
-mgmt
-```
-
-To reload the configurations for interfaces in the mgmt class, run:
-
-```
-cumulus@switch:~$ sudo ifreload --allow=mgmt
-```
-
-You can still bring the management interface up and down using `ifup eth0` and `ifdown eth0`.
-
 ## Management VRF and DNS
 
 Cumulus Linux supports both DHCP and static DNS entries over management VRF through IP FIB rules, which it adds to direct lookups to the DNS addresses out of the management VRF.

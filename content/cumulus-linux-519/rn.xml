@@ -7,6 +7,36 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5376361</td>
+<td>{{switchd}} restarts repeatedly because internal SDK threads stop responding, resulting in BGP flaps and about 23 minutes of network recovery time per event.</td>
+<td>5.11.4-5.19.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5376350</td>
+<td>On the Spectrum-6 switch, the {{mlxlink}} command output shows the physical state of the port as {{ETH_AN_FSM_ENABLE}} even when the link is actually up and active.</td>
+<td>5.18.3-5.19.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5372506</td>
+<td>On a multi-lane CPO port, the {{l1-show}} command only shows the first TX and RX power reading instead of showing one reading for each lane.</td>
+<td>5.18.0-5.19.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5364805</td>
+<td>When the BFD daemon crashes or is force-killed while BFD is offloaded to hardware or the kernel, the switch does not clean up old offloaded transmit entries. Those stale entries keep sending healthy “Up” messages to peers, so peers think BFD is still fine, while the restarted daemon creates new sessions that remain Down. This leaves the device and its peers in a mismatched state.</td>
+<td>5.19.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5364680</td>
+<td>NVUE does not re-render /etc/apply_timezone.sh after you delete the file and the switch reboots.</td>
+<td>5.19.0</td>
+<td></td>
+</tr>
+<tr>
 <td>5364675</td>
 <td>In FIPS mode, if you delete the {{/etc/ssl/openssl.cnf}} file before the switch reboots, the NVUE service might fail to start.</td>
 <td>5.19.0</td>
@@ -19,6 +49,36 @@
 <td></td>
 </tr>
 <tr>
+<td>5357275</td>
+<td>Clearing an IPv6 ND prefix on a port fails to retire the prefix on some hosts and hosts continue sourcing traffic from an address that is no longer routed on that port.</td>
+<td>5.19.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5357088</td>
+<td>Changing a statically configured IPv6 link-local address on an interface might delay Router Advertisements from the new address until the next periodic advertisement. To work around this issue, temporarily reduce the RA interval (the default is 600sec) before making the link local address change on interface.</td>
+<td>5.19.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5354729</td>
+<td>When you create an prefix list and attach it inbound to a BGP peer in the same NVUE configuration apply, the peer might reject all received routes instead of only the prefixes denied by the list. To restore the expected route filtering, clear the inbound BGP session softly or unset, then set the attachment again. To avoid this issue, apply the prefix list and its attachment separately in the configuration.  </td>
+<td>5.19.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5351119</td>
+<td>The switch reports inconsistent and misleading ELS temperature alarm information across different interfaces. NVUE does not show ELS alarm threshold, status, or severity, but gNMI and OTLP still export those fields. The exported telemetry marks ELS modules with a WARNING alarm even though their temperatures are normal.</td>
+<td>5.18.0-5.19.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5344939</td>
+<td>At high scale, if you set the BFD offload interval to 10 or 20 milliseconds, and set the multiplier to 3 or 5, you see BFD timeouts in BFD hardware offload. To work around this issue, set the interval to at least 50 milliseconds and the multiplier to at least 3.</td>
+<td>5.19.0</td>
+<td></td>
+</tr>
+<tr>
 <td>5343803</td>
 <td>If you change BGP update source configuration or disable nexthop-connected-check on an IPv4 BGP neighbor or peer group with BFD while the session is established, BGP resets and comes back up, but BFD does not register again. The remote router's session stays Down and BFD no longer protects the BGP session. IPv6 neighbors are not affected.To work around this issue, remove BFD from the neighbor, then re-add it, using two separate {{nv config apply}} commands
 cumulus@switch:~$ nv unset vrf &lt;vrf&gt; router bgp neighbor &lt;peer&gt; bfd
@@ -26,6 +86,18 @@ cumulus@switch:~$ nv config apply
 cumulus@switch:~$ nv set vrf &lt;vrf&gt; router bgp neighbor &lt;peer&gt; bfd profile &lt;profile&gt;
 cumulus@switch:~$ nv config apply
 If BFD is configured on a peer group, do the same on the peer group.</td>
+<td>5.19.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5341343</td>
+<td>For some CPO and ELS xPaths, gNMI telemetry does not sample at short-requested intervals. For example, instead of updates every 1 or 1.5 seconds, the switch sends them every 1.6 seconds, without showing any warning or error.</td>
+<td>5.18.0-5.19.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5337319</td>
+<td>During online package upgrade, the {{nv-umf}} container service might restart at the wrong time while container runtime packages are still being replaced. This creates a temporary mismatch between the running {{containerd}} daemon and newly installed runtime components, causing {{nv-umf}} to fail to start and automatically trigger cl-support collection.</td>
 <td>5.19.0</td>
 <td></td>
 </tr>
@@ -54,6 +126,12 @@ Package: *
 Pin: release a=cumulus-local-apt-archive
 Pin-Priority: 992</td>
 <td>5.16.3-5.19.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5175820</td>
+<td>Multiple switch ports do not come up. The affected ports are enabled and administratively up, but operationally remain down with a {{Not connected}} state. Some ports are shown as plugged while others as unplugged, and all are in {{LOOPBACK_DISABLED}} mode with {{Post-FEC}} status.</td>
+<td>5.16.5-5.19.0</td>
 <td></td>
 </tr>
 <tr>
@@ -732,7 +810,7 @@ To work around this issue, reference the OID without the preceding period ( {{.}
 </tr>
 <tr>
 <td>3135952</td>
-<td>PAM4 split cables (such as 2x100G, 4x100G, and 4x50G) do not work with a forced speed setting (when auto-negotiation is off) as the default speed enabled is for NRZ mode (such as 100G_4X). To work around this issue,  set the appropriate lanes for forced speed (with auto-negotation off) with the {{ethtool -s swpX speed &lt;port_speed&gt; autoneg off lanes &lt;no_of_lanes&gt;}} command. For example: 
+<td>PAM4 split cables (such as 2x100G, 4x100G, and 4x50G) do not work with a forced speed setting (when auto-negotiation is off) as the default speed enabled is for NRZ mode (such as 100G_4X). To work around this issue,  set the appropriate lanes for forced speed (with auto-negotiation off) with the {{ethtool -s swpX speed &lt;port_speed&gt; autoneg off lanes &lt;no_of_lanes&gt;}} command. For example: 
 
 cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 </td>
@@ -809,7 +887,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 </tr>
 <tr>
 <td>2823307</td>
-<td>Cumuls Linux does not support a bond with more than 64 ports.  Any configuration with more than 64 ports in a bond changes all ports to down when you apply the configuration. </td>
+<td>Cumulus Linux does not support a bond with more than 64 ports.  Any configuration with more than 64 ports in a bond changes all ports to down when you apply the configuration. </td>
 <td>5.0.0-5.19.0</td>
 <td></td>
 </tr>
@@ -837,6 +915,11 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Issue ID </th>
 <th> Description </th>
 <th> Affects </th>
+</tr>
+<tr>
+<td>5376246</td>
+<td>With duplicate UPDATE suppression enabled ({{bgp suppress-duplicates}}, on by default), BGP does not re-send a route whose attributes match what the neighbor already has. When a withdrawn route comes back with the same attributes while its withdrawal is still waiting to be sent to the neighbor, BGP correctly skips the duplicate advertisement but does not cancel the pending withdrawal. BGP then sends the withdrawal, the neighbor removes the route, and BGP never sends the route again. To work around this issue, clear and refresh all inbound routes with the {{nv action clear router bgp soft out}} command for each affected neighbor.</td>
+<td>5.16.8-5.18.3</td>
 </tr>
 <tr>
 <td>5358616</td>
@@ -946,6 +1029,11 @@ cumulus@switch:~$ nv action reboot system mode &lt;cold|warm&gt;</td>
 <td>5.18.0-5.18.3</td>
 </tr>
 <tr>
+<td>5316247</td>
+<td>If the command that reads port statistics terminates before it finishes, the switch restarts its switching software and resets the ASIC.</td>
+<td>5.16.6-5.18.3</td>
+</tr>
+<tr>
 <td>5316062</td>
 <td>Optimized image upgrade fails on a switch when the content of the {{/var/log}} folder becomes very large. The upgrade installer copies the entire {{/var/log}} onto the root filesystem of the new partition, which has a fixed size. A large log directory fills that partition, so the install operation fails. As a result, you will not be able to initiate a switch to the other partition to perform the upgrade.</td>
 <td>5.16.3-5.18.3</td>
@@ -990,6 +1078,13 @@ This failure disrupts DHCPv6 service for all downstream interfaces served by tha
 <td>5301567</td>
 <td>With continuous next hop churn in the network with 9k next hop groups created and deleted repeatedly, {{switchd}} runs into a netlink buffer overflow, which triggers a netlink resync; {{switchd}} encounters an out of memory error.</td>
 <td>5.16.6-5.18.3</td>
+</tr>
+<tr>
+<td>5299539</td>
+<td> After a factory reset, a switch relying on preserved management IP settings on eth0 might lose its configured network access. This can disrupt connectivity and require manual reconfiguration.
+
+Additional fix https://gitlab-master.nvidia.com/nbu-sws/CL/nvue/nvue/-/merge_requests/5626</td>
+<td>5.16.1-5.18.3</td>
 </tr>
 <tr>
 <td>5299253</td>
@@ -1379,6 +1474,11 @@ This failure disrupts DHCPv6 service for all downstream interfaces served by tha
 <tr>
 <td>5165432, 5154620</td>
 <td>With EVPN layer 3 VXLAN device mode enabled, the switch installs routes leaked between tenant VRFs (using import VRFs) without the encapsulation information, which results in traffic drops.</td>
+<td>5.18.0-5.18.3</td>
+</tr>
+<tr>
+<td>5161257</td>
+<td>Memory leaks occur in the {{snmpd}} process, which causes SNMP validation to fail or appear unhealthy.</td>
 <td>5.18.0-5.18.3</td>
 </tr>
 <tr>

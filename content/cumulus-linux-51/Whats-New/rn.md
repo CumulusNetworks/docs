@@ -144,7 +144,7 @@ pdfhidden: True
 | 2867248, 2866947, 3124967 | The <code>validate-ports -d</code> command does not return the correct speeds for ports. Use the speeds specified in the <code>/etc/cumulus/ports.conf</code> file. | 5.0.0-5.1.0 | 5.2.0-5.18.3|
 | 2867042 | When connecting the NVIDIA SN4600 switch to another NVIDIA Spectrum switch, you must use auto-negotiation mode (not force mode); otherwise the switch might use the wrong Tx configuration. | 5.0.0-5.18.3 | |
 | 2831968, 2837378, 3138746 | The switch duplicates DHCP packets that pass through the VTEP. | 4.3.0, 4.4.0-5.1.0 | 4.3.1, 5.2.0-5.18.3|
-| 2823307 | Cumuls Linux does not support a bond with more than 64 ports.  Any configuration with more than 64 ports in a bond changes all ports to down when you apply the configuration.  | 5.0.0-5.18.3 | |
+| 2823307 | Cumulus Linux does not support a bond with more than 64 ports.  Any configuration with more than 64 ports in a bond changes all ports to down when you apply the configuration.  | 5.0.0-5.18.3 | |
 | 2821929 | FRR restarts even when the NVUE configuration overwrite mode is set. | 5.0.0-5.3.1 | 5.4.0-5.18.3|
 | 2812075, 3077547 | When you configure PIM, you can either configure RP mappings for different multicast groups or use a prefix list to specify the RP to group mapping. You cannot use the two methods together. | 5.0.0-5.1.0 | 5.2.0-5.18.3|
 | 2743186, 2734100, 2731464, 3438708 | When you use MD5 passwords and you configure a non-default VRF before the default VRF in the <code>/etc/frr/frr.conf</code> file, numbered BGP sessions do not establish. | 3.7.15-5.1.0 | 5.2.0-5.18.3|

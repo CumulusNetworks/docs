@@ -7,6 +7,18 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5358735, 5341619</td>
+<td>The NVIDIA SN5600D switch reports {{PMIC-12-COMEX-VCORE-OUT1}} failed after a warm reset.</td>
+<td>5.16.1-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5358616</td>
+<td>When you disable STP, the switch saves but does not program the bridge STP priority, which causes the MLAG secondary bonds to enter protocol-down.</td>
+<td>5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5346399</td>
 <td>In rare cases, after you delete, then add back a VRF with the same table ID, its default route stays inactive and is not installed, even though BGP selects it as best. To work around this issue, restart FRR with {{sudo systemctl restart frr}}. </td>
 <td>5.16.6-5.18.3</td>
@@ -1716,6 +1728,18 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>5358735, 5341619</td>
+<td>The NVIDIA SN5600D switch reports {{PMIC-12-COMEX-VCORE-OUT1}} failed after a warm reset.</td>
+<td>5.16.1-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5358616</td>
+<td>When you disable STP, the switch saves but does not program the bridge STP priority, which causes the MLAG secondary bonds to enter protocol-down.</td>
+<td>5.16.5-5.18.3</td>
+<td></td>
 </tr>
 <tr>
 <td>5346399</td>
@@ -3466,6 +3490,18 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>5358735, 5341619</td>
+<td>The NVIDIA SN5600D switch reports {{PMIC-12-COMEX-VCORE-OUT1}} failed after a warm reset.</td>
+<td>5.16.1-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5358616</td>
+<td>When you disable STP, the switch saves but does not program the bridge STP priority, which causes the MLAG secondary bonds to enter protocol-down.</td>
+<td>5.16.5-5.18.3</td>
+<td></td>
 </tr>
 <tr>
 <td>5346399</td>
@@ -5267,6 +5303,18 @@ Workaround: Restarting switchd temporarily restores metrics.</td>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>5358735, 5341619</td>
+<td>The NVIDIA SN5600D switch reports {{PMIC-12-COMEX-VCORE-OUT1}} failed after a warm reset.</td>
+<td>5.16.1-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5358616</td>
+<td>When you disable STP, the switch saves but does not program the bridge STP priority, which causes the MLAG secondary bonds to enter protocol-down.</td>
+<td>5.16.5-5.18.3</td>
+<td></td>
 </tr>
 <tr>
 <td>5327622</td>
@@ -7167,6 +7215,12 @@ kernel: [899873.236610] sxd_kernel: dev_id=1: Health-Check: New maximum time bet
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>5358735, 5341619</td>
+<td>The NVIDIA SN5600D switch reports {{PMIC-12-COMEX-VCORE-OUT1}} failed after a warm reset.</td>
+<td>5.16.1-5.18.3</td>
+<td></td>
 </tr>
 <tr>
 <td>5327622</td>

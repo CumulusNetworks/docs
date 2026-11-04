@@ -14,6 +14,8 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| 5358735, 5341619 | The NVIDIA SN5600D switch reports <code>PMIC-12-COMEX-VCORE-OUT1</code> failed after a warm reset. | 5.16.1-5.18.3 | |
+| 5358616 | When you disable STP, the switch saves but does not program the bridge STP priority, which causes the MLAG secondary bonds to enter protocol-down. | 5.16.5-5.18.3 | |
 | 5346399 | In rare cases, after you delete, then add back a VRF with the same table ID, its default route stays inactive and is not installed, even though BGP selects it as best. To work around this issue, restart FRR with <code>sudo systemctl restart frr</code>.  | 5.16.6-5.18.3 | |
 | 5345924 | After a link flap, an IPv6 host directly connected to a routed port might become unreachable if a stale neighbour entry for the host is programmed in the ASIC with a DROP action and never removed. To work around this issue, force <code>switchd</code> to resynchronise its neighbour table from the kernel by running the <code>echo 1 > /cumulus/switchd/ctrl/netlink/resync</code> command as root. Pinging the affected host from the switch also clears the entry. | 5.16.7-5.18.3 | |
 | 5343996 | If a front-panel link changes state during an ISSU warm upgrade, <code>switchd</code> might retain the pre-upgrade link state for that interface. As a result, Linux and NVUE report an operational state that does not match the hardware after the upgrade completes. To work around this issue, run the <code>echo 1 > /cumulus/switchd/ctrl/resync</code> command. | 5.16.7-5.18.3 | |
@@ -296,6 +298,8 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| 5358735, 5341619 | The NVIDIA SN5600D switch reports <code>PMIC-12-COMEX-VCORE-OUT1</code> failed after a warm reset. | 5.16.1-5.18.3 | |
+| 5358616 | When you disable STP, the switch saves but does not program the bridge STP priority, which causes the MLAG secondary bonds to enter protocol-down. | 5.16.5-5.18.3 | |
 | 5346399 | In rare cases, after you delete, then add back a VRF with the same table ID, its default route stays inactive and is not installed, even though BGP selects it as best. To work around this issue, restart FRR with <code>sudo systemctl restart frr</code>.  | 5.16.6-5.18.3 | |
 | 5345924 | After a link flap, an IPv6 host directly connected to a routed port might become unreachable if a stale neighbour entry for the host is programmed in the ASIC with a DROP action and never removed. To work around this issue, force <code>switchd</code> to resynchronise its neighbour table from the kernel by running the <code>echo 1 > /cumulus/switchd/ctrl/netlink/resync</code> command as root. Pinging the affected host from the switch also clears the entry. | 5.16.7-5.18.3 | |
 | 5343996 | If a front-panel link changes state during an ISSU warm upgrade, <code>switchd</code> might retain the pre-upgrade link state for that interface. As a result, Linux and NVUE report an operational state that does not match the hardware after the upgrade completes. To work around this issue, run the <code>echo 1 > /cumulus/switchd/ctrl/resync</code> command. | 5.16.7-5.18.3 | |
@@ -586,6 +590,8 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| 5358735, 5341619 | The NVIDIA SN5600D switch reports <code>PMIC-12-COMEX-VCORE-OUT1</code> failed after a warm reset. | 5.16.1-5.18.3 | |
+| 5358616 | When you disable STP, the switch saves but does not program the bridge STP priority, which causes the MLAG secondary bonds to enter protocol-down. | 5.16.5-5.18.3 | |
 | 5346399 | In rare cases, after you delete, then add back a VRF with the same table ID, its default route stays inactive and is not installed, even though BGP selects it as best. To work around this issue, restart FRR with <code>sudo systemctl restart frr</code>.  | 5.16.6-5.18.3 | |
 | 5340844 | Transceiver data collection takes longer than 60 seconds due to boot time churn. During a steady state, the API returns within 10 to 20 seconds. | 5.16.6-5.18.3 | |
 | 5327622 | A bridge FDB flush does not restore EVPN router MAC entries in the Kernel. | 5.11.5-5.18.3 | |
@@ -885,6 +891,8 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| 5358735, 5341619 | The NVIDIA SN5600D switch reports <code>PMIC-12-COMEX-VCORE-OUT1</code> failed after a warm reset. | 5.16.1-5.18.3 | |
+| 5358616 | When you disable STP, the switch saves but does not program the bridge STP priority, which causes the MLAG secondary bonds to enter protocol-down. | 5.16.5-5.18.3 | |
 | 5327622 | A bridge FDB flush does not restore EVPN router MAC entries in the Kernel. | 5.11.5-5.18.3 | |
 | 5324348 | Zebra terminates unexpectedly (SIGSEGV) on switches running FRR with SNMP enabled, which causes <code>watchfrr </code> to restart the entire FRR daemon set. The affected daemon stops reporting SNMP data and the freed-memory access can cause the daemon to crash.  | 5.16.3-5.18.3 | |
 | 5316062 | Optimized image upgrade fails on a switch when the content of the <code>/var/log</code> folder becomes very large. The upgrade installer copies the entire <code>/var/log</code> onto the root filesystem of the new partition, which has a fixed size. A large log directory fills that partition, so the install operation fails. As a result, you will not be able to initiate a switch to the other partition to perform the upgrade. | 5.16.3-5.18.3 | |
@@ -1201,6 +1209,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| 5358735, 5341619 | The NVIDIA SN5600D switch reports <code>PMIC-12-COMEX-VCORE-OUT1</code> failed after a warm reset. | 5.16.1-5.18.3 | |
 | 5327622 | A bridge FDB flush does not restore EVPN router MAC entries in the Kernel. | 5.11.5-5.18.3 | |
 | 5299539 |  After a factory reset, a switch relying on preserved management IP settings on eth0 might lose its configured network access. This can disrupt connectivity and require manual reconfiguration. | 5.16.1-5.18.3 | |
 | 5299253 | LLDP SNMP polling fails because the generated OID index is not strictly increasing, breaking <code>snmpbulkwalk</code> and making LLDP neighbor information unreliable. This issue affects long-running switches, especially switches with uptime beyond around 248 days. | 5.11.3-5.18.3 | |

@@ -14,6 +14,8 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| 5358735, 5341619 | The NVIDIA SN5600D switch reports <code>PMIC-12-COMEX-VCORE-OUT1</code> failed after a warm reset. | 5.16.1-5.18.3 | |
+| 5358616 | When you disable STP, the switch saves but does not program the bridge STP priority, which causes the MLAG secondary bonds to enter protocol-down. | 5.16.5-5.18.3 | |
 | 5346399 | In rare cases, after you delete, then add back a VRF with the same table ID, its default route stays inactive and is not installed, even though BGP selects it as best. To work around this issue, restart FRR with <code>sudo systemctl restart frr</code>.  | 5.16.6-5.18.3 | |
 | 5345924 | After a link flap, an IPv6 host directly connected to a routed port might become unreachable if a stale neighbour entry for the host is programmed in the ASIC with a DROP action and never removed. To work around this issue, force <code>switchd</code> to resynchronise its neighbour table from the kernel by running the <code>echo 1 > /cumulus/switchd/ctrl/netlink/resync</code> command as root. Pinging the affected host from the switch also clears the entry. | 5.16.7-5.18.3 | |
 | 5345905 | When a link or BGP session between a leaf and a spine goes down and comes back up, the prefixes of hosts connected to that leaf might not move back to the direct path through the leaf. The per-source NHG feature keeps forwarding traffic for those host prefixes over the backup path through another plane, even though BGP selects the direct path as best. | 5.17.0-5.18.3 | |

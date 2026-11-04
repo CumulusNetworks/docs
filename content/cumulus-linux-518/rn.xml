@@ -7,6 +7,36 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5376361</td>
+<td>{{switchd}} restarts repeatedly because internal SDK threads stop responding, resulting in BGP flaps and about 23 minutes of network recovery time per event.</td>
+<td>5.11.4-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5376350</td>
+<td>On the Spectrum-6 switch, the {{mlxlink}} command output shows the physical state of the port as {{ETH_AN_FSM_ENABLE}} even when the link is actually up and active.</td>
+<td>5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5376246</td>
+<td>With duplicate UPDATE suppression enabled ({{bgp suppress-duplicates}}, on by default), BGP does not re-send a route whose attributes match what the neighbor already has. When a withdrawn route comes back with the same attributes while its withdrawal is still waiting to be sent to the neighbor, BGP correctly skips the duplicate advertisement but does not cancel the pending withdrawal. BGP then sends the withdrawal, the neighbor removes the route, and BGP never sends the route again. To work around this issue, clear and refresh all inbound routes with the {{nv action clear router bgp soft out}} command for each affected neighbor.</td>
+<td>5.16.8-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5376220</td>
+<td>When you run the {{nv action boot-next system image other}} command at the same time as the prometheus-node-exporter image collector is reading the image inventory, the command reports success but removes the {{/boot/grub/grub.cfg}} file from the running partition. The {{nv show system image}} command either omits the next row or shows {{N/A}}, and the switch might not boot correctly on the next reboot or power cycle (it stops at the grub&gt; prompt, which needs console access to recover). Before you run the {{nv action boot-next system image}} command, run {{sudo systemctl stop prometheus-node-exporter}} and make sure no monitoring or automation runs {{nv show system image }} or reads the image state through the NVUE REST API until the command completes. Before you reboot, confirm that {{nv show system image}} shows the expected next partition, then reboot with the exporter still stopped; it starts again with the new boot. If next shows {{N/A}} or is missing, do not reboot; with the exporter stopped and the polling paused, run the same {{nv action boot-next system image}} command again and confirm next.</td>
+<td>5.16.7-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5372506</td>
+<td>On a multi-lane CPO port, the {{l1-show}} command only shows the first TX and RX power reading instead of showing one reading for each lane.</td>
+<td>5.18.0-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5358735, 5341619</td>
 <td>The NVIDIA SN5600D switch reports {{PMIC-12-COMEX-VCORE-OUT1}} failed after a warm reset.</td>
 <td>5.16.1, 5.16.5-5.18.3</td>
@@ -31,13 +61,19 @@
 <td></td>
 </tr>
 <tr>
-<td>5346603</td>
+<td>5351119</td>
+<td>The switch reports inconsistent and misleading ELS temperature alarm information across different interfaces. NVUE does not show ELS alarm threshold, status, or severity, but gNMI and OTLP still export those fields. The exported telemetry marks ELS modules with a WARNING alarm even though their temperatures are normal.</td>
+<td>5.18.0-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5346603, 5364552</td>
 <td>Factory-reset breaks DHCP option 61:  a missing switch Serial Number from DHCP discovery breaks DHCP IP provisioning.</td>
 <td>5.18.1-5.18.3</td>
 <td></td>
 </tr>
 <tr>
-<td>5346399</td>
+<td>5346399, 5386089, 5386088</td>
 <td>In rare cases, after you delete, then add back a VRF with the same table ID, its default route stays inactive and is not installed, even though BGP selects it as best. To work around this issue, restart FRR with {{sudo systemctl restart frr}}. </td>
 <td>5.16.6-5.18.3</td>
 <td></td>
@@ -70,6 +106,12 @@
 <td>5341681</td>
 <td>After an optimized image upgrade from CL 5.16.5 to 5.18.1 with FIPS enabled, every NVUE {{nv config apply}} fails with {{Unrecoverable internal error}}, and the NVUE REST API (nginx) fails OpenSSL initialization.</td>
 <td>5.18.1-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5341343</td>
+<td>For some CPO and ELS xPaths, gNMI telemetry does not sample at short-requested intervals. For example, instead of updates every 1 or 1.5 seconds, the switch sends them every 1.6 seconds, without showing any warning or error.</td>
+<td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -140,6 +182,12 @@ cumulus@switch:~$ nv action reboot system mode &lt;cold|warm&gt;</td>
 <td></td>
 </tr>
 <tr>
+<td>5316247</td>
+<td>If the command that reads port statistics terminates before it finishes, the switch restarts its switching software and resets the ASIC.</td>
+<td>5.16.6-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5316062</td>
 <td>Optimized image upgrade fails on a switch when the content of the {{/var/log}} folder becomes very large. The upgrade installer copies the entire {{/var/log}} onto the root filesystem of the new partition, which has a fixed size. A large log directory fills that partition, so the install operation fails. As a result, you will not be able to initiate a switch to the other partition to perform the upgrade.</td>
 <td>5.16.5-5.18.3</td>
@@ -190,7 +238,9 @@ This failure disrupts DHCPv6 service for all downstream interfaces served by tha
 </tr>
 <tr>
 <td>5299539</td>
-<td> After a factory reset, a switch relying on preserved management IP settings on eth0 might lose its configured network access. This can disrupt connectivity and require manual reconfiguration.</td>
+<td> After a factory reset, a switch relying on preserved management IP settings on eth0 might lose its configured network access. This can disrupt connectivity and require manual reconfiguration.
+
+Additional fix https://gitlab-master.nvidia.com/nbu-sws/CL/nvue/nvue/-/merge_requests/5626</td>
 <td>5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
@@ -608,6 +658,12 @@ Pin-Priority: 992</td>
 <tr>
 <td>5165432, 5154620</td>
 <td>With EVPN layer 3 VXLAN device mode enabled, the switch installs routes leaked between tenant VRFs (using import VRFs) without the encapsulation information, which results in traffic drops.</td>
+<td>5.18.0-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5161257</td>
+<td>Memory leaks occur in the {{snmpd}} process, which causes SNMP validation to fail or appear unhealthy.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
@@ -1407,7 +1463,7 @@ To work around this issue, reference the OID without the preceding period ( {{.}
 </tr>
 <tr>
 <td>3135952</td>
-<td>PAM4 split cables (such as 2x100G, 4x100G, and 4x50G) do not work with a forced speed setting (when auto-negotiation is off) as the default speed enabled is for NRZ mode (such as 100G_4X). To work around this issue,  set the appropriate lanes for forced speed (with auto-negotation off) with the {{ethtool -s swpX speed &lt;port_speed&gt; autoneg off lanes &lt;no_of_lanes&gt;}} command. For example: 
+<td>PAM4 split cables (such as 2x100G, 4x100G, and 4x50G) do not work with a forced speed setting (when auto-negotiation is off) as the default speed enabled is for NRZ mode (such as 100G_4X). To work around this issue,  set the appropriate lanes for forced speed (with auto-negotiation off) with the {{ethtool -s swpX speed &lt;port_speed&gt; autoneg off lanes &lt;no_of_lanes&gt;}} command. For example: 
 
 cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 </td>
@@ -1484,7 +1540,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 </tr>
 <tr>
 <td>2823307</td>
-<td>Cumuls Linux does not support a bond with more than 64 ports.  Any configuration with more than 64 ports in a bond changes all ports to down when you apply the configuration. </td>
+<td>Cumulus Linux does not support a bond with more than 64 ports.  Any configuration with more than 64 ports in a bond changes all ports to down when you apply the configuration. </td>
 <td>5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
@@ -1527,6 +1583,30 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5376361</td>
+<td>{{switchd}} restarts repeatedly because internal SDK threads stop responding, resulting in BGP flaps and about 23 minutes of network recovery time per event.</td>
+<td>5.11.4-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5376246</td>
+<td>With duplicate UPDATE suppression enabled ({{bgp suppress-duplicates}}, on by default), BGP does not re-send a route whose attributes match what the neighbor already has. When a withdrawn route comes back with the same attributes while its withdrawal is still waiting to be sent to the neighbor, BGP correctly skips the duplicate advertisement but does not cancel the pending withdrawal. BGP then sends the withdrawal, the neighbor removes the route, and BGP never sends the route again. To work around this issue, clear and refresh all inbound routes with the {{nv action clear router bgp soft out}} command for each affected neighbor.</td>
+<td>5.16.8-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5376220</td>
+<td>When you run the {{nv action boot-next system image other}} command at the same time as the prometheus-node-exporter image collector is reading the image inventory, the command reports success but removes the {{/boot/grub/grub.cfg}} file from the running partition. The {{nv show system image}} command either omits the next row or shows {{N/A}}, and the switch might not boot correctly on the next reboot or power cycle (it stops at the grub&gt; prompt, which needs console access to recover). Before you run the {{nv action boot-next system image}} command, run {{sudo systemctl stop prometheus-node-exporter}} and make sure no monitoring or automation runs {{nv show system image }} or reads the image state through the NVUE REST API until the command completes. Before you reboot, confirm that {{nv show system image}} shows the expected next partition, then reboot with the exporter still stopped; it starts again with the new boot. If next shows {{N/A}} or is missing, do not reboot; with the exporter stopped and the polling paused, run the same {{nv action boot-next system image}} command again and confirm next.</td>
+<td>5.16.7-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5372506</td>
+<td>On a multi-lane CPO port, the {{l1-show}} command only shows the first TX and RX power reading instead of showing one reading for each lane.</td>
+<td>5.18.0-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5358735, 5341619</td>
 <td>The NVIDIA SN5600D switch reports {{PMIC-12-COMEX-VCORE-OUT1}} failed after a warm reset.</td>
 <td>5.16.1, 5.16.5-5.18.3</td>
@@ -1539,13 +1619,19 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
-<td>5346603</td>
+<td>5351119</td>
+<td>The switch reports inconsistent and misleading ELS temperature alarm information across different interfaces. NVUE does not show ELS alarm threshold, status, or severity, but gNMI and OTLP still export those fields. The exported telemetry marks ELS modules with a WARNING alarm even though their temperatures are normal.</td>
+<td>5.18.0-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5346603, 5364552</td>
 <td>Factory-reset breaks DHCP option 61:  a missing switch Serial Number from DHCP discovery breaks DHCP IP provisioning.</td>
 <td>5.18.1-5.18.3</td>
 <td></td>
 </tr>
 <tr>
-<td>5346399</td>
+<td>5346399, 5386089, 5386088</td>
 <td>In rare cases, after you delete, then add back a VRF with the same table ID, its default route stays inactive and is not installed, even though BGP selects it as best. To work around this issue, restart FRR with {{sudo systemctl restart frr}}. </td>
 <td>5.16.6-5.18.3</td>
 <td></td>
@@ -1578,6 +1664,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5341681</td>
 <td>After an optimized image upgrade from CL 5.16.5 to 5.18.1 with FIPS enabled, every NVUE {{nv config apply}} fails with {{Unrecoverable internal error}}, and the NVUE REST API (nginx) fails OpenSSL initialization.</td>
 <td>5.18.1-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5341343</td>
+<td>For some CPO and ELS xPaths, gNMI telemetry does not sample at short-requested intervals. For example, instead of updates every 1 or 1.5 seconds, the switch sends them every 1.6 seconds, without showing any warning or error.</td>
+<td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -1635,6 +1727,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
+<td>5316247</td>
+<td>If the command that reads port statistics terminates before it finishes, the switch restarts its switching software and resets the ASIC.</td>
+<td>5.16.6-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5316062</td>
 <td>Optimized image upgrade fails on a switch when the content of the {{/var/log}} folder becomes very large. The upgrade installer copies the entire {{/var/log}} onto the root filesystem of the new partition, which has a fixed size. A large log directory fills that partition, so the install operation fails. As a result, you will not be able to initiate a switch to the other partition to perform the upgrade.</td>
 <td>5.16.5-5.18.3</td>
@@ -1685,7 +1783,9 @@ This failure disrupts DHCPv6 service for all downstream interfaces served by tha
 </tr>
 <tr>
 <td>5299539</td>
-<td> After a factory reset, a switch relying on preserved management IP settings on eth0 might lose its configured network access. This can disrupt connectivity and require manual reconfiguration.</td>
+<td> After a factory reset, a switch relying on preserved management IP settings on eth0 might lose its configured network access. This can disrupt connectivity and require manual reconfiguration.
+
+Additional fix https://gitlab-master.nvidia.com/nbu-sws/CL/nvue/nvue/-/merge_requests/5626</td>
 <td>5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
@@ -2109,6 +2209,12 @@ Pin-Priority: 992</td>
 <tr>
 <td>5165432, 5154620</td>
 <td>With EVPN layer 3 VXLAN device mode enabled, the switch installs routes leaked between tenant VRFs (using import VRFs) without the encapsulation information, which results in traffic drops.</td>
+<td>5.18.0-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5161257</td>
+<td>Memory leaks occur in the {{snmpd}} process, which causes SNMP validation to fail or appear unhealthy.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
@@ -2908,7 +3014,7 @@ To work around this issue, reference the OID without the preceding period ( {{.}
 </tr>
 <tr>
 <td>3135952</td>
-<td>PAM4 split cables (such as 2x100G, 4x100G, and 4x50G) do not work with a forced speed setting (when auto-negotiation is off) as the default speed enabled is for NRZ mode (such as 100G_4X). To work around this issue,  set the appropriate lanes for forced speed (with auto-negotation off) with the {{ethtool -s swpX speed &lt;port_speed&gt; autoneg off lanes &lt;no_of_lanes&gt;}} command. For example: 
+<td>PAM4 split cables (such as 2x100G, 4x100G, and 4x50G) do not work with a forced speed setting (when auto-negotiation is off) as the default speed enabled is for NRZ mode (such as 100G_4X). To work around this issue,  set the appropriate lanes for forced speed (with auto-negotiation off) with the {{ethtool -s swpX speed &lt;port_speed&gt; autoneg off lanes &lt;no_of_lanes&gt;}} command. For example: 
 
 cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 </td>
@@ -2985,7 +3091,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 </tr>
 <tr>
 <td>2823307</td>
-<td>Cumuls Linux does not support a bond with more than 64 ports.  Any configuration with more than 64 ports in a bond changes all ports to down when you apply the configuration. </td>
+<td>Cumulus Linux does not support a bond with more than 64 ports.  Any configuration with more than 64 ports in a bond changes all ports to down when you apply the configuration. </td>
 <td>5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
@@ -3028,6 +3134,30 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5376361</td>
+<td>{{switchd}} restarts repeatedly because internal SDK threads stop responding, resulting in BGP flaps and about 23 minutes of network recovery time per event.</td>
+<td>5.11.4-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5376246</td>
+<td>With duplicate UPDATE suppression enabled ({{bgp suppress-duplicates}}, on by default), BGP does not re-send a route whose attributes match what the neighbor already has. When a withdrawn route comes back with the same attributes while its withdrawal is still waiting to be sent to the neighbor, BGP correctly skips the duplicate advertisement but does not cancel the pending withdrawal. BGP then sends the withdrawal, the neighbor removes the route, and BGP never sends the route again. To work around this issue, clear and refresh all inbound routes with the {{nv action clear router bgp soft out}} command for each affected neighbor.</td>
+<td>5.16.8-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5376220</td>
+<td>When you run the {{nv action boot-next system image other}} command at the same time as the prometheus-node-exporter image collector is reading the image inventory, the command reports success but removes the {{/boot/grub/grub.cfg}} file from the running partition. The {{nv show system image}} command either omits the next row or shows {{N/A}}, and the switch might not boot correctly on the next reboot or power cycle (it stops at the grub&gt; prompt, which needs console access to recover). Before you run the {{nv action boot-next system image}} command, run {{sudo systemctl stop prometheus-node-exporter}} and make sure no monitoring or automation runs {{nv show system image }} or reads the image state through the NVUE REST API until the command completes. Before you reboot, confirm that {{nv show system image}} shows the expected next partition, then reboot with the exporter still stopped; it starts again with the new boot. If next shows {{N/A}} or is missing, do not reboot; with the exporter stopped and the polling paused, run the same {{nv action boot-next system image}} command again and confirm next.</td>
+<td>5.16.7-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5372506</td>
+<td>On a multi-lane CPO port, the {{l1-show}} command only shows the first TX and RX power reading instead of showing one reading for each lane.</td>
+<td>5.18.0-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5358735, 5341619</td>
 <td>The NVIDIA SN5600D switch reports {{PMIC-12-COMEX-VCORE-OUT1}} failed after a warm reset.</td>
 <td>5.16.1, 5.16.5-5.18.3</td>
@@ -3040,13 +3170,19 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
-<td>5346603</td>
+<td>5351119</td>
+<td>The switch reports inconsistent and misleading ELS temperature alarm information across different interfaces. NVUE does not show ELS alarm threshold, status, or severity, but gNMI and OTLP still export those fields. The exported telemetry marks ELS modules with a WARNING alarm even though their temperatures are normal.</td>
+<td>5.18.0-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5346603, 5364552</td>
 <td>Factory-reset breaks DHCP option 61:  a missing switch Serial Number from DHCP discovery breaks DHCP IP provisioning.</td>
 <td>5.18.1-5.18.3</td>
 <td></td>
 </tr>
 <tr>
-<td>5346399</td>
+<td>5346399, 5386089, 5386088</td>
 <td>In rare cases, after you delete, then add back a VRF with the same table ID, its default route stays inactive and is not installed, even though BGP selects it as best. To work around this issue, restart FRR with {{sudo systemctl restart frr}}. </td>
 <td>5.16.6-5.18.3</td>
 <td></td>
@@ -3079,6 +3215,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5341681</td>
 <td>After an optimized image upgrade from CL 5.16.5 to 5.18.1 with FIPS enabled, every NVUE {{nv config apply}} fails with {{Unrecoverable internal error}}, and the NVUE REST API (nginx) fails OpenSSL initialization.</td>
 <td>5.18.1-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5341343</td>
+<td>For some CPO and ELS xPaths, gNMI telemetry does not sample at short-requested intervals. For example, instead of updates every 1 or 1.5 seconds, the switch sends them every 1.6 seconds, without showing any warning or error.</td>
+<td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -3127,6 +3269,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5316646</td>
 <td>On Spectrum-6 switches, adaptive routing port select mode is not set to SEMI_RR (round-robin) after the switch reboots.</td>
 <td>5.18.0-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5316247</td>
+<td>If the command that reads port statistics terminates before it finishes, the switch restarts its switching software and resets the ASIC.</td>
+<td>5.16.6-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -3186,7 +3334,9 @@ This failure disrupts DHCPv6 service for all downstream interfaces served by tha
 </tr>
 <tr>
 <td>5299539</td>
-<td> After a factory reset, a switch relying on preserved management IP settings on eth0 might lose its configured network access. This can disrupt connectivity and require manual reconfiguration.</td>
+<td> After a factory reset, a switch relying on preserved management IP settings on eth0 might lose its configured network access. This can disrupt connectivity and require manual reconfiguration.
+
+Additional fix https://gitlab-master.nvidia.com/nbu-sws/CL/nvue/nvue/-/merge_requests/5626</td>
 <td>5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
@@ -3610,6 +3760,12 @@ Pin-Priority: 992</td>
 <tr>
 <td>5165432, 5154620</td>
 <td>With EVPN layer 3 VXLAN device mode enabled, the switch installs routes leaked between tenant VRFs (using import VRFs) without the encapsulation information, which results in traffic drops.</td>
+<td>5.18.0-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5161257</td>
+<td>Memory leaks occur in the {{snmpd}} process, which causes SNMP validation to fail or appear unhealthy.</td>
 <td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
@@ -4409,7 +4565,7 @@ To work around this issue, reference the OID without the preceding period ( {{.}
 </tr>
 <tr>
 <td>3135952</td>
-<td>PAM4 split cables (such as 2x100G, 4x100G, and 4x50G) do not work with a forced speed setting (when auto-negotiation is off) as the default speed enabled is for NRZ mode (such as 100G_4X). To work around this issue,  set the appropriate lanes for forced speed (with auto-negotation off) with the {{ethtool -s swpX speed &lt;port_speed&gt; autoneg off lanes &lt;no_of_lanes&gt;}} command. For example: 
+<td>PAM4 split cables (such as 2x100G, 4x100G, and 4x50G) do not work with a forced speed setting (when auto-negotiation is off) as the default speed enabled is for NRZ mode (such as 100G_4X). To work around this issue,  set the appropriate lanes for forced speed (with auto-negotiation off) with the {{ethtool -s swpX speed &lt;port_speed&gt; autoneg off lanes &lt;no_of_lanes&gt;}} command. For example: 
 
 cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 </td>
@@ -4486,7 +4642,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 </tr>
 <tr>
 <td>2823307</td>
-<td>Cumuls Linux does not support a bond with more than 64 ports.  Any configuration with more than 64 ports in a bond changes all ports to down when you apply the configuration. </td>
+<td>Cumulus Linux does not support a bond with more than 64 ports.  Any configuration with more than 64 ports in a bond changes all ports to down when you apply the configuration. </td>
 <td>5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
@@ -4594,6 +4750,30 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5376361</td>
+<td>{{switchd}} restarts repeatedly because internal SDK threads stop responding, resulting in BGP flaps and about 23 minutes of network recovery time per event.</td>
+<td>5.11.4-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5376246</td>
+<td>With duplicate UPDATE suppression enabled ({{bgp suppress-duplicates}}, on by default), BGP does not re-send a route whose attributes match what the neighbor already has. When a withdrawn route comes back with the same attributes while its withdrawal is still waiting to be sent to the neighbor, BGP correctly skips the duplicate advertisement but does not cancel the pending withdrawal. BGP then sends the withdrawal, the neighbor removes the route, and BGP never sends the route again. To work around this issue, clear and refresh all inbound routes with the {{nv action clear router bgp soft out}} command for each affected neighbor.</td>
+<td>5.16.8-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5376220</td>
+<td>When you run the {{nv action boot-next system image other}} command at the same time as the prometheus-node-exporter image collector is reading the image inventory, the command reports success but removes the {{/boot/grub/grub.cfg}} file from the running partition. The {{nv show system image}} command either omits the next row or shows {{N/A}}, and the switch might not boot correctly on the next reboot or power cycle (it stops at the grub&gt; prompt, which needs console access to recover). Before you run the {{nv action boot-next system image}} command, run {{sudo systemctl stop prometheus-node-exporter}} and make sure no monitoring or automation runs {{nv show system image }} or reads the image state through the NVUE REST API until the command completes. Before you reboot, confirm that {{nv show system image}} shows the expected next partition, then reboot with the exporter still stopped; it starts again with the new boot. If next shows {{N/A}} or is missing, do not reboot; with the exporter stopped and the polling paused, run the same {{nv action boot-next system image}} command again and confirm next.</td>
+<td>5.16.7-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5372506</td>
+<td>On a multi-lane CPO port, the {{l1-show}} command only shows the first TX and RX power reading instead of showing one reading for each lane.</td>
+<td>5.18.0-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5358735, 5341619</td>
 <td>The NVIDIA SN5600D switch reports {{PMIC-12-COMEX-VCORE-OUT1}} failed after a warm reset.</td>
 <td>5.16.1, 5.16.5-5.18.3</td>
@@ -4606,7 +4786,13 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
-<td>5346399</td>
+<td>5351119</td>
+<td>The switch reports inconsistent and misleading ELS temperature alarm information across different interfaces. NVUE does not show ELS alarm threshold, status, or severity, but gNMI and OTLP still export those fields. The exported telemetry marks ELS modules with a WARNING alarm even though their temperatures are normal.</td>
+<td>5.18.0-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5346399, 5386089, 5386088</td>
 <td>In rare cases, after you delete, then add back a VRF with the same table ID, its default route stays inactive and is not installed, even though BGP selects it as best. To work around this issue, restart FRR with {{sudo systemctl restart frr}}. </td>
 <td>5.16.6-5.18.3</td>
 <td></td>
@@ -4627,6 +4813,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5343996</td>
 <td>If a front-panel link changes state during an ISSU warm upgrade, {{switchd}} might retain the pre-upgrade link state for that interface. As a result, Linux and NVUE report an operational state that does not match the hardware after the upgrade completes. To work around this issue, run the {{echo 1 &gt; /cumulus/switchd/ctrl/resync}} command.</td>
 <td>5.16.7-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5341343</td>
+<td>For some CPO and ELS xPaths, gNMI telemetry does not sample at short-requested intervals. For example, instead of updates every 1 or 1.5 seconds, the switch sends them every 1.6 seconds, without showing any warning or error.</td>
+<td>5.18.0-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -4675,6 +4867,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5316646</td>
 <td>On Spectrum-6 switches, adaptive routing port select mode is not set to SEMI_RR (round-robin) after the switch reboots.</td>
 <td>5.18.0-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5316247</td>
+<td>If the command that reads port statistics terminates before it finishes, the switch restarts its switching software and resets the ASIC.</td>
+<td>5.16.6-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -4727,7 +4925,9 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 </tr>
 <tr>
 <td>5299539</td>
-<td> After a factory reset, a switch relying on preserved management IP settings on eth0 might lose its configured network access. This can disrupt connectivity and require manual reconfiguration.</td>
+<td> After a factory reset, a switch relying on preserved management IP settings on eth0 might lose its configured network access. This can disrupt connectivity and require manual reconfiguration.
+
+Additional fix https://gitlab-master.nvidia.com/nbu-sws/CL/nvue/nvue/-/merge_requests/5626</td>
 <td>5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
@@ -5161,6 +5361,12 @@ Pin-Priority: 992</td>
 <td></td>
 </tr>
 <tr>
+<td>5161257</td>
+<td>Memory leaks occur in the {{snmpd}} process, which causes SNMP validation to fail or appear unhealthy.</td>
+<td>5.18.0-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5159852, 4667526</td>
 <td>When you configure multiple parallel IPv6 numbered eBGP sessions between the same pair of switches, some sessions can remain in an Idle state during simultaneous link or session bringup. Affected sessions repeatedly report {{Cease/Connection Collision Resolution}}. To work around this issue, configure update-source separately for every numbered IPv6 BGP neighbor on both switches, using the local IPv6 address assigned to that neighbor’s link.Do not configure a single shared source on the peer group when each parallel link has a different local address. After applying the configuration, clear the affected BGP sessions to remove any existing incorrectly associated connections.</td>
 <td>5.18.0-5.18.3</td>
@@ -5956,7 +6162,7 @@ To work around this issue, reference the OID without the preceding period ( {{.}
 </tr>
 <tr>
 <td>3135952</td>
-<td>PAM4 split cables (such as 2x100G, 4x100G, and 4x50G) do not work with a forced speed setting (when auto-negotiation is off) as the default speed enabled is for NRZ mode (such as 100G_4X). To work around this issue,  set the appropriate lanes for forced speed (with auto-negotation off) with the {{ethtool -s swpX speed &lt;port_speed&gt; autoneg off lanes &lt;no_of_lanes&gt;}} command. For example: 
+<td>PAM4 split cables (such as 2x100G, 4x100G, and 4x50G) do not work with a forced speed setting (when auto-negotiation is off) as the default speed enabled is for NRZ mode (such as 100G_4X). To work around this issue,  set the appropriate lanes for forced speed (with auto-negotiation off) with the {{ethtool -s swpX speed &lt;port_speed&gt; autoneg off lanes &lt;no_of_lanes&gt;}} command. For example: 
 
 cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 </td>
@@ -6033,7 +6239,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 </tr>
 <tr>
 <td>2823307</td>
-<td>Cumuls Linux does not support a bond with more than 64 ports.  Any configuration with more than 64 ports in a bond changes all ports to down when you apply the configuration. </td>
+<td>Cumulus Linux does not support a bond with more than 64 ports.  Any configuration with more than 64 ports in a bond changes all ports to down when you apply the configuration. </td>
 <td>5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
@@ -6237,7 +6443,7 @@ As a result of this issue, both peers in the multihoming pair claim DF (neither 
 </tr>
 <tr>
 <td>5078019</td>
-<td>The cl-support file takes approximately three minutes to generate with IPv6 routes and and an srv6 full scale configuration.</td>
+<td>The cl-support file takes approximately three minutes to generate with IPv6 routes and and an SRv6 full scale configuration.</td>
 <td>5.17.0</td>
 </tr>
 <tr>
@@ -6389,6 +6595,11 @@ As a result of this issue, both peers in the multihoming pair claim DF (neither 
 <td>5.16.1, 5.16.5-5.17.0</td>
 </tr>
 <tr>
+<td>5022203</td>
+<td>When you disable TLVs in LLDP ingress policies, the TLV information still shows in neigbor data when the neigbor is already learned and the TLV provides chassis-level information, such as the system description or LLDP-MED Inventory. There is no impact on traffic.To work around this issue, restart the LLDP service with the {{sudo systemctl restart lldpd}} command.</td>
+<td>5.17.0</td>
+</tr>
+<tr>
 <td>5019647</td>
 <td>If you do not configure 802.1x unsolicited EAP Identity Requests on an interface {{nv set interface &lt;interface-id&gt; dot1x tx-identity-request enabled}}, the default value shows only in the {{operational}} column. After you enable or disable unsolicited EAP Identity Requests on an interface, the value shows in both the {{applied}} and {{operational}} columns.</td>
 <td>5.17.0</td>
@@ -6424,8 +6635,8 @@ As a result of this issue, both peers in the multihoming pair claim DF (neither 
 <td></td>
 </tr>
 <tr>
-<td>5001357, 5022203</td>
-<td>When you disable TLVs in LLDP ingress policies, the TLV information still shows in neigbor data when the neigbor is already learned and the TLV provides chassis-level information, such as the system description or LLDP-MED Inventory. There is no impact on traffic.To work around this issue, restart the LLDP service with the {{sudo systemctl restart lldpd}} command.</td>
+<td>5001357</td>
+<td>When you disable TLVs in LLDP ingress policies, the TLV information still shows in neighbor data when the neighbor is already learned and the TLV provides chassis-level information, such as the system description or LLDP-MED Inventory. There is no impact on traffic.To work around this issue, restart the LLDP service with the {{sudo systemctl restart lldpd}} command.</td>
 <td>5.17.0</td>
 </tr>
 <tr>

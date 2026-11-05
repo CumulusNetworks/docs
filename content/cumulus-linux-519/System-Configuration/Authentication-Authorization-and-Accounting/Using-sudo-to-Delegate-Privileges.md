@@ -24,11 +24,6 @@ Errors in the `sudoers` file can result in losing the ability to elevate privile
 
 By default, users in the *sudo* group can use `sudo` to execute privileged commands. To add users to the sudo group, use the `useradd(8)` or `usermod(8)` command. To see which users belong to the sudo group, see `/etc/group` (`man group(5)`).
 
-<!-- REVIEW: this note and the example below it draft FR 4933274, "Passwordless sudo access for local
-     and Radius-authenticated users." The spec states no quality level (no Beta, GA, or Tech Preview) for
-     what is a default behavior change; see the longer REVIEW comment on RADIUS-AAA.md for the same
-     concern about this spec. Delete this comment before publishing. -->
-
 Members of the *sudo* group, including the *cumulus* user, can run any command as `sudo`, including `su`, without a password prompt. Cumulus Linux manages this default through a generated `sudoers` policy at `/etc/sudoers.d/nvue-aaa-passwordless-sudo`, which always contains exactly one rule granting the *sudo* group passwordless access to all commands:
 
 ```

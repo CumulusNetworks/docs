@@ -35,12 +35,6 @@ cumulus@switch:~$ nv set system forwarding packet-trim switch-priority 2
 cumulus@switch:~$ nv config apply
 ```
 
-<!-- REVIEW: scoped the service-port bullets to Spectrum-4 and added the Spectrum-5 and later bullet per the
-     engineering review of 2026-10-27. The last bullet (do not configure eligibility, port security, and so on on
-     the service port) is scoped to Spectrum-4 by inference, because Spectrum-5 and later switches use no service
-     port; the review did not address it. The show output at `service-port swp65` elsewhere on this page might
-     differ on Spectrum-5 and later. Confirm with the feature owners. Delete this comment before publishing. -->
-
 {{%notice note%}}
 - On Spectrum-4 switches, when you enable packet trimming, the switch uses one service port. By default, this is the last service port on the switch. To change the service port, run the `nv set system forwarding packet-trim service-port <interface-id>` command. For information about service ports on Spectrum-4 switches, refer to {{<link url="Switch-Port-Attributes/#breakout-ports" text="Switch Port Attributes">}}.
 - On a Spectrum-4 switch that supports two service ports, you can configure a bond on the service ports, then use the bond for the packet trimming service port; for example: `nv set system forwarding packet-trim service-port bond1`.
@@ -228,11 +222,6 @@ You can show the number of trimmed packets at the global level and the number of
 - On Spectrum-4 switches, the trim eligible packets value for each interface is a port statistic that counts unicast packets the switch trims or discards because no buffer is available. The value covers the lifetime of the port and includes discards from periods when packet trimming was disabled; it does not distinguish those discards from trimmed packets.
 - Spectrum-6 switches show the number of trimmed packets sent successfully and the number dropped, at the global, port, and traffic class level.
 {{%/notice%}}
-
-<!-- REVIEW: the engineering review corrected the Spectrum-6 column headers to Trimmed Tx Packets and Trimmed Drop
-     Packets. The Spectrum-4 and Spectrum-5 port-level header below used the same Trimmed TxPackets string, so I
-     changed it to match, assuming one NVUE format string. Confirm on a Spectrum-4 switch. Delete this comment
-     before publishing. -->
 
 To display the number of trimmed packets at both the global and interface levels, run the `nv show system forwarding packet-trim counters` command:
 
@@ -510,7 +499,7 @@ cumulus@switch:~$ nv action clear system forwarding packet-trim notify-sender li
 ```
 
 {{%notice note%}}
-Clearing the counters resets only the values this command shows. The underlying hardware counters are not cleared, and continue counting from where they were; gNMI and OpenTelemetry report the uncleared hardware values.
+Clearing the counters resets only the values this command shows. The command does not clear the underlying hardware counters, which continue counting from where they were; gNMI and OpenTelemetry report the uncleared hardware values.
 {{%/notice%}}
 
 ## Troubleshooting

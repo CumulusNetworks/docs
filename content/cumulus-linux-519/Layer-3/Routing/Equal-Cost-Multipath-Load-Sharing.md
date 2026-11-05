@@ -7,7 +7,7 @@ toc: 3
 Cumulus Linux enables <span class="a-tooltip">[ECMP](## "Equal Cost Multi Path")</span> by default. Load sharing occurs automatically for IPv4 and IPv6 routes with multiple installed next hops. The hardware or the routing protocol configuration determines the maximum number of routes for which load sharing occurs.
 
 ECMP operates only on equal cost routes in the RIB. For Cumulus Linux to consider routes equal, the routes must:
-- Originate from the same routing protocol. Routes from different sources are not considered equal. For example, a static route and an OSPF route are not considered for ECMP load sharing.
+- Originate from the same routing protocol. ECMP does not consider routes from different sources equal. For example, ECMP does not load share between a static route and an OSPF route.
 - Have equal cost. If two routes from the same protocol are unequal, only the best route installs in the routing table.
 
 When multiple routes are in the routing table, a hash determines through which path a packet follows. To prevent out of order packets, ECMP hashes on a per-flow basis; all packets with the same source and destination IP addresses and the same source and destination ports always hash to the same next hop. ECMP hashing does not keep a record of packets that hash to each next hop and does not guarantee that traffic to each next hop is equal.

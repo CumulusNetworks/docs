@@ -877,19 +877,6 @@ Recovery works the same way. The watchdog requires `recovery-interval` consecuti
 
 The following table shows the detection and recovery parameters:
 
-<!-- REVIEW: the range for rx-pause-threshold and tx-frames-threshold value below is drafted as
-     0-100000, from the NVUE handoff email (validated against the ARCH spec, per the email) that
-     also settled the recovery-interval and multiplier defaults below. A later revision of the FS
-     itself (re-checked 2026-09-28; the FS was edited 2026-09-08, after the email), now
-     consistently gives both ranges as 0-65535 in its leaf table and its per-command configuration
-     tables -- the same sections that, for recovery-interval and multiplier, now agree with the
-     values already drafted here. Only a stale, internally-inconsistent block elsewhere in that
-     same FS section (which also wrongly gives recovery-interval a default of 1 and
-     transmit-queue-threshold a default of Enabled) still shows 100000. Confirm which range is
-     correct -- 100000 (email) or 65535 (current FS) -- against a candidate build before
-     publishing, since the two sources now disagree in a way they did not when this was first
-     drafted. Delete this comment before publishing. -->
-
 | Parameter | Default | Range | Description |
 |---|---|---|---|
 | `recovery-interval` | 2 | 1-1000 | Consecutive recovery hits the watchdog requires before it restores the port. |
@@ -907,22 +894,6 @@ The following table shows the detection and recovery parameters:
 {{%/notice%}}
 
 The following example enables all three detection conditions, sets the queue occupancy threshold to 10 percent, sets the transmitted frames threshold to 10, and requires five consecutive clean intervals before recovery:
-
-<!-- REVIEW: two fuse leaf names in the Linux tab below need checking against a candidate
-     build. The source lists the transmit-queue-threshold value leaf as "tx_frames_threshold",
-     which duplicates the tx-frames-threshold row and is almost certainly a copy/paste error;
-     tx_queue_occupancy_threshold is drafted here from its own _enabled sibling. The
-     recovery-interval leaf is given as "restoration_time", which does not match the NVUE name
-     - plausible as a legacy name, but confirm.
-
-     2026-09-28 recheck: the FS (edited 2026-09-08, after the email this was drafted from) now
-     gives a third spelling for both: transmit-queue-threshold's leaves as
-     "transmit_queue_threshold_enabled, transmit_queue_threshold" (not tx_queue_occupancy_threshold),
-     and recovery-interval's leaf as "recovery_intervals" (not restoration_time). The FS's own
-     §13.2/§13.4 still mark leaf names and the persistent file path as "TBD (Open Item)", so this
-     is a third data point on an still-open question rather than a resolution -- do not treat
-     either the FS's or the email's naming as final without a candidate-build check.
-     Delete this comment before publishing. -->
 
 {{< tabs "TabID2001 ">}}
 {{< tab "NVUE Commands ">}}
@@ -959,10 +930,6 @@ cumulus@switch:~$ echo 5 > /cumulus/switchd/config/pfc_wd/restoration_time
 {{< /tabs >}}
 
 To show the PFC watchdog parameters and their applied values, run the `nv show qos pfc-watchdog` command:
-
-<!-- REVIEW: sample output adapted from the source's mock, with the house prompt substituted.
-     The values are a configured switch rather than the defaults in the table above. Capture on
-     a switch and replace before publishing. Delete this comment before publishing. -->
 
 ```
 cumulus@switch:~$ nv show qos pfc-watchdog
@@ -2609,18 +2576,7 @@ Each layer reports a problem in a different place:
   [SRVCP_INGRESS] REPAIR hal_port=514 avail_bytes=<bytes> asked_bytes=<bytes> exclusive_bytes=<bytes>
   ```
 
-<!-- REVIEW: FR 4961156 revision 2.0 (21 Oct) removes lossless and PFC support from Spectrum-6
-     service ports, but the FS message tables were not revised with it. The WARN sample above was
-     captured on a 13 Oct build, when a lossless priority group still existed on a service port,
-     and it names priority group 1, which was that lossless group. Confirm with Bhargav Sivalenka
-     what this warning looks like now that service ports carry lossy priority groups only, and
-     whether the [SRVCP_INGRESS] REPAIR line still uses these fields. The NVUE and
-     cl-consistency-check strings above come from FS tables rather than a captured build.
-     Delete this comment before publishing. -->
-
 To show the pool, mode, and buffer sizes for a service port, run the `nv show interface <interface-id> qos buffer` command. A service port reports hardware pool `43` as its ingress pool instead of the pool a regular port reports. The egress pools are unchanged:
-
-<!-- REVIEW: this sample is the output in revision 2.0 of FR 4961156 (captured on an engineering lab build, adapted to the house prompt). Unlike the earlier sample, it has no lossless priority group, which matches service ports carrying lossy priority groups only. Recapture the output on a release build and confirm the egress tables, which differ from the earlier sample. Delete this comment before publishing. -->
 
 ```
 cumulus@switch:~$ nv show interface swp65s0 qos buffer

@@ -462,7 +462,7 @@ Displayed 2 paths for requested prefix
 - Multiple service failures across leaf switches (such as an FRR failure on one leaf, and FRR, BGP sessions or other failure events on another switch) might result in unexpected routes distributed to NICs.
 - FRR can send a maximum of 25k prefixes for each VRF and 100k total prefixes across all VRFs to LLDP.
 - When you use EVPN unreachability in disjoined planes with 802.1X, the radius servers must be reachable through the management VRF.
-- When the IPv6 SLAAC address for a connected host expires but the interface remains up, an unreachable route is not injected for the host.
+- When the IPv6 SLAAC address for a connected host expires but the interface remains up, Cumulus Linux does not inject an unreachable route for the host.
 - The LLDP unreachable route TLV does not carry VRF information; overlapping addresses across VRFs might cause inconsistent behavior if the switch generates an unreachable route for a prefix used in multiple VRFs.
 - EVPN unreachability signaling is not functional if all the leaf switch uplinks to spines go down.
 - EVPN unreachability in disjoined planes does not work during a networking restart or forced reboot.
@@ -1123,7 +1123,7 @@ neighbor swp51 maximum-prefix 5 warning-only
 In a typical EVPN deployment, you *reuse* SVI IP addresses on VTEPs across multiple racks. However, if you use *unique* SVI IP addresses across multiple racks and you want the local SVI IP address to be reachable via remote VTEPs, you can enable the advertise SVI IP and MAC address option. This option advertises the SVI IP and MAC address as a type-2 route and eliminates the need for any flooding over VXLAN to reach the IP address from a remote VTEP or rack.
 
 {{%notice note%}}
-- When you enable the advertise SVI IP and MAC address option, the anycast IP and MAC address pair is not advertised. Be sure **not** to enable both the `advertise-svi-ip` option and the `advertise-default-gw` option at the same time. (The `advertise-default-gw` option configures the gateway VTEPs to advertise their IP and MAC address. See {{<link url="Inter-subnet-Routing#centralized-routing" text="Advertising the Default Gateway">}}.
+- When you enable the advertise SVI IP and MAC address option, the switch does not advertise the anycast IP and MAC address pair. Be sure **not** to enable both the `advertise-svi-ip` option and the `advertise-default-gw` option at the same time. (The `advertise-default-gw` option configures the gateway VTEPs to advertise their IP and MAC address. See {{<link url="Inter-subnet-Routing#centralized-routing" text="Advertising the Default Gateway">}}.
 - If you use <span class="a-tooltip">[MLAG](## "Multi-chassis Link Aggregation")</span> on your switch, refer to {{<link url="Inter-subnet-Routing#advertise-primary-ip-address-vxlan-active-active-mode" text="Advertise Primary IP Address">}}.
 {{%/notice%}}
 

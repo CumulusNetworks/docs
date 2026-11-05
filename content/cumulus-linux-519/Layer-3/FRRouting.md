@@ -580,8 +580,6 @@ cumulus@switch:~$ nv set router allow-reserved-range class-e
 cumulus@switch:~$ nv config apply
 ```
 
-<!-- REVIEW: the spec states NVUE rejects any allow-reserved-range entry other than class-e, but does not show the full command syntax or confirm whether the argument is a single value or a list. Drafted as a single accepted value. Confirm against a candidate build. -->
-
 To stop allowing Class E as routable address space, run the `nv unset router allow-reserved-range class-e` command.
 
 {{%notice note%}}
@@ -682,23 +680,6 @@ The default setting of 1024 open files supports up to 512 BGP peering sessions. 
 {{%notice note%}}
 NVIDIA recommends you set the value to at least twice the maximum number of BGP peering sessions you expect.
 {{%/notice%}}
-
-<!-- REVIEW: the specification gives two incompatible forms of this command, with different meanings.
-     Its Introduction, Purpose, Scope, Overview, Solution, System design and Observability sections
-     all give a single global knob, `nv set router resource-limit max-file-descriptors <value>`; its
-     Configuration and NVUE config tree sections give a per-protocol knob,
-     `nv set router <protocol> max-fds <value>`, with worked examples for bgp and ospf. Drafted the
-     global form because the mechanism the specification describes can only be global: NVUE renders
-     one MAX_FDS line into /etc/frr/daemons and the FRR startup wrapper applies it with ulimit -n to
-     the shell that launches every daemon, and the specification states "there is no protocol to
-     daemon mapping" and "no FRR change is required". Confirm against a candidate build before
-     publishing. Delete this comment before publishing. -->
-
-<!-- REVIEW: the specification does not say whether the NVUE limit works on its own or whether the
-     systemd LimitNOFILE value in the Linux tab must be raised to at least the same number. Both tabs
-     are therefore presented as they are, with no claim that one replaces the other. Confirm the
-     interaction, and if NVUE alone is sufficient, say so and demote the Linux tab. Delete this
-     comment before publishing. -->
 
 {{< tabs "TabID674 ">}}
 {{< tab "NVUE Commands ">}}

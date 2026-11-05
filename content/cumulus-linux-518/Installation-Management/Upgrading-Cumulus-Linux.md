@@ -426,7 +426,7 @@ user@server:~$ docker run -d --name repo -p 8080:80 -p 8443:8443 -v /local/certp
 If you do not specify your own CA or server certificate, the container uses a self-signed certificate. To run the container with a self-signed certificate, define the following environment variables in your `docker run` command:
 
 - `REPO_HOST=<hostname>` - defines the hostname used to connect to the repository and adds it to the Common Name (CN) and Subject Alternative Name (SAN) fields in the self-signed certificates.
-- `REPO_IP=<ip-address>` - defines the IP used to connect to the repository if you do not use a hostname and is also added to the SAN.
+- `REPO_IP=<ip-address>` - defines the IP used to connect to the repository if you do not use a hostname, and the script also adds the IP to the SAN.
 - `FORCE_REISSUE=[0 | 1]` - set to 1 to force reissuing the server certificate when the container starts, applying the configuration defined in the other variables.
 
 The following example runs the container with a self-signed certificate:
@@ -470,7 +470,7 @@ deb https://10.1.100.1:8443 CumulusLinux-5.15.0 cumulus upstream netq
 ONIE is an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on a switch. ONIE upgrade enables you to choose the exact release to which you want to upgrade and is the *only* method available to upgrade your switch to a new release train (for example, from 4.4 to 5.18).
 
 {{%notice note%}}
-- Installing a Cumulus Linux image with ONIE is destructive; any configuration files on the switch are not saved; copy them to a different server before you start the Cumulus Linux image install.
+- Installing a Cumulus Linux image with ONIE is destructive; the installation does not save any configuration files on the switch; copy them to a different server before you start the Cumulus Linux image install.
 - You must move configuration data to the new network operating system using ZTP or automation while the operating system is first booted, or soon afterwards using out-of-band management. Moving a configuration file can cause issues.
 - Merge conflicts with configuration file changes in the new release sometimes go undetected.
 - If configuration files do not restore correctly, you cannot `ssh` to the switch from in-band management. Use out-of-band connectivity (eth0 or the console).
@@ -490,7 +490,7 @@ If you manage your switch configuration with NVUE, use the following procedure t
 As Cumulus Linux supports more features and functionality, NVUE syntax might change between releases and the content of snippets and flexible snippets might become invalid. Before you back up and restore configuration across different Cumulus Linux releases, make sure to review the {{<link url="Whats-New" text="What's New">}} for new NVUE syntax and other configuration file changes.
 
 {{%notice note%}}
-- Any certificates or CRLs imported to the system with NVUE are not backed up during an ONIE image upgrade. You must reimport the certificates after the new image is installed. 
+- An ONIE image upgrade does not back up any certificates or CRLs that you import to the system with NVUE. You must reimport the certificates after the new image is installed. 
 - If you reinstall Cumulus Linux with an embedded `startup.yaml` file with the `nv action install system image onie <image> startup-config <file-name>` or `onie-install -t` command, Cumulus Linux preserves your NVUE startup configuration and translates the contents automatically to NVUE syntax required by the new release. This method still requires reimporting certificates and CRLs after the image install.
 - If NVUE introduces new syntax for a feature that a snippet configures, you must remove the snippet before upgrading.
 {{%/notice%}}
@@ -610,7 +610,7 @@ cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/cumulus-linux-5.18.0
 {{< /tab >}}
 {{< /tabs >}}
 
-4. {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="Reimport all certificates">}} and, or, CRLs configured in the previous release with the `nv action import system security` command. Be sure to use the same `certificate-id` originally assigned to each certificate in the previous release. Certificates and CRLs configured on the switch are not backed up or automatically restored. After the switch boots with the new image, features that rely on certificates (such as NVUE API, gNMI, OTEL, and so on) remain unavailable until you {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="reimport the certificates">}}.
+4. {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="Reimport all certificates">}} and, or, CRLs configured in the previous release with the `nv action import system security` command. Be sure to use the same `certificate-id` originally assigned to each certificate in the previous release. The installation does not back up or automatically restore certificates and CRLs configured on the switch. After the switch boots with the new image, features that rely on certificates (such as NVUE API, gNMI, OTEL, and so on) remain unavailable until you {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="reimport the certificates">}}.
 
 {{%notice note%}}
 In Cumulus Linux 5.16 and later, NVUE uses IPv6 address normalization, where it stores and looks up all IPv6 addresses in their normalized (canonical) form (for example, 2001:db8::1 instead of 2001:0db8::0001). When you copy the `startup.yaml` file manually from Cumulus Linux 5.15 or earlier to Cumulus Linux 5.16 or later, the file bypasses the standard upgrade translation process. As a result, the configuration might contain unnormalized IPv6 addresses that are valid in earlier Cumulus Linux releases, which might cause failed lookups during NVUE show commands, unexpected configuration mismatches, and failed or silent misconfigurations.

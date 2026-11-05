@@ -67,12 +67,6 @@
 <td></td>
 </tr>
 <tr>
-<td>5346603, 5364552</td>
-<td>Factory-reset breaks DHCP option 61:  a missing switch Serial Number from DHCP discovery breaks DHCP IP provisioning.</td>
-<td>5.18.1-5.18.3</td>
-<td></td>
-</tr>
-<tr>
 <td>5346399, 5386089, 5386088</td>
 <td>In rare cases, after you delete, then add back a VRF with the same table ID, its default route stays inactive and is not installed, even though BGP selects it as best. To work around this issue, restart FRR with {{sudo systemctl restart frr}}. </td>
 <td>5.16.6-5.18.3</td>
@@ -238,9 +232,7 @@ This failure disrupts DHCPv6 service for all downstream interfaces served by tha
 </tr>
 <tr>
 <td>5299539</td>
-<td> After a factory reset, a switch relying on preserved management IP settings on eth0 might lose its configured network access. This can disrupt connectivity and require manual reconfiguration.
-
-Additional fix https://gitlab-master.nvidia.com/nbu-sws/CL/nvue/nvue/-/merge_requests/5626</td>
+<td> After a factory reset, a switch relying on preserved management IP settings on eth0 might lose its configured network access. This can disrupt connectivity and require manual reconfiguration.</td>
 <td>5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
@@ -1625,12 +1617,6 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
-<td>5346603, 5364552</td>
-<td>Factory-reset breaks DHCP option 61:  a missing switch Serial Number from DHCP discovery breaks DHCP IP provisioning.</td>
-<td>5.18.1-5.18.3</td>
-<td></td>
-</tr>
-<tr>
 <td>5346399, 5386089, 5386088</td>
 <td>In rare cases, after you delete, then add back a VRF with the same table ID, its default route stays inactive and is not installed, even though BGP selects it as best. To work around this issue, restart FRR with {{sudo systemctl restart frr}}. </td>
 <td>5.16.6-5.18.3</td>
@@ -1783,9 +1769,7 @@ This failure disrupts DHCPv6 service for all downstream interfaces served by tha
 </tr>
 <tr>
 <td>5299539</td>
-<td> After a factory reset, a switch relying on preserved management IP settings on eth0 might lose its configured network access. This can disrupt connectivity and require manual reconfiguration.
-
-Additional fix https://gitlab-master.nvidia.com/nbu-sws/CL/nvue/nvue/-/merge_requests/5626</td>
+<td> After a factory reset, a switch relying on preserved management IP settings on eth0 might lose its configured network access. This can disrupt connectivity and require manual reconfiguration.</td>
 <td>5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
@@ -3176,12 +3160,6 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
-<td>5346603, 5364552</td>
-<td>Factory-reset breaks DHCP option 61:  a missing switch Serial Number from DHCP discovery breaks DHCP IP provisioning.</td>
-<td>5.18.1-5.18.3</td>
-<td></td>
-</tr>
-<tr>
 <td>5346399, 5386089, 5386088</td>
 <td>In rare cases, after you delete, then add back a VRF with the same table ID, its default route stays inactive and is not installed, even though BGP selects it as best. To work around this issue, restart FRR with {{sudo systemctl restart frr}}. </td>
 <td>5.16.6-5.18.3</td>
@@ -3334,9 +3312,7 @@ This failure disrupts DHCPv6 service for all downstream interfaces served by tha
 </tr>
 <tr>
 <td>5299539</td>
-<td> After a factory reset, a switch relying on preserved management IP settings on eth0 might lose its configured network access. This can disrupt connectivity and require manual reconfiguration.
-
-Additional fix https://gitlab-master.nvidia.com/nbu-sws/CL/nvue/nvue/-/merge_requests/5626</td>
+<td> After a factory reset, a switch relying on preserved management IP settings on eth0 might lose its configured network access. This can disrupt connectivity and require manual reconfiguration.</td>
 <td>5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
@@ -4925,9 +4901,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 </tr>
 <tr>
 <td>5299539</td>
-<td> After a factory reset, a switch relying on preserved management IP settings on eth0 might lose its configured network access. This can disrupt connectivity and require manual reconfiguration.
-
-Additional fix https://gitlab-master.nvidia.com/nbu-sws/CL/nvue/nvue/-/merge_requests/5626</td>
+<td> After a factory reset, a switch relying on preserved management IP settings on eth0 might lose its configured network access. This can disrupt connectivity and require manual reconfiguration.</td>
 <td>5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
@@ -6484,7 +6458,7 @@ As a result of this issue, both peers in the multihoming pair claim DF (neither 
 <td>5.16.0-5.16.1, 5.16.5-5.17.0</td>
 </tr>
 <tr>
-<td>5065211, 4916985, 5078194</td>
+<td>5065211, 4916985, 5078194, 5364674</td>
 <td>When data path enablement timing is marginal, traffic might be allowed through the system too early.</td>
 <td>5.11.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.17.0</td>
 </tr>

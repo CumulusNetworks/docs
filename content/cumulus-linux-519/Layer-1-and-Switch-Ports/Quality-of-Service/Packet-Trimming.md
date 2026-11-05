@@ -510,7 +510,7 @@ cumulus@switch:~$ nv action clear system forwarding packet-trim notify-sender li
 ```
 
 {{%notice note%}}
-Clearing the counters resets only the values this command shows. The underlying hardware counters are not cleared, and continue counting from where they were; gNMI and OpenTelemetry report the uncleared hardware values.
+Clearing the counters resets only the values this command shows. The command does not clear the underlying hardware counters, which continue counting from where they were; gNMI and OpenTelemetry report the uncleared hardware values.
 {{%/notice%}}
 
 ## Troubleshooting

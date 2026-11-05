@@ -3191,7 +3191,7 @@ When BGP establishes a session, BGP peers use the BGP OPEN message to negotiate 
 
 Cumulus Linux supports graceful BGP restart full mode and helper-only mode for IPv4, IPv6 and EVPN. The default setting is helper-only mode.
 - In full mode, the switch is in both a helper and restarter role.
-- In helper-only mode, the switch is in a helper role only, where routes originated and advertised from a BGP peer are not deleted.
+- In helper-only mode, the switch is in a helper role only, where the switch does not delete routes that a BGP peer originates and advertises.
 
 You can configure graceful BGP restart globally, where all BGP peers inherit the graceful restart capability, or for a BGP peer or peer group (useful for misbehaving peers or when working with third party devices).
 
@@ -3545,8 +3545,8 @@ The BGP community list can be either *standard*, *extended*, or *large*. The sta
 
 - *0:0*: a BGP community that matches all routes. This value replaces `internet` used in Cumulus Linux 5.13 and earlier.
 - *local-AS*: a BGP community that restricts routes to your confederation's sub-AS.
-- *no-advertise*: a BGP community that is not advertised to anyone.
-- *no-export*: a BGP community that is not advertised to the eBGP peer.
+- *no-advertise*: a BGP community that the switch does not advertise to anyone.
+- *no-export*: a BGP community that the switch does not advertise to the eBGP peer.
 
 An extended BGP community list takes a regular expression of communities and matches the listed communities.
 

@@ -307,7 +307,7 @@ If the switch has connected hosts configured with ARP timeout values shorter tha
 
 ### MAC Address Learning
 
-During the warm boot window, the switch does not learn new MAC addresses in hardware. A MAC address that reaches the switch for the first time during this window, such as a host that comes online or moves to a different port, is not learned until the warm boot completes. The switch preserves MAC addresses it learned before the warm boot.
+During the warm boot window, the switch does not learn new MAC addresses in hardware. The switch does not learn a MAC address that reaches it for the first time during this window, such as a host that comes online or moves to a different port, until the warm boot completes. The switch preserves MAC addresses it learned before the warm boot.
 
 After the warm boot completes, hardware MAC learning resumes. If traffic is still flowing from the affected hosts, the switch learns their MAC addresses at that point; you do not need to take any action.
 

@@ -641,8 +641,8 @@ Cumulus Linux does not offload `conntrack` or `--ctstate` ACL matches to switch 
 
 ### Other Unsupported Rules
 
-- Rules that have no matches and accept all packets in a chain are currently ignored.
-- Chain default rules (that are ACCEPT) are also ignored.
+- Cumulus Linux currently ignores rules that have no matches and accept all packets in a chain.
+- Cumulus Linux also ignores chain default rules (that are ACCEPT).
 
 #### Considerations
 
@@ -1534,7 +1534,7 @@ cumulus@switch:~$ nv set acl acl1 rule 20 action deny
 Cumulus Linux supports ACL rule matches based on the packet offset.
 
 {{%notice note%}}
-- You can configure a maximum of three different packet offset matches either in a single ACL rule or across three separate ACL rules. You can reuse the same offset match in another ACL rule, which is not considered an extra offset match. The combination of an offset location and a `match-from` value counts as one offset.
+- You can configure a maximum of three different packet offset matches either in a single ACL rule or across three separate ACL rules. You can reuse the same offset match in another ACL rule, which does not count as an extra offset match. The combination of an offset location and a `match-from` value counts as one offset.
 - You can configure offset matches only for ACL type ipv4 and ipv6.
 - The Spectrum1 switch does not support matches based on the packet offset.
 - Matches based on the packet offset support hardware forwarded packets only.

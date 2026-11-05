@@ -61,12 +61,6 @@
 <td></td>
 </tr>
 <tr>
-<td>5354729</td>
-<td>When you create an prefix list and attach it inbound to a BGP peer in the same NVUE configuration apply, the peer might reject all received routes instead of only the prefixes denied by the list. To restore the expected route filtering, clear the inbound BGP session softly or unset, then set the attachment again. To avoid this issue, apply the prefix list and its attachment separately in the configuration.  </td>
-<td>5.19.0</td>
-<td></td>
-</tr>
-<tr>
 <td>5351119</td>
 <td>The switch reports inconsistent and misleading ELS temperature alarm information across different interfaces. NVUE does not show ELS alarm threshold, status, or severity, but gNMI and OTLP still export those fields. The exported telemetry marks ELS modules with a WARNING alarm even though their temperatures are normal.</td>
 <td>5.18.0-5.19.0</td>
@@ -75,17 +69,6 @@
 <tr>
 <td>5344939</td>
 <td>At high scale, if you set the BFD offload interval to 10 or 20 milliseconds, and set the multiplier to 3 or 5, you see BFD timeouts in BFD hardware offload. To work around this issue, set the interval to at least 50 milliseconds and the multiplier to at least 3.</td>
-<td>5.19.0</td>
-<td></td>
-</tr>
-<tr>
-<td>5343803</td>
-<td>If you change BGP update source configuration or disable nexthop-connected-check on an IPv4 BGP neighbor or peer group with BFD while the session is established, BGP resets and comes back up, but BFD does not register again. The remote router's session stays Down and BFD no longer protects the BGP session. IPv6 neighbors are not affected.To work around this issue, remove BFD from the neighbor, then re-add it, using two separate {{nv config apply}} commands
-cumulus@switch:~$ nv unset vrf &lt;vrf&gt; router bgp neighbor &lt;peer&gt; bfd
-cumulus@switch:~$ nv config apply
-cumulus@switch:~$ nv set vrf &lt;vrf&gt; router bgp neighbor &lt;peer&gt; bfd profile &lt;profile&gt;
-cumulus@switch:~$ nv config apply
-If BFD is configured on a peer group, do the same on the peer group.</td>
 <td>5.19.0</td>
 <td></td>
 </tr>
@@ -1081,9 +1064,7 @@ This failure disrupts DHCPv6 service for all downstream interfaces served by tha
 </tr>
 <tr>
 <td>5299539</td>
-<td> After a factory reset, a switch relying on preserved management IP settings on eth0 might lose its configured network access. This can disrupt connectivity and require manual reconfiguration.
-
-Additional fix https://gitlab-master.nvidia.com/nbu-sws/CL/nvue/nvue/-/merge_requests/5626</td>
+<td> After a factory reset, a switch relying on preserved management IP settings on eth0 might lose its configured network access. This can disrupt connectivity and require manual reconfiguration.</td>
 <td>5.16.1-5.18.3</td>
 </tr>
 <tr>

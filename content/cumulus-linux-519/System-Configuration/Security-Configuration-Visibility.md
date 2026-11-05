@@ -12,12 +12,6 @@ Cumulus Linux can collect the security configuration of the switch components an
 The security report is supported on SN6600-LD switches. On other platforms, `profile` shows `none` and `security-status` is `fail`.
 {{%/notice%}}
 
-<!-- REVIEW: this page and SPDM-Attestation.md are neighbours that a reader confuses easily - SPDM
-     attestation returns raw evidence and no verdict, this page returns a verdict. They belong
-     cross-referenced in both directions. No link shortcode is drafted because SPDM-Attestation.md
-     carries draft: true and does not publish, so a link resolving by its title breaks the build.
-     Add links in both pages when that page publishes. Delete this comment before publishing. -->
-
 The report covers these components:
 
 | Component | What the report checks |

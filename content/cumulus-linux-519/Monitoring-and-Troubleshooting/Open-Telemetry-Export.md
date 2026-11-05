@@ -424,29 +424,6 @@ cumulus@switch:~$ nv config apply
 
 If you do not want to enable all platform statistics, you can enable or disable individual platform telemetry components or adjust the sample interval for individual components. The default sample interval is 60 seconds.
 
-<!-- REVIEW: the Laser Source tab below, on the class name. The specification is self-contradictory.
-     Its ELS section names the class laser-source-info in its prose, its property table, and its show
-     commands. Its Transceiver section states that the transceiver CLI "remains unchanged"
-     (transceiver-info) but then lists a User commands block using a third name, cpo-info, which
-     appears nowhere else in the document. Resolved by section role: the ELS section is the one that
-     describes the component consuming the string, and it is internally consistent, so this draft
-     emits laser-source-info. Neither laser-source-info nor cpo-info appears in
-     content/nvue-reference/, which is expected for a new class. Confirm the class name against a
-     candidate build before publishing.
-
-     The same contradiction leaves it open which class exports the CPO module and optical engine
-     metrics. The specification files those under its Transceiver section, so the Transceivers tab
-     below now says the class covers CPO modules and optical engines on CPO hardware. If cpo-info
-     turns out to be a real third class rather than an editing artifact, that sentence moves into a
-     tab of its own and the metric tables in New-and-Updated-Telemetry-Metrics.md need the same
-     change. Delete this comment before publishing. -->
-
-<!-- REVIEW: the Laser Source tab below, on availability. The 5.19 demo material records partial metric
-     delivery for this release (22 of 30 CPO metrics, 6 of 16 optical engine metrics, 24 of 51 ELS
-     metrics) with four open hardware and firmware bugs, and it lists the 27 per-laser ELS metrics as
-     blocked. The CLI knob documented here is not in question, but the set of metrics the class
-     actually exports is. Confirm before publishing. Delete this comment before publishing. -->
-
 {{< tabs "TabID393 ">}}
 {{< tab "ASIC Resource">}}
 
@@ -1214,12 +1191,6 @@ The switch collects and exports statistics for IPv4, IPv6, layer 2, and layer 4 
 
 The switch collects and exports the adaptive routing, SRv6, and packet trimming statistics when you configure the `nv set system telemetry ai-ethernet-stats export state enabled` command.
 
-<!-- REVIEW: Redmine 5299181 measures ~1.1 increments per RoCEv2 packet on real hardware. Drafted as
-     "for each eligible packet" without a ratio, because a figure from one test run reads as a
-     specified rate once it is on the page, and no platform or traffic profile was recorded with
-     it. Confirm with the ASIC team whether a ratio belongs here. Concerns the
-     nvswitch_ar_congestion_changes row below. Delete this comment before publishing. -->
-
 | Metric | Description |
 | ---------- | ------- |
 | `nvswitch_ar_congestion_changes`  | Number of adaptive routing egress port selections. The counter increments for each eligible packet that leaves an ECMP port with adaptive routing enabled. Despite the metric name, the counter does not count congestion events or link-down events.|
@@ -1236,12 +1207,6 @@ The switch collects and exports the adaptive routing, SRv6, and packet trimming 
 | `nvswitch_interface_tc_trimmed_drop_unicast_pkts [interface][tc]` | *Number of packets that were trimmed and dropped on the interface and traffic class. Spectrum-6 only. |
 | `nvswitch_qos_spxm_notify_sender_link_down_pkts` | *Number of packets that matched the back-to-sender classifier on link down, both while the route is still in hardware and after FRR withdraws it. Counts notifications the switch attempted, not notifications the switch confirmed the sender received. Spectrum-6 only. |
 | `nvswitch_qos_notify_sender_trimmed_link_down_pkts` | *Number of those packets the switch trimmed and sent as a back-to-sender notification. Spectrum-6 only. |
-
-<!-- REVIEW: Redmine 5299181 establishes only that RoCEv2 traffic increments the counter and TCP
-     traffic does not. Drafted as "traffic that is eligible for adaptive routing, such as RoCEv2"
-     to avoid implying RoCEv2 is the sole eligible class. If RoCEv2 is in fact the only traffic
-     that increments this counter, narrow the first bullet to say so. Delete this comment before
-     publishing. -->
 
 {{%notice note%}}
 `nvswitch_ar_congestion_changes` is a cumulative counter that only increases. Adaptive routing selects an egress port for each packet, so the counter tracks packet forwarding rather than congestion:
@@ -1711,7 +1676,7 @@ The two punt classifier metrics are 64-bit counters. Each one carries a `rule_id
 
 ### Histogram Data Format
 <!-- vale on -->
-The histogram data samples that the switch exports to the OTEL collector are {{<exlink url="https://opentelemetry.io/docs/specs/otel/metrics/data-model/#histogram" text="histogram data points">}} that include the {{<link url="ASIC-Monitoring#histogram-collection-example" text="histogram bucket (bin)">}} counts and the respective queue length size boundaries for each bucket. Latency, counter, and microburst histogram data are also exported, if configured.
+The histogram data samples that the switch exports to the OTEL collector are {{<exlink url="https://opentelemetry.io/docs/specs/otel/metrics/data-model/#histogram" text="histogram data points">}} that include the {{<link url="ASIC-Monitoring#histogram-collection-example" text="histogram bucket (bin)">}} counts and the respective queue length size boundaries for each bucket. The switch also exports latency, counter, and microburst histogram data, if configured.
 
 {{% notice note %}}
 Latency histogram bucket counts do not increment in exported telemetry data if there are no packets transmitted in the traffic class during the sample interval.
@@ -3484,8 +3449,6 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 
 {{< /tab >}}
 {{< tab "Transceivers ">}}
-
-<!-- REVIEW (bug 5095522): Drafted from Prabhu's behavior-change note (27 Oct) and the approved RN text. They differ: Prabhu says passive copper reports the PMD only while the link is up; Raghav's 28 Oct test on a QSFP28 DAC (5.19.0.0039) reported ETH_40GBASE_CR4 with the link down; the RN text says an InfiniBand-first CMIS active cable reports only while the link is up. Confirm with Raghav/Prabhu, then adjust the passive copper and CMIS wording. Delete this comment before publishing. -->
 
 | Metric | Description |
 | ---------- | ------- |

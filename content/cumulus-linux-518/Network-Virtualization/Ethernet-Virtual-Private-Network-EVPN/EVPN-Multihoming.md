@@ -30,7 +30,7 @@ On Spectrum-2 and later, an Ethernet segment can span more than two switches. Ea
 
 ## Required and Supported Features
 
-This section describes features that you must enable to use EVPN multihoming. Other supported and unsupported features are also described.
+This section describes features that you must enable to use EVPN multihoming. It also describes other supported and unsupported features.
 
 ### Required Features
 

@@ -20,7 +20,7 @@ The sections below describe some of the different ways you can install the Cumul
 You can download a Cumulus Linux image from the {{<exlink url="https://enterprise-support.nvidia.com/s/downloads" text="NVIDIA Enterprise support portal">}}.
 
 {{%notice warning%}}
-Installing the Cumulus Linux image is destructive; configuration files on the switch are not saved; copy them to a different server before installing.
+Installing the Cumulus Linux image is destructive; the installation does not save configuration files on the switch; copy them to a different server before installing.
 {{%/notice%}}
 
 In the following procedures:

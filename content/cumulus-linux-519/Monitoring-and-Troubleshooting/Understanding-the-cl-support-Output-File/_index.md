@@ -201,25 +201,6 @@ The log appears in the archive as `Support/nandlog_<ssd-serial>.bin`, named afte
 Cumulus Linux only collects the NAND debug log from a Virtium NVMe SSD. On a switch without an NVMe SSD, or with a non-Virtium NVMe SSD, `cl-support` skips NAND log collection and records the reason; the rest of the `cl-support` run continues normally. The utility that collects the log ships as part of the Cumulus Linux image, so a switch that reaches Cumulus Linux 5.19 only through an APT upgrade might not have it yet; if so, `cl-support` skips collection cleanly and records the reason.
 {{%/notice%}}
 
-<!-- REVIEW: this section documents Virtium NVMe SSDs only. The spec's Scope section also lists
-     Phison (ESLS080GTUE-A329IJ1-TYJN) and SMI (MD681GEEBC82) NVMe SSDs as in scope for NAND log
-     collection, each with its own collection utility. Every other section that actually specifies
-     behavior -- Software Requirements (the Gate rule checks only for "Virtium" in the SSD model),
-     Architecture, Performance, and Testing (whose primary negative gating fixture is a non-Virtium,
-     Silicon Motion SSD, confirming collection is *not* triggered for it) -- describes Virtium only.
-     Confirm whether Phison/SMI support actually ships in Cumulus Linux 5.19 or is only planned, and
-     update this section if so. Delete this comment before publishing. -->
-
-<!-- REVIEW: the spec also describes a new FAE CLI command, `nv action generate fae system nvme
-     dump`, to collect the NVMe NAND debug log on demand without a full cl-support run. The spec's
-     only example of it is a truncated CLI capture ("nv action generate fae system nvme dump
-     device") with no output shown, and elsewhere the CLI/UX section says cl-support collects an
-     "ssd-dump.tar.gz" file, which doesn't match the nandlog_<ssd-serial>.bin naming specified for
-     the automatic collection above -- it's unclear whether this is a second, separate output
-     artifact. Confirm the full command syntax (including whether `device` takes a value, such as
-     the NVMe controller device path) and the resulting output file name/location before
-     documenting this command, then delete this comment. -->
-
 <!-- vale off -->
 ## Delete cl-support Files
 <!-- vale on -->

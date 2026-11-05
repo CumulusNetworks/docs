@@ -307,13 +307,13 @@ The Governance system is not a long-running background agent; the packaged docke
 When governance is enabled, containers use one of these tiers:
 - `docker.slice` is the Trusted tier. Containers in this tier are not subject to CPU or memory caps.
 - `docker-limited.slice` is the Limited tier. This tier is for workloads that need more headroom than the default tier but must still remain bounded.
-- `docker-restricted.slice` is the Restricted tier. This is the default tier for images that are not whitelisted. 
+- `docker-restricted.slice` is the Restricted tier. This is the default tier for images that do not appear on the whitelist. 
 
 By default, the Restricted and Limited tiers use aggregate limits of 10% and 50% of total host CPU and total host memory. These are shared per-tier limits, not per-container reservations. If multiple containers run in the same tier, they share the tier budget.
 
 The packaged docker wrapper classifies supported docker container creation commands and places new containers directly into the correct parent slice with the appropriate `cgroup-parent`.
 
-The `cumulus-docker-resource-tier-governance.service` service reads the current policy, programs the Restricted and Limited slice limits, and reconciles existing governance-managed containers when you apply policy. If you install the Docker Compose plugin, Docker compose workloads are also governed at creation time.
+The `cumulus-docker-resource-tier-governance.service` service reads the current policy, programs the Restricted and Limited slice limits, and reconciles existing governance-managed containers when you apply policy. If you install the Docker Compose plugin, the service also governs Docker compose workloads at creation time.
 
 Governance does not move running container processes between control groups. If an existing governance-managed container needs to change tiers, the service recreates it in the correct slice. If `systemd` supervises the container, the service restarts the owning unit, which recreates the container through its normal service lifecycle.
 

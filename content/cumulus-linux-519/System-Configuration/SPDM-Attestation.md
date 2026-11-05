@@ -12,14 +12,6 @@ Cumulus Linux does not decide whether a component passes or fails. It gathers th
 
 Use attestation to detect a component that someone swapped or physically altered since manufacturing, to confirm that a switch runs the firmware you expect, and to audit a switch before you allow it to carry production traffic.
 
-<!-- REVIEW: two behaviors are left open in the specification and are therefore not documented here.
-     First, requirement 6 says the commands are pruned on a platform without a BMC or without SPDM
-     support, but adds "will check if error instead of pruning will be supported" — so the note below
-     states the requirement and stops, without saying what happens elsewhere. Second, section 5.1
-     says Cumulus Linux saves no attestation state and queries the BMC from scratch after a reboot,
-     but does not say whether previously generated measurements survive on the BMC and remain
-     readable. Confirm both, then add them. Delete this comment before publishing. -->
-
 {{%notice note%}}
 - SPDM attestation requires a switch with a BMC that supports SPDM hardware attestation.
 - If the BMC is unreachable, or if a measurement request fails or times out, the commands return an error. Cumulus Linux never presents previously generated measurements as current evidence.
@@ -41,14 +33,6 @@ Component identifiers name the root of trust and the component it protects, such
 ## Generate Signed Measurements
 
 Before you read measurements, generate a fresh set. The switch asks the component to measure its current firmware state, sign the result, and return it.
-
-<!-- REVIEW: the specification gives this command two ways. Its command-syntax table and its REST
-     table both put the component directly after `spdm`, which is the form drafted below; its flow
-     descriptions, its "Format:" line and its test cases insert `measurements` between `spdm` and the
-     component. Resolved in favor of the syntax and REST tables, because the REST table defines the
-     object model and its POST endpoint is /generate/system/security/spdm/{component-id}, with no
-     measurements node — and because `measurements` is a show leaf everywhere else in the document.
-     Confirm against a candidate build. Delete this comment before publishing. -->
 
 To generate measurements for a component, run the `nv action generate system security spdm <component-id> nonce <nonce>` command:
 

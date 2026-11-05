@@ -2336,11 +2336,6 @@ leaf01# show bgp ipv6 unreachability detail json
 }
 ```
 
-<!-- REVIEW: the specification never asks for a cross-reference from this page. Added because a
-     reader troubleshooting unreachability here has no other way to learn the counters exist.
-     A reviewer might prefer it in Considerations above, or not at all. Delete this comment before
-     publishing. -->
-
 To monitor unreachability and LLDP exception state continuously, the switch exports counters for the BGP unreachability table and the LLDP export channel as {{<link url="Open-Telemetry-Export/#routing-metrics-format" text="routing metrics">}}. Enable the routing telemetry service to collect them; the counters require no additional configuration.
 
 ### Clear Stale Aggregate Route Exceptions

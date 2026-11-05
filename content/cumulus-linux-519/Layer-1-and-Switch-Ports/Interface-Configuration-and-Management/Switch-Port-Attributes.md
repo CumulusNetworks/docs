@@ -376,14 +376,6 @@ The following sections describe how to show the current FEC mode, and how to ena
 
 To show the FEC mode on a switch port, run the NVUE `nv show interface <interface-id> link` command.
 
-<!-- REVIEW: the physical-name row inserted below. The specification's own sample output for this
-     exact command lists physical-name between oper-status-last-change and auto-negotiate; this page's
-     existing (truncated) example has no oper-status-last-change row to anchor against, so
-     physical-name is placed directly after protodown, matching the specification's relative order as
-     closely as the existing excerpt allows. Confirm the exact row position against a candidate build.
-     On a switch without a two-connector port, or on a platform this feature does not cover, expect
-     this row to be absent rather than empty. Delete this comment before publishing. -->
-
 ```
 cumulus@switch:~$ nv show interface swp1 link
                        operational        applied

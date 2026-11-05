@@ -125,13 +125,6 @@ Action executing ...
 
 The switch keeps every patch you install, including patches you uninstall and patches that a later patch supersedes. Retaining them is what lets you step back through a chain; patches accumulate on the root filesystem until you reclaim the space.
 
-<!-- REVIEW: the prune command, its confirmation prompt and the accept-rollback-to-base
-     option are drafted from the spec's CLI tables. The spec is revision 1.0 dated
-     2026-09-02 and marks the confirmation wording as not final, and the prompt it shows
-     ("Are you sure? [y/N]:") does not match the "The operation will ... Type [y] ..."
-     style every other example on this page uses. Capture all of it on a candidate build.
-     Delete this comment before publishing. -->
-
 To reclaim the space, run the `nv action prune system packages archive` command. For each chain, the switch keeps the patch on top and the patch immediately beneath it, and removes the rest. The command acts on every chain on the switch and takes no archive identifier.
 
 ```

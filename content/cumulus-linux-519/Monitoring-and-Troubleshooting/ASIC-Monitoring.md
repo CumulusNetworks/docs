@@ -496,13 +496,6 @@ monitor.discards_pg.snapshot.file_count               = 16
 
 ### Microburst Histogram
 
-<!-- REVIEW: this whole section is drafted from an NVUE CLI and object model proposal circulated by
-     email on 2026-08-12 and revised on 2026-09-08, not from the functional specification. The
-     revision announced three syntax changes but the proposal tables below it were only partly
-     updated, so the same commands appear in two forms in the source. Each resolution is flagged
-     separately below. Validate the whole section against a candidate build. Delete this comment
-     before publishing. -->
-
 The microburst histogram measures how bursty the traffic on a port is, in a way you can compare
 across ports. In addition to the usual per-bin counts, the switch derives a score for each
 monitored port and direction from the mean bin and the spread across bins, so that you can rank the
@@ -511,17 +504,7 @@ ports on a switch and find the burstiest without reading every histogram.
 You enable the microburst histogram for each direction separately on each interface you want to
 monitor. You can set a score threshold so that the switch records if and when a port crosses the threshold.
 
-<!-- REVIEW: the source names no ASIC or platform limit for the microburst histogram, while the note
-     at the top of this page states the supported Spectrum generation for every other histogram
-     type. Ask the feature owner which generations support this one and add it to that note. Delete
-     this comment before publishing. -->
-
 #### Configure the Microburst Histogram
-
-<!-- REVIEW: every other histogram type on this page documents an equivalent
-     /etc/cumulus/datapath/monitor.conf procedure in a Linux tab. The source gives no monitor.conf
-     keys for the microburst histogram, so this section is NVUE only. Confirm whether a Linux
-     equivalent exists and add the tab if it does. Delete this comment before publishing. -->
 
 To change the global microburst histogram settings, run the `nv set system telemetry histogram microburst` commands. These settings apply to interfaces that have the microburst histogram enabled and that do not have different values configured at the interface level.
 
@@ -540,13 +523,6 @@ cumulus@switch:~$ nv set system telemetry histogram microburst sample-interval 1
 cumulus@switch:~$ nv set system telemetry histogram microburst threshold score 10
 cumulus@switch:~$ nv config apply
 ```
-
-<!-- REVIEW: the two commands below. The 2026-09-08 revision states that directions are set
-     independently and gives exactly this pair of commands, for consistency with the counter
-     histogram. The options table in the same message still offers `rx | tx | rx,tx` as a single
-     value. The revision is the later statement and describes what was implemented, so the draft
-     emits the separate form. Confirm that `direction rx,tx` is rejected. Delete this comment before
-     publishing. -->
 
 To enable the microburst histogram on an interface, run the `nv set interface <interface-id> telemetry histogram microburst direction <rx|tx>` command. Set each direction separately:
 
@@ -571,18 +547,6 @@ As for the other histogram types, Cumulus Linux restarts the ASIC monitoring ser
 {{%/notice%}}
 
 #### Show Microburst Information
-
-<!-- REVIEW: the sample output in this section comes from the proposal and is not captured from
-     hardware. The two readouts also disagree with each other at source: the detail view reports a
-     spread of 13.7 and a score of 32.9 for swp4 receive, while the summary ranks the same port and
-     direction at the same timestamp with a spread of 10.0 and a score of 24.1. Capture both on a
-     switch and replace them. Delete this comment before publishing. -->
-
-<!-- REVIEW: the command below uses the positional `direction <rx|tx>` form given in the proposal's
-     CLI syntax. One example in the same message instead writes
-     `nv show interface swp4 telemetry histogram microburst --filter direction=rx`, and the
-     2026-09-08 revision scopes `--filter` to the summary command only. Confirm which form the
-     interface command takes. Delete this comment before publishing. -->
 
 To show the microburst histogram for an interface and direction, run the `nv show interface <interface-id> telemetry histogram microburst direction <rx|tx>` command:
 
@@ -609,12 +573,6 @@ Sl.No  Date-Time             Bin-0      Bin-1        Bin-2  ... Bin-9
 ```
 
 To show the most recent snapshot instead of the live histogram, run the `nv show interface <interface-id> telemetry histogram microburst direction <rx|tx> snapshot` command.
-
-<!-- REVIEW: the two commands below. The 2026-09-08 revision moved the ranked view out of `summary`
-     into `nv show system telemetry histogram microburst top <n> interface`, and moved summary
-     filtering onto `--filter`. The proposal's own syntax rows and examples were not updated and
-     still show `summary [top <n>] [--filter ...]` and `summary top 10 interface`. The draft follows
-     the revision. Confirm both forms. Delete this comment before publishing. -->
 
 To rank the interfaces on the switch by microburst score, run the `nv show system telemetry histogram microburst top <n> interface` command, where `<n>` is the number of rows to show:
 

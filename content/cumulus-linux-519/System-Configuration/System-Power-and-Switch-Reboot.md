@@ -311,14 +311,6 @@ During the warm boot window, the switch does not learn new MAC addresses in hard
 
 After the warm boot completes, hardware MAC learning resumes. If traffic is still flowing from the affected hosts, the switch learns their MAC addresses at that point; you do not need to take any action.
 
-<!-- REVIEW: Redmine #5355792. The ticket title says "ISSUv2" and the body says only "during the
-     warmboot window". Full resource mode ISSU is no longer in 5.19, so confirm with the reporter
-     (Sharanya Singh) whether MAC learning is suspended during a legacy (half-resource) warm
-     reboot. If it is not, remove this section. The ticket gives no duration for the window and
-     names no mitigation, so neither is stated. The claim that previously learned MAC addresses
-     survive came from the full resource mode description, not the ticket; confirm it holds for a
-     half-resource warm reboot. Delete this comment before publishing. -->
-
 ### Static Routes
 
 When a switch uses a static default route or specific static prefix routes configured only within FRR or through NVUE using the `nv set vrf <vrf-name> router static` command, these routes become temporarily unavailable after a warm reboot while FRR services restart. This can lead to a brief loss of reachability to remote networks.

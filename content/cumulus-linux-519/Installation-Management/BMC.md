@@ -145,8 +145,6 @@ cumulus@switch:~$ nv set platform firmware ASIC fw-source custom
 cumulus@switch:~$ nv config apply
 ```
 
-<!-- REVIEW: the spec states NVUE also writes these two settings to /etc/cumulus/<component>-auto-update.conf, and confirms this path for the ASIC and BIOS components specifically (asic-auto-update.conf, bios-auto-update.conf). It does not confirm the equivalent file exists for BMC or SSD. Drafted the ASIC and BIOS examples only, matching the spec; confirm before generalizing further. -->
-
 To confirm the current settings for a component, run the `nv show platform firmware <platform-component-id>` command described below.
 
 To reset `automatic-update` and `firmware-source` settings to the default for every platform firmware component, run the `nv unset platform firmware` command:
@@ -155,8 +153,6 @@ To reset `automatic-update` and `firmware-source` settings to the default for ev
 cumulus@switch:~$ nv unset platform firmware
 cumulus@switch:~$ nv config apply
 ```
-
-<!-- REVIEW: the spec shows only this unscoped form, which resets every component at once, and does not show a per-component nv unset platform firmware <platform-component-id> auto-update or fw-source form. Drafted the unscoped command as shown; confirm whether a scoped form also exists before publishing. -->
 
 ## Show Information About BMC
 

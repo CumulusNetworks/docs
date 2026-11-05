@@ -353,10 +353,10 @@ cumulus@switch:~$ nv set system log ztp messages state enabled
 cumulus@switch:~$ nv config apply
 ```
 
-To return the setting to its default, run the `nv unset system log ztp messages state` command:
+To return the setting to its default, run the `nv unset system log ztp messages` or `nv unset system log ztp messages state` command:
 
 ```
-cumulus@switch:~$ nv unset system log ztp messages state
+cumulus@switch:~$ nv unset system log ztp messages
 cumulus@switch:~$ nv config apply
 ```
 
@@ -364,7 +364,7 @@ cumulus@switch:~$ nv config apply
 On a switch with more than one ASIC, disabling this setting stops ZTP messages from every ASIC namespace from appearing on the console, not only the host namespace.
 {{%/notice%}}
 
-To show the current setting, run the `nv show system log ztp messages` command.
+To show the current setting, run the `nv show system log ztp` or `nv show system log ztp messages` command.
 
 ## Write ZTP Scripts
 

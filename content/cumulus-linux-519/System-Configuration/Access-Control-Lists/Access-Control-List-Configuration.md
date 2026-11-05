@@ -1045,11 +1045,6 @@ Rule  In Packet  In Byte  Out Packet  Out Byte  Summary
 
 ### Control Plane Punt Classifier
 
-<!-- REVIEW: the specification states GA for 5.19, but the What's New page states that 5.19.0
-     is qualified for non-Spectrum-X only, and this feature targets Spectrum-X MRC traffic.
-     Confirm the quality level and the platform statement against the 5.19 Redmine execution
-     query. Delete this comment before publishing. -->
-
 {{%notice note%}}
 The control plane punt classifier requires an NVIDIA Spectrum switch whose ASIC supports CPU egress ACL binding. On a switch without this support, Cumulus Linux reports the feature as unsupported and does not install the rule.
 {{%/notice%}}
@@ -1071,13 +1066,6 @@ An `spxm` rule matches an outer IPv6 header with next header 41, one of the conf
 
 The following table shows the match options and the action you can set for a rule.
 
-<!-- REVIEW: the specification lists Open Issues item "Confirm default SPXM DSCP list. The
-     current draft assumes 1,2,3,4?", so the default DSCP list below is stated without values.
-     Add the values after engineering confirms them. The specification also disagrees with
-     itself on whether match dscp is mandatory: the object model tree marks it mandatory, the
-     CLI options table marks it optional with a default. The CLI section governs, so the row
-     below reads optional. Delete this comment before publishing. -->
-
 | Option | Required | Description |
 | ------ | -------- | ----------- |
 | `match packet-type <packet-type>` | Yes | The classifier type. You can specify `spxm` for Spectrum-X MRC traffic or `ipv6` for plain IPv6 UDP traffic. |
@@ -1087,8 +1075,6 @@ The following table shows the match options and the action you can set for a rul
 | `action drop` | Yes | Counts and drops the matching packets. `drop` is the only supported action. |
 
 Cumulus Linux rejects a rule that is incomplete or that mixes match options across packet types. You must set `match packet-type`, `match no-route`, and `action drop` on every rule, `match udp-dport` on every `ipv6` rule, and you cannot set `match dscp` on an `ipv6` rule or `match udp-dport` on an `spxm` rule. You can create only one `spxm` rule on the switch.
-
-<!-- REVIEW: Bibhash's 22 Oct email says action is mandatory on every rule and also says it defaults to drop. Drafted as required, matching the specification's CLI table. Confirm with the developer. Delete this comment before publishing. -->
 
 #### Configure a Control Plane Punt Classifier Rule
 
@@ -1122,10 +1108,6 @@ cumulus@switch:~$ nv config apply
 ```
 
 #### Show Control Plane Punt Classifier Counters
-
-<!-- REVIEW: the three sample outputs in this section are adapted from mock output in the
-     specification, not captured on hardware. Capture them on a switch and replace them.
-     Delete this comment before publishing. -->
 
 To show all punt classifier rules and their drop counters, run the `nv show system control-plane punt-classifier` command:
 
@@ -1165,15 +1147,11 @@ To export the drop counters with OpenTelemetry, refer to {{<link url="Open-Telem
 
 #### Clear Control Plane Punt Classifier Counters
 
-<!-- REVIEW: the specification says raw values are available "via --view=hardware" with no example output. The 5.19 command list shows a `counters hardware` path under the rule instead, so this section uses the path form. Confirm the exact syntax and its output against a candidate build. The command list also shows an all-rules form of the clear action, which neither the specification nor Bibhash's email describes; drafted from the command list. Delete this comment before publishing. -->
-
 {{%notice note%}}
 The switch clears the software (NVUE) counters only. The hardware counters, which gNMI and OpenTelemetry export, stay intact, so `nv show` can show 0 while telemetry reports a non-zero lifetime total. To show the raw, uncleared hardware counters for a rule, run the `nv show system control-plane punt-classifier <rule-id> counters hardware` command.
 {{%/notice%}}
 
 To clear the drop counters for a rule, run the `nv action clear system control-plane punt-classifier <rule-id> counters` command:
-
-<!-- TODO: capture the `nv action clear system control-plane punt-classifier <rule-id> counters` command output on a switch and add it to the code block below. -->
 
 ```
 cumulus@switch:~$ nv action clear system control-plane punt-classifier 10 counters

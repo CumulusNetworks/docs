@@ -485,7 +485,7 @@ UnusedConnectionTimeout 5m
 {{%notice note%}}
 The inactive timeout closes a session after the configured number of minutes with no SSH channel activity (keystrokes, command output, or file-transfer bytes reset the timer). The timeout applies to sessions established after being set. You can set the inactive timeout to 0 to disable it. 
 
-The inactive timeout tracks SSH channel activity (not if a remote process is still running); therefore, the switch can close a long-running command that produces no output for longer than the timeout; active SCP and SFTP transfers, and any session with ongoing traffic are not affected. An idle connection with no open channel; for example an idle SSH multiplexing master (ControlMaster or ControlPersist), is also closed after the timeout.
+The inactive timeout tracks SSH channel activity (not if a remote process is still running); therefore, the switch can close a long-running command that produces no output for longer than the timeout; active SCP and SFTP transfers, and any session with ongoing traffic are not affected. The switch also closes an idle connection with no open channel, for example an idle SSH multiplexing master (ControlMaster or ControlPersist), after the timeout.
 {{%/notice%}}
 
 The following example configures the maximum number of concurrent sessions allowed for the user USER1 and for the user group GROUP1:
@@ -734,7 +734,7 @@ Instead of using passwords and SSH keys, you can enable certificate authenticati
 
 {{%notice note%}}
 - When you configure certificate-based authentication for a user, Cumulus Linux disables password authentication for that user.
-- A trusted CA certificate must have a valid expiration, be signed by a certificate authority matching a public key in `trusted-ca-keys`, and have a principal in the list to log in as a user.
+- A trusted CA certificate must have a valid expiration, carry a signature from a certificate authority matching a public key in `trusted-ca-keys`, and have a principal in the list to log in as a user.
 {{%/notice%}}
 
 To configure certificate-based authentication for a user:

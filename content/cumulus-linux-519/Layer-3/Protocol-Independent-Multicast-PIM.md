@@ -49,12 +49,6 @@ To configure PIM:
 When you enable or disable PIM, the FRR service restarts, which might impact traffic.
 {{%/notice%}}
 
-<!-- REVIEW: the note below is drafted from the documentation update request (RM 5254773), which
-     describes the syntax change but does not say whether FRR rewrites an existing frr.conf into the
-     new form on upgrade. The note therefore tells the reader to check the file without promising
-     either outcome. Confirm the upgrade behavior with the FRR owner and say plainly whether the
-     conversion is automatic. Delete this comment before publishing. -->
-
 {{%notice note%}}
 In Cumulus Linux 5.19, the vtysh commands that configure PIM and MSDP for a routing instance move into a `router pim [vrf <vrf-name>]` block and drop the `ip` prefix. For example, `ip pim rp 10.10.10.101` at the `switch(config)#` prompt becomes `rp 10.10.10.101` at the `switch(config-pim)#` prompt. Per-VRF PIM settings are no longer inside the `vrf <vrf-name>` block; they belong to a separate top-level `router pim vrf <vrf-name>` block.
 

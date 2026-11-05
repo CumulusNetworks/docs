@@ -642,8 +642,8 @@ Cumulus Linux does not offload `conntrack` or `--ctstate` ACL matches to switch 
 
 ### Other Unsupported Rules
 
-- Rules that have no matches and accept all packets in a chain are currently ignored.
-- Chain default rules (that are ACCEPT) are also ignored.
+- Cumulus Linux currently ignores rules that have no matches and accept all packets in a chain.
+- Cumulus Linux also ignores chain default rules (that are ACCEPT).
 
 #### Considerations
 

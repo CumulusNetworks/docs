@@ -307,23 +307,15 @@ If the switch has connected hosts configured with ARP timeout values shorter tha
 
 ### MAC Address Learning
 
-During the warm boot window, the switch does not learn new MAC addresses in hardware. A MAC address that reaches the switch for the first time during this window, such as a host that comes online or moves to a different port, is not learned until the warm boot completes. The switch preserves MAC addresses it learned before the warm boot.
+During the warm boot window, the switch does not learn new MAC addresses in hardware. The switch does not learn a MAC address that reaches it for the first time during this window, such as a host that comes online or moves to a different port, until the warm boot completes. The switch preserves MAC addresses it learned before the warm boot.
 
 After the warm boot completes, hardware MAC learning resumes. If traffic is still flowing from the affected hosts, the switch learns their MAC addresses at that point; you do not need to take any action.
-
-<!-- REVIEW: Redmine #5355792. The ticket title says "ISSUv2" and the body says only "during the
-     warmboot window". Full resource mode ISSU (Beta) is back in 5.19, so confirm with the reporter
-     (Sharanya Singh) whether MAC learning is suspended during a full resource mode warm reboot,
-     a legacy (half-resource) warm reboot, or both. The ticket gives no duration for the window
-     and names no mitigation, so neither is stated. The claim that previously learned MAC
-     addresses survive came from the full resource mode description, not the ticket; confirm it
-     holds for a half-resource warm reboot. Delete this comment before publishing. -->
 
 ### Static Routes
 
 When a switch uses a static default route or specific static prefix routes configured only within FRR or through NVUE using the `nv set vrf <vrf-name> router static` command, these routes become temporarily unavailable after a warm reboot while FRR services restart. This can lead to a brief loss of reachability to remote networks.
 
-To maintain connectivity immediately following a warm reboot, configure a kernel  default route with the `nv set interface eth0 ipv4 gateway <gateway-ip>` command, or define the `gateway` parameter under `eth0` in `/etc/network/interfaces` when managing your configuration through linux configuration files.
+To maintain connectivity immediately following a warm reboot, configure a kernel default route with the `nv set interface eth0 ipv4 gateway <gateway-ip>` command, or define the `gateway` parameter under `eth0` in `/etc/network/interfaces` when managing your configuration through linux configuration files.
 
 To add more specific prefix routes directly into the kernel routing table at interface initialization, use ifupdown2 `post-up` hooks in the `/etc/network/interfaces` file:
 

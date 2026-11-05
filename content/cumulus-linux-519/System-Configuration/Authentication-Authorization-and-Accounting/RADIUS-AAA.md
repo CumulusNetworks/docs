@@ -216,22 +216,6 @@ Cisco-AVPair += "shell:priv-lvl=15"
 The VSA vendor name (Cisco-AVPair in the example above) can have any content. The RADIUS client only checks for the string `shell:priv-lvl`.
 {{%/notice%}}
 
-<!-- REVIEW: this whole section drafts FR 4933274, "Passwordless sudo access for local and Radius-
-     authenticated users." Two things about the source document are unusual enough to flag before
-     anything else:
-     1. It carries no quality-level statement anywhere -- no Beta, GA, or Tech Preview -- which
-        publishes it as GA by default. Given the feature changes the switch's default sudo behavior
-        (see Using-sudo-to-Delegate-Privileges.md), confirm the quality level against the 5.19 Redmine
-        execution query before publishing.
-     2. The spec's revision table gives its own two most recent entries as "09-22-2026" (rev 1.6) and
-        then "09-23-2025" (rev 1.7) -- a year earlier than the revision before it. Treated as a typo for
-        2026 (rev 1.7 is clearly the most current, and the document lives at CL-Eng-Docs/Shared
-        Documents/NVUE Core/FS Docs/, not under a CL5.19/ folder like every other spec drafted this
-        session) -- but confirm this feature actually targets the 5.19 release and not a different NVUE
-        release train; "NVUE Core and AAA for release NVUE 1.15" does not by itself confirm a Cumulus
-        Linux release number.
-     Delete this comment before publishing. -->
-
 ## RADIUS Privilege-Level-to-Role Mapping
 
 In addition to the {{<link url="#optional-radius-configuration" text="privilege-level threshold">}}, you can map a specific RADIUS privilege level to a {{<link url="Role-Based-Access-Control" text="custom role">}}. An exact mapping replaces the threshold-based group assignment for that privilege level; it does not add to it.
@@ -266,13 +250,6 @@ RADIUS Privilege Level   Role
 ----------------------   ----------------
 13                       log-monitor-role
 ```
-
-<!-- REVIEW: changes to a mapping, a mapped role's classes, or the privilege threshold take effect for
-     the next RADIUS authentication; a session already logged in keeps its previously established
-     groups until it ends or the user reauthenticates. The spec states this plainly, but I could not
-     find an existing convention on this page for documenting session-transition behavior, so this is
-     the first time it appears here. Confirm the wording matches how other session-transition notes on
-     this page are phrased, if any exist outside this diff. Delete this comment before publishing. -->
 
 {{%notice note%}}
 A change to the mapping, to the classes a mapped role references, or to the privilege threshold applies starting with the next RADIUS authentication. A session that is already logged in keeps its previously assigned groups until it ends or the user reauthenticates.
@@ -529,11 +506,6 @@ The following table describes the counters.
 | `retried-auth-requests` | Retransmitted Access-Request messages. The switch also counts these messages in `auth-requests`. |
 | `auth-connection-errors` | Login authentication attempts for which the switch could not reach the server, either because no usable response arrived after all configured retries or because the connection to the server failed. |
 | `auth-bad-responses` | Malformed or otherwise invalid RADIUS responses that the switch receives from the server during an interactive login. |
-
-<!-- REVIEW: the specification's Known Limitations state that auth-bad-responses does not yet count
-     malformed packets and reads 0 in practice, and its priority list has that fix as not started.
-     The fourth bullet below says so. If the fix lands for 5.19, delete that bullet. Delete this
-     comment before publishing. -->
 
 {{%notice note%}}
 - The counters appear only after the first RADIUS authentication attempt. Until then, the `nv show system aaa radius server <server> counters` command returns no counters. This is not an error.

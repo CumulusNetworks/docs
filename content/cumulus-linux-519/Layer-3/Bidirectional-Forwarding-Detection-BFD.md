@@ -500,11 +500,6 @@ switch# exit
 {{< /tab >}}
 {{< /tabs >}}
 
-<!-- REVIEW: the third bullet below recommends 50 millisecond timers with a multiplier of 3 for
-     kernel offload at scale. The 16 Oct email gives 100 milliseconds with a multiplier of 3 as the
-     kernel minimum, so the 50 millisecond example is below the supported minimum. Left unchanged;
-     confirm the intended example value. Delete this comment before publishing. -->
-
 {{%notice note%}}
 - When you change timer or profile settings with BFD sessions at scale, there is a transient spike in CPU usage because of the increased volume of messages from the BFD daemon to the kernel driver.
 - When a BFD peer goes down because of a path failure rather than an admin-down, the remote peer sends DOWN packets. With sessions at scale, the BFD daemon receives these DOWN events, which might increase CPU usage.
@@ -573,12 +568,6 @@ switch# exit
 ### Show BFD Configuration
 
 To show the BFD offload mode, run the `nv show router bfd` command. To show only the mode, run the `nv show router bfd offload-mode` command.
-
-<!-- REVIEW: updated 2026-10-19 from Siddharth Kulkarni's 19 Oct email (nvue MR !5467): `nv show
-     router bfd` now also lists the legacy `offload` setting, which shows `disabled` by default.
-     The `offload disabled` line below is added from his description, not captured from a build, and
-     its position between `state` and `offload-mode` is a guess. Capture the output on a build that
-     includes the MR and fix the order. Delete this comment before publishing. -->
 
 ```
 cumulus@switch:~$ nv show router bfd

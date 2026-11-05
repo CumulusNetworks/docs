@@ -217,7 +217,7 @@ In some cases, the configured value might be different than the operational valu
 
 ## Signal Integrity
 
-The goal of Ethernet protocols and technologies is to ensure that the other side of a link correctly receives the bits generated on one side. The next two sections provide information about what might be happening on the link level when the link is down or bits are not received correctly.
+The goal of Ethernet protocols and technologies is to ensure that the other side of a link correctly receives the bits generated on one side. The next two sections provide information about what might be happening on the link level when the link is down or the receiving side does not get the bits correctly.
 
 ### Link State: RX Power, Signal Detection, Signal Lock, Carrier Detection, RX Fault
 
@@ -239,7 +239,7 @@ When the port transmits a 1 or a 0 bit across a link, the electrical side of the
 
 The farther the distance between the 1 and 0, the more open the eye appears. The more open the eye is, the less likely the receiving port is to misread a bit. A misread bit causes a bit-error, which results in an FCS error on the entire received packet. A lower eye measurement generally translates to a larger bit error rate (BER). FEC can correct bit errors up to a point.
 
-Eyes are not measured on fixed copper ports and are not measured when a link is down.
+The switch does not measure eyes on fixed copper ports or when a link is down.
 
 Each hardware vendor implements some quantitative measurement of eyes and some kind of qualitative measurement.
 

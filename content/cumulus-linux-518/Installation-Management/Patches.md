@@ -14,7 +14,7 @@ You can roll back and return to the base image, not a previously-running patch. 
 
 {{%notice note%}}
 - Upgrading system packages after you install a patch might overwrite the patch fixes; the switch warns you before proceeding.
-- A failed patch install rolls back all touched packages automatically to the base version so that the switch is not left in a half-installed state.
+- A failed patch install rolls back all touched packages automatically to the base version so that the switch does not remain in a half-installed state.
 - Installing and uninstalling a patch might restart affected services or reboot the system. Before you install or uninstall a patch, check the `impact` field in the `nv show system packages archive <archive-id>` command output to understand the expected impact.
 {{%/notice%}}
 

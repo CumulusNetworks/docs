@@ -14,7 +14,7 @@ When you install a patch over an existing one, the two form a chain. Patches are
 
 {{%notice note%}}
 - Upgrading system packages after you install a patch might overwrite the patch fixes; the switch warns you before proceeding.
-- A failed patch install rolls back all touched packages automatically so that the switch is not left in a half-installed state. The switch returns to the patch it was already running, or to the base image if it was not running a patch.
+- A failed patch install rolls back all touched packages automatically so that the switch does not remain in a half-installed state. The switch returns to the patch it was already running, or to the base image if it was not running a patch.
 - Installing and uninstalling a patch might restart affected services or trigger a cold reboot. Before you install or uninstall a patch, check the `impact` field in the `nv show system packages archive <archive-id>` command output to understand the expected impact.
 - Warm and fast reboots are not supported for patch installation or uninstallation.
 {{%/notice%}}
@@ -73,7 +73,7 @@ Use the `accept-rollback-to-base` option with caution. When you install a patch 
 {{%/notice%}}
 
 The switch refuses to install a patch in the following cases:
-- The patch is not designed to replace the patch already installed on the switch. You can install a patch over an existing patch only if it is designed to replace that patch.
+- The patch does not replace the patch already installed on the switch. You can install a patch over an existing patch only if the new patch replaces it.
 - The patch that this patch supersedes is no longer on the switch. To install anyway, use the `accept-rollback-to-base` option.
 - The root filesystem does not have room for the packages the patch installs. The switch also refuses to fetch a patch without room to unpack it.
 
@@ -124,13 +124,6 @@ Action executing ...
 ## Reclaim Patch Space
 
 The switch keeps every patch you install, including patches you uninstall and patches that a later patch supersedes. Retaining them is what lets you step back through a chain; patches accumulate on the root filesystem until you reclaim the space.
-
-<!-- REVIEW: the prune command, its confirmation prompt and the accept-rollback-to-base
-     option are drafted from the spec's CLI tables. The spec is revision 1.0 dated
-     2026-09-02 and marks the confirmation wording as not final, and the prompt it shows
-     ("Are you sure? [y/N]:") does not match the "The operation will ... Type [y] ..."
-     style every other example on this page uses. Capture all of it on a candidate build.
-     Delete this comment before publishing. -->
 
 To reclaim the space, run the `nv action prune system packages archive` command. For each chain, the switch keeps the patch on top and the patch immediately beneath it, and removes the rest. The command acts on every chain on the switch and takes no archive identifier.
 

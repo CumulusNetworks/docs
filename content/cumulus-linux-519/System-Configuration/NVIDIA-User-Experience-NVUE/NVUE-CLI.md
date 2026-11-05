@@ -856,7 +856,7 @@ As Cumulus Linux supports more features and functionality, NVUE syntax might cha
 
 {{%notice note%}}
 - If you upgrade the switch with package upgrade or optimized image upgrade, or if you reinstall Cumulus Linux with an embedded `startup.yaml` file using `onie-install -t`, Cumulus Linux preserves your NVUE startup configuration and translates the contents automatically to NVUE syntax required by the new release.
-- Any certificates or CRLs imported to the system with NVUE are not backed up during an ONIE image upgrade, even when staging `startup.yaml` using `onie-install -t`. You must reimport the certificates after you install the new image. 
+- An ONIE image upgrade does not back up any certificates or CRLs that you import to the system with NVUE, even when you stage `startup.yaml` using `onie-install -t`. You must reimport the certificates after you install the new image. 
 - If NVUE introduces new syntax for a feature that a snippet configures, you must remove the snippet before upgrading.
 {{%/notice%}}
 
@@ -889,14 +889,14 @@ To back up and restore the configuration file:
    ```
 
 {{%notice infonopad%}}
-If you pre-stage your NVUE `startup.yaml` during an {{<link url="Installing-a-New-Cumulus-Linux-Image-with-ONIE/#install-using-a-local-file" text="ONIE image installation from Cumulus Linux">}} with the `onie-install -t` option, certificates and CRLs configured on the switch are not backed up or automatically restored. After the switch boots with the new image, features that rely on certificates (such as NVUE API, gNMI, OTEL, etc.) remain unavailable until the certificates are {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="reimported">}}. When reimporting certificates and CRLs with the `nv action import system security` command, use the same `certificate-id` that was originally assigned to each certificate in the prior release.
+If you pre-stage your NVUE `startup.yaml` during an {{<link url="Installing-a-New-Cumulus-Linux-Image-with-ONIE/#install-using-a-local-file" text="ONIE image installation from Cumulus Linux">}} with the `onie-install -t` option, the installation does not back up or automatically restore certificates and CRLs configured on the switch. After the switch boots with the new image, features that rely on certificates (such as NVUE API, gNMI, OTEL, etc.) remain unavailable until the certificates are {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="reimported">}}. When reimporting certificates and CRLs with the `nv action import system security` command, use the same `certificate-id` that was originally assigned to each certificate in the prior release.
 {{%/notice%}}
 
 ## Maximum Revisions Limit
 
 You can control the maximum number of revisions stored in the NVUE database to ensure efficient resource management and system performance. When the number of revisions reaches the maximum set, the switch automatically deletes the oldest revisions to make room for new ones when you create them. The lower revision number is the oldest; for example revision 10 is older than revision 100.
 
-NVUE does not delete the `startup`, `empty`, or `applied` revisions and does not include them in the total revision count. The revision from which NVUE creates the last `applied` revision is also protected from deletion.
+NVUE does not delete the `startup`, `empty`, or `applied` revisions and does not include them in the total revision count. NVUE also protects from deletion the revision from which it creates the last `applied` revision.
 
 Deletion occurs in batches to reduce the number of system operations.
 
@@ -921,12 +921,6 @@ NVUE_MAX_REVISIONS=60
 
  NVUE stores and looks up every IPv6 address in its normalized (canonical) form. NVUE normalizes an address when you configure it, so the address that `nv show` returns is not always the address you typed.
 
-<!-- REVIEW: the four rules in the table below. The page previously gave only two examples,
-     `2001:0db8::0001` to `2001:db8::1` and `0::ffff:10.0.0.1` to `::ffff:10.0.0.1`. The lowercase
-     and zero-run rules are drafted from the canonical form those two examples imply, not from a
-     source that states them. Confirm all four against a switch before publishing. Delete this
-     comment before publishing. -->
-
 The following table shows how NVUE normalizes an IPv6 address.
 
 | Rule | Address you configure | Address NVUE stores and shows |
@@ -935,9 +929,6 @@ The following table shows how NVUE normalizes an IPv6 address.
 | NVUE writes hexadecimal digits in lowercase. | `2001:DB8::1` | `2001:db8::1` |
 | NVUE replaces the longest run of zero groups with `::`. | `2001:db8:0:0:0:0:0:1` | `2001:db8::1` |
 | For an IPv4-mapped address, NVUE normalizes only the IPv6 portion and keeps the IPv4 portion in the IETF-recommended mixed notation. | `0::ffff:10.0.0.1` | `::ffff:10.0.0.1` |
-
-<!-- REVIEW: the worked example below is drafted, not captured. Run these commands on a switch and
-     replace the `nv show` output with the real readout. Delete this comment before publishing. -->
 
 The following example configures an interface address in an unnormalized form:
 
@@ -954,13 +945,6 @@ cumulus@switch:~$ nv show interface swp1 ip address
 ------------------  -------------------  -------------------
 2001:db8::1/64
 ```
-
-<!-- TODO: capture the real `nv show interface swp1 ip address` readout on a switch and replace the block above -->
-
-<!-- REVIEW: this section covers interface addresses only. The feature owner has said that
-     normalization also applies in several other configuration areas and offered to send the list of
-     commands, which has not arrived. Add those areas here when the list is available. Delete this
-     comment before publishing. -->
 
 For information about normalizing the IPv6 addresses in a configuration file that you copy manually during an upgrade, refer to step 4 in {{<link url="Upgrading-Cumulus-Linux/#onie-image-upgrade" text="ONIE Image Upgrade">}}.
 

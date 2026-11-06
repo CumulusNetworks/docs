@@ -37,7 +37,7 @@ cumulus@switch:~$ nv config apply
 
 To configure specific MAC addresses allowed to access the port, run the `nv set interface <interface-id> port-security static-mac` command.
 
-You can configure a maximum of 450 static MAC addresses per interface.
+You can configure a maximum of 450 static MAC addresses for each interface.
 
 ```
 cumulus@switch:~$ nv set interface swp1 port-security static-mac 00:02:00:00:00:05

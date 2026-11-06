@@ -7,7 +7,7 @@ toc: 3
 Static VXLAN tunnels serve to connect two VTEPs in a given environment. Static VXLAN tunnels are the simplest deployment mechanism for small scale environments and are interoperable with other vendors that adhere to VXLAN standards. Because you map which VTEPs are in a particular VNI, you can avoid the tedious process of defining connections to every VLAN on every other VTEP on every other rack.
 
 {{%notice note%}}
-Cumulus Linux supports *more* than one VXLAN ID per VLAN-aware bridge but does not support more than one VXLAN ID per traditional bridge.
+Cumulus Linux supports *more* than one VXLAN ID for each VLAN-aware bridge but does not support more than one VXLAN ID for each traditional bridge.
 {{%/notice%}}
 
 ## Configure Static VXLAN Tunnels

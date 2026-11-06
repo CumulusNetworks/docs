@@ -675,7 +675,7 @@ Cumulus Linux uses the administrative distance to choose which routing protocol 
 
 Cumulus Linux provides several commands to change the administrative distance for OSPF routes. The default value is 110.
 
-This example command sets the distance for an entire group of routes, rather than a specific route.
+This example command sets the distance for an entire group of routes, instead of a specific route.
 
 ```
 cumulus@switch:~$ sudo vtysh

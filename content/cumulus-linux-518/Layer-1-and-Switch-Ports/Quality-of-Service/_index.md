@@ -510,7 +510,7 @@ Flow control influences data transmission to manage congestion along a network p
 
 Cumulus Linux supports the following flow control mechanisms:
 - Link pause (IEEE 802.3x), sends specialized ethernet frames to an adjacent layer 2 switch to stop or *pause* **all** traffic on the link during times of congestion.
-- Priority Flow Control (PFC), which is an upgrade of link pause that IEEE 802.1bb defines, extends the pause frame concept to act on a per switch priority value basis instead of an entire link. A PFC pause frame indicates to the peer which specific switch priority value to pause, while other switch priority values or queues continue transmitting.
+- Priority Flow Control (PFC), which is an upgrade of link pause that IEEE 802.1bb defines, extends the pause frame concept to act on each switch priority value instead of an entire link. A PFC pause frame indicates to the peer which specific switch priority value to pause, while other switch priority values or queues continue transmitting.
 
 {{%notice note%}}
 You cannot configure link pause and PFC on the same port.
@@ -2088,7 +2088,7 @@ To unset the lossy headroom for a priority group, comment out the `priority_grou
 
 ### Extra Lossy Headroom
 
-In certain cases, higher forwarding latency and a high probability of small packets increase the risk of headroom buffer exhaustion on lossy traffic and the current default maximum headroom of 150 KB (153600 bytes) per port might be insufficient.
+In certain cases, higher forwarding latency and a high probability of small packets increase the risk of headroom buffer exhaustion on lossy traffic and the current default maximum headroom of 150 KB (153600 bytes) for each port might be insufficient.
 
 To configure additional headroom (on top of the default threshold of 153600 bytes) for lossy priority groups before the switch drops packets, run the `nv set interface <interface-id> qos headroom lossy extra-threshold` command. You can specify a value between 192 and 1236480 bytes.
 
@@ -2141,8 +2141,8 @@ Ports that have a lossless priority group enabled with priority flow control can
 QoS currently supports a single lossless priority group.
 
 You can configure the following headroom settings:
-- Required headroom per priority group in bytes. The switch converts this value to cells. You can set a value between 19456 and 2621440.
-- Exclusive headroom per priority group in bytes. The switch converts this value to cells. You can set a value between 19456 and 2621440.
+- Required headroom for each priority group in bytes. The switch converts this value to cells. You can set a value between 19456 and 2621440.
+- Exclusive headroom for each priority group in bytes. The switch converts this value to cells. You can set a value between 19456 and 2621440.
 - Oversubscription ratio for the shared headroom pool. You can set a value between 1 and 256.
 
 {{%notice note%}}

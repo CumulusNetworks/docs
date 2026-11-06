@@ -340,7 +340,7 @@ cumulus@switch:~$ nv unset interface swp1 acl EXAMPLE1
 cumulus@switch:~$ nv config apply
 ```
 
-To show ACL statistics per interface, such as the total number of bytes that match the ACL rule, run the `nv show interface <interface-id> acl <acl-id> statistics` or `nv show interface <interface-id> acl <acl-id> statistics <rule-id>` command.
+To show ACL statistics for each interface, such as the total number of bytes that match the ACL rule, run the `nv show interface <interface-id> acl <acl-id> statistics` or `nv show interface <interface-id> acl <acl-id> statistics <rule-id>` command.
 
 To see the list of all NVUE ACL commands, run the `nv list-commands acl` command.
 
@@ -432,7 +432,7 @@ You can use wildcards or variables to specify chain and interface lists.
 
 {{%notice note%}}
 - You can only use *swp+* and *bond+* as wildcard names.
-- swp+ rules apply as an aggregate, *not* per port. If you want to apply per port policing, specify a specific port instead of the wildcard.
+- swp+ rules apply as an aggregate, *not* for each port. If you want to apply policing to each port, specify a specific port instead of the wildcard.
 {{%/notice%}}
 
 ```

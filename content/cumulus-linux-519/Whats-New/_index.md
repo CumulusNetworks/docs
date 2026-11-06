@@ -66,7 +66,7 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 
 ## Release Considerations
 
-Review the following considerations before you upgrade to Cumulus Linux 5.19.
+Before you upgrade to Cumulus Linux 5.19, review the following considerations.
 
 ### Upgrade Requirements
 
@@ -144,16 +144,15 @@ After you upgrade to Cumulus Linux, running NVUE configuration commands might ov
 - {{<link url="NVUE-CLI/#configure-nvue-to-ignore-linux-files" text="Configure NVUE to ignore certain underlying Linux files">}} when applying configuration changes.
 - Use Linux and FRR (vtysh) commands instead of NVUE for **all** switch configuration.
 
-### nv show vrf \<vrf-id\> router bgp address-family \<address-family\>-unreachability route -o json Command
+### Show global BGP Unreachability Routes Command Change
 
-In Cumulus Linux 5.18 and later, running the `nv show vrf <vrf-id> router bgp address-family <address-family>-unreachability route -o json` command is now equivalent to running the vtysh `show bgp vrf <vrf-id> ipv6 unreachability json brief` command. Therefore, certain fields, such as path details and reporter AS, no longer show. To show a more detailed view, run the `nv show vrf <vrf-id> router bgp address-family <address-family>-unreachability route <prefix> -o json` command.
+In Cumulus Linux 5.19 and later, running the `nv show vrf <vrf-id> router bgp address-family <address-family>-unreachability route -o json` command is now equivalent to running the vtysh `show bgp vrf <vrf-id> ipv6 unreachability json brief` command. Therefore, certain fields, such as path details and reporter AS, no longer show. To show a more detailed view, run the `nv show vrf <vrf-id> router bgp address-family <address-family>-unreachability route <prefix> -o json` command.
 
 ### BFD Offload Configuration and Show Output
 
-Cumulus Linux 5.19 replaces the BFD offload boolean with an offload mode that selects where BFD packet processing runs; see {{<link url="Bidirectional-Forwarding-Detection-BFD/#bfd-offload" text="BFD Offload">}}.
-
-- Cumulus Linux 5.19 introduces the `nv set router bfd offload-mode <control-plane|kernel|hardware>` command, which is the recommended way to configure BFD offload. Cumulus Linux still supports the `nv set router bfd offload <enabled|disabled>` command as legacy configuration, and NVIDIA plans to remove it in a future release. When you upgrade, Cumulus Linux keeps an existing `offload` setting unchanged; `offload enabled` is the same as `offload-mode kernel` and `offload disabled` is the same as `offload-mode control-plane`. See {{<link url="Bidirectional-Forwarding-Detection-BFD/#upgrade-notes" text="Upgrade Notes">}}.
-- The per-peer offload field now reports the engine carrying the session. In `nv show vrf <vrf-id> router bfd peers` output, the `Offloaded` column shows `kernel`, `hardware`, or `control-plane`; in vtysh and JSON output, `offload-status` shows the same three values. In Cumulus Linux 5.18 and earlier, this field shows only `offloaded` or `control-plane`. Update any automation or monitoring that matches on the string `offloaded`.
+Cumulus Linux 5.19 replaces the BFD offload option with an offload mode that selects where BFD packet processing runs; see {{<link url="Bidirectional-Forwarding-Detection-BFD/#bfd-offload" text="BFD Offload">}}.
+- Cumulus Linux 5.19 introduces the `nv set router bfd offload-mode <control-plane|kernel|hardware>` command, which NVIDIA recommends you run to configure BFD offload. Cumulus Linux still supports the `nv set router bfd offload enabled` and `nv set router bfd offload disabled` commands as legacy configuration, and NVIDIA plans to remove it in a future release. When you upgrade, Cumulus Linux keeps an existing `offload` setting unchanged; `offload enabled` is the same as `offload-mode kernel` and `offload disabled` is the same as `offload-mode control-plane`. See {{<link url="Bidirectional-Forwarding-Detection-BFD/#upgrade-notes" text="Upgrade Notes">}}.
+- The offload field for each peer now reports the engine carrying the session. In `nv show vrf <vrf-id> router bfd peers` output, the `Offloaded` column shows `kernel`, `hardware`, or `control-plane`; in vtysh and JSON output, `offload-status` shows the same three values. In Cumulus Linux 5.18 and earlier, this field shows only `offloaded` or `control-plane`. Update any automation or monitoring that matches on the string `offloaded`.
 
 ### RIB-to-FIB Filter Protocol Values
 

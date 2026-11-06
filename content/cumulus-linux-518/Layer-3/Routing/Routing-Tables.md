@@ -59,7 +59,7 @@ total-routes    34
 [protocol]      connected 
 ```
 
-To show the total number of routes per protocol in the routing table, run the `nv show vrf <vrf-id> router rib ipv4 route-count protocol` command or the `nv show vrf <vrf-id> router rib ipv6 route-count protocol` command:
+To show the total number of routes for each protocol in the routing table, run the `nv show vrf <vrf-id> router rib ipv4 route-count protocol` command or the `nv show vrf <vrf-id> router rib ipv6 route-count protocol` command:
 
 ```
 cumulus@switch:~$ nv show vrf default router rib ipv4 route-count protocol

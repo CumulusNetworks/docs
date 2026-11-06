@@ -239,7 +239,7 @@ By default, if some of the multipaths do not have link bandwidth, Cumulus Linux 
 - Skip paths without link bandwidth and perform W-ECMP among the others (if at least some paths have link bandwidth).
 - Assign a low default weight (value 1) to paths that do not have link bandwidth.
 
-Change this setting per BGP instance for both IPv4 and IPv6 unicast routes in the BGP instance. For EVPN, set the options on the tenant VRF.
+Change this setting for each BGP instance for both IPv4 and IPv6 unicast routes in the BGP instance. For EVPN, set the options on the tenant VRF.
 
 {{< tabs "TabID223 ">}}
 {{< tab "NVUE Commands">}}

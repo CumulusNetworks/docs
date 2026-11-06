@@ -878,7 +878,7 @@ flags
 [remote-vtep]         10.10.10.2 
 ```
 
-### Show Ethernet Segment per VNI Information
+### Show Ethernet Segment for Each VNI Information
 
 To display the Ethernet segments learned for each VNI, run the vtysh `show evpn es-evi` command. For example:
 
@@ -1087,9 +1087,9 @@ cumulus@switch:~$ nv show evpn multihoming bgp-info esi -o json
 }
 ```
 
-### Show BGP Ethernet Segment per VNI Information
+### Show BGP Ethernet Segment for Each VNI Information
 
-To display the Ethernet segments per VNI learned through type-1 and type-4 routes, run the vtysh `show bgp l2vpn evpn es-evi` command.
+To display the Ethernet segments for each VNI learned through type-1 and type-4 routes, run the vtysh `show bgp l2vpn evpn es-evi` command.
 
 ```
 cumulus@switch:~$ sudo vtysh

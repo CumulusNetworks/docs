@@ -586,7 +586,7 @@ cumulus@switch:~$ sudo -E apt-get remove tacplus-client
 cumulus@switch:~$ sudo -E apt-get autoremove
 ```
 
-To remove the TACACS+ client configuration files as well as the packages (recommended), use this command:
+To remove the TACACS+ client configuration files as well as the packages (which NVIDIA recommends), use this command:
 
 ```
 cumulus@switch:~$ sudo -E apt-get autoremove --purge

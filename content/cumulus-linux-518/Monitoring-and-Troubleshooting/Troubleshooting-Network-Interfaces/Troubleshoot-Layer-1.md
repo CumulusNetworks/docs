@@ -158,7 +158,7 @@ Only about half of all modern link types support auto-negotiation. The next subs
 
 1000BASE-T SFPs have an onboard PHY that performs auto-negotiation automatically on the RJ45 side without involving the port. Do not change the default auto-negotiation setting on these ports; on NVIDIA switches, auto-negotiation is *ON*.
 
-For 1000BASE-X, auto-negotiation is highly recommended on 1G optical links to detect unidirectional link failures.
+For 1000BASE-X, NVIDIA strongly recommends auto-negotiation on 1G optical links to detect unidirectional link failures.
 
 For all other optical modules except for 1000BASE-X, there is no auto-negotiation standard.
 

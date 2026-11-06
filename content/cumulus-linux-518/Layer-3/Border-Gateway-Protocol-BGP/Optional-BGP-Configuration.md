@@ -1638,7 +1638,7 @@ When you configure BGP DC PIC, Cumulus Linux assigns one next hop group for each
 To configure BGP DC PIC:
 - **On a leaf only**, enable the BGP advertise origin option so that BGP can attach the SOO extended community to all routes advertised to its peers from the source where the routes originate.
 - **On all switches**, enable the BGP next hop group per source option so that when BGP receives routes with the SOO extended community, it allocates a next hop group for each source.
-- **On a spine and super spine**, set the {{<link url="#enable-read-only-mode" text="read-only mode">}} BGP convergence wait time to 30 and the convergence wait establish wait time to 15. These are the minimum recommended timer settings to ensure optimal convergence when using BGP DC PIC.
+- **On a spine and super spine**, set the {{<link url="#enable-read-only-mode" text="read-only mode">}} BGP convergence wait time to 30 and the convergence wait establish wait time to 15. NVIDIA recommends these minimum timer settings to ensure optimal convergence when you use BGP DC PIC.
 
 {{%notice note%}}
 Changing the BGP advertise origin option or the BGP next hop group per source option can cause traffic disruption.

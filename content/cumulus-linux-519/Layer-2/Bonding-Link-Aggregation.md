@@ -106,7 +106,7 @@ You can set these configuration options for a bond.
 |Minimum number of links| The minimum number of links that must be active before the bond goes into service. You can set a value between 0 and 255. The default value is 1, which indicates that the bond must have at least one active member.<br><br>Use a value greater than 1 if you need higher level services to ensure a minimum aggregate bandwidth level before activating a bond.<br><br>If the number of active members drops below this setting, the bond appears to upper-level protocols as link-down. When the number of active links returns to greater than or equal to this value, the bond becomes link-up.|
 
 {{%notice note%}}
-Cumulus Linux sets the bond configuration options to the recommended values by default; use caution when changing settings.
+Cumulus Linux sets the bond configuration options to the values that NVIDIA recommends by default; use caution when changing settings.
 {{%/notice%}}
 
 To set the link aggregation mode on bond1 to balance-xor mode:

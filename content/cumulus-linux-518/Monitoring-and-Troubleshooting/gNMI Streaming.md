@@ -610,7 +610,7 @@ An asterisk (*) in the `Description` column of the tables below indicates that m
 | `/interfaces/interface[name]/state/mtu` | Size of the largest packet that can be sent or received on the interface, specified in octets. For interfaces used for transmitting network datagrams, this is the size of the largest network datagram that the interface can send.|
 | `/interfaces/interface[name]/state/name​` | The name of the interface.|
 | `/interfaces/interface[name]/state/oper-status` | Current operational state of an interface. |
-| `/interfaces/interface[name]/state/protodown​` | Indicates if the interface is administratively held down by a protocol or system process rather than by user action.|
+| `/interfaces/interface[name]/state/protodown​` | Indicates if the interface is administratively held down by a protocol or system process instead of by user action.|
 | `/interfaces/interface[name]/state/type​` | The interface type. |
 | `/interfaces/interface[name]/state/description`| The interface description.|
 | `/interfaces/interface[name]/state/transceiver` | The transceiver on the interface. |

@@ -1119,7 +1119,7 @@ The switch collects and exports the adaptive routing, SRv6, and packet trimming 
 | `nvswitch_interface_tc_trimmed_unicast_pkts [interface][tc]`| Number of packets that were trimmed on the interface and traffic class.|
 
 {{%notice note%}}
-`nvswitch_ar_congestion_changes` is a cumulative counter that only increases. Adaptive routing selects an egress port for each packet, so the counter tracks packet forwarding rather than congestion:
+`nvswitch_ar_congestion_changes` is a cumulative counter that only increases. Adaptive routing selects an egress port for each packet, so the counter tracks packet forwarding instead of congestion:
 
 - The counter increments at least once for every eligible packet that leaves an ECMP port with adaptive routing enabled. Traffic that is eligible for adaptive routing, such as RoCEv2, increments the counter. The counter stays flat when the ports are idle or carry only TCP traffic.
 - Congestion events and link-down events do not increment the counter. The counter shows no distinct jump when either occurs, and it does not stop increasing during sustained congestion.

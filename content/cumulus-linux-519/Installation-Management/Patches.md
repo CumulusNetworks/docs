@@ -8,9 +8,9 @@ The Cumulus Linux patch framework delivers small, targeted, reversible package f
 
 You can install a critical fix within your own maintenance window and back it out without a full image upgrade.
 
-Patches only contain changed packages and complement rather than replace the standard release; NVIDIA rolls every patch into a subsequent release.
+Patches only contain changed packages and complement the standard release instead of replacing it; NVIDIA rolls every patch into a subsequent release.
 
-When you install a patch over an existing one, the two form a chain. Patches are cumulative within a patch chain. Each patch includes the fixes from the earlier patches it replaces. Uninstalling a patch returns the switch to the patch underneath it rather than to the base image, and you step back through a chain one patch at a time. Uninstalling a patch with no patch underneath it restores the affected packages to their base-image versions.
+When you install a patch over an existing one, the two form a chain. Patches are cumulative within a patch chain. Each patch includes the fixes from the earlier patches it replaces. Uninstalling a patch returns the switch to the patch underneath it instead of to the base image, and you step back through a chain one patch at a time. Uninstalling a patch with no patch underneath it restores the affected packages to their base-image versions.
 
 {{%notice note%}}
 - Upgrading system packages after you install a patch might overwrite the patch fixes; the switch warns you before proceeding.
@@ -177,7 +177,7 @@ impact        Installing swaps switchd and ptmd to the fixed versions and restar
 installed-at  2026-07-27T18:35:24Z
 ```
 
-The `installed-at` field shows when the patch became the running version of its packages. If you uninstall a later patch and the switch restores this one, `installed-at` shows the time of that step back rather than the time you first installed the patch.
+The `installed-at` field shows when the patch became the running version of its packages. If you uninstall a later patch and the switch restores this one, `installed-at` shows the time of that step back instead of the time you first installed the patch.
 
 The `nv show system version` command shows if the switch has a patch installed.
 

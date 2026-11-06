@@ -413,7 +413,7 @@ Cumulus Linux does *not* enable resilient hashing by default. When you enable re
 An ECMP route counts as a single route with multiple next hops.
 {{%/notice%}}
 
-All ECMP routes must use the same number of buckets (you cannot configure the number of buckets per ECMP route).
+All ECMP routes must use the same number of buckets (you cannot configure the number of buckets for each ECMP route).
 
 {{%notice note%}}
 A larger number of ECMP buckets reduces the number of flows that move to a different next hop when you add a new next hop to an ECMP route. However, the system supports fewer ECMP routes. If you install the maximum number of ECMP routes, new ECMP routes log an error and do not install.
@@ -532,7 +532,7 @@ The benefits of using adaptive routing include:
 - The switch distributes incoming traffic equally (or according to their weights) between the available IP next hops, which helps to minimize latency and network congestion.
 - If the cumulative rate of one or more flows exceeds the link bandwidth of the individual uplink port, adaptive routing can distribute the traffic dynamically between multiple uplink ports; the available bandwidth for these flows is not limited to the link bandwidth of an individual uplink port.
 
-With adaptive routing, the switch forwards adaptive routing eligible packets to the less loaded path on a per packet basis to best utilize the fabric resources and avoid congestion. The change decision for port selection is one microsecond; you cannot change it.
+With adaptive routing, the switch forwards adaptive routing eligible packets to the less loaded path for each packet to best utilize the fabric resources and avoid congestion. The change decision for port selection is one microsecond; you cannot change it.
 
 Cumulus Linux supports ECMP resource optimization for adaptive routing, which addresses the requirement of large numbers of ECMP groups during routing protocol convergence in transient scenarios.
 
@@ -623,7 +623,7 @@ LAG hash randomizer is supported on a Spectrum-4 or later and only for static la
 
 Link utilization, when crossing a threshold, is one of the parameters in the adaptive routing decision. The default link utilization threshold percentage on an interface is 70. If you enable the adaptive routing `profile-custom`, you can change the percentage to a value between 1 and 100.
 
-Link utilization is off by default; you must enable the global link utilization setting to use the link utilization thresholds set on adaptive routing interfaces. You cannot enable or disable link utilization per interface.
+Link utilization is off by default; you must enable the global link utilization setting to use the link utilization thresholds set on adaptive routing interfaces. You cannot enable or disable link utilization for each interface.
 
 {{%notice note%}}
 - You can enable link utilization only when you enable the adaptive routing `profile-custom`.

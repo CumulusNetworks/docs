@@ -18,7 +18,7 @@ The RD disambiguates EVPN routes in different VNIs (they can have the same MAC a
 
 For eBGP EVPN peering, the peers are in a different AS so using an automatic RT of *AS:VNI* does not work for route import. Therefore, Cumulus Linux treats the import RT as *\*:VNI* to determine which received routes apply to a particular VNI. This only applies when the switch auto-derives the import RT.
 
-If you do *not* want to derive RDs and RTs (layer 2 RTS) automatically, you can define them manually. The following example commands are per VNI.
+If you do *not* want to derive RDs and RTs (layer 2 RTS) automatically, you can define them manually. The following example commands apply to each VNI.
 
 {{< tabs "TabID19 ">}}
 {{< tab "NVUE Commands ">}}
@@ -231,7 +231,7 @@ address-family l2vpn evpn
 
 ## EVPN Unreachability in Disjoined Planes
 
-In EVPN disjoined multi-plane topologies, each GPU in a cluster connects to multiple independent network planes. Leaf switches perform route aggregation per tenant VRF for scalability but this suppresses visibility of individual host link failures. EVPN unreachability signaling in a tenant VRF sends a route to advertise host unreachability after a link failure, enabling leaf switches to send LLDP TLVs informing connected NICs to avoid unreachable paths.
+In EVPN disjoined multi-plane topologies, each GPU in a cluster connects to multiple independent network planes. Leaf switches perform route aggregation for each tenant VRF for scalability but this suppresses visibility of individual host link failures. EVPN unreachability signaling in a tenant VRF sends a route to advertise host unreachability after a link failure, enabling leaf switches to send LLDP TLVs informing connected NICs to avoid unreachable paths.
 
 {{%notice note%}}
 - If you are migrating from connected planes with BGP disaggregation, remove BGP disaggregation configuration before configuring EVPN unreachability in disjoined planes.

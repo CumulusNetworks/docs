@@ -35,7 +35,7 @@ The switch exports these xPaths on Spectrum-6 switches only. For information abo
 {{%notice note%}}
 - Every rule with packet type `PACKET_TYPE_SPXM` shares one counter. Each of those rule IDs reports the same value, so do not add the values together.
 - Each IPv6 UDP destination port has its own counter.
-- The counters cover the CPU egress of one ASIC, so they are per ASIC rather than per front panel interface.
+- The counters cover the CPU egress of one ASIC, so they are totals for each ASIC instead of for each front panel interface.
 - These paths are read-only. Configure the punt classifier with the NVUE commands described in {{<link url="Access-Control-List-Configuration/#control-plane-punt-classifier" text="Control Plane Punt Classifier">}}.
 - The DSCP values that a rule matches are not available over gNMI.
 {{%/notice%}}

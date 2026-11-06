@@ -107,7 +107,7 @@ Back up `frr.conf` (or any configuration files you want to remove) before procee
 
 ## Interface IP Addresses and VRFs
 
-FRR inherits the IP addresses and any associated routing tables for the network interfaces from the `/etc/network/interfaces` file. This is the recommended way to define the addresses; do **not** create interfaces using FRR. For more information, see {{<link url="Interface-Configuration-and-Management/#interface-ip-addresses" text="Configure IP Addresses">}} and {{<link url="Virtual-Routing-and-Forwarding-VRF">}}.
+FRR inherits the IP addresses and any associated routing tables for the network interfaces from the `/etc/network/interfaces` file. NVIDIA recommends you define the addresses this way; do **not** create interfaces using FRR. For more information, see {{<link url="Interface-Configuration-and-Management/#interface-ip-addresses" text="Configure IP Addresses">}} and {{<link url="Virtual-Routing-and-Forwarding-VRF">}}.
 
 ## vtysh Modal CLI
 

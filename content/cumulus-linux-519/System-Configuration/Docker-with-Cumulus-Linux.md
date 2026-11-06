@@ -408,7 +408,7 @@ Use `systemctl reload` instead of `systemctl restart` for normal policy updates.
 - Containers created before you install the governance wrapper, or other containers without governance metadata, count as unmanaged, and governance leaves them untouched. To bring these containers under governance, stop and remove them, then recreate them.
 - Containers created with an explicit Docker `--cgroup-parent` or `Compose cgroup_parent` remain under user control and are not re-tiered by governance.
 - Retiering an existing container can require a stop, remove, and recreate operation or, for workloads that `systemd` supervises, a restart of the owning unit. Plan policy changes accordingly for stateful or production workloads.
-- Governance enforces aggregate ceilings per tier. It does not provide guaranteed minimum CPU or memory reservations for each container inside a tier.
+- Governance enforces aggregate ceilings for each tier. It does not provide guaranteed minimum CPU or memory reservations for each container inside a tier.
 
 ### Verify Container Placement and Tier Limits
 

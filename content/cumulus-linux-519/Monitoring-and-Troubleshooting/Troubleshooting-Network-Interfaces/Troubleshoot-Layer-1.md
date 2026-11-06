@@ -205,7 +205,7 @@ Both sides of a link must have the same FEC encoding algorithm enabled for the l
 
 - The Reed-Solomon RS-FEC(528,514) algorithm adds 14 bits of encoding information to a 514 bit stream. It replaces and uses the same amount of overhead in the 64B/66B encoding so that it does not affect the bit rate. The algorithm can correct 7 bit errors in a 514 bit stream. RS(528,514) applies to 25G (NRZ) lanes, including 25G, 50G-CR2, and 100G-SR4/CR4 interfaces.
 - The Reed-Solomon RS-FEC(544,514) algorithm adds 30 bits of overhead to correct 14+ bit errors per 514 bits. FEC RS is required on 50G (PAM4) lanes; all 200G, 400G, 100G-CR2 and 50G-CR interfaces.
-- Base-R (also known as FireCode/FC) FEC adds 32 bits per 32 blocks of 64B/66B to correct 11 bits per 2048 bits. It replaces one bit per block, so it uses the same amount of overhead as 64B/66B encoding. It applies to 25G interfaces only. The algorithm executes faster than the RS-FEC algorithm, so it reduces latency. The switch implements both RS-FEC and Base-R FEC in hardware.
+- Base-R (also known as FireCode/FC) FEC adds 32 bits per 32 blocks of 64B/66B to correct 11 bits per 2048 bits. It replaces one bit for each block, so it uses the same amount of overhead as 64B/66B encoding. It applies to 25G interfaces only. The algorithm executes faster than the RS-FEC algorithm, so it reduces latency. The switch implements both RS-FEC and Base-R FEC in hardware.
 - None/Off: FEC is optional and is often useful on 25G lanes, which includes 100G-SR4/CR4 and 50G-CR2 links. If the cable quality is good enough to achieve a BER of 10<sup>-12</sup> without FEC, then there is no reason to enable it. 10G/40G links should never require FEC. If a 10G/40G link has errors, replace the cable or module that is causing the error.
 - Auto: FEC can be auto-negotiated between 2 devices. When auto-negotiation is *ON*, the default FEC setting is *auto*, so that the switch sends and receives FEC capability information with the neighbor. The negotiation result determines the port FEC active/operational setting. *Auto* is the default setting on NVIDIA switches (auto-negotiation *ON* is the default setting).
 - If auto-negotiation is disabled on 100G and 25G interfaces, you must set FEC to *OFF**, RS, or BaseR to match the neighbor. The FEC default setting of *auto* does not link up when auto-negotiation is disabled.
@@ -815,7 +815,7 @@ To determine if a switch supports higher power modes, consult the hardware manuf
 
 NVIDIA switches vary in their support of high power modules. For example, on some NVIDIA Spectrum 1 switches, only the first and last two QSFP ports support up to QSFP power class 6 (4.5W) and only the first and last two SFP ports support SFP power class 3 (2.0W) modules. Other Spectrum 1 switches do not support high power ports at all. Consult the hardware manufacturer specifications for exact details of which ports support high power modules.
 
-The total bus power rating is the default power rating per port type (SFP: 1.5W, QSFP: 3.5W) multiplied by the number of ports of each type present on the bus.
+The total bus power rating is the default power rating for each port type (SFP: 1.5W, QSFP: 3.5W) multiplied by the number of ports of each type present on the bus.
 
 To see the requested and enabled status for high power module, review the output of `sudo ethtool -m`. The following output is from a device of power class between 1 and 4 (1.5W to 3.5W). The module does not request a high power class or the switch does not enable it.
 

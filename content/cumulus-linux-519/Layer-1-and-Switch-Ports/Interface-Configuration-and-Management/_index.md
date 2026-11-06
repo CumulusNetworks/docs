@@ -950,7 +950,7 @@ cumulus@switch:~$ sudo systemctl reload link-tracking.service
 ### Upgrade Notes
 
 In Cumulus Linux 5.19, the link tracking configuration file and the way Cumulus Linux manages the `ifplugd` configuration changed. Your NVUE link tracking configuration does not change and you do not need to reconfigure anything.
-- The configuration file moved from `/etc/ifplugd/link-tracking.conf` to `/etc/cumulus/link-tracking.conf`. The format changed from one pipe-delimited line per group to `key = value` lines. NVUE renders the new file the first time you run `nv config apply` after the upgrade.
+- The configuration file moved from `/etc/ifplugd/link-tracking.conf` to `/etc/cumulus/link-tracking.conf`. The format changed from one pipe-delimited line for each group to `key = value` lines. NVUE renders the new file the first time you run `nv config apply` after the upgrade.
 - NVUE no longer renders `/etc/default/ifplugd`. The `link-trackingd` daemon sets the `INTERFACES` list from the watch interfaces in `/etc/cumulus/link-tracking.conf`, including watch interfaces you configure with a snippet, and keeps the other `ifplugd` settings unchanged.
 - When the switch boots into 5.19, `link-trackingd` converges the switch to the configuration, including clearing any stale link tracking protodown state.
 - During upgrade to Cumulus Linux 5.19, the upgrade process does not carry forward customized `/etc/ifplugd/action.d/ifupdown` and `/etc/default/ifplugd` files by default. The switch uses the default configurations from the new image instead. To preserve customizations, add a carry-forward entry for each required file in a configuration file under `/etc/cumulus/upgrade-carry-forward.d/` on the partition from which you are upgrading. For example:

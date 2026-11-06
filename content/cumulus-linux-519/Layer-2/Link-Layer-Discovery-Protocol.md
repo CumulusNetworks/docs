@@ -536,9 +536,9 @@ Cumulus Linux supports the following LLDP DCBX TLVs:
 - Application Priority
 
 {{%notice info%}}
-- You can send a maximum of 250 VLANS per switch port in one LLDP frame.
+- You can send a maximum of 250 VLANS for each switch port in one LLDP frame.
 - Cumulus Linux does not support CEE DCBX TLVs.
-- Cumulus Linux limits DCBX support to enabling DCBX TLVs (either with ROCE global configuration or per interface) as documented in the {{<exlink url="https://ieeexplore.ieee.org/document/8403927" text="IEEE 802.1Q standard">}}.
+- Cumulus Linux limits DCBX support to enabling DCBX TLVs (either with ROCE global configuration or on each interface) as documented in the {{<exlink url="https://ieeexplore.ieee.org/document/8403927" text="IEEE 802.1Q standard">}}.
 {{%/notice%}}
 <!-- vale off -->
 #### IEEE 802.1 TLVs

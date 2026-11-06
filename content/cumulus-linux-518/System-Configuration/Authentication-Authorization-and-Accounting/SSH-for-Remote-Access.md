@@ -432,7 +432,7 @@ Port 443
 {{< /tab >}}
 {{< /tabs >}}
 
-The following example configures the amount of time a session can be inactive before the SSH server terminates the connection to 5 minutes (300 seconds) and the maximum number of SSH sessions allowed per TCP connection to 5. The default `inactive-timeout` is 20 minutes and the default `max-sessions-per-connection` is 10:
+The following example configures the amount of time a session can be inactive before the SSH server terminates the connection to 5 minutes (300 seconds) and the maximum number of SSH sessions allowed for each TCP connection to 5. The default `inactive-timeout` is 20 minutes and the default `max-sessions-per-connection` is 10:
 
 {{< tabs "TabID427 ">}}
 {{< tab "NVUE Commands ">}}

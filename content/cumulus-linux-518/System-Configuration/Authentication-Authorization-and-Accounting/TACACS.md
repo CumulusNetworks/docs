@@ -111,7 +111,7 @@ cumulus@switch:~$ nv config apply
    server=192.168.0.30
    ```
 
-   Cumulus Linux supports a maximum of eight TACACS+ servers. To specify multiple servers, add one per line to the `/etc/tacplus_servers` file. Connections establish in the order in the file.
+   Cumulus Linux supports a maximum of eight TACACS+ servers. To specify multiple servers, add one on each line to the `/etc/tacplus_servers` file. Connections establish in the order in the file.
 
    ```
    cumulus@switch:~$ sudo nano /etc/tacplus_servers

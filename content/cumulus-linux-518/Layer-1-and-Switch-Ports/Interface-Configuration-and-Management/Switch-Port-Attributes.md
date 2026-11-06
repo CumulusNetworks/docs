@@ -1847,13 +1847,13 @@ cumulus@switch:~$ sudo ifreload -a
 
 The SN4700 and SN4410 switch does not support auto-negotiation on QSFP-DD 400G transceiver modules. You need to force set the speed.
 
-### Set the Number of Lanes per Split Port
+### Set the Number of Lanes for Each Split Port
 
-By default, to calculate the split port width, Cumulus Linux uses the formula `split port width = full port width / breakout`. For example, a port split into two interfaces (2x breakout) => 8 lanes width / 2x breakout = 4 lanes per split port.
+By default, to calculate the split port width, Cumulus Linux uses the formula `split port width = full port width / breakout`. For example, a port split into two interfaces (2x breakout) => 8 lanes width / 2x breakout = 4 lanes for each split port.
 
-If you need to use a different port width than the default, you can set the number of lanes per port.
+If you need to use a different port width than the default, you can set the number of lanes for each port.
 
-The following example command splits swp1 into two interfaces (2x) and sets the number of lanes per split port to 2.
+The following example command splits swp1 into two interfaces (2x) and sets the number of lanes for each split port to 2.
 
 {{< tabs "TabID1383 ">}}
 {{< tab "NVUE Commands ">}}
@@ -1877,7 +1877,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/cumulus/ports_width.conf` file and add the number of lanes per split port you want to use, then reload `switchd`:
+Edit the `/etc/cumulus/ports_width.conf` file and add the number of lanes for each split port you want to use, then reload `switchd`:
 <!--
 {{%notice note%}}
 You must configure the lanes per port in the `/etc/cumulus/ports_width.conf` before you configure the breakout in the `/etc/cumulus/ports.conf` file. If the `ports.conf` file already contains breakout configuration for a port, you must set the breakout back to `1x`, then reload `switchd`. You can then set the desired lanes per port, then reconfigure the breakout.
@@ -1905,7 +1905,7 @@ cumulus@switch:~$ sudo systemctl reload switchd.service
 {{< /tabs >}}
 
 {{%notice note%}}
-In 5.9 and later, the 4x breakout on QSFP-DD/OSFP 8 lane ports allocates two lanes per port by default instead of one lane. Be sure to configure the lanes per port on both ends of a connection to be the same.
+In 5.9 and later, the 4x breakout on QSFP-DD/OSFP 8 lane ports allocates two lanes for each port by default instead of one lane. Be sure to configure the lanes for each port on both ends of a connection to be the same.
 {{%/notice%}}
 
 ### Remove a Breakout Port
@@ -2288,7 +2288,7 @@ The NVIDIA Spectrum-2 (25G) switch only supports RS FEC.
 <!-- vale off -->
 ### Connecting NVIDIA SN4410, SN4700, SN5600 to a Spectrum-3 and Earlier Peer Switch
 <!-- vale on -->
-When you connect an NVIDIA SN4410, SN4700, or SN5600 switch to any Spectrum 1, Spectrum-2, or Spectrum-3 peer switch (with four lanes) using a 4x breakout configuration and the default lanes per port setting, links do not come up. To work around this issue, provide the lanes per port configuration shown below:
+When you connect an NVIDIA SN4410, SN4700, or SN5600 switch to any Spectrum 1, Spectrum-2, or Spectrum-3 peer switch (with four lanes) using a 4x breakout configuration and the default lanes for each port setting, links do not come up. To work around this issue, provide the lanes for each port configuration shown below:
 
 ```
 cumulus@switch:~$ nv set interface <interface-id> link breakout 4x lanes-per-port 1

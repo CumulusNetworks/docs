@@ -502,7 +502,7 @@ switch# exit
 
 {{%notice note%}}
 - When you change timer or profile settings with BFD sessions at scale, there is a transient spike in CPU usage because of the increased volume of messages from the BFD daemon to the kernel driver.
-- When a BFD peer goes down because of a path failure rather than an admin-down, the remote peer sends DOWN packets. With sessions at scale, the BFD daemon receives these DOWN events, which might increase CPU usage.
+- When a BFD peer goes down because of a path failure instead of an admin-down, the remote peer sends DOWN packets. With sessions at scale, the BFD daemon receives these DOWN events, which might increase CPU usage.
 - If you use frequent BFD timers, such as 50 milliseconds with a multiplier of 3, for BFD sessions at scale, NVIDIA recommends that you increase the BFD control plane policer values with the `nv set system control-plane policer bfd burst` and `nv set system control-plane policer bfd rate` commands.
 {{%/notice%}}
 

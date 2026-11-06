@@ -31,7 +31,7 @@ You cannot configure PVRST mode for multiple VLAN-aware bridges.
 {{< tabs "TabID492 ">}}
 {{< tab "NVUE Commands ">}}
 
-The following example sets PVRST mode on the br_default bridge:
+The following example sets PVRST modethe br_default bridge:
 
 ```
 cumulus@switch:~$ nv set bridge domain br_default stp mode pvrst
@@ -157,11 +157,11 @@ If a bridge running RSTP (802.1w) receives a common STP (802.1D) BPDU, it falls 
 
 ### RSTP and PVRST Interoperability
 
-The RSTP domain sends <span class="a-tooltip">[BPDUs](## "Bridge Protocol Data Units")</span> on the native VLAN, whereas PVRST sends BPDUs on each VLAN along with IEEE BPDUS. For both protocols to work together, you need to enable the native VLAN on the link between the RSTP to PVRST domain; the spanning tree builds according to the native VLAN parameters.
+The RSTP domain sends <span class="a-tooltip">[BPDUs](## "Bridge Protocol Data Units")</span>the native VLAN, whereas PVRST sends BPDUseach VLAN along with IEEE BPDUS. For both protocols to work together, you need to enable the native VLANthe link between the RSTP to PVRST domain; the spanning tree builds according to the native VLAN parameters.
 
-The RSTP protocol does not send or parse BPDUs on other VLANs, but floods BPDUs across the network, enabling the PVRST domain to maintain its spanning-tree topology and provide a loop-free network.
-- To enable proper BPDU exchange across the network, be sure to allow all VLANs participating in the PVRST domain on the link between the RSTP and PVRST domains.
-- When using RSTP together with an existing PVRST network, you need to define the root bridge on the PVRST domain. Either lower the priority on the PVRST domain or change the priority of the RSTP switches to a higher number.
+The RSTP protocol does not send or parse BPDUsother VLANs, but floods BPDUs across the network, enabling the PVRST domain to maintain its spanning-tree topology and provide a loop-free network.
+- To enable proper BPDU exchange across the network, be sure to allow all VLANs participating in the PVRST domainthe link between the RSTP and PVRST domains.
+- When using RSTP together with an existing PVRST network, you need to define the root bridgethe PVRST domain. Either lower the priority on the PVRST domain or change the priority of the RSTP switches to a higher number.
 - When connecting a VLAN-aware bridge to a proprietary PVST+ switch using RSTP mode, you must allow VLAN 1 on all 802.1Q trunks that interconnect them, regardless of the configured *native* VLAN. Only VLAN 1 enables the switches to address the BPDU frames to the IEEE multicast MAC address.
 
 ### RSTP and MST Interoperability
@@ -557,8 +557,8 @@ The following example commands configure PortAdminEdge and BPDU guard for swp5:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set interface swp5 bridge domain br_default stp admin-edge on
-cumulus@switch:~$ nv set interface swp5 bridge domain br_default stp bpdu-guard on
+cumulus@switch:~$ nv set interface swp5 bridge domain br_default stp admin-edge enable
+cumulus@switch:~$ nv set interface swp5 bridge domain br_default stp bpdu-guard enable
 cumulus@switch:~$ nv config apply
 ```
 
@@ -648,7 +648,7 @@ The following example commands reenable PortAutoEdge on swp1:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set interface swp1 bridge domain br_default stp auto-edge on
+cumulus@switch:~$ nv set interface swp1 bridge domain br_default stp auto-edge enable
 cumulus@switch:~$ nv config apply
 ```
 
@@ -670,7 +670,7 @@ The following example commands set BPDU guard for swp5:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set interface swp5 bridge domain br_default stp bpdu-guard on
+cumulus@switch:~$ nv set interface swp5 bridge domain br_default stp bpdu-guard enable
 cumulus@switch:~$ nv config apply
 ```
 
@@ -763,7 +763,7 @@ The following example commands enable bridge assurance on swp1:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set interface swp5 bridge domain br_default stp network on
+cumulus@switch:~$ nv set interface swp5 bridge domain br_default stp network enable
 cumulus@switch:~$ nv config apply
 ```
 
@@ -824,7 +824,7 @@ The following example commands configure the BPDU filter on swp6:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set interface swp6 bridge domain br_default stp bpdu-filter on
+cumulus@switch:~$ nv set interface swp6 bridge domain br_default stp bpdu-filter enable
 cumulus@switch:~$ nv config apply
 ```
 
@@ -869,7 +869,7 @@ To enable the interface in the bridge to take the restricted role:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set interface swp1 bridge domain br_default stp restrrole on
+cumulus@switch:~$ nv set interface swp1 bridge domain br_default stp restrrole enable
 cumulus@switch:~$ nv config apply
 ```
 

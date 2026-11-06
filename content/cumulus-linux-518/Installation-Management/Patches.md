@@ -8,7 +8,7 @@ The Cumulus Linux patch framework delivers small, targeted, reversible package f
 
 You can install a critical fix within your own maintenance window and back it out without a full image upgrade.
 
-Patches only contain changed packages and complement rather than replace the standard release; NVIDIA rolls every patch into a subsequent release.
+Patches only contain changed packages and complement the standard release instead of replacing it; NVIDIA rolls every patch into a subsequent release.
 
 You can roll back and return to the base image, not a previously-running patch. If a package is running an earlier patch version when you install a later patch, removing the later patch restores the base-image version, not the earlier patch.
 

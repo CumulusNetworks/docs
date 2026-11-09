@@ -31,7 +31,7 @@ You cannot configure PVRST mode for multiple VLAN-aware bridges.
 {{< tabs "TabID492 ">}}
 {{< tab "NVUE Commands ">}}
 
-The following example sets PVRST modethe br_default bridge:
+The following example sets PVRST mode on the br_default bridge:
 
 ```
 cumulus@switch:~$ nv set bridge domain br_default stp mode pvrst
@@ -157,11 +157,11 @@ If a bridge running RSTP (802.1w) receives a common STP (802.1D) BPDU, it falls 
 
 ### RSTP and PVRST Interoperability
 
-The RSTP domain sends <span class="a-tooltip">[BPDUs](## "Bridge Protocol Data Units")</span>the native VLAN, whereas PVRST sends BPDUseach VLAN along with IEEE BPDUS. For both protocols to work together, you need to enable the native VLANthe link between the RSTP to PVRST domain; the spanning tree builds according to the native VLAN parameters.
+The RSTP domain sends <span class="a-tooltip">[BPDUs](## "Bridge Protocol Data Units")</span> on the native VLAN, whereas PVRST sends BPDUs on each VLAN along with IEEE BPDUS. For both protocols to work together, you need to enable the native VLAN on the link between the RSTP to PVRST domain; the spanning tree builds according to the native VLAN parameters.
 
-The RSTP protocol does not send or parse BPDUsother VLANs, but floods BPDUs across the network, enabling the PVRST domain to maintain its spanning-tree topology and provide a loop-free network.
-- To enable proper BPDU exchange across the network, be sure to allow all VLANs participating in the PVRST domainthe link between the RSTP and PVRST domains.
-- When using RSTP together with an existing PVRST network, you need to define the root bridgethe PVRST domain. Either lower the priority on the PVRST domain or change the priority of the RSTP switches to a higher number.
+The RSTP protocol does not send or parse BPDUs on other VLANs, but floods BPDUs across the network, enabling the PVRST domain to maintain its spanning-tree topology and provide a loop-free network.
+- To enable proper BPDU exchange across the network, be sure to allow all VLANs participating in the PVRST domain on the link between the RSTP and PVRST domains.
+- When using RSTP together with an existing PVRST network, you need to define the root bridge on the PVRST domain. Either lower the priority on the PVRST domain or change the priority of the RSTP switches to a higher number.
 - When connecting a VLAN-aware bridge to a proprietary PVST+ switch using RSTP mode, you must allow VLAN 1 on all 802.1Q trunks that interconnect them, regardless of the configured *native* VLAN. Only VLAN 1 enables the switches to address the BPDU frames to the IEEE multicast MAC address.
 
 ### RSTP and MST Interoperability
@@ -387,32 +387,7 @@ iface br_default
 ```
 cumulus@switch:~$ ifreload -a
 ```
-<!--
-**Runtime Configuration (Advanced)**
 
-{{%notice warning%}}
-A runtime configuration is non-persistent, which means the configuration you create here does not persist after you reboot the switch.
-{{%/notice%}}
-
-To set the bridge priority to 4096 for VLAN 10 and  to 61440 for VLAN 20 at runtime:
-
-```
-cumulus@switch:~$ sudo mstpctl setvlan-priority br_default 10 4096
-cumulus@switch:~$ sudo mstpctl setvlan-priority br_default 20 61440
-```
-
-To set the bridge priority to 61440 for VLAN 10, 20, and 30 at runtime:
-
-```
-cumulus@switch:~$ sudo mstpctl setvlan-priority br_default 10,20,30 61440
-```
-
-To set the bridge priority for a range of VLANs, use a hyphen (-). For example, to set the bridge priority to 61440 for VLAN 10 through VLAN 30 at runtime:
-
-```
-cumulus@switch:~$ sudo mstpctl setvlan-priority br_default 10-30 61440
-```
--->
 {{< /tab >}}
 {{< /tabs >}}
 
@@ -472,23 +447,7 @@ cumulus@switch:~$ ifreload -a
 ```
 
 To set the PVRST timers for a range of VLANs, use a hyphen (-). For example `bridge-stp-vlan-hello 10-30=4`.
-<!--
-**Runtime Configuration (Advanced)**
 
-{{%notice warning%}}
-A runtime configuration is non-persistent, which means the configuration you create here does not persist after you reboot the switch.
-{{%/notice%}}
-
-To set the max age to 6 seconds, the hello time to 4 seconds, and the forward delay to 4 seconds for VLAN 10, 20, and 30 at runtime:
-
-```
-cumulus@switch:~$ sudo mstpctl setvlan-maxage br_default 10,20,30 6
-cumulus@switch:~$ sudo mstpctl setvlan-hello br_default 10,20,30 4
-cumulus@switch:~$ sudo mstpctl setvlan-fdelay br_default 10,20,30 4
-```
-
-To set the PVRST timers for a range of VLANs, use a hyphen (-). For example `sudo mstpctl setvlan-maxage br_default 10-30 6`.
--->
 {{< /tab >}}
 {{< /tabs >}}
 
@@ -524,20 +483,7 @@ iface swp1
     mstpctl-port-vlan-priority 10=240
 ...
 ```
-<!--
-**Runtime Configuration (Advanced)**
 
-{{%notice warning%}}
-A runtime configuration is non-persistent, which means the configuration you create here does not persist after you reboot the switch.
-{{%/notice%}}
-
-To set path cost to 4000 and the priority to 240 for VLAN 10 at runtime:
-
-```
-cumulus@switch:~$ sudo mstpctl setvlantreeportcost br_default swp1 10 4000
-cumulus@switch:~$ sudo mstpctl setvlantreeportprio br_default swp1 10 240
-```
--->
 {{< /tab >}}
 {{< /tabs >}}
 
@@ -557,8 +503,8 @@ The following example commands configure PortAdminEdge and BPDU guard for swp5:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set interface swp5 bridge domain br_default stp admin-edge enable
-cumulus@switch:~$ nv set interface swp5 bridge domain br_default stp bpdu-guard enable
+cumulus@switch:~$ nv set interface swp5 bridge domain br_default stp admin-edge enabled
+cumulus@switch:~$ nv set interface swp5 bridge domain br_default stp bpdu-guard enabled
 cumulus@switch:~$ nv config apply
 ```
 
@@ -615,7 +561,7 @@ The following example commands disable PortAutoEdge on swp1:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set interface swp1 bridge domain br_default stp auto-edge off
+cumulus@switch:~$ nv set interface swp1 bridge domain br_default stp auto-edge disabled
 cumulus@switch:~$ nv config apply
 ```
 
@@ -648,7 +594,7 @@ The following example commands reenable PortAutoEdge on swp1:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set interface swp1 bridge domain br_default stp auto-edge enable
+cumulus@switch:~$ nv set interface swp1 bridge domain br_default stp auto-edge enabled
 cumulus@switch:~$ nv config apply
 ```
 
@@ -664,13 +610,13 @@ Edit the switch port interface stanza in the `/etc/network/interfaces` file to r
 
 You can configure *BPDU guard* to protect the spanning tree topology from an unauthorized device affecting the forwarding path. For example, if you add a new host to an access port off a leaf switch and the host sends an STP <span class="a-tooltip">[BPDU](## "Bridge Protocol Data Unit")</span>, BPDU guard protects against undesirable topology changes in the environment.
 
-The following example commands set BPDU guard for swp5:
+The following example commands enable BPDU guard for swp5:
 
 {{< tabs "TabID235 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set interface swp5 bridge domain br_default stp bpdu-guard enable
+cumulus@switch:~$ nv set interface swp5 bridge domain br_default stp bpdu-guard enabled
 cumulus@switch:~$ nv config apply
 ```
 
@@ -763,7 +709,7 @@ The following example commands enable bridge assurance on swp1:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set interface swp5 bridge domain br_default stp network enable
+cumulus@switch:~$ nv set interface swp5 bridge domain br_default stp network enabled
 cumulus@switch:~$ nv config apply
 ```
 
@@ -818,13 +764,13 @@ You can enable `bpdufilter` on a switch port, which filters BPDUs in both direct
 Using BDPU filter sometimes causes layer 2 loops. Use this feature with caution.
 {{%/notice%}}
 
-The following example commands configure the BPDU filter on swp6:
+The following example commands enable BPDU filter on swp6:
 
 {{< tabs "TabID392 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set interface swp6 bridge domain br_default stp bpdu-filter enable
+cumulus@switch:~$ nv set interface swp6 bridge domain br_default stp bpdu-filter enabled
 cumulus@switch:~$ nv config apply
 ```
 
@@ -869,7 +815,7 @@ To enable the interface in the bridge to take the restricted role:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set interface swp1 bridge domain br_default stp restrrole enable
+cumulus@switch:~$ nv set interface swp1 bridge domain br_default stp restrrole enabled
 cumulus@switch:~$ nv config apply
 ```
 

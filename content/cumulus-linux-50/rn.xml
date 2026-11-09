@@ -918,7 +918,7 @@ To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 </tr>
 <tr>
 <td>2823307</td>
-<td>Cumuls Linux does not support a bond with more than 64 ports.  Any configuration with more than 64 ports in a bond changes all ports to down when you apply the configuration. </td>
+<td>Cumulus Linux does not support a bond with more than 64 ports.  Any configuration with more than 64 ports in a bond changes all ports to down when you apply the configuration. </td>
 <td>5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>
@@ -1759,7 +1759,7 @@ To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 </tr>
 <tr>
 <td>2823307</td>
-<td>Cumuls Linux does not support a bond with more than 64 ports.  Any configuration with more than 64 ports in a bond changes all ports to down when you apply the configuration. </td>
+<td>Cumulus Linux does not support a bond with more than 64 ports.  Any configuration with more than 64 ports in a bond changes all ports to down when you apply the configuration. </td>
 <td>5.0.0-5.15.1, 5.16.0-5.16.1, 5.16.5-5.18.3</td>
 <td></td>
 </tr>

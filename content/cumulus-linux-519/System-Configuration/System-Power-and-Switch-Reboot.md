@@ -258,7 +258,7 @@ The following features are not supported during warm reboot:
 
 To manage switch resource allocation, you can configure the resource mode to be either `half` or `full`. By default, the resource mode is `full`.
 
-On Spectrum-3 and earlier switches, warm reboot and hitless ISSU-based software upgrade require the resource mode to be `half`. On Spectrum-4 and later switches, you can also run warm reboot in `full` resource mode; refer to {{<link url="Upgrading-Cumulus-Linux/#full-resource-mode-issu" text="Full Resource Mode ISSU">}} (Beta).
+Warm reboot and hitless ISSU-based software upgrade require the resource mode to be `half`.
 
 The following example sets the switch resource mode to `half`:
 
@@ -326,11 +326,14 @@ iface eth0
  post-up ip route add 10.100.200.0/24 via 10.100.156.1 vrf mgmt
 ```
 
+<!-- REMOVED FROM 5.19: applied to full resource mode ISSU, which is no longer in 5.19.
+
 ### Spanning Tree Protocol
 
-When you run a warm reboot in {{<link url="Upgrading-Cumulus-Linux/#full-resource-mode-issu" text="full resource mode">}} (Beta) and <span class="a-tooltip">[STP](## "Spanning Tree Protocol")</span> is enabled in the bridge domain, a continuous traffic stream experiences momentary traffic loss. Traffic recovers on its own; you do not need to take any action.
+When you run a warm reboot in {{<link url="Upgrading-Cumulus-Linux/#full-resource-mode-issu" text="full resource mode">}} and <span class="a-tooltip">[STP](## "Spanning Tree Protocol")</span> is enabled in the bridge domain, a continuous traffic stream experiences momentary traffic loss. Traffic recovers on its own; you do not need to take any action.
 
 Cumulus Linux enables STP by default on both VLAN-aware and traditional bridges, so this applies unless you disable STP. Refer to {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP" text="Spanning Tree and Rapid Spanning Tree - STP">}}.
+-->
 
 <!--
 ## Power Off

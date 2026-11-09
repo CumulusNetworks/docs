@@ -1134,7 +1134,7 @@ def is_config_applied(changeset) -> bool:
                          verify=False)
         response = r.json()
         print(response)
-        if response["state"] == "applied":
+        if response["state"] in ("applied", "applied_and_saved"):
             return True
         retries -= 1
         time.sleep(POLL_APPLIED)
@@ -1494,7 +1494,7 @@ def is_config_applied(changeset) -> bool:
                          verify=False)
         response = r.json()
         print(response)
-        if response["state"] == "applied":
+        if response["state"] in ("applied", "applied_and_saved"):
             return True
         retries -= 1
         time.sleep(POLL_APPLIED)
@@ -1566,6 +1566,10 @@ cumulus@switch:~$ nv show interface lo ip address
 
 {{</ tab >}}
 {{</ tabs>}}
+
+{{%notice note%}}
+When auto save is enabled, the revision state moves through `pending`, `apply`, `verifying`, `readying`, `ready_check`, `reloading`, and `auto_save`, and then ends in `applied_and_saved` instead of `applied`. Both `applied` and `applied_and_saved` mean that NVUE applied the change, so the Python example treats either state as success.
+{{%/notice%}}
 
 ### View Differences Between Configurations
 
@@ -2699,7 +2703,7 @@ def is_config_applied(changeset) -> bool:
         response = r.json()
         print(response)
 
-        if response["state"] == "applied":
+        if response["state"] in ("applied", "applied_and_saved"):
             return True
         retries -= 1
         time.sleep(POLL_APPLIED)
@@ -2867,7 +2871,7 @@ def is_config_applied(changeset) -> bool:
         response = r.json()
         print(response)
 
-        if response["state"] == "applied":
+        if response["state"] in ("applied", "applied_and_saved"):
             return True
         retries -= 1
         time.sleep(POLL_APPLIED)
@@ -3025,7 +3029,7 @@ def is_config_applied(changeset) -> bool:
         response = r.json()
         print(response)
 
-        if response["state"] == "applied":
+        if response["state"] in ("applied", "applied_and_saved"):
             return True
         retries -= 1
         time.sleep(POLL_APPLIED)
@@ -3233,7 +3237,7 @@ def is_config_applied(changeset) -> bool:
         response = r.json()
         print(response)
 
-        if response["state"] == "applied":
+        if response["state"] in ("applied", "applied_and_saved"):
             return True
         retries -= 1
         time.sleep(POLL_APPLIED)
@@ -3451,7 +3455,7 @@ def is_config_applied(changeset) -> bool:
         response = r.json()
         print(response)
 
-        if response["state"] == "applied":
+        if response["state"] in ("applied", "applied_and_saved"):
             return True
         retries -= 1
         time.sleep(POLL_APPLIED)
@@ -3621,7 +3625,7 @@ def is_config_applied(changeset) -> bool:
         response = r.json()
         print(response)
 
-        if response["state"] == "applied":
+        if response["state"] in ("applied", "applied_and_saved"):
             return True
         retries -= 1
         time.sleep(POLL_APPLIED)
@@ -3807,7 +3811,7 @@ def is_config_applied(changeset) -> bool:
         response = r.json()
         print(response)
 
-        if response["state"] == "applied":
+        if response["state"] in ("applied", "applied_and_saved"):
             return True
         retries -= 1
         time.sleep(POLL_APPLIED)
@@ -3985,7 +3989,7 @@ def is_config_applied(changeset) -> bool:
         response = r.json()
         print(response)
 
-        if response["state"] == "applied":
+        if response["state"] in ("applied", "applied_and_saved"):
             return True
         retries -= 1
         time.sleep(POLL_APPLIED)
@@ -4407,7 +4411,7 @@ def is_config_applied(changeset) -> bool:
         response = r.json()
         print(response)
 
-        if response["state"] == "applied":
+        if response["state"] in ("applied", "applied_and_saved"):
             return True
         retries -= 1
         time.sleep(POLL_APPLIED)
@@ -4490,7 +4494,7 @@ def is_config_applied(url,changeset) -> bool:
                          verify=False)
         response = r.json()
 
-        if response["state"] == "applied":
+        if response["state"] in ("applied", "applied_and_saved"):
             return True
         retries -= 1
         time.sleep(POLL_APPLIED)
@@ -4693,7 +4697,7 @@ def is_config_applied(url,changeset) -> bool:
                          verify=False)
         response = r.json()
 
-        if response["state"] == "applied":
+        if response["state"] in ("applied", "applied_and_saved"):
             return True
         retries -= 1
         time.sleep(POLL_APPLIED)

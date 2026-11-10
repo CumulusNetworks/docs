@@ -13,12 +13,6 @@
 <td></td>
 </tr>
 <tr>
-<td>5399018</td>
-<td>When both ends of a link are NVIDIA Spectrum-4 switches, CMIS VDM pre-FEC BER and other FEC-based values read from particular transceiver modules are zero.</td>
-<td>5.17.0-5.18.3</td>
-<td></td>
-</tr>
-<tr>
 <td>5376361</td>
 <td>{{switchd}} restarts repeatedly because internal SDK threads stop responding, resulting in BGP flaps and about 23 minutes of network recovery time per event.</td>
 <td>5.11.4-5.18.3</td>
@@ -34,12 +28,6 @@
 <td>5376246</td>
 <td>With duplicate UPDATE suppression enabled ({{bgp suppress-duplicates}}, on by default), BGP does not re-send a route whose attributes match what the neighbor already has. When a withdrawn route comes back with the same attributes while its withdrawal is still waiting to be sent to the neighbor, BGP correctly skips the duplicate advertisement but does not cancel the pending withdrawal. BGP then sends the withdrawal, the neighbor removes the route, and BGP never sends the route again. To work around this issue, clear and refresh all inbound routes with the {{nv action clear router bgp soft out}} command for each affected neighbor.</td>
 <td>5.16.8-5.18.3</td>
-<td></td>
-</tr>
-<tr>
-<td>5376220</td>
-<td>When you run the {{nv action boot-next system image other}} command at the same time as the prometheus-node-exporter image collector is reading the image inventory, the command reports success but removes the {{/boot/grub/grub.cfg}} file from the running partition. The {{nv show system image}} command either omits the next row or shows {{N/A}}, and the switch might not boot correctly on the next reboot or power cycle (it stops at the grub&gt; prompt, which needs console access to recover). Before you run the {{nv action boot-next system image}} command, run {{sudo systemctl stop prometheus-node-exporter}} and make sure no monitoring or automation runs {{nv show system image }} or reads the image state through the NVUE REST API until the command completes. Before you reboot, confirm that {{nv show system image}} shows the expected next partition, then reboot with the exporter still stopped; it starts again with the new boot. If next shows {{N/A}} or is missing, do not reboot; with the exporter stopped and the polling paused, run the same {{nv action boot-next system image}} command again and confirm next.</td>
-<td>5.16.7-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -1599,12 +1587,6 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
-<td>5399018</td>
-<td>When both ends of a link are NVIDIA Spectrum-4 switches, CMIS VDM pre-FEC BER and other FEC-based values read from particular transceiver modules are zero.</td>
-<td>5.17.0-5.18.3</td>
-<td></td>
-</tr>
-<tr>
 <td>5376361</td>
 <td>{{switchd}} restarts repeatedly because internal SDK threads stop responding, resulting in BGP flaps and about 23 minutes of network recovery time per event.</td>
 <td>5.11.4-5.18.3</td>
@@ -1614,12 +1596,6 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5376246</td>
 <td>With duplicate UPDATE suppression enabled ({{bgp suppress-duplicates}}, on by default), BGP does not re-send a route whose attributes match what the neighbor already has. When a withdrawn route comes back with the same attributes while its withdrawal is still waiting to be sent to the neighbor, BGP correctly skips the duplicate advertisement but does not cancel the pending withdrawal. BGP then sends the withdrawal, the neighbor removes the route, and BGP never sends the route again. To work around this issue, clear and refresh all inbound routes with the {{nv action clear router bgp soft out}} command for each affected neighbor.</td>
 <td>5.16.8-5.18.3</td>
-<td></td>
-</tr>
-<tr>
-<td>5376220</td>
-<td>When you run the {{nv action boot-next system image other}} command at the same time as the prometheus-node-exporter image collector is reading the image inventory, the command reports success but removes the {{/boot/grub/grub.cfg}} file from the running partition. The {{nv show system image}} command either omits the next row or shows {{N/A}}, and the switch might not boot correctly on the next reboot or power cycle (it stops at the grub&gt; prompt, which needs console access to recover). Before you run the {{nv action boot-next system image}} command, run {{sudo systemctl stop prometheus-node-exporter}} and make sure no monitoring or automation runs {{nv show system image }} or reads the image state through the NVUE REST API until the command completes. Before you reboot, confirm that {{nv show system image}} shows the expected next partition, then reboot with the exporter still stopped; it starts again with the new boot. If next shows {{N/A}} or is missing, do not reboot; with the exporter stopped and the polling paused, run the same {{nv action boot-next system image}} command again and confirm next.</td>
-<td>5.16.7-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -3160,12 +3136,6 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
-<td>5399018</td>
-<td>When both ends of a link are NVIDIA Spectrum-4 switches, CMIS VDM pre-FEC BER and other FEC-based values read from particular transceiver modules are zero.</td>
-<td>5.17.0-5.18.3</td>
-<td></td>
-</tr>
-<tr>
 <td>5376361</td>
 <td>{{switchd}} restarts repeatedly because internal SDK threads stop responding, resulting in BGP flaps and about 23 minutes of network recovery time per event.</td>
 <td>5.11.4-5.18.3</td>
@@ -3175,12 +3145,6 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5376246</td>
 <td>With duplicate UPDATE suppression enabled ({{bgp suppress-duplicates}}, on by default), BGP does not re-send a route whose attributes match what the neighbor already has. When a withdrawn route comes back with the same attributes while its withdrawal is still waiting to be sent to the neighbor, BGP correctly skips the duplicate advertisement but does not cancel the pending withdrawal. BGP then sends the withdrawal, the neighbor removes the route, and BGP never sends the route again. To work around this issue, clear and refresh all inbound routes with the {{nv action clear router bgp soft out}} command for each affected neighbor.</td>
 <td>5.16.8-5.18.3</td>
-<td></td>
-</tr>
-<tr>
-<td>5376220</td>
-<td>When you run the {{nv action boot-next system image other}} command at the same time as the prometheus-node-exporter image collector is reading the image inventory, the command reports success but removes the {{/boot/grub/grub.cfg}} file from the running partition. The {{nv show system image}} command either omits the next row or shows {{N/A}}, and the switch might not boot correctly on the next reboot or power cycle (it stops at the grub&gt; prompt, which needs console access to recover). Before you run the {{nv action boot-next system image}} command, run {{sudo systemctl stop prometheus-node-exporter}} and make sure no monitoring or automation runs {{nv show system image }} or reads the image state through the NVUE REST API until the command completes. Before you reboot, confirm that {{nv show system image}} shows the expected next partition, then reboot with the exporter still stopped; it starts again with the new boot. If next shows {{N/A}} or is missing, do not reboot; with the exporter stopped and the polling paused, run the same {{nv action boot-next system image}} command again and confirm next.</td>
-<td>5.16.7-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -4786,12 +4750,6 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
-<td>5399018</td>
-<td>When both ends of a link are NVIDIA Spectrum-4 switches, CMIS VDM pre-FEC BER and other FEC-based values read from particular transceiver modules are zero.</td>
-<td>5.17.0-5.18.3</td>
-<td></td>
-</tr>
-<tr>
 <td>5376361</td>
 <td>{{switchd}} restarts repeatedly because internal SDK threads stop responding, resulting in BGP flaps and about 23 minutes of network recovery time per event.</td>
 <td>5.11.4-5.18.3</td>
@@ -4801,12 +4759,6 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5376246</td>
 <td>With duplicate UPDATE suppression enabled ({{bgp suppress-duplicates}}, on by default), BGP does not re-send a route whose attributes match what the neighbor already has. When a withdrawn route comes back with the same attributes while its withdrawal is still waiting to be sent to the neighbor, BGP correctly skips the duplicate advertisement but does not cancel the pending withdrawal. BGP then sends the withdrawal, the neighbor removes the route, and BGP never sends the route again. To work around this issue, clear and refresh all inbound routes with the {{nv action clear router bgp soft out}} command for each affected neighbor.</td>
 <td>5.16.8-5.18.3</td>
-<td></td>
-</tr>
-<tr>
-<td>5376220</td>
-<td>When you run the {{nv action boot-next system image other}} command at the same time as the prometheus-node-exporter image collector is reading the image inventory, the command reports success but removes the {{/boot/grub/grub.cfg}} file from the running partition. The {{nv show system image}} command either omits the next row or shows {{N/A}}, and the switch might not boot correctly on the next reboot or power cycle (it stops at the grub&gt; prompt, which needs console access to recover). Before you run the {{nv action boot-next system image}} command, run {{sudo systemctl stop prometheus-node-exporter}} and make sure no monitoring or automation runs {{nv show system image }} or reads the image state through the NVUE REST API until the command completes. Before you reboot, confirm that {{nv show system image}} shows the expected next partition, then reboot with the exporter still stopped; it starts again with the new boot. If next shows {{N/A}} or is missing, do not reboot; with the exporter stopped and the polling paused, run the same {{nv action boot-next system image}} command again and confirm next.</td>
-<td>5.16.7-5.18.3</td>
 <td></td>
 </tr>
 <tr>

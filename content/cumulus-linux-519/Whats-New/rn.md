@@ -15,7 +15,6 @@ pdfhidden: True
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
 | 5399020 | The amBER output from the <code>mlxlink --amber_collect</code> command uses the same <code>N/A</code> value for three different situations: when a register read is never attempted, when the read fails, and when the field does not exist. When looking at the CSV or the report, you can't tell if data is unavailable, unsupported, or not requested. | 5.18.0-5.19.0 | |
-| 5399018 | When both ends of a link are NVIDIA Spectrum-4 switches, CMIS VDM pre-FEC BER and other FEC-based values read from particular transceiver modules are zero. | 5.17.0-5.19.0 | |
 | 5376361 | <code>switchd</code> restarts repeatedly because internal SDK threads stop responding, resulting in BGP flaps and about 23 minutes of network recovery time per event. | 5.11.4-5.19.0 | |
 | 5376350 | On the Spectrum-6 switch, the <code>mlxlink</code> command output shows the physical state of the port as <code>ETH_AN_FSM_ENABLE</code> even when the link is actually up and active. | 5.18.3-5.19.0 | |
 | 5372506 | On a multi-lane CPO port, the <code>l1-show</code> command only shows the first TX and RX power reading instead of showing one reading for each lane. | 5.18.0-5.19.0 | |

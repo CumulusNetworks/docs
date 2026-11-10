@@ -13,12 +13,6 @@
 <td></td>
 </tr>
 <tr>
-<td>5399018</td>
-<td>When both ends of a link are NVIDIA Spectrum-4 switches, CMIS VDM pre-FEC BER and other FEC-based values read from particular transceiver modules are zero.</td>
-<td>5.17.0-5.19.0</td>
-<td></td>
-</tr>
-<tr>
 <td>5376361</td>
 <td>{{switchd}} restarts repeatedly because internal SDK threads stop responding, resulting in BGP flaps and about 23 minutes of network recovery time per event.</td>
 <td>5.11.4-5.19.0</td>

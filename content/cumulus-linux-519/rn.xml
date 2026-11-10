@@ -49,6 +49,12 @@
 <td></td>
 </tr>
 <tr>
+<td>5360157</td>
+<td>A small proportion of step time estimates are roughly half the real step time. Treat these estimates as outliers and ignore them. Track a median of recent step time estimates instead of tracking the step time estimates directly.</td>
+<td>5.19.0</td>
+<td></td>
+</tr>
+<tr>
 <td>5358735, 5341619</td>
 <td>The NVIDIA SN5600D switch reports {{PMIC-12-COMEX-VCORE-OUT1}} failed after a warm reset.</td>
 <td>5.16.1-5.19.0</td>

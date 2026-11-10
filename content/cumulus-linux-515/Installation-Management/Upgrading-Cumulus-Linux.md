@@ -468,7 +468,7 @@ ONIE is an open source project (equivalent to PXE on servers) that enables the i
 - Merge conflicts with configuration file changes in the new release sometimes go undetected.
 - If configuration files do not restore correctly, you cannot `ssh` to the switch from in-band management. Use out-of-band connectivity (eth0 or the console).
 - You *must* reinstall and reconfigure third-party applications after upgrade.
-- If the switch is running ONIE installer version 5.3.0012 or earlier, upgrading Cumulus Linux fails at the ONIE prompt. Refer to {{<link url="#onie-install-issues" text="ONIE Install Issues">}}.
+- On secure boot switches (Spectrum-4 and later, or SN3700-S) running ONIE installer version 5.3.0012 or earlier, the Cumulus Linux upgrade fails at the ONIE prompt. Refer to {{<link url="#onie-install-issues" text="ONIE Install Issues">}}.
 {{%/notice%}}
 
 To upgrade the switch with ONIE:
@@ -766,7 +766,7 @@ If you install any third party applications on a Cumulus Linux switch, configura
 ### ONIE Install Issues
 
 - If you run `onie-install` without the `-t` option and the `nv config patch <config>` or `nv config replace <config>` command fails, try to translate the configuration file with the `nv config translate <config.yaml> > <translated-config.yaml>` command before you run `onie-install`.
-- If the switch is running ONIE installer version 5.3.0012 or earlier, upgrading Cumulus Linux fails at the ONIE prompt. To work around this issue, **before** you upgrade Cumulus Linux, upgrade the ONIE installer to ONIE version 5.3.0013 or later. The ONIE installer upgrade requires a switch reload and causes a complete switch factory reset.
+- On secure boot switches (Spectrum-4 and later, or SN3700-S) running ONIE installer version 5.3.0012 or earlier, the Cumulus Linux upgrade fails at the ONIE prompt. To work around this issue, **before** you upgrade Cumulus Linux, upgrade the ONIE installer to ONIE version 5.3.0013 or later. The ONIE installer upgrade requires a switch reload and causes a complete switch factory reset.
 
 {{< expand "Upgrade the ONIE installer" >}}
 1. Log into Cumulus Linux.
@@ -774,25 +774,25 @@ If you install any third party applications on a Cumulus Linux switch, configura
 
    ```
    cumulus@switch:~$ sudo -i
-   cumulus@switch:~$ mount LABEL=ONIE-BOOT /mnt/onie-boot
-   cumulus@switch:~$ ln -s /mnt/onie-boot/onie/tools/lib/onie /lib/onie
+   root@switch:~# mount LABEL=ONIE-BOOT /mnt/onie-boot
+   root@switch:~# ln -s /mnt/onie-boot/onie/tools/lib/onie /lib/onie
    ```
 
 3. To check the existing ONIE version, run the `/mnt/onie-boot/onie/tools/bin/onie-fwpkg show` command.
 
    ```
-   cumulus@switch:~$ /mnt/onie-boot/onie/tools/bin/onie-fwpkg show
+   root@switch:~# /mnt/onie-boot/onie/tools/bin/onie-fwpkg show
    ```
 
 4. To upgrade the ONIE installer, run the following commands:
 
    ```
-   cumulus@switch:~$ wget http://Image/onie-updater-x86_64-mlnx_x86-r0
-   cumulus@switch:~$ /mnt/onie-boot/onie/tools/bin/onie-fwpkg purge
-   cumulus@switch:~$ /mnt/onie-boot/onie/tools/bin/onie-fwpkg add onie-updater-x86_64-mlnx_x86-r0
-   cumulus@switch:~$ /mnt/onie-boot/onie/tools/bin/onie-fwpkg show
-   cumulus@switch:~$ umount /mnt/onie-boot
-   cumulus@switch:~$ onie-select -pf
+   root@switch:~# wget http://Image/onie-updater-x86_64-mlnx_x86-r0
+   root@switch:~# /mnt/onie-boot/onie/tools/bin/onie-fwpkg purge
+   root@switch:~# /mnt/onie-boot/onie/tools/bin/onie-fwpkg add onie-updater-x86_64-mlnx_x86-r0
+   root@switch:~# /mnt/onie-boot/onie/tools/bin/onie-fwpkg show
+   root@switch:~# umount /mnt/onie-boot
+   root@switch:~# onie-select -pf
    ```
 
 5. Reboot the switch, then upgrade Cumulus Linux.

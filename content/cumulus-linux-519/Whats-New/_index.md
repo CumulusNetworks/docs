@@ -10,7 +10,7 @@ This document supports the Cumulus Linux 5.19 release, and lists new features an
 
 ## What's New in Cumulus Linux 5.19.0
 
-Cumulus Linux 5.19.0 includes new features and improvements, and provides bug fixes. Cumulus Linux 5.19 also includes security update CVE-2026-98432 to fix a vulnerability in the Linux kernel’s IPv4 TCP connection setup and handshake logic.
+Cumulus Linux 5.19.0 includes new features and improvements, provides bug fixes, and includes a fix for CVE-2026-98432.
 
 {{%notice infonopad%}}
 Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.

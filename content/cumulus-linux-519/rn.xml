@@ -7,6 +7,18 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5399020</td>
+<td>The amBER output from the {{mlxlink --amber_collect}} command uses the same {{N/A}} value for three different situations: when a register read is never attempted, when the read fails, and when the field does not exist. When looking at the CSV or the report, you can't tell if data is unavailable, unsupported, or not requested.</td>
+<td>5.18.0-5.19.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5399018</td>
+<td>When both ends of a link are NVIDIA Spectrum-4 switches, CMIS VDM pre-FEC BER and other FEC-based values read from particular transceiver modules are zero.</td>
+<td>5.17.0-5.19.0</td>
+<td></td>
+</tr>
+<tr>
 <td>5376361</td>
 <td>{{switchd}} restarts repeatedly because internal SDK threads stop responding, resulting in BGP flaps and about 23 minutes of network recovery time per event.</td>
 <td>5.11.4-5.19.0</td>
@@ -79,7 +91,7 @@
 <td></td>
 </tr>
 <tr>
-<td>5337319</td>
+<td>5337319, 5356242, 5365397</td>
 <td>During online package upgrade, the {{nv-umf}} container service might restart at the wrong time while container runtime packages are still being replaced. This creates a temporary mismatch between the running {{containerd}} daemon and newly installed runtime components, causing {{nv-umf}} to fail to start and automatically trigger cl-support collection.</td>
 <td>5.19.0</td>
 <td></td>
@@ -900,6 +912,16 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Affects </th>
 </tr>
 <tr>
+<td>5399120</td>
+<td>When a race occurs during link-up, signal detection might be incomplete even though signals are later detected on all lanes, causing link establishment to fail and the module to be configured incorrectly.</td>
+<td></td>
+</tr>
+<tr>
+<td>5384378</td>
+<td>After package upgrade, every NVUE apply that enables TACACS+ or RADIUS fails and rolls back due to a stale local apt archive index.</td>
+<td></td>
+</tr>
+<tr>
 <td>5376246</td>
 <td>With duplicate UPDATE suppression enabled ({{bgp suppress-duplicates}}, on by default), BGP does not re-send a route whose attributes match what the neighbor already has. When a withdrawn route comes back with the same attributes while its withdrawal is still waiting to be sent to the neighbor, BGP correctly skips the duplicate advertisement but does not cancel the pending withdrawal. BGP then sends the withdrawal, the neighbor removes the route, and BGP never sends the route again. To work around this issue, clear and refresh all inbound routes with the {{nv action clear router bgp soft out}} command for each affected neighbor.</td>
 <td>5.16.8-5.18.3</td>
@@ -1038,12 +1060,17 @@ This failure disrupts DHCPv6 service for all downstream interfaces served by tha
 <td>5.16.3-5.18.3</td>
 </tr>
 <tr>
+<td>5308623</td>
+<td>The login banner displays a system health warning with stale information prior to system boot, which results in misleading health warnings.</td>
+<td>5.18.1-5.18.3</td>
+</tr>
+<tr>
 <td>5306976</td>
 <td>The gNMI telemetry FEC histogram bin count decreases by 1 or 2 across successive reads on a counter64 path.</td>
 <td>5.16.6-5.18.3</td>
 </tr>
 <tr>
-<td>5303988</td>
+<td>5303988, 5399693</td>
 <td>The {{l1-show --pcs-errors --clear}} command resets the PHY error counters in the switch hardware. The NVUE {{nv show interface &lt;interface-id&gt; link phy health}} command and telemetry read the same counters, so their values are reset to zero whenever {{l1-show}} clears them.</td>
 <td>5.18.0-5.18.3</td>
 </tr>
@@ -1186,6 +1213,11 @@ This failure disrupts DHCPv6 service for all downstream interfaces served by tha
 <td>5236683</td>
 <td>Hosts in a tenant VRF sometimes learn detailed unreachable prefixes earlier than intended during switch recovery. This can cause traffic to be redirected away from the recovering switch sooner than the configured advertisement-delay policy allows.</td>
 <td></td>
+</tr>
+<tr>
+<td>5236181</td>
+<td>After an ISSU upgrade, you might see the SDK ECMP errors {{Entry Already Exists}}.</td>
+<td>5.16.7-5.18.3</td>
 </tr>
 <tr>
 <td>5235587</td>

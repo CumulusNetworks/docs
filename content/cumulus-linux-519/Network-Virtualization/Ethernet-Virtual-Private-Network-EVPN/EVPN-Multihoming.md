@@ -1159,6 +1159,10 @@ Route Distinguisher: 10.10.10.3:2
 
 ## Considerations
 
+### BGP Graceful Restart
+
+Cumulus Linux does not support {{<link url="Optional-BGP-Configuration/#graceful-bgp-restart" text="BGP graceful restart">}} with EVPN multihoming (EVPN-MH).
+
 ### VLAN Match Rules in ebtables
 
 If you enable EVPN-MH and configure {{<link title="Access Control List Configuration/#match-on-vlan-ids-on-layer-2-interfaces" text="VLAN match rules in ebtables with a mark target">}}, the ebtables rule might overwrite the mark set by traffic class rules you configure for EVPN-MH on ingress. Egress EVPN MH traffic class rules that match the ingress traffic class mark might not get hit. To work around this issue, add ebtable rules to ACCEPT the packets already marked by EVPN-MH traffic class rules on ingress.

@@ -22,7 +22,7 @@ Cumulus Linux supports data erase for both SED and non-SED SSDs.
 When you erase all data on the switch, most services stop except for critical ones, such as `sshd` so that you can erase the data remotely.
 
 {{%notice note%}}
-- You can erase all data only on the NVIDIA SN5400, SN5600, and SN5600D switch.
+- You can erase all data on a switch with Spectrum-4 and later.
 - You can erase all data on a functioning SSD only.
 - You cannot recover erased data.
 {{%/notice%}}

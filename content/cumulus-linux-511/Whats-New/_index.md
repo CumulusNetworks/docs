@@ -10,8 +10,8 @@ This document supports the Cumulus Linux 5.11 release, and lists new platforms, 
 
 ## What's New in Cumulus Linux 5.11.6
 
-Cumulus Linux 5.11.6 provides bug fixes and security updates.
-- You can use optimized image (two partition) upgrade to upgrade the switch to Cumulus Linux 5.11.6 from Cumulus Linux 5.11.4, 5.11.4 and 5.11.3 without ISSU support.
+Cumulus Linux 5.11.6 provides bug fixes and security updates, and includes a fix for CVE-2026-98432.
+- You can use optimized image (two partition) upgrade to upgrade the switch to Cumulus Linux 5.11.6 from Cumulus Linux 5.11.5, 5.11.4 and 5.11.3 without ISSU support.
 - You can use package upgrade to upgrade the switch to Cumulus Linux 5.11.6 from:
   - 5.11.5, 5.11.4, and 5.11.3 with ISSU support
   - 5.9.4 without ISSU support

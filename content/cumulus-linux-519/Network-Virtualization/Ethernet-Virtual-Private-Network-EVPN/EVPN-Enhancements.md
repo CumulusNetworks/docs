@@ -518,7 +518,27 @@ If an interface address redistributed by BGP falls within the IP address range c
 
 #### Changing the Dynamic VRF Mode Loses Retained State
 
-If you change the `nv set system dot1x dynamic-vrf` mode while an interface has a retained EVPN unreachable route (its link is down and Cumulus Linux still shows the interface as authorized with reason `link-down`), Cumulus Linux stops tracking the retained state of that interface. The link for the interface remains down, but Cumulus Linux no longer advertises or maintains an EVPN unreachable route or an exception for it on the local or remote leaf switch, so traffic can black-hole until the interface comes back up and reauthenticates.
+Disabling 802.1X dynamic VRF with the `nv set system dot1x dynamic-vrf disabled` command causes FRR to withdraw the EVPN unreachable routes for all 802.1X dynamic VRF-managed interfaces and to stop tracking those interfaces, including the VRF into which each interface is authorized.
+
+If an interface is down when you re-enable the feature with the `nv set system dot1x dynamic-vrf required` command, FRR does not re-advertise the unreachable route for the prefixes of that interface and Cumulus Linux does not program LLDP exceptions on the local or remote leaf switch. This occurs because `hostapd` reports only the current state of the interface to FRR (that it is an 802.1X dynamic VRF interface in the unauthorized state) and FRR does not relearn the previous VRF authorization while the link stays down. The interface recovers normally after it comes back up and reauthenticates.
+
+To restore the unreachable route without waiting for the link to come back up, use the BGP inject command to inject the unreachable route from the tenant VRF into which the interface was previously authorized.
+
+#### Transient EVPN Unreachable Route When a Host Reauthenticates
+
+When a host reauthenticates on an 802.1X interface with dynamic VRF enabled, for example after you run the `nv action deauthenticate` command or on any reauthentication where the host rejoins quickly, Cumulus Linux moves the interface between VRFs, which briefly brings the link down. BGP treats this like any other link-down event and advertises an EVPN unreachable route for the prefixes of the interface, then withdraws the route after the interface comes up in the new VRF. During this window, you might briefly see an entry in the `show zebra lldp exception vrf all` command output and a corresponding unreachable route on remote leaf switches.
+
+This is expected. The final state is always correct, and the same advertise-then-withdraw sequence occurs when you move a statically configured interface between VRFs. BGP advertises the unreachable route deliberately instead of suppressing it. If the interface fails to come up in the destination VRF, suppressing the route leaves traffic to that host black-holed with no unreachable route advertised.
+
+Typically, you see the transient on physical switches instead of in virtual environments because it depends on link-transition timing. You do not need to take any action or use a workaround.
+
+#### Aggregate Exception Not Withdrawn When the Last Host in a VRF Returns in a Different VRF
+
+When the last remaining authenticated host in a tenant VRF on a leaf switch goes link-down, the leaf switch signals two exceptions to remote nodes: a host prefix exception for the prefix of the host and an aggregate exception because the aggregate route for that VRF loses its only contributing route.
+
+If the host then returns in a *different* tenant VRF, for example because you change its RADIUS attributes to assign a new VRF before the link comes back up, Cumulus Linux correctly withdraws the host prefix exception for the original VRF but does not withdraw the aggregate exception for that VRF. The leaf switch never restores a contributing route to the aggregate of the original VRF and no event triggers the withdrawal, so the aggregate exception remains on remote nodes.
+
+This issue occurs only when the departing host is the last authenticated host in that VRF on that leaf switch. The issue does not occur when other hosts remain in the VRF or when the host returns in the same VRF it left.
 
 ## Enable EVPN in an iBGP Environment with an OSPF Underlay
 

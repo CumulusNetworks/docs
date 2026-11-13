@@ -7,6 +7,31 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5413843</td>
+<td>When both ends of a link are NVIDIA Spectrum-4 switches, CMIS VDM pre-FEC BER and other FEC-based values read from particular transceiver modules are zero.</td>
+<td>5.17.0-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5376361</td>
+<td>{{switchd}} restarts repeatedly because internal SDK threads stop responding, resulting in BGP flaps and about 23 minutes of network recovery time per event.</td>
+<td>5.11.4-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5376246</td>
+<td>With duplicate UPDATE suppression enabled ({{bgp suppress-duplicates}}, on by default), BGP does not re-send a route whose attributes match what the neighbor already has. When a withdrawn route comes back with the same attributes while its withdrawal is still waiting to be sent to the neighbor, BGP correctly skips the duplicate advertisement but does not cancel the pending withdrawal. BGP then sends the withdrawal, the neighbor removes the route, and BGP never sends the route again. To work around this issue, clear and refresh all inbound routes with the {{nv action clear router bgp soft out}} command for each affected neighbor.</td>
+<td>5.16.8-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5374702</td>
+<td>
+In an EVPN multihoming configuration, a remote MAC address remains programmed in the kernel bridge FDB as a single VTEP entry, with no next hop group ID. The switch does not install the correct Ethernet Segment next hop group entry, and as a result, does not load balance traffic to that MAC address across all VTEPs of the Ethernet Segment. The FRR logs show the error {{Cannot replace an existing non nexthop fdb with a nexthop}}.</td>
+<td>5.14.0-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5358735, 5341619</td>
 <td>The NVIDIA SN5600D switch reports {{PMIC-12-COMEX-VCORE-OUT1}} failed after a warm reset.</td>
 <td>5.16.1-5.18.3</td>
@@ -19,7 +44,7 @@
 <td></td>
 </tr>
 <tr>
-<td>5346399</td>
+<td>5346399, 5386089, 5386088</td>
 <td>In rare cases, after you delete, then add back a VRF with the same table ID, its default route stays inactive and is not installed, even though BGP selects it as best. To work around this issue, restart FRR with {{sudo systemctl restart frr}}. </td>
 <td>5.16.6-5.18.3</td>
 <td></td>
@@ -82,6 +107,12 @@
 <td>5316939, 5316919</td>
 <td>NVUE user management commands fail when the {{/etc/passwd}} file contains non-UTF-8 characters. </td>
 <td>5.16.8-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5316247</td>
+<td>If the command that reads port statistics terminates before it finishes, the switch restarts its switching software and resets the ASIC.</td>
+<td>5.16.6-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -347,7 +378,7 @@ Pin-Priority: 992</td>
 </tr>
 <tr>
 <td>5135125</td>
-<td>On switches with the Spectrum-4 ASIC, a port configured with a breakout might encounter a firmware (SDK or FW) fatal event when traffic first begins forwarding on the broken-out port. The switch resets the ASIC automatically and restarts {{switchd}} to recover. </td>
+<td>On switches with the Spectrum-4 ASIC, a port breakout configuration change since reboot might encounter a firmware (SDK or FW) fatal event when traffic first begins forwarding on the broken-out port. The switch resets the ASIC automatically and restarts {{switchd}} to recover. </td>
 <td>5.16.1-5.17.0</td>
 <td>5.18.0-5.18.3</td>
 </tr>
@@ -450,7 +481,7 @@ As a result of this issue, both peers in the multihoming pair claim DF (neither 
 </tr>
 <tr>
 <td>5078019</td>
-<td>The cl-support file takes approximately three minutes to generate with IPv6 routes and and an srv6 full scale configuration.</td>
+<td>The cl-support file takes approximately three minutes to generate with IPv6 routes and and an SRv6 full scale configuration.</td>
 <td>5.17.0</td>
 <td>5.18.0-5.18.3</td>
 </tr>
@@ -505,7 +536,7 @@ As a result of this issue, both peers in the multihoming pair claim DF (neither 
 <td>5.18.0-5.18.3</td>
 </tr>
 <tr>
-<td>5065211, 4916985, 5078194</td>
+<td>5065211, 4916985, 5078194, 5364674</td>
 <td>When data path enablement timing is marginal, traffic might be allowed through the system too early.</td>
 <td>5.11.5-5.17.0</td>
 <td>5.18.0-5.18.3</td>
@@ -596,6 +627,12 @@ As a result of this issue, both peers in the multihoming pair claim DF (neither 
 <td>5.18.0-5.18.3</td>
 </tr>
 <tr>
+<td>5022203</td>
+<td>When you disable TLVs in LLDP ingress policies, the TLV information still shows in neigbor data when the neigbor is already learned and the TLV provides chassis-level information, such as the system description or LLDP-MED Inventory. There is no impact on traffic.To work around this issue, restart the LLDP service with the {{sudo systemctl restart lldpd}} command.</td>
+<td>5.17.0</td>
+<td>5.18.0-5.18.3</td>
+</tr>
+<tr>
 <td>5019647</td>
 <td>If you do not configure 802.1x unsolicited EAP Identity Requests on an interface {{nv set interface &lt;interface-id&gt; dot1x tx-identity-request enabled}}, the default value shows only in the {{operational}} column. After you enable or disable unsolicited EAP Identity Requests on an interface, the value shows in both the {{applied}} and {{operational}} columns.</td>
 <td>5.17.0</td>
@@ -632,8 +669,8 @@ As a result of this issue, both peers in the multihoming pair claim DF (neither 
 <td></td>
 </tr>
 <tr>
-<td>5001357, 5022203</td>
-<td>When you disable TLVs in LLDP ingress policies, the TLV information still shows in neigbor data when the neigbor is already learned and the TLV provides chassis-level information, such as the system description or LLDP-MED Inventory. There is no impact on traffic.To work around this issue, restart the LLDP service with the {{sudo systemctl restart lldpd}} command.</td>
+<td>5001357</td>
+<td>When you disable TLVs in LLDP ingress policies, the TLV information still shows in neighbor data when the neighbor is already learned and the TLV provides chassis-level information, such as the system description or LLDP-MED Inventory. There is no impact on traffic.To work around this issue, restart the LLDP service with the {{sudo systemctl restart lldpd}} command.</td>
 <td>5.17.0</td>
 <td>5.18.0-5.18.3</td>
 </tr>
@@ -1386,7 +1423,7 @@ To work around this issue, reference the OID without the preceding period ( {{.}
 </tr>
 <tr>
 <td>3135952</td>
-<td>PAM4 split cables (such as 2x100G, 4x100G, and 4x50G) do not work with a forced speed setting (when auto-negotiation is off) as the default speed enabled is for NRZ mode (such as 100G_4X). To work around this issue,  set the appropriate lanes for forced speed (with auto-negotation off) with the {{ethtool -s swpX speed &lt;port_speed&gt; autoneg off lanes &lt;no_of_lanes&gt;}} command. For example: 
+<td>PAM4 split cables (such as 2x100G, 4x100G, and 4x50G) do not work with a forced speed setting (when auto-negotiation is off) as the default speed enabled is for NRZ mode (such as 100G_4X). To work around this issue,  set the appropriate lanes for forced speed (with auto-negotiation off) with the {{ethtool -s swpX speed &lt;port_speed&gt; autoneg off lanes &lt;no_of_lanes&gt;}} command. For example: 
 
 cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 </td>
@@ -1463,7 +1500,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 </tr>
 <tr>
 <td>2823307</td>
-<td>Cumuls Linux does not support a bond with more than 64 ports.  Any configuration with more than 64 ports in a bond changes all ports to down when you apply the configuration. </td>
+<td>Cumulus Linux does not support a bond with more than 64 ports.  Any configuration with more than 64 ports in a bond changes all ports to down when you apply the configuration. </td>
 <td>5.0.0-5.18.3</td>
 <td></td>
 </tr>

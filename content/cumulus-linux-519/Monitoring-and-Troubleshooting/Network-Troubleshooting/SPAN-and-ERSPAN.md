@@ -554,7 +554,7 @@ Disabling bond redirection:
 {{< tabs "TabID544 ">}}
 {{< tab "NVUE Commands ">}}
 
-Add the following snippet, then patch and apply the configuration.  
+Add the following snippet, then patch and apply the configuration.
 
 ```
 cumulus@switch:~$ sudo nano /home/cumulus/apply_mlag_bond_redirection_snippet.yaml

@@ -337,7 +337,7 @@ cumulus@switch:~$ nv config apply
       range 10.1.10.100 10.1.10.199;
    }
    ```
-   
+
 2. Restart the `dhcpd` service:
 
    ```

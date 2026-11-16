@@ -399,7 +399,7 @@ A compromised or malicious host connected to a switch port can passively listen 
 An attacker can use this information for infrastructure reconnaissance, which makes lateral movement and targeted attacks significantly easier.
 
 Cumulus Linux provides granular LLDP TLV control so that you can:
-- Control egress TLVs at the system level by defining a global policy for which optional TLVs the switch includes in its LLDP advertisements across all ports. 
+- Control egress TLVs at the system level by defining a global policy for which optional TLVs the switch includes in its LLDP advertisements across all ports.
 - Control egress TLVs for each port by overriding the global policy on specific interfaces (suppress System Name and Management Address only on host-facing ports while keeping full TLV advertisement on fabric or uplink ports).
 - Control ingress TLV processing by defining which TLVs from received LLDP frames to process and store in the neighbor table, limiting information exposure even on the receive side.
 - Define reusable TLV profiles (for example, `host-facing-secure`, `fabric-full`) at the system level with the `nv set system lldp tlv profile <profile-name>` command and apply them to interfaces with the `nv set interface <interface-id> lldp tlv profile <profile-name>` command. Use the system-level egress policy or ingress policy for switch-wide defaults.

@@ -137,7 +137,7 @@ You must specify the hashed password in Linux `crypt` format; the password must 
   - `$2y$` is Blowfish
   - `$5$` is SHA-256
   - `$6$` is SHA-512
-  
+
 To generate a hashed password on the switch, you can either run a `python3` command or install and use the `mkpasswd` utility:
 
 {{< tabs "TabID102 ">}}
@@ -330,7 +330,7 @@ The root user does not have a password and cannot log into a switch using SSH. T
 
 ### Enable Console Access
 
-To log into the switch using root from the console, you must set the password for the root account: 
+To log into the switch using root from the console, you must set the password for the root account:
 
 ```
 cumulus@switch:~$ sudo passwd root
@@ -343,7 +343,7 @@ Enter new password:
 To log into the switch using root with SSH, either:
 - Install an SSH authorized key; refer to {{<link url="SSH-for-Remote-Access#install-an-authorized-ssh-key" text="Install an Authorized SSH Key">}}.
 - Follow these steps to set a password and enable password authentication for root in `sshd`:
-  
+
   1. Run the following command:
      ```
      cumulus@switch:~$ sudo passwd root 

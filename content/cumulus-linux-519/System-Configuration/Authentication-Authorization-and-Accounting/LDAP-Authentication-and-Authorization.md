@@ -439,7 +439,7 @@ referrals yes
 ### Show LDAP Settings
 
 To show the LDAP configuration settings on the switch, run the following commands:
-- `nv show system aaa ldap` shows all the LDAP configuration settings. 
+- `nv show system aaa ldap` shows all the LDAP configuration settings.
 - `nv show system aaa ldap server` shows the configured LDAP servers and their priorities.
 - `nv show system aaa ldap server <server-id>` shows the priority for the specified LDAP server.
 - `nv show system aaa ldap ssl` shows the LDAP SSL configuration settings.

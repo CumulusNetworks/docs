@@ -292,7 +292,7 @@ To create this rule with NVUE, follow the steps below. NVUE adds all options in 
    For firewall IPv4 type ACLs on the control plane, you can match on the hashlimit module (`hashimit`), the connection state (`connection-state`), and the recent module (`recent-list`). Refer to {{<link url="Firewall-Rules/#add-firewall-rules" text="Firewall Rules">}}.
 
 2. Apply the rule to an inbound or outbound interface with the `nv set interface <interface-id> acl` command.
-   
+
    - For rules affecting the -t mangle -A PREROUTING chain (-A FORWARD in previous releases), apply the rule to an inbound or outbound interface: For example:
 
    ```
@@ -1456,7 +1456,7 @@ Cumulus Linux supports ACL matches based on inner packet headers inside encapsul
 - You cannot match on both inner and outer packet headers in the same ACL.
 - You cannot combine a VLAN match with inner packet matches.
 - Inner packet matches support hardware forwarded packets only.
-- You can configure matches on inner packet headers with NVUE commands only. 
+- You can configure matches on inner packet headers with NVUE commands only.
 {{%/notice%}}
 
 You can use the following inner packet matching options:
@@ -1516,7 +1516,7 @@ Cumulus Linux supports ACL rule matches based on the packet offset.
 - You can configure offset matches only for ACL type `ipv4` and `ipv6`.
 - The Spectrum1 switch does not support matches based on the packet offset.
 - Matches based on the packet offset support hardware forwarded packets only.
-- You can configure matches based on the packet offset with NVUE commands only. 
+- You can configure matches based on the packet offset with NVUE commands only.
 {{%/notice%}}
 
 You can use the following packet offset matching options:

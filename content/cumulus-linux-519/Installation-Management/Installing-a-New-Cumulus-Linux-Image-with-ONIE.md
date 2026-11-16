@@ -356,7 +356,7 @@ cumulus@cumulus:~$ sudo onie-install -i http://203.0.113.10/image-installer -z h
 ```
 
 The following example stages an image on an HTTP server and a local NVUE `startup.yaml` file:
-  
+
 ```
 cumulus@cumulus:~$ sudo onie-install -i http://203.0.113.10/image-installer -t /etc/nvue.d/startup.yaml
 ```
@@ -784,7 +784,7 @@ date-time
 To show secure boot details, run the `nv show system security secure-boot` command. The output shows the Secure Boot Key Database (DB) and SBAT revocation values in a consolidated view so that you can review enrolled keys with certificate details, monitor validity status, and view SBAT revocation information.
 
 Certificate details include:
-- SHA1 fingerprint 
+- SHA1 fingerprint
 - Signature algorithm
 - Validity status (generated-on and expiring-on dates)
 - Issuer attributes (indexed and structured)

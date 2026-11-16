@@ -194,7 +194,7 @@ If you need to convert a layer 2 VNI to a layer 3 VNI, refer to {{<link url="Net
 Instead of using a single VXLAN device for all layer 3 VNIs (as described above), you can configure the switch to use a layer 3 VXLAN device for each VNI. Layer 3 VXLAN mode creates individual VXI devices that are not SVIs and are unrelated to any bridge.
 
 Layer 3 VXLAN device mode simplifies EVPN configuration and improves performance at scale.
- 
+
 To enable layer 3 VXLAN device mode, first disable EVPN and VXLAN, then run the `nv set evpn l3vxi state enabled` command. Layer 3 VXLAN device mode is disabled by default.
 
 {{%notice note%}}
@@ -564,12 +564,12 @@ end
 ### Prevent Re-export of VRF Leaked EVPN Routes
 
 When you configure a switch to announce IP prefixes in the BGP RIB as EVPN type-5 routes, the switch might re-export VRF-leaked routes that originate from the EVPN table as type-5 routes. To prevent the re-export of VRF-leaked EVPN routes, enable the skip EVPN imported setting.
- 
+
 - The skip EVPN imported setting affects only EVPN type-5 re-export.
 - The skip EVPN imported setting suppresses re-export when the VRF leak ancestry for the selected unicast path originates in the EVPN table.  
 - Locally originated routes, including locally originated routes leaked from another VRF, remain eligible for type-5 re-export.  
 - You set the skip EVPN imported setting for a specific BGP VRF instance and for either IPv4 or IPv6.
-- The emitted EVPN routes remain standards-compliant type-5 routes. This setting only decides which local paths FRR originates; it does not alter received EVPN route encoding, route-target processing, or peer interoperability. 
+- The emitted EVPN routes remain standards-compliant type-5 routes. This setting only decides which local paths FRR originates; it does not alter received EVPN route encoding, route-target processing, or peer interoperability.
 - The skip EVPN imported setting is disabled by default, which preserves Cumulus Linux 5.18 and earlier behavior.
 
 {{< tabs "TabID576 ">}}

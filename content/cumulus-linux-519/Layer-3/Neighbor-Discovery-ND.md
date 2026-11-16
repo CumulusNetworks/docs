@@ -739,7 +739,7 @@ The displayed neighbor details are based on control plane forwarding and status;
 cumulus@leaf01:mgmt:~$ nv show interface vlan10 neighbor ipv6 detail
 IPV6                      LLADR(MAC)         State      Flag  Last Used  Last Confirmed  Last Change  Probes
 ------------------------  -----------------  ---------  ----  ---------  --------------  -----------  ------
-fe80::4ab0:2dff:fe60:b8e  48:b0:2d:60:0b:8e  reachable        0:15:50    0:01:18         0:15:50      0    
+fe80::4ab0:2dff:fe60:b8e  48:b0:2d:60:0b:8e  reachable        0:15:50    0:01:18         0:15:50      0
 
 To show table entries for an interface with a specific IPv6 address, run the `nv show interface <interface_id> neighbor ipv6 <ip-address> [detail]` command:
 

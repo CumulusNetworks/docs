@@ -9,7 +9,7 @@ MAC address translation enables you to translate the source MAC address for pack
 ## Configure MAC Address Translation
 
 To configure MAC address translation:
-- Enable MAC address translation. 
+- Enable MAC address translation.
 - Create a rule that matches a source or destination MAC address and translate the MAC address to a public MAC address.
 - Apply the rule that matches a source MAC address to an outbound interface. Apply the rule that matches a destination MAC address to an inbound interface.
 

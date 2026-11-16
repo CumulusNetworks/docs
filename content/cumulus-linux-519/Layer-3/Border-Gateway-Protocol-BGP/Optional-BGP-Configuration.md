@@ -75,7 +75,7 @@ If you unset a peer group, make sure that no neighbors use it. If neighbors use 
 
 ## IPv6-only Unnumbered Peering
 
-You can configure a BGP unnumbered peer for IPv6-only peering over a link-local address and force the BGP session to use IPv6 link-local transport even when the interface also has an IPv4 address configured. Without this configuration, unnumbered BGP on dual-stack interfaces might initiate peering over IPv4 and reject inbound IPv6 peering attempts with a TCP reset, preventing IPv6 BGP sessions from establishing. 
+You can configure a BGP unnumbered peer for IPv6-only peering over a link-local address and force the BGP session to use IPv6 link-local transport even when the interface also has an IPv4 address configured. Without this configuration, unnumbered BGP on dual-stack interfaces might initiate peering over IPv4 and reject inbound IPv6 peering attempts with a TCP reset, preventing IPv6 BGP sessions from establishing.
 
 {{< tabs "80 ">}}
 {{< tab "NVUE Commands ">}}
@@ -741,7 +741,7 @@ address-family ipv4 unicast
 {{< /tab >}}
 {{< /tabs >}}
 
-The following example allows a received AS path containing the ASN of the local system but only if it is the originating AS:  
+The following example allows a received AS path containing the ASN of the local system but only if it is the originating AS:
 
 {{< tabs "698 ">}}
 {{< tab "NVUE Commands ">}}
@@ -787,7 +787,7 @@ address-family ipv4 unicast
 {{< /tab >}}
 {{< /tabs >}}
 
-The following example attaches a route map called ROUTEMAP1 that filters routes with the local AS in the AS path:  
+The following example attaches a route map called ROUTEMAP1 that filters routes with the local AS in the AS path:
 
 {{< tabs "807 ">}}
 {{< tab "NVUE Commands ">}}
@@ -1771,7 +1771,7 @@ If you set the SOO source IP address on a leaf switch before you enable the BGP 
 If you set the SOO source IP address on a leaf switch after enable the BGP advertise origin option:
 - The leaf withdraws the old SOO route (the one with the router ID).
 - The leaf announces a new SOO route using the SOO-source IP address.  
-- BGP readvertises all prefix routes with the new SOO tag. 
+- BGP readvertises all prefix routes with the new SOO tag.
 - All network switches detect this change, remove references to the old SOO route, and install the new SOO route in their routing tables.
 
 ### Show BGP DC PIC Information
@@ -1818,7 +1818,7 @@ The following table describes the `AS path` options.
 {{< tab "Leaf Configuration ">}}
 
 The following example:
-- Enables BGP unreachability SAFI for IPv6 AFI (AFI 2) globally and on neighbors swp51 and swp52 (for IPv4, run `address-family ipv4-unreachability` commands). 
+- Enables BGP unreachability SAFI for IPv6 AFI (AFI 2) globally and on neighbors swp51 and swp52 (for IPv4, run `address-family ipv4-unreachability` commands).
 - Enables unreachability advertisements for interfaces matching the network 2001:1:1::/48.
 - Sets the prefix limit to a maximum of 6 for neighbors swp51 and swp52.
 - Sets the `allow-my-asn` option for neighbors swp51 and swp52 to `origin` to allow a received AS path containing the ASN of the local system only if it is the originating AS.
@@ -2016,7 +2016,7 @@ BGP conditional disaggregation advertises specific prefixes when it detects a fa
 {{%notice note%}}
 - You can configure conditional disaggregation in the default VRF only.
 - Conditionally disaggregated routes and leaf loopback routes do not carry the anycast SOO, even when you configure the advertise origin.
-- NVIDIA recommends configuring BGP {{<link url="Optional-BGP-Configuration/#advertisement-delay" text="advertisement delay">}} to avoid traffic disruption during a leaf switch reboot, service restart, and other events that might disrupt the control plane. 
+- NVIDIA recommends configuring BGP {{<link url="Optional-BGP-Configuration/#advertisement-delay" text="advertisement delay">}} to avoid traffic disruption during a leaf switch reboot, service restart, and other events that might disrupt the control plane.
 {{%/notice%}}
 
 To configure BGP conditional disaggregation:
@@ -2253,7 +2253,7 @@ spine01# write memory
 - The maximum number of unreachable prefixes sent to LLDP is 25k by default. You can adjust this limit to a maximum of 100k with the `nv set system lldp unreachable-prefix max-limit 100000` command.
 - The LLDP unreachable route TLV does not carry VRF information; overlapping addresses across VRFs might cause inconsistent behavior if the switch generates an unreachable route for a prefix used in multiple VRFs.
 - If you change a configured aggregate route; for example, if you change the prefix length from 10.1.0.0/24 to 10.1.0.0/16, the original prefix might remain as a stale entry considered for unreachability signaling. To remove the stale entry, refer to {{<link url="/#clear-stale-aggregate-route-exceptions" text="Clear Stale Aggregate Route Exceptions">}} below.
-- NVIDIA recommends configuring BGP {{<link url="Optional-BGP-Configuration/#advertisement-delay" text="advertisement delay">}} to avoid traffic disruption during a leaf switch reboot, service restart, and other events that might disrupt the control plane. 
+- NVIDIA recommends configuring BGP {{<link url="Optional-BGP-Configuration/#advertisement-delay" text="advertisement delay">}} to avoid traffic disruption during a leaf switch reboot, service restart, and other events that might disrupt the control plane.
 
 ### Show BGP Unreachability Information
 
@@ -2371,7 +2371,7 @@ cumulus@leaf01:mgmt:~$ nv set maintenance unit system mode enabled
 cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
-To disable graceful fabric maintenance and return traffic to the switch after it converges, run the `nv set maintenance unit system mode disabled` command. 
+To disable graceful fabric maintenance and return traffic to the switch after it converges, run the `nv set maintenance unit system mode disabled` command.
 
 
 ## Inter-DC Routing
@@ -2380,21 +2380,21 @@ To disable graceful fabric maintenance and return traffic to the switch after it
 Cumulus Linux supports inter-DC routing is a Beta feature and is supported on Spectrum-4 through Spectrum-6.
 {{%/notice%}}
 
-Inter-DC routing enables you to maintain communication across large-scale GPU clusters spanning data centers (DC-to-DC) in a multi-plane architecture. The switch achieves redundancy against plane failures through a hybrid model that combines: 
-- Conditional disaggregation that triggers disaggregated routes at merged planes. 
-- In-plane LLDP exception signaling that informs GPUs of link or plane failures within a plane. 
+Inter-DC routing enables you to maintain communication across large-scale GPU clusters spanning data centers (DC-to-DC) in a multi-plane architecture. The switch achieves redundancy against plane failures through a hybrid model that combines:
+- Conditional disaggregation that triggers disaggregated routes at merged planes.
+- In-plane LLDP exception signaling that informs GPUs of link or plane failures within a plane.
 
 To achieve inter-DC routing and intra-DC failure handling, where planarized DC fabrics merge at the DC Interconnect Switch (DCIS) layer, you must configure a plane ID on each leaf switch. This plane ID must be unique across planes in a DC; however, you must use the same plane ID for all leaf switches within a plane.
 
 You must configure the plane ID together with the following BGP features on each leaf switch:
-- {{<link url="/#bgp-dc-pic-anycast" text="Anycast DC PIC">}} 
+- {{<link url="/#bgp-dc-pic-anycast" text="Anycast DC PIC">}}
 - {{<link url="/#bgp-unreachability-safi" text="BGP Unreachability SAFI">}}
 - {{<link url="/#bgp-conditional-disaggregation" text="Conditional disaggregation">}}
-- {{<link url="/#bgp-lldp-unreachability-in-disjoined-planes" text="BGP LLDP Unreachability in Disjoined Planes">}} 
+- {{<link url="/#bgp-lldp-unreachability-in-disjoined-planes" text="BGP LLDP Unreachability in Disjoined Planes">}}
 
 In a failure scenario, when there is prefix unreachability, the switch carries the configured plane ID as part of the SOO Extended Community. Leaf switches that receive unreachability routes match on the SOO IP address to determine if they must advertise conditional disaggregate routes and match on the plane ID to determine if they must perform LLDP exception programming towards locally connected hosts.
 
-To configure the plane ID, run the following commands. You can specify a value between 1 and 16. The default value is 0 (disabled).  
+To configure the plane ID, run the following commands. You can specify a value between 1 and 16. The default value is 0 (disabled).
 
 {{< tabs "TabID23258">}}
 {{< tab "NVUE Commands ">}}
@@ -2409,7 +2409,7 @@ Only the default VRF is supported.
 cumulus@leaf01:~$ nv set vrf default router bgp plane-id 8
 cumulus@leaf01:~$ nv config apply
 ```
- 
+
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
@@ -3497,7 +3497,7 @@ The vtysh `show ip bgp summary json` command shows the last convergence event.
 
 ## Advertisement Delay
 
-BGP advertisement delay defers outbound BGP updates for a configured time after the first BGP neighbor reaches the established state. During this delay, BGP session establishment, capability negotiation, best-path selection, and FIB programming proceed as normal; BGP holds only outbound update generation. When the timer expires, BGP sends all queued advertisements to all established neighbors. 
+BGP advertisement delay defers outbound BGP updates for a configured time after the first BGP neighbor reaches the established state. During this delay, BGP session establishment, capability negotiation, best-path selection, and FIB programming proceed as normal; BGP holds only outbound update generation. When the timer expires, BGP sends all queued advertisements to all established neighbors.
 
 Use advertisement-delay to allow downlink interfaces and access services to stabilize before attracting traffic to the switch. NVIDIA recommends a delay of at least 90 seconds when using 802.1X authentication, and at least 30 seconds in other deployments. When using advertisement-delay, deploy the RADIUS server (if used) in the management VRF for reliable reachability during boot and convergence.
 

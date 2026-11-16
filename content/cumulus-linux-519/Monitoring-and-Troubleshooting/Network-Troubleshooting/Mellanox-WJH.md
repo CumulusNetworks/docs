@@ -222,7 +222,7 @@ Packet Buffer Info
 No Data
 ```
 
-To show the most recent aggregate buffer drop events, up to the maximum aggregate cache size specified, run the `nv show system wjh aggregate-buffer` command. 
+To show the most recent aggregate buffer drop events, up to the maximum aggregate cache size specified, run the `nv show system wjh aggregate-buffer` command.
 
 ```
 cumulus@switch:~$ nv show system wjh aggregate-buffer
@@ -302,7 +302,7 @@ Congestion buffer threshold
 {{< tab "Linux Commands ">}}
 
 You can run the `nv-wjh-cli poll` command from the command line with the following options:
- 
+
 | Command Option | Description |
 | -------------- | ----------- |
 | `--data`  | You can specify `drops`, `aggregates`, or `l1`.<br>`drops` shows individual drops for each packet.<br>`aggregates` shows aggregated drops.<br>`l1` shows layer 1 port-state aggregates (only valid for channels with layer 1 in their trigger list).|

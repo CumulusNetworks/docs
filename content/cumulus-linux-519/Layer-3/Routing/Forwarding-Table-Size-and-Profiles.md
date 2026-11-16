@@ -18,7 +18,7 @@ To determine the current table sizes on a switch, run the NVUE `nv show platform
 
 Each switching architecture has specific resources available for forwarding table entries. Cumulus Linux stores:
 - Forwarding table resources in a <span class="a-tooltip">[KVD](## "Key Value Database")</span>.
-- ACL table entries and other switching functions in a fast memory area called the <span class="a-tooltip">[TCAM](## "Ternary Content Addressable Memory")</span> on Spectrum 1, and the <span class="a-tooltip">[ATCAM](## "Algorithmic TCAM")</span> on Spectrum-2 and later.
+- ACL table entries and other switching functions in a fast memory area called the <span class="a-tooltip">[TCAM](## "Ternary Content Addressable Memory")</span> on Spectrum1, and the <span class="a-tooltip">[ATCAM](## "Algorithmic TCAM")</span> on Spectrum-2 and later.
 
 Cumulus Linux provides various general profiles for forwarding table resources, and, based on your network design, you might need to adjust various switch parameters to allocate resources, as needed.
 
@@ -26,9 +26,9 @@ Cumulus Linux provides various general profiles for forwarding table resources, 
 The values provided in the profiles below are the maximum values that Cumulus Linux software allocates; the theoretical hardware limits might be higher. These limits refer to values that NVIDIA checks as part of unidimensional scale validation. If you try to achieve maximum scalability with multiple features enabled, results might differ from the values listed in this guide.
 {{%/notice%}}
 
-### Spectrum 1
+### Spectrum1
 
-Forwarding resource profiles control unicast forwarding table entry allocations. On the Spectrum 1 switch, TCAM profiles control multicast forwarding table entry allocations. For more information about multicast route entry limitations, refer to {{<link url="Access-Control-List-Configuration/#hardware-limitations-for-acl-rules" text="Hardware Limitations for ACL Rules">}}.
+Forwarding resource profiles control unicast forwarding table entry allocations. On the Spectrum1 switch, TCAM profiles control multicast forwarding table entry allocations. For more information about multicast route entry limitations, refer to {{<link url="Access-Control-List-Configuration/#hardware-limitations-for-acl-rules" text="Hardware Limitations for ACL Rules">}}.
 <!-- vale off -->
 | <div style="width:100px">Profile| MAC Addresses | <div style="width:190px">Layer 3 Neighbors| LPM  |
 | -------------- | ------------- | ------------------------- | ------------------------------ |

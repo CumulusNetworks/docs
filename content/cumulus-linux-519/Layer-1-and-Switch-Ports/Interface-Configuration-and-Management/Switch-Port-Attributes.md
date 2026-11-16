@@ -2344,7 +2344,7 @@ The NVIDIA Spectrum-2 (25G) switch only supports RS FEC.
 <!-- vale off -->
 ### Connecting NVIDIA SN4410, SN4700, SN5600 to a Spectrum-3 and Earlier Peer Switch
 <!-- vale on -->
-When you connect an NVIDIA SN4410, SN4700, or SN5600 switch to any Spectrum 1, Spectrum-2, or Spectrum-3 peer switch (with four lanes) using a 4x breakout configuration and the default lanes for each port setting, links do not come up. To work around this issue, provide the lanes for each port configuration shown below:
+When you connect an NVIDIA SN4410, SN4700, or SN5600 switch to any Spectrum1, Spectrum-2, or Spectrum-3 peer switch (with four lanes) using a 4x breakout configuration and the default lanes for each port setting, links do not come up. To work around this issue, provide the lanes for each port configuration shown below:
 
 ```
 cumulus@switch:~$ nv set interface <interface-id> link breakout 4x lanes-per-port 1

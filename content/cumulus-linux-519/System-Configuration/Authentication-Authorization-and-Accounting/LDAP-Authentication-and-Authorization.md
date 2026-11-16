@@ -266,7 +266,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/nslcd.conf` file to set the `map passwd` and `map group` options..
+Edit the `/etc/nslcd.conf` file to set the `map passwd` and `map group` options.
 
 ```
 cumulus@switch:~$ sudo nano /etc/nslcd.conf

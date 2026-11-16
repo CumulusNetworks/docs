@@ -299,8 +299,8 @@ To apply a custom profile to specific interfaces, see [Port Groups](#port-groups
 
 You can mark or remark traffic in two ways:
 
- * Use ingress COS or DSCP to remark an existing 802.1p COS or DSCP value to a new value.
- * Use [iptables](#policy-based-marking) to match packets and set 802.1p COS or DSCP values (policy-based marking).
+- Use ingress COS or DSCP to remark an existing 802.1p COS or DSCP value to a new value.
+- Use [iptables](#policy-based-marking) to match packets and set 802.1p COS or DSCP values (policy-based marking).
 
 <!-- vale off -->
 ### 802.1p or DSCP for Marking

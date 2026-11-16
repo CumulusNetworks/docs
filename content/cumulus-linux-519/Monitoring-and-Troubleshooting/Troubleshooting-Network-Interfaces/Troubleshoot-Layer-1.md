@@ -116,7 +116,7 @@ The first part of the compliance code gives the full line rate speed of the tech
 - LR: Optical long range. LR4 uses 4 wavelengths over one fiber pair to transmit 4 lanes over long distances (kilometers).
 - xWDM (SWDM, CWDM, DWDM): Optical wavelength multiplexed technologies (various). Different wavelengths carry multiple lanes.
 
-An active module with a passive module compliance code or a passive module with an active module compliance code causes the switch to set up the port incorrectly and may affect signal integrity.
+An active module with a passive module compliance code or a passive module with an active module compliance code causes the switch to set up the port incorrectly and might affect signal integrity.
 
 Some modules have vendor specific coding, are older, or use a proprietary vendor technology that is not listed in the standards. As a result, they are not recognized by default and need to be overridden to the correct compliance code. On NVIDIA switches, the port firmware automatically overrides certain supported modules to the correct compliance code.
 
@@ -813,7 +813,7 @@ Some modules require *high power modes* for driving long distance lasers. Power 
 
 To determine if a switch supports higher power modes, consult the hardware manufacturer specifications for power limitations for a switch.
 
-NVIDIA switches vary in their support of high power modules. For example, on some NVIDIA Spectrum 1 switches, only the first and last two QSFP ports support up to QSFP power class 6 (4.5W) and only the first and last two SFP ports support SFP power class 3 (2.0W) modules. Other Spectrum 1 switches do not support high power ports at all. Consult the hardware manufacturer specifications for exact details of which ports support high power modules.
+NVIDIA switches vary in their support of high power modules. For example, on some NVIDIA Spectrum1 switches, only the first and last two QSFP ports support up to QSFP power class 6 (4.5W) and only the first and last two SFP ports support SFP power class 3 (2.0W) modules. Other Spectrum1 switches do not support high power ports at all. Consult the hardware manufacturer specifications for exact details of which ports support high power modules.
 
 The total bus power rating is the default power rating for each port type (SFP: 1.5W, QSFP: 3.5W) multiplied by the number of ports of each type present on the bus.
 

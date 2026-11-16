@@ -232,8 +232,9 @@ The following example commands configure OSPFv3 unnumbered on leaf01 and spine01
 
     ```
     cumulus@leaf01:~$ sudo ifreload -a
+    ```
 
-2. From the vtysh shell, configure OSPFv3:
+4. From the vtysh shell, configure OSPFv3:
 
 ```
 cumulus@leaf01:~$ sudo vtysh

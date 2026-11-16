@@ -255,7 +255,7 @@ cumulus@switch:~$ nv show system control-plane software-statistics egress ipv6
 
 ### 802.1X Statistics
 
-When you enable open telemetry for 802.1X statistics, the switch exports [802.1X](#802.1x-statistic-format) operational non-counter statistics for all interfaces configured for 802.1X:
+When you enable open telemetry for 802.1X statistics, the switch exports [802.1X](#8021x-statistic-format) operational non-counter statistics for all interfaces configured for 802.1X:
 
 ```
 cumulus@switch:~$ nv set system telemetry dot1x-stats export state enabled

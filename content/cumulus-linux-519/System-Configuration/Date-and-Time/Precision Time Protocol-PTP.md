@@ -9,7 +9,7 @@ Cumulus Linux supports IEEE 1588-2008 Precision Timing Protocol (PTPv2), which d
 PTP is capable of sub-microsecond accuracy. The clocks are in a master-slave hierarchy, where the slaves synchronize to their masters, which can be slaves to their own masters. The Best Master Clock (BMC) algorithm, which runs on every clock, creates and updates the hierarchy automatically. The Grand Master clock is the top-level master. To provide a high-degree of accuracy, a Global Positioning System (GPS) time source typically synchronizes the Grand Master clock.
 
 In the following example:
-- Boundary clock 2 receives time from Master 1 (the Grand Master) on a PTP slave port, sets its clock and passes the time down from the PTP master port to Boundary clock 1. 
+- Boundary clock 2 receives time from Master 1 (the Grand Master) on a PTP slave port, sets its clock and passes the time down from the PTP master port to Boundary clock 1.
 - Boundary clock 1 receives the time on a PTP slave port, sets its clock and passes the time down the hierarchy through the PTP master ports to the hosts that receive the time.
 
 {{< img src = "/images/cumulus-linux/date-time-ptp-example.png" >}}
@@ -420,7 +420,7 @@ cumulus@switch:~$ nv set service ptp 1 two-step off
 cumulus@switch:~$ nv config apply
 ```
 
-To revert the clock timestamp mode to the default setting (two-step mode), run the `nv set service ptp 1 two-step on` command.  
+To revert the clock timestamp mode to the default setting (two-step mode), run the `nv set service ptp 1 two-step on` command.
 
 To set the clock timestamp mode for a custom profile based on IEEE1588, ITU 8275-1 or ITU 8275-2, run the `nv set service ptp <instance-id> profile <profile-id> two-step` command. For example, to set one-step mode for the custom profile called CUSTOM1, run the `nv set service ptp 1 profile CUSTOM1 two-step off` command.
 
@@ -520,7 +520,7 @@ ITU-T noise transfer specifies the following key elements to measure, test, and 
 Cumulus Linux PTP has an option to use a servo specifically designed to handle the ITU-T Noise Transfer specification. When you use this option, the <span class="a-tooltip">[PHC](## "Physical Hardware Clock")</span> the Noise Transfer Servo resolves the jitter and wander noise from the Master clock.
 
 {{%notice note%}}
-- To use Noise Transfer Servo, you need to enable SyncE on the switch and on PTP interfaces. 
+- To use Noise Transfer Servo, you need to enable SyncE on the switch and on PTP interfaces.
 - Cumulus Linux supports Noise Transfer Servo on Spectrum ASICs that support SyncE.
 - NVIDIA recommends you use Noise Transfer Servo with PTP Telecom profiles. If you use other profiles or choose not to use a profile, make sure to set the sync interval to -3 or better.
 - When you enable Noise Transfer Servo, the PTP log reporting offset is one every two seconds instead of one every second.

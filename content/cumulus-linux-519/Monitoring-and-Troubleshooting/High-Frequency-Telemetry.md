@@ -16,7 +16,7 @@ Cumulus Linux provides two different methods to collect and analyze high frequen
 Cumulus Linux can also analyze high frequency telemetry data on the switch and export only the result. {{<link url="Step-Time-Estimation" text="Step time estimation">}} uses this approach to report the step time of an AI training workload without exporting the underlying counters.
 
 {{%notice note%}}
-- Cumulus Linux supports high frequency telemetry on Spectrum-4 and later switches. 
+- Cumulus Linux supports high frequency telemetry on Spectrum-4 and later switches.
 - Cumulus Linux does not support high frequency telemetry on ports using 8 lanes. On the Spectrum-4 switch, swp1 through swp64 use all 8 lanes; to run high frequency telemetry, you must break out these ports.
 - To correlate counters from different switches, the switches must have the same time (Cumulus Linux adds timestamps in the metadata of the counters it collects). You can use either NTP or PTP; however, NVIDIA recommends using PTP because the timestamp is accurate between switches in the fabric at the microsecond level.
 - Streaming HFT export produces a large number of metrics and is supported only with a {{<link url="Open-Telemetry-Export/#grpc-otlp-export" text="single gRPC export destination">}}. If you are exporting OTEL data to more than one destination, do not enable HFT globally and configure a {{<link url="Open-Telemetry-Export/#customize-export" text="`stats-group`">}} to enable `hft` export to only one destination.

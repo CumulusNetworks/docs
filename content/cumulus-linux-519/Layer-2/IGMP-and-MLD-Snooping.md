@@ -14,7 +14,7 @@ The bridge driver in Cumulus Linux kernel includes IGMP and MLD snooping. If you
 
 Without a multicast router, a single switch in an IP subnet can coordinate multicast traffic flows. This switch is the querier or the designated router. The querier generates query messages to check group membership, and processes membership reports and leave messages.
 
-To configure the querier on the switch for a {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge">}}, enable the multicast querier on the bridge and add the source IP address of the queries to the VLAN. 
+To configure the querier on the switch for a {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge">}}, enable the multicast querier on the bridge and add the source IP address of the queries to the VLAN.
 
 Before you configure the querier, make sure to configure the bridge, VLAN, and ports.
 
@@ -185,7 +185,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Edit /etc/cumulus/control-plane/policers.conf ">}}
 
-1. Edit the `/etc/cumulus/control-plane/policers.conf` file. 
+1. Edit the `/etc/cumulus/control-plane/policers.conf` file.
 
    - For IGMP, change the `copp.igmp.rate` and `copp.igmp.burst` parameters.
    - For MLD, change the `copp.icmp6_def_mld.rate` and `copp.icmp6_def_mld.burst` parameters.

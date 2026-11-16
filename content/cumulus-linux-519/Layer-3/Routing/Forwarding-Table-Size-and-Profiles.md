@@ -71,7 +71,7 @@ The IPv6 number corresponds to the /64 IPv6 prefix. The /128 IPv6 prefix number 
 For the ipmc-max profile, the `cl-resource-query` command output displays 33K instead of 15K as the maximum number of IPv4 multicast routes in `switchd`. 15K is the supported and validated value. You can use the higher value of 33K to test higher multicast scale in non-production environments.
 {{%/notice%}}
 
-### Spectrum-6 
+### Spectrum-6
 
 On Spectrum-6, forwarding resource profiles control both unicast and multicast forwarding table entry allocations.
 

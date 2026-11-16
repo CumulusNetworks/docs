@@ -23,7 +23,7 @@ To upgrade a Spectrum-6 switch, perform the upgrade in this order:
 
 {{%notice note%}}
 Upgrade BMC firmware only with the NVUE commands in this section. NVIDIA validates BMC firmware upgrades through NVUE only; NVIDIA does not validate upgrading BMC firmware through Redfish.
-{{%/notice%}} 
+{{%/notice%}}
 
 ## Install BMC
 

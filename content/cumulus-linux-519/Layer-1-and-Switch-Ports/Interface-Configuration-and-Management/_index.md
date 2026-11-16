@@ -12,7 +12,7 @@ Cumulus Linux (including NVUE) uses ifupdown2 to manage network interfaces, whic
 ## Bring an Interface Up or Down
 
 An interface status can be in an:
-- Administrative state, where you configure the interface to be up or down. The administrative state reflects the intended configuration set by an administrator or management system. It indicates whether the interface is meant to be enabled or disabled. 
+- Administrative state, where you configure the interface to be up or down. The administrative state reflects the intended configuration set by an administrator or management system. It indicates whether the interface is meant to be enabled or disabled.
 - Operational state, which reflects the current operational status of an interface. The operational state reflects the actual current status of the interface, taking into account physical and logical conditions.
 
 The carrier state is the lower layer state of an interface. For a switch port, the carrier state represents if the switch port is enabled at the ASIC level and a cable connects successfully. For a virtual interface, the carrier state involves the operational state of lower-level interfaces. For example, for a VLAN interface, the carrier state depends on the underlying bridge device operational state.
@@ -885,10 +885,10 @@ To configure and enable link tracking:
 - Create a link tracking group with the set of links (watch interfaces) that you want to monitor.
   - You can only configure switch port (swp) interfaces that already exist.
   - A group name must be between 1 and 16 characters long. You can use alphanumeric characters, hyphens (-), and underscores (_).
-- Set the minimum number of watch interfaces for each group that must be operationally up to keep the associated target interfaces active. 
+- Set the minimum number of watch interfaces for each group that must be operationally up to keep the associated target interfaces active.
   - The minimum number of links must not exceed the number of interfaces configured in the group.
   - The default value is 1 when the group has at least one watch interface.
-- Associate target interfaces with the link tracking group. These are the interfaces that depend on the health of the watch interfaces in the group. 
+- Associate target interfaces with the link tracking group. These are the interfaces that depend on the health of the watch interfaces in the group.
   - The interface must be a switch port (swp).
   - You cannot configure an interface as both a watch interface and a target interface.
 - Specify the action each group takes when the number of operationally up watch interfaces drops below the minimum threshold. When the number of operationally up watch interfaces meets or exceeds the threshold again, the switch clears the action and restores the target interfaces. You can set the following actions:
@@ -897,7 +897,7 @@ To configure and enable link tracking:
 
 NVUE writes the link tracking configuration to the `/etc/cumulus/link-tracking.conf` file and reloads the `link-tracking.service`. The `link-trackingd` daemon that this service runs manages the runtime behavior: it starts the `ifplugd` service to monitor the watch interfaces, updates `/etc/default/ifplugd`, and sets or clears the link tracking protodown reason on the target interfaces when the health of a group changes. The daemon also synchronizes the protodown state of the target interfaces with the group configuration after you change the configuration, restart the service, reboot the switch, or upgrade the switch. When you disable link tracking, the `ifplugd` service stops.
 
-The following example configures two groups: 
+The following example configures two groups:
 - GROUP1 sets the watch interfaces to swp17, swp19, and swp21, and the minimum number of watch interfaces that must be operationally up to 1. The target interfaces are swp7 and swp15, and the action is `control-plane-action`.
 - GROUP2 sets the watch interfaces to swp17, swp24, swp25, and swp31 and the minimum number of watch interfaces that must be operationally up to 2. The target interface is swp8 and the action is `protodown-target-interface`.
 
@@ -1045,7 +1045,7 @@ GROUP2               swp17            2          protodown-target-interface
                      swp31
 ```
 
-To show details of a specific link tracking group, including its watch interfaces, minimum threshold, and state-change action, run the `nv show system link-tracking group <group-id>` command: 
+To show details of a specific link tracking group, including its watch interfaces, minimum threshold, and state-change action, run the `nv show system link-tracking group <group-id>` command:
 
 ```
 cumulus@switch:~$ nv show system link-tracking group GROUP2
@@ -1660,4 +1660,3 @@ valid_lft forever preferred_lft forever
 ## Related Information
 
 - {{<link url="Troubleshoot-Layer-1">}}
-- {{<exlink url="http://wiki.debian.org/NetworkConfiguration" text="Debian - Network Configuration">}}

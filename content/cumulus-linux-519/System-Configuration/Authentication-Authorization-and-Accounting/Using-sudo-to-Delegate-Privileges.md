@@ -91,6 +91,3 @@ When an unprivileged user runs a command, the command must include the `sudo` pr
 | Layer 3| Any iproute command | ip * | %noc ALL=(ALL) NOPASSWD:/bin/ip |
 | Layer 3| Non-modal OSPF | cl-ospf area 0.0.0.1 range 10.0.0.0/24 | %noc ALL=(ALL) NOPASSWD:/usr/bin/cl-ospf |
 <!-- vale on -->
-## Related Information
-
-- {{<exlink url="https://wiki.debian.org/sudo" text="Debian wiki - sudo">}}

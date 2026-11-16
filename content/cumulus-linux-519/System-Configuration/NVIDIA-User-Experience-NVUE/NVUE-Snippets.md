@@ -591,7 +591,7 @@ If you try to apply a flexible snippet to a file that supports traditional snipp
 ```
 cumulus@leaf01:mgmt:~$ nv config apply
 Invalid config [rev_id: 1]
-  Flexible snippet cannot be used to modify the file '/etc/ssh/sshd_config'. Traditional snippets (for e.g., 'sshd_config') are supported on this file. Consult NVIDIA NVUE documentation for further information on snippets.
+  Flexible snippet cannot be used to modify the file '/etc/ssh/sshd_config'. Traditional snippets ('sshd_config') are supported on this file. Consult NVIDIA NVUE documentation for further information on snippets.
 ```
 
 {{%/notice%}}

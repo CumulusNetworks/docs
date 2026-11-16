@@ -20,10 +20,10 @@ NVUE currently only supports a subset of the `switchd` configuration available i
 {{< tab "NVUE Commands ">}}
 
 You can run NVUE commands to set the following `switchd` options:
-- The statistic polling interval for physical interfaces and for logical interfaces. 
+- The statistic polling interval for physical interfaces and for logical interfaces.
   - For physical interfaces, you can specify a value between 1 and 10. The default setting is 2 seconds
   - For logical interfaces, you can specify a value between 1 and 30. The default setting is 5 seconds.
-  
+
    {{%notice note%}}
 A low setting, such as 1, might affect system performance.
 {{%/notice%}}

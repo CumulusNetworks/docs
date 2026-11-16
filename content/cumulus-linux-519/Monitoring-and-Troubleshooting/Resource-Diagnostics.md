@@ -13,7 +13,7 @@ To monitor resources in Cumulus Linux, you can use either NVUE commands or the L
 - NVUE commands report resource utilization from hardware when available; otherwise, they report software-maintained values.
 - `cl-resource-query` reports software-maintained resource utilization.
 
-Because these commands retrieve information from different sources (hardware or software), the reported values might differ slightly under certain conditions. 
+Because these commands retrieve information from different sources (hardware or software), the reported values might differ slightly under certain conditions.
 
 {{< tabs "TabID14 ">}}
 {{< tab "NVUE Commands ">}}
@@ -190,5 +190,5 @@ cumulus@switch:~$ nv action clear platform asic ASIC1 resource
 ```
 
 {{%notice note%}}
-The `nv action clear platform asic <asic-id> resource` command clears only High-Watermark and Last-High-Watermark resource metrics for the ASIC specified. All other metrics in the `nv show platform asic <asic-id> resource` command output are unaffected. 
+The `nv action clear platform asic <asic-id> resource` command clears only High-Watermark and Last-High-Watermark resource metrics for the ASIC specified. All other metrics in the `nv show platform asic <asic-id> resource` command output are unaffected.
 {{%/notice%}}

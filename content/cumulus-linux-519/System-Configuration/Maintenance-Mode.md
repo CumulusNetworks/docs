@@ -15,7 +15,7 @@ Cumulus Linux 5.13 and later provides new NVUE `nv set maintenance unit` command
 
 {{%notice note%}}
 Currently, maintenance mode applies to BGP only.
-{{%/notice%}} 
+{{%/notice%}}
 
 When you put all protocols in maintenance mode:
 - All the protocols that support graceful shutdown perform graceful shutdown with all their neighbors.

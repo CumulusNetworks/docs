@@ -640,7 +640,7 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{%notice note%}}
-- You can disable BGP export across all VRFs with the `nv set telemetry router bgp export state disabled` command and enable it only for specific VRFs with the `nv set telemetry router vrf <vrf-id> bgp export state enabled` command. 
+- You can disable BGP export across all VRFs with the `nv set telemetry router bgp export state disabled` command and enable it only for specific VRFs with the `nv set telemetry router vrf <vrf-id> bgp export state enabled` command.
 - You can also disable BGP export across all peers in a VRF with the `nv set telemetry router vrf <vrf-id> bgp export state disabled` command, and enable telemetry only for specific peers in the VRF with the `nv set telemetry router vrf <vrf-id> bgp peer <peer> export state enabled` command.
 {{%/notice%}}
 
@@ -1114,10 +1114,10 @@ When you enable 802.1X statistic telemetry, the switch exports the following sta
 | `nvswitch_dot1x_radius_client_info` | RADIUS client configuration (NAS identifier, NAS IP address, source IP). |
 | `nvswitch_dot1x_radius_server_info` | RADIUS server configuration (IP address, authentication port, accounting port, priority, VRF). |
 | `nvswitch_dot1x_supplicant_summary` | Summary showing MAC address, interface, authentication type, VLAN assignment, and session ID of each authenticated supplicant. |
-| `nvswitch_dot1x_supplicant_eapol_counters` | EAPOL frame counters per supplicant, including start, logoff, request, response, invalid, and length-errored frames. |  
+| `nvswitch_dot1x_supplicant_eapol_counters` | EAPOL frame counters per supplicant, including start, logoff, request, response, invalid, and length-errored frames. |
 | `nvswitch_dot1x_interface_info` | Per-interface 802.1X configuration (EAP, MBA, host mode, port-id, IPv6 profile, auth-fail VLAN).|
 | `nvswitch_dot1x_supplicant_status` | Authentication status of the supplicant. |
-| `nvswitch_dot1x_ipv6_profile_info` | IPv6 profile configuration (profile name and route tag). | 
+| `nvswitch_dot1x_ipv6_profile_info` | IPv6 profile configuration (profile name and route tag). |
 | `nvswitch_dot1x_ipv6_profile_property_info` | IPv6 profile property configuration (offset, length, value, isolation, summarization). |
 | `nvswitch_dot1x_ipv6_profile_summary` | IPv6 prefix generated for each layer 3 authenticated session that is using an IPv6 profile. |
 | `nvswitch_dot1x_reauth_timeouts` | Counter of reauthentication attempts with the RADIUS server that timed out but were ignored, keeping the supplicant in Authorized state when the `reauth-timeout-ignore` flag is enabled. |
@@ -1365,15 +1365,15 @@ The switch collects and exports the following interface and switch, buffer occup
 | `nvswitch_shared_buffer_pool_desc_watermark_recorded_max_timestamp` | Time when the highest shared buffer descriptor watermark is recorded. |
 | `nvswitch_shared_buffer_pool_desc_time_since_clear` | Time in milliseconds after shared buffer descriptor watermarks are last cleared.  |
 | `nvswitch_interface_shared_buffer_port_pg_desc_time_since_clear` | Time in milliseconds after watermarks for the interface priority‑group descriptor are last cleared.|
-| `nvswitch_interface_shared_buffer_port_tc_desc_time_since_clear` | Time in milliseconds after watermark counters for the interface traffic‑class queue descriptor are last cleared. | 
-| `nvswitch_interface_shared_buffer_port_ingress_pool_time_since_clear` | Time in milliseconds after watermark counters for the interface ingress pool are last cleared. | 
-| `nvswitch_interface_shared_buffer_port_ingress_pool_desc_time_since_clear` | Time in milliseconds after watermark counters for the interface ingress‑pool descriptor are last cleared.| 
-| `nvswitch_interface_shared_buffer_port_egress_pool_time_since_clear` | Time in milliseconds after watermark counters for the interface egress pool are last cleared. | 
+| `nvswitch_interface_shared_buffer_port_tc_desc_time_since_clear` | Time in milliseconds after watermark counters for the interface traffic‑class queue descriptor are last cleared. |
+| `nvswitch_interface_shared_buffer_port_ingress_pool_time_since_clear` | Time in milliseconds after watermark counters for the interface ingress pool are last cleared. |
+| `nvswitch_interface_shared_buffer_port_ingress_pool_desc_time_since_clear` | Time in milliseconds after watermark counters for the interface ingress‑pool descriptor are last cleared.|
+| `nvswitch_interface_shared_buffer_port_egress_pool_time_since_clear` | Time in milliseconds after watermark counters for the interface egress pool are last cleared. |
 | `nvswitch_interface_shared_buffer_port_egress_pool_desc_time_since_clear` | Time in milliseconds after watermark counters for the interface egress‑pool descriptor are last cleared .|
-| `nvswitch_interface_shared_buffer_mc_port_time_since_clear` | Time in milliseconds after watermark counters for multicast traffic on the interface are last cleared.| 
+| `nvswitch_interface_shared_buffer_mc_port_time_since_clear` | Time in milliseconds after watermark counters for multicast traffic on the interface are last cleared.|
 | `nvswitch_shared_buffer_mc_sp_time_since_clear` | Time in milliseconds after watermark counters for multicast traffic in the specified switch priority are last cleared.|
-| `nvswitch_shared_buffer_pool_time_since_clear` | Time in milliseconds after watermark counters for the given pool are last cleared. | 
-| `nvswitch_interface_headroom_buffer_pg_time_since_clear` | Time in milliseconds after watermark counters for the specified buffer type (primary or secondary) in the priority group on the interface are last cleared. | 
+| `nvswitch_shared_buffer_pool_time_since_clear` | Time in milliseconds after watermark counters for the given pool are last cleared. |
+| `nvswitch_interface_headroom_buffer_pg_time_since_clear` | Time in milliseconds after watermark counters for the specified buffer type (primary or secondary) in the priority group on the interface are last cleared. |
 | `nvswitch_interface_headroom_shared_buffer_time_since_clear` | Time in milliseconds after watermark counters for the specified buffer type (primary or secondary) on the interface are last cleared.|
 | `nvswitch_buffer_cell_size_bytes` | Shared‑buffer allocation cell size in bytes. |
 
@@ -1447,125 +1447,125 @@ When you enable control plane statistic telemetry, the switch exports the follow
 
 | Name | Description |
 |----- | ----------- |
-| `node_netstat_Ip_InReceives` | The number of IP packets received. | 
-| `node_netstat_Ip_InAddrErrors` | The number of IP packets dropped upon receipt due to errors in the destination or source IP address.|  
-| `node_netstat_Ip_InDelivers` | The number of received IP packets that were successfully delivered to higher-level protocols (such as TCP or UDP).|  
-| `node_netstat_Ip_InDiscards` | The number of IP packets received but dropped, often due to errors.|  
-| `node_netstat_Ip_InHdrErrors` | The number of input IP packets discarded due to errors in their headers (bad checksums, version mismatch, or invalid length). |  
-| `node_netstat_Ip_InUnknownProtos` | The number of incoming IP packets received with an unknown or unsupported protocol. | 
-| `node_netstat_Ip_ForwDatagrams` | The number of IP packets forwarded. | 
-| `node_netstat_Ip_ReasmOKs` | The number of IP packets successfully reassembled after being fragmented.| 
-| `node_netstat_Ip_ReasmFails` | The number of IP packets that failed to reassemble.| 
-| `node_netstat_Ip_ReasmReqds` | The number of IP packets that required reassembly.| 
-| `node_netstat_IpExt_InNoRoutes` | The number of incoming IP packets discarded because no route could be found to the destination address. | 
-| `node_netstat_IpExt_InOctets` | The number of bytes received through IP, representing incoming network traffic. | 
-| `node_netstat_IpExt_InMcastPkts` | The number of IP multicast packets received.| 
-| `node_netstat_IpExt_InMcastOctets` | The number of IP multicast bytes received.| 
-| `node_netstat_IpExt_InBcastPkts` | The number of incoming IP broadcast packets received.| 
-| `node_netstat_IpExt_InTruncatedPkts` | The number of truncated packets received.| 
-| `node_netstat_Ip_OutRequests` | The number of packets sent.| 
-| `node_netstat_Ip_OutDiscards` | The number of outgoing IP packets that were discarded, even though no errors were detected to prevent their transmission.| 
-| `node_netstat_Ip_OutNoRoutes` |  The number of IP packets dropped because a route could not be found. | 
-| `node_netstat_Ip_FragOKs` | The number of IP packets that have been successfully fragmented. | 
-| `node_netstat_Ip_FragFails` |  The number of IP packets that have been discarded because they needed to be fragmented but could not be, or were otherwise failing fragmentation.| 
-| `node_netstat_Ip_FragCreates` | The number of IP packets that have been generated as a result of fragmentation.| 
-| `node_netstat_IpExt_OutOctets` |The number of bytes sent. | 
-| `node_netstat_IpExt_OutMcastPkts` | The number of IP multicast packets sent.| 
-| `node_netstat_IpExt_OutMcastOctets` | The number of IP multicast bytes sent. | 
-| `node_netstat_IpExt_OutBcastPkts` | The number of IP broadcast packets sent.| 
-| `node_netstat_Icmp_InMsgs` | The number of ICMP messages received.| 
-| `node_netstat_Icmp_InErrors` | The number of ICMP errors received.| 
-| `node_netstat_Icmp_InDestUnreachs` | The number of ICMP Destination Unreachable received. | 
-| `node_netstat_Icmp_InTimeExcds` | The number of ICMP Time Exceeded messages received.| 
-| `node_netstat_Icmp_InEchos` | The number of ICMP Echo Request messages (pings) received.| 
-| `node_netstat_Icmp_InEchoReps` | The number of ICMP Echo Reply messages received.| 
-| `node_netstat_Icmp_OutMsgs` | The number of ICMP messages sent.| 
-| `node_netstat_Icmp_OutErrors` | The number of ICMP errors sent.| 
-| `node_netstat_Icmp_OutDestUnreachs` | The number of outgoing ICMP Destination Unreachable packets sent.| 
-| `node_netstat_Icmp_OutTimeExcds` | The number of ICMP Time Exceeded messages sent.| 
+| `node_netstat_Ip_InReceives` | The number of IP packets received. |
+| `node_netstat_Ip_InAddrErrors` | The number of IP packets dropped upon receipt due to errors in the destination or source IP address.|
+| `node_netstat_Ip_InDelivers` | The number of received IP packets that were successfully delivered to higher-level protocols (such as TCP or UDP).|
+| `node_netstat_Ip_InDiscards` | The number of IP packets received but dropped, often due to errors.|
+| `node_netstat_Ip_InHdrErrors` | The number of input IP packets discarded due to errors in their headers (bad checksums, version mismatch, or invalid length). |
+| `node_netstat_Ip_InUnknownProtos` | The number of incoming IP packets received with an unknown or unsupported protocol. |
+| `node_netstat_Ip_ForwDatagrams` | The number of IP packets forwarded. |
+| `node_netstat_Ip_ReasmOKs` | The number of IP packets successfully reassembled after being fragmented.|
+| `node_netstat_Ip_ReasmFails` | The number of IP packets that failed to reassemble.|
+| `node_netstat_Ip_ReasmReqds` | The number of IP packets that required reassembly.|
+| `node_netstat_IpExt_InNoRoutes` | The number of incoming IP packets discarded because no route could be found to the destination address. |
+| `node_netstat_IpExt_InOctets` | The number of bytes received through IP, representing incoming network traffic. |
+| `node_netstat_IpExt_InMcastPkts` | The number of IP multicast packets received.|
+| `node_netstat_IpExt_InMcastOctets` | The number of IP multicast bytes received.|
+| `node_netstat_IpExt_InBcastPkts` | The number of incoming IP broadcast packets received.|
+| `node_netstat_IpExt_InTruncatedPkts` | The number of truncated packets received.|
+| `node_netstat_Ip_OutRequests` | The number of packets sent.|
+| `node_netstat_Ip_OutDiscards` | The number of outgoing IP packets that were discarded, even though no errors were detected to prevent their transmission.|
+| `node_netstat_Ip_OutNoRoutes` |  The number of IP packets dropped because a route could not be found. |
+| `node_netstat_Ip_FragOKs` | The number of IP packets that have been successfully fragmented. |
+| `node_netstat_Ip_FragFails` |  The number of IP packets that have been discarded because they needed to be fragmented but could not be, or were otherwise failing fragmentation.|
+| `node_netstat_Ip_FragCreates` | The number of IP packets that have been generated as a result of fragmentation.|
+| `node_netstat_IpExt_OutOctets` |The number of bytes sent. |
+| `node_netstat_IpExt_OutMcastPkts` | The number of IP multicast packets sent.|
+| `node_netstat_IpExt_OutMcastOctets` | The number of IP multicast bytes sent. |
+| `node_netstat_IpExt_OutBcastPkts` | The number of IP broadcast packets sent.|
+| `node_netstat_Icmp_InMsgs` | The number of ICMP messages received.|
+| `node_netstat_Icmp_InErrors` | The number of ICMP errors received.|
+| `node_netstat_Icmp_InDestUnreachs` | The number of ICMP Destination Unreachable received. |
+| `node_netstat_Icmp_InTimeExcds` | The number of ICMP Time Exceeded messages received.|
+| `node_netstat_Icmp_InEchos` | The number of ICMP Echo Request messages (pings) received.|
+| `node_netstat_Icmp_InEchoReps` | The number of ICMP Echo Reply messages received.|
+| `node_netstat_Icmp_OutMsgs` | The number of ICMP messages sent.|
+| `node_netstat_Icmp_OutErrors` | The number of ICMP errors sent.|
+| `node_netstat_Icmp_OutDestUnreachs` | The number of outgoing ICMP Destination Unreachable packets sent.|
+| `node_netstat_Icmp_OutTimeExcds` | The number of ICMP Time Exceeded messages sent.|
 | `node_netstat_Icmp_OutEchos` | The number of ICMP Echo Request messages sent. |
-| `node_netstat_Icmp_OutEchoReps` | The number of ICMP Echo Reply (ping reply) messages sent.| 
-| `node_netstat_Tcp_InSegs` | The number of TCP segments received.| 
-| `node_netstat_Tcp_InErrs` | The number of TCP segments received that contained errors.| 
-| `node_netstat_Tcp_OutSegs` | The number of TCP segments sent.| 
-| `node_netstat_Tcp_RetransSegs` | The number of TCP segments retransmitted.| 
-| `node_netstat_Tcp_ActiveOpens` | The number of TCP connections that have made a direct transition from the CLOSED state to the SYN-SENT state.| 
-| `node_netstat_Tcp_PassiveOpens` | The number of TCP connections with a SYN that moved directly from the LISTEN state to SYN-RCVD.| 
-| `node_netstat_Tcp_AttemptFails` | The number of times TCP connections have made a failed attempt to connect.| 
-| `node_netstat_Tcp_EstabResets` | The number of TCP connections that have directly transitioned from an ESTABLISHED state to a CLOSED state.| 
-| `node_netstat_Tcp_CurrEstab` | The number of TCP connections in the ESTABLISHED or CLOSE-WAIT state.| 
-| `node_netstat_Tcp_OutRsts` | The number of TCP resends.| 
-| `node_netstat_TcpExt_ListenDrops` | The number of TCP listen drops.| 
-| `node_netstat_TcpExt_ListenOverflows` | The number of TCP listen overflows.| 
-| `node_netstat_TcpExt_TCPTimeouts` | The number of TCP connections that timed out.| 
-| `node_netstat_TcpExt_TCPSynRetrans` | The number of TCP SYN retransmissions.| 
-| `node_netstat_Udp_InDatagrams` | The number of UDP packets received.| 
-| `node_netstat_Udp_InErrors` | The number of UDP errors opens.| 
-| `node_netstat_Udp_NoPorts` | The number of UDP no ports opens.| 
-| `node_netstat_Udp_RcvbufErrors` | The number of UDP receive buffer errors. | 
-| `node_netstat_Udp_OutDatagrams` | The number of UDP packets sent.| 
-| `node_netstat_Udp_SndbufErrors` | The number of UDP send buffer errors.| 
-| `node_netstat_Ip6_InReceives` | The number of IP packets received.| 
-| `node_netstat_Ip6_InAddrErrors` | The number of IPv6 packets dropped due to address errors.| 
-| `node_netstat_Ip6_InDelivers` | The number of incoming IPv6 packets delivered to upper-layer protocols.| 
-| `node_netstat_Ip6_InDiscards` |  The number of incoming IPv6 packets discarded.| 
-| `node_netstat_Ip6_InHdrErrors` | The number of incoming IPv6 packets with hardware errors.| 
-| `node_netstat_Ip6_InUnknownProtos` | The number of incoming IPv6 packets with unknown protocols.| 
-| `node_netstat_Ip6_InNoRoutes` | The number of incoming IPv6 packets with no routes.| 
-| `node_netstat_Ip6_InOctets` | The number of bytes received through IPv6. | 
-| `node_netstat_Ip6_InMcastPkts` | The number of incoming IPv6 multicast packets| 
-| `node_netstat_Ip6_InMcastOctets` | The number of incoming multicast bytes received through IPv6.| 
-| `node_netstat_Ip6_InTruncatedPkts` | The number of incoming IPv6 truncated packets.| 
-| `node_netstat_Ip6_OutRequests` | The number of IPv6 packets sent.| 
-| `node_netstat_Ip6_OutDiscards` | The number of outgoing IPv6 packets intentionally dropped.| 
-| `node_netstat_Ip6_OutNoRoutes` | The number of IPv6 packets dropped because no route could be found to their destination.| 
-| `node_netstat_Ip6_OutForwDatagrams` | The number of IPv6 packets that the local node forwarded to other destinations.| 
-| `node_netstat_Ip6_FragOKs` | The number of IPv6 packets successfully fragmented.| 
-| `node_netstat_Ip6_FragFails` | The number of IPv6 packets that could not be fragmented due to size restrictions or errors.| 
-| `node_netstat_Ip6_FragCreates` | The number of IPv6 packets fragmented into multiple packets. | 
-| `node_netstat_Ip6_OutOctets` | The number of bytes sent in IPv6 packets.| 
-| `node_netstat_Ip6_OutMcastPkts` | The number of IPv6 multicast packets sent.| 
-| `node_netstat_Ip6_OutMcastOctets` | The number of octets (bytes) transmitted in IPv6 multicast packets. | 
-| `node_netstat_Ip6_ReasmOKs` | The number of IPv6 packets successfully reassembled.| 
-| `node_netstat_Ip6_ReasmFails` | The number of IPv6 packets that failed to reassemble successfully.| 
-| `node_netstat_Ip6_ReasmReqds` | The number of IPv6 fragments that need to be reassembled. | 
-| `node_netstat_Icmp6_InMsgs` | The number of ICMPv6 messages received. | 
-| `node_netstat_Icmp6_InErrors` | The number of ICMPv6 errors received.| 
-| `node_netstat_Icmp6_InDestUnreachs` | The number of ICMPv6 Destination Unreachable packets received. | 
-| `node_netstat_Icmp6_InTimeExcds` | The number of ICMPv6 "Time Exceeded" messages received.| 
-| `node_netstat_Icmp6_InEchos` | The number of ICMPv6 Echo Request messages (pings) received.| 
-| `node_netstat_Icmp6_InEchoReplies` | The number of ICMPv6 Echo Reply messages (pings) received.| 
-| `node_netstat_Icmp6_OutMsgs` | The number of ICMPv6 messages sent. | 
-| `node_netstat_Icmp6_OutErrors` | The number of ICMPv6 errors sent.| 
-| `node_netstat_Icmp6_OutDestUnreachs` | The number of ICMPv6 Destination Unreachable packets sent.| 
-| `node_netstat_Icmp6_OutTimeExcds` | The number of ICMPv6 "Time Exceeded" messages sent.| 
-| `node_netstat_Icmp6_OutEchos` | The number of ICMPv6 Echo Request messages (pings) sent.| 
-| `node_netstat_Icmp6_OutEchoReplies` | The number of ICMPv6 Echo Reply messages (pings) sent.| 
-| `node_netstat_Udp6_InDatagrams` | The number of UDP packets delivered to IPv6 users.| 
-| `node_netstat_Udp6_InErrors` | The number of received UDP6 datagrams that could not be delivered, often due to errors.| 
-| `node_netstat_Udp6_NoPorts` | The number of UDP6 no ports.| 
-| `node_netstat_Udp6_RcvbufErrors` | The number of times a UDP6 packet was dropped because the receive buffer (Rcvbuf) was full.| 
-| `node_netstat_Udp6_OutDatagrams` | The number of UDP datagrams sent through IPv6.| 
-| `node_netstat_Udp6_SndbufErrors` | The number of UDPv6 packets that could not be sent due to send buffer errors.| 
-| `node_netstat_Icmp6_InNeighborAdvertisements` | The number of ICMPv6 Neighbor Advertisement messages received.| 
-| `node_netstat_Icmp6_InNeighborSolicits` | The number of ICMPv6 Neighbor Solicitation messages received.| 
-| `node_netstat_Icmp6_InRedirects` | The number of ICMPv6 redirect messages received. | 
-| `node_netstat_Icmp6_InRouterAdvertisements` | The number of ICMPv6 Type 134 messages (Router Advertisements) received.| 
-| `node_netstat_Icmp6_InRouterSolicits` | The number of ICMPv6 Router Solicitation (RS) messages received.| 
-| `node_netstat_Icmp6_OutNeighborAdvertisements` | The number of ICMPv6 Neighbor Advertisement messages sent.| 
-| `node_netstat_Icmp6_OutNeighborSolicits` | The number of ICMPv6 Neighbor Solicitation messages sent.| 
-| `node_netstat_Icmp6_OutRedirects` | The number of ICMPv6 Redirect messages sent.| 
-| `node_netstat_Icmp6_OutRouterAdvertisements` | The number of IPv6 Router Advertisement (RA) messages sent.| 
-| `node_netstat_Icmp6_OutRouterSolicits` | The number of ICMPv6 Router Solicitation (Type 133) messages sent.| 
-| `node_netstat_Icmp_InRedirects` | The number of ICMP Redirect messages received.| 
-| `node_netstat_Icmp_OutRedirects` | The number of ICMP Out Redirects.| 
-| `node_netstat_Ip6_InCEPkts` | The number of received IPv6 packets with the Congestion Experienced (CE) codepoint set.| 
-| `node_netstat_Ip6_InECT0Pkts` | The number of received IPv6 packets with the ECN-Capable Transport (ECT) codepoint '0' set (ECT(0)).| 
-| `node_netstat_Ip6_InECT1Pkts` | The number of incoming IPv6 packets received with the ECN (Explicit Congestion Notification) Codepoint 1 (ECT1) set. | 
-| `node_netstat_Ip6_InNoECTPkts` | The number of incoming IPv6 packets received that do not have the ECN-Capable Transport (ECT) codepoint set.| 
-| `node_netstat_IpExt_InCEPkts` | The number of incoming IP packets received with the Congestion Experienced (CE) codepoint set.| 
-| `node_netstat_IpExt_InECT0Pkts` | The number of IP datagrams received with the ECN (Explicit Congestion Notification) codepoint "ECT(0)".| 
-| `node_netstat_IpExt_InECT1Pkts` | The number of IP packets received with ECN (Explicit Congestion Notification) capable transport, specifically ECT(1) codepoint.| 
+| `node_netstat_Icmp_OutEchoReps` | The number of ICMP Echo Reply (ping reply) messages sent.|
+| `node_netstat_Tcp_InSegs` | The number of TCP segments received.|
+| `node_netstat_Tcp_InErrs` | The number of TCP segments received that contained errors.|
+| `node_netstat_Tcp_OutSegs` | The number of TCP segments sent.|
+| `node_netstat_Tcp_RetransSegs` | The number of TCP segments retransmitted.|
+| `node_netstat_Tcp_ActiveOpens` | The number of TCP connections that have made a direct transition from the CLOSED state to the SYN-SENT state.|
+| `node_netstat_Tcp_PassiveOpens` | The number of TCP connections with a SYN that moved directly from the LISTEN state to SYN-RCVD.|
+| `node_netstat_Tcp_AttemptFails` | The number of times TCP connections have made a failed attempt to connect.|
+| `node_netstat_Tcp_EstabResets` | The number of TCP connections that have directly transitioned from an ESTABLISHED state to a CLOSED state.|
+| `node_netstat_Tcp_CurrEstab` | The number of TCP connections in the ESTABLISHED or CLOSE-WAIT state.|
+| `node_netstat_Tcp_OutRsts` | The number of TCP resends.|
+| `node_netstat_TcpExt_ListenDrops` | The number of TCP listen drops.|
+| `node_netstat_TcpExt_ListenOverflows` | The number of TCP listen overflows.|
+| `node_netstat_TcpExt_TCPTimeouts` | The number of TCP connections that timed out.|
+| `node_netstat_TcpExt_TCPSynRetrans` | The number of TCP SYN retransmissions.|
+| `node_netstat_Udp_InDatagrams` | The number of UDP packets received.|
+| `node_netstat_Udp_InErrors` | The number of UDP errors opens.|
+| `node_netstat_Udp_NoPorts` | The number of UDP no ports opens.|
+| `node_netstat_Udp_RcvbufErrors` | The number of UDP receive buffer errors. |
+| `node_netstat_Udp_OutDatagrams` | The number of UDP packets sent.|
+| `node_netstat_Udp_SndbufErrors` | The number of UDP send buffer errors.|
+| `node_netstat_Ip6_InReceives` | The number of IP packets received.|
+| `node_netstat_Ip6_InAddrErrors` | The number of IPv6 packets dropped due to address errors.|
+| `node_netstat_Ip6_InDelivers` | The number of incoming IPv6 packets delivered to upper-layer protocols.|
+| `node_netstat_Ip6_InDiscards` |  The number of incoming IPv6 packets discarded.|
+| `node_netstat_Ip6_InHdrErrors` | The number of incoming IPv6 packets with hardware errors.|
+| `node_netstat_Ip6_InUnknownProtos` | The number of incoming IPv6 packets with unknown protocols.|
+| `node_netstat_Ip6_InNoRoutes` | The number of incoming IPv6 packets with no routes.|
+| `node_netstat_Ip6_InOctets` | The number of bytes received through IPv6. |
+| `node_netstat_Ip6_InMcastPkts` | The number of incoming IPv6 multicast packets|
+| `node_netstat_Ip6_InMcastOctets` | The number of incoming multicast bytes received through IPv6.|
+| `node_netstat_Ip6_InTruncatedPkts` | The number of incoming IPv6 truncated packets.|
+| `node_netstat_Ip6_OutRequests` | The number of IPv6 packets sent.|
+| `node_netstat_Ip6_OutDiscards` | The number of outgoing IPv6 packets intentionally dropped.|
+| `node_netstat_Ip6_OutNoRoutes` | The number of IPv6 packets dropped because no route could be found to their destination.|
+| `node_netstat_Ip6_OutForwDatagrams` | The number of IPv6 packets that the local node forwarded to other destinations.|
+| `node_netstat_Ip6_FragOKs` | The number of IPv6 packets successfully fragmented.|
+| `node_netstat_Ip6_FragFails` | The number of IPv6 packets that could not be fragmented due to size restrictions or errors.|
+| `node_netstat_Ip6_FragCreates` | The number of IPv6 packets fragmented into multiple packets. |
+| `node_netstat_Ip6_OutOctets` | The number of bytes sent in IPv6 packets.|
+| `node_netstat_Ip6_OutMcastPkts` | The number of IPv6 multicast packets sent.|
+| `node_netstat_Ip6_OutMcastOctets` | The number of octets (bytes) transmitted in IPv6 multicast packets. |
+| `node_netstat_Ip6_ReasmOKs` | The number of IPv6 packets successfully reassembled.|
+| `node_netstat_Ip6_ReasmFails` | The number of IPv6 packets that failed to reassemble successfully.|
+| `node_netstat_Ip6_ReasmReqds` | The number of IPv6 fragments that need to be reassembled. |
+| `node_netstat_Icmp6_InMsgs` | The number of ICMPv6 messages received. |
+| `node_netstat_Icmp6_InErrors` | The number of ICMPv6 errors received.|
+| `node_netstat_Icmp6_InDestUnreachs` | The number of ICMPv6 Destination Unreachable packets received. |
+| `node_netstat_Icmp6_InTimeExcds` | The number of ICMPv6 "Time Exceeded" messages received.|
+| `node_netstat_Icmp6_InEchos` | The number of ICMPv6 Echo Request messages (pings) received.|
+| `node_netstat_Icmp6_InEchoReplies` | The number of ICMPv6 Echo Reply messages (pings) received.|
+| `node_netstat_Icmp6_OutMsgs` | The number of ICMPv6 messages sent. |
+| `node_netstat_Icmp6_OutErrors` | The number of ICMPv6 errors sent.|
+| `node_netstat_Icmp6_OutDestUnreachs` | The number of ICMPv6 Destination Unreachable packets sent.|
+| `node_netstat_Icmp6_OutTimeExcds` | The number of ICMPv6 "Time Exceeded" messages sent.|
+| `node_netstat_Icmp6_OutEchos` | The number of ICMPv6 Echo Request messages (pings) sent.|
+| `node_netstat_Icmp6_OutEchoReplies` | The number of ICMPv6 Echo Reply messages (pings) sent.|
+| `node_netstat_Udp6_InDatagrams` | The number of UDP packets delivered to IPv6 users.|
+| `node_netstat_Udp6_InErrors` | The number of received UDP6 datagrams that could not be delivered, often due to errors.|
+| `node_netstat_Udp6_NoPorts` | The number of UDP6 no ports.|
+| `node_netstat_Udp6_RcvbufErrors` | The number of times a UDP6 packet was dropped because the receive buffer (Rcvbuf) was full.|
+| `node_netstat_Udp6_OutDatagrams` | The number of UDP datagrams sent through IPv6.|
+| `node_netstat_Udp6_SndbufErrors` | The number of UDPv6 packets that could not be sent due to send buffer errors.|
+| `node_netstat_Icmp6_InNeighborAdvertisements` | The number of ICMPv6 Neighbor Advertisement messages received.|
+| `node_netstat_Icmp6_InNeighborSolicits` | The number of ICMPv6 Neighbor Solicitation messages received.|
+| `node_netstat_Icmp6_InRedirects` | The number of ICMPv6 redirect messages received. |
+| `node_netstat_Icmp6_InRouterAdvertisements` | The number of ICMPv6 Type 134 messages (Router Advertisements) received.|
+| `node_netstat_Icmp6_InRouterSolicits` | The number of ICMPv6 Router Solicitation (RS) messages received.|
+| `node_netstat_Icmp6_OutNeighborAdvertisements` | The number of ICMPv6 Neighbor Advertisement messages sent.|
+| `node_netstat_Icmp6_OutNeighborSolicits` | The number of ICMPv6 Neighbor Solicitation messages sent.|
+| `node_netstat_Icmp6_OutRedirects` | The number of ICMPv6 Redirect messages sent.|
+| `node_netstat_Icmp6_OutRouterAdvertisements` | The number of IPv6 Router Advertisement (RA) messages sent.|
+| `node_netstat_Icmp6_OutRouterSolicits` | The number of ICMPv6 Router Solicitation (Type 133) messages sent.|
+| `node_netstat_Icmp_InRedirects` | The number of ICMP Redirect messages received.|
+| `node_netstat_Icmp_OutRedirects` | The number of ICMP Out Redirects.|
+| `node_netstat_Ip6_InCEPkts` | The number of received IPv6 packets with the Congestion Experienced (CE) codepoint set.|
+| `node_netstat_Ip6_InECT0Pkts` | The number of received IPv6 packets with the ECN-Capable Transport (ECT) codepoint '0' set (ECT(0)).|
+| `node_netstat_Ip6_InECT1Pkts` | The number of incoming IPv6 packets received with the ECN (Explicit Congestion Notification) Codepoint 1 (ECT1) set. |
+| `node_netstat_Ip6_InNoECTPkts` | The number of incoming IPv6 packets received that do not have the ECN-Capable Transport (ECT) codepoint set.|
+| `node_netstat_IpExt_InCEPkts` | The number of incoming IP packets received with the Congestion Experienced (CE) codepoint set.|
+| `node_netstat_IpExt_InECT0Pkts` | The number of IP datagrams received with the ECN (Explicit Congestion Notification) codepoint "ECT(0)".|
+| `node_netstat_IpExt_InECT1Pkts` | The number of IP packets received with ECN (Explicit Congestion Notification) capable transport, specifically ECT(1) codepoint.|
 | `node_netstat_IpExt_InNoECTPkts` | The number of IP packets received with no ECN (Explicit Congestion Notification) capable transport.|
 | `nvswitch_control_plane_punt_classifier_matched_packets` | The number of packets that a {{<link url="Access-Control-List-Configuration/#control-plane-punt-classifier" text="control plane punt classifier">}} rule drops. |
 | `nvswitch_control_plane_punt_classifier_matched_bytes` | The number of bytes that a {{<link url="Access-Control-List-Configuration/#control-plane-punt-classifier" text="control plane punt classifier">}} rule drops. |
@@ -1949,18 +1949,18 @@ The interface statistic data samples that the switch exports to the OTEL collect
 | `nvswitch_interface_discards_egress_hoq` | Interface egress head-of-queue timeout discards. |
 | `nvswitch_interface_discards_egress_policy_engine` | Interface egress policy engine discards. |
 | `nvswitch_interface_discards_ingress_tx_link_down` | Interface ingress transmit link down discards. |
-| `nvswitch_interface_discards_egress_stp_filter` | Interface egress spanning tree filter discards. | 
+| `nvswitch_interface_discards_egress_stp_filter` | Interface egress spanning tree filter discards. |
 | `nvswitch_interface_discards_egress_hoq_stall` | Interface egress head-of-queue stall discards.|
 | `nvswitch_interface_discards_egress_sll` | Interface egress switch lifetime limit discards. |
-| `nvswitch_interface_ether_stats_pkts64octets` | Total packets received, 64 octets in length. |  
-| `nvswitch_interface_ether_stats_pkts65to127octets` | Total packets received, 65 to 127 octets in length. |  
-| `nvswitch_interface_ether_stats_pkts128to255octets` | Total packets received, 12 to 255 octets in length. |  
-| `nvswitch_interface_ether_stats_pkts256to511octets` | Total packets received, 256 to 511 octets in length. |  
-| `nvswitch_interface_ether_stats_pkts512to1023octets` | Total packets received, 512 to 1023 octets in length. |  
-| `nvswitch_interface_ether_stats_pkts1024to1518octets` | Total packets received, 1024 to 1518 octets in length. |  
-| `nvswitch_interface_ether_stats_pkts1519to2047octets` | Total packets received, 1519 to 2047 octets in length. |  
-| `nvswitch_interface_ether_stats_pkts2048to4095octets` | Total packets received, 2048 to 4095 octets in length. |  
-| `nvswitch_interface_ether_stats_pkts4096to8191octets` | Total packets received, 4096 to 8191 octets in length. |  
+| `nvswitch_interface_ether_stats_pkts64octets` | Total packets received, 64 octets in length. |
+| `nvswitch_interface_ether_stats_pkts65to127octets` | Total packets received, 65 to 127 octets in length. |
+| `nvswitch_interface_ether_stats_pkts128to255octets` | Total packets received, 12 to 255 octets in length. |
+| `nvswitch_interface_ether_stats_pkts256to511octets` | Total packets received, 256 to 511 octets in length. |
+| `nvswitch_interface_ether_stats_pkts512to1023octets` | Total packets received, 512 to 1023 octets in length. |
+| `nvswitch_interface_ether_stats_pkts1024to1518octets` | Total packets received, 1024 to 1518 octets in length. |
+| `nvswitch_interface_ether_stats_pkts1519to2047octets` | Total packets received, 1519 to 2047 octets in length. |
+| `nvswitch_interface_ether_stats_pkts2048to4095octets` | Total packets received, 2048 to 4095 octets in length. |
+| `nvswitch_interface_ether_stats_pkts4096to8191octets` | Total packets received, 4096 to 8191 octets in length. |
 | `nvswitch_interface_ether_stats_pkts8192to10239octets` | Total packets received, 8192 to 10239 octets in length. |
 | `nvswitch_interface_carrier_up_changes_total` | Total number of carrier up transitions for the interface. |
 | `nvswitch_interface_carrier_last_change_time_ms` | Time of last carrier change for the interface as Unix epoch timestamp, with millisecond granularity. |
@@ -1981,7 +1981,7 @@ The interface statistic data samples that the switch exports to the OTEL collect
 | `nvswitch_interface_rx_ebp` | The number of received EBP packets. |
 | `nvswitch_interface_tx_ebp` | The number of transmitted EBP packets. |
 | `nvswitch_interface_tx_int_cksm_err` | Counter increments when there is a packet payload internal checksum error. |
-| `nvswitch_interface_tx_stats_pkts64octets` | Total packets transmitted, 64 octets in length. |  
+| `nvswitch_interface_tx_stats_pkts64octets` | Total packets transmitted, 64 octets in length. |
 | `nvswitch_interface_tx_stats_pkts65to127octets`| Total packets transmitted, 65 to 127 octets in length. |
 | `nvswitch_interface_tx_stats_pkts128to255octets`| Total packets transmitted, 128 to 255 octets in length.|
 | `nvswitch_interface_tx_stats_pkts256to511octets` | Total packets transmitted, 256 to 511 octets in length.|
@@ -3275,10 +3275,10 @@ ASIC statistics include the ASIC resource used percentage, the maximum number of
 
 | Name | Description |
 |----- | ----------- |
-| `nvswitch_platform_asic_resource_used{resource_name="<name>"}` | *The number of entries used for an ASIC resource. | 
-| `nvswitch_platform_asic_resource_free{resource_name="<name>"}` | *The number of free entries available for an ASIC resource. | 
+| `nvswitch_platform_asic_resource_used{resource_name="<name>"}` | *The number of entries used for an ASIC resource. |
+| `nvswitch_platform_asic_resource_free{resource_name="<name>"}` | *The number of free entries available for an ASIC resource. |
 | `nvswitch_platform_asic_resource_max_limit{resource_name="<name>"}` | *The maximum limit of possible entries for an ASIC resource.|
-| `nvswitch_platform_asic_resource_high_watermark{resource_name="<name>"}` | *The highest number of entries used for an ASIC resource. | 
+| `nvswitch_platform_asic_resource_high_watermark{resource_name="<name>"}` | *The highest number of entries used for an ASIC resource. |
 | `nvswitch_platform_asic_resource_high_watermark_timestamp{resource_name="<name>"}` | *The timestamp when the high-watermark was last updated.|
 
 The ASIC resource is one of the following:
@@ -3319,10 +3319,10 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 | `node_cpu_frequency_min_hertz` | Minimum CPU thread frequency in hertz. |
 | `node_cpu_guest_seconds_total` | Seconds the CPUs spent in guests for each mode. |
 | `node_cpu_package_throttles_total` | Number of times the CPU package has been throttled. |
-| `node_cpu_scaling_frequency_hertz` | Current scaled CPU thread frequency in hertz. |  
-| `node_cpu_scaling_frequency_max_hertz` | Maximum scaled CPU thread frequency in hertz. |  
-| `node_cpu_scaling_frequency_min_hertz` | Minimum scaled CPU thread frequency in hertz. | 
-| `node_cpu_seconds_total` | Seconds the CPU spent in each mode. | 
+| `node_cpu_scaling_frequency_hertz` | Current scaled CPU thread frequency in hertz. |
+| `node_cpu_scaling_frequency_max_hertz` | Maximum scaled CPU thread frequency in hertz. |
+| `node_cpu_scaling_frequency_min_hertz` | Minimum scaled CPU thread frequency in hertz. |
+| `node_cpu_seconds_total` | Seconds the CPU spent in each mode. |
 
 {{< /tab >}}
 {{< tab "Disk ">}}
@@ -3331,25 +3331,25 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 |----- | ----------- |
 | `node_disk_ata_rotation_rate_rpm` | ATA disk rotate rate in RPMs. (0 for SSDs). |
 | `node_disk_ata_write_cache` | ATA disk write cache presence. |
-| `node_disk_ata_write_cache_enabled` | ATA disk write cache status (enabled or disabled). | 
-| `node_disk_discard_time_seconds_total` | Total number of seconds spent by all discards. |  
-| `node_disk_discarded_sectors_total` | Total number of sectors discarded successfully. |  
-| `node_disk_discards_completed_total` | Total number of discards completed. |  
-| `node_disk_discards_merged_total` |  Total number of discards merged. |  
-| `node_disk_flush_requests_time_seconds_total` | Total number of seconds spent by all flush requests. |  
-| `node_disk_flush_requests_total` | The total number of flush requests completed successfully. |  
-| `node_disk_info` | Disk information from `/sys/block/<block_device>`. |  
-| `node_disk_io_now` | Number of I/Os in progress. |  
-| `node_disk_io_time_seconds_total` | Total seconds spent during I/O. |  
-| `node_disk_io_time_weighted_seconds_total` | Weighted number of seconds spent during I/O. |  
-| `node_disk_read_bytes_total` | Total number of bytes read successfully. |  
-| `node_disk_read_time_seconds_total` | Total number of seconds spent by all reads. |  
-| `node_disk_reads_completed_total` | Total number of reads completed successfully. |  
-| `node_disk_reads_merged_total` | Total number of reads merged. |  
-| `node_disk_write_time_seconds_total` | Total number of seconds spent by all writes. |  
-| `node_disk_writes_completed_total` | Total number of writes completed successfully. |  
-| `node_disk_writes_merged_total` | Number of writes merged. |  
-| `node_disk_written_bytes_total` | Total number of bytes written successfully. |  
+| `node_disk_ata_write_cache_enabled` | ATA disk write cache status (enabled or disabled). |
+| `node_disk_discard_time_seconds_total` | Total number of seconds spent by all discards. |
+| `node_disk_discarded_sectors_total` | Total number of sectors discarded successfully. |
+| `node_disk_discards_completed_total` | Total number of discards completed. |
+| `node_disk_discards_merged_total` |  Total number of discards merged. |
+| `node_disk_flush_requests_time_seconds_total` | Total number of seconds spent by all flush requests. |
+| `node_disk_flush_requests_total` | The total number of flush requests completed successfully. |
+| `node_disk_info` | Disk information from `/sys/block/<block_device>`. |
+| `node_disk_io_now` | Number of I/Os in progress. |
+| `node_disk_io_time_seconds_total` | Total seconds spent during I/O. |
+| `node_disk_io_time_weighted_seconds_total` | Weighted number of seconds spent during I/O. |
+| `node_disk_read_bytes_total` | Total number of bytes read successfully. |
+| `node_disk_read_time_seconds_total` | Total number of seconds spent by all reads. |
+| `node_disk_reads_completed_total` | Total number of reads completed successfully. |
+| `node_disk_reads_merged_total` | Total number of reads merged. |
+| `node_disk_write_time_seconds_total` | Total number of seconds spent by all writes. |
+| `node_disk_writes_completed_total` | Total number of writes completed successfully. |
+| `node_disk_writes_merged_total` | Number of writes merged. |
+| `node_disk_written_bytes_total` | Total number of bytes written successfully. |
 
 {{< /tab >}}
 {{< tab "Filesystem ">}}
@@ -3358,11 +3358,11 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 |----- | ----------- |
 | `node_filesystem_avail_bytes` | Filesystem space available to non-root users in bytes.|
 | `node_filesystem_device_error` | Whether an error occurred while getting statistics for the given device. |
-| `node_filesystem_files` | Filesystem total file nodes.| 
-| `node_filesystem_files_free` | Filesystem total free file nodes. |  
-| `node_filesystem_free_bytes` | Filesystem free space in bytes. |  
-| `node_filesystem_readonly` | Filesystem read-only status. |  
-| `node_filesystem_size_bytes` |  Filesystem size in bytes. |  
+| `node_filesystem_files` | Filesystem total file nodes.|
+| `node_filesystem_files_free` | Filesystem total free file nodes. |
+| `node_filesystem_free_bytes` | Filesystem free space in bytes. |
+| `node_filesystem_readonly` | Filesystem read-only status. |
+| `node_filesystem_size_bytes` |  Filesystem size in bytes. |
 
 {{< /tab >}}
 {{< tab "Memory ">}}
@@ -3370,58 +3370,58 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 | Name | Description |
 |----- | ----------- |
 | `node_memory_Active_anon_bytes` | `/proc/meminfo` Active_anon bytes. |
-| `node_memory_Active_bytes` | `/proc/meminfo` Active bytes. |  
-| `node_memory_Active_file_bytes` | `/proc/meminfo` Active_file bytes. |  
+| `node_memory_Active_bytes` | `/proc/meminfo` Active bytes. |
+| `node_memory_Active_file_bytes` | `/proc/meminfo` Active_file bytes. |
 | `node_memory_AnonHugePages_bytes` | `/proc/meminfo` AnonHugePages bytes. |
-| `node_memory_AnonPages_bytes` | `/proc/meminfo` AnonPages bytes. |  
-| `node_memory_Bounce_bytes` | `/proc/meminfo` Bounce bytes. |  
+| `node_memory_AnonPages_bytes` | `/proc/meminfo` AnonPages bytes. |
+| `node_memory_Bounce_bytes` | `/proc/meminfo` Bounce bytes. |
 | `node_memory_Buffers_bytes` | `/proc/meminfo` Buffers bytes. |
-| `node_memory_Cached_bytes` | `/proc/meminfo` Cached bytes. |  
-| `node_memory_CommitLimit_bytes` | `/proc/meminfo` CommitLimit bytes. |  
-| `node_memory_Committed_AS_bytes` | `/proc/meminfo` Committed_AS bytes. |  
-| `node_memory_DirectMap1G_bytes` | `/proc/meminfo` DirectMap1G bytes. |  
-| `node_memory_DirectMap2M_bytes` | `/proc/meminfo` DirectMap2M bytes. |  
-| `node_memory_DirectMap4k_bytes` | `/proc/meminfo` DirectMap4k bytes. |  
-| `node_memory_Dirty_bytes` | `/proc/meminfo` Dirty bytes. |  
-| `node_memory_FileHugePages_bytes` | `/proc/meminfo` FileHugePages bytes. |  
-| `node_memory_FilePmdMapped_bytes` | `/proc/meminfo` FilePmdMapped bytes. |  
-| `node_memory_HardwareCorrupted_bytes` | `/proc/meminfo` HardwareCorrupted bytes. |  
-| `node_memory_HugePages_Free` | `/proc/meminfo` HugePages_Free. |  
-| `node_memory_HugePages_Rsvd` | `/proc/meminfo` HugePages_Rsvd. |  
-| `node_memory_HugePages_Surp` | `/proc/meminfo` HugePages_Surp. |  
-| `node_memory_HugePages_Total` | `/proc/meminfo` HugePages_Total.|  
-| `node_memory_Hugepagesize_bytes` | `/proc/meminfo` Hugepagesize bytes. |  
-| `node_memory_Hugetlb_bytes` | `/proc/meminfo` Hugetlb bytes. |  
-| `node_memory_Inactive_anon_bytes` | `/proc/meminfo` Inactive_anon bytes. |  
-| `node_memory_Inactive_bytes` | `/proc/meminfo` Inactive bytes. |  
-| `node_memory_Inactive_file_bytes` | `/proc/meminfo` Inactive_file bytes. |  
-| `node_memory_KReclaimable_bytes` | `/proc/meminfo` KReclaimable bytes. |  
-| `node_memory_KernelStack_bytes` | `/proc/meminfo` KernelStack bytes. |  
-| `node_memory_Mapped_bytes` | `/proc/meminfo` Mapped bytes. |  
-| `node_memory_MemAvailable_bytes` | `/proc/meminfo` MemAvailable bytes. |  
-| `node_memory_MemFree_bytes` | `/proc/meminfo` MemFree bytes. |  
-| `node_memory_MemTotal_bytes` | `/proc/meminfo` MemTotal bytes. |  
-| `node_memory_Mlocked_bytes` | `/proc/meminfo` Mlocked bytes. |  
-| `node_memory_NFS_Unstable_bytes` | `/proc/meminfo` NFS_Unstable bytes. |  
-| `node_memory_PageTables_bytes` | `/proc/meminfo` PageTables bytes. |  
-| `node_memory_Percpu_bytes` | `/proc/meminfo` Percpu bytes. |  
-| `node_memory_SReclaimable_bytes` | `/proc/meminfo` SReclaimable bytes. |  
-| `node_memory_SUnreclaim_bytes` | `/proc/meminfo` SUnreclaim bytes. |  
-| `node_memory_SecPageTables_bytes` | `/proc/meminfo` SecPageTables bytes. |  
-| `node_memory_ShmemHugePages_bytes` | `/proc/meminfo` ShmemHugePages bytes. |  
-| `node_memory_ShmemPmdMapped_bytes` | `/proc/meminfo` ShmemPmdMapped bytes. |  
-| `node_memory_Shmem_bytes` | `/proc/meminfo` Shmem bytes. |  
-| `node_memory_Slab_bytes` | `/proc/meminfo` Slab bytes. |  
-| `node_memory_SwapCached_bytes` | `/proc/meminfo` SwapCached bytes. |  
-| `node_memory_SwapFree_bytes` | `/proc/meminfo` SwapFree bytes. |  
-| `node_memory_SwapTotal_bytes` | `/proc/meminfo` SwapTotal bytes. |  
-| `node_memory_Unevictable_bytes` | `/proc/meminfo` Unevictable bytes. |  
-| `node_memory_VmallocChunk_bytes` | `/proc/meminfo` VmallocChunk bytes. |  
-| `node_memory_VmallocTotal_bytes` | `/proc/meminfo` VmallocTotal bytes. |  
-| `node_memory_VmallocUsed_bytes` | `/proc/meminfo` VmallocUsed bytes. |  
-| `node_memory_WritebackTmp_bytes` | `/proc/meminfo` WritebackTmp bytes. |  
-| `node_memory_Writeback_bytes` | `/proc/meminfo` Writeback bytes. |  
-| `node_memory_Zswap_bytes` | `/proc/meminfo` Zswap bytes. |  
+| `node_memory_Cached_bytes` | `/proc/meminfo` Cached bytes. |
+| `node_memory_CommitLimit_bytes` | `/proc/meminfo` CommitLimit bytes. |
+| `node_memory_Committed_AS_bytes` | `/proc/meminfo` Committed_AS bytes. |
+| `node_memory_DirectMap1G_bytes` | `/proc/meminfo` DirectMap1G bytes. |
+| `node_memory_DirectMap2M_bytes` | `/proc/meminfo` DirectMap2M bytes. |
+| `node_memory_DirectMap4k_bytes` | `/proc/meminfo` DirectMap4k bytes. |
+| `node_memory_Dirty_bytes` | `/proc/meminfo` Dirty bytes. |
+| `node_memory_FileHugePages_bytes` | `/proc/meminfo` FileHugePages bytes. |
+| `node_memory_FilePmdMapped_bytes` | `/proc/meminfo` FilePmdMapped bytes. |
+| `node_memory_HardwareCorrupted_bytes` | `/proc/meminfo` HardwareCorrupted bytes. |
+| `node_memory_HugePages_Free` | `/proc/meminfo` HugePages_Free. |
+| `node_memory_HugePages_Rsvd` | `/proc/meminfo` HugePages_Rsvd. |
+| `node_memory_HugePages_Surp` | `/proc/meminfo` HugePages_Surp. |
+| `node_memory_HugePages_Total` | `/proc/meminfo` HugePages_Total.|
+| `node_memory_Hugepagesize_bytes` | `/proc/meminfo` Hugepagesize bytes. |
+| `node_memory_Hugetlb_bytes` | `/proc/meminfo` Hugetlb bytes. |
+| `node_memory_Inactive_anon_bytes` | `/proc/meminfo` Inactive_anon bytes. |
+| `node_memory_Inactive_bytes` | `/proc/meminfo` Inactive bytes. |
+| `node_memory_Inactive_file_bytes` | `/proc/meminfo` Inactive_file bytes. |
+| `node_memory_KReclaimable_bytes` | `/proc/meminfo` KReclaimable bytes. |
+| `node_memory_KernelStack_bytes` | `/proc/meminfo` KernelStack bytes. |
+| `node_memory_Mapped_bytes` | `/proc/meminfo` Mapped bytes. |
+| `node_memory_MemAvailable_bytes` | `/proc/meminfo` MemAvailable bytes. |
+| `node_memory_MemFree_bytes` | `/proc/meminfo` MemFree bytes. |
+| `node_memory_MemTotal_bytes` | `/proc/meminfo` MemTotal bytes. |
+| `node_memory_Mlocked_bytes` | `/proc/meminfo` Mlocked bytes. |
+| `node_memory_NFS_Unstable_bytes` | `/proc/meminfo` NFS_Unstable bytes. |
+| `node_memory_PageTables_bytes` | `/proc/meminfo` PageTables bytes. |
+| `node_memory_Percpu_bytes` | `/proc/meminfo` Percpu bytes. |
+| `node_memory_SReclaimable_bytes` | `/proc/meminfo` SReclaimable bytes. |
+| `node_memory_SUnreclaim_bytes` | `/proc/meminfo` SUnreclaim bytes. |
+| `node_memory_SecPageTables_bytes` | `/proc/meminfo` SecPageTables bytes. |
+| `node_memory_ShmemHugePages_bytes` | `/proc/meminfo` ShmemHugePages bytes. |
+| `node_memory_ShmemPmdMapped_bytes` | `/proc/meminfo` ShmemPmdMapped bytes. |
+| `node_memory_Shmem_bytes` | `/proc/meminfo` Shmem bytes. |
+| `node_memory_Slab_bytes` | `/proc/meminfo` Slab bytes. |
+| `node_memory_SwapCached_bytes` | `/proc/meminfo` SwapCached bytes. |
+| `node_memory_SwapFree_bytes` | `/proc/meminfo` SwapFree bytes. |
+| `node_memory_SwapTotal_bytes` | `/proc/meminfo` SwapTotal bytes. |
+| `node_memory_Unevictable_bytes` | `/proc/meminfo` Unevictable bytes. |
+| `node_memory_VmallocChunk_bytes` | `/proc/meminfo` VmallocChunk bytes. |
+| `node_memory_VmallocTotal_bytes` | `/proc/meminfo` VmallocTotal bytes. |
+| `node_memory_VmallocUsed_bytes` | `/proc/meminfo` VmallocUsed bytes. |
+| `node_memory_WritebackTmp_bytes` | `/proc/meminfo` WritebackTmp bytes. |
+| `node_memory_Writeback_bytes` | `/proc/meminfo` Writeback bytes. |
+| `node_memory_Zswap_bytes` | `/proc/meminfo` Zswap bytes. |
 | `node_memory_Zswapped_bytes` | `/proc/meminfo` Zswapped bytes. |
 
 {{< /tab >}}
@@ -3429,20 +3429,20 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 
 | Name | Description |
 |----- | ----------- |
-| `nvswitch_platform_environment_fan_cur_speed` | Current fan speed in RPM. |  
-| `nvswitch_platform_environment_fan_dir` | Fan direction (0: Front2Back, 1: Back2Front). | 
-| `nvswitch_platform_environment_fan_max_speed` | Fan maximum speed in RPM. | 
-| `nvswitch_platform_environment_fan_min_speed` | Fan minimum speed in RPM. |  
-| `nvswitch_platform_environment_fan_state` | Fan status (0: ABSENT, 1: OK, 2: FAILED, 3: BAD). | 
-| `nvswitch_platform_environment_psu_capacity` | PSU capacity in watts. | 
-| `nvswitch_platform_environment_psu_current` | PSU current in amperes. | 
-| `nvswitch_platform_environment_psu_power` | PSU power in watts. | 
-| `nvswitch_platform_environment_psu_state` | PSU state (0: ABSENT, 1: OK, 2: FAILED, 3: BAD). | 
-| `nvswitch_platform_environment_psu_voltage` | PSU voltage in volts. | 
-| `nvswitch_platform_environment_temp_crit` | Critical temperature threshold in centigrade. | 
-| `nvswitch_platform_environment_temp_current` | Current temperature in centigrade. | 
-| `nvswitch_platform_environment_temp_max` | Maximum temperature threshold in centigrade. | 
-| `nvswitch_platform_environment_temp_min` | Minimum temperature threshold in centigrade. | 
+| `nvswitch_platform_environment_fan_cur_speed` | Current fan speed in RPM. |
+| `nvswitch_platform_environment_fan_dir` | Fan direction (0: Front2Back, 1: Back2Front). |
+| `nvswitch_platform_environment_fan_max_speed` | Fan maximum speed in RPM. |
+| `nvswitch_platform_environment_fan_min_speed` | Fan minimum speed in RPM. |
+| `nvswitch_platform_environment_fan_state` | Fan status (0: ABSENT, 1: OK, 2: FAILED, 3: BAD). |
+| `nvswitch_platform_environment_psu_capacity` | PSU capacity in watts. |
+| `nvswitch_platform_environment_psu_current` | PSU current in amperes. |
+| `nvswitch_platform_environment_psu_power` | PSU power in watts. |
+| `nvswitch_platform_environment_psu_state` | PSU state (0: ABSENT, 1: OK, 2: FAILED, 3: BAD). |
+| `nvswitch_platform_environment_psu_voltage` | PSU voltage in volts. |
+| `nvswitch_platform_environment_temp_crit` | Critical temperature threshold in centigrade. |
+| `nvswitch_platform_environment_temp_current` | Current temperature in centigrade. |
+| `nvswitch_platform_environment_temp_max` | Maximum temperature threshold in centigrade. |
+| `nvswitch_platform_environment_temp_min` | Minimum temperature threshold in centigrade. |
 | `nvswitch_platform_environment_temp_state` | Temperature sensor status (0: ABSENT, 1: OK, 2: FAILED, 3: BAD). |
 | `nvswitch_platform_evironment_input_voltage` | Input voltage to the PSU.|
 | `nvswitch_platform_environment_input_current` | Input current to the PSU.|
@@ -6701,30 +6701,30 @@ The switch exports interface static labels as attributes in the gauge metrics fo
 
 {{< expand "Example JSON data for static interface label:" >}}
 
-          "metrics": [ 
-              "name": "nvswitch_interface_iface_id", 
-              "description": "Network device property: iface_id", 
-              "gauge": { 
-                "dataPoints": [ 
-                  { 
-                    "attributes": [ 
-                      { 
-                        "key": "interface", 
-                        "value": { 
-                          "stringValue": "swp10" 
-                        } 
-                      } 
-                    ], 
-                    "timeUnixNano": "1727942163835000000", 
-                    "asDouble": 13 
-                  }, 
-                  { 
-                    "attributes": [ 
-                      { 
-                        "key": "interface_swp10_label", 
-                        "value": { 
-                          "stringValue": "swp10_label_string" 
-                        } 
+          "metrics": [
+              "name": "nvswitch_interface_iface_id",
+              "description": "Network device property: iface_id",
+              "gauge": {
+                "dataPoints": [
+                  {
+                    "attributes": [
+                      {
+                        "key": "interface",
+                        "value": {
+                          "stringValue": "swp10"
+                        }
+                      }
+                    ],
+                    "timeUnixNano": "1727942163835000000",
+                    "asDouble": 13
+                  },
+                  {
+                    "attributes": [
+                      {
+                        "key": "interface_swp10_label",
+                        "value": {
+                          "stringValue": "swp10_label_string"
+                        }
                       }
 
 {{< /expand >}}

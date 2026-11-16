@@ -156,7 +156,7 @@ You can configure these PPS settings:
 | `pin-index` |  Sets the pin index for PPS In. You can set a value of 1 or 0. The default value is 0.|
 | `signal-polarity` | Sets the polarity of the PPS In signal. You can specify `rising-edge`, `falling-edge`, or `both`. The default setting is `rising-edge`.|
 | `signal-width` | Sets the pulse width of the PPS In signal. You can set a value between 1000000 and 999000000. The default value is 500000000.|
-| `timestamp-correction` | Sets the value, in nanoseconds, to add to each PPS In timestamp. You can set a value between -1000000000 and 1000000000. The default value is 0. |  
+| `timestamp-correction` | Sets the value, in nanoseconds, to add to each PPS In timestamp. You can set a value between -1000000000 and 1000000000. The default value is 0. |
 
 | PPS Out Setting | Description |
 | ------- | ----------- |

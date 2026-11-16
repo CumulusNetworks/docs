@@ -39,7 +39,7 @@ Hit any key to stop autoboot:  2
        | Cumulus Linux GNU/Linux, with Linux 4.19.0-cl-1-amd64                       |
        |*Cumulus Linux GNU/Linux, with Linux 4.19.0-cl-1-amd64 (recovery mode)       |
        |                                                                            |
-       +----------------------------------------------------------------------------+  
+       +----------------------------------------------------------------------------+
 
 3. After the system reboots, set a new **root** password. The root user provides complete control over the switch.
 

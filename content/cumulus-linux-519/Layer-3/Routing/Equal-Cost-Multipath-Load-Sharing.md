@@ -493,7 +493,7 @@ max-unbalanced-timer  2000         2000
 
 ### Considerations
 
-Be aware of the following considerations when configuring resilient hashing. 
+Be aware of the following considerations when configuring resilient hashing.
 
 #### Resilient Hashing and Next Hop Groups
 

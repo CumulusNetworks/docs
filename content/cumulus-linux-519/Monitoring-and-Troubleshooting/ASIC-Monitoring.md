@@ -130,7 +130,7 @@ The histogram type can be `egress-buffer`, `ingress-buffer`, `counter`, or `late
 
 - To change global histogram settings, run the `nv set system telemetry histogram <type>` command.
 - To enable histograms on interfaces or to change interface level settings, run the `nv set interface <interface-id> telemetry histogram <type>` command.
-  
+
 {{< tabs "TabID93 ">}}
 {{< tab "Egress Queue Length ">}}
 

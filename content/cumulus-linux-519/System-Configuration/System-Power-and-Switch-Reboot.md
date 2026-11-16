@@ -8,13 +8,13 @@ toc: 3
 Cumulus Linux provides these reboot and power modes:
 - **immediate** reboots the switch immediately without notifying any running processes. Use this mode to reboot as quickly as possible, skipping graceful shutdown to avoid delays or to avoid the switch from hanging.
 - **halt** shuts down the operating system and halts the CPU. The switch is no longer reachable over the network but switch hardware might remain powered. Use this mode for a graceful complete shutdown during planned maintenance when you must shut down the operating system fully but an operating system level halt is sufficient. You cannot connect to the switch until you power cycle it through a remote PDU connection.
-- **power-off** powers off the switch completely (complete electrical power-off). Use this mode to power off the switch for planned maintenance when you need to power off the switch fully. You cannot connect to the switch until you power cycle it through a remote PDU connection. The SN2700 switch does not support `power-off`. 
+- **power-off** powers off the switch completely (complete electrical power-off). Use this mode to power off the switch for planned maintenance when you need to power off the switch fully. You cannot connect to the switch until you power cycle it through a remote PDU connection. The SN2700 switch does not support `power-off`.
 - **power-cycle** lets you power cycle the switch to recover from certain conditions, such as a thermal ASIC shutdown due to high temperatures.
 - **cold** restarts the system and resets all the hardware devices on the switch (including the switching ASIC). This is the default restart mode on the switch.
 - **fast** restarts the system more efficiently with minimal impact to traffic by reloading the kernel and software stack without a hard reset of the hardware. During a fast restart, the system decouples from the network to the extent possible using existing protocol extensions before recovering to the operational mode of the system. The switch restarts the kernel and software stack without touching the forwarding entries or the switching ASIC; therefore, the data plane is not affected as the software stack restarts. Traffic outage is much lower in this mode as there is a momentary interruption after reboot, while the system reinitializes.
 - **warm** restarts the switch with no interruption to traffic for existing route entries and without a hardware reset of the switch ASIC. While this process does not affect the data plane, the control plane is absent during restart and is unable to process routing updates. On Spectrum-3 and earlier switches, warm reboot requires configuring the switch {{<link url="#resource-allocation" text="resource mode">}} to `half` to reduce the available {{<link title="Forwarding Table Size and Profiles" text="forwarding table entries">}} on the switch by half to accommodate traffic forwarding during a reboot. Spectrum-4 and later switches perform a warm reboot with the resource mode set to `full` and keep all forwarding table entries available.
 
-  Review {{<link url="#warm-reboot-and-issu-considerations" text="Warm Reboot and ISSU Considerations">}} to understand support limitations and requirements for warm reboot and ISSU. 
+  Review {{<link url="#warm-reboot-and-issu-considerations" text="Warm Reboot and ISSU Considerations">}} to understand support limitations and requirements for warm reboot and ISSU.
 
 ## Reboot Commands
 
@@ -248,7 +248,7 @@ The switch also creates a syslog message to indicate if warm reboot is in progre
 
 ### Warm Reboot Support
 
-Cumulus Linux supports warm reboot mode with 802.1X, layer 2 forwarding, layer 3 forwarding with BGP, static routing, and VXLAN routing with EVPN. 
+Cumulus Linux supports warm reboot mode with 802.1X, layer 2 forwarding, layer 3 forwarding with BGP, static routing, and VXLAN routing with EVPN.
 
 The following features are not supported during warm reboot:
 - EVPN MLAG or EVPN multihoming.
@@ -272,7 +272,7 @@ cumulus@switch:~$ nv set system forwarding resource-mode half
 To set the resource-mode back to the default value (full) run the `nv unset system forwarding resource-mode` command.
 
 {{%notice infonopad%}}
-Changing the resource mode on the switch requires a `switchd` restart, which impacts traffic forwarding. 
+Changing the resource mode on the switch requires a `switchd` restart, which impacts traffic forwarding.
 {{%/notice%}}
 
 {{< /tab >}}

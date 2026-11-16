@@ -306,7 +306,7 @@ dropmon { group=1 start=on limit=1000 }
 ```
 
 Restart the `hsflowd` service with the `sudo systemctl start hsflowd` command.
-  
+
 {{< /tab >}}
 {{< /tabs >}}
 

@@ -324,7 +324,7 @@ Lane Stats
     7     15E-255  22.18 dB   23.48 dB   0
 ```
 
-To show a tabular summary of PHY health statistics for all switch port interfaces in a single command, such as the error counters for all ports, run the `nv show interface --view ber` command: 
+To show a tabular summary of PHY health statistics for all switch port interfaces in a single command, such as the error counters for all ports, run the `nv show interface --view ber` command:
 
 ```
 cumulus@switch$ nv show interface --view ber

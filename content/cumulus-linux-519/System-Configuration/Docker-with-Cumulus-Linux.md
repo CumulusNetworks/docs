@@ -65,7 +65,7 @@ To download a Docker image from a registry, import an image from an archive, or 
 {{< tabs "TabID180">}}
 {{< tab "NVUE Commands">}}
 
-To download a Docker image from a registry, run the `nv action pull system docker image <image-id> tag <tag-name>` command. If you do not specify a `tag` name, the name defaults to `latest`. 
+To download a Docker image from a registry, run the `nv action pull system docker image <image-id> tag <tag-name>` command. If you do not specify a `tag` name, the name defaults to `latest`.
 
 ```
 cumulus@switch:~$ nv action pull system docker image nginx tag latest
@@ -118,10 +118,10 @@ To create and run a new container from an image, stop a container or delete a Do
 {{< tabs "TabID217">}}
 {{< tab "NVUE Commands">}}
 
-To create and run a new container from an image, run the `nv action run system docker container <container-name> image <image-id>` command. You can use Docker run `options` such as `--pid`, `--network`, and `--storage-opt size`. To define arguments for the container application, specify `args`.  
+To create and run a new container from an image, run the `nv action run system docker container <container-name> image <image-id>` command. You can use Docker run `options` such as `--pid`, `--network`, and `--storage-opt size`. To define arguments for the container application, specify `args`.
 
 {{%notice infonopad%}}
-You must escape special characters used in any Docker `options` and `args` specified in NVUE commands. 
+You must escape special characters used in any Docker `options` and `args` specified in NVUE commands.
 {{%/notice%}}
 
 ```
@@ -143,7 +143,7 @@ cumulus@switch:~$ nv action remove system docker container nginx-demo
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-To create and run a new container from an image, run the `sudo docker run -d <image-id> --name <container-name>` command. 
+To create and run a new container from an image, run the `sudo docker run -d <image-id> --name <container-name>` command.
 
 ```
 cumulus@switch:~$ sudo docker run -d nginx --name nginx-demo
@@ -307,7 +307,7 @@ The Governance system is not a long-running background agent; the packaged docke
 When governance is enabled, containers use one of these tiers:
 - `docker.slice` is the Trusted tier. Containers in this tier are not subject to CPU or memory caps.
 - `docker-limited.slice` is the Limited tier. This tier is for workloads that need more headroom than the default tier but must still remain bounded.
-- `docker-restricted.slice` is the Restricted tier. This is the default tier for images that do not appear on the whitelist. 
+- `docker-restricted.slice` is the Restricted tier. This is the default tier for images that do not appear on the whitelist.
 
 By default, the Restricted and Limited tiers use aggregate limits of 10% and 50% of total host CPU and total host memory. These are shared per-tier limits, not per-container reservations. If multiple containers run in the same tier, they share the tier budget.
 

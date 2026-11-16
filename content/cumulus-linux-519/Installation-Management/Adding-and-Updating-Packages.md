@@ -271,7 +271,7 @@ cumulus@switch:~$ nv action delete system packages key debian-archive-bookworm-a
 {{< tab "Linux Command ">}}
 
 To fetch and save a repository key globally:
-- If the key already exists on the filesystem, copy it to the `/etc/apt/trusted.gpg.d/` directory. 
+- If the key already exists on the filesystem, copy it to the `/etc/apt/trusted.gpg.d/` directory.
 - If the key is at a remote URL, fetch it with `wget` or another utility, then copy it to the `/etc/apt/trusted.gpg.d/` directory.
 
 The following example fetches the key `http://your-url.com/name.key` from the remote URL and copies it to the `/etc/apt/trusted.gpg.d/` directory:
@@ -282,7 +282,7 @@ cumulus@switch:~$ sudo cp name.key /etc/apt/trusted.gpg.d
 ```
 
 To fetch and save a key for a specific repository:
-- If your key already exists on the filesystem, copy it to the `/etc/apt/keyrings/` directory. 
+- If your key already exists on the filesystem, copy it to the `/etc/apt/keyrings/` directory.
 - If the key is at a remote URL, fetch it with `wget` or another utility, then copy it to the `/etc/apt/keyrings/` directory.
 
 The following example copies the key `name.key` located on the filesystem to the `/etc/apt/keyrings/` directory.

@@ -450,7 +450,7 @@ For more information on configuring and applying ACLs, refer to {{<link title="A
 
 #### Mark Layer 2 COS
 
-You must use `ebtables` to match and mark layer 2 bridged traffic. You can match traffic with any supported ebtables rule.  
+You must use `ebtables` to match and mark layer 2 bridged traffic. You can match traffic with any supported ebtables rule.
 
 To set the new 802.1p COS value when traffic matches, use `-A FORWARD -o <interface-id> -j setqos --set-cos <value>`.
 
@@ -1004,7 +1004,7 @@ ECN operates by having a transit switch that marks packets between two end hosts
 6. A receiving host reflects this new ECN marking in the next reply so that the transmitting host resumes sending at normal speeds.
 
 The default profile (`default-global`) enables ECN by default on egress queue 0 for all ports with the following settings:
-- A minimum buffer threshold of 150000 bytes. Random ECN marking starts when buffer congestion crosses this threshold and ECN marking probability ramps up as the queue depth increases towards the maximum threshold value. 
+- A minimum buffer threshold of 150000 bytes. Random ECN marking starts when buffer congestion crosses this threshold and ECN marking probability ramps up as the queue depth increases towards the maximum threshold value.
 - A maximum buffer threshold of 1500000 bytes. Cumulus Linux marks all ECN-capable packets when buffer congestion crosses this threshold.
 - Random Early Detection (RED) disabled. ECN prevents packet drops in the network due to congestion by signaling hosts to transmit less. However, if congestion continues after ECN marking, packets drop after the switch buffer is full. By default, Cumulus Linux tail-drops packets when the buffer is full. You can enable RED to drop packets that are in the queue randomly instead of always dropping the last arriving packet. This might improve overall performance of TCP based flows.
 
@@ -1093,7 +1093,7 @@ Dynamic ECN is a congestion marking mechanism optimized for high-performance tra
 {{%/notice%}}
 
 To configure dynamic ECN, determine which traffic classes carry loss-sensitive or bursty traffic (such as RoCE on traffic class 3), determine the percentage of dynamic buffer allowance you want to trigger congestion marking, then set dynamic ECN:
-- Set the dynamic ECN mode to `relative` for the `default-global` profile to apply system-wide default settings or for a custom profile for specific port groups. The default value is `absolute`. 
+- Set the dynamic ECN mode to `relative` for the `default-global` profile to apply system-wide default settings or for a custom profile for specific port groups. The default value is `absolute`.
 
   When you set dynamic ECN mode to `relative`, the switch hardware ignores any configured byte-based thresholds. The ASIC begins marking traffic based on percentage thresholds relative to the dynamically allocated buffer allowance of the traffic class, which is continuously recalculated based on current buffer usage and pool occupancy.
 
@@ -1951,7 +1951,7 @@ You can adjust settings for the following supported buffer regions and propertie
 |Buffers | Supported Property Values |
 |------------- |----------- |
 |`ingress-lossy-buffer` | <ul>Cumulus Linux supports the following properties for the `bulk` and `service[1-7]` priority groups: <br> `name` - The priority group alias name.<br>`reserved` -  The reserved buffer allocation in bytes. <br>`service-pool` - Service pool mapping. <br>`shared-alpha` - The dynamic shared buffer alpha allocation.<br>`shared-bytes` - The static shared buffer allocation in bytes.<br>`switch-priority` - Switch priority values. |
-|`egress-lossless-buffer` | <ul>`reserved` -  The reserved buffer allocation in bytes.<br>`service-pool` - Service pool mapping. <br>`shared-alpha` - The dynamic shared buffer alpha allocation.<br>`shared-bytes` - The static shared buffer allocation in bytes.</ul> | 
+|`egress-lossless-buffer` | <ul>`reserved` -  The reserved buffer allocation in bytes.<br>`service-pool` - Service pool mapping. <br>`shared-alpha` - The dynamic shared buffer alpha allocation.<br>`shared-bytes` - The static shared buffer allocation in bytes.</ul> |
 |`ingress-lossless-buffer` | <ul>`service-pool` - Service pool mapping. <br>`shared-alpha` - The dynamic shared buffer alpha allocation.<br>`shared-bytes` - The static shared buffer allocation in bytes.</ul> |
 |`egress-lossy-buffer` | <ul> `multicast-port` - Multicast port `reserved` or `shared-bytes` allocation in bytes. <br> `multicast-switch-priority [0-7]` - Set the `reserved`, `service-pool`,`shared-alpha`, or `shared-bytes` properties for each multicast switch priority.<br>`traffic-class [0-15]` - Set the `reserved`, `service-pool`,`shared-alpha`, or `shared-bytes` properties for each traffic class.</ul> |
 
@@ -1984,7 +1984,7 @@ You can adjust the following properties for each pool:
 | `shared-alpha ` | The dynamic shared buffer alpha allocation. |
 | `shared-bytes` | The static shared buffer allocation in bytes. |
 
-A relationship exists between the default traffic pools and the advanced buffer configuration settings.  
+A relationship exists between the default traffic pools and the advanced buffer configuration settings.
 
 {{%notice note%}}
 Use caution when configuring advanced buffer settings. NVUE presents a warning if you attempt to apply incompatible traffic pool and advanced buffer configurations. NVUE performs the following validation checks before applying advanced buffer configurations:

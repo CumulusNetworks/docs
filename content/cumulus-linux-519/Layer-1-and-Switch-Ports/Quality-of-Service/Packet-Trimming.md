@@ -210,7 +210,7 @@ dscp               11
 
 ## Packet Trimming Counters
 
-Use NVUE commands to show and clear packet trimming counters.  
+Use NVUE commands to show and clear packet trimming counters.
 
 ### Show Packet Trimming Counters
 

@@ -330,7 +330,7 @@ In Cumulus Linux 5.6 and later, NVUE no longer supports a 10-byte ESI value star
      bond-slaves swp3
      es-sys-mac 44:38:39:FF:00:AA
    ```
-  
+
 {{</tab>}}
 {{</tabs>}}
 
@@ -1170,7 +1170,7 @@ If you enable EVPN-MH and configure {{<link title="Access Control List Configura
 ### SVI IP Address Configuration
 
 You can configure EVPN-MH with:
-- An identical SVI IP address and MAC address on all EVPN MH VTEP devices. Hosts then use this shared IP and MAC address as their anycast (default) gateway. Because both peers own the same IP address and MAC address, either peer can forward traffic for the hosts. 
+- An identical SVI IP address and MAC address on all EVPN MH VTEP devices. Hosts then use this shared IP and MAC address as their anycast (default) gateway. Because both peers own the same IP address and MAC address, either peer can forward traffic for the hosts.
 - Different SVI IP address and MAC address on all EVPN MH VTEP peers.
 
 ## Configuration Example

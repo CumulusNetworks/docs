@@ -440,7 +440,7 @@ Buffer drop events describe why the server buffer has dropped packets.
 | Tail drop | Warning | Tail drop is enabled and the buffer queue is filled to maximum capacity. |
 | WRED | Warning | Weighted Random Early Detection is enabled and the buffer queue is filled to maximum capacity or the RED engine dropped the packet as a random congestion prevention. |
 | Port TC Congestion Threshold Crossed | Warning | The percentage of the occupancy buffer exceeded or dropped below the specified high or low threshold. |
-| Packet Latency Threshold Crossed | Warning | The time a packet spent within the switch exceeded or dropped below the specified high or low threshold. Not supported on Spectrum-1 and Spectrum-6. |
+| Packet Latency Threshold Crossed | Warning | The time a packet spent within the switch exceeded or dropped below the specified high or low threshold. Not supported on Spectrum1 and Spectrum-6. |
 
 ### ACL Drops
 

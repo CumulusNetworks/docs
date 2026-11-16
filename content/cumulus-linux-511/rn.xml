@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5407473</td>
+<td>When using {{cl-ecmpcalc}} for a non-ECMP destination with a single next hop, the command output shows a python traceback.</td>
+<td>5.11.1-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5376361</td>
 <td>{{switchd}} restarts repeatedly because internal SDK threads stop responding, resulting in BGP flaps and about 23 minutes of network recovery time per event.</td>
 <td>5.11.4-5.18.3</td>
@@ -16,6 +22,12 @@
 <td>5327622</td>
 <td>A bridge FDB flush does not restore EVPN router MAC entries in the Kernel.</td>
 <td>5.11.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5327605</td>
+<td>When an EVPN router MAC is reachable through two VTEPs and one of them changes to a different router MAC, remote switches move their FRR entry to the remaining VTEP but do not reprogram the kernel and hardware entry. As a result, the remote switch keeps forwarding traffic for that router MAC to the VTEP that no longer owns it. FRR shows the correct VTEP while the kernel bridge FDB shows the old one.</td>
+<td>5.11.1-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -139,12 +151,6 @@ Error: Action failed with the following issue:&gt;br&gt;
 To work around this issue, verify system boot mode with the {{nv show system reboot}} command before you perform optimized image upgrade and switch to cold boot mode if necessary with the {{nv set system reboot mode cold}} command. You can then proceed with the optimized image upgrade {{boot-next}} operation.</td>
 <td>5.11.4-5.15.3</td>
 <td>5.16.0-5.18.3</td>
-</tr>
-<tr>
-<td>4640898</td>
-<td>When a new LLDP neighbor is discovered with an empty or missing Port Description TLV; for example, when introducing a new third-party switch into the fabric, a {{ptmd}} defect might cause a segmentation fault (crash).</td>
-<td>5.11.2-5.14.0</td>
-<td>5.15.0-5.18.3</td>
 </tr>
 <tr>
 <td>4640126, 4986333</td>
@@ -939,6 +945,11 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Affects </th>
 </tr>
 <tr>
+<td>5330682, 4640941</td>
+<td>If the switch filesystem is overloaded or memory is exhausted, you see very slow responses from the OS filesystem and the SDK might lock on file access, which triggers a health event.</td>
+<td>5.11.2-5.11.5</td>
+</tr>
+<tr>
 <td>5154742, 5152149</td>
 <td>Zebra might crash when recovering routes after a temporary failure to install forwarding next hops. During interface instability or link flapping, some routes might fail to install. Zebra caches those routes for later retry. If a cached route is removed before the next hop is installed successfully, zebra might later access invalid memory while retrying installation and then crash.</td>
 <td>5.11.3-5.11.5</td>
@@ -952,6 +963,11 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>4964153, 4930152</td>
 <td>When you configure layer 3 SVI interfaces with an anycast gateway (VRR) IP address only and no unique IP address, the connected route for the subnet is not programmed in the ASIC, causing packets destined for locally connected hosts to drop after decapsulation.</td>
 <td>5.11.3-5.11.5</td>
+</tr>
+<tr>
+<td>4963273, 4640898</td>
+<td>The PTM daemon implementation experiences an issue with book keeping of LLDP neighbors discovered over a link. If LLDP neighbor information (such as hostname) changes more than once, the switch experiences a memory leak.</td>
+<td>5.11.2-5.11.5</td>
 </tr>
 <tr>
 <td>4945654, 4945652, 4895501</td>

@@ -26,7 +26,7 @@ The following table shows the NVUE reboot and power commands, and their Linux co
 | `nv action reboot system force` | `sudo csmgrctl -cf` | Reboots the switch in cold mode without prompting for confirmation. This is equivalent to the `nv action reboot system mode cold force` command. |
 | `nv action reboot system mode immediate`| No Linux command available. | Reboots the switch immediately without notifying any running processes. This command invokes the Linux command `sudo reboot --force` after you respond to the prompt with `Yes`.|
 | `nv action reboot system mode immediate force` | `sudo reboot --force` | Reboots the switch immediately without notifying any running processes and without prompting for confirmation. |
-| `nv action reboot system mode halt` | No native command available. | Shuts down the operating system and halts the CPU. The switch hardware may remain powered.  |
+| `nv action reboot system mode halt` | No native command available. | Shuts down the operating system and halts the CPU. The switch hardware might remain powered.  |
 | `nv action reboot system mode halt force` | `sudo reboot --halt` | Shuts down the system without prompting for confirmation.|
 | `nv action reboot system mode power-off`| `sudo cl-poweroff` | Powers off the switch completely (complete electrical power-off). The SN2700 switch does not support `power-off`.|
 | `nv action reboot system mode power-off force`| `sudo cl-poweroff -noprompt` | Powers off the switch completely (complete electrical power-off) without prompting for confirmation. The SN2700 switch does not support `power-off`.|

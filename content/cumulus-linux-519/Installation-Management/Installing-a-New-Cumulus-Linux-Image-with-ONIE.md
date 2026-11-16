@@ -239,7 +239,7 @@ ONIE# onie-nos-install tftp://local-tftp-server/cumulus-install-[PLATFORM].bin
 
 1. Place the Cumulus Linux image into an FTP directory (TFTP is *not* supported in  Cumulus Linux).
 
-2. From the Cumulus Linux command prompt, run the `nv action install system image onie ftp://<image> force activate reboot` command. This command installs the Cumulus Linux image without prompts and reboots the switch..
+2. From the Cumulus Linux command prompt, run the `nv action install system image onie ftp://<image> force activate reboot` command. This command installs the Cumulus Linux image without prompts and reboots the switch.
 
 ```
 cumulus@switch:~$ nv action install system image onie ftp://local-ftp-server/cumulus-install-x86_64.bin force activate reboot

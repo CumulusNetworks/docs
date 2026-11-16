@@ -438,7 +438,7 @@ active-set-media-compliance-code  800GBASE-DR8 (Clause 124)
 ```
 
 {{%notice note%}}
-Switches with the Spectrum 1 ASIC do not support the `nv show interface <interface-id> link phy health` command or the `nv show interface <interface-id> link phy detail` command.
+Switches with the Spectrum1 ASIC do not support the `nv show interface <interface-id> link phy health` command or the `nv show interface <interface-id> link phy detail` command.
 {{%/notice%}}
 
 ## Clear Interface Counters

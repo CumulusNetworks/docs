@@ -99,7 +99,7 @@ cumulus@switch:~$ sudo systemctl disable ntpsec@mgmt.service
    # server 3.cumulusnetworks.pool.ntp.org iburst
    ```
 
-   2. Stop and disable the NTP service in the management VRF:
+2. Stop and disable the NTP service in the management VRF:
 
    ```
    cumulus@switch:~$ sudo systemctl stop ntpsec@mgmt.service
@@ -238,12 +238,12 @@ The configuration writes to the `/etc/ptp4l.conf` file.
 
 1. Configure NVUE to stop managing PTP configuration files:
 
-```
-cumulus@switch:~$ nv set system config apply ignore /etc/linuxptp/phc2sys.conf
-cumulus@switch:~$ nv set system config apply ignore /etc/ptp4l.conf
-cumulus@switch:~$ nv set system config apply ignore /etc/cumulus/switchd.d/ptp.conf
-cumulus@switch:~$ nv config apply
-```
+   ```
+   cumulus@switch:~$ nv set system config apply ignore /etc/linuxptp/phc2sys.conf
+   cumulus@switch:~$ nv set system config apply ignore /etc/ptp4l.conf
+   cumulus@switch:~$ nv set system config apply ignore /etc/cumulus/switchd.d/ptp.conf
+   cumulus@switch:~$ nv config apply
+   ```
 
 2. Edit the `/etc/cumulus/switchd.d/ptp.conf` file to set the `ptp.timestamping` parameter to `TRUE`:
 
@@ -1206,8 +1206,9 @@ cumulus@switch:~$ nv config apply
    [swp1]
    ...
    table_id   1
+   ```
 
-3. Restart the `ptp4l` service.
+2. Restart the `ptp4l` service.
 
    ```
    cumulus@switch:~$ sudo systemctl restart ptp4l.service
@@ -1276,7 +1277,7 @@ cumulus@switch:~$ nv config apply
    unicast_request_duration 20
    ```
 
-3. Restart the `ptp4l` service.
+2. Restart the `ptp4l` service.
 
    ```
    cumulus@switch:~$ sudo systemctl restart ptp4l.service
@@ -2392,7 +2393,7 @@ cumulus@switch:~$ nv set interface vlan10 base-interface swp1
 
 ### PTP Traffic Shaping
 
-To improve performance on the NVIDIA Spectrum 1 switch for PTP-enabled ports with speeds lower than 100G, you can enable a pre-defined traffic shaping profile. For example, if you see that the PTP timing offset varies widely and does not stabilize, enable PTP shaping on all PTP enabled ports to reduce the bandwidth on the ports slightly and improve timing stabilization.
+To improve performance on the NVIDIA Spectrum1 switch for PTP-enabled ports with speeds lower than 100G, you can enable a pre-defined traffic shaping profile. For example, if you see that the PTP timing offset varies widely and does not stabilize, enable PTP shaping on all PTP enabled ports to reduce the bandwidth on the ports slightly and improve timing stabilization.
 
 {{%notice note%}}
 - Switches with Spectrum-2 and later do not support PTP shaping.

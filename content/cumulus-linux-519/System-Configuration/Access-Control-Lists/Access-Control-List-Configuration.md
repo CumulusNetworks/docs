@@ -629,7 +629,7 @@ Cumulus Linux does not offload `conntrack` or `--ctstate` ACL matches to switch 
 |--- |--- |--- |
 |**Matches**|Src/Dst, IP protocol<br>In/out interface<br>IPv4: ecn, icmp, frag, ttl,<br>IPv6: icmp6, hl,<br>IP common: tcp ({{<link url="#filter-specific-tcp-flags" text="with flags">}}), udp, multiport, DSCP, addrtype|Rules with input/output Ethernet interfaces do not apply<br>Inverse matches|
 |**Standard Targets**|ACCEPT, DROP|RETURN, QUEUE, STOP, Fall Thru, Jump|
-|**Extended Targets**|LOG (IPv4 and IPv6); UID is not supported for LOG<br>TCP SEQ, TCP options or IP options<br>ULOG<br>SETQOS<br>DSCP<br>Unique to Cumulus Linux:<br>SPAN<br>ERSPAN (IPv4/IPv6)<br>POLICE<br>TRICOLORPOLICE<br>SETCLASS||
+|**Extended Targets**|LOG (IPv4 and IPv6); UID is not supported for LOG<br>TCP SEQ, TCP options or IP options<br>ULOG<br>SETQOS<br>DSCP<br>Unique to Cumulus Linux:<br>SPAN<br>ERSPAN (IPv4 or IPv6)<br>POLICE<br>TRICOLORPOLICE<br>SETCLASS||
 
 ### ebtables Rule Support
 

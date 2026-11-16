@@ -13,21 +13,9 @@
 <td></td>
 </tr>
 <tr>
-<td>5400256</td>
-<td>The {{mlxlink --cable --read}} command shows EEPROM read results as normal-looking {{0x00}} data even when the read actually fails. This occurs because the tool ignores the MCIA status that the firmware returns and prints a zero-filled buffer.</td>
+<td>5389894</td>
+<td>Recreating a numbered IPv6 iBGP subinterface causes BGP to look healthy even though routing is broken underneath. After you delete the interface and add it back, the BGP neighbor still appears Established and keeps the same link-local next hop address, but the learned route is no longer treated as valid and disappears from the routing table. To work around this issue, clear the BGP session on the neighbor with the {{nv action clear vrf &lt;vrf-id&gt; router bgp neighbor &lt;ipv6-address&gt;}} command.</td>
 <td>5.19.0</td>
-<td></td>
-</tr>
-<tr>
-<td>5400240</td>
-<td>The {{mlxlink}} cable EEPROM commands always send requests as if the data is in bank 0, because they never include the bank number field. As a result, on wider CMIS modules that split lane data across multiple banks, {{mlxlink}} can only access the first set of lanes correctly. Reads, writes, and dumps for lanes beyond 8 either return the wrong bank’s data or cannot reach the intended data at all, and the tool gives no clear indication that other banks exist or which bank was used.</td>
-<td>5.19.0</td>
-<td></td>
-</tr>
-<tr>
-<td>5399020</td>
-<td>The amBER output from the {{mlxlink --amber_collect}} command uses the same {{N/A}} value for three different situations: when a register read is never attempted, when the read fails, and when the field does not exist. When looking at the CSV or the report, you can't tell if data is unavailable, unsupported, or not requested.</td>
-<td>5.18.0-5.19.0</td>
 <td></td>
 </tr>
 <tr>
@@ -37,15 +25,33 @@
 <td></td>
 </tr>
 <tr>
-<td>5376350</td>
-<td>On the Spectrum-6 switch, the {{mlxlink}} command output shows the physical state of the port as {{ETH_AN_FSM_ENABLE}} even when the link is actually up and active.</td>
-<td>5.18.3-5.19.0</td>
-<td></td>
-</tr>
-<tr>
 <td>5372506</td>
 <td>On a multi-lane CPO port, the {{l1-show}} command only shows the first TX and RX power reading instead of showing one reading for each lane.</td>
 <td>5.18.0-5.19.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5369140</td>
+<td>After you change a fib filter route map rule action from deny to permit, the switch does not reinstall BGP routes in the kernel. zebra and NVUE show the routes as installed and offloaded, BGP keeps advertising them, and the switch drops traffic to them. To work around this issue, clear the neighbor session with the {{nv action clear vrf &lt;vrf-id&gt; router bgp neighbor &lt;neighbor-id&gt;}} command after changing the route map action.  </td>
+<td>5.19.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5368931</td>
+<td>In deployments where multiple BGP next hops share a connected subnet and one of those next hops is also tracked by another daemon, a single link flap can cause routes through another next hop on that subnet to disappear and never recover automatically. This leaves affected BGP routes out of both the FRR RIB and kernel, causing traffic loss until you restart the BGP daemon or re-add the BGP neighbor.</td>
+<td>5.19.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5365656</td>
+<td>After a warm boot, if one multi-hop BGP neighbor stays down, new and changed routes might be held for up to two minutes at a time repeatedly until that neighbor comes back. During each wait the switch does not install those routes or send them on. This occurs when Suppress Route Advertisement is enabled ({{nv set router bgp wait-for-install enabled}}) and the down neighbor is still expected to finish graceful restart.</td>
+<td>5.19.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5364857</td>
+<td>If you delete a layer 2 VNI from a switch that is undergoing BGP graceful restart or warm boot inside the short EVPN deferral window, graceful restart never completes. To work around this issue, restart BGP or FRR.</td>
+<td>5.19.0</td>
 <td></td>
 </tr>
 <tr>
@@ -79,6 +85,16 @@
 <td></td>
 </tr>
 <tr>
+<td>5358699</td>
+<td>When you unset an 802.1X port with a dynamically assigned IPv6 address with the {{nv unset interface &lt;interface-id&gt; dot1x}} command, then set a static IPv6 address on the port with the {{nv set interface &lt;interface-id&gt; ipv6 address &lt;address&gt;}} command in a single commit, neither the dynamic IPv6 address or the static IPv6 address remain on the port; NVUE and the {{/etc/network/interfaces}} file contain the static IPv6 address but the {{ip address show &lt;interface-id&gt;}} command output does not. To work around this issue, split the {{nv unset interface &lt;interface-id&gt; dot1x}} and the {{nv unset interface &lt;interface-id&gt; dot1x}} commands into two separate NVUE commits: 
+cumulus@switch:~$ nv unset interface &lt;interface-id&gt; dot1x
+cumulus@switch:~$ nv config apply
+cumulus@switch:~$ nv set interface &lt;interface-id&gt; ipv6 address &lt;address&gt;
+cumulus@switch:~$ nv config apply</td>
+<td>5.19.0</td>
+<td></td>
+</tr>
+<tr>
 <td>5357275</td>
 <td>Clearing an IPv6 ND prefix on a port fails to retire the prefix on some hosts and hosts continue sourcing traffic from an address that is no longer routed on that port.</td>
 <td>5.19.0</td>
@@ -103,6 +119,12 @@
 <td></td>
 </tr>
 <tr>
+<td>5344490</td>
+<td>When you configure a BGP neighbor to use BFD and also set a loopback interface as its source, the system incorrectly treats that loopback as the path for BFD traffic. As a result, BFD packets are tied to the wrong interface, never travel over the real network link, and the BFD session stayed down. To work around this issue, configure the update source as an IP address instead of an interface name when the peer is in a subnet connected on the link to it.</td>
+<td>5.19.0</td>
+<td></td>
+</tr>
+<tr>
 <td>5341343</td>
 <td>For some CPO and ELS xPaths, gNMI telemetry does not sample at short-requested intervals. For example, instead of updates every 1 or 1.5 seconds, the switch sends them every 1.6 seconds, without showing any warning or error.</td>
 <td>5.18.0-5.19.0</td>
@@ -112,6 +134,13 @@
 <td>5337319, 5356242, 5365397</td>
 <td>During online package upgrade, the {{nv-umf}} container service might restart at the wrong time while container runtime packages are still being replaced. This creates a temporary mismatch between the running {{containerd}} daemon and newly installed runtime components, causing {{nv-umf}} to fail to start and automatically trigger cl-support collection.</td>
 <td>5.19.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5324952, 5355833</td>
+<td>In 5.18 and 5.19
+When you enable IP Source Guard on an interface that is a member of more than one VLAN (for example, a trunk port or a hybrid port with an untagged VLAN, and one or more tagged VLANs), the ACL rules generated from the DHCP snooping binding table do not include a VLAN match. As a result, a binding learned on one VLAN is also honored for traffic ingressing another VLAN of the same port, which might allow cross-VLAN source IP or MAC spoofing. To work around this issue, enable IP Source Guard only on interfaces that belong to a single VLAN (access port).</td>
+<td>5.18.0-5.19.0</td>
 <td></td>
 </tr>
 <tr>
@@ -930,14 +959,33 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Affects </th>
 </tr>
 <tr>
+<td>5407473</td>
+<td>When using {{cl-ecmpcalc}} for a non-ECMP destination with a single next hop, the command output shows a python traceback.</td>
+<td>5.11.1-5.18.3</td>
+</tr>
+<tr>
 <td>5399120</td>
 <td>When a race occurs during link-up, signal detection might be incomplete even though signals are later detected on all lanes, causing link establishment to fail and the module to be configured incorrectly.</td>
 <td></td>
 </tr>
 <tr>
-<td>5385849</td>
-<td>On the SN6600_LD switch, after you install a BMC firmware package with the {{nv action install platform firmware BMC}} command, the new ERoT firmware stays in {{endingActivation}}; a BMC reset or switch reboot does not activate the new firmware. To work around this issue, power cycle the switch to activate the new ERoT firmware.</td>
-<td>5.18.3</td>
+<td>5398953</td>
+<td>A leftover read-only mount of the standby system partition causes optimized image upgrade to fail.</td>
+<td></td>
+</tr>
+<tr>
+<td>5385916</td>
+<td>NVUE reports installed FIB routes as missing when next hop compatibility mode is enabled. The FIB filter incorrectly drops kernel entries containing both the next hop ID and the compatibility next hops array.</td>
+<td>5.16.3-5.18.3</td>
+</tr>
+<tr>
+<td>5385219</td>
+<td>When you perform a factory reset after optimized image upgrade, the switch deletes the generated {{sysctl}} files in the {{/etc/sysctl.d}} directory (such as {{route_nh.conf}}) and does not recreate them. To work around this issue:&lt;ol&gt;
+&lt;li&gt;For each missing file in the {{/etc/sysctl.d}} directory ({{igmp.conf}}, {{mld.conf}}, {{neigh.conf}}, {{route_nh.conf}}), run the {{ucf --purge /etc/sysctl.d/&lt;file&gt;}} command as root. 
+&lt;li&gt;Remove the marker with the {{rm -f /var/cache/cumulus/platform-sysctl}} command.
+&lt;li&gt;Recreate the files with the {{/usr/lib/cumulus/update-sysctl}} command and apply them with {{sysctl --system}}. 
+&lt;li&gt;Verify that the four files exist and that the {{sysctl net.ipv4.nexthop_compat_mode}} command returns 0.&lt;/li&gt;&lt;/ol&gt;</td>
+<td>5.16.3-5.18.3</td>
 </tr>
 <tr>
 <td>5384378</td>
@@ -959,6 +1007,16 @@ In an EVPN multihoming configuration, a remote MAC address remains programmed in
 <td>5358616</td>
 <td>When you disable STP, the switch saves but does not program the bridge STP priority, which causes the MLAG secondary bonds to enter protocol-down.</td>
 <td>5.16.5-5.18.3</td>
+</tr>
+<tr>
+<td>5358602</td>
+<td>When you enable or disable BGP graceful shutdown, BGP sends more route refreshes and route advertisements than necessary. This extra churn triggers a timing issue that stops a route update from reaching some peers. As a result, after you disable graceful shutdown, the peers keep routes with the graceful-shutdown community and local preference 0, and use fewer ECMP paths than expected. To work around this issue, after the churn settles, run a soft outbound clear on the advertising switch toward each affected peer, one at a time with the {{sudo vtysh -c "clear bgp &lt;peer-ip&gt; soft out"}} command.</td>
+<td>5.16.8-5.18.3</td>
+</tr>
+<tr>
+<td>5357820</td>
+<td>When you suppress route advertisement ({{nv set router bgp wait-for-install enabled}}) and configure an aggregate route, when the switch withdraws all the contributing routes, BGP keeps the aggregate installed and advertised even after all the more-specific routes are gone. To work around this issue, remove and re-apply the corresponding aggregate route.</td>
+<td>5.16.1-5.18.3</td>
 </tr>
 <tr>
 <td>5355864</td>
@@ -1029,6 +1087,11 @@ In an EVPN multihoming configuration, a remote MAC address remains programmed in
 <td>5327622</td>
 <td>A bridge FDB flush does not restore EVPN router MAC entries in the Kernel.</td>
 <td>5.11.5-5.18.3</td>
+</tr>
+<tr>
+<td>5327605</td>
+<td>When an EVPN router MAC is reachable through two VTEPs and one of them changes to a different router MAC, remote switches move their FRR entry to the remaining VTEP but do not reprogram the kernel and hardware entry. As a result, the remote switch keeps forwarding traffic for that router MAC to the VTEP that no longer owns it. FRR shows the correct VTEP while the kernel bridge FDB shows the old one.</td>
+<td>5.11.1-5.18.3</td>
 </tr>
 <tr>
 <td>5324751</td>
@@ -1117,11 +1180,6 @@ This failure disrupts DHCPv6 service for all downstream interfaces served by tha
 <td>5301567</td>
 <td>With continuous next hop churn in the network with 9k next hop groups created and deleted repeatedly, {{switchd}} runs into a netlink buffer overflow, which triggers a netlink resync; {{switchd}} encounters an out of memory error.</td>
 <td>5.16.6-5.18.3</td>
-</tr>
-<tr>
-<td>5299539</td>
-<td> After a factory reset, a switch relying on preserved management IP settings on eth0 might lose its configured network access. This can disrupt connectivity and require manual reconfiguration.</td>
-<td>5.16.1-5.18.3</td>
 </tr>
 <tr>
 <td>5299253</td>
@@ -1521,6 +1579,11 @@ This failure disrupts DHCPv6 service for all downstream interfaces served by tha
 <tr>
 <td>5165432, 5154620</td>
 <td>With EVPN layer 3 VXLAN device mode enabled, the switch installs routes leaked between tenant VRFs (using import VRFs) without the encapsulation information, which results in traffic drops.</td>
+<td>5.18.0-5.18.3</td>
+</tr>
+<tr>
+<td>5163115</td>
+<td>BGP does not update the MAC mobility sequence number in extended community during EVPN VXLAN processing.</td>
 <td>5.18.0-5.18.3</td>
 </tr>
 <tr>

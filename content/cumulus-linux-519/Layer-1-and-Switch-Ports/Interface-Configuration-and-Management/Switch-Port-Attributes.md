@@ -2349,7 +2349,3 @@ When you connect an NVIDIA SN4410, SN4700, or SN5600 switch to any Spectrum1, Sp
 ```
 cumulus@switch:~$ nv set interface <interface-id> link breakout 4x lanes-per-port 1
 ```
-
-## Related Information
-
-- {{<exlink url="http://wiki.debian.org/NetworkConfiguration" text="Debian - Network Configuration">}}

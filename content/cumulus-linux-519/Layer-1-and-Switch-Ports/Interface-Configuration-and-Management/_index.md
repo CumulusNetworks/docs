@@ -1660,4 +1660,3 @@ valid_lft forever preferred_lft forever
 ## Related Information
 
 - {{<link url="Troubleshoot-Layer-1">}}
-- {{<exlink url="http://wiki.debian.org/NetworkConfiguration" text="Debian - Network Configuration">}}

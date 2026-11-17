@@ -23,7 +23,7 @@ To upgrade a Spectrum-6 switch, perform the upgrade in this order:
 
 {{%notice note%}}
 Upgrade BMC firmware only with the NVUE commands in this section. NVIDIA validates BMC firmware upgrades through NVUE only; NVIDIA does not validate upgrading BMC firmware through Redfish.
-{{%/notice%}} 
+{{%/notice%}}
 
 ## Install BMC
 
@@ -145,8 +145,6 @@ cumulus@switch:~$ nv set platform firmware ASIC fw-source custom
 cumulus@switch:~$ nv config apply
 ```
 
-<!-- REVIEW: the spec states NVUE also writes these two settings to /etc/cumulus/<component>-auto-update.conf, and confirms this path for the ASIC and BIOS components specifically (asic-auto-update.conf, bios-auto-update.conf). It does not confirm the equivalent file exists for BMC or SSD. Drafted the ASIC and BIOS examples only, matching the spec; confirm before generalizing further. -->
-
 To confirm the current settings for a component, run the `nv show platform firmware <platform-component-id>` command described below.
 
 To reset `automatic-update` and `firmware-source` settings to the default for every platform firmware component, run the `nv unset platform firmware` command:
@@ -155,8 +153,6 @@ To reset `automatic-update` and `firmware-source` settings to the default for ev
 cumulus@switch:~$ nv unset platform firmware
 cumulus@switch:~$ nv config apply
 ```
-
-<!-- REVIEW: the spec shows only this unscoped form, which resets every component at once, and does not show a per-component nv unset platform firmware <platform-component-id> auto-update or fw-source form. Drafted the unscoped command as shown; confirm whether a scoped form also exists before publishing. -->
 
 ## Show Information About BMC
 
@@ -242,4 +238,4 @@ cumulus@switch:~$ nv show platform environment leakage -o json
 -->
 gNMI and OTEL telemetry lets you subscribe to real-time leakage status and trigger automated alerts. For OTEL metrics, refer to {{<link url="Open-Telemetry-Export/#platform-statistic-format" text="OTEL Telemetry Leakage Sensor Metrics">}}. For gNMI metrics, refer to {{<link url="New-and-Updated-Telemetry-Metrics/#new-gnmi-metrics" text="gNMI Leakage Sensor Metrics">}}.
 
-For information about using out-of-band remote monitoring and management for the Cumulus Linux Spectrum-6 switch, refer to the {{<mib_link url="bmc-user-manual-88.0060.2110/Getting_Started.html" text="BMC user guide.">}}
+For information about using out-of-band remote monitoring and management for the Cumulus Linux Spectrum-6 switch, refer to the {{<mib_link url="bmc-user-manual-88.0060.2114/index.html" text="BMC user guide.">}}

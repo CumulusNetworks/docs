@@ -8,7 +8,7 @@ Cumulus Linux includes command line and analytical tools to help you troubleshoo
 
 ## ping
 
-Use the ping tool to check that a destination on a network is reachable. Ping sends <span class="a-tooltip">[ICMP](## "Internet Control Message Protocol")</span> Echo Request packets to the specified destination and listens for Echo Reply packets.  
+Use the ping tool to check that a destination on a network is reachable. Ping sends <span class="a-tooltip">[ICMP](## "Internet Control Message Protocol")</span> Echo Request packets to the specified destination and listens for Echo Reply packets.
 
 {{< tabs "TabID26 ">}}
 {{< tab "NVUE Commands ">}}
@@ -430,7 +430,7 @@ PING fe80::a00:27ff:fe00:0%bond1(fe80::a00:27ff:fe00:0%bond1)
 
 ## traceroute
 
-The traceroute tool traces the path of data packets from a source to a destination across an IP network, showing the sequence of routers (hops) the data passes through.  
+The traceroute tool traces the path of data packets from a source to a destination across an IP network, showing the sequence of routers (hops) the data passes through.
 
 By measuring the round-trip time for each hop, traceroute helps identify latency problems, routing inefficiencies, or potential network failures, enabling you to troubleshoot and optimize network performance.
 

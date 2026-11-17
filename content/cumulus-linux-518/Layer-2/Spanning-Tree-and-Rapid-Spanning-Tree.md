@@ -387,32 +387,7 @@ iface br_default
 ```
 cumulus@switch:~$ ifreload -a
 ```
-<!--
-**Runtime Configuration (Advanced)**
 
-{{%notice warning%}}
-A runtime configuration is non-persistent, which means the configuration you create here does not persist after you reboot the switch.
-{{%/notice%}}
-
-To set the bridge priority to 4096 for VLAN 10 and  to 61440 for VLAN 20 at runtime:
-
-```
-cumulus@switch:~$ sudo mstpctl setvlan-priority br_default 10 4096
-cumulus@switch:~$ sudo mstpctl setvlan-priority br_default 20 61440
-```
-
-To set the bridge priority to 61440 for VLAN 10, 20, and 30 at runtime:
-
-```
-cumulus@switch:~$ sudo mstpctl setvlan-priority br_default 10,20,30 61440
-```
-
-To set the bridge priority for a range of VLANs, use a hyphen (-). For example, to set the bridge priority to 61440 for VLAN 10 through VLAN 30 at runtime:
-
-```
-cumulus@switch:~$ sudo mstpctl setvlan-priority br_default 10-30 61440
-```
--->
 {{< /tab >}}
 {{< /tabs >}}
 
@@ -472,23 +447,7 @@ cumulus@switch:~$ ifreload -a
 ```
 
 To set the PVRST timers for a range of VLANs, use a hyphen (-). For example `bridge-stp-vlan-hello 10-30=4`.
-<!--
-**Runtime Configuration (Advanced)**
 
-{{%notice warning%}}
-A runtime configuration is non-persistent, which means the configuration you create here does not persist after you reboot the switch.
-{{%/notice%}}
-
-To set the max age to 6 seconds, the hello time to 4 seconds, and the forward delay to 4 seconds for VLAN 10, 20, and 30 at runtime:
-
-```
-cumulus@switch:~$ sudo mstpctl setvlan-maxage br_default 10,20,30 6
-cumulus@switch:~$ sudo mstpctl setvlan-hello br_default 10,20,30 4
-cumulus@switch:~$ sudo mstpctl setvlan-fdelay br_default 10,20,30 4
-```
-
-To set the PVRST timers for a range of VLANs, use a hyphen (-). For example `sudo mstpctl setvlan-maxage br_default 10-30 6`.
--->
 {{< /tab >}}
 {{< /tabs >}}
 
@@ -524,20 +483,7 @@ iface swp1
     mstpctl-port-vlan-priority 10=240
 ...
 ```
-<!--
-**Runtime Configuration (Advanced)**
 
-{{%notice warning%}}
-A runtime configuration is non-persistent, which means the configuration you create here does not persist after you reboot the switch.
-{{%/notice%}}
-
-To set path cost to 4000 and the priority to 240 for VLAN 10 at runtime:
-
-```
-cumulus@switch:~$ sudo mstpctl setvlantreeportcost br_default swp1 10 4000
-cumulus@switch:~$ sudo mstpctl setvlantreeportprio br_default swp1 10 240
-```
--->
 {{< /tab >}}
 {{< /tabs >}}
 
@@ -557,8 +503,8 @@ The following example commands configure PortAdminEdge and BPDU guard for swp5:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set interface swp5 bridge domain br_default stp admin-edge on
-cumulus@switch:~$ nv set interface swp5 bridge domain br_default stp bpdu-guard on
+cumulus@switch:~$ nv set interface swp5 bridge domain br_default stp admin-edge enabled
+cumulus@switch:~$ nv set interface swp5 bridge domain br_default stp bpdu-guard enabled
 cumulus@switch:~$ nv config apply
 ```
 
@@ -602,7 +548,7 @@ cumulus@switch:~$ sudo mstpctl setbpduguard br2 swp1 yes
 *PortAutoEdge* is an enhancement to the standard PortAdminEdge (PortFast) mode, which allows for the automatic detection of edge ports. PortAutoEdge enables and disables the *auto transition* to and from the edge state of a port in a bridge.
 
 {{%notice note%}}
-Edge ports and access ports are not the same. Edge ports transition directly to the forwarding state and skip the listening and learning stages. Upstream topology change notifications are not generated when an edge port link changes state. Access ports only forward untagged traffic; however, there is no such restriction on edge ports, which can forward both tagged and untagged traffic.
+Edge ports and access ports are not the same. Edge ports transition directly to the forwarding state and skip the listening and learning stages. The switch does not generate upstream topology change notifications when an edge port link changes state. Access ports only forward untagged traffic; however, there is no such restriction on edge ports, which can forward both tagged and untagged traffic.
 {{%/notice%}}
 
 When a port with PortAutoEdge receives a BPDU, the port stops being in the edge port state and transitions into a normal STP port. When the interface no longer receives BPDUs, the port becomes an edge port, and transitions through the discarding and learning states before it resumes forwarding.
@@ -615,7 +561,7 @@ The following example commands disable PortAutoEdge on swp1:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set interface swp1 bridge domain br_default stp auto-edge off
+cumulus@switch:~$ nv set interface swp1 bridge domain br_default stp auto-edge disabled
 cumulus@switch:~$ nv config apply
 ```
 
@@ -648,7 +594,7 @@ The following example commands reenable PortAutoEdge on swp1:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set interface swp1 bridge domain br_default stp auto-edge on
+cumulus@switch:~$ nv set interface swp1 bridge domain br_default stp auto-edge enabled
 cumulus@switch:~$ nv config apply
 ```
 
@@ -664,13 +610,13 @@ Edit the switch port interface stanza in the `/etc/network/interfaces` file to r
 
 You can configure *BPDU guard* to protect the spanning tree topology from an unauthorized device affecting the forwarding path. For example, if you add a new host to an access port off a leaf switch and the host sends an STP <span class="a-tooltip">[BPDU](## "Bridge Protocol Data Unit")</span>, BPDU guard protects against undesirable topology changes in the environment.
 
-The following example commands set BPDU guard for swp5:
+The following example commands enable BPDU guard for swp5:
 
 {{< tabs "TabID235 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set interface swp5 bridge domain br_default stp bpdu-guard on
+cumulus@switch:~$ nv set interface swp5 bridge domain br_default stp bpdu-guard enabled
 cumulus@switch:~$ nv config apply
 ```
 
@@ -763,7 +709,7 @@ The following example commands enable bridge assurance on swp1:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set interface swp5 bridge domain br_default stp network on
+cumulus@switch:~$ nv set interface swp5 bridge domain br_default stp network enabled
 cumulus@switch:~$ nv config apply
 ```
 
@@ -818,13 +764,13 @@ You can enable `bpdufilter` on a switch port, which filters BPDUs in both direct
 Using BDPU filter sometimes causes layer 2 loops. Use this feature with caution.
 {{%/notice%}}
 
-The following example commands configure the BPDU filter on swp6:
+The following example commands enable BPDU filter on swp6:
 
 {{< tabs "TabID392 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set interface swp6 bridge domain br_default stp bpdu-filter on
+cumulus@switch:~$ nv set interface swp6 bridge domain br_default stp bpdu-filter enabled
 cumulus@switch:~$ nv config apply
 ```
 
@@ -869,7 +815,7 @@ To enable the interface in the bridge to take the restricted role:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set interface swp1 bridge domain br_default stp restrrole on
+cumulus@switch:~$ nv set interface swp1 bridge domain br_default stp restrrole enabled
 cumulus@switch:~$ nv config apply
 ```
 
@@ -946,11 +892,11 @@ The IEEE {{<exlink url="https://standards.ieee.org/standard/802_1D-2004.html" te
 
 | Parameter | Description |
 |-----------|----------|
-| `mstpctl-maxage` | Sets the maximum age of the bridge in seconds. The default is 20. The maximum age timer must be equal to, or less than, two times the forward delay minus one second (bridge max age <= 2 * bridge forward delay - 1 second).<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file.<br>If you are running STP in PVRST mode, see {{<link title="Spanning Tree and Rapid Spanning Tree - STP/#pvrst-mode-for-a-vlan-aware-bridge" text="PVRST Mode for a VLAN-aware Bridge">}}.|
-| `mstpctl-fdelay` | Sets the bridge forward delay time in seconds. The default value is 15. Two times the forward delay minus one second must be more than or equal to the maximum age (2 * bridge forward delay - 1 second  >= bridge max age).<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file.<br>If you are running STP in PVRST mode, see {{<link title="Spanning Tree and Rapid Spanning Tree - STP/#pvrst-mode-for-a-vlan-aware-bridge" text="PVRST Mode for a VLAN-aware Bridge">}}.|
+| `mstpctl-maxage` | Sets the maximum age of the bridge in seconds. The default is 20. The maximum age timer must be equal to, or less than, two times the forward delay minus one second (bridge max age <= 2 * bridge forward delay - 1 second).<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file.<br>If you are running STP in PVRST mode, see {{<link title="Spanning Tree and Rapid Spanning Tree - STP/#stp-modes-for-a-vlan-aware-bridge" text="PVRST Mode for a VLAN-aware Bridge">}}.|
+| `mstpctl-fdelay` | Sets the bridge forward delay time in seconds. The default value is 15. Two times the forward delay minus one second must be more than or equal to the maximum age (2 * bridge forward delay - 1 second  >= bridge max age).<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file.<br>If you are running STP in PVRST mode, see {{<link title="Spanning Tree and Rapid Spanning Tree - STP/#stp-modes-for-a-vlan-aware-bridge" text="PVRST Mode for a VLAN-aware Bridge">}}.|
 | `mstpctl-maxhops` | Sets the maximum hops for the bridge. The default is 20.<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file.<br>This parameter does not apply to PVRST mode.|
 | `mstpctl-txholdcount` | Sets the bridge transmit hold count. The default value is 6 seconds.<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file.<br>In PVRST mode, the transmit hold count applies to each interface in the VLAN.  |
-| `mstpctl-hello` | Sets the bridge hello time in seconds. The default is 2.<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file.<br>If you are running STP in PVRST mode, see {{<link title="Spanning Tree and Rapid Spanning Tree - STP/#pvrst-mode-for-a-vlan-aware-bridge" text="PVRST Mode for a VLAN-aware Bridge">}}. |
+| `mstpctl-hello` | Sets the bridge hello time in seconds. The default is 2.<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file.<br>If you are running STP in PVRST mode, see {{<link title="Spanning Tree and Rapid Spanning Tree - STP/#stp-modes-for-a-vlan-aware-bridge" text="PVRST Mode for a VLAN-aware Bridge">}}. |
 | `mstpctl-portp2p` | Enables or disables point-to-point detection mode for the interface in the bridge.<br>Add this parameter to the interface stanza of the `/etc/network/interfaces` file.|
 | `mstpctl-portrestrtcn` | Enables or disables the interface in the bridge to propagate received topology change notifications. The default is no.<br>Add this parameter to the interface stanza of the `/etc/network/interfaces` file.|
 | `mstpctl-treeportcost` | Sets the spanning tree port cost to a value from 0 to 255. The default is 0.<br>Add this parameter to the interface stanza of the `/etc/network/interfaces` file.<br>This parameter applies to RSTP mode only.|

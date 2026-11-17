@@ -90,7 +90,7 @@ The `smond` process provides monitoring for various switch hardware elements. Mi
 | Front Panel LED | `ledmgrd -d`<br>`ledmgrd -j` |5 seconds |
 
 {{%notice note%}}
-Not all switch models include a sensor for monitoring power consumption and voltage. See {{<link url="Monitoring-System-Hardware#smond-daemon" text="this note">}} for details.
+Not all switch models include a sensor for monitoring power consumption and voltage. See {{<link url="Monitoring-System-Hardware#smond" text="this note">}} for details.
 {{%/notice%}}
 
 | Hardware Logs| Log Location| Log Entries|
@@ -131,7 +131,7 @@ Cumulus Linux monitors CPU, memory, and disk space with `sysmonitor`. The config
 | Process Load | Alarm: 95% Crit: 125% |
 
 {{%notice note%}}
-Spectrum 1 CPUs can become overloaded at moderate to high network scale. If your Spectrum 1 switch is not able to process CPU-destined traffic or is running continually at high CPU, either reduce the scale of the network where you deploy Spectrum 1 switches or replace the switch with a newer generation switch that offers stronger compute resources.
+Spectrum1 CPUs can become overloaded at moderate to high network scale. If your Spectrum1 switch is not able to process CPU-destined traffic or is running continually at high CPU, either reduce the scale of the network where you deploy Spectrum1 switches or replace the switch with a newer generation switch that offers stronger compute resources.
 {{%/notice%}}
 
 ### Disk Usage
@@ -336,7 +336,7 @@ Spanning tree is a protocol that prevents loops in a layer 2 infrastructure. In 
 
 | Interface Counter Element | Monitoring Commands | Interval Poll |
 |-------------------------- |-------------------- |-------------- |
-| STP TCN Transitions | NVUE: `nv show bridge domain <bridge> stp`<br><br>Linux: `mstpctl showbridge json`<br>`mstpctl showport` | 60 seconds |
+| STP TCN Transitions | NVUE: `nv show bridge domain <bridge-id> stp`<br><br>Linux: `mstpctl showbridge json`<br>`mstpctl showport` | 60 seconds |
 | MLAG peer state | NVUE: `nv show mlag`<br><br>Linux: `clagctl status`<br>`sudo clagd -j`<br>`sudo cat /var/log/clagd.log` | 60 seconds |
 | MLAG peer MACs | NVUE: `nv show mlag`<br><br>Linux: `clagctl dumppeermacs`<br>`clagctl dumpourmacs` |300 seconds |
 

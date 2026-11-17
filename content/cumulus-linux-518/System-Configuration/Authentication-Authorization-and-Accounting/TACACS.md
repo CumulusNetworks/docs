@@ -39,7 +39,7 @@ NVUE automatically installs the TACACS+ packages; you do **not** have to manuall
 {{< /tab >}}
 
 {{< tab "Linux Commands ">}}
-If you use Linux commands to configure TACACS+, you must install the TACACS+ packages. You can install the TACACS+ packages even if the switch is not connected to the internet; the packages are in the `cumulus-local-apt-archive` repository in the {{<link url="Adding-and-Updating-Packages#add-packages-from-the-cumulus-linux-local-archive" text="Cumulus Linux image">}}.
+If you use Linux commands to configure TACACS+, you must install the TACACS+ packages. You can install the TACACS+ packages even if the switch is not connected to the internet; the packages are in the `cumulus-local-apt-archive` repository in the {{<link url="Adding-and-Updating-Packages#add-a-package" text="Cumulus Linux image">}}.
 
 To install all required packages, run these commands:
 
@@ -111,7 +111,7 @@ cumulus@switch:~$ nv config apply
    server=192.168.0.30
    ```
 
-   Cumulus Linux supports a maximum of eight TACACS+ servers. To specify multiple servers, add one per line to the `/etc/tacplus_servers` file. Connections establish in the order in the file.
+   Cumulus Linux supports a maximum of eight TACACS+ servers. To specify multiple servers, add one on each line to the `/etc/tacplus_servers` file. Connections establish in the order in the file.
 
    ```
    cumulus@switch:~$ sudo nano /etc/tacplus_servers
@@ -586,7 +586,7 @@ cumulus@switch:~$ sudo -E apt-get remove tacplus-client
 cumulus@switch:~$ sudo -E apt-get autoremove
 ```
 
-To remove the TACACS+ client configuration files as well as the packages (recommended), use this command:
+To remove the TACACS+ client configuration files as well as the packages (which NVIDIA recommends), use this command:
 
 ```
 cumulus@switch:~$ sudo -E apt-get autoremove --purge

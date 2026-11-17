@@ -399,7 +399,7 @@ A compromised or malicious host connected to a switch port can passively listen 
 An attacker can use this information for infrastructure reconnaissance, which makes lateral movement and targeted attacks significantly easier.
 
 Cumulus Linux provides granular LLDP TLV control so that you can:
-- Control egress TLVs at the system level by defining a global policy for which optional TLVs the switch includes in its LLDP advertisements across all ports. 
+- Control egress TLVs at the system level by defining a global policy for which optional TLVs the switch includes in its LLDP advertisements across all ports.
 - Control egress TLVs for each port by overriding the global policy on specific interfaces (suppress System Name and Management Address only on host-facing ports while keeping full TLV advertisement on fabric or uplink ports).
 - Control ingress TLV processing by defining which TLVs from received LLDP frames to process and store in the neighbor table, limiting information exposure even on the receive side.
 - Define reusable TLV profiles (for example, `host-facing-secure`, `fabric-full`) at the system level with the `nv set system lldp tlv profile <profile-name>` command and apply them to interfaces with the `nv set interface <interface-id> lldp tlv profile <profile-name>` command. Use the system-level egress policy or ingress policy for switch-wide defaults.
@@ -536,9 +536,9 @@ Cumulus Linux supports the following LLDP DCBX TLVs:
 - Application Priority
 
 {{%notice info%}}
-- You can send a maximum of 250 VLANS per switch port in one LLDP frame.
+- You can send a maximum of 250 VLANS for each switch port in one LLDP frame.
 - Cumulus Linux does not support CEE DCBX TLVs.
-- Cumulus Linux limits DCBX support to enabling DCBX TLVs (either with ROCE global configuration or per interface) as documented in the {{<exlink url="https://ieeexplore.ieee.org/document/8403927" text="IEEE 802.1Q standard">}}.
+- Cumulus Linux limits DCBX support to enabling DCBX TLVs (either with ROCE global configuration or on each interface) as documented in the {{<exlink url="https://ieeexplore.ieee.org/document/8403927" text="IEEE 802.1Q standard">}}.
 {{%/notice%}}
 <!-- vale off -->
 #### IEEE 802.1 TLVs
@@ -1127,4 +1127,3 @@ To show the TLV policy that LLDP applies on an interface, including which entrie
 ## Related Information
 
 - {{<exlink url="http://vincentbernat.github.io/lldpd/" text="GitHub - lldpd project">}}
-- {{<exlink url="http://en.wikipedia.org/wiki/Link_Layer_Discovery_Protocol" text="Wikipedia - Link Layer Discovery Protocol">}}

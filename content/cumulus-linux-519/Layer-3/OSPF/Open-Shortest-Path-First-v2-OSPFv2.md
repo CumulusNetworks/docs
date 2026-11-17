@@ -423,7 +423,7 @@ This section describes optional configuration. The steps provided in this sectio
 
 ### Interface Parameters
 
-You can define the following OSPF parameters per interface:
+You can define the following OSPF parameters for each interface:
 - Network type (point-to-point or broadcast). Broadcast is the default setting. Configure the interface as point-to-point unless you intend to use the Ethernet media as a LAN with multiple connected routers. Point-to-point provides a simplified adjacency state machine so there is no need for DR/BDR election and *LSA reflection*. See {{<exlink url="http://tools.ietf.org/rfc/rfc5309" text="RFC5309">}} for a more information.
   {{%notice note%}}
   Cumulus Linux requires Point-to-point for {{<link url="#ospfv2-unnumbered" text="OSPFv2 unnumbered">}}.
@@ -696,7 +696,7 @@ To remove existing MD5 authentication hashes, run the vtysh `no ip ospf` command
 
 By default, an <span class="a-tooltip">[ABR](## "Area Border Router")</span> creates a summary (type-3) <span class="a-tooltip">[LSA](## "Link-State Advertisement")</span> for each route in an area and advertises it in adjacent areas. Prefix range configuration optimizes this behavior by creating and advertising one summary LSA for multiple routes. OSPF only allows for route summarization between areas on a ABR.
 
-The following example shows a topology divided into area 0 and area 1. border01 and border02 are <span class="a-tooltip">[ABRs](## "Area Border Routers")</span> that have links to multiple areas and perform a set of specialized tasks, such as <span class="a-tooltip">[SPF](## "Shortest Path First")</span> computation per area and summarization of routes across areas.
+The following example shows a topology divided into area 0 and area 1. border01 and border02 are <span class="a-tooltip">[ABRs](## "Area Border Routers")</span> that have links to multiple areas and perform a set of specialized tasks, such as <span class="a-tooltip">[SPF](## "Shortest Path First")</span> computation for each area and summarization of routes across areas.
 
 {{< img src = "/images/cumulus-linux/ospf-scalability-areas.png" >}}
 

@@ -19,10 +19,10 @@ Cumulus Linux fully supports EVPN as the control plane for VXLAN, including for 
 - Host MAC and IP address exchange using EVPN type-2 (MAC and IP advertisement) routes.
 - {{<link url="EVPN-Enhancements#extended-mobility" text="Host/VM mobility">}} support (MAC and IP moves) through exchange of the MAC Mobility Extended community.
 - Dual-attached hosts via {{<link url="VXLAN-Active-active-Mode" text="VXLAN active-active mode">}}. {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} synchronizes MAC addresses between the peer switches.
-- {{<link url="Basic-Configuration#arp-and-nd-suppression" text="ARP/ND suppression">}} is on VNIs by default, which enables VTEPs to suppress <span class="a-tooltip">[ARP](## "Address Resolution Protocol")</span> flooding over VXLAN tunnels.
+- {{<link url="EVPN-Enhancements#arp-and-nd-suppression" text="ARP/ND suppression">}} is on VNIs by default, which enables VTEPs to suppress <span class="a-tooltip">[ARP](## "Address Resolution Protocol")</span> flooding over VXLAN tunnels.
 - Exchange of {{<link url="EVPN-Enhancements#configure-static-mac-addresses" text="static MAC addresses">}} through EVPN.
 - {{<link url="Inter-subnet-Routing" text="Inter-subnet routing">}} for both IPv4 and IPv6 hosts: Distributed symmetric routing between different subnets and centralized routing.
-- {{<link url="Inter-subnet-Routing#prefix-based-routing-evpn-type-5-routes" text="Prefix-based routing">}} using EVPN type-5 routes (EVPN IP prefix route).
+- {{<link url="Inter-subnet-Routing#prefix-based-routing" text="Prefix-based routing">}} using EVPN type-5 routes (EVPN IP prefix route).
 - Layer 3 multi-tenancy.
 - IPv6 tenant routing.
 - <span class="a-tooltip">[ECMP](## "Equal Cost Multi Path")</span> for overlay networks on NVIDIA Spectrum-A1 ASICs. ECMP occurs in the overlay when there are multiple next hops.
@@ -38,10 +38,6 @@ Cumulus Linux fully supports EVPN as the control plane for VXLAN, including for 
   - Static VXLAN tunnels.
   - Q-in-Q tunneling.
   - The NVUE `nv set nve vxlan source address` command `auto` setting, which is applicable only for IPv4 VXLAN tunnels. If you want to configure IPv6 VXLAN tunnels, you must set the VXLAN source IP address manually as an IPv6 GUA address.
-
-  {{%notice note%}}
-  EVPN VXLAN IPv6 VTEP is a Beta feature.
-  {{%/notice%}}
   
 Cumulus Linux supports the EVPN address family with both <span class="a-tooltip">[eBGP](## "external BGP")</span> and <span class="a-tooltip">[iBGP](## "internal BGP")</span> peering. If you configure underlay routing with eBGP, you can use the same eBGP session to carry EVPN routes. In a typical 2-tier Clos network where the leafs are VTEPs, if you use eBGP sessions between the leafs and spines for underlay routing, the same sessions exchange EVPN routes. The spine switches act as *route forwarders* and do not install any forwarding state as they are not VTEPs. When the switch exchanges EVPN routes over iBGP peering, you can use OSPF as the IGP or resolve next hops using iBGP.
 

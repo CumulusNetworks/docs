@@ -239,7 +239,7 @@ By default, if some of the multipaths do not have link bandwidth, Cumulus Linux 
 - Skip paths without link bandwidth and perform W-ECMP among the others (if at least some paths have link bandwidth).
 - Assign a low default weight (value 1) to paths that do not have link bandwidth.
 
-Change this setting per BGP instance for both IPv4 and IPv6 unicast routes in the BGP instance. For EVPN, set the options on the tenant VRF.
+Change this setting for each BGP instance for both IPv4 and IPv6 unicast routes in the BGP instance. For EVPN, set the options on the tenant VRF.
 
 {{< tabs "TabID223 ">}}
 {{< tab "NVUE Commands">}}
@@ -355,7 +355,7 @@ Exercise caution when adjusting the maximum number of hardware entries. Configur
 <!-- vale off -->
 ## BGP W-ECMP with Adaptive Routing
 <!-- vale on -->
-Cumulus Linux supports BGP W-ECMP with {{<link title="#adaptive-routing" text="adaptive routing">}} for high-performance Ethernet topologies, where you use adaptive routing for optimal and efficient traffic distribution. You do not need to perform any additional configuration other than the configuration specified {{<link title="#configure-w-ecmp" text="above.">}}
+Cumulus Linux supports BGP W-ECMP with {{<link title="#bgp-w-ecmp-with-adaptive-routing" text="adaptive routing">}} for high-performance Ethernet topologies, where you use adaptive routing for optimal and efficient traffic distribution. You do not need to perform any additional configuration other than the configuration specified {{<link title="#configure-w-ecmp" text="above.">}}
 
 - NVIDIA recommends using W-ECMP with adaptive routing on networks that have an equal number of links connecting the spine and leaf switches and where the port speed for the links is the same across all the switches.
 - Both adaptive routing eligible traffic and non adaptive routing eligible traffic goes over the same ECMP group, which adjusts according to the W-ECMP weight. Non adaptive routing traffic continues to follow the hash-based traffic distribution between the updated list of next hops.

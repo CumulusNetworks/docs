@@ -236,7 +236,7 @@ cumulus@leaf02:~$ nv config apply
 {{< tab "Linux Commands ">}}
 
 Edit the `/etc/network/interfaces` file to add the following parameters, then run the `sudo ifreload -a` command.
-- The inter-chasis bond (`peerlink`) with two ports in the bond (swp49 and swp50 in the example command below)
+- The inter-chassis bond (`peerlink`) with two ports in the bond (swp49 and swp50 in the example command below)
 - The `peerlink` bond to the bridge
 - The peer link VLAN (`peerlink.4094`) with the backup IP address, the peer link IP address (`linklocal`), and the MLAG system MAC address (from the reserved range of addresses).
 

@@ -30,7 +30,7 @@ On Spectrum-2 and later, an Ethernet segment can span more than two switches. Ea
 
 ## Required and Supported Features
 
-This section describes features that you must enable to use EVPN multihoming. Other supported and unsupported features are also described.
+This section describes features that you must enable to use EVPN multihoming. It also describes other supported and unsupported features.
 
 ### Required Features
 
@@ -878,7 +878,7 @@ flags
 [remote-vtep]         10.10.10.2 
 ```
 
-### Show Ethernet Segment per VNI Information
+### Show Ethernet Segment for Each VNI Information
 
 To display the Ethernet segments learned for each VNI, run the vtysh `show evpn es-evi` command. For example:
 
@@ -1087,9 +1087,9 @@ cumulus@switch:~$ nv show evpn multihoming bgp-info esi -o json
 }
 ```
 
-### Show BGP Ethernet Segment per VNI Information
+### Show BGP Ethernet Segment for Each VNI Information
 
-To display the Ethernet segments per VNI learned through type-1 and type-4 routes, run the vtysh `show bgp l2vpn evpn es-evi` command.
+To display the Ethernet segments for each VNI learned through type-1 and type-4 routes, run the vtysh `show bgp l2vpn evpn es-evi` command.
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -1158,6 +1158,10 @@ Route Distinguisher: 10.10.10.3:2
 ```
 
 ## Considerations
+
+### BGP Graceful Restart
+
+Cumulus Linux does not support {{<link url="Optional-BGP-Configuration/#graceful-bgp-restart" text="BGP graceful restart">}} with EVPN multihoming (EVPN-MH).
 
 ### VLAN Match Rules in ebtables
 

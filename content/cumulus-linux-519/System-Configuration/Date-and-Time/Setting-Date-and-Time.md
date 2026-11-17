@@ -1,5 +1,5 @@
 ---
-title: Setting the Date and Time 
+title: Setting the Date and Time
 author: NVIDIA
 weight: 122
 toc: 3

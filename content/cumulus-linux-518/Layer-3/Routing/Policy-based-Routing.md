@@ -12,7 +12,7 @@ Cumulus Linux applies PBR to incoming packets. All packets received on a PBR-ena
 
 {{%notice note%}}
 - You can create a *maximum* of 255 PBR match rules and 256 next hop groups (this is the <span class="a-tooltip">[ECMP](## "Equal Cost Multi Path") limit)</span>.
-- You can apply only one PBR policy per input interface.
+- You can apply only one PBR policy for each input interface.
 - You can match on *source* and *destination* IP address, or match on <span class="a-tooltip">[DSCP](## "Differentiated Services Code Point")</span> or <span class="a-tooltip">[ECN](## "Explicit Congestion Notification")</span> values within a packet.
 - PBR does not support for VXLAN tunneling.
 - PBR does not support management interfaces, such as eth0.
@@ -217,7 +217,7 @@ pbr-policy map1
 {{< /tabs >}}
 
 {{%notice note%}}
-You can only set one policy per interface.
+You can only set one policy for each interface.
 {{%/notice%}}
 
 ## Modify PBR Rules

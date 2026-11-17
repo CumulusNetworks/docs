@@ -80,7 +80,7 @@ cumulus@switch:~$ sudo ifreload -a
 Cumulus Linux sets a fabric-wide MAC address to ensure consistency across VRR switches, which is especially useful in an EVPN multi-fabric environment. If you prefer, you can change the VRR MAC address globally with one NVUE command. You can also override the global setting for a specific VLAN.
 
 To set the VRR MAC address globally with one NVUE command, either:
-- Set the fabric-wide VRR MAC address to a value in the reserved range between 00:00:5E:00:01:00 and 00:00:5E:00:01:FF. Be sure to use an address in this reserved range to prevent MAC address conflicts with other interfaces in the same bridged network. 
+- Set the fabric-wide VRR MAC address to a value in the reserved range between 00:00:5E:00:01:00 and 00:00:5E:00:01:FF. Be sure to use an address in this reserved range to prevent MAC address conflicts with other interfaces in the same bridged network.
 - Set a fabric ID, from which Cumulus Linux derives the MAC address. You can specify a number between 1 and 255. Cumulus Linux adds the number to the MAC address 00:00:5E:00:01:00 in hex. For example, if you specify 255, the VRR MAC address is 00:00:5E:00:01:FF.
 
 The default VRR MAC address is 00:00:5E:00:01:01, which the switch derives from a fabric ID setting of 1.
@@ -99,7 +99,7 @@ cumulus@switch:mgmt:~$ nv set system global fabric-id 255
 cumulus@switch:mgmt:~$ nv config apply
 ```
 
-To override the global setting for a specific VLAN, run the `nv set interface <vlan> ipv4 vrr mac-address <mac-address>` command or the `nv set interface <vlan> ipv6 vrr mac-address <mac-address>` command:
+To override the global setting for a specific VLAN, run the `nv set interface <vlan-id> ipv4 vrr mac-address <mac-address>` command or the `nv set interface <vlan-id> ipv6 vrr mac-address <mac-address>` command:
 
 ```
 cumulus@switch:mgmt:~$ nv set interface vlan10 ipv4 vrr mac-address 00:00:5E:00:01:00

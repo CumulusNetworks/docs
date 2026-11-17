@@ -62,7 +62,7 @@ router bgp 65101
 {{< /tabs >}}
 
 {{%notice note%}}
-- You can deploy centralized routing at the VNI level, where you can configure the `advertise-default-gw` command per VNI; you use centralized routing for certain VNIs and distributed symmetric routing (described below) other VNIs. NVIDIA does not recommend this type of configuration.
+- You can deploy centralized routing at the VNI level, where you can configure the `advertise-default-gw` command for each VNI; you use centralized routing for certain VNIs and distributed symmetric routing (described below) other VNIs. NVIDIA does not recommend this type of configuration.
 - When you use centralized routing, even if the source host and destination host attach to the same VTEP, the packets travel to the gateway VTEP, the switch routes the packets, then the packets come back.
 - To prevent virtual switches that are not local to the border leaf from flooding traffic to a gateway MAC address in a centralized EVPN fabric, refer to {{<exlink url="https://enterprise-support.nvidia.com/s/article/Traffic-To-Gateway-MAC-In-Centralized-EVPN-Fabric-Is-Being-Flooded-By-V-Switches-Not-Local-To-The-Border-Leaf" text="this knowledge base article" >}}.
 {{%/notice%}}
@@ -194,7 +194,7 @@ If you need to convert a layer 2 VNI to a layer 3 VNI, refer to {{<link url="Net
 Instead of using a single VXLAN device for all layer 3 VNIs (as described above), you can configure the switch to use a layer 3 VXLAN device for each VNI. Layer 3 VXLAN mode creates individual VXI devices that are not SVIs and are unrelated to any bridge.
 
 Layer 3 VXLAN device mode simplifies EVPN configuration and improves performance at scale.
- 
+
 To enable layer 3 VXLAN device mode, first disable EVPN and VXLAN, then run the `nv set evpn l3vxi state enabled` command. Layer 3 VXLAN device mode is disabled by default.
 
 {{%notice note%}}
@@ -486,7 +486,7 @@ router bgp 65101 vrf RED
 
 Symmetric routing presents a problem in the presence of silent hosts. If the ingress VTEP does not have the destination subnet and the host route does not advertise for the destination host, the ingress VTEP cannot route the packet to its destination. You can overcome this problem by having VTEPs announce the subnet prefixes corresponding to their connected subnets in addition to announcing host routes. Cumulus Linux announces these routes as EVPN prefix (type-5) routes.
 
-A host can become effectively silent if its initial announcement is lost. For example, a host might emit a gratuitous ARP as soon as its interface is administratively up, before an LACP bond negotiates a carrier. Cumulus Linux discards the frame and does not retry it, so the attached VTEP has no neighbor entry and originates no type-2 route for that host.
+A host can become effectively silent if the network loses its initial announcement. For example, a host might emit a gratuitous ARP as soon as its interface is administratively up, before an LACP bond negotiates a carrier. Cumulus Linux discards the frame and does not retry it, so the attached VTEP has no neighbor entry and originates no type-2 route for that host.
 
 With the subnet prefix advertised, the switch does not drop traffic to such a host. The ingress VTEP forwards on the advertised prefix, the egress VTEP floods an ARP in the layer 2 VNI to resolve the host, and the type-2 route and its /32 host route appear within a few hundred milliseconds. The cost is added latency on the first packet.
 
@@ -496,7 +496,7 @@ To advertise locally attached subnets:
 2. Ensure that the routes corresponding to the connected subnets are in the BGP VRF routing table by injecting them using the `network` command or redistributing them using the `redistribute connected` command.
 
 {{%notice note%}}
-Use this configuration only if you have silent hosts and only on one VTEP per subnet (or two for redundancy).
+Use this configuration only if you have silent hosts and only on one VTEP for each subnet (or two for redundancy).
 {{%/notice%}}
 <!-- vale off -->
 ## Prefix-based Routing
@@ -564,12 +564,12 @@ end
 ### Prevent Re-export of VRF Leaked EVPN Routes
 
 When you configure a switch to announce IP prefixes in the BGP RIB as EVPN type-5 routes, the switch might re-export VRF-leaked routes that originate from the EVPN table as type-5 routes. To prevent the re-export of VRF-leaked EVPN routes, enable the skip EVPN imported setting.
- 
+
 - The skip EVPN imported setting affects only EVPN type-5 re-export.
 - The skip EVPN imported setting suppresses re-export when the VRF leak ancestry for the selected unicast path originates in the EVPN table.  
 - Locally originated routes, including locally originated routes leaked from another VRF, remain eligible for type-5 re-export.  
 - You set the skip EVPN imported setting for a specific BGP VRF instance and for either IPv4 or IPv6.
-- The emitted EVPN routes remain standards-compliant type-5 routes. This setting only decides which local paths FRR originates; it does not alter received EVPN route encoding, route-target processing, or peer interoperability. 
+- The emitted EVPN routes remain standards-compliant type-5 routes. This setting only decides which local paths FRR originates; it does not alter received EVPN route encoding, route-target processing, or peer interoperability.
 - The skip EVPN imported setting is disabled by default, which preserves Cumulus Linux 5.18 and earlier behavior.
 
 {{< tabs "TabID576 ">}}

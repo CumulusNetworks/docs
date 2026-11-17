@@ -306,7 +306,7 @@ dropmon { group=1 start=on limit=1000 }
 ```
 
 Restart the `hsflowd` service with the `sudo systemctl start hsflowd` command.
-  
+
 {{< /tab >}}
 {{< /tabs >}}
 
@@ -416,4 +416,3 @@ Cumulus Linux does not support sFlow egress sampling.
 
 - {{<exlink url="https://sflow.net/host-sflow-linux-config.php" text="sFlow documentation">}}):
 - {{<exlink url="http://www.sflow.org/products/collectors.php" text="sFlow Collectors">}}
-- {{<exlink url="http://en.wikipedia.org/wiki/SFlow" text="sFlow Wikipedia page">}}

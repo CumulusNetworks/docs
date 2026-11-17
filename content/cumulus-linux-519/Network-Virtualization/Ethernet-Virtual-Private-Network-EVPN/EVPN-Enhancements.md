@@ -18,7 +18,7 @@ The RD disambiguates EVPN routes in different VNIs (they can have the same MAC a
 
 For eBGP EVPN peering, the peers are in a different AS so using an automatic RT of *AS:VNI* does not work for route import. Therefore, Cumulus Linux treats the import RT as *\*:VNI* to determine which received routes apply to a particular VNI. This only applies when the switch auto-derives the import RT.
 
-If you do *not* want to derive RDs and RTs (layer 2 RTS) automatically, you can define them manually. The following example commands are per VNI.
+If you do *not* want to derive RDs and RTs (layer 2 RTS) automatically, you can define them manually. The following example commands apply to each VNI.
 
 {{< tabs "TabID19 ">}}
 {{< tab "NVUE Commands ">}}
@@ -231,7 +231,7 @@ address-family l2vpn evpn
 
 ## EVPN Unreachability in Disjoined Planes
 
-In EVPN disjoined multi-plane topologies, each GPU in a cluster connects to multiple independent network planes. Leaf switches perform route aggregation per tenant VRF for scalability but this suppresses visibility of individual host link failures. EVPN unreachability signaling in a tenant VRF sends a route to advertise host unreachability after a link failure, enabling leaf switches to send LLDP TLVs informing connected NICs to avoid unreachable paths.
+In EVPN disjoined multi-plane topologies, each GPU in a cluster connects to multiple independent network planes. Leaf switches perform route aggregation for each tenant VRF for scalability but this suppresses visibility of individual host link failures. EVPN unreachability signaling in a tenant VRF sends a route to advertise host unreachability after a link failure, enabling leaf switches to send LLDP TLVs informing connected NICs to avoid unreachable paths.
 
 {{%notice note%}}
 - If you are migrating from connected planes with BGP disaggregation, remove BGP disaggregation configuration before configuring EVPN unreachability in disjoined planes.
@@ -466,12 +466,9 @@ Cumulus Linux distinguishes a link-down event from an ordinary deauthorization. 
 {{%notice note%}}
 - All leaf and spine switches in the plane must run Cumulus Linux 5.19 or later.
 - The base VRF of an 802.1X-enabled interface, which is the interface-to-VRF mapping in the `/etc/network/interfaces` file, must be the default VRF or a parking VRF that does not have the BGP unreachability address family configured. Do not use a tenant VRF that has BGP unreachability configured and an `interfaces-match` prefix that covers the IP address of the interface.
-- You must enable the {{<link url="802.1X-Interfaces/#preserve-dynamically-assigned-ipv6-addresses" text="preserve-on-link-down">}} option on the 802.1X IPv6 profile.
 {{%/notice%}}
 
 To show the 802.1X authorization state that BGP uses to make these decisions, run the vtysh `show bgp dot1x interface` command. To show the equivalent state in `zebra`, run the vtysh `show dot1x interface` command. Both commands accept the `json` option.
-
-<!-- REVIEW: sample output adapted from the spec's capture, with the house prompt and the page's uppercase tenant VRF naming. Capture on a switch and confirm the column set and the empty AuthorizedVRF rendering (the spec's table output shows a hyphen where its JSON output shows an empty string) before publishing. -->
 
 ```
 cumulus@leaf01:mgmt:~$ sudo vtysh
@@ -492,7 +489,7 @@ The `Reason` field shows `link-down` when the interface left its authorized VRF 
 - Multiple service failures across leaf switches (such as an FRR failure on one leaf, and FRR, BGP sessions or other failure events on another switch) might result in unexpected routes distributed to NICs.
 - FRR can send a maximum of 25k prefixes for each VRF and 100k total prefixes across all VRFs to LLDP.
 - When you use EVPN unreachability in disjoined planes with 802.1X, the radius servers must be reachable through the management VRF.
-- When the IPv6 SLAAC address for a connected host expires but the interface remains up, an unreachable route is not injected for the host.
+- When the IPv6 SLAAC address for a connected host expires but the interface remains up, Cumulus Linux does not inject an unreachable route for the host.
 - The LLDP unreachable route TLV does not carry VRF information; overlapping addresses across VRFs might cause inconsistent behavior if the switch generates an unreachable route for a prefix used in multiple VRFs.
 - EVPN unreachability signaling is not functional if all the leaf switch uplinks to spines go down.
 - EVPN unreachability in disjoined planes does not work during a networking restart or forced reboot.
@@ -519,18 +516,29 @@ Restarting `switchd` results in network churn. FRR sees interfaces going down, w
 
 If an interface address redistributed by BGP falls within the IP address range configured in the `bgp advertise-unreach interfaces-match` command and the interface goes down operationally, BGP withdraws the type-5 route and advertise the EVPN unreachable route type for the interface IP address.
 
-<!-- REVIEW: new in this spec revision (the previous pass's spec stated "Known Limitations: None"; the
-     current revision adds this limitation with an explicit note to the spec author to put it in the
-     user guide, referencing RM 5264815). The reproduction steps in the spec are garbled by document
-     extraction -- it names both `nv set system dot1x dynamic-vrf disabled` and `nv set system dot1x
-     dynamic-vrf required` in one run-on sentence, without making clear whether the trigger is
-     disabling the feature, changing between modes, or cycling it. Drafted as "change the mode",
-     which covers all three readings, rather than asserting one specific sequence. Confirm the exact
-     reproduction against a candidate build before publishing, and delete this comment. -->
-
 #### Changing the Dynamic VRF Mode Loses Retained State
 
-If you change the `nv set system dot1x dynamic-vrf` mode while an interface has a retained EVPN unreachable route (its link is down and Cumulus Linux still shows the interface as authorized with reason `link-down`), Cumulus Linux stops tracking the retained state of that interface. The link for the interface remains down, but Cumulus Linux no longer advertises or maintains an EVPN unreachable route or an exception for it on the local or remote leaf switch, so traffic can black-hole until the interface comes back up and reauthenticates.
+Disabling 802.1X dynamic VRF with the `nv set system dot1x dynamic-vrf disabled` command causes FRR to withdraw the EVPN unreachable routes for all 802.1X dynamic VRF-managed interfaces and to stop tracking those interfaces, including the VRF into which each interface is authorized.
+
+If an interface is down when you re-enable the feature with the `nv set system dot1x dynamic-vrf required` command, FRR does not re-advertise the unreachable route for the prefixes of that interface and Cumulus Linux does not program LLDP exceptions on the local or remote leaf switch. This occurs because `hostapd` reports only the current state of the interface to FRR (that it is an 802.1X dynamic VRF interface in the unauthorized state) and FRR does not relearn the previous VRF authorization while the link stays down. The interface recovers normally after it comes back up and reauthenticates.
+
+To restore the unreachable route without waiting for the link to come back up, use the BGP inject command to inject the unreachable route from the tenant VRF into which the interface was previously authorized.
+
+#### Transient EVPN Unreachable Route When a Host Reauthenticates
+
+When a host reauthenticates on an 802.1X interface with dynamic VRF enabled, for example after you run the `nv action deauthenticate` command or on any reauthentication where the host rejoins quickly, Cumulus Linux moves the interface between VRFs, which briefly brings the link down. BGP treats this like any other link-down event and advertises an EVPN unreachable route for the prefixes of the interface, then withdraws the route after the interface comes up in the new VRF. During this window, you might briefly see an entry in the `show zebra lldp exception vrf all` command output and a corresponding unreachable route on remote leaf switches.
+
+This is expected. The final state is always correct, and the same advertise-then-withdraw sequence occurs when you move a statically configured interface between VRFs. BGP advertises the unreachable route deliberately instead of suppressing it. If the interface fails to come up in the destination VRF, suppressing the route leaves traffic to that host black-holed with no unreachable route advertised.
+
+Typically, you see the transient on physical switches instead of in virtual environments because it depends on link-transition timing. You do not need to take any action or use a workaround.
+
+#### Aggregate Exception Not Withdrawn When the Last Host in a VRF Returns in a Different VRF
+
+When the last remaining authenticated host in a tenant VRF on a leaf switch goes link-down, the leaf switch signals two exceptions to remote nodes: a host prefix exception for the prefix of the host and an aggregate exception because the aggregate route for that VRF loses its only contributing route.
+
+If the host then returns in a *different* tenant VRF, for example because you change its RADIUS attributes to assign a new VRF before the link comes back up, Cumulus Linux correctly withdraws the host prefix exception for the original VRF but does not withdraw the aggregate exception for that VRF. The leaf switch never restores a contributing route to the aggregate of the original VRF and no event triggers the withdrawal, so the aggregate exception remains on remote nodes.
+
+This issue occurs only when the departing host is the last authenticated host in that VRF on that leaf switch. The issue does not occur when other hosts remain in the VRF or when the host returns in the same VRF it left.
 
 ## Enable EVPN in an iBGP Environment with an OSPF Underlay
 
@@ -761,7 +769,7 @@ Cumulus Linux enables ARP and ND suppression by default on all VNIs to reduce AR
 
 ### ND Suppression and IPv6 Address Reuse
 
-If you disable ND suppression and reuse IPv6 addresses, IPv6 duplicate address detection fails and the address remains tentative and not useable. The following example shows an IPv6 duplicate address detection failure on vlan10:
+If you disable ND suppression and reuse IPv6 addresses, IPv6 duplicate address detection fails and the address remains tentative and not usable. The following example shows an IPv6 duplicate address detection failure on vlan10:
 
 ```
 cumulus@switch:~$ ip address show vlan10 | grep dad
@@ -1161,8 +1169,8 @@ neighbor swp51 maximum-prefix 5 warning-only
 In a typical EVPN deployment, you *reuse* SVI IP addresses on VTEPs across multiple racks. However, if you use *unique* SVI IP addresses across multiple racks and you want the local SVI IP address to be reachable via remote VTEPs, you can enable the advertise SVI IP and MAC address option. This option advertises the SVI IP and MAC address as a type-2 route and eliminates the need for any flooding over VXLAN to reach the IP address from a remote VTEP or rack.
 
 {{%notice note%}}
-- When you enable the advertise SVI IP and MAC address option, the anycast IP and MAC address pair is not advertised. Be sure **not** to enable both the `advertise-svi-ip` option and the `advertise-default-gw` option at the same time. (The `advertise-default-gw` option configures the gateway VTEPs to advertise their IP and MAC address. See {{<link url="Inter-subnet-Routing#centralized-routing" text="Advertising the Default Gateway">}}.
-- If you use <span class="a-tooltip">[MLAG](## "Multi-chassis Link Aggregation")</span> on your switch, refer to {{<link url="Inter-subnet-Routing#advertise-primary-ip-address" text="Advertise Primary IP Address">}}.
+- When you enable the advertise SVI IP and MAC address option, the switch does not advertise the anycast IP and MAC address pair. Be sure **not** to enable both the `advertise-svi-ip` option and the `advertise-default-gw` option at the same time. (The `advertise-default-gw` option configures the gateway VTEPs to advertise their IP and MAC address. See {{<link url="Inter-subnet-Routing#centralized-routing" text="Advertising the Default Gateway">}}.
+- If you use <span class="a-tooltip">[MLAG](## "Multi-chassis Link Aggregation")</span> on your switch, refer to {{<link url="Inter-subnet-Routing#advertise-primary-ip-address-vxlan-active-active-mode" text="Advertise Primary IP Address">}}.
 {{%/notice%}}
 
 To advertise *all* SVI IP and MAC addresses on the switch, run these commands:

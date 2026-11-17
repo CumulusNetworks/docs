@@ -149,7 +149,7 @@ cumulus@switch:~$ ifreload -a
 {{< /tabs >}}
 
 {{%notice note%}}
-NVIDIA Spectrum 1 switches support a maximum of 10000 VLAN elements. NVIDIA Spectrum-2 switches and later support a maximum of 15996 VLAN elements when {{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="warm reboot mode ">}} is `off` or 7934 VLAN elements when warm restart mode is `on`.
+NVIDIA Spectrum 1 switches support a maximum of 10000 VLAN elements. NVIDIA Spectrum-2 switches and later support a maximum of 15996 VLAN elements when {{<link url="System-Power-and-Switch-Reboot/#reboot-commands" text="warm reboot mode ">}} is `off` or 7934 VLAN elements when warm restart mode is `on`.
 Cumulus Linux calculates the total number of VLAN elements as the number of VLANs times the number of configured bridges. For example, 6 bridges, each containing 2600 VLANs totals 15600 VLAN elements.
 
 On NVIDIA Spectrum-2 switches and later, if you enable multiple VLAN-aware bridges and want to use more VLAN elements than the default, you must update the number of VLAN elements in the `/etc/mlx/datapath/broadcast_domains.conf` file.
@@ -1239,7 +1239,7 @@ iface br_default
 
 ### Spanning Tree Protocol (STP)
 
-- By default, STP runs in RSTP mode on a per-bridge basis. To configure STP to run in PVRST mode, where each VLAN runs its own instance of STP, see {{<link title="Spanning Tree and Rapid Spanning Tree - STP/#pvrst-mode-for-a-vlan-aware-bridge" text="PVRST Mode for a VLAN-aware Bridge">}}.
+- By default, STP runs in RSTP mode on a per-bridge basis. To configure STP to run in PVRST mode, where each VLAN runs its own instance of STP, see {{<link title="Spanning Tree and Rapid Spanning Tree - STP/#stp-modes-for-a-vlan-aware-bridge" text="PVRST Mode for a VLAN-aware Bridge">}}.
 - `mstpd` remains the user space protocol daemon.
 
 ### VLAN Translation

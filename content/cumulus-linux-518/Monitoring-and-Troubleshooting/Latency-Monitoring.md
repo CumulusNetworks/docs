@@ -67,7 +67,7 @@ cumulus@switch:~$ nv config apply
 
 {{%notice infonopad%}}
 
-To ensure accurate latency monitoring and appropriate resource utilization, adjust the sample interval based on the number of traffic classes (TCs) configured with latency monitoring per port. NVIDIA recommends setting the minimum interval according to the total number of TCs enabled per port:<br><br>
+To ensure accurate latency monitoring and appropriate resource utilization, adjust the sample interval based on the number of traffic classes (TCs) configured with latency monitoring for each port. NVIDIA recommends setting the minimum interval according to the total number of TCs enabled for each port:<br><br>
 
 
 | Number (n) of TCs per-port | Minimum sample interval |

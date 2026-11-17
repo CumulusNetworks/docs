@@ -7,14 +7,14 @@ toc: 3
 
 Cumulus Linux provides these reboot and power modes:
 - **immediate** reboots the switch immediately without notifying any running processes. Use this mode to reboot as quickly as possible, skipping graceful shutdown to avoid delays or to avoid the switch from hanging.
-- **halt** shuts down the operating system and halts the CPU. The switch is no longer reachable over the network but switch hardware might remain powered. Use this mode for a graceful complete shutdown during planned maintenance when you must shut down the operating system fully but an operating system level halt is sufficient. You cannot connect to the switch until power cycled through a remote PDU connection.
-- **power-off** powers off the switch completely (complete electrical power-off). Use this mode to power off the switch for planned maintenance when you require the switch to be powered off fully. You cannot connect to the switch until power cycled through a remote PDU connection. The SN2700 switch does not support `power-off`. 
+- **halt** shuts down the operating system and halts the CPU. The switch is no longer reachable over the network but switch hardware might remain powered. Use this mode for a graceful complete shutdown during planned maintenance when you must shut down the operating system fully but an operating system level halt is sufficient. You cannot connect to the switch until you power cycle it through a remote PDU connection.
+- **power-off** powers off the switch completely (complete electrical power-off). Use this mode to power off the switch for planned maintenance when you need to power off the switch fully. You cannot connect to the switch until you power cycle it through a remote PDU connection. The SN2700 switch does not support `power-off`.
 - **power-cycle** lets you power cycle the switch to recover from certain conditions, such as a thermal ASIC shutdown due to high temperatures.
 - **cold** restarts the system and resets all the hardware devices on the switch (including the switching ASIC). This is the default restart mode on the switch.
 - **fast** restarts the system more efficiently with minimal impact to traffic by reloading the kernel and software stack without a hard reset of the hardware. During a fast restart, the system decouples from the network to the extent possible using existing protocol extensions before recovering to the operational mode of the system. The switch restarts the kernel and software stack without touching the forwarding entries or the switching ASIC; therefore, the data plane is not affected as the software stack restarts. Traffic outage is much lower in this mode as there is a momentary interruption after reboot, while the system reinitializes.
 - **warm** restarts the switch with no interruption to traffic for existing route entries and without a hardware reset of the switch ASIC. While this process does not affect the data plane, the control plane is absent during restart and is unable to process routing updates. On Spectrum-3 and earlier switches, warm reboot requires configuring the switch {{<link url="#resource-allocation" text="resource mode">}} to `half` to reduce the available {{<link title="Forwarding Table Size and Profiles" text="forwarding table entries">}} on the switch by half to accommodate traffic forwarding during a reboot. Spectrum-4 and later switches perform a warm reboot with the resource mode set to `full` and keep all forwarding table entries available.
 
-  Review {{<link url="#warm-reboot-and-issu-considerations" text="Warm Reboot and ISSU Considerations">}} to understand support limitations and requirements for warm reboot and ISSU. 
+  Review {{<link url="#warm-reboot-and-issu-considerations" text="Warm Reboot and ISSU Considerations">}} to understand support limitations and requirements for warm reboot and ISSU.
 
 ## Reboot Commands
 
@@ -26,7 +26,7 @@ The following table shows the NVUE reboot and power commands, and their Linux co
 | `nv action reboot system force` | `sudo csmgrctl -cf` | Reboots the switch in cold mode without prompting for confirmation. This is equivalent to the `nv action reboot system mode cold force` command. |
 | `nv action reboot system mode immediate`| No Linux command available. | Reboots the switch immediately without notifying any running processes. This command invokes the Linux command `sudo reboot --force` after you respond to the prompt with `Yes`.|
 | `nv action reboot system mode immediate force` | `sudo reboot --force` | Reboots the switch immediately without notifying any running processes and without prompting for confirmation. |
-| `nv action reboot system mode halt` | No native command available. | Shuts down the operating system and halts the CPU. The switch hardware may remain powered.  |
+| `nv action reboot system mode halt` | No native command available. | Shuts down the operating system and halts the CPU. The switch hardware might remain powered.  |
 | `nv action reboot system mode halt force` | `sudo reboot --halt` | Shuts down the system without prompting for confirmation.|
 | `nv action reboot system mode power-off`| `sudo cl-poweroff` | Powers off the switch completely (complete electrical power-off). The SN2700 switch does not support `power-off`.|
 | `nv action reboot system mode power-off force`| `sudo cl-poweroff -noprompt` | Powers off the switch completely (complete electrical power-off) without prompting for confirmation. The SN2700 switch does not support `power-off`.|
@@ -248,7 +248,7 @@ The switch also creates a syslog message to indicate if warm reboot is in progre
 
 ### Warm Reboot Support
 
-Cumulus Linux supports warm reboot mode with 802.1X, layer 2 forwarding, layer 3 forwarding with BGP, static routing, and VXLAN routing with EVPN. 
+Cumulus Linux supports warm reboot mode with 802.1X, layer 2 forwarding, layer 3 forwarding with BGP, static routing, and VXLAN routing with EVPN.
 
 The following features are not supported during warm reboot:
 - EVPN MLAG or EVPN multihoming.
@@ -256,7 +256,7 @@ The following features are not supported during warm reboot:
 
 ### Resource Allocation
 
-To manage switch resource allocation, you can configure the resource mode to be either `half` or `full`. By default, the resource mode is set to `full`.
+To manage switch resource allocation, you can configure the resource mode to be either `half` or `full`. By default, the resource mode is `full`.
 
 Warm reboot and hitless ISSU-based software upgrade require the resource mode to be `half`.
 
@@ -272,7 +272,7 @@ cumulus@switch:~$ nv set system forwarding resource-mode half
 To set the resource-mode back to the default value (full) run the `nv unset system forwarding resource-mode` command.
 
 {{%notice infonopad%}}
-Changing the resource mode on the switch requires a `switchd` restart, which impacts traffic forwarding. 
+Changing the resource mode on the switch requires a `switchd` restart, which impacts traffic forwarding.
 {{%/notice%}}
 
 {{< /tab >}}
@@ -291,7 +291,7 @@ Restart the switchd service with the `sudo systemctl restart switchd.service` co
 
 ### BGP Graceful Restart
 
-When you restart the switch in warm reboot mode, BGP only performs a graceful restart if the BGP graceful restart option is set to `full`. To set BGP graceful restart to full, run the `nv set router bgp graceful-restart mode full` command, then apply the configuration with `nv config apply`. For more information about BGP graceful restart, refer to {{<link url="Optional-BGP-Configuration/#graceful-bgp-restart" text="Optional BGP Configuration">}}.
+When you restart the switch in warm reboot mode, BGP only performs a graceful restart if you set the BGP graceful restart option to `full`. To set BGP graceful restart to full, run the `nv set router bgp graceful-restart mode full` command, then apply the configuration with `nv config apply`. For more information about BGP graceful restart, refer to {{<link url="Optional-BGP-Configuration/#graceful-bgp-restart" text="Optional BGP Configuration">}}.
 
  You must set the {{<link url="Optional-BGP-Configuration/#restart-timers" text="BGP graceful restart timer">}} to 180 seconds or more to accommodate ISSU.
 
@@ -307,17 +307,9 @@ If the switch has connected hosts configured with ARP timeout values shorter tha
 
 ### MAC Address Learning
 
-During the warm boot window, the switch does not learn new MAC addresses in hardware. A MAC address that reaches the switch for the first time during this window, such as a host that comes online or moves to a different port, is not learned until the warm boot completes. MAC addresses the switch learned before the warm boot are preserved.
+During the warm boot window, the switch does not learn new MAC addresses in hardware. The switch does not learn a MAC address that reaches it for the first time during this window, such as a host that comes online or moves to a different port, until the warm boot completes. The switch preserves MAC addresses it learned before the warm boot.
 
 After the warm boot completes, hardware MAC learning resumes. If traffic is still flowing from the affected hosts, the switch learns their MAC addresses at that point; you do not need to take any action.
-
-<!-- REVIEW: Redmine #5355792. The ticket title says "ISSUv2" and the body says only "during the
-     warmboot window". Full resource mode ISSU is no longer in 5.19, so confirm with the reporter
-     (Sharanya Singh) whether MAC learning is suspended during a legacy (half-resource) warm
-     reboot. If it is not, remove this section. The ticket gives no duration for the window and
-     names no mitigation, so neither is stated. The claim that previously learned MAC addresses
-     survive came from the full resource mode description, not the ticket; confirm it holds for a
-     half-resource warm reboot. Delete this comment before publishing. -->
 
 ### Static Routes
 

@@ -26,7 +26,7 @@ When you run **Linux commands** to configure QoS, you must apply QoS changes to 
 cumulus@switch:~$ sudo systemctl reload switchd.service
 ```
 
-Unlike the `restart` command, the `reload switchd.service` command does not impact traffic forwarding except when the `qos_infra.conf` file changes, or when the switch [pauses frames](#pause-frames) or controls [priority flow](#priority-flow-control-pfc), which require modifications to the ASIC buffer and might result in momentary packet loss.
+Unlike the `restart` command, the `reload switchd.service` command does not impact traffic forwarding except when the `qos_infra.conf` file changes, or when the switch [pauses frames](#link-pause) or controls [priority flow](#priority-flow-control-pfc), which require modifications to the ASIC buffer and might result in momentary packet loss.
 
 NVUE reloads the `switchd` service automatically. You do **not** have to run the `reload switchd.service` command to apply changes when configuring QoS with NVUE commands.
 
@@ -299,8 +299,8 @@ To apply a custom profile to specific interfaces, see [Port Groups](#port-groups
 
 You can mark or remark traffic in two ways:
 
- * Use ingress COS or DSCP to remark an existing 802.1p COS or DSCP value to a new value.
- * Use [iptables](#iptables) to match packets and set 802.1p COS or DSCP values (policy-based marking).
+- Use ingress COS or DSCP to remark an existing 802.1p COS or DSCP value to a new value.
+- Use [iptables](#policy-based-marking) to match packets and set 802.1p COS or DSCP values (policy-based marking).
 
 <!-- vale off -->
 ### 802.1p or DSCP for Marking
@@ -450,7 +450,7 @@ For more information on configuring and applying ACLs, refer to {{<link title="A
 
 #### Mark Layer 2 COS
 
-You must use `ebtables` to match and mark layer 2 bridged traffic. You can match traffic with any supported ebtables rule.  
+You must use `ebtables` to match and mark layer 2 bridged traffic. You can match traffic with any supported ebtables rule.
 
 To set the new 802.1p COS value when traffic matches, use `-A FORWARD -o <interface-id> -j setqos --set-cos <value>`.
 
@@ -510,7 +510,7 @@ Flow control influences data transmission to manage congestion along a network p
 
 Cumulus Linux supports the following flow control mechanisms:
 - Link pause (IEEE 802.3x), sends specialized ethernet frames to an adjacent layer 2 switch to stop or *pause* **all** traffic on the link during times of congestion.
-- Priority Flow Control (PFC), which is an upgrade of link pause that IEEE 802.1bb defines, extends the pause frame concept to act on a per switch priority value basis instead of an entire link. A PFC pause frame indicates to the peer which specific switch priority value to pause, while other switch priority values or queues continue transmitting.
+- Priority Flow Control (PFC), which is an upgrade of link pause that IEEE 802.1bb defines, extends the pause frame concept to act on each switch priority value instead of an entire link. A PFC pause frame indicates to the peer which specific switch priority value to pause, while other switch priority values or queues continue transmitting.
 
 {{%notice note%}}
 You cannot configure link pause and PFC on the same port.
@@ -877,19 +877,6 @@ Recovery works the same way. The watchdog requires `recovery-interval` consecuti
 
 The following table shows the detection and recovery parameters:
 
-<!-- REVIEW: the range for rx-pause-threshold and tx-frames-threshold value below is drafted as
-     0-100000, from the NVUE handoff email (validated against the ARCH spec, per the email) that
-     also settled the recovery-interval and multiplier defaults below. A later revision of the FS
-     itself (re-checked 2026-09-28; the FS was edited 2026-09-08, after the email), now
-     consistently gives both ranges as 0-65535 in its leaf table and its per-command configuration
-     tables -- the same sections that, for recovery-interval and multiplier, now agree with the
-     values already drafted here. Only a stale, internally-inconsistent block elsewhere in that
-     same FS section (which also wrongly gives recovery-interval a default of 1 and
-     transmit-queue-threshold a default of Enabled) still shows 100000. Confirm which range is
-     correct -- 100000 (email) or 65535 (current FS) -- against a candidate build before
-     publishing, since the two sources now disagree in a way they did not when this was first
-     drafted. Delete this comment before publishing. -->
-
 | Parameter | Default | Range | Description |
 |---|---|---|---|
 | `recovery-interval` | 2 | 1-1000 | Consecutive recovery hits the watchdog requires before it restores the port. |
@@ -907,22 +894,6 @@ The following table shows the detection and recovery parameters:
 {{%/notice%}}
 
 The following example enables all three detection conditions, sets the queue occupancy threshold to 10 percent, sets the transmitted frames threshold to 10, and requires five consecutive clean intervals before recovery:
-
-<!-- REVIEW: two fuse leaf names in the Linux tab below need checking against a candidate
-     build. The source lists the transmit-queue-threshold value leaf as "tx_frames_threshold",
-     which duplicates the tx-frames-threshold row and is almost certainly a copy/paste error;
-     tx_queue_occupancy_threshold is drafted here from its own _enabled sibling. The
-     recovery-interval leaf is given as "restoration_time", which does not match the NVUE name
-     - plausible as a legacy name, but confirm.
-
-     2026-09-28 recheck: the FS (edited 2026-09-08, after the email this was drafted from) now
-     gives a third spelling for both: transmit-queue-threshold's leaves as
-     "transmit_queue_threshold_enabled, transmit_queue_threshold" (not tx_queue_occupancy_threshold),
-     and recovery-interval's leaf as "recovery_intervals" (not restoration_time). The FS's own
-     §13.2/§13.4 still mark leaf names and the persistent file path as "TBD (Open Item)", so this
-     is a third data point on an still-open question rather than a resolution -- do not treat
-     either the FS's or the email's naming as final without a candidate-build check.
-     Delete this comment before publishing. -->
 
 {{< tabs "TabID2001 ">}}
 {{< tab "NVUE Commands ">}}
@@ -959,10 +930,6 @@ cumulus@switch:~$ echo 5 > /cumulus/switchd/config/pfc_wd/restoration_time
 {{< /tabs >}}
 
 To show the PFC watchdog parameters and their applied values, run the `nv show qos pfc-watchdog` command:
-
-<!-- REVIEW: sample output adapted from the source's mock, with the house prompt substituted.
-     The values are a configured switch rather than the defaults in the table above. Capture on
-     a switch and replace before publishing. Delete this comment before publishing. -->
 
 ```
 cumulus@switch:~$ nv show qos pfc-watchdog
@@ -1037,7 +1004,7 @@ ECN operates by having a transit switch that marks packets between two end hosts
 6. A receiving host reflects this new ECN marking in the next reply so that the transmitting host resumes sending at normal speeds.
 
 The default profile (`default-global`) enables ECN by default on egress queue 0 for all ports with the following settings:
-- A minimum buffer threshold of 150000 bytes. Random ECN marking starts when buffer congestion crosses this threshold and ECN marking probability ramps up as the queue depth increases towards the maximum threshold value. 
+- A minimum buffer threshold of 150000 bytes. Random ECN marking starts when buffer congestion crosses this threshold and ECN marking probability ramps up as the queue depth increases towards the maximum threshold value.
 - A maximum buffer threshold of 1500000 bytes. Cumulus Linux marks all ECN-capable packets when buffer congestion crosses this threshold.
 - Random Early Detection (RED) disabled. ECN prevents packet drops in the network due to congestion by signaling hosts to transmit less. However, if congestion continues after ECN marking, packets drop after the switch buffer is full. By default, Cumulus Linux tail-drops packets when the buffer is full. You can enable RED to drop packets that are in the queue randomly instead of always dropping the last arriving packet. This might improve overall performance of TCP based flows.
 
@@ -1126,11 +1093,11 @@ Dynamic ECN is a congestion marking mechanism optimized for high-performance tra
 {{%/notice%}}
 
 To configure dynamic ECN, determine which traffic classes carry loss-sensitive or bursty traffic (such as RoCE on traffic class 3), determine the percentage of dynamic buffer allowance you want to trigger congestion marking, then set dynamic ECN:
-- Set the dynamic ECN mode to `relative` for the `default-global` profile to apply system-wide default settings or for a custom profile for specific port groups. The default value is `absolute`. 
+- Set the dynamic ECN mode to `relative` for the `default-global` profile to apply system-wide default settings or for a custom profile for specific port groups. The default value is `absolute`.
 
   When you set dynamic ECN mode to `relative`, the switch hardware ignores any configured byte-based thresholds. The ASIC begins marking traffic based on percentage thresholds relative to the dynamically allocated buffer allowance of the traffic class, which is continuously recalculated based on current buffer usage and pool occupancy.
 
-  When you set dynamic ECN mode to `absolute`, the switch hardware ignores percentage-based thresholds. The ASIC marks traffic using the configured absolute byte thresholds, which are treated as fixed limits.
+  When you set dynamic ECN mode to `absolute`, the switch hardware ignores percentage-based thresholds. The ASIC marks traffic using the configured absolute byte thresholds, which the switch treats as fixed limits.
 
 - Configure the minimum ECN marking threshold as a percentage (0 through 100) of the dynamic buffer allowance. The switch marks packets when queue occupancy exceeds this percentage. The default value is 0.
 - Configure the maximum ECN marking threshold as a percentage (0 through 100) of the dynamic buffer allowance. The value must be greater than or equal to the minimum threshold percent. The default value is 100.
@@ -1528,7 +1495,7 @@ For example, to configure a dual-rate, three-color policer, with a 3 Mbps CIR, 5
 
 ## Port Groups
 
-Cumulus Linux supports profiles (port groups) for all features including [ECN](#explicit-congestion-notification-ecn) and [RED](#random-early-detection-red). Profiles apply similar QoS configurations to a set of ports.
+Cumulus Linux supports profiles (port groups) for all features including [ECN](#congestion-control-ecn) and [RED](#congestion-control-ecn). Profiles apply similar QoS configurations to a set of ports.
 
 {{% notice note %}}
 - Configurations with a profile override the global settings for the ingress ports in the port group.
@@ -1984,7 +1951,7 @@ You can adjust settings for the following supported buffer regions and propertie
 |Buffers | Supported Property Values |
 |------------- |----------- |
 |`ingress-lossy-buffer` | <ul>Cumulus Linux supports the following properties for the `bulk` and `service[1-7]` priority groups: <br> `name` - The priority group alias name.<br>`reserved` -  The reserved buffer allocation in bytes. <br>`service-pool` - Service pool mapping. <br>`shared-alpha` - The dynamic shared buffer alpha allocation.<br>`shared-bytes` - The static shared buffer allocation in bytes.<br>`switch-priority` - Switch priority values. |
-|`egress-lossless-buffer` | <ul>`reserved` -  The reserved buffer allocation in bytes.<br>`service-pool` - Service pool mapping. <br>`shared-alpha` - The dynamic shared buffer alpha allocation.<br>`shared-bytes` - The static shared buffer allocation in bytes.</ul> | 
+|`egress-lossless-buffer` | <ul>`reserved` -  The reserved buffer allocation in bytes.<br>`service-pool` - Service pool mapping. <br>`shared-alpha` - The dynamic shared buffer alpha allocation.<br>`shared-bytes` - The static shared buffer allocation in bytes.</ul> |
 |`ingress-lossless-buffer` | <ul>`service-pool` - Service pool mapping. <br>`shared-alpha` - The dynamic shared buffer alpha allocation.<br>`shared-bytes` - The static shared buffer allocation in bytes.</ul> |
 |`egress-lossy-buffer` | <ul> `multicast-port` - Multicast port `reserved` or `shared-bytes` allocation in bytes. <br> `multicast-switch-priority [0-7]` - Set the `reserved`, `service-pool`,`shared-alpha`, or `shared-bytes` properties for each multicast switch priority.<br>`traffic-class [0-15]` - Set the `reserved`, `service-pool`,`shared-alpha`, or `shared-bytes` properties for each traffic class.</ul> |
 
@@ -2017,7 +1984,7 @@ You can adjust the following properties for each pool:
 | `shared-alpha ` | The dynamic shared buffer alpha allocation. |
 | `shared-bytes` | The static shared buffer allocation in bytes. |
 
-A relationship exists between the default traffic pools and the advanced buffer configuration settings.  
+A relationship exists between the default traffic pools and the advanced buffer configuration settings.
 
 {{%notice note%}}
 Use caution when configuring advanced buffer settings. NVUE presents a warning if you attempt to apply incompatible traffic pool and advanced buffer configurations. NVUE performs the following validation checks before applying advanced buffer configurations:
@@ -2096,7 +2063,7 @@ To unset the lossy headroom for a priority group, comment out the `priority_grou
 
 ### Extra Lossy Headroom
 
-In certain cases, higher forwarding latency and a high probability of small packets increase the risk of headroom buffer exhaustion on lossy traffic and the current default maximum headroom of 150 KB (153600 bytes) per port might be insufficient.
+In certain cases, higher forwarding latency and a high probability of small packets increase the risk of headroom buffer exhaustion on lossy traffic and the current default maximum headroom of 150 KB (153600 bytes) for each port might be insufficient.
 
 To configure additional headroom (on top of the default threshold of 153600 bytes) for lossy priority groups before the switch drops packets, run the `nv set interface <interface-id> qos headroom lossy extra-threshold` command. You can specify a value between 192 and 1236480 bytes.
 
@@ -2149,8 +2116,8 @@ Ports that have a lossless priority group enabled with priority flow control can
 QoS currently supports a single lossless priority group.
 
 You can configure the following headroom settings:
-- Required headroom per priority group in bytes. The switch converts this value to cells. You can set a value between 19456 and 2621440.
-- Exclusive headroom per priority group in bytes. The switch converts this value to cells. You can set a value between 19456 and 2621440.
+- Required headroom for each priority group in bytes. The switch converts this value to cells. You can set a value between 19456 and 2621440.
+- Exclusive headroom for each priority group in bytes. The switch converts this value to cells. You can set a value between 19456 and 2621440.
 - Oversubscription ratio for the shared headroom pool. You can set a value between 1 and 256.
 
 {{%notice note%}}
@@ -2555,7 +2522,7 @@ To return a parameter to its default, delete or comment out the line.
 {{< /tab >}}
 {{< /tabs >}}
 
-The default allocations consume part of the pool before you tune anything. The service port pool is 1946 KB, and Cumulus Linux reserves 256 KB of it for the traffic queue, which leaves 1690 KB. Cumulus Linux carves the remaining pool per service port: each service port draws the same fixed 49 KB default lossy allocation, and the switch multiplies that per-port amount by the number of service ports on your platform. It does not divide a single shared total across the ports. The following table shows what the defaults use and what remains, on a switch with two service ports and on a switch with four. The remaining pool includes the 128 KB that always stays unallocated as shared buffer.
+The default allocations consume part of the pool before you tune anything. The service port pool is 1946 KB, and Cumulus Linux reserves 256 KB of it for the traffic queue, which leaves 1690 KB. Cumulus Linux carves the remaining pool for each service port: each service port draws the same fixed 49 KB default lossy allocation, and the switch multiplies that per-port amount by the number of service ports on your platform. It does not divide a single shared total across the ports. The following table shows what the defaults use and what remains, on a switch with two service ports and on a switch with four. The remaining pool includes the 128 KB that always stays unallocated as shared buffer.
 
 | Allocation | Two service ports | Four service ports |
 | ---------- | ----------------- | ------------------ |
@@ -2609,18 +2576,7 @@ Each layer reports a problem in a different place:
   [SRVCP_INGRESS] REPAIR hal_port=514 avail_bytes=<bytes> asked_bytes=<bytes> exclusive_bytes=<bytes>
   ```
 
-<!-- REVIEW: FR 4961156 revision 2.0 (21 Oct) removes lossless and PFC support from Spectrum-6
-     service ports, but the FS message tables were not revised with it. The WARN sample above was
-     captured on a 13 Oct build, when a lossless priority group still existed on a service port,
-     and it names priority group 1, which was that lossless group. Confirm with Bhargav Sivalenka
-     what this warning looks like now that service ports carry lossy priority groups only, and
-     whether the [SRVCP_INGRESS] REPAIR line still uses these fields. The NVUE and
-     cl-consistency-check strings above come from FS tables rather than a captured build.
-     Delete this comment before publishing. -->
-
 To show the pool, mode, and buffer sizes for a service port, run the `nv show interface <interface-id> qos buffer` command. A service port reports hardware pool `43` as its ingress pool instead of the pool a regular port reports. The egress pools are unchanged:
-
-<!-- REVIEW: this sample is the output in revision 2.0 of FR 4961156 (captured on an engineering lab build, adapted to the house prompt). Unlike the earlier sample, it has no lossless priority group, which matches service ports carrying lossy priority groups only. Recapture the output on a release build and confirm the egress tables, which differ from the earlier sample. Delete this comment before publishing. -->
 
 ```
 cumulus@switch:~$ nv show interface swp65s0 qos buffer

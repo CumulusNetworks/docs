@@ -10,13 +10,13 @@ High frequency telemetry enables you to collect counters at very short sampling 
 High frequency telemetry data provides time-series data that traditional histograms cannot provide. This data can help you understand the shape of the traffic pattern and identify any variability, or jitter in the traffic.
 
 Cumulus Linux provides two different methods to collect and analyze high frequency telemetry data:
-- {{<link url="#streaming-hft-export" text="Stream HFT data">}} to an external collector through {{<link url="Open-Telemetry-Export/#grpc-otlp-export" text="open telemetry export">}} or through {{<link url="Open-Telemetry-Export/#ipfix-export" text="IP Flow Information Export (IPFIX)">}}.
+- {{<link url="#streaming-hft-export" text="Stream HFT data">}} to an external collector through {{<link url="Open-Telemetry-Export/#grpc-otlp-export" text="open telemetry export">}} or through IP Flow Information Export (IPFIX).
 - {{<link url="#collect-hft-in-json-file" text="Collect HFT data in a JSON format file">}} on the switch filesystem and upload the file to an external location for analysis.
 
 Cumulus Linux can also analyze high frequency telemetry data on the switch and export only the result. {{<link url="Step-Time-Estimation" text="Step time estimation">}} uses this approach to report the step time of an AI training workload without exporting the underlying counters.
 
 {{%notice note%}}
-- Cumulus Linux supports high frequency telemetry on Spectrum-4 and later switches. 
+- Cumulus Linux supports high frequency telemetry on Spectrum-4 and later switches.
 - Cumulus Linux does not support high frequency telemetry on ports using 8 lanes. On the Spectrum-4 switch, swp1 through swp64 use all 8 lanes; to run high frequency telemetry, you must break out these ports.
 - To correlate counters from different switches, the switches must have the same time (Cumulus Linux adds timestamps in the metadata of the counters it collects). You can use either NTP or PTP; however, NVIDIA recommends using PTP because the timestamp is accurate between switches in the fabric at the microsecond level.
 - Streaming HFT export produces a large number of metrics and is supported only with a {{<link url="Open-Telemetry-Export/#grpc-otlp-export" text="single gRPC export destination">}}. If you are exporting OTEL data to more than one destination, do not enable HFT globally and configure a {{<link url="Open-Telemetry-Export/#customize-export" text="`stats-group`">}} to enable `hft` export to only one destination.
@@ -80,13 +80,13 @@ b. Specify the interval in seconds for IPFIX template and metadata export. You c
    cumulus@switch:~$ nv set system telemetry export ipfix template-metadata-interval 40
    ```
 
-c. Configure the VRF where the export destination is reachable. The `default` VRF is the value set by the `nv set system telemetry export vrf` command. If no value is set with `nv set system telemetry export vrf` command, the default value is `default`.
+c. Configure the VRF where the export destination is reachable. The `default` VRF is the value set by the `nv set system telemetry export vrf` command. If you do not set a value with the `nv set system telemetry export vrf` command, the default value is `default`.
 
    ```
    cumulus@switch:~$ nv set system telemetry export ipfix vrf RED
    ```
 
-d. Configure the maximum size for an exported IP packet containing HFT over IPFIX to keep the IP packet size under the relevant MTU so that IP fragmentation is not required. You can set a value between 512 and 65535 bytes. The default setting is determined from the outgoing interface MTU.
+d. Configure the maximum size for an exported IP packet containing HFT over IPFIX to keep the IP packet size under the relevant MTU so that IP fragmentation is not required. You can set a value between 512 and 65535 bytes. The switch determines the default setting from the outgoing interface MTU.
 
    ```
    cumulus@switch:~$ nv set system telemetry export ipfix max-ip-packet-size 65535
@@ -301,7 +301,7 @@ To configure high frequency telemetry:
 1. Enable telemetry with the `nv set system telemetry state enabled` command.
 2. {{<link url="#configure-data-collection" text="Configure data collection">}}.
 3. {{<link url="#configure-json-data-export" text="Configure data export">}}.
-4. {{<link url="#configure-the-schedule" text="Configure the schedule">}}.
+4. {{<link url="#configure-the-job-schedule" text="Configure the schedule">}}.
 
 ### Configure Data Collection
 

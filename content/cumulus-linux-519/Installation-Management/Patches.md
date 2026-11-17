@@ -8,13 +8,13 @@ The Cumulus Linux patch framework delivers small, targeted, reversible package f
 
 You can install a critical fix within your own maintenance window and back it out without a full image upgrade.
 
-Patches only contain changed packages and complement rather than replace the standard release; NVIDIA rolls every patch into a subsequent release.
+Patches only contain changed packages and complement the standard release instead of replacing it; NVIDIA rolls every patch into a subsequent release.
 
-When you install a patch over an existing one, the two form a chain. Patches are cumulative within a patch chain. Each patch includes the fixes from the earlier patches it replaces. Uninstalling a patch returns the switch to the patch underneath it rather than to the base image, and you step back through a chain one patch at a time. Uninstalling a patch with no patch underneath it restores the affected packages to their base-image versions.
+When you install a patch over an existing one, the two form a chain. Patches are cumulative within a patch chain. Each patch includes the fixes from the earlier patches it replaces. Uninstalling a patch returns the switch to the patch underneath it instead of to the base image, and you step back through a chain one patch at a time. Uninstalling a patch with no patch underneath it restores the affected packages to their base-image versions.
 
 {{%notice note%}}
 - Upgrading system packages after you install a patch might overwrite the patch fixes; the switch warns you before proceeding.
-- A failed patch install rolls back all touched packages automatically so that the switch is not left in a half-installed state. The switch returns to the patch it was already running, or to the base image if it was not running a patch.
+- A failed patch install rolls back all touched packages automatically so that the switch does not remain in a half-installed state. The switch returns to the patch it was already running, or to the base image if it was not running a patch.
 - Installing and uninstalling a patch might restart affected services or trigger a cold reboot. Before you install or uninstall a patch, check the `impact` field in the `nv show system packages archive <archive-id>` command output to understand the expected impact.
 - Warm and fast reboots are not supported for patch installation or uninstallation.
 {{%/notice%}}
@@ -65,15 +65,15 @@ You can run the `nv action install system packages archive <archive-id>` command
 - `accept-rollback-to-base` installs the patch when the patch it supersedes is no longer on the switch.
 
 {{%notice warning%}}
-Use the `allow-incompatible` option with caution as it overrides the compatibility checks and forces the installation; NVIDIA cannot guarantee that the system will work as expected after installation.
+Use the `allow-incompatible` option with caution as it overrides the compatibility checks and forces the installation; NVIDIA cannot guarantee that the system works as expected after installation.
 {{%/notice%}}
 
 {{%notice warning%}}
-Use the `accept-rollback-to-base` option with caution. When you install a patch this way, uninstalling it later returns the affected packages to their base-image versions instead of to the patch underneath, so the fix that patch carried is lost. The `allow-incompatible` option does not override this check.
+Use the `accept-rollback-to-base` option with caution. When you install a patch this way, uninstalling it later returns the affected packages to their base-image versions instead of to the patch underneath, so you lose the fix that patch carried. The `allow-incompatible` option does not override this check.
 {{%/notice%}}
 
 The switch refuses to install a patch in the following cases:
-- The patch is not designed to replace the patch already installed on the switch. You can install a patch over an existing patch only if it is designed to replace that patch.
+- The patch does not replace the patch already installed on the switch. You can install a patch over an existing patch only if the new patch replaces it.
 - The patch that this patch supersedes is no longer on the switch. To install anyway, use the `accept-rollback-to-base` option.
 - The root filesystem does not have room for the packages the patch installs. The switch also refuses to fetch a patch without room to unpack it.
 
@@ -86,7 +86,7 @@ Neither the `force` option nor the `allow-incompatible` option overrides a disk 
 To uninstall a patch, run the `nv action uninstall system packages archive <archive-id>` command. The switch removes the patch, restores the patch installed underneath it, and makes the result take effect as a single operation. Where no patch is underneath, the affected packages return to their base-image versions.
 
 {{%notice note%}}
-- You can only uninstall the patch on top of a chain. If another patch is installed over it, the switch refuses the command and names the patch you must remove first.
+- You can only uninstall the patch on top of a chain. If you installed another patch over it, the switch refuses the command and names the patch you must remove first.
 - To reach an earlier patch, uninstall the patches above it one at a time. You cannot step directly to an arbitrary earlier patch.
 - Uninstalling a patch does not remove it from the switch; you can install it again or step back to it later. Refer to {{<link url="#reclaim-patch-space" text="Reclaim Patch Space">}}.
 - If the patch underneath is no longer on the switch, the affected packages return to their base-image versions and the fix that patch carries does not restore.
@@ -124,13 +124,6 @@ Action executing ...
 ## Reclaim Patch Space
 
 The switch keeps every patch you install, including patches you uninstall and patches that a later patch supersedes. Retaining them is what lets you step back through a chain; patches accumulate on the root filesystem until you reclaim the space.
-
-<!-- REVIEW: the prune command, its confirmation prompt and the accept-rollback-to-base
-     option are drafted from the spec's CLI tables. The spec is revision 1.0 dated
-     2026-09-02 and marks the confirmation wording as not final, and the prompt it shows
-     ("Are you sure? [y/N]:") does not match the "The operation will ... Type [y] ..."
-     style every other example on this page uses. Capture all of it on a candidate build.
-     Delete this comment before publishing. -->
 
 To reclaim the space, run the `nv action prune system packages archive` command. For each chain, the switch keeps the patch on top and the patch immediately beneath it, and removes the rest. The command acts on every chain on the switch and takes no archive identifier.
 
@@ -184,7 +177,7 @@ impact        Installing swaps switchd and ptmd to the fixed versions and restar
 installed-at  2026-07-27T18:35:24Z
 ```
 
-The `installed-at` field shows when the patch became the running version of its packages. If you uninstall a later patch and the switch restores this one, `installed-at` shows the time of that step back rather than the time you first installed the patch.
+The `installed-at` field shows when the patch became the running version of its packages. If you uninstall a later patch and the switch restores this one, `installed-at` shows the time of that step back instead of the time you first installed the patch.
 
 The `nv show system version` command shows if the switch has a patch installed.
 

@@ -11,7 +11,7 @@ You configure the following for SNMPv3 trap and inform messages:
 
 - The trap destination IP address; the VRF name is optional.
 - The authentication type and password. The encryption type and password are optional.
-- The engine ID and username pair for the Cumulus Linux switch sending the traps. The *inform* keyword specifies an inform message where the SNMP agent waits for an acknowledgement. You can find this at the end of the `/var/lib/snmp/snmpd.conf` file labeled *oldEngineID*. Configure this same engine ID/username (with authentication and encryption passwords) for the trap daemon receiving the trap to validate the received trap.
+- The engine ID and username pair for the Cumulus Linux switch sending the traps. The *inform* keyword specifies an inform message where the SNMP agent waits for an acknowledgment. You can find this at the end of the `/var/lib/snmp/snmpd.conf` file labeled *oldEngineID*. Configure this same engine ID/username (with authentication and encryption passwords) for the trap daemon receiving the trap to validate the received trap.
 
 ## Generate Event Notification Traps
 
@@ -25,7 +25,7 @@ To enable specific types of traps, create the following configurations in `/etc/
 
 ### Define Access Credentials
 <!-- vale off -->
-Although the switch sends the traps to an SNMPv2c receiver, the SNMPv3 username is still required to authorize the DisMan service. Starting with Net-SNMP 5.3, `snmptrapd` no longer accepts all traps by default. You must configure `snmptrapd` with authorized SNMPv1 and v2c community strings and, or SNMPv3 users. Non-authorized traps and informs are dropped.
+Although the switch sends the traps to an SNMPv2c receiver, the SNMPv3 username is still required to authorize the DisMan service. Starting with Net-SNMP 5.3, `snmptrapd` no longer accepts all traps by default. You must configure `snmptrapd` with authorized SNMPv1 and v2c community strings and, or SNMPv3 users. The switch drops non-authorized traps and informs.
 <!-- vale on -->
 Follow the steps in {{<link url="Configure-SNMP/#configure-the-snmpv3-username">}} to define the username. You can refer to the {{<exlink url="http://www.net-snmp.org/docs/man/snmptrapd.conf.html" text="snmptrapd.conf(5) manual page">}} for more information.
 

@@ -161,7 +161,7 @@ neighbor fabric bfd profile BFD1
 
 ### BFD with OSPF
 
-When you enable BFD on an OSPF interface, a neighbor registers with BFD when two-way adjacency starts and de-registers when adjacency goes down. The BFD configuration is per interface and any IPv4 neighbors discovered on that interface inherit the configuration.
+When you enable BFD on an OSPF interface, a neighbor registers with BFD when two-way adjacency starts and de-registers when adjacency goes down. The BFD configuration applies to each interface and any IPv4 neighbors discovered on that interface inherit the configuration.
 
 The following example configures BFD in OSPF for interface swp1 using the BFD profile BFD1.
 
@@ -334,7 +334,7 @@ You configure the echo function by setting the following parameters in the topol
 
 - You can change a BFD profile applied to an interface, but you cannot unset a profile while BFD is still enabled on the interface. To remove BFD completely from an interface, use the `nv unset interface <if-name> router <protocol> bfd` command. To change the profile, set a new profile with the `nv set interface <if-name> router <protocol> bfd profile <profile>` command.
 - BFD is supported in the `default` VRF and non-default VRFs.
-- The switch establishes a single BFD session per interface, regardless of how many protocols use BFD on that interface. If you configure different BFD profiles for multiple protocols on the same interface, the most recently applied profile takes precedence for the BFD session on that interface.
+- The switch establishes a single BFD session for each interface, regardless of how many protocols use BFD on that interface. If you configure different BFD profiles for multiple protocols on the same interface, the most recently applied profile takes precedence for the BFD session on that interface.
 
 ## BFD Offload to Kernel
 
@@ -344,7 +344,7 @@ BFD offload improves BFD session scale by offloading sessions to the kernel driv
 - When you change timer or profile settings, there is a transient spike in CPU usage with BFD sessions at scale due to an increase in the volume of messages from the BFD daemon to the kernel driver.
 - If a BFD peer is down; for example, due to path failures, (not admin-down), the remote peer sends DOWN packets. With sessions at scale, the BFD daemon receives these DOWN events, which might cause an increase in CPU usage.
 - When you enable or disable BFD offload, all BFD sessions move to the BFD Admin Down state during transition mode.
-- Depending on the configured BFD intervals and the number of BFD sessions, enabling and disabling BFD offload might result in session flaps, especially with aggressive timers on lower-end platforms. BFD sessions typically run in offload mode in a steady state, and moving offloaded sessions back to non-offload (control-plane) mode is rare. In the unlikely event that such a transition is required, you must set the BFD session timers to values appropriate for non-offload mode to avoid flaps. When running multiple BFD sessions in non-offload mode, the minimum recommended timer values are 3 for the detect multiplier, 300 milliseconds for the transmit interval, and 900 milliseconds for the receive interval.
+- Depending on the configured BFD intervals and the number of BFD sessions, enabling and disabling BFD offload might result in session flaps, especially with aggressive timers on lower-end platforms. BFD sessions typically run in offload mode in a steady state, and moving offloaded sessions back to non-offload (control-plane) mode is rare. In the unlikely event that such a transition is required, you must set the BFD session timers to values appropriate for non-offload mode to avoid flaps. When running multiple BFD sessions in non-offload mode, NVIDIA recommends minimum timer values of 3 for the detect multiplier, 300 milliseconds for the transmit interval, and 900 milliseconds for the receive interval.
 - If you use frequent BFD timers (such as 50 milliseconds and a multiplier of 3) for BFD sessions at scale, NVIDIA recommends increasing the BFD control plane policer values with the `nv set system control-plane policer bfd burst` and `nv set system control-plane policer bfd rate` commands.
 {{%/notice%}}
 

@@ -19,7 +19,7 @@ To use both gNMI streaming with Cumulus Linux and gNMI streaming with NetQ, you 
 This section discusses how to configure and use gNMI with Cumulus Linux. To configure and use gNMI with NetQ, see {{<link url="/#gnmi-with-netq" text="gNMI with NetQ">}}.
 
 {{%notice note%}}
-Switches with the Spectrum 1 ASIC do not support gNMI streaming.
+Switches with the Spectrum1 ASIC do not support gNMI streaming.
 {{%/notice%}}
 
 Cumulus Linux supports both gNMI dial-in mode, where a collector can start a connection with the switch to collect available statistics, and gNMI dial-out mode, where the switch streams statistics and exports them to a collector.
@@ -118,10 +118,10 @@ The source address is optional and applies to one tunnel server, so tunnel serve
 
 {{%notice note%}}
 - Dial-out leaves through the management VRF, so the source address must be reachable there. A loopback address you configure with the `nv set vrf mgmt loopback ip address <ip-address>` command qualifies, and so does the management address itself. Cumulus Linux rejects an address configured in another VRF, such as a loopback address in the default VRF, with `source-address <ip-address> is configured on <interface>, which is not in the mgmt VRF`.
-- The source address must already exist on the switch, or you must add it in the same `nv config apply` that references it. Cumulus Linux validates the address against the pending configuration rather than the running system, so adding a loopback address and setting it as the source address in the same apply works. If the source address matches nothing on the switch, Cumulus Linux rejects the apply with `source-address <ip-address> is not configured on this switch`.
+- The source address must already exist on the switch, or you must add it in the same `nv config apply` that references it. Cumulus Linux validates the address against the pending configuration instead of the running system, so adding a loopback address and setting it as the source address in the same apply works. If the source address matches nothing on the switch, Cumulus Linux rejects the apply with `source-address <ip-address> is not configured on this switch`.
 - Cumulus Linux rejects the configuration when you run `nv config apply` if the source address is malformed, is an IPv6 link-local address, belongs to a different address family than the tunnel server address, or is a reserved loopback address such as `127.0.0.0/8` or `::1`. A loopback address you configure yourself, such as `10.10.10.1` on `lo` in the management VRF, is not affected by this rejection.
 - Cumulus Linux also rejects an apply that deletes an address while a tunnel server still references it as a source address, with `source-address <ip-address> is being removed from the mgmt VRF while it is still configured as a source address`. To remove the address, remove or repoint the source address in the same apply.
-- If both the source address and a certificate are invalid, Cumulus Linux reports both errors from the same `nv config apply` rather than stopping at the first one.
+- If both the source address and a certificate are invalid, Cumulus Linux reports both errors from the same `nv config apply` instead of stopping at the first one.
 - The source address selects the address the switch presents to the tunnel server. It does not filter what the switch accepts.
 {{%/notice%}}
 
@@ -417,7 +417,7 @@ Cumulus Linux supports the following OpenConfig gNOI RPCs:
 
 - {{<exlink url="https://github.com/openconfig/gnoi/blob/main/system/system.proto#L78" text="System Reboot">}}, supporting warm and cold reboot modes. The `reboot` gNOI RPC maps to the `nv action system reboot mode <mode>` command.
 - {{<exlink url="https://github.com/openconfig/gnoi/blob/main/os/os.proto#L139" text="Software Image Install">}}, supporting copy operations of images to the switch. The `install` gNOI RPC maps to the `nv action fetch system image <image>` command.
-- {{<exlink url="https://github.com/openconfig/gnoi/blob/main/os/os.proto#L145" text="Software Image Activation">}}, supporting optimized image installation and activation. The `activate` gNOI RPC maps to the `nv action install system image files <image>`, `nv action boot-next system image other`, and  `nv action system reboot mode <mode> commands if a reboot is requested.
+- {{<exlink url="https://github.com/openconfig/gnoi/blob/main/os/os.proto#L145" text="Software Image Activation">}}, supporting optimized image installation and activation. The `activate` gNOI RPC maps to the `nv action install system image files <image>`, `nv action boot-next system image other`, and  `nv action system reboot mode <mode> commands if the client requests a reboot.
 - {{<exlink url="https://github.com/openconfig/gnoi/blob/main/os/os.proto#L46" text="Software Image Installation">}}
 - {{<exlink url="https://github.com/openconfig/gnoi/blob/main/file/file.proto" text="File Management">}}, supporting retrieval, viewing, or deleting files. The following file management gNOI RPCs are supported:
   - {{<exlink url="https://github.com/openconfig/gnoi/blob/main/file/file.proto#L34" text="Get">}}, the equivalent of the `nv action upload system file-path [local-path] [remote-url]` command.
@@ -631,13 +631,6 @@ Cumulus Linux supports the following gNMI {{<exlink url="https://github.com/open
 - `STREAM` mode, supported for `ON_CHANGE` subscriptions only
 
 ### Supported Models
-
-<!-- REVIEW: the openconfig-platform row in the table below gains Type and a sentence naming the
-     component types. The specification states no quality level and is a Confluence-style page with
-     no Scope, Known Limitations, or Open Issues sections, so there is nothing to check the claim
-     against except a candidate build. Its component table also has a "Deprecation Details" column
-     whose contents did not survive text extraction; confirm nothing is deprecated before
-     publishing. Delete this comment before publishing. -->
 
 Cumulus Linux supports the following OpenConfig models:
 <!-- vale off -->
@@ -1163,7 +1156,7 @@ The gNMI Agent supports `Capabilities` and `STREAM` subscribe requests for WJH e
 
 ### WJH Drop Reasons
 <!-- vale off -->
-The data that NetQ sends to the gNMI agent is in the form of WJH drop reasons. The SDK generates the drop reasons and Cumulus Linux stores them in the `/usr/etc/wjh_lib_conf.xml` file. Use this file as a guide to filter for specific reason types (L1, ACL, and so on), reason IDs, or event severeties.
+The data that NetQ sends to the gNMI agent is in the form of WJH drop reasons. The SDK generates the drop reasons and Cumulus Linux stores them in the `/usr/etc/wjh_lib_conf.xml` file. Use this file as a guide to filter for specific reason types (L1, ACL, and so on), reason IDs, or event severities.
 
 #### Layer 1 Drop Reasons
 

@@ -33,7 +33,7 @@ NVUE automatically installs the RADIUS AAA packages; you do **not** have to inst
 {{< /tab >}}
 
 {{< tab "Linux Commands ">}}
-If you use Linux commands to configure RADIUS AAA, you must install the RADIUS `libnss-mapuser` and `libpam-radius-auth` packages before you start configuration. The packages are in the `cumulus-local-apt-archive` repository, which is {{<link url="Adding-and-Updating-Packages#add-packages-from-the-cumulus-linux-local-archive" text="embedded">}} in the Cumulus Linux image. You can install the packages even when the switch is not connected to the internet.
+If you use Linux commands to configure RADIUS AAA, you must install the RADIUS `libnss-mapuser` and `libpam-radius-auth` packages before you start configuration. The packages are in the `cumulus-local-apt-archive` repository, which is {{<link url="Adding-and-Updating-Packages#add-a-package" text="embedded">}} in the Cumulus Linux image. You can install the packages even when the switch is not connected to the internet.
 
 To install the RADIUS packages:
 
@@ -133,7 +133,7 @@ You can configure the following global RADIUS settings and server specific setti
 
 {{%notice infonopad%}}
 - With the default `auth-type` of `mschapv2`, configure your RADIUS server to use PEAP with MSCHAPv2; do not configure md5 authentication.
-- To ensure the correct privilege level is applied to users with MSCHAPv2, if you are using FreeRADIUS, configure `/etc/freeradius/3.0/mods-enabled/eap` with `use_tunneled_reply = yes`. For example:
+- To ensure the switch applies the correct privilege level to users with MSCHAPv2, if you are using FreeRADIUS, configure `/etc/freeradius/3.0/mods-enabled/eap` with `use_tunneled_reply = yes`. For example:
 
 ```
 peap {
@@ -216,22 +216,6 @@ Cisco-AVPair += "shell:priv-lvl=15"
 The VSA vendor name (Cisco-AVPair in the example above) can have any content. The RADIUS client only checks for the string `shell:priv-lvl`.
 {{%/notice%}}
 
-<!-- REVIEW: this whole section drafts FR 4933274, "Passwordless sudo access for local and Radius-
-     authenticated users." Two things about the source document are unusual enough to flag before
-     anything else:
-     1. It carries no quality-level statement anywhere -- no Beta, GA, or Tech Preview -- which
-        publishes it as GA by default. Given the feature changes the switch's default sudo behavior
-        (see Using-sudo-to-Delegate-Privileges.md), confirm the quality level against the 5.19 Redmine
-        execution query before publishing.
-     2. The spec's revision table gives its own two most recent entries as "09-22-2026" (rev 1.6) and
-        then "09-23-2025" (rev 1.7) -- a year earlier than the revision before it. Treated as a typo for
-        2026 (rev 1.7 is clearly the most current, and the document lives at CL-Eng-Docs/Shared
-        Documents/NVUE Core/FS Docs/, not under a CL5.19/ folder like every other spec drafted this
-        session) -- but confirm this feature actually targets the 5.19 release and not a different NVUE
-        release train; "NVUE Core and AAA for release NVUE 1.15" does not by itself confirm a Cumulus
-        Linux release number.
-     Delete this comment before publishing. -->
-
 ## RADIUS Privilege-Level-to-Role Mapping
 
 In addition to the {{<link url="#optional-radius-configuration" text="privilege-level threshold">}}, you can map a specific RADIUS privilege level to a {{<link url="Role-Based-Access-Control" text="custom role">}}. An exact mapping replaces the threshold-based group assignment for that privilege level; it does not add to it.
@@ -247,7 +231,7 @@ Without an exact mapping, group assignment for the `shell:priv-lvl` a RADIUS ser
 A mapped role can reference the built-in `sudo`, `nvapply`, and `nvshow` classes and any custom {{<link url="Role-Based-Access-Control/#os-command-classes" text="os-command classes">}}, but cannot reference a custom `command-path` class. If a mapped role does not reference `sudo`, `nvapply`, or `nvshow`, the RADIUS user does not receive that access, even if the unmapped threshold behavior would have granted it. A mapping below the configured threshold is invalid.
 
 {{%notice note%}}
-Except for the role mapping described here, existing RADIUS privilege-level behavior is unchanged: a returned `shell:priv-lvl` with no exact mapping still follows the threshold table above, and a RADIUS user for whom no privilege level is returned still receives `nvshow`.
+Except for the role mapping described here, existing RADIUS privilege-level behavior is unchanged: a returned `shell:priv-lvl` with no exact mapping still follows the threshold table above, and a RADIUS user for whom the server returns no privilege level still receives `nvshow`.
 {{%/notice%}}
 
 The following example maps privilege level 13 to a custom role that grants only the `log-monitor` class, so a user who authenticates at that level does not receive `sudo`, `nvapply`, or `nvshow` unless the role also references those classes:
@@ -267,13 +251,6 @@ RADIUS Privilege Level   Role
 13                       log-monitor-role
 ```
 
-<!-- REVIEW: changes to a mapping, a mapped role's classes, or the privilege threshold take effect for
-     the next RADIUS authentication; a session already logged in keeps its previously established
-     groups until it ends or the user reauthenticates. The spec states this plainly, but I could not
-     find an existing convention on this page for documenting session-transition behavior, so this is
-     the first time it appears here. Confirm the wording matches how other session-transition notes on
-     this page are phrased, if any exist outside this diff. Delete this comment before publishing. -->
-
 {{%notice note%}}
 A change to the mapping, to the classes a mapped role references, or to the privilege threshold applies starting with the next RADIUS authentication. A session that is already logged in keeps its previously assigned groups until it ends or the user reauthenticates.
 {{%/notice%}}
@@ -284,7 +261,7 @@ A change to the mapping, to the classes a mapped role references, or to the priv
 NVUE does not provide commands to enable login without local accounts.
 {{%/notice%}}
 
-Cumulus Linux creates local user account information such as a home directory, shell, `uid`, and `gid` automatically during a RADIUS authentication attempt. When a new RADIUS-authenticated user first attempts to log into the switch, an unconfirmed user account is created on the switch, pending successful RADIUS authentication. Once authentication is successful, the user's account information is confirmed and the account will be visible in the `/etc/passwd` file.
+Cumulus Linux creates local user account information such as a home directory, shell, `uid`, and `gid` automatically during a RADIUS authentication attempt. When a new RADIUS-authenticated user first attempts to log into the switch, Cumulus Linux creates an unconfirmed user account on the switch, pending successful RADIUS authentication. After authentication succeeds, Cumulus Linux confirms the account information for the user and the account is visible in the `/etc/passwd` file.
 
 <!--
 An unconfirmed user entry in `/etc/passwd` for a user who attempted authentication but has not yet successfully logged in will contain the string `Unconfirmed`:
@@ -529,11 +506,6 @@ The following table describes the counters.
 | `retried-auth-requests` | Retransmitted Access-Request messages. The switch also counts these messages in `auth-requests`. |
 | `auth-connection-errors` | Login authentication attempts for which the switch could not reach the server, either because no usable response arrived after all configured retries or because the connection to the server failed. |
 | `auth-bad-responses` | Malformed or otherwise invalid RADIUS responses that the switch receives from the server during an interactive login. |
-
-<!-- REVIEW: the specification's Known Limitations state that auth-bad-responses does not yet count
-     malformed packets and reads 0 in practice, and its priority list has that fix as not started.
-     The fourth bullet below says so. If the fix lands for 5.19, delete that bullet. Delete this
-     comment before publishing. -->
 
 {{%notice note%}}
 - The counters appear only after the first RADIUS authentication attempt. Until then, the `nv show system aaa radius server <server> counters` command returns no counters. This is not an error.

@@ -22,7 +22,7 @@ Cumulus Linux supports data erase for both SED and non-SED SSDs.
 When you erase all data on the switch, most services stop except for critical ones, such as `sshd` so that you can erase the data remotely.
 
 {{%notice note%}}
-- You can erase all data only on the NVIDIA SN5400, SN5600, and SN5600D switch.
+- You can erase all data on a switch with Spectrum-4 and later.
 - You can erase all data on a functioning SSD only.
 - You cannot recover erased data.
 {{%/notice%}}
@@ -76,7 +76,7 @@ To strengthen data protection and reduce the risk of offline attacks, you can re
 You can change the SED password only on switches with SED enabled.
 {{%/notice%}}
 
-The Trusted Platform Module (TPM) on the disk maintains two distinct persistent storage locations, referred to as TPM Banks, which serve as primary and secondary storage for the SED management password. During the boot process, the Pre-Boot Authentication (PBA) mechanism attempts to unlock the SED using the password stored in the primary bank. If the decryption attempt fails, the PBA automatically retries using the secondary bank.  
+The Trusted Platform Module (TPM) on the disk maintains two distinct persistent storage locations, referred to as TPM Banks, which serve as primary and secondary storage for the SED management password. During the boot process, the Pre-Boot Authentication (PBA) mechanism attempts to unlock the SED using the password stored in the primary bank. If the decryption attempt fails, the PBA automatically retries using the secondary bank.
 
 To change the password, run the `nv action change system security sed-password <password>` command:
 

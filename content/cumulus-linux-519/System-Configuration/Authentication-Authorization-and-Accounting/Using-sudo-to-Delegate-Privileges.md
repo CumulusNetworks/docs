@@ -24,11 +24,6 @@ Errors in the `sudoers` file can result in losing the ability to elevate privile
 
 By default, users in the *sudo* group can use `sudo` to execute privileged commands. To add users to the sudo group, use the `useradd(8)` or `usermod(8)` command. To see which users belong to the sudo group, see `/etc/group` (`man group(5)`).
 
-<!-- REVIEW: this note and the example below it draft FR 4933274, "Passwordless sudo access for local
-     and Radius-authenticated users." The spec states no quality level (no Beta, GA, or Tech Preview) for
-     what is a default behavior change; see the longer REVIEW comment on RADIUS-AAA.md for the same
-     concern about this spec. Delete this comment before publishing. -->
-
 Members of the *sudo* group, including the *cumulus* user, can run any command as `sudo`, including `su`, without a password prompt. Cumulus Linux manages this default through a generated `sudoers` policy at `/etc/sudoers.d/nvue-aaa-passwordless-sudo`, which always contains exactly one rule granting the *sudo* group passwordless access to all commands:
 
 ```
@@ -38,7 +33,7 @@ Members of the *sudo* group, including the *cumulus* user, can run any command a
 NVUE regenerates this file during first boot, at every software upgrade, and on every `nv config apply`, including an apply that changes nothing else. There is no command to disable this default. To grant passwordless access to specific commands for a user who is *not* a member of the *sudo* group, use an RBAC `os-command` {{<link url="Role-Based-Access-Control/#os-command-classes" text="class">}} instead; it adds command-specific grants without narrowing the *sudo* group's permanent access.
 
 {{%notice note%}}
-Because `sudo` evaluates the last matching rule, do not add a manual file to `/etc/sudoers.d/` that is ordered after `nvue-aaa-passwordless-sudo` and overrides its `NOPASSWD` policy. NVUE does not create or modify files under `/etc/sudoers.d/` other than `nvue-aaa-passwordless-sudo`.
+Because `sudo` evaluates the last matching rule, do not add a manual file to `/etc/sudoers.d/` that sorts after `nvue-aaa-passwordless-sudo` and overrides its `NOPASSWD` policy. NVUE does not create or modify files under `/etc/sudoers.d/` other than `nvue-aaa-passwordless-sudo`.
 {{%/notice%}}
 
 The example below shows how to use `sudo` as a non-privileged user *cumulus* to bring up an interface:
@@ -96,6 +91,3 @@ When an unprivileged user runs a command, the command must include the `sudo` pr
 | Layer 3| Any iproute command | ip * | %noc ALL=(ALL) NOPASSWD:/bin/ip |
 | Layer 3| Non-modal OSPF | cl-ospf area 0.0.0.1 range 10.0.0.0/24 | %noc ALL=(ALL) NOPASSWD:/usr/bin/cl-ospf |
 <!-- vale on -->
-## Related Information
-
-- {{<exlink url="https://wiki.debian.org/sudo" text="Debian wiki - sudo">}}

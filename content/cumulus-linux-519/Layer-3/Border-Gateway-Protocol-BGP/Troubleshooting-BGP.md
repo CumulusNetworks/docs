@@ -611,7 +611,7 @@ ipv6-unreachability
   state
 ```
 
-- To show IPv4 address family information for a specific neighbor, run the `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast` command. 
+- To show IPv4 address family information for a specific neighbor, run the `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast` command.
 - To show IPv6 address family information for a specific neighbor, run the `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast` command.
 - To show EVPN address family information for a specific neighbor, run the `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn` command.
 

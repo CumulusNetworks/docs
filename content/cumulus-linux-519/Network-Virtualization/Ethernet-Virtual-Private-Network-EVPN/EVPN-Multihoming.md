@@ -30,7 +30,7 @@ On Spectrum-2 and later, an Ethernet segment can span more than two switches. Ea
 
 ## Required and Supported Features
 
-This section describes features that you must enable to use EVPN multihoming. Other supported and unsupported features are also described.
+This section describes features that you must enable to use EVPN multihoming. It also describes other supported and unsupported features.
 
 ### Required Features
 
@@ -330,7 +330,7 @@ In Cumulus Linux 5.6 and later, NVUE no longer supports a 10-byte ESI value star
      bond-slaves swp3
      es-sys-mac 44:38:39:FF:00:AA
    ```
-  
+
 {{</tab>}}
 {{</tabs>}}
 
@@ -878,7 +878,7 @@ flags
 [remote-vtep]         10.10.10.2 
 ```
 
-### Show Ethernet Segment per VNI Information
+### Show Ethernet Segment for Each VNI Information
 
 To display the Ethernet segments learned for each VNI, run the vtysh `show evpn es-evi` command. For example:
 
@@ -1087,9 +1087,9 @@ cumulus@switch:~$ nv show evpn multihoming bgp-info esi -o json
 }
 ```
 
-### Show BGP Ethernet Segment per VNI Information
+### Show BGP Ethernet Segment for Each VNI Information
 
-To display the Ethernet segments per VNI learned through type-1 and type-4 routes, run the vtysh `show bgp l2vpn evpn es-evi` command.
+To display the Ethernet segments for each VNI learned through type-1 and type-4 routes, run the vtysh `show bgp l2vpn evpn es-evi` command.
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -1159,6 +1159,10 @@ Route Distinguisher: 10.10.10.3:2
 
 ## Considerations
 
+### BGP Graceful Restart
+
+Cumulus Linux does not support {{<link url="Optional-BGP-Configuration/#graceful-bgp-restart" text="BGP graceful restart">}} with EVPN multihoming (EVPN-MH).
+
 ### VLAN Match Rules in ebtables
 
 If you enable EVPN-MH and configure {{<link title="Access Control List Configuration/#match-on-vlan-ids-on-layer-2-interfaces" text="VLAN match rules in ebtables with a mark target">}}, the ebtables rule might overwrite the mark set by traffic class rules you configure for EVPN-MH on ingress. Egress EVPN MH traffic class rules that match the ingress traffic class mark might not get hit. To work around this issue, add ebtable rules to ACCEPT the packets already marked by EVPN-MH traffic class rules on ingress.
@@ -1166,7 +1170,7 @@ If you enable EVPN-MH and configure {{<link title="Access Control List Configura
 ### SVI IP Address Configuration
 
 You can configure EVPN-MH with:
-- An identical SVI IP address and MAC address on all EVPN MH VTEP devices. Hosts then use this shared IP and MAC address as their anycast (default) gateway. Because both peers own the same IP address and MAC address, either peer can forward traffic for the hosts. 
+- An identical SVI IP address and MAC address on all EVPN MH VTEP devices. Hosts then use this shared IP and MAC address as their anycast (default) gateway. Because both peers own the same IP address and MAC address, either peer can forward traffic for the hosts.
 - Different SVI IP address and MAC address on all EVPN MH VTEP peers.
 
 ## Configuration Example

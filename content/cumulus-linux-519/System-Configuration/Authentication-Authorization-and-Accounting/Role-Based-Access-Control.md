@@ -124,12 +124,6 @@ cumulus@leaf01:mgmt:~$ nv config apply
 
 ## OS-Command Classes
 
-<!-- REVIEW: this section drafts FR 4933274. Members of the Linux sudo group, including the cumulus
-     user, already get passwordless access to every Linux command by default -- that default behavior
-     itself is documented on Using-sudo-to-Delegate-Privileges.md, not here. An os-command class is for
-     granting passwordless access to specific commands only, to users who are not members of sudo.
-     Delete this comment before publishing. -->
-
 Instead of a command path, a class can contain an `os-command` allow-list: a set of complete Linux commands that members of the class become eligible to run with `sudo` and no password prompt. This is separate from the default passwordless access that members of the Linux `sudo` group already have; use an `os-command` class to grant passwordless access to specific commands only, without adding a user to `sudo`. An `os-command` class does not narrow the access of a user who is also in `sudo` — the grants are additive.
 
 Each `os-command` entry has a unique ID and a `command` value: the absolute path to the executable followed by its allowed arguments, for example `/usr/bin/tail -f /var/log/syslog`. A class can contain the same command value under more than one entry; NVUE does not merge or reject duplicates. A class can contain either `command-path` entries or `os-command` entries, but not both.

@@ -9,7 +9,7 @@ toc: 3
 {{%notice note%}}
 - While Cumulus Linux can support RoCE environments, the end hosts must support the RoCE protocol.
 - RoCE is a complex configuration; you can only configure RoCE with NVUE commands. NVUE configuration is essential for error handling.
-- RoCE configuration generated for one switch ASIC (Spectrum 1, Spectrum-2, Spectrum-3) is not applicable to another.
+- RoCE configuration generated for one switch ASIC (Spectrum1, Spectrum-2, Spectrum-3) is not applicable to another.
 {{%/notice%}}
 
 RoCE helps you obtain a *converged network*, where all services run over the Ethernet infrastructure, including Infiniband applications.
@@ -116,7 +116,7 @@ To disable the lossy multi TC profile, run the `nv unset qos roce mode lossy-mul
 ## DCI-1 Profile
 
 {{%notice note%}}
-The Data Center Interconnect profile (DCI-1) is a Beta feature and is supported on Spectrum-4 through Spectrum-6.
+The Data Center Interconnect profile (DCI-1) is a Beta feature and is supported on Spectrum-4 and later.
 {{%/notice%}}
 
 The DCI‑1 profile provides QoS settings for data center to data center connections. DCI‑1 configures the switch to run mixed classes: traffic class 3 with PFC (lossless intra‑data center) and traffic class 4 with ECN (lossy data center to data center, without PFC).
@@ -442,7 +442,7 @@ tx-stats
     unicast-no-buffer-discard  663060754115           Tx buffer discards for RoCE traffic
 ```
 
-To show the RoCE pools status for an interface, run the `nv show interface <interface> qos roce status pool-map` command. To show the RoCE pools status for all interfaces, run the `nv show interface qos-roce-status-pool-map` command.
+To show the RoCE pools status for an interface, run the `nv show interface <interface-id> qos roce status pool-map` command. To show the RoCE pools status for all interfaces, run the `nv show interface qos-roce-status-pool-map` command.
 
 ```
 cumulus@switch:mgmt:~$ nv show interface qos-roce-status-pool-map

@@ -1250,7 +1250,9 @@ When you configure suppress route advertisement, NVUE restarts `switchd`.
 {{< /tab >}}
 {{< /tabs >}}
 
-{{<link url="Upgrading-Cumulus-Linux/#issu" text="ISSU">}} suppresses route advertisement automatically when upgrading or troubleshooting an active switch so that there is minimal disruption to the network.
+{{<link url="Upgrading-Cumulus-Linux/#upgrades-with-issu" text="ISSU">}} suppresses route advertisement automatically when upgrading or troubleshooting an active switch so that there is minimal disruption to the network.
+
+BGP always originates the advertisement for an aggregate route when a prefix inside the aggregate is present in the BGP RIB. BGP does not track the ASIC installation state before sending updates to peers.
 
 ## BGP VRF Active Check
 
@@ -1632,13 +1634,13 @@ When you configure BGP DC PIC, Cumulus Linux assigns one next hop group for each
 - Do not configure the router ID and network address with the same value.
 - The BGP router ID and the aggregate address must not be in the same subnet.
 - Do not use martian addresses as the BGP router ID when you enable BGP DC PIC.
-- You need additional ECMP hardware resources for BGP DC PIC. Refer to {{<link url="Equal-Cost-Multipath-Load-Sharing/#ecmp-resource-sharing-during-next-hop-group-updates" text="Additional ECMP resource optimization for next hop groups">}}
+- You need additional ECMP hardware resources for BGP DC PIC. Refer to {{<link url="BGP-Weighted-Equal-Cost-Multipath/#ecmp-resource-sharing-during-next-hop-group-updates" text="Additional ECMP resource optimization for next hop groups">}}
 {{%/notice%}}
 
 To configure BGP DC PIC:
 - **On a leaf only**, enable the BGP advertise origin option so that BGP can attach the SOO extended community to all routes advertised to its peers from the source where the routes originate.
 - **On all switches**, enable the BGP next hop group per source option so that when BGP receives routes with the SOO extended community, it allocates a next hop group for each source.
-- **On a spine and super spine**, set the {{<link url="#enable-read-only-mode" text="read-only mode">}} BGP convergence wait time to 30 and the convergence wait establish wait time to 15. These are the minimum recommended timer settings to ensure optimal convergence when using BGP DC PIC.
+- **On a spine and super spine**, set the {{<link url="#enable-read-only-mode" text="read-only mode">}} BGP convergence wait time to 30 and the convergence wait establish wait time to 15. NVIDIA recommends these minimum timer settings to ensure optimal convergence when you use BGP DC PIC.
 
 {{%notice note%}}
 Changing the BGP advertise origin option or the BGP next hop group per source option can cause traffic disruption.
@@ -3202,13 +3204,14 @@ When BGP establishes a session, BGP peers use the BGP OPEN message to negotiate 
 {{%notice note%}}
 - For warm boot to restart the switch with no interruption to traffic for existing route entries, you must enable BGP graceful restart in all BGP VRFs.
 - BGP graceful restart only supports eBGP direct and multihop peering. VRF leaking is not gracefully handled and traffic to destinations through these routes might drop while graceful restart is in progress.
+- Cumulus Linux does not support BGP graceful restart with EVPN multihoming (EVPN-MH).
 {{%/notice%}}
 
 ### Restart Modes
 
 Cumulus Linux supports graceful BGP restart full mode and helper-only mode for IPv4, IPv6 and EVPN. The default setting is helper-only mode.
 - In full mode, the switch is in both a helper and restarter role.
-- In helper-only mode, the switch is in a helper role only, where routes originated and advertised from a BGP peer are not deleted.
+- In helper-only mode, the switch is in a helper role only, where the switch does not delete routes that a BGP peer originates and advertises.
 
 You can configure graceful BGP restart globally, where all BGP peers inherit the graceful restart capability, or for a BGP peer or peer group (useful for misbehaving peers or when working with third party devices).
 
@@ -3273,7 +3276,7 @@ To set graceful BGP restart back to the default setting (helper-only mode), run 
 ### Disable Graceful Restart
 
 {{%notice info%}}
-If you disable graceful BGP restart, you cannot achieve a switch restart or switch software upgrade with minimal traffic loss in a BGP configuration. Refer to {{<link url="Upgrading-Cumulus-Linux/#issu" text="ISSU">}} for more information.
+If you disable graceful BGP restart, you cannot achieve a switch restart or switch software upgrade with minimal traffic loss in a BGP configuration. Refer to {{<link url="Upgrading-Cumulus-Linux/#upgrades-with-issu" text="ISSU">}} for more information.
 {{%/notice%}}
 
 {{< tabs "TabID2189 ">}}
@@ -3562,8 +3565,8 @@ The BGP community list can be either *standard*, *extended*, or *large*. The sta
 
 - *0:0*: a BGP community that matches all routes. This value replaces `internet` used in Cumulus Linux 5.13 and earlier.
 - *local-AS*: a BGP community that restricts routes to your confederation's sub-AS.
-- *no-advertise*: a BGP community that is not advertised to anyone.
-- *no-export*: a BGP community that is not advertised to the eBGP peer.
+- *no-advertise*: a BGP community that the switch does not advertise to anyone.
+- *no-export*: a BGP community that the switch does not advertise to the eBGP peer.
 
 An extended BGP community list takes a regular expression of communities and matches the listed communities.
 

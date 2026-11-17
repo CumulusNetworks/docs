@@ -65,7 +65,7 @@ To download a Docker image from a registry, import an image from an archive, or 
 {{< tabs "TabID180">}}
 {{< tab "NVUE Commands">}}
 
-To download a Docker image from a registry, run the `nv action pull system docker image <image-id> tag <tag-name>` command. If you do not specify a `tag` name, the name defaults to `latest`. 
+To download a Docker image from a registry, run the `nv action pull system docker image <image-id> tag <tag-name>` command. If you do not specify a `tag` name, the name defaults to `latest`.
 
 ```
 cumulus@switch:~$ nv action pull system docker image nginx tag latest
@@ -118,10 +118,10 @@ To create and run a new container from an image, stop a container or delete a Do
 {{< tabs "TabID217">}}
 {{< tab "NVUE Commands">}}
 
-To create and run a new container from an image, run the `nv action run system docker container <container-name> image <image-id>` command. You can use Docker run `options` such as `--pid`, `--network`, and `--storage-opt size`. To define arguments for the container application, specify `args`.  
+To create and run a new container from an image, run the `nv action run system docker container <container-name> image <image-id>` command. You can use Docker run `options` such as `--pid`, `--network`, and `--storage-opt size`. To define arguments for the container application, specify `args`.
 
 {{%notice infonopad%}}
-You must escape special characters used in any Docker `options` and `args` specified in NVUE commands. 
+You must escape special characters used in any Docker `options` and `args` specified in NVUE commands.
 {{%/notice%}}
 
 ```
@@ -143,7 +143,7 @@ cumulus@switch:~$ nv action remove system docker container nginx-demo
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-To create and run a new container from an image, run the `sudo docker run -d <image-id> --name <container-name>` command. 
+To create and run a new container from an image, run the `sudo docker run -d <image-id> --name <container-name>` command.
 
 ```
 cumulus@switch:~$ sudo docker run -d nginx --name nginx-demo
@@ -307,13 +307,13 @@ The Governance system is not a long-running background agent; the packaged docke
 When governance is enabled, containers use one of these tiers:
 - `docker.slice` is the Trusted tier. Containers in this tier are not subject to CPU or memory caps.
 - `docker-limited.slice` is the Limited tier. This tier is for workloads that need more headroom than the default tier but must still remain bounded.
-- `docker-restricted.slice` is the Restricted tier. This is the default tier for images that are not whitelisted. 
+- `docker-restricted.slice` is the Restricted tier. This is the default tier for images that do not appear on the whitelist.
 
 By default, the Restricted and Limited tiers use aggregate limits of 10% and 50% of total host CPU and total host memory. These are shared per-tier limits, not per-container reservations. If multiple containers run in the same tier, they share the tier budget.
 
 The packaged docker wrapper classifies supported docker container creation commands and places new containers directly into the correct parent slice with the appropriate `cgroup-parent`.
 
-The `cumulus-docker-resource-tier-governance.service` service reads the current policy, programs the Restricted and Limited slice limits, and reconciles existing governance-managed containers when you apply policy. If you install the Docker Compose plugin, Docker compose workloads are also governed at creation time.
+The `cumulus-docker-resource-tier-governance.service` service reads the current policy, programs the Restricted and Limited slice limits, and reconciles existing governance-managed containers when you apply policy. If you install the Docker Compose plugin, the service also governs Docker compose workloads at creation time.
 
 Governance does not move running container processes between control groups. If an existing governance-managed container needs to change tiers, the service recreates it in the correct slice. If `systemd` supervises the container, the service restarts the owning unit so that `systemd` recreates the container through its normal service lifecycle.
 
@@ -355,7 +355,7 @@ LIMITED_DOCKER_RESOURCE_QUOTA=50
 
 ### Enable and Disable Governance
 
-The Docker Resource Tiering Governance system is installed and enabled by default. To disable governance immediately and prevent it from being enabled again at boot, stop and disable the service:
+Cumulus Linux installs and enables the Docker Resource Tiering Governance system by default. To disable governance immediately and prevent it from being enabled again at boot, stop and disable the service:
 
 ```
 cumulus@switch:~$ sudo systemctl stop cumulus-docker-resource-tier-governance.service
@@ -408,7 +408,7 @@ Use `systemctl reload` instead of `systemctl restart` for normal policy updates.
 - Containers created before you install the governance wrapper, or other containers without governance metadata, count as unmanaged, and governance leaves them untouched. To bring these containers under governance, stop and remove them, then recreate them.
 - Containers created with an explicit Docker `--cgroup-parent` or `Compose cgroup_parent` remain under user control and are not re-tiered by governance.
 - Retiering an existing container can require a stop, remove, and recreate operation or, for workloads that `systemd` supervises, a restart of the owning unit. Plan policy changes accordingly for stateful or production workloads.
-- Governance enforces aggregate ceilings per tier. It does not provide guaranteed minimum CPU or memory reservations for each container inside a tier.
+- Governance enforces aggregate ceilings for each tier. It does not provide guaranteed minimum CPU or memory reservations for each container inside a tier.
 
 ### Verify Container Placement and Tier Limits
 

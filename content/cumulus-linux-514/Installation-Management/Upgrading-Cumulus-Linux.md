@@ -306,7 +306,7 @@ As Cumulus Linux supports more features and functionality, NVUE syntax might cha
 - Any certificates or CRLs imported to the system with NVUE are not backed up during an ONIE image upgrade. You must reimport the certificates after the new image is installed. 
 - If you reinstall Cumulus Linux with an embedded `startup.yaml` file using `onie-install -t`, Cumulus Linux preserves your NVUE startup configuration and translates the contents automatically to NVUE syntax required by the new release. This method still requires reimporting certificates and CRLs after the image install.
 - If NVUE introduces new syntax for a feature that a snippet configures, you must remove the snippet before upgrading.
-- If the switch is running ONIE installer version 5.3.0012 or earlier, upgrading Cumulus Linux fails at the ONIE prompt. Refer to {{<link url="#onie-install-issues" text="ONIE Install Issues">}}.
+- On secure boot switches (Spectrum-4 and later, or SN3700-S) running ONIE installer version 5.3.0012 or earlier, the Cumulus Linux upgrade fails at the ONIE prompt. Refer to {{<link url="#onie-install-issues-on-secure-boot-switches" text="ONIE Install Issues on Secure Boot Switches">}}.
 {{%/notice%}}
 
 To back up the configuration file:
@@ -591,9 +591,9 @@ To downgrade a switch with Secure Boot enabled, see {{<link url="Installing-a-Ne
 
 If you install any third party applications on a Cumulus Linux switch, configuration data is typically installed in the `/etc` directory, but it is not guaranteed. It is your responsibility to understand the behavior and configuration file information of any third party packages installed on the switch. After you upgrade using a full Cumulus Linux image install, you need to reinstall any third party packages. Package upgrade does **not** replace or remove third-party applications.
 
-### ONIE Install Issues
+### ONIE Install Issues on Secure Boot Switches
 
-If the switch is running ONIE installer version 5.3.0012 or earlier, upgrading Cumulus Linux fails at the ONIE prompt. To work around this issue, **before** you upgrade Cumulus Linux, upgrade the ONIE installer to ONIE version 5.3.0013 or later. The ONIE installer upgrade requires a switch reload and causes a complete switch factory reset.
+On secure boot switches (Spectrum-4 and later, or SN3700-S) running ONIE installer version 5.3.0012 or earlier, the Cumulus Linux upgrade fails at the ONIE prompt. To work around this issue, **before** you upgrade Cumulus Linux, upgrade the ONIE installer to ONIE version 5.3.0013 or later. The ONIE installer upgrade requires a switch reload and causes a complete switch factory reset.
 
 {{< expand "Upgrade the ONIE installer" >}}
 1. Log into Cumulus Linux.
@@ -601,25 +601,25 @@ If the switch is running ONIE installer version 5.3.0012 or earlier, upgrading C
 
    ```
    cumulus@switch:~$ sudo -i
-   cumulus@switch:~$ mount LABEL=ONIE-BOOT /mnt/onie-boot
-   cumulus@switch:~$ ln -s /mnt/onie-boot/onie/tools/lib/onie /lib/onie
+   root@switch:~# mount LABEL=ONIE-BOOT /mnt/onie-boot
+   root@switch:~# ln -s /mnt/onie-boot/onie/tools/lib/onie /lib/onie
    ```
 
 3. To check the existing ONIE version, run the `/mnt/onie-boot/onie/tools/bin/onie-fwpkg show` command.
 
    ```
-   cumulus@switch:~$ /mnt/onie-boot/onie/tools/bin/onie-fwpkg show
+   root@switch:~# /mnt/onie-boot/onie/tools/bin/onie-fwpkg show
    ```
 
 4. To upgrade the ONIE installer, run the following commands:
 
    ```
-   cumulus@switch:~$ wget http://Image/onie-updater-x86_64-mlnx_x86-r0
-   cumulus@switch:~$ /mnt/onie-boot/onie/tools/bin/onie-fwpkg purge
-   cumulus@switch:~$ /mnt/onie-boot/onie/tools/bin/onie-fwpkg add onie-updater-x86_64-mlnx_x86-r0
-   cumulus@switch:~$ /mnt/onie-boot/onie/tools/bin/onie-fwpkg show
-   cumulus@switch:~$ umount /mnt/onie-boot
-   cumulus@switch:~$ onie-select -pf
+   root@switch:~# wget http://Image/onie-updater-x86_64-mlnx_x86-r0
+   root@switch:~# /mnt/onie-boot/onie/tools/bin/onie-fwpkg purge
+   root@switch:~# /mnt/onie-boot/onie/tools/bin/onie-fwpkg add onie-updater-x86_64-mlnx_x86-r0
+   root@switch:~# /mnt/onie-boot/onie/tools/bin/onie-fwpkg show
+   root@switch:~# umount /mnt/onie-boot
+   root@switch:~# onie-select -pf
    ```
 
 5. Reboot the switch, then upgrade Cumulus Linux.

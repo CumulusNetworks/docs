@@ -75,7 +75,7 @@ If you unset a peer group, make sure that no neighbors use it. If neighbors use 
 
 ## IPv6-only Unnumbered Peering
 
-You can configure a BGP unnumbered peer for IPv6-only peering over a link-local address and force the BGP session to use IPv6 link-local transport even when the interface also has an IPv4 address configured. Without this configuration, unnumbered BGP on dual-stack interfaces might initiate peering over IPv4 and reject inbound IPv6 peering attempts with a TCP reset, preventing IPv6 BGP sessions from establishing. 
+You can configure a BGP unnumbered peer for IPv6-only peering over a link-local address and force the BGP session to use IPv6 link-local transport even when the interface also has an IPv4 address configured. Without this configuration, unnumbered BGP on dual-stack interfaces might initiate peering over IPv4 and reject inbound IPv6 peering attempts with a TCP reset, preventing IPv6 BGP sessions from establishing.
 
 {{< tabs "80 ">}}
 {{< tab "NVUE Commands ">}}
@@ -741,7 +741,7 @@ address-family ipv4 unicast
 {{< /tab >}}
 {{< /tabs >}}
 
-The following example allows a received AS path containing the ASN of the local system but only if it is the originating AS:  
+The following example allows a received AS path containing the ASN of the local system but only if it is the originating AS:
 
 {{< tabs "698 ">}}
 {{< tab "NVUE Commands ">}}
@@ -787,7 +787,7 @@ address-family ipv4 unicast
 {{< /tab >}}
 {{< /tabs >}}
 
-The following example attaches a route map called ROUTEMAP1 that filters routes with the local AS in the AS path:  
+The following example attaches a route map called ROUTEMAP1 that filters routes with the local AS in the AS path:
 
 {{< tabs "807 ">}}
 {{< tab "NVUE Commands ">}}
@@ -942,7 +942,7 @@ BGP supports equal-cost multipathing ({{<link url="Equal-Cost-Multipath-Load-Sha
 
 Cumulus Linux enables the *BGP multipath* option by default and sets the maximum number of paths to 64 so that the switch can install multiple equal-cost BGP paths to the forwarding table and load balance traffic across multiple links. You can change the number of paths allowed, according to your needs.
 
-The example commands change the maximum number of paths to 128. On Spectrum-1 switches, you can set a value between 1 and 64. On Spectrum-2 and later, you can set a value between 1 and 128. 1 disables the BGP multipath option.
+The example commands change the maximum number of paths to 128. On Spectrum1 switches, you can set a value between 1 and 64. On Spectrum-2 and later, you can set a value between 1 and 128. 1 disables the BGP multipath option.
 
 {{< tabs "790 ">}}
 {{< tab "NVUE Commands ">}}
@@ -1226,11 +1226,13 @@ When you configure suppress route advertisement, NVUE restarts `switchd`.
 {{< /tab >}}
 {{< /tabs >}}
 
-{{<link url="Upgrading-Cumulus-Linux/#issu" text="ISSU">}} suppresses route advertisement automatically when upgrading or troubleshooting an active switch so that there is minimal disruption to the network.
+{{<link url="Upgrading-Cumulus-Linux/#upgrades-with-issu" text="ISSU">}} suppresses route advertisement automatically when upgrading or troubleshooting an active switch so that there is minimal disruption to the network.
+
+BGP always originates the advertisement for an aggregate route when a prefix inside the aggregate is present in the BGP RIB. BGP does not track the ASIC installation state before sending updates to peers.
 
 ## BGP VRF Active Check
 
-When you enable BGP VRF active check, BGP blocks advertisements and imports for the IPv4, IPv6, and EVPN address families in any VRF that is inactive. A VRF is inactive when no operationally up interface is bound to it. For example, with {{<link url="802.1X-Interfaces/#dynamic-vrf-assignment" text="802.1X dynamic VRF assignment">}}, a VRF has no operationally up interface until a supplicant authenticates.
+When you enable BGP VRF active check, BGP blocks advertisements and imports for the IPv4, IPv6, and EVPN address families in any VRF that is inactive. A VRF is inactive when it has no operationally up interface. For example, with {{<link url="802.1X-Interfaces/#dynamic-vrf-assignment" text="802.1X dynamic VRF assignment">}}, a VRF has no operationally up interface until a supplicant authenticates.
 
 VRF active check is a global BGP setting that applies to all VRFs. The default setting is disabled.
 
@@ -1608,13 +1610,13 @@ When you configure BGP DC PIC, Cumulus Linux assigns one next hop group for each
 - Do not configure the router ID and network address with the same value.
 - The BGP router ID and the aggregate address must not be in the same subnet.
 - Do not use martian addresses as the BGP router ID when you enable BGP DC PIC.
-- You need additional ECMP hardware resources for BGP DC PIC. Refer to {{<link url="Equal-Cost-Multipath-Load-Sharing/#ecmp-resource-sharing-during-next-hop-group-updates" text="Additional ECMP resource optimization for next hop groups">}}
+- You need additional ECMP hardware resources for BGP DC PIC. Refer to {{<link url="BGP-Weighted-Equal-Cost-Multipath/#ecmp-resource-sharing-during-next-hop-group-updates" text="Additional ECMP resource optimization for next hop groups">}}
 {{%/notice%}}
 
 To configure BGP DC PIC:
 - **On a leaf only**, enable the BGP advertise origin option so that BGP can attach the SOO extended community to all routes advertised to its peers from the source where the routes originate.
 - **On all switches**, enable the BGP next hop group per source option so that when BGP receives routes with the SOO extended community, it allocates a next hop group for each source.
-- **On a spine and super spine**, set the {{<link url="#enable-read-only-mode" text="read-only mode">}} BGP convergence wait time to 30 and the convergence wait establish wait time to 15. These are the minimum recommended timer settings to ensure optimal convergence when using BGP DC PIC.
+- **On a spine and super spine**, set the {{<link url="#enable-read-only-mode" text="read-only mode">}} BGP convergence wait time to 30 and the convergence wait establish wait time to 15. NVIDIA recommends these minimum timer settings to ensure optimal convergence when you use BGP DC PIC.
 
 {{%notice note%}}
 Changing the BGP advertise origin option or the BGP next hop group per source option can cause traffic disruption.
@@ -1771,7 +1773,7 @@ If you set the SOO source IP address on a leaf switch before you enable the BGP 
 If you set the SOO source IP address on a leaf switch after enable the BGP advertise origin option:
 - The leaf withdraws the old SOO route (the one with the router ID).
 - The leaf announces a new SOO route using the SOO-source IP address.  
-- BGP readvertises all prefix routes with the new SOO tag. 
+- BGP readvertises all prefix routes with the new SOO tag.
 - All network switches detect this change, remove references to the old SOO route, and install the new SOO route in their routing tables.
 
 ### Show BGP DC PIC Information
@@ -1818,7 +1820,7 @@ The following table describes the `AS path` options.
 {{< tab "Leaf Configuration ">}}
 
 The following example:
-- Enables BGP unreachability SAFI for IPv6 AFI (AFI 2) globally and on neighbors swp51 and swp52 (for IPv4, run `address-family ipv4-unreachability` commands). 
+- Enables BGP unreachability SAFI for IPv6 AFI (AFI 2) globally and on neighbors swp51 and swp52 (for IPv4, run `address-family ipv4-unreachability` commands).
 - Enables unreachability advertisements for interfaces matching the network 2001:1:1::/48.
 - Sets the prefix limit to a maximum of 6 for neighbors swp51 and swp52.
 - Sets the `allow-my-asn` option for neighbors swp51 and swp52 to `origin` to allow a received AS path containing the ASN of the local system only if it is the originating AS.
@@ -1839,7 +1841,7 @@ cumulus@leaf01:~$ nv config apply
 {{< /tab >}}
 {{< tab "Spine Configuration ">}}
 
-The following example enables BGP unreachability SAFI for IPv6 globally and on peer groups UNDERLAY-LEAF and UNDERLAY-SUPERSPINE (for IPv4, run `address-family ipv4-unreachability` commands). For peer group UNDERLAY-LEAF, the prefix limit is set to a maximum of 6.
+The following example enables BGP unreachability SAFI for IPv6 globally and on peer groups UNDERLAY-LEAF and UNDERLAY-SUPERSPINE (for IPv4, run `address-family ipv4-unreachability` commands). For peer group UNDERLAY-LEAF, the example sets the prefix limit to a maximum of 6.
 
 ```
 cumulus@spine01:~$ nv set vrf default router bgp address-family ipv6-unreachability state enabled
@@ -1885,7 +1887,7 @@ leaf01# exit
 {{< /tab >}}
 {{< tab "Spine Configuration">}}
 
-The following example enables BGP unreachability SAFI for IPv6 globally and on peer groups UNDERLAY-LEAF and UNDERLAY-SUPERSPINE (for IPv4, run the `address-family ipv4 unreachability` command). For peer group UNDERLAY-LEAF, the prefix limit is set to a maximum of 6.
+The following example enables BGP unreachability SAFI for IPv6 globally and on peer groups UNDERLAY-LEAF and UNDERLAY-SUPERSPINE (for IPv4, run the `address-family ipv4 unreachability` command). For peer group UNDERLAY-LEAF, the example sets the prefix limit to a maximum of 6.
 
 ```
 cumulus@spine01:~$ sudo vtysh
@@ -1909,7 +1911,7 @@ spine01# exit
 
 ### Show BGP Unreachability SAFI Information
 
-To show if BGP unreachability SAFI is enabled on the switch, run the `nv show vrf <vrf> router bgp address-family <address-family>-unreachability` command:
+To show if BGP unreachability SAFI is enabled on the switch, run the `nv show vrf <vrf-id> router bgp address-family <address-family>-unreachability` command:
 
 ```
 cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv6-unreachability 
@@ -1932,9 +1934,9 @@ cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv6-unreachabil
 [interfaces-match]  2001:1:1::/48  2001:1:1::/48
 ```
 
-- To show the global BGP unreachability route count, run the `nv show vrf <vrf> router bgp address-family <address-family>-unreachability route-count` command.
-- For a specific neighbor, run the `nv show vrf <vrf> router bgp neighbor <neighbor-id> address-family <address-family>-unreachability route-count` command.
-- For a specific peer group, run the `nv show vrf <vrf> router bgp peer-group <peer-group-id> address-family <address-family>-unreachability route-count` command.
+- To show the global BGP unreachability route count, run the `nv show vrf <vrf-id> router bgp address-family <address-family>-unreachability route-count` command.
+- For a specific neighbor, run the `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family <address-family>-unreachability route-count` command.
+- For a specific peer group, run the `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family <address-family>-unreachability route-count` command.
 
 ```
 cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv6-unreachability route-count
@@ -1961,7 +1963,7 @@ best-routes     0
 usable          0
 ```
 
-To show global BGP unreachability routes, run the `nv show vrf <vrf> router bgp address-family <address-family>-unreachability route` command.
+To show global BGP unreachability routes, run the `nv show vrf <vrf-id> router bgp address-family <address-family>-unreachability route` command.
 
 ```
 cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv6-unreachability route
@@ -1978,9 +1980,9 @@ Prefix            PathCount  MultipathCount  DestFlags
 Running the `nv show vrf <vrf-id> router bgp address-family <address-family>-unreachability route -o json` command is equivalent to running the vtysh `show bgp vrf <vrf-id> ipv6 unreachability json brief` command. Therefore, certain fields, such as path details and reporter AS, do not show. To show a more detailed view, run the `nv show vrf <vrf-id> router bgp address-family <address-family>-unreachability route <prefix> -o json` command.
 {{%/notice%}}
 
-To show the BGP unreachability prefix limits for a peer, run the `nv show vrf <vrf> router bgp neighbor <neighbor-id> address-family <address-family>-unreachability prefix-limits` command.
+To show the BGP unreachability prefix limits for a peer, run the `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family <address-family>-unreachability prefix-limits` command.
 
-For a peer group, run the `nv show vrf <vrf> router bgp peer-group <peer-group-id> address-family <address-family>-unreachability prefix-limits` command.
+For a peer group, run the `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family <address-family>-unreachability prefix-limits` command.
 
 ```
 cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unreachability prefix-limits 
@@ -1991,9 +1993,9 @@ inbound
   warning-threshold               75
 ```
 
-To show the BGP unreachability AS path configuration for a peer, run the `nv show vrf <vrf> router bgp neighbor <neighbor-id> address-family <address-family>-unreachability aspath` command.
+To show the BGP unreachability AS path configuration for a peer, run the `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family <address-family>-unreachability aspath` command.
 
-For a peer group, run the `nv show vrf <vrf> router bgp peer-group <peer-group-id> address-family <address-family>-unreachability aspath` command.
+For a peer group, run the `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family <address-family>-unreachability aspath` command.
 
 ```
 cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unreachability aspath
@@ -2016,7 +2018,7 @@ BGP conditional disaggregation advertises specific prefixes when it detects a fa
 {{%notice note%}}
 - You can configure conditional disaggregation in the default VRF only.
 - Conditionally disaggregated routes and leaf loopback routes do not carry the anycast SOO, even when you configure the advertise origin.
-- NVIDIA recommends configuring BGP {{<link url="Optional-BGP-Configuration/#advertisement-delay" text="advertisement delay">}} to avoid traffic disruption during a leaf switch reboot, service restart, and other events that might disrupt the control plane. 
+- NVIDIA recommends configuring BGP {{<link url="Optional-BGP-Configuration/#advertisement-delay" text="advertisement delay">}} to avoid traffic disruption during a leaf switch reboot, service restart, and other events that might disrupt the control plane.
 {{%/notice%}}
 
 To configure BGP conditional disaggregation:
@@ -2030,7 +2032,7 @@ To enable BGP conditional disaggregation on the leaf:
 {{< tabs "TabID1702 ">}}
 {{< tab "NVUE Commands ">}}
 
-Run the `nv set vrf <vrf> router bgp address-family ipv6-unicast conditional-disaggregation` command for IPv6 or the `nv set vrf <vrf> router bgp address-family ip4-unicast conditional-disaggregation` command for IPv4.
+Run the `nv set vrf <vrf-id> router bgp address-family ipv6-unicast conditional-disaggregation` command for IPv6 or the `nv set vrf <vrf-id> router bgp address-family ipv4-unicast conditional-disaggregation` command for IPv4.
 
 ```
 cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv6-unicast conditional-disaggregation
@@ -2253,7 +2255,7 @@ spine01# write memory
 - The maximum number of unreachable prefixes sent to LLDP is 25k by default. You can adjust this limit to a maximum of 100k with the `nv set system lldp unreachable-prefix max-limit 100000` command.
 - The LLDP unreachable route TLV does not carry VRF information; overlapping addresses across VRFs might cause inconsistent behavior if the switch generates an unreachable route for a prefix used in multiple VRFs.
 - If you change a configured aggregate route; for example, if you change the prefix length from 10.1.0.0/24 to 10.1.0.0/16, the original prefix might remain as a stale entry considered for unreachability signaling. To remove the stale entry, refer to {{<link url="/#clear-stale-aggregate-route-exceptions" text="Clear Stale Aggregate Route Exceptions">}} below.
-- NVIDIA recommends configuring BGP {{<link url="Optional-BGP-Configuration/#advertisement-delay" text="advertisement delay">}} to avoid traffic disruption during a leaf switch reboot, service restart, and other events that might disrupt the control plane. 
+- NVIDIA recommends configuring BGP {{<link url="Optional-BGP-Configuration/#advertisement-delay" text="advertisement delay">}} to avoid traffic disruption during a leaf switch reboot, service restart, and other events that might disrupt the control plane.
 
 ### Show BGP Unreachability Information
 
@@ -2336,11 +2338,6 @@ leaf01# show bgp ipv6 unreachability detail json
 }
 ```
 
-<!-- REVIEW: the specification never asks for a cross-reference from this page. Added because a
-     reader troubleshooting unreachability here has no other way to learn the counters exist.
-     A reviewer might prefer it in Considerations above, or not at all. Delete this comment before
-     publishing. -->
-
 To monitor unreachability and LLDP exception state continuously, the switch exports counters for the BGP unreachability table and the LLDP export channel as {{<link url="Open-Telemetry-Export/#routing-metrics-format" text="routing metrics">}}. Enable the routing telemetry service to collect them; the counters require no additional configuration.
 
 ### Clear Stale Aggregate Route Exceptions
@@ -2376,7 +2373,7 @@ cumulus@leaf01:mgmt:~$ nv set maintenance unit system mode enabled
 cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
-To disable graceful fabric maintenance and return traffic to the switch after it converges, run the `nv set maintenance unit system mode disabled` command. 
+To disable graceful fabric maintenance and return traffic to the switch after it converges, run the `nv set maintenance unit system mode disabled` command.
 
 
 ## Inter-DC Routing
@@ -2385,21 +2382,21 @@ To disable graceful fabric maintenance and return traffic to the switch after it
 Cumulus Linux supports inter-DC routing is a Beta feature and is supported on Spectrum-4 through Spectrum-6.
 {{%/notice%}}
 
-Inter-DC routing enables you to maintain communication across large-scale GPU clusters spanning data centers (DC-to-DC) in a multi-plane architecture. The switch achieves redundancy against plane failures through a hybrid model that combines: 
-- Conditional disaggregation that triggers disaggregated routes at merged planes. 
-- In-plane LLDP exception signaling that informs GPUs of link or plane failures within a plane. 
+Inter-DC routing enables you to maintain communication across large-scale GPU clusters spanning data centers (DC-to-DC) in a multi-plane architecture. The switch achieves redundancy against plane failures through a hybrid model that combines:
+- Conditional disaggregation that triggers disaggregated routes at merged planes.
+- In-plane LLDP exception signaling that informs GPUs of link or plane failures within a plane.
 
 To achieve inter-DC routing and intra-DC failure handling, where planarized DC fabrics merge at the DC Interconnect Switch (DCIS) layer, you must configure a plane ID on each leaf switch. This plane ID must be unique across planes in a DC; however, you must use the same plane ID for all leaf switches within a plane.
 
 You must configure the plane ID together with the following BGP features on each leaf switch:
-- {{<link url="/#bgp-dc-pic-anycast" text="Anycast DC PIC">}} 
+- {{<link url="/#bgp-dc-pic-anycast" text="Anycast DC PIC">}}
 - {{<link url="/#bgp-unreachability-safi" text="BGP Unreachability SAFI">}}
 - {{<link url="/#bgp-conditional-disaggregation" text="Conditional disaggregation">}}
-- {{<link url="/#bgp-lldp-unreachability-in-disjoined-planes" text="BGP LLDP Unreachability in Disjoined Planes">}} 
+- {{<link url="/#bgp-lldp-unreachability-in-disjoined-planes" text="BGP LLDP Unreachability in Disjoined Planes">}}
 
 In a failure scenario, when there is prefix unreachability, the switch carries the configured plane ID as part of the SOO Extended Community. Leaf switches that receive unreachability routes match on the SOO IP address to determine if they must advertise conditional disaggregate routes and match on the plane ID to determine if they must perform LLDP exception programming towards locally connected hosts.
 
-To configure the plane ID, run the following commands. You can specify a value between 1 and 16. The default value is 0 (disabled).  
+To configure the plane ID, run the following commands. You can specify a value between 1 and 16. The default value is 0 (disabled).
 
 {{< tabs "TabID23258">}}
 {{< tab "NVUE Commands ">}}
@@ -2414,7 +2411,7 @@ Only the default VRF is supported.
 cumulus@leaf01:~$ nv set vrf default router bgp plane-id 8
 cumulus@leaf01:~$ nv config apply
 ```
- 
+
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
@@ -3185,13 +3182,14 @@ When BGP establishes a session, BGP peers use the BGP OPEN message to negotiate 
 {{%notice note%}}
 - For warm boot to restart the switch with no interruption to traffic for existing route entries, you must enable BGP graceful restart in all BGP VRFs.
 - BGP graceful restart only supports eBGP direct and multihop peering. VRF leaking is not gracefully handled and traffic to destinations through these routes might drop while graceful restart is in progress.
+- Cumulus Linux does not support BGP graceful restart with EVPN multihoming (EVPN-MH).
 {{%/notice%}}
 
 ### Restart Modes
 
 Cumulus Linux supports graceful BGP restart full mode and helper-only mode for IPv4, IPv6 and EVPN. The default setting is helper-only mode.
 - In full mode, the switch is in both a helper and restarter role.
-- In helper-only mode, the switch is in a helper role only, where routes originated and advertised from a BGP peer are not deleted.
+- In helper-only mode, the switch is in a helper role only, where the switch does not delete routes that a BGP peer originates and advertises.
 
 You can configure graceful BGP restart globally, where all BGP peers inherit the graceful restart capability, or for a BGP peer or peer group (useful for misbehaving peers or when working with third party devices).
 
@@ -3256,7 +3254,7 @@ To set graceful BGP restart back to the default setting (helper-only mode), run 
 ### Disable Graceful Restart
 
 {{%notice info%}}
-If you disable graceful BGP restart, you cannot achieve a switch restart or switch software upgrade with minimal traffic loss in a BGP configuration. Refer to {{<link url="Upgrading-Cumulus-Linux/#issu" text="ISSU">}} for more information.
+If you disable graceful BGP restart, you cannot achieve a switch restart or switch software upgrade with minimal traffic loss in a BGP configuration. Refer to {{<link url="Upgrading-Cumulus-Linux/#upgrades-with-issu" text="ISSU">}} for more information.
 {{%/notice%}}
 
 {{< tabs "TabID2189 ">}}
@@ -3501,7 +3499,7 @@ The vtysh `show ip bgp summary json` command shows the last convergence event.
 
 ## Advertisement Delay
 
-BGP advertisement delay defers outbound BGP updates for a configured time after the first BGP neighbor reaches the established state. During this delay, BGP session establishment, capability negotiation, best-path selection, and FIB programming proceed as normal; BGP holds only outbound update generation. When the timer expires, BGP sends all queued advertisements to all established neighbors. 
+BGP advertisement delay defers outbound BGP updates for a configured time after the first BGP neighbor reaches the established state. During this delay, BGP session establishment, capability negotiation, best-path selection, and FIB programming proceed as normal; BGP holds only outbound update generation. When the timer expires, BGP sends all queued advertisements to all established neighbors.
 
 Use advertisement-delay to allow downlink interfaces and access services to stabilize before attracting traffic to the switch. NVIDIA recommends a delay of at least 90 seconds when using 802.1X authentication, and at least 30 seconds in other deployments. When using advertisement-delay, deploy the RADIUS server (if used) in the management VRF for reliable reachability during boot and convergence.
 
@@ -3545,8 +3543,8 @@ The BGP community list can be either *standard*, *extended*, or *large*. The sta
 
 - *0:0*: a BGP community that matches all routes. This value replaces `internet` used in Cumulus Linux 5.13 and earlier.
 - *local-AS*: a BGP community that restricts routes to your confederation's sub-AS.
-- *no-advertise*: a BGP community that is not advertised to anyone.
-- *no-export*: a BGP community that is not advertised to the eBGP peer.
+- *no-advertise*: a BGP community that the switch does not advertise to anyone.
+- *no-export*: a BGP community that the switch does not advertise to the eBGP peer.
 
 An extended BGP community list takes a regular expression of communities and matches the listed communities.
 

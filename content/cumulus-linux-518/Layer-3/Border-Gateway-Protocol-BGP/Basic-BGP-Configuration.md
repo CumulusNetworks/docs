@@ -18,7 +18,7 @@ When you enable BGP for the first time, the FRR service restarts, which might im
 
 To configure BGP numbered on a BGP node, you need to:
 - Assign an <span class="a-tooltip">[ASN](## "Autonomous System Number")</span> to identify this BGP node. In a two-tier leaf and spine configuration, you can use {{<link title="Border Gateway Protocol - BGP#auto-bgp" text="auto BGP">}}, where Cumulus Linux assigns an ASN automatically.
-- If necessary, specify a router ID. NVUE automatically assigns the loopback address of the switch to be the router ID. FRR automatically assigns the router ID to be the loopback address or the highest IPv4 address for the interface. If you do not have a loopback address configured or want to use a specific router ID, set the router ID globally or per VRF.
+- If necessary, specify a router ID. NVUE automatically assigns the loopback address of the switch to be the router ID. FRR automatically assigns the router ID to be the loopback address or the highest IPv4 address for the interface. If you do not have a loopback address configured or want to use a specific router ID, set the router ID globally or for each VRF.
 - Specify where to distribute routing information by providing the IP address and ASN of the neighbor.
   - For BGP numbered, this is the IP address of the interface between the two peers; the interface must be a layer 3 access port.
   - The ASN can be a number, or `internal` for a neighbor in the same AS or `external` for a neighbor in a different AS.
@@ -204,7 +204,7 @@ cumulus@spine01:~$ sudo cat /etc/nvue.d/startup.yaml
 
 2. Identify the BGP node by assigning an ASN and, if necessary, the router ID.
 
-   BGP automatically assigns the router ID using the loopback address or the highest IPv4 address for the interface. If you want to assign a specific IPv4 address for the router ID, add the router ID globally or per VRF.
+   BGP automatically assigns the router ID using the loopback address or the highest IPv4 address for the interface. If you want to assign a specific IPv4 address for the router ID, add the router ID globally or for each VRF.
 
     ```
     cumulus@leaf01:~$ sudo vtysh
@@ -259,7 +259,7 @@ cumulus@spine01:~$ sudo cat /etc/nvue.d/startup.yaml
 
 2. Identify the BGP node by assigning an ASN and, if necessary, the router ID.
 
-   BGP automatically assigns the router ID using the loopback address or the highest IPv4 address for the interface. If you want to assign a specific IPv4 address for the router ID, add the router ID globally or per VRF.
+   BGP automatically assigns the router ID using the loopback address or the highest IPv4 address for the interface. If you want to assign a specific IPv4 address for the router ID, add the router ID globally or for each VRF.
 
     ```
     cumulus@spine01:~$ sudo vtysh

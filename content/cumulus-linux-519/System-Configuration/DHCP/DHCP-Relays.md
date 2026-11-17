@@ -62,7 +62,7 @@ cumulus@switch:~$ nv config apply
 {{< tab "Linux Commands ">}}
 
 {{%notice note%}}
-In Cumulus 5.13 and earlier, DHCP relay forwards all DHCP client requests to every DHCP server within the same VRF. Cumulus Linux generates a single configuration file for each VRF in the format `isc-dhcp-relay-<VRF>`. Only one instance of the DHCP relay service runs per VRF.
+In Cumulus 5.13 and earlier, DHCP relay forwards all DHCP client requests to every DHCP server within the same VRF. Cumulus Linux generates a single configuration file for each VRF in the format `isc-dhcp-relay-<VRF>`. Only one instance of the DHCP relay service runs for each VRF.
 
 Cumulus Linux 5.14 and later enables selective forwarding of DHCP client requests to specific groups of servers and introduces multiple configuration files; one for each server group.
 {{%/notice%}}
@@ -292,7 +292,7 @@ cumulus@switch:~$ nv set vrf UPLINK_VRF router bgp address-family ipv4-unicast r
 cumulus@switch:~$ nv config apply
 ```
 
-For {{<link url="Inter-subnet-Routing/#layer-3-vxlan-device-mode" text="layer 3 VXLAN device mode">}}, use the layer 3 VXLAN interface name as the upstream interface; Layer 3 VNI SVIs and related VLAN configurations are not needed in layer 3 VXLAN device mode. 
+For {{<link url="Inter-subnet-Routing/#layer-3-vxlan-device-mode" text="layer 3 VXLAN device mode">}}, use the layer 3 VXLAN interface name as the upstream interface; Layer 3 VNI SVIs and related VLAN configurations are not needed in layer 3 VXLAN device mode.
 
 ```
 cumulus@switch:~$ nv set service dhcp-relay UPLINK_VRF server-group uplink-servers upstream-interface vxi_4002
@@ -511,7 +511,7 @@ cumulus@switch:~$ nv config apply
 
 ### Layer 3 VXLAN Device Mode Configuration
 
-When configuring DHCP relay in an EVPN symmetric environment with {{<link url="Inter-subnet-Routing/#layer-3-vxlan-device-mode" text="layer 3 VXLAN device mode">}} configured, use the layer 3 VXLAN interface name as the upstream interface. Layer 3 VNI SVIs and related VLAN configurations are not needed in layer 3 VXLAN device mode. 
+When configuring DHCP relay in an EVPN symmetric environment with {{<link url="Inter-subnet-Routing/#layer-3-vxlan-device-mode" text="layer 3 VXLAN device mode">}} configured, use the layer 3 VXLAN interface name as the upstream interface. Layer 3 VNI SVIs and related VLAN configurations are not needed in layer 3 VXLAN device mode.
 
 
 {{< tabs "TabID516 ">}}
@@ -662,7 +662,7 @@ server-group-name  type1-server-group    type1-server-group
 
 ### Show DHCP Relay Agent Information
 
-To show the DHCP relay agent information per VRF, run the `nv show service dhcp-relay <vrf-id> agent` command:
+To show the DHCP relay agent information for each VRF, run the `nv show service dhcp-relay <vrf-id> agent` command:
 
 ```
 cumulus@switch:~$ nv show service dhcp-relay default agent
@@ -725,4 +725,4 @@ To resolve the issue, manually edit the `/etc/default/isc-dhcp-relay-<server-gro
 ## Considerations
 
 - The `dhcrelay` command does not bind to an interface if the interface name is longer than 14 characters. This is a known limitation in `dhcrelay`.
-- DHCP discover packets transiting the switch are also sent to the CPU for additional processing, then dropped after being switched by the hardware. This causes the `RX_DRP` and `HwIfInDiscards` counters to increment on the interface even though the hardware forwards the packet correctly.
+- The switch also sends DHCP discover packets that transit it to the CPU for additional processing, then drops them after the hardware switches them. This causes the `RX_DRP` and `HwIfInDiscards` counters to increment on the interface even though the hardware forwards the packet correctly.

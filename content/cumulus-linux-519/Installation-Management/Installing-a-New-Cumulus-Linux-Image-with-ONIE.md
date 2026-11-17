@@ -20,7 +20,7 @@ The sections below describe some of the different ways you can install the Cumul
 You can download a Cumulus Linux image from the {{<exlink url="https://enterprise-support.nvidia.com/s/downloads" text="NVIDIA Enterprise support portal">}}.
 
 {{%notice warning%}}
-Installing the Cumulus Linux image is destructive; configuration files on the switch are not saved; copy them to a different server before installing.
+Installing the Cumulus Linux image is destructive; the installation does not save configuration files on the switch; copy them to a different server before installing.
 {{%/notice%}}
 
 In the following procedures:
@@ -239,7 +239,7 @@ ONIE# onie-nos-install tftp://local-tftp-server/cumulus-install-[PLATFORM].bin
 
 1. Place the Cumulus Linux image into an FTP directory (TFTP is *not* supported in  Cumulus Linux).
 
-2. From the Cumulus Linux command prompt, run the `nv action install system image onie ftp://<image> force activate reboot` command. This command installs the Cumulus Linux image without prompts and reboots the switch..
+2. From the Cumulus Linux command prompt, run the `nv action install system image onie ftp://<image> force activate reboot` command. This command installs the Cumulus Linux image without prompts and reboots the switch.
 
 ```
 cumulus@switch:~$ nv action install system image onie ftp://local-ftp-server/cumulus-install-x86_64.bin force activate reboot
@@ -289,7 +289,7 @@ Follow the steps below to install the Cumulus Linux image referencing a local fi
     onie# /etc/init.d/discover.sh stop
     ```
 
-4. Use {{<exlink url="http://en.wikipedia.org/wiki/Secure_copy" text="scp">}} to copy the Cumulus Linux image to the switch.
+4. Use scp to copy the Cumulus Linux image to the switch.
 
 5. Run the installer manually from ONIE:
 
@@ -356,7 +356,7 @@ cumulus@cumulus:~$ sudo onie-install -i http://203.0.113.10/image-installer -z h
 ```
 
 The following example stages an image on an HTTP server and a local NVUE `startup.yaml` file:
-  
+
 ```
 cumulus@cumulus:~$ sudo onie-install -i http://203.0.113.10/image-installer -t /etc/nvue.d/startup.yaml
 ```
@@ -784,7 +784,7 @@ date-time
 To show secure boot details, run the `nv show system security secure-boot` command. The output shows the Secure Boot Key Database (DB) and SBAT revocation values in a consolidated view so that you can review enrolled keys with certificate details, monitor validity status, and view SBAT revocation information.
 
 Certificate details include:
-- SHA1 fingerprint 
+- SHA1 fingerprint
 - Signature algorithm
 - Validity status (generated-on and expiring-on dates)
 - Issuer attributes (indexed and structured)

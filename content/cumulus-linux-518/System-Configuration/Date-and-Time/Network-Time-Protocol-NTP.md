@@ -290,5 +290,4 @@ NTP in Cumulus Linux uses the `/usr/share/zoneinfo/leap-seconds.list` file, whic
 ## Related Information
 
 - {{<exlink url="http://www.ntp.org" text="NTP website">}}
-- {{<exlink url="http://en.wikipedia.org/wiki/Network_Time_Protocol" text="Wikipedia - Network Time Protocol">}}
 - {{<exlink url="http://wiki.debian.org/NTP" text="Debian wiki - NTP">}}

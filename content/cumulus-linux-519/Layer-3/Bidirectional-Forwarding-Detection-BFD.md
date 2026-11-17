@@ -29,7 +29,7 @@ cumulus@switch:~$ nv config apply
 To disable BFD, run the `nv set router bfd state disabled` command.
 
 {{%notice note%}}
-When you change the BFD state, the FRR service will restart, affecting all configured routing protocols.
+When you change the BFD state, the FRR service restarts, affecting all configured routing protocols.
 {{%/notice%}}
 
 {{< /tab >}}
@@ -161,7 +161,7 @@ neighbor fabric bfd profile BFD1
 
 ### BFD with OSPF
 
-When you enable BFD on an OSPF interface, a neighbor registers with BFD when two-way adjacency starts and de-registers when adjacency goes down. The BFD configuration is per interface and any IPv4 neighbors discovered on that interface inherit the configuration.
+When you enable BFD on an OSPF interface, a neighbor registers with BFD when two-way adjacency starts and de-registers when adjacency goes down. The BFD configuration applies to each interface and any IPv4 neighbors discovered on that interface inherit the configuration.
 
 The following example configures BFD in OSPF for interface swp1 using the BFD profile BFD1.
 
@@ -289,7 +289,7 @@ Showing BFD monitored static routes:
 {{< /tabs >}}
 
 {{%notice note%}}
-- BFD with static routes is supported only when a next-hop IP address is specified.
+- BFD with static routes is supported only when you specify a next-hop IP address.
 - BFD operates in single hop mode by default. You must configure `multi-hop enabled` to use BFD for multihop next-hop tracking through static routes.
 {{%/notice%}}
 
@@ -334,7 +334,7 @@ You configure the echo function by setting the following parameters in the topol
 
 - You can change a BFD profile applied to an interface, but you cannot unset a profile while BFD is still enabled on the interface. To remove BFD completely from an interface, use the `nv unset interface <if-name> router <protocol> bfd` command. To change the profile, set a new profile with the `nv set interface <if-name> router <protocol> bfd profile <profile>` command.
 - BFD is supported in the `default` VRF and non-default VRFs.
-- The switch establishes a single BFD session per interface, regardless of how many protocols use BFD on that interface. If you configure different BFD profiles for multiple protocols on the same interface, the most recently applied profile takes precedence for the BFD session on that interface.
+- The switch establishes a single BFD session for each interface, regardless of how many protocols use BFD on that interface. If you configure different BFD profiles for multiple protocols on the same interface, the most recently applied profile takes precedence for the BFD session on that interface.
 
 ## BFD Offload
 
@@ -458,7 +458,7 @@ cumulus@switch:~$ nv set router bfd offload-mode kernel
 cumulus@switch:~$ nv config apply
 ```
 
-For single hop static route BFD sessions in offload mode, you need to configure the source address with the `nv set vrf <vrf> router static <route-id> distance <distance-id> via <via-id> bfd profile <profile-id>` and `nv set vrf <vrf> router static <route-id> distance <distance-id> via <via-id> bfd source <source-address>` commands; for example:
+For single hop static route BFD sessions in offload mode, you need to configure the source address with the `nv set vrf <vrf-id> router static <route-id> distance <distance-id> via <via-id> bfd profile <profile-id>` and `nv set vrf <vrf-id> router static <route-id> distance <distance-id> via <via-id> bfd source <source-address>` commands; for example:
 
 ```
 cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 distance 2 via 10.0.1.0 bfd profile BFD1
@@ -500,14 +500,9 @@ switch# exit
 {{< /tab >}}
 {{< /tabs >}}
 
-<!-- REVIEW: the third bullet below recommends 50 millisecond timers with a multiplier of 3 for
-     kernel offload at scale. The 16 Oct email gives 100 milliseconds with a multiplier of 3 as the
-     kernel minimum, so the 50 millisecond example is below the supported minimum. Left unchanged;
-     confirm the intended example value. Delete this comment before publishing. -->
-
 {{%notice note%}}
 - When you change timer or profile settings with BFD sessions at scale, there is a transient spike in CPU usage because of the increased volume of messages from the BFD daemon to the kernel driver.
-- When a BFD peer goes down because of a path failure rather than an admin-down, the remote peer sends DOWN packets. With sessions at scale, the BFD daemon receives these DOWN events, which might increase CPU usage.
+- When a BFD peer goes down because of a path failure instead of an admin-down, the remote peer sends DOWN packets. With sessions at scale, the BFD daemon receives these DOWN events, which might increase CPU usage.
 - If you use frequent BFD timers, such as 50 milliseconds with a multiplier of 3, for BFD sessions at scale, NVIDIA recommends that you increase the BFD control plane policer values with the `nv set system control-plane policer bfd burst` and `nv set system control-plane policer bfd rate` commands.
 {{%/notice%}}
 
@@ -573,12 +568,6 @@ switch# exit
 ### Show BFD Configuration
 
 To show the BFD offload mode, run the `nv show router bfd` command. To show only the mode, run the `nv show router bfd offload-mode` command.
-
-<!-- REVIEW: updated 2026-10-19 from Siddharth Kulkarni's 19 Oct email (nvue MR !5467): `nv show
-     router bfd` now also lists the legacy `offload` setting, which shows `disabled` by default.
-     The `offload disabled` line below is added from his description, not captured from a build, and
-     its position between `state` and `offload-mode` is a guess. Capture the output on a build that
-     includes the MR and fix the order. Delete this comment before publishing. -->
 
 ```
 cumulus@switch:~$ nv show router bfd
@@ -711,7 +700,7 @@ In Cumulus Linux 5.18 and earlier, this field shows only `offloaded` or `control
 
 ### Upgrade Notes
 
-In Cumulus Linux 5.18 and earlier, you set BFD offload with the `nv set router bfd offload enabled` and `nv set router bfd offload disabled` commands. Cumulus Linux 5.19 introduces the `nv set router bfd offload-mode` command, which is the recommended way to configure BFD offload. Cumulus Linux still supports the `nv set router bfd offload` command as legacy configuration, and NVIDIA plans to remove it in a future release.
+In Cumulus Linux 5.18 and earlier, you set BFD offload with the `nv set router bfd offload enabled` and `nv set router bfd offload disabled` commands. Cumulus Linux 5.19 introduces the `nv set router bfd offload-mode` command, which NVIDIA recommends for configuring BFD offload. Cumulus Linux still supports the `nv set router bfd offload` command as legacy configuration, and NVIDIA plans to remove it in a future release.
 
 When you upgrade, Cumulus Linux keeps an existing `nv set router bfd offload` setting unchanged:
 

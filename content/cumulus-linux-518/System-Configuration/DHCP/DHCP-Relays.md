@@ -62,7 +62,7 @@ cumulus@switch:~$ nv config apply
 {{< tab "Linux Commands ">}}
 
 {{%notice note%}}
-In Cumulus 5.13 and earlier, DHCP relay forwards all DHCP client requests to every DHCP server within the same VRF. Cumulus Linux generates a single configuration file for each VRF in the format `isc-dhcp-relay-<VRF>`. Only one instance of the DHCP relay service runs per VRF.
+In Cumulus 5.13 and earlier, DHCP relay forwards all DHCP client requests to every DHCP server within the same VRF. Cumulus Linux generates a single configuration file for each VRF in the format `isc-dhcp-relay-<VRF>`. Only one instance of the DHCP relay service runs for each VRF.
 
 Cumulus Linux 5.14 and later enables selective forwarding of DHCP client requests to specific groups of servers and introduces multiple configuration files; one for each server group.
 {{%/notice%}}
@@ -662,7 +662,7 @@ server-group-name  type1-server-group    type1-server-group
 
 ### Show DHCP Relay Agent Information
 
-To show the DHCP relay agent information per VRF, run the `nv show service dhcp-relay <vrf-id> agent` command:
+To show the DHCP relay agent information for each VRF, run the `nv show service dhcp-relay <vrf-id> agent` command:
 
 ```
 cumulus@switch:~$ nv show service dhcp-relay default agent

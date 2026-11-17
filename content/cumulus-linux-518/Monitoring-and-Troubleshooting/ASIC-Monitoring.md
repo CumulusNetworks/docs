@@ -537,7 +537,7 @@ To create a snapshot:
 Snapshots provide you with more data; however, they can occupy a lot of disk space on the switch. To reduce disk usage, you can use a volatile partition for the snapshot files; for example, `/var/run/cumulus/histogram_stats`.
 {{%/notice%}}
 
-The following example creates the `/var/run/cumulus/histogram_stats` snapshot every 5 seconds. The number of snapshots that you can create before the first snapshot file is overwritten is set to 30.
+The following example creates the `/var/run/cumulus/histogram_stats` snapshot every 5 seconds. The number of snapshots that you can create before the switch overwrites the first snapshot file is set to 30.
 
 {{< tabs "TabID171 ">}}
 {{< tab "NVUE Commands ">}}
@@ -874,7 +874,7 @@ Snapshots provide you with more data; however, they can occupy a lot of disk spa
 {{< tabs "TabID893 ">}}
 {{< tab "NVUE Commands ">}}
 
-The following example creates the `/var/run/cumulus/all_packet_stats1` snapshot for all interface packet and buffer statistics. The number of snapshots that you can create before the first snapshot file is overwritten is set to 80.
+The following example creates the `/var/run/cumulus/all_packet_stats1` snapshot for all interface packet and buffer statistics. The number of snapshots that you can create before the switch overwrites the first snapshot file is set to 80.
 
 ```
 cumulus@switch:~$ nv set system telemetry snapshot port-group packet-all-pg snapshot-file name /var/run/cumulus/all_packet_stats1 

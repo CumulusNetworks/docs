@@ -49,12 +49,6 @@ To configure PIM:
 When you enable or disable PIM, the FRR service restarts, which might impact traffic.
 {{%/notice%}}
 
-<!-- REVIEW: the note below is drafted from the documentation update request (RM 5254773), which
-     describes the syntax change but does not say whether FRR rewrites an existing frr.conf into the
-     new form on upgrade. The note therefore tells the reader to check the file without promising
-     either outcome. Confirm the upgrade behavior with the FRR owner and say plainly whether the
-     conversion is automatic. Delete this comment before publishing. -->
-
 {{%notice note%}}
 In Cumulus Linux 5.19, the vtysh commands that configure PIM and MSDP for a routing instance move into a `router pim [vrf <vrf-name>]` block and drop the `ip` prefix. For example, `ip pim rp 10.10.10.101` at the `switch(config)#` prompt becomes `rp 10.10.10.101` at the `switch(config-pim)#` prompt. Per-VRF PIM settings are no longer inside the `vrf <vrf-name>` block; they belong to a separate top-level `router pim vrf <vrf-name>` block.
 
@@ -328,12 +322,12 @@ This section describes optional configuration procedures.
 
 When the LHR receives the first multicast packet, it sends a <span class="a-tooltip">[PIM (S,G) join](## "a single PIM message with a list of groups to join. ")</span> towards the FHR to forward traffic through the network. This builds the <span class="a-tooltip">[SPT](## "shortest path tree ")</span>, or the tree that is the shortest path to the source. When the traffic arrives over the SPT, a PIM (S,G) RPT prune goes up the shared tree towards the RP. This removes multicast traffic from the shared tree; multicast data only goes over the SPT.
 
-You can configure SPT switchover per group (SPT infinity), which allows for some groups to never switch to a shortest path tree. The LHR now sends both (*,G) joins and (S,G) RPT prune messages towards the RP.
+You can configure SPT switchover for each group (SPT infinity), which allows for some groups to never switch to a shortest path tree. The LHR now sends both (*,G) joins and (S,G) RPT prune messages towards the RP.
 
 {{%notice note%}}
 When you use a prefix list in Cumulus Linux to match a multicast group destination address (GDA) range, you must include the /32 operator. In the NVUE command example below, `max-prefix-len 32` after the group match range specifies the /32 operator. In the vtysh command example, `ge 32` after the group permit range specifies the /32 operator.
 {{%/notice%}}
-  
+
 To configure a group to never follow the SPT, create the necessary prefix lists, then configure SPT switchover for the prefix list. This example uses the `default` VRF. If your configuration uses a different VRF for PIM, replace `vrf default` with the appropriate VRF name in the NVUE commands (for example, `vrf RED`), and run `router pim vrf RED` instead of `router pim` in the vtysh commands:
 
 {{< tabs "TabID307 ">}}
@@ -560,7 +554,7 @@ switch# exit
 
 ### MSDP
 
-You can use <span class="a-tooltip">[MSDP](## "Multicast Source Discovery Protocol")</span> to connect multiple PIM-SM multicast domains using the PIM-SM RPs. If you configure anycast RPs with the same IP address on multiple multicast switches (on the loopback interface), you can use more than one RP per multicast group.
+You can use <span class="a-tooltip">[MSDP](## "Multicast Source Discovery Protocol")</span> to connect multiple PIM-SM multicast domains using the PIM-SM RPs. If you configure anycast RPs with the same IP address on multiple multicast switches (on the loopback interface), you can use more than one RP for each multicast group.
 
 When an RP discovers a new source (a PIM-SM register message), it sends an <span class="a-tooltip">[SA](## "source-active")</span> message to each MSDP peer. The peer then determines if there are any interested receivers.
 
@@ -695,7 +689,7 @@ If you are using a non-default VRF and want to use the VRF interface IP address 
 
 {{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRFs">}} divide the routing table on a per-tenant basis to provide separate layer 3 networks over a single layer 3 infrastructure. With a VRF, each tenant has its own virtualized layer 3 network so IP addresses can overlap between tenants.
 
-PIM in a VRF enables PIM trees and multicast data traffic to run inside a layer 3 virtualized network, with a separate tree per domain or tenant. Each VRF has its own multicast tree with its own RPs, sources, and so on. Therefore, you can have one tenant per corporate division, client, or product.
+PIM in a VRF enables PIM trees and multicast data traffic to run inside a layer 3 virtualized network, with a separate tree for each domain or tenant. Each VRF has its own multicast tree with its own RPs, sources, and so on. Therefore, you can have one tenant for each corporate division, client, or product.
 
 If you do not enable <span class="a-tooltip">[MP-BGP](## "Multi Protocol BGP ")</span> <span class="a-tooltip">[MPLS VPN](## "Multiprotocol Label Switching virtual private network")</span>, VRFs on different switches typically connect or peer over subinterfaces, where each subinterface is in its own VRF.
 
@@ -833,7 +827,7 @@ spine01# exit
 
 ### Allow RP
 
-To begin receiving multicast traffic for a group, a receiver expresses its interest in the group by sending an IGMP membership report on its connected LAN. The LHR receives this report and begins to build a multicast routing tree back towards the source. To build this tree, another router known both to the LHR and to the multicast source needs to exist to act as an RP for senders and receivers. The LHR looks up the RP for the group specified by the receiver and sends a PIM Join message towards the RP. Per RFC 7761, intermediary routers between the LHR and the RP must check that the RP for the group matches the one in the PIM Join, and if not, to drop the Join.
+To begin receiving multicast traffic for a group, a receiver expresses its interest in the group by sending an IGMP membership report on its connected LAN. The LHR receives this report and begins to build a multicast routing tree back towards the source. To build this tree, another router known both to the LHR and to the multicast source needs to exist to act as an RP for senders and receivers. The LHR looks up the RP for the group specified by the receiver and sends a PIM Join message towards the RP. According to RFC 7761, intermediary routers between the LHR and the RP must check that the RP for the group matches the one in the PIM Join, and if not, to drop the Join.
 
 In some configurations, it is desirable to configure the LHR with an RP address that does not match the actual RP address for the group. In this case, you must configure the upstream routers to accept the Join and propagate it towards the appropriate RP for the group, ignoring the mismatched RP address in the PIM Join and replacing it with its own RP for the group.
 
@@ -899,7 +893,7 @@ Cumulus Linux provides the following PIM timers:
 | `join-prune-interval` | The interval in seconds at which a PIM router sends join/prune messages to its upstream neighbors for a state update. You can specify a value between 60 and 600. The default setting is 60 seconds. You set the `join-prune-interval` globally for all PIM enabled interfaces. NVUE also provides the option of setting the `join-prune-interval` for a specific VRF.|
 | `keepalive` | The timeout value for the S,G stream in seconds. You can specify a value between 31 and 60000. The default setting is 210 seconds. You can set the `keepalive` timer globally or all PIM enabled interfaces or for a specific VRF. </br>In vtysh, the timer is `keep-alive`. |
 | `register-suppress` | The number of seconds during which to stop sending register messages to the RP. You can specify a value between 5 and 60000. The default setting is 60 seconds. You can set the `keepalive` timer globally for all PIM enabled interfaces or for a specific VRF. |
-| `rp-keepalive` | NVUE only. The timeout value for the RP in seconds. You can specify a value between 31 and 60000. The default setting is 185 seconds. You set the `register-suppress-time` timer globally for all PIM enabled interfacesor for a specific VRF. </br>In vtysh, the timer is `rp-keep-alive`.|
+| `rp-keepalive` | NVUE only. The timeout value for the RP in seconds. You can specify a value between 31 and 60000. The default setting is 185 seconds. You set the `register-suppress-time` timer globally for all PIM enabled interfaces or for a specific VRF. </br>In vtysh, the timer is `rp-keep-alive`.|
 
 {{< tabs "TabID1037 ">}}
 {{< tab "NVUE Commands ">}}
@@ -980,8 +974,8 @@ switch# exit
 
 For large multicast environments, the default <span class="a-tooltip">[CoPP](## "Control Plane Policing")</span> policer might be too restrictive. You can adjust the policer to improve multicast convergence.
 
-- The default PIM forwarding rate and burst rate is set to 2000 packets per second.
-- The default IGMP forwarding rate and burst rate is set to 1000 packets per second.
+- The default PIM forwarding rate and burst rate is 2000 packets per second.
+- The default IGMP forwarding rate and burst rate is 1000 packets per second.
 
 To adjust the policer:
 

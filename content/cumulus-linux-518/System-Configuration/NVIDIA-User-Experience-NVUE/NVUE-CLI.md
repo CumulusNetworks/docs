@@ -149,7 +149,7 @@ The NVUE monitoring commands show various parts of the network configuration. Fo
 | `nv show platform` | Shows {{<link url="Monitoring-Best-Practices/#hardware" text="platform configuration">}}, such as environment, transceiver, and firmware components. |
 | `nv show qos` | Shows {{<link title="RDMA over Converged Ethernet - RoCE/#verify-roce-configuration" text="QoS RoCE">}} configuration.|
 | `nv show router` | Shows router configuration, such as router policies, global BGP and OSPF configuration, PBR, PIM, IGMP, VRR, and VRRP configuration. |
-| `nv show service` | Shows {{<link url="DHCP-Relays/#troubleshooting" text="DHCP-Relays">}}, {{<link url="DHCP-Servers/#troubleshooting" text="DHCP server">}} configuration, and {{<link url="Precision-Time-Protocol-PTP/#troubleshooting" text="PTP">}}. |
+| `nv show service` | Shows {{<link url="DHCP-Relays/#show-dhcp-relay-information" text="DHCP-Relays">}}, {{<link url="DHCP-Servers/#troubleshooting" text="DHCP server">}} configuration, and {{<link url="Precision-Time-Protocol-PTP/#troubleshooting" text="PTP">}}. |
 | `nv show system` | Shows all system settings. |
 | `nv show vrf` | Shows {{<link url="VRFs" text="VRFs">}} configuration.|
 
@@ -262,7 +262,7 @@ The NVUE configuration management commands manage and apply configurations.
 | `nv config diff -o commands` | Shows differences between two configuration revisions. |
 | `nv config translate` | Translates a revision or YAML file configuration. |
 
-You can use the NVUE configuration management commands to back up and restore configuration when you upgrade Cumulus Linux on the switch. Refer to {{<link url="#back-up-and-restore-configuration-with-nvue" text="Back Up and Restore Configuration with NVUE">}}.
+You can use the NVUE configuration management commands to back up and restore configuration when you upgrade Cumulus Linux on the switch. Refer to {{<link url="#manual-back-up-and-restore" text="Back Up and Restore Configuration with NVUE">}}.
 
 ### Action Commands
 
@@ -282,23 +282,23 @@ The NVUE action commands fetch and install image files, upgrade system packages,
 | `nv action enable`| Provides commands to enable {{<link url="Zero-Touch-Provisioning-ZTP" text="ZTP scripts">}}. |
 | `nv action export`| Exports a system configuration file.|
 | `nv action fetch`| Fetches {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="binary image files">}}, {{<link url="Adding-and-Updating-Packages/#manage-repository-keys" text="package files">}}, configuration files, and platform firmware. |
-| `nv action generate` | Generates {{<link url="Understanding-the-cl-support-Output-File/#manual-cl-support-file" text="cl-support files">}} and {{<link url="NVUE-CLI/#get-the-hash-for-a-file" text="hash files">}}.|
+| `nv action generate` | Generates {{<link url="Understanding-the-cl-support-Output-File/#manual-cl-support-file-generation" text="cl-support files">}} and {{<link url="NVUE-CLI/#get-the-hash-for-a-file" text="hash files">}}.|
 | `nv action import` | Provides commands to import CA and entity certificates, and CRLs. |
 | `nv action install` | Installs {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="system image files">}}. |
 | `nv action list`| Lists the contents of a directory, including files, subdirectories, and other file system objects. |
-| `nv action lookup`| Looks up the {{<link url="FRRouting/#look-up-the-route-for-a-destination" text="route in the routing table">}} for a specific destination. |
+| `nv action lookup`| Looks up the {{<link url="Routing-Tables/#look-up-the-route-for-a-destination" text="route in the routing table">}} for a specific destination. |
 | `nv action ping` | Provides commands to run {{<link url="Network-Troubleshooting/#ping" text="ping">}}.|
-| `nv action reboot` | Reboots the switch in the configured restart mode ({{<link url="System-Power-and-Switch-Reboot/#switch-reboot" text="fast, cold, or warm">}}). You must specify the `no-confirm` option with this command. |
+| `nv action reboot` | Reboots the switch in the configured restart mode ({{<link url="System-Power-and-Switch-Reboot/#reboot-commands" text="fast, cold, or warm">}}). You must specify the `no-confirm` option with this command. |
 | `nv action release`| Releases the DHCPv4 or DHCP6 client for an interface. |
 | `nv action rename` | Provides commands to {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="system image files">}}.|
 | `nv action renew` | Renews the current DHCPv4 or DHCP6 lease for an interface.|
 | `nv action reset` | Provides commands to {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#reset-a-transceiver" text="reset transceivers">}} and to reset the switch to {{<link url="Factory-Reset" text="factory defaults">}}.|
 | `nv action rotate` | Provides commands to {{<link url="Log-Files-with-NVUE/#rotate-the-system-log-file" text="rotate the system log file">}}.|
 | `nv action run` | Provides commands to run {{<link url="Zero-Touch-Provisioning-ZTP" text="ZTP scripts">}}.|
-| `nv action schedule` | Configures the schedule for {{<link url="ASIC-Monitoring/#high-frequency-telemetry" text="high frequency telemetry data collection">}}.|
+| `nv action schedule` | Configures the schedule for {{<link url="High-Frequency-Telemetry/#configure-the-job-schedule" text="high frequency telemetry data collection">}}.|
 | `nv action traceroute` | Provides commands to run {{<link url="Network-Troubleshooting/#traceroute" text="traceroute">}}.|
 | `nv action upgrade` | {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="Upgrades system packages">}}.|
-| `nv action upload` | Uploads {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="system image files">}}, {{<link url="Understanding-the-cl-support-Output-File/#manual-cl-support-file" text="cl-support files">}}, and configuration files to the switch.|
+| `nv action upload` | Uploads {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="system image files">}}, {{<link url="Understanding-the-cl-support-Output-File/#manual-cl-support-file-generation" text="cl-support files">}}, and configuration files to the switch.|
 
 ### List All NVUE Commands
 
@@ -856,7 +856,7 @@ As Cumulus Linux supports more features and functionality, NVUE syntax might cha
 
 {{%notice note%}}
 - If you upgrade the switch with package upgrade or optimized image upgrade, or if you reinstall Cumulus Linux with an embedded `startup.yaml` file using `onie-install -t`, Cumulus Linux preserves your NVUE startup configuration and translates the contents automatically to NVUE syntax required by the new release.
-- Any certificates or CRLs imported to the system with NVUE are not backed up during an ONIE image upgrade, even when staging `startup.yaml` using `onie-install -t`. You must reimport the certificates after the new image is installed. 
+- An ONIE image upgrade does not back up any certificates or CRLs that you import to the system with NVUE, even when you stage `startup.yaml` using `onie-install -t`. You must reimport the certificates after the new image is installed. 
 - If NVUE introduces new syntax for a feature that a snippet configures, you must remove the snippet before upgrading.
 {{%/notice%}}
 
@@ -889,14 +889,14 @@ To back up and restore the configuration file:
    ```
 
 {{%notice infonopad%}}
-If you pre-stage your NVUE `startup.yaml` during an {{<link url="Installing-a-New-Cumulus-Linux-Image-with-ONIE/#install-using-a-local-file" text="ONIE image installation from Cumulus Linux">}} with the `onie-install -t` option, certificates and CRLs configured on the switch are not backed up or automatically restored. After the switch boots with the new image, features that rely on certificates (such as NVUE API, gNMI, OTEL, etc.) remain unavailable until the certificates are {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="reimported">}}. When reimporting certificates and CRLs with the `nv action import system security` command, use the same `certificate-id` that was originally assigned to each certificate in the prior release.
+If you pre-stage your NVUE `startup.yaml` during an {{<link url="Installing-a-New-Cumulus-Linux-Image-with-ONIE/#install-using-a-local-file" text="ONIE image installation from Cumulus Linux">}} with the `onie-install -t` option, the installation does not back up or automatically restore certificates and CRLs configured on the switch. After the switch boots with the new image, features that rely on certificates (such as NVUE API, gNMI, OTEL, etc.) remain unavailable until the certificates are {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="reimported">}}. When reimporting certificates and CRLs with the `nv action import system security` command, use the same `certificate-id` that was originally assigned to each certificate in the prior release.
 {{%/notice%}}
 
 ## Maximum Revisions Limit
 
 You can control the maximum number of revisions stored in the NVUE database to ensure efficient resource management and system performance. When the number of revisions reaches the maximum set, the switch automatically deletes the oldest revisions to make room for new ones when you create them. The lower revision number is the oldest; for example revision 10 is older than revision 100.
 
-NVUE does not delete the `startup`, `empty`, or `applied` revisions and does not include them in the total revision count. The revision from which NVUE creates the last `applied` revision is also protected from deletion.
+NVUE does not delete the `startup`, `empty`, or `applied` revisions and does not include them in the total revision count. NVUE also protects from deletion the revision from which it creates the last `applied` revision.
 
 Deletion occurs in batches to reduce the number of system operations.
 

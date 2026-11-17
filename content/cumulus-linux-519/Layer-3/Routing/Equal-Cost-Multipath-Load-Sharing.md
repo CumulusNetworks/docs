@@ -7,7 +7,7 @@ toc: 3
 Cumulus Linux enables <span class="a-tooltip">[ECMP](## "Equal Cost Multi Path")</span> by default. Load sharing occurs automatically for IPv4 and IPv6 routes with multiple installed next hops. The hardware or the routing protocol configuration determines the maximum number of routes for which load sharing occurs.
 
 ECMP operates only on equal cost routes in the RIB. For Cumulus Linux to consider routes equal, the routes must:
-- Originate from the same routing protocol. Routes from different sources are not considered equal. For example, a static route and an OSPF route are not considered for ECMP load sharing.
+- Originate from the same routing protocol. ECMP does not consider routes from different sources equal. For example, ECMP does not load share between a static route and an OSPF route.
 - Have equal cost. If two routes from the same protocol are unequal, only the best route installs in the routing table.
 
 When multiple routes are in the routing table, a hash determines through which path a packet follows. To prevent out of order packets, ECMP hashes on a per-flow basis; all packets with the same source and destination IP addresses and the same source and destination ports always hash to the same next hop. ECMP hashing does not keep a record of packets that hash to each next hop and does not guarantee that traffic to each next hop is equal.
@@ -123,7 +123,7 @@ switch# show nexthop-group global grp2 json
 
 You can configure custom hashing to specify what to include in the hash calculation during load balancing between:
 - Multiple next hops of a layer 3 route (ECMP hashing).
-- Multiple interfaces that are members of the same bond (bond or LAG hashing). For bond hashing, see {{<link url="Bonding-Link-Aggregation/#load-balancing" text="Bonding - Link Aggregation" >}}.
+- Multiple interfaces that are members of the same bond (bond or LAG hashing). For bond hashing, see {{<link url="Bonding-Link-Aggregation/#custom-hashing" text="Bonding - Link Aggregation" >}}.
 
 For ECMP load balancing between multiple next hops of a layer 3 route, you can hash on these fields:
 
@@ -413,7 +413,7 @@ Cumulus Linux does *not* enable resilient hashing by default. When you enable re
 An ECMP route counts as a single route with multiple next hops.
 {{%/notice%}}
 
-All ECMP routes must use the same number of buckets (you cannot configure the number of buckets per ECMP route).
+All ECMP routes must use the same number of buckets (you cannot configure the number of buckets for each ECMP route).
 
 {{%notice note%}}
 A larger number of ECMP buckets reduces the number of flows that move to a different next hop when you add a new next hop to an ECMP route. However, the system supports fewer ECMP routes. If you install the maximum number of ECMP routes, new ECMP routes log an error and do not install.
@@ -493,7 +493,7 @@ max-unbalanced-timer  2000         2000
 
 ### Considerations
 
-Be aware of the following considerations when configuring resilient hashing. 
+Be aware of the following considerations when configuring resilient hashing.
 
 #### Resilient Hashing and Next Hop Groups
 
@@ -523,46 +523,6 @@ Resilient hashing does not support {{<link url="Optional-BGP-Configuration/#bgp-
 
 If you configured resilient hashing in an earlier release by editing the `/etc/cumulus/datapath/traffic.conf` file, you must reconfigure resilient hashing after you upgrade.
 
-#### IPv6 Route Replacement
-
-When the router adds or removes ECMP paths, or when the next hop IP address, interface, or tunnel changes, the next hop information for an IPv6 prefix can change. FRR deletes the existing route to that prefix from the kernel, then adds a new route with all the relevant new information. In certain situations, Cumulus Linux does not maintain resilient hashing for IPv6 flows.
-
-To work around this issue, you can enable IPv6 route replacement.
-
-{{%notice info%}}
-For certain configurations, IPv6 route replacement can lead to incorrect forwarding decisions and lost traffic. For example, it is possible for a destination to have next hops with a gateway value with the outbound interface or just the outbound interface itself, without a gateway address. If both types of next hops for the same destination exist, route replacement does not operate correctly; Cumulus Linux adds an additional route entry and next hop but does not delete the previous route entry and next hop.
-{{%/notice%}}
-
-To enable the IPv6 route replacement option, in the `/etc/frr/daemons` file, add the `--v6-rr-semantics` configuration option to the zebra daemon definition, then reload FRR with the `sudo systemctl reload frr.service` command.
-
-```
-cumulus@switch:~$ sudo nano /etc/frr/daemons
-...
-vtysh_enable=yes
-zebra_options=" -M cumulus_mlag -M snmp -A 127.0.0.1 --v6-rr-semantics -s 90000000"
-bgpd_options=" -M snmp  -A 127.0.0.1"
-ospfd_options=" -M snmp -A 127.0.0.1"
-...
-```
-
-To verify that IPv6 route replacement, run the `systemctl status frr` command:
-
-```
-cumulus@switch:~$ systemctl status frr
-
-    ● frr.service - FRRouting
-      Loaded: loaded (/lib/systemd/system/frr.service; enabled; vendor preset: enabled)
-      Active: active (running) since Mon 2020-02-03 20:02:33 UTC; 3min 8s ago
-        Docs: https://frrouting.readthedocs.io/en/latest/setup.html
-      Process: 4675 ExecStart=/usr/lib/frr/frrinit.sh start (code=exited, status=0/SUCCESS)
-      Memory: 14.4M
-      CGroup: /system.slice/frr.service
-            ├─4685 /usr/lib/frr/watchfrr -d zebra bgpd staticd
-            ├─4701 /usr/lib/frr/zebra -d -M snmp -A 127.0.0.1 --v6-rr-semantics -s 90000000
-            ├─4705 /usr/lib/frr/bgpd -d -M snmp -A 127.0.0.1
-            └─4711 /usr/lib/frr/staticd -d -A 127.0.0.1
-```
-
 ## Adaptive Routing
 
 Adaptive routing is a load balancing feature that improves network utilization for adaptive routing eligible IP packets by selecting forwarding paths dynamically based on the state of the switch, such as queue occupancy and port utilization.
@@ -572,7 +532,7 @@ The benefits of using adaptive routing include:
 - The switch distributes incoming traffic equally (or according to their weights) between the available IP next hops, which helps to minimize latency and network congestion.
 - If the cumulative rate of one or more flows exceeds the link bandwidth of the individual uplink port, adaptive routing can distribute the traffic dynamically between multiple uplink ports; the available bandwidth for these flows is not limited to the link bandwidth of an individual uplink port.
 
-With adaptive routing, the switch forwards adaptive routing eligible packets to the less loaded path on a per packet basis to best utilize the fabric resources and avoid congestion. The change decision for port selection is set to one microsecond; you cannot change it.
+With adaptive routing, the switch forwards adaptive routing eligible packets to the less loaded path for each packet to best utilize the fabric resources and avoid congestion. The change decision for port selection is one microsecond; you cannot change it.
 
 Cumulus Linux supports ECMP resource optimization for adaptive routing, which addresses the requirement of large numbers of ECMP groups during routing protocol convergence in transient scenarios.
 
@@ -663,7 +623,7 @@ LAG hash randomizer is supported on a Spectrum-4 or later and only for static la
 
 Link utilization, when crossing a threshold, is one of the parameters in the adaptive routing decision. The default link utilization threshold percentage on an interface is 70. If you enable the adaptive routing `profile-custom`, you can change the percentage to a value between 1 and 100.
 
-Link utilization is off by default; you must enable the global link utilization setting to use the link utilization thresholds set on adaptive routing interfaces. You cannot enable or disable link utilization per interface.
+Link utilization is off by default; you must enable the global link utilization setting to use the link utilization thresholds set on adaptive routing interfaces. You cannot enable or disable link utilization for each interface.
 
 {{%notice note%}}
 - You can enable link utilization only when you enable the adaptive routing `profile-custom`.

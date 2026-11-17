@@ -4,19 +4,13 @@ author: NVIDIA
 weight: 286
 toc: 3
 ---
-Every security-relevant setting on a switch is provisioned during manufacturing and then assumed correct for the life of the unit. Provisioning is a write with no read back, so a switch operates normally with secure boot disabled or with a debug token installed, and nothing on the operational surface reports it.
+Manufacturing provisions every security-relevant setting on a switch, and everyone then assumes it is correct for the life of the unit. Provisioning is a write with no read back, so a switch operates normally with secure boot disabled or with a debug token installed, and nothing on the operational surface reports it.
 
-Cumulus Linux can collect the security configuration of the switch components and compare each value with the reference values for the platform. Use the security report to verify that a switch is provisioned securely, after manufacturing or during a field check.
+Cumulus Linux can collect the security configuration of the switch components and compare each value with the reference values for the platform. Use the security report to verify the security provisioning of a switch, after manufacturing or during a field check.
 
 {{%notice note%}}
 The security report is supported on SN6600-LD switches. On other platforms, `profile` shows `none` and `security-status` is `fail`.
 {{%/notice%}}
-
-<!-- REVIEW: this page and SPDM-Attestation.md are neighbours that a reader confuses easily - SPDM
-     attestation returns raw evidence and no verdict, this page returns a verdict. They belong
-     cross-referenced in both directions. No link shortcode is drafted because SPDM-Attestation.md
-     carries draft: true and does not publish, so a link resolving by its title breaks the build.
-     Add links in both pages when that page publishes. Delete this comment before publishing. -->
 
 The report covers these components:
 

@@ -5,7 +5,7 @@ weight: 1145
 toc: 4
 ---
 Cumulus Linux supports both <span class="a-tooltip">[SPAN](## "Switched Port Analyzer")</span> and <span class="a-tooltip">[ERSPAN](## "Encapsulated Remote SPAN")</span>.
-- SPAN mirrors all packets that come in from or go out of an interface (the *SPAN source*), and copy and transmit the packets out of a local port or CPU (the *SPAN destination*) for monitoring. The SPAN destination port is also referred to as a mirror-to-port (MTP). The original packet is still switched, while a mirrored copy of the packet goes out of the MTP.
+- SPAN mirrors all packets that come in from or go out of an interface (the *SPAN source*), and copy and transmit the packets out of a local port or CPU (the *SPAN destination*) for monitoring. A mirror-to-port (MTP) is another name for the SPAN destination port. The original packet is still switched, while a mirrored copy of the packet goes out of the MTP.
 - ERSPAN sends the mirrored packets to a monitoring node located anywhere across the routed network. The switch finds the outgoing port of the mirrored packets by looking up the destination IP address in its routing table. The switch encapsulates the original layer 2 packet with GRE for IP delivery. The encapsulated packets have the following format:
 
   ```
@@ -543,7 +543,7 @@ To mirror all forwarded TCP packets with only FIN set:
 
 ### ERSPAN and MLAG Bond Redirection
 
-In an MLAG environment, where the ERSPAN session destination IP address is reachable over an MLAG bond, you must disable bond redirection for ERSPAN encapsulated traffic to be sent over the peer link and reach the ERSPAN destination IP address in case the local MLAG link goes down.
+In an MLAG environment, where the ERSPAN session destination IP address is reachable over an MLAG bond, you must disable bond redirection so that the switch sends ERSPAN encapsulated traffic over the peer link and it reaches the ERSPAN destination IP address in case the local MLAG link goes down.
 
 {{%notice info%}}
 Disabling bond redirection:
@@ -554,7 +554,7 @@ Disabling bond redirection:
 {{< tabs "TabID544 ">}}
 {{< tab "NVUE Commands ">}}
 
-Add the following snippet, then patch and apply the configuration.  
+Add the following snippet, then patch and apply the configuration.
 
 ```
 cumulus@switch:~$ sudo nano /home/cumulus/apply_mlag_bond_redirection_snippet.yaml
@@ -642,7 +642,7 @@ cumulus@switch:~$ sudo cl-acltool -L all | grep SPAN
 
 ## Limitations
 
-- On a switch with the Spectrum-2 ASIC or later, Cumulus Linux supports four SPAN destinations in atomic mode or eight SPAN destinations in non-atomic mode. On a switch with the Spectrum 1 ASIC, Cumulus Linux supports only a single SPAN destination in atomic mode or three SPAN destinations in non-atomic mode.
+- On a switch with the Spectrum-2 ASIC or later, Cumulus Linux supports four SPAN destinations in atomic mode or eight SPAN destinations in non-atomic mode. On a switch with the Spectrum1 ASIC, Cumulus Linux supports only a single SPAN destination in atomic mode or three SPAN destinations in non-atomic mode.
 - Enabling WJH buffer drop monitoring consumes a SPAN destination; if you configure {{<link title="What Just Happened (WJH)" >}}, ensure that you do not exceed the total number of SPAN destinations allowed for your switch ASIC type.
 - Multiple SPAN sources can point to the same SPAN destination, but a SPAN source *cannot* specify two SPAN destinations.
 - Cumulus Linux does not support IPv6 ERSPAN destinations.

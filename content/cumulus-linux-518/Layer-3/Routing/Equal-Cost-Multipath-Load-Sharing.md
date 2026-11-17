@@ -7,7 +7,7 @@ toc: 3
 Cumulus Linux enables <span class="a-tooltip">[ECMP](## "Equal Cost Multi Path")</span> by default. Load sharing occurs automatically for IPv4 and IPv6 routes with multiple installed next hops. The hardware or the routing protocol configuration determines the maximum number of routes for which load sharing occurs.
 
 ECMP operates only on equal cost routes in the RIB. For Cumulus Linux to consider routes equal, the routes must:
-- Originate from the same routing protocol. Routes from different sources are not considered equal. For example, a static route and an OSPF route are not considered for ECMP load sharing.
+- Originate from the same routing protocol. ECMP does not consider routes from different sources equal. For example, ECMP does not load share between a static route and an OSPF route.
 - Have equal cost. If two routes from the same protocol are unequal, only the best route installs in the routing table.
 
 When multiple routes are in the routing table, a hash determines through which path a packet follows. To prevent out of order packets, ECMP hashes on a per-flow basis; all packets with the same source and destination IP addresses and the same source and destination ports always hash to the same next hop. ECMP hashing does not keep a record of packets that hash to each next hop and does not guarantee that traffic to each next hop is equal.
@@ -123,7 +123,7 @@ switch# show nexthop-group global grp2 json
 
 You can configure custom hashing to specify what to include in the hash calculation during load balancing between:
 - Multiple next hops of a layer 3 route (ECMP hashing).
-- Multiple interfaces that are members of the same bond (bond or LAG hashing). For bond hashing, see {{<link url="Bonding-Link-Aggregation/#load-balancing" text="Bonding - Link Aggregation" >}}.
+- Multiple interfaces that are members of the same bond (bond or LAG hashing). For bond hashing, see {{<link url="Bonding-Link-Aggregation/#custom-hashing" text="Bonding - Link Aggregation" >}}.
 
 For ECMP load balancing between multiple next hops of a layer 3 route, you can hash on these fields:
 
@@ -413,7 +413,7 @@ Cumulus Linux does *not* enable resilient hashing by default. When you enable re
 An ECMP route counts as a single route with multiple next hops.
 {{%/notice%}}
 
-All ECMP routes must use the same number of buckets (you cannot configure the number of buckets per ECMP route).
+All ECMP routes must use the same number of buckets (you cannot configure the number of buckets for each ECMP route).
 
 {{%notice note%}}
 A larger number of ECMP buckets reduces the impact on adding new next hops to an ECMP route. However, the system supports fewer ECMP routes. If you install the maximum number of ECMP routes, new ECMP routes log an error and do not install.
@@ -450,7 +450,7 @@ Cumulus Linux does not provide NVUE commands for this setting.
    # resilient_hash_entries_ecmp = 64
    ```
 
-2. {{<link url="Configuring-switchd#restart-switchd" text="Restart">}} the `switchd` service:
+2. {{<link url="Configuring-switchd#configure-switchd-settings" text="Restart">}} the `switchd` service:
 <!-- vale off -->
 {{<cl/restart-switchd>}}
 <!-- vale on -->
@@ -523,7 +523,7 @@ The benefits of using adaptive routing include:
 - The switch distributes incoming traffic equally (or according to their weights) between the available IP next hops, which helps to minimize latency and network congestion.
 - If the cumulative rate of one or more flows exceeds the link bandwidth of the individual uplink port, adaptive routing can distribute the traffic dynamically between multiple uplink ports; the available bandwidth for these flows is not limited to the link bandwidth of an individual uplink port.
 
-With adaptive routing, the switch forwards adaptive routing eligible packets to the less loaded path on a per packet basis to best utilize the fabric resources and avoid congestion. The change decision for port selection is set to one microsecond; you cannot change it.
+With adaptive routing, the switch forwards adaptive routing eligible packets to the less loaded path for each packet to best utilize the fabric resources and avoid congestion. The change decision for port selection is set to one microsecond; you cannot change it.
 
 Cumulus Linux supports ECMP resource optimization for adaptive routing, which addresses the requirement of large numbers of ECMP groups during routing protocol convergence in transient scenarios.
 
@@ -614,7 +614,7 @@ LAG hash randomizer is supported on a Spectrum-4 or later and only for static la
 
 Link utilization, when crossing a threshold, is one of the parameters in the adaptive routing decision. The default link utilization threshold percentage on an interface is 70. If you enable the adaptive routing `profile-custom`, you can change the percentage to a value between 1 and 100.
 
-Link utilization is off by default; you must enable the global link utilization setting to use the link utilization thresholds set on adaptive routing interfaces. You cannot enable or disable link utilization per interface.
+Link utilization is off by default; you must enable the global link utilization setting to use the link utilization thresholds set on adaptive routing interfaces. You cannot enable or disable link utilization for each interface.
 
 {{%notice note%}}
 - You can enable link utilization only when you enable the adaptive routing `profile-custom`.

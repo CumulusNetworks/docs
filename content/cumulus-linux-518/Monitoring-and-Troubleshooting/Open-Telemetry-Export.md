@@ -21,7 +21,7 @@ cumulus@switch:~$ nv set system telemetry export otlp state enabled
 cumulus@switch:~$ nv config apply
 ```
 
-When you enable open telemetry, the switch collects and exports [system information](#system-information-format) metrics to the configured external collector by default. In addition, you can enable open telemetry to collect and export [interface statistics](#interface-statistics), [buffer statistics](#buffer-statistics), [histogram data](#histogram-data), [control plane statistics](#control-plane-statistics), [platform statistics](#platform-statistics), and [routing metrics](#router-statistics).
+When you enable open telemetry, the switch collects and exports [system information](#system-information-format) metrics to the configured external collector by default. In addition, you can enable open telemetry to collect and export [interface statistics](#interface-statistics), [buffer statistics](#buffer-statistics), [histogram data](#histogram-data), [control plane statistics](#control-plane-statistics), [platform statistics](#platform-statistics), and [routing metrics](#routing-metrics).
 
 ### ACL Statistics
 
@@ -1119,7 +1119,7 @@ The switch collects and exports the adaptive routing, SRv6, and packet trimming 
 | `nvswitch_interface_tc_trimmed_unicast_pkts [interface][tc]`| Number of packets that were trimmed on the interface and traffic class.|
 
 {{%notice note%}}
-`nvswitch_ar_congestion_changes` is a cumulative counter that only increases. Adaptive routing selects an egress port for each packet, so the counter tracks packet forwarding rather than congestion:
+`nvswitch_ar_congestion_changes` is a cumulative counter that only increases. Adaptive routing selects an egress port for each packet, so the counter tracks packet forwarding instead of congestion:
 
 - The counter increments at least once for every eligible packet that leaves an ECMP port with adaptive routing enabled. Traffic that is eligible for adaptive routing, such as RoCEv2, increments the counter. The counter stays flat when the ports are idle or carry only TCP traffic.
 - Congestion events and link-down events do not increment the counter. The counter shows no distinct jump when either occurs, and it does not stop increasing during sustained congestion.
@@ -1582,7 +1582,7 @@ When you enable control plane statistic telemetry, the switch exports the follow
 
 ### Histogram Data Format
 <!-- vale on -->
-The histogram data samples that the switch exports to the OTEL collector are {{<exlink url="https://opentelemetry.io/docs/specs/otel/metrics/data-model/#histogram" text="histogram data points">}} that include the {{<link url="ASIC-Monitoring#histogram-collection-example" text="histogram bucket (bin)">}} counts and the respective queue length size boundaries for each bucket. Latency and counter histogram data are also exported, if configured.
+The histogram data samples that the switch exports to the OTEL collector are {{<exlink url="https://opentelemetry.io/docs/specs/otel/metrics/data-model/#histogram" text="histogram data points">}} that include the {{<link url="ASIC-Monitoring#histogram-collection-example" text="histogram bucket (bin)">}} counts and the respective queue length size boundaries for each bucket. The switch also exports latency and counter histogram data, if configured.
 
 {{% notice note %}}
 Latency histogram bucket counts do not increment in exported telemetry data if there are no packets transmitted in the traffic class during the sample interval.

@@ -107,7 +107,7 @@ Back up `frr.conf` (or any configuration files you want to remove) before procee
 
 ## Interface IP Addresses and VRFs
 
-FRR inherits the IP addresses and any associated routing tables for the network interfaces from the `/etc/network/interfaces` file. This is the recommended way to define the addresses; do **not** create interfaces using FRR. For more information, see {{<link url="Interface-Configuration-and-Management/#configure-ip-addresses" text="Configure IP Addresses">}} and {{<link url="Virtual-Routing-and-Forwarding-VRF">}}.
+FRR inherits the IP addresses and any associated routing tables for the network interfaces from the `/etc/network/interfaces` file. NVIDIA recommends you define the addresses this way; do **not** create interfaces using FRR. For more information, see {{<link url="Interface-Configuration-and-Management/#interface-ip-addresses" text="Configure IP Addresses">}} and {{<link url="Virtual-Routing-and-Forwarding-VRF">}}.
 
 ## vtysh Modal CLI
 
@@ -580,8 +580,6 @@ cumulus@switch:~$ nv set router allow-reserved-range class-e
 cumulus@switch:~$ nv config apply
 ```
 
-<!-- REVIEW: the spec states NVUE rejects any allow-reserved-range entry other than class-e, but does not show the full command syntax or confirm whether the argument is a single value or a list. Drafted as a single accepted value. Confirm against a candidate build. -->
-
 To stop allowing Class E as routable address space, run the `nv unset router allow-reserved-range class-e` command.
 
 {{%notice note%}}
@@ -603,7 +601,7 @@ swp1: 241.1.1.1/32 is in the reserved class-e range - set router allow-reserved-
 
 There is no `nv show router allow-reserved-range class-e` command. Instead, the switch prints the warning described above each time you apply a Class E address on an interface while you do not allow Class E.
 
-You can verify that Class E is working end to end with the same commands you use for any other address range. Confirm that the address and its connected route appear for the interface, and confirm the BGP session establishes and routes install, as described in {{<link url="Border-Gateway-Protocol-BGP" text="Border Gateway Protocol (BGP)">}} and {{<link url="Interface-Configuration-and-Management/#configure-ip-addresses" text="Configure IP Addresses">}}.
+You can verify that Class E is working end to end with the same commands you use for any other address range. Confirm that the address and its connected route appear for the interface, and confirm the BGP session establishes and routes install, as described in {{<link url="Border-Gateway-Protocol-BGP" text="Border Gateway Protocol (BGP)">}} and {{<link url="Interface-Configuration-and-Management/#interface-ip-addresses" text="Configure IP Addresses">}}.
 
 ### Troubleshoot Class E Address Space
 
@@ -683,27 +681,10 @@ The default setting of 1024 open files supports up to 512 BGP peering sessions. 
 NVIDIA recommends you set the value to at least twice the maximum number of BGP peering sessions you expect.
 {{%/notice%}}
 
-<!-- REVIEW: the specification gives two incompatible forms of this command, with different meanings.
-     Its Introduction, Purpose, Scope, Overview, Solution, System design and Observability sections
-     all give a single global knob, `nv set router resource-limit max-file-descriptors <value>`; its
-     Configuration and NVUE config tree sections give a per-protocol knob,
-     `nv set router <protocol> max-fds <value>`, with worked examples for bgp and ospf. Drafted the
-     global form because the mechanism the specification describes can only be global: NVUE renders
-     one MAX_FDS line into /etc/frr/daemons and the FRR startup wrapper applies it with ulimit -n to
-     the shell that launches every daemon, and the specification states "there is no protocol to
-     daemon mapping" and "no FRR change is required". Confirm against a candidate build before
-     publishing. Delete this comment before publishing. -->
-
-<!-- REVIEW: the specification does not say whether the NVUE limit works on its own or whether the
-     systemd LimitNOFILE value in the Linux tab must be raised to at least the same number. Both tabs
-     are therefore presented as they are, with no claim that one replaces the other. Confirm the
-     interaction, and if NVUE alone is sufficient, say so and demote the Linux tab. Delete this
-     comment before publishing. -->
-
 {{< tabs "TabID674 ">}}
 {{< tab "NVUE Commands ">}}
 
-To set the maximum number of open file descriptors for the FRR routing daemons, run the `nv set router resource-limit max-file-descriptors <value>` command. You can specify a value between 1024 and 65536. The default value is 2048. The recommended value is 16384. The setting applies to every daemon that FRR starts, such as `bgpd`, `ospfd`, and `pimd`.
+To set the maximum number of open file descriptors for the FRR routing daemons, run the `nv set router resource-limit max-file-descriptors <value>` command. You can specify a value between 1024 and 65536. The default value is 2048. NVIDIA recommends a value of 16384. The setting applies to every daemon that FRR starts, such as `bgpd`, `ospfd`, and `pimd`.
 
 ```
 cumulus@switch:~$ nv set router resource-limit max-file-descriptors 8192

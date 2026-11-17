@@ -366,7 +366,6 @@ Cumulus Linux does not support DIP-based multicast forwarding. Do not configure 
 
 ## Related Information
 
-- {{<exlink url="http://en.wikipedia.org/wiki/IGMP_snooping" text="Wikipedia entry for IGMP snooping">}}
 - {{<exlink url="http://tools.ietf.org/rfc/rfc2236.txt" text="RFC 2236">}}
 - {{<exlink url="http://tools.ietf.org/html/rfc3376" text="RFC 3376">}}
 - {{<exlink url="http://tools.ietf.org/html/rfc3810" text="RFC 3810">}}

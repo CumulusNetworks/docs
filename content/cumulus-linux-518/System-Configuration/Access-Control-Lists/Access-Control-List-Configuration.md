@@ -13,7 +13,7 @@ Cumulus Linux provides several tools to configure <span class="a-tooltip">[ACLs]
 
 ### Chains
 
-ACLs in Cumulus Linux classify and control packets to, from, and across the switch, asserting policies at layer 2, 3 and 4 of the {{<exlink url="https://en.wikipedia.org/wiki/OSI_model" text="OSI model">}} by inspecting packet and frame headers according to a list of rules. The `iptables`, `ip6tables`, and `ebtables` userspace applications provide syntax you use to define rules.
+ACLs in Cumulus Linux classify and control packets to, from, and across the switch, asserting policies at layer 2, 3 and 4 of the OSI model by inspecting packet and frame headers according to a list of rules. The `iptables`, `ip6tables`, and `ebtables` userspace applications provide syntax you use to define rules.
 
 The rules inspect or operate on packets at several points (*chains*) in the life of the packet through the system:
 
@@ -340,7 +340,7 @@ cumulus@switch:~$ nv unset interface swp1 acl EXAMPLE1
 cumulus@switch:~$ nv config apply
 ```
 
-To show ACL statistics per interface, such as the total number of bytes that match the ACL rule, run the `nv show interface <interface-id> acl <acl-id> statistics` or `nv show interface <interface-id> acl <acl-id> statistics <rule-id>` command.
+To show ACL statistics for each interface, such as the total number of bytes that match the ACL rule, run the `nv show interface <interface-id> acl <acl-id> statistics` or `nv show interface <interface-id> acl <acl-id> statistics <rule-id>` command.
 
 To see the list of all NVUE ACL commands, run the `nv list-commands acl` command.
 
@@ -432,7 +432,7 @@ You can use wildcards or variables to specify chain and interface lists.
 
 {{%notice note%}}
 - You can only use *swp+* and *bond+* as wildcard names.
-- swp+ rules apply as an aggregate, *not* per port. If you want to apply per port policing, specify a specific port instead of the wildcard.
+- swp+ rules apply as an aggregate, *not* for each port. If you want to apply policing to each port, specify a specific port instead of the wildcard.
 {{%/notice%}}
 
 ```
@@ -642,8 +642,8 @@ Cumulus Linux does not offload `conntrack` or `--ctstate` ACL matches to switch 
 
 ### Other Unsupported Rules
 
-- Rules that have no matches and accept all packets in a chain are currently ignored.
-- Chain default rules (that are ACCEPT) are also ignored.
+- Cumulus Linux currently ignores rules that have no matches and accept all packets in a chain.
+- Cumulus Linux also ignores chain default rules (that are ACCEPT).
 
 #### Considerations
 
@@ -1046,7 +1046,7 @@ Rule  In Packet  In Byte  Out Packet  Out Byte  Summary
 
 ### Set DSCP on Transit Traffic
 
-The following examples use the *mangle* table to modify the packet as it transits the switch. DSCP is in {{<exlink url="https://en.wikipedia.org/wiki/Differentiated_services#Configuration_guidelines" text="decimal notation">}} in the examples below.
+The following examples use the *mangle* table to modify the packet as it transits the switch. DSCP is in decimal notation in the examples below.
 
 {{< tabs "1015 ">}}
 {{< tab "NVUE Commands ">}}
@@ -1749,7 +1749,7 @@ You cannot forward logged packets. The hardware cannot both forward a packet and
 
 ### SPAN Sessions that Reference an Outgoing Interface
 
-SPAN sessions that reference an outgoing interface create mirrored packets based on the ingress interface before the routing/switching decision. See {{<link url="SPAN-and-ERSPAN#span-sessions-that-reference-an-outgoing-interface" text="SPAN Sessions that Reference an Outgoing Interface">}} and {{<link url="SPAN-and-ERSPAN/#use-the-cpu-port-as-the-span-destination" text="Use the CPU Port as the SPAN Destination">}} in the Network Troubleshooting section.
+SPAN sessions that reference an outgoing interface create mirrored packets based on the ingress interface before the routing/switching decision. See {{<link url="SPAN-and-ERSPAN#span" text="SPAN Sessions that Reference an Outgoing Interface">}} and {{<link url="SPAN-and-ERSPAN/#cpu-port-as-the-span-destination" text="Use the CPU Port as the SPAN Destination">}} in the Network Troubleshooting section.
 <!-- vale off -->
 ### iptables Interactions with cl-acltool
 <!-- vale on -->

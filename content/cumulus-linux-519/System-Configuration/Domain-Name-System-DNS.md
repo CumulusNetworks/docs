@@ -166,7 +166,7 @@ To remove a source interface, run the `nv unset system dns server <dns-server-id
 To remove only the explicit address and return the interface to automatic selection, run the `nv unset system dns server <dns-server-id> source-interface <interface-id> address` command. The source interface remains configured.
 
 {{%notice note%}}
-A command that deletes an address a nameserver uses as its source stages successfully, but the apply fails. The error names both the address and the nameserver using it, and the address remains on the switch. To remove the address, remove or repoint the DNS source in the same `nv config apply`; NVUE evaluates the final state rather than the individual commands.
+A command that deletes an address a nameserver uses as its source stages successfully, but the apply fails. The error names both the address and the nameserver using it, and the address remains on the switch. To remove the address, remove or repoint the DNS source in the same `nv config apply`; NVUE evaluates the final state instead of the individual commands.
 
 This protection covers changes you make with NVUE. If something outside NVUE deletes the address, or a DHCP lease for the address expires or changes, queries to that nameserver fail to bind and fail over to the next nameserver.
 {{%/notice%}}

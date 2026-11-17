@@ -100,11 +100,11 @@ option cumulus-provision-url code 239 = text;
 ZTP runs DHCP on all the front panel switch ports and on any active interface. ZTP assesses the list of active ports on every retry cycle. When it receives the DHCP lease and option 239 is present in the response, ZTP starts to execute the script.
 
 {{%notice note%}}
-During first boot after ONIE upgrade or install, the ZTP process brings up all front panel interfaces and management interfaces to enable DHCP to find ZTP scripts. The interfaces remain in the `Oper UP` state until the switch is configured, the ZTP process completes successfully, or the ZTP process terminates. If you use a different configuration tool that ZTP does not invoke, all the front panel interfaces might remain in the `Oper UP` state and not configured for some time resulting in connected devices dropping traffic in some network configurations. To avoid this issue, use one of the following workarounds:
+During first boot after ONIE upgrade or install, the ZTP process brings up all front panel interfaces and management interfaces to enable DHCP to find ZTP scripts. The interfaces remain in the `Oper UP` state until you configure the switch, the ZTP process completes successfully, or the ZTP process terminates. If you use a different configuration tool that ZTP does not invoke, all the front panel interfaces might remain in the `Oper UP` state and not configured for some time resulting in connected devices dropping traffic in some network configurations. To avoid this issue, use one of the following workarounds:
 - Configure a ZTP server and script that starts the current provisioning script with a shorter window for interfaces to remain unconfigured and up.
 - Modify the provisioning script to terminate the ZTP process at the beginning and bring down all the interfaces.
 - Send the ONIE installer an empty ZTP script with the `nv action install system image onie <image> ztp <URL_to_empty_ztp_script>` or `onie-install -z <URL_to_empty_ztp_script>` command. The following example shows an empty ZTP script:
-  
+
   ```
   #!/bin/sh
   #CUMULUS-AUTOPROVISIONING
@@ -353,10 +353,10 @@ cumulus@switch:~$ nv set system log ztp messages state enabled
 cumulus@switch:~$ nv config apply
 ```
 
-To return the setting to its default, run the `nv unset system log ztp messages state` command:
+To return the setting to its default, run the `nv unset system log ztp messages` or `nv unset system log ztp messages state` command:
 
 ```
-cumulus@switch:~$ nv unset system log ztp messages state
+cumulus@switch:~$ nv unset system log ztp messages
 cumulus@switch:~$ nv config apply
 ```
 
@@ -364,7 +364,7 @@ cumulus@switch:~$ nv config apply
 On a switch with more than one ASIC, disabling this setting stops ZTP messages from every ASIC namespace from appearing on the console, not only the host namespace.
 {{%/notice%}}
 
-To show the current setting, run the `nv show system log ztp messages` command.
+To show the current setting, run the `nv show system log ztp` or `nv show system log ztp messages` command.
 
 ## Write ZTP Scripts
 

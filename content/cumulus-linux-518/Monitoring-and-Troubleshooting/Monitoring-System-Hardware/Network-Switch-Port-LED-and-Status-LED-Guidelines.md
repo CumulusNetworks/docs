@@ -10,7 +10,7 @@ Data centers today have many network switches manufactured by different hardware
 
 A network port LED indicates the state of the link, such as link UP or transmit and receive activity. Here are the requirements for these LEDs:
 
-- **Number of LEDs per port** - Ports that you cannot split must have 1 LED per port. Ports that you can split have 1 LED per split port. For example, a 40G port that you can split into 4 10G ports has 4 LEDs, one per split port.
+- **Number of LEDs for each port** - Ports that you cannot split must have 1 LED for each port. Ports that you can split have 1 LED for each split port. For example, a 40G port that you can split into 4 10G ports has 4 LEDs, one for each split port.
 - **Location** - A port LED must be right above the port. This prevents drooping cables from hiding them. If you can split the port, the LED for each split port must also be above the port. To prevent confusion, you must space the LEDs evenly and inside the edges of the ports.
 - **Port Number Label** - You must print the port number in white on the switch front panel directly under the corresponding LED.
 - **Colors** - As network port technology improves with smaller ports and higher speeds, having different colors for different types of ports or speeds is confusing. Focus on providing a simple set of indications that show basic information about the port. Use green and amber colors on the LED to differentiate between good and bad states. These colors are commonly on network port LEDs and you can  implement them easily on future switches.
@@ -34,7 +34,7 @@ A network port LED indicates the state of the link, such as link UP or transmit 
 ## Status LEDs
 
  One side of a network switch has a set of status LEDs. The status LEDs provide a visual indication on what is physically wrong with the network switch. Typical LEDs on the front panel are for PSUs (power supply units), fans, and system. Locator LEDs are also on the front panel of a switch. Each component that has an LED is a *unit*.
-- **Number of LEDs per unit** - Each unit must have only 1 LED.
+- **Number of LEDs for each unit** - Each unit must have only 1 LED.
 - **Location** - All units must have their LEDs on the right-hand side of the switch after the physical ports.
 - **Unit label** - You must print the label on the front panel directly above the LED.
 - **Colors** - Provide a simple set of indications that show basic information about the unit. The following section has more information about the indications, but the standard colors are green and amber. You find these colors universally on all status LEDs.

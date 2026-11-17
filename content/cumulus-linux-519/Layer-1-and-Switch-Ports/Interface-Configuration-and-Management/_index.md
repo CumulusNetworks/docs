@@ -12,7 +12,7 @@ Cumulus Linux (including NVUE) uses ifupdown2 to manage network interfaces, whic
 ## Bring an Interface Up or Down
 
 An interface status can be in an:
-- Administrative state, where you configure the interface to be up or down. The administrative state reflects the intended configuration set by an administrator or management system. It indicates whether the interface is meant to be enabled or disabled. 
+- Administrative state, where you configure the interface to be up or down. The administrative state reflects the intended configuration set by an administrator or management system. It indicates whether the interface is meant to be enabled or disabled.
 - Operational state, which reflects the current operational status of an interface. The operational state reflects the actual current status of the interface, taking into account physical and logical conditions.
 
 The carrier state is the lower layer state of an interface. For a switch port, the carrier state represents if the switch port is enabled at the ASIC level and a cable connects successfully. For a virtual interface, the carrier state involves the operational state of lower-level interfaces. For example, for a VLAN interface, the carrier state depends on the underlying bridge device operational state.
@@ -686,7 +686,7 @@ When a link transitions up or down, the debounce timer starts. The switch report
 
 {{%notice note%}}
 - You can configure link debounce timers on physical switch ports only.
-- The maximum debounce timer values are limited by SDK capabilities (5000ms).
+- The SDK limits the maximum debounce timer values to 5000ms.
 - NVIDIA recommends that you use identical or similar debounce timer values on both ends of the link.
 - Link debounce and link flap protection are complementary features that work at different time scales. Link debounce filters transient noise and micro-interruptions whereas link flap protection detects excessive legitimate state transitions and protects the system by placing the interface into a protodown state. If you configure both features, set the link flap protection interval to be significantly larger than the debounce timers to ensure proper coordination.
 {{%/notice%}}
@@ -696,7 +696,7 @@ To configure the link debounce timers, run the commands below. The hold timers a
 {{< tabs "TabID837 ">}}
 {{< tab "NVUE Commands ">}}
 
-Run the `nv set interface <interface> link debounce up` and `nv set interface <interface> link debounce down` commands.
+Run the `nv set interface <interface-id> link debounce up` and `nv set interface <interface-id> link debounce down` commands.
 If you configure one direction only, the other direction uses the default value of 10 milliseconds.
 
 ```
@@ -705,7 +705,7 @@ cumulus@switch:~$ nv set interface swp1 link debounce down 1000
 cumulus@switch:~$ nv config apply
 ```
 
-To unset the link debounce hold timers, run the `nv unset interface <interface> link debounce` command.
+To unset the link debounce hold timers, run the `nv unset interface <interface-id> link debounce` command.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -825,16 +825,16 @@ Tx squelch control is a PHY‑level feature that controls if the local port cont
 {{< tabs "TabID773 ">}}
 {{< tab "NVUE Commands ">}}
 
-To enable Tx squelch control, run the `nv set interface <interface> link tx-squelch enabled` command. The default setting is `auto`, which enables the switch to decide the correct configuration.
+To enable Tx squelch control, run the `nv set interface <interface-id> link tx-squelch enabled` command. The default setting is `auto`, which enables the switch to decide the correct configuration.
 
 ```
 cumulus@switch:~$ nv set interface swp1 link tx-squelch enabled 
 cumulus@switch:~$ nv config apply
 ```
 
-To disable Tx squelch control, run the `nv set interface <interface> link tx-squelch disabled` command.
+To disable Tx squelch control, run the `nv set interface <interface-id> link tx-squelch disabled` command.
 
-To show if Tx squelch control is enabled, run the `nv show interface <interface> link` command:
+To show if Tx squelch control is enabled, run the `nv show interface <interface-id> link` command:
 
 ```
 cumulus@switch:~$ nv show interface swp1 link
@@ -885,19 +885,19 @@ To configure and enable link tracking:
 - Create a link tracking group with the set of links (watch interfaces) that you want to monitor.
   - You can only configure switch port (swp) interfaces that already exist.
   - A group name must be between 1 and 16 characters long. You can use alphanumeric characters, hyphens (-), and underscores (_).
-- Set the minimum number of watch interfaces for each group that must be operationally up to keep the associated target interfaces active. 
+- Set the minimum number of watch interfaces for each group that must be operationally up to keep the associated target interfaces active.
   - The minimum number of links must not exceed the number of interfaces configured in the group.
   - The default value is 1 when the group has at least one watch interface.
-- Associate target interfaces with the link tracking group. These are the interfaces that depend on the health of the watch interfaces in the group. 
+- Associate target interfaces with the link tracking group. These are the interfaces that depend on the health of the watch interfaces in the group.
   - The interface must be a switch port (swp).
   - You cannot configure an interface as both a watch interface and a target interface.
 - Specify the action each group takes when the number of operationally up watch interfaces drops below the minimum threshold. When the number of operationally up watch interfaces meets or exceeds the threshold again, the switch clears the action and restores the target interfaces. You can set the following actions:
   -  `protodown-target-interface` marks the target interfaces as protodown so that the switch does not forward traffic to downstream devices over those links. This is the default action.
   - `control-plane-action` notifies the control plane to reroute traffic away from the affected plane.
 
-When you configure and enable link tracking, the `ifplugd` service starts. The `ifplugd-resync-config-change` service restarts and synchronizes the protodown state of the target interfaces based on their link tracking group configuration. When you disable link tracking, the `ifplugd` service stops.
+NVUE writes the link tracking configuration to the `/etc/cumulus/link-tracking.conf` file and reloads the `link-tracking.service`. The `link-trackingd` daemon that this service runs manages the runtime behavior: it starts the `ifplugd` service to monitor the watch interfaces, updates `/etc/default/ifplugd`, and sets or clears the link tracking protodown reason on the target interfaces when the health of a group changes. The daemon also synchronizes the protodown state of the target interfaces with the group configuration after you change the configuration, restart the service, reboot the switch, or upgrade the switch. When you disable link tracking, the `ifplugd` service stops.
 
-The following example configures two groups: 
+The following example configures two groups:
 - GROUP1 sets the watch interfaces to swp17, swp19, and swp21, and the minimum number of watch interfaces that must be operationally up to 1. The target interfaces are swp7 and swp15, and the action is `control-plane-action`.
 - GROUP2 sets the watch interfaces to swp17, swp24, swp25, and swp31 and the minimum number of watch interfaces that must be operationally up to 2. The target interface is swp8 and the action is `protodown-target-interface`.
 
@@ -920,97 +920,28 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the following configuration files:
+Edit the `/etc/cumulus/link-tracking.conf` file to configure link tracking groups and actions. The `link-trackingd` daemon, which the `link-tracking.service` runs, derives the watch interfaces from this file and manages `/etc/default/ifplugd` and the `ifplugd` service for you. Do not edit `/etc/default/ifplugd`.
 
-- `/etc/default/ifplugd` sets the watch interfaces to monitor for link state changes.
-- `/etc/ifplugd/link-tracking.conf` configures link tracking groups and actions.
+The example configuration below configures link tracking to bring down all target interfaces when the watch interfaces of a group go down.
 
-The example configuration below configures `ifplugd` to bring down all uplinks when the peer bond goes down in an MLAG environment.
-
-1. Edit `/etc/default/ifplugd` in a text editor to configure the watch interfaces to monitor for link state changes. The example below configures interface swp17, swp19, swp21, swp24, swp25, and swp31.
-    
-```
-    # ifplugd Configuration for Link Tracking
-#
-# Usage:
-#   Sourced by /etc/init.d/ifplugd and /lib/udev/ifplugd.agent
-#   to set default values.
-#
-# Interface Lists:
-#   - INTERFACES: Interfaces to be monitored by ifplugd
-#   - HOTPLUG_INTERFACES: Interfaces monitored on hotplug (typically empty)
-
-# Watch interfaces to monitor for link state changes
-INTERFACES="swp17 swp19 swp21 swp24 swp25 swp31"
-
-HOTPLUG_INTERFACES=""
-
-# ifplugd Arguments:
-# -p: Don't run action script on daemon startup (we run sync once after config
-#     apply. ifplugd then only runs the script on link state changes)
-# -q: Don't run script on daemon shutdown
-# -f: Ignore detection failures (continue running if detection fails)
-# -u0: Delay after link up = 0 seconds (immediate action)
-# -d1: Delay after link down = 1 second (brief delay to avoid flaps)
-# -w: Wait until daemon forks (synchronous startup)
-# -I: Don't exit on nonzero return values from action script
-#
-# Note: These values balance responsiveness with flap protection.
-#       Adjust delays if needed for your environment.
-ARGS="-p -q -f -u0 -d1 -w -I"
-
-SUSPEND_ACTION="stop"
-```
-
-2. Edit the `/etc/ifplugd/link-tracking.conf` file in a text editor to configure link tracking groups. The following example configures GROUP1 and GROUP2.
+1. Edit the `/etc/cumulus/link-tracking.conf` file in a text editor. The file uses `key = value` lines. The `group_list` key lists the groups, and each group has a watch interface set, a target interface set, a minimum number of links, and a state change action. The following example configures GROUP1 and GROUP2.
 
 ```
-# Link Tracking Group Configuration
-#
-# Purpose:
-#   Map watch interfaces to target interfaces for tracking.
-#   Read by /etc/ifplugd/ifplugd.action to manage target interfaces when
-#   watch interfaces fail.
-#
-# Format:
-#   GROUP_ID|WATCH_INTERFACES|TARGET_INTERFACES|MIN_LINKS|state-change-action
-#   GROUP_ID:            Unique identifier for the tracking group
-#   WATCH_INTERFACES:    comma-separated interfaces to monitor
-#   TARGET_INTERFACES:   comma-separated interfaces to manage
-#   MIN_LINKS:           minimum watch interfaces that must be up (default 1)
-#   state-change-action: protodown-target-interface or control-plane-action
-#
-# Example:
-#   group-1|swp1,swp2|swp10,swp11|1|protodown-target-interface
-#
-GROUP1|swp17,swp19,swp21|swp15,swp7|1|control-plane-action
-GROUP2|swp17,swp24,swp25,swp31|swp8|2|protodown-target-interface
-
-$ cat /etc/ifplugd/ifplugd-link-tracking.conf
-# Auto-generated by NVUE!
-# Any local modifications will prevent NVUE from re-generating this file.
-# md5sum: 79d87d9a2553351580a38b16e1878267
-# ifplugd Link Tracking Maintenance
-#
-# Sourced by ifplugd-resync-config-change.service on restart (triggered by NVUE).
-#
-# CLEAR_TARGET_INTERFACES:
-#   Space-separated list of target interfaces from which to clear the
-#   link-tracking protodown reason. Other protodown reasons are unchanged.
-#
-# SYNC_GROUPS:
-#   When "yes", sync protodown state for all link tracking groups by
-#   invoking /etc/ifplugd/action.d/99_link_tracking --all-groups after clear.
-#   When "no", skip group sync.
-
-CLEAR_TARGET_INTERFACES=""
-SYNC_GROUPS="yes"
+link_tracking.group_list = [GROUP1,GROUP2]
+link_tracking.GROUP1.watch_interface_set = swp17,swp19,swp21
+link_tracking.GROUP1.target_interface_set = swp7,swp15
+link_tracking.GROUP1.min_links = 1
+link_tracking.GROUP1.state_change_action = control-plane-action
+link_tracking.GROUP2.watch_interface_set = swp17,swp24,swp25,swp31
+link_tracking.GROUP2.target_interface_set = swp8
+link_tracking.GROUP2.min_links = 2
+link_tracking.GROUP2.state_change_action = protodown-target-interface
 ```
 
-3. Restart the `ifplugd` daemon to implement the changes:
+2. Reload the `link-tracking.service` to apply the changes. The `link-trackingd` daemon reads the file, updates `/etc/default/ifplugd`, starts, restarts, or stops `ifplugd` as needed, and sets or clears the link tracking protodown reason on the target interfaces:
 
 ```
-cumulus@switch:~$ sudo systemctl restart ifplugd.service
+cumulus@switch:~$ sudo systemctl reload link-tracking.service
 ```
 
 {{< /tab >}}
@@ -1018,9 +949,20 @@ cumulus@switch:~$ sudo systemctl restart ifplugd.service
 
 ### Upgrade Notes
 
-If you installed and configured {{<link url="ifplugd" text="ifplugd">}} manually in Cumulus Linux 5.17 or earlier, Cumulus Linux 5.18 or later preserves the existing `ifplugd` configuration and behavior after optimized image upgrade. The configuration includes manual configuration in `/etc/default/ifplugd` and custom action scripts under `/etc/ifplugd/action.d/`. If the `ifplugd` service is running before upgrade, the service continues to run and actively manage interfaces. No additional action is required while link tracking remains disabled. Link tracking in Cumulus Linux 5.18 or later is disabled by default.
+In Cumulus Linux 5.19, the link tracking configuration file and the way Cumulus Linux manages the `ifplugd` configuration changed. Your NVUE link tracking configuration does not change and you do not need to reconfigure anything.
+- The configuration file moved from `/etc/ifplugd/link-tracking.conf` to `/etc/cumulus/link-tracking.conf`. The format changed from one pipe-delimited line for each group to `key = value` lines. NVUE renders the new file the first time you run `nv config apply` after the upgrade.
+- NVUE no longer renders `/etc/default/ifplugd`. The `link-trackingd` daemon sets the `INTERFACES` list from the watch interfaces in `/etc/cumulus/link-tracking.conf`, including watch interfaces you configure with a snippet, and keeps the other `ifplugd` settings unchanged.
+- When the switch boots into 5.19, `link-trackingd` converges the switch to the configuration, including clearing any stale link tracking protodown state.
+- During upgrade to Cumulus Linux 5.19, the upgrade process does not carry forward customized `/etc/ifplugd/action.d/ifupdown` and `/etc/default/ifplugd` files by default. The switch uses the default configurations from the new image instead. To preserve customizations, add a carry-forward entry for each required file in a configuration file under `/etc/cumulus/upgrade-carry-forward.d/` on the partition from which you are upgrading. For example:
 
-After you enable and apply link tracking in Cumulus Linux 5.18 or later, feature-managed configuration takes precedence and might overwrite existing *manual* configuration. 
+  ```
+  cumulus@switch:~$ sudo nano /etc/cumulus/upgrade-carry-forward.d/custom.conf
+  # Customized Files
+  carry-forward /etc/ifplugd/ifplugd.action
+  carry-forward /etc/default/ifplugd
+  ```
+
+  Refer to {{<link url="Upgrading-Cumulus-Linux/#carry-forward-additional-files" text="Carry Forward Additional Files">}}.
 
 To retain custom interface lists or action logic not supported by link tracking, you can configure traditional snippets.
 
@@ -1048,7 +990,7 @@ cumulus@switch:~$ nv config apply
 
 {{%notice note%}}
 - Custom modifications to `/etc/ifplugd/action.d/ifupdown` do not migrate or update automatically. You must implement the `/etc/ifplugd/action.d/ifupdown` script to manage the interface state as required.
-- Cumulus Linux does not add the watch interfaces you configure through the snippet to the `/etc/ifplugd/link-tracking.conf` file unless you also configure them as watch interfaces for a link tracking group.
+- Cumulus Linux adds the watch interfaces you configure through the snippet to the `/etc/cumulus/link-tracking.conf` file as the `snippet_config` group. This group has no target interfaces, so `link-trackingd` monitors the interfaces for link state changes but does not apply any action.
 {{%/notice%}}
 
 {{< /expand >}}
@@ -1103,7 +1045,7 @@ GROUP2               swp17            2          protodown-target-interface
                      swp31
 ```
 
-To show details of a specific link tracking group, including its watch interfaces, minimum threshold, and state-change action, run the `nv show system link-tracking group <group-id>` command: 
+To show details of a specific link tracking group, including its watch interfaces, minimum threshold, and state-change action, run the `nv show system link-tracking group <group-id>` command:
 
 ```
 cumulus@switch:~$ nv show system link-tracking group GROUP2
@@ -1267,20 +1209,13 @@ Jul 17 03:45:26 cumulus ifplugd(swp24)[788559]: Executing '/etc/ifplugd/ifplugd.
 Jul 17 03:45:26 cumulus ifplugd(swp24)[788559]: Program executed successfully.
 ```
 
-```
-cumulus@switch:~$ sudo systemctl status ifplugd-resync-config-change.service
-○ ifplugd-resync-config-change.service - ifplugd Resync on Config Change
-     Loaded: loaded (/lib/systemd/system/ifplugd-resync-config-change.service; enabled; preset: enabled)
-     Active: inactive (dead) since Fri 2026-07-17 03:05:21 UTC; 45min ago
-       Docs: man:ifplugd(8)
-    Process: 838723 ExecStart=/etc/ifplugd/ifplugd-resync-config-change.sh (code=exited, status=0/SUCCESS)
-   Main PID: 838723 (code=exited, status=0/SUCCESS)
-        CPU: 37ms
+To verify the `link-tracking.service`:
 
-Jul 17 03:05:21 cumulus systemd[1]: Starting ifplugd-resync-config-change.service - ifplugd Resync on Config Change...
-Jul 17 03:05:21 cumulus systemd[1]: ifplugd-resync-config-change.service: Deactivated successfully.
-Jul 17 03:05:21 cumulus systemd[1]: Finished ifplugd-resync-config-change.service - ifplugd Resync on Config Change.
 ```
+cumulus@switch:~$ sudo systemctl status link-tracking.service
+```
+
+<!-- TODO: capture the link-tracking.service status output on a 5.19 switch and add it above. REVIEW (Nisha): the journalctl and syslog examples above use the ifplugd-link-tracking tag from 5.18; confirm the tag and message format that link-trackingd logs in 5.19. -->
 
 ## Source Interface File Snippets
 
@@ -1583,7 +1518,7 @@ swp48      down          down         disabled                     No Fault
 ...
 ```
 
-To view additional fault information for a specific interface, run the `nv show interface <interface> link phy detail` command:
+To view additional fault information for a specific interface, run the `nv show interface <interface-id> link phy detail` command:
 
 ```
 cumulus@switch:mgmt:~$ nv show interface swp45 link phy detail
@@ -1725,4 +1660,3 @@ valid_lft forever preferred_lft forever
 ## Related Information
 
 - {{<link url="Troubleshoot-Layer-1">}}
-- {{<exlink url="http://wiki.debian.org/NetworkConfiguration" text="Debian - Network Configuration">}}

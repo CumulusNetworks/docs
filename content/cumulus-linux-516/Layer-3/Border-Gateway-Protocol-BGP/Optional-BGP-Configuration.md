@@ -2814,6 +2814,7 @@ When BGP establishes a session, BGP peers use the BGP OPEN message to negotiate 
 {{%notice note%}}
 - For warm boot to restart the switch with no interruption to traffic for existing route entries, you must enable BGP graceful restart in all BGP VRFs.
 - BGP graceful restart only supports eBGP direct and multihop peering. VRF leaking is not gracefully handled and traffic to destinations through these routes might drop while graceful restart is in progress.
+- Cumulus Linux does not support BGP graceful restart with EVPN multihoming (EVPN-MH).
 {{%/notice%}}
 
 ### Restart Modes

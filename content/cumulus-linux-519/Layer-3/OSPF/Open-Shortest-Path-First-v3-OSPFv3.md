@@ -216,48 +216,49 @@ The following example commands configure OSPFv3 unnumbered on leaf01 and spine01
 
 2. Edit the `/etc/network/interfaces` file to configure the IP address for the loopback and swp51:
 
-  ```
-  cumulus@leaf01:~$ sudo nano /etc/network/interfaces
-  ...
-  auto lo
-  iface lo inet loopback
-    address 2001:db8::a0a:0a01/128
+   ```
+   cumulus@leaf01:~$ sudo nano /etc/network/interfaces
+   ...
+   auto lo
+   iface lo inet loopback
+     address 2001:db8::a0a:0a01/128
 
-  auto swp1
-  iface swp1
-    address 2001:db8::a0a:0a01/128
-  ```
+   auto swp1
+   iface swp1
+     address 2001:db8::a0a:0a01/128
+   ```
 
 3. Run the `ifreload -a` command to load the new configuration:
 
-    ```
-    cumulus@leaf01:~$ sudo ifreload -a
+   ```
+   cumulus@leaf01:~$ sudo ifreload -a
+   ```
 
-2. From the vtysh shell, configure OSPFv3:
+4. From the vtysh shell, configure OSPFv3:
 
-```
-cumulus@leaf01:~$ sudo vtysh
-...
-leaf01# configure terminal
-leaf01(config)# router ospf6
-leaf01(config-ospf6)# ospf6 router-id 10.10.10.1
-leaf01(config-ospf6)# exit
-leaf01(config)# interface lo
-leaf01(config-if)# ipv6 ospf6 area 0.0.0.0
-leaf01(config-if)# exit
-leaf01(config)# interface swp51
-leaf01(config-if)# ipv6 ospf6 area 0.0.0.0
-leaf01(config-if)# ipv6 ospf6 network point-to-point
-leaf01(config-if)# exit
-leaf01(config)# interface swp1
-leaf01(config-if)# ipv6 ospf6 passive
-leaf01(config-if)# exit
-leaf01(config)# interface swp2
-leaf01(config-if)# ipv6 ospf6 passive
-leaf01(config-if)# end
-leaf01# write memory
-leaf01# exit
-```
+   ```
+   cumulus@leaf01:~$ sudo vtysh
+   ...
+   leaf01# configure terminal
+   leaf01(config)# router ospf6
+   leaf01(config-ospf6)# ospf6 router-id 10.10.10.1
+   leaf01(config-ospf6)# exit
+   leaf01(config)# interface lo
+   leaf01(config-if)# ipv6 ospf6 area 0.0.0.0
+   leaf01(config-if)# exit
+   leaf01(config)# interface swp51
+   leaf01(config-if)# ipv6 ospf6 area 0.0.0.0
+   leaf01(config-if)# ipv6 ospf6 network point-to-point
+   leaf01(config-if)# exit
+   leaf01(config)# interface swp1
+   leaf01(config-if)# ipv6 ospf6 passive
+   leaf01(config-if)# exit
+   leaf01(config)# interface swp2
+   leaf01(config-if)# ipv6 ospf6 passive
+   leaf01(config-if)# end
+   leaf01# write memory
+   leaf01# exit
+   ```
 
 {{< /tab >}}
 {{< tab "spine01 ">}}
@@ -266,44 +267,44 @@ leaf01# exit
 
 2. Edit the `/etc/network/interfaces` file to configure the IP address for the loopback and swp1:
 
-  ```
-  cumulus@spine01:~$ sudo nano /etc/network/interfaces
-  ...
-  auto lo
-  iface lo inet loopback
-    address 2001:db8::a0a:0a65/128
+   ```
+   cumulus@spine01:~$ sudo nano /etc/network/interfaces
+   ...
+   auto lo
+   iface lo inet loopback
+     address 2001:db8::a0a:0a65/128
 
-  auto swp1
-  iface swp1
-    address 2001:db8::a0a:0a65/128
-  ```
+   auto swp1
+   iface swp1
+     address 2001:db8::a0a:0a65/128
+   ```
 
 3. Run the `ifreload -a` command to load the new configuration:
 
-    ```
-    cumulus@spine01:~$ sudo ifreload -a
-    ```
+   ```
+   cumulus@spine01:~$ sudo ifreload -a
+   ```
 
 2. From the vtysh shell, configure OSPFv3:
 
-```
-cumulus@spine01:~$ sudo vtysh
-...
-spine01# configure terminal
-spine01(config)# router ospf6
-spine01(config-ospf6)# ospf router-id 10.10.10.101
-spine01(config-ospf6)# exit
-spine01(config)# interface lo
-spine01(config-if)# ipv6 ospf6 area 0.0.0.0
-spine01(config-if)# exit
-spine01(config)# interface swp1
-spine01(config-if)# ipv6 ospf6 area 0.0.0.0
-spine01(config-if)# ipv6 ospf6 network point-to-point
-spine01(config-if)# exit
-spine01(config-if)# end
-spine01# write memory
-spine01# exit
-```
+   ```
+   cumulus@spine01:~$ sudo vtysh
+   ...
+   spine01# configure terminal
+   spine01(config)# router ospf6
+   spine01(config-ospf6)# ospf router-id 10.10.10.101
+   spine01(config-ospf6)# exit
+   spine01(config)# interface lo
+   spine01(config-if)# ipv6 ospf6 area 0.0.0.0
+   spine01(config-if)# exit
+   spine01(config)# interface swp1
+   spine01(config-if)# ipv6 ospf6 area 0.0.0.0
+   spine01(config-if)# ipv6 ospf6 network point-to-point
+   spine01(config-if)# exit
+   spine01(config-if)# end
+   spine01# write memory
+   spine01# exit
+   ```
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -675,7 +676,7 @@ Cumulus Linux uses the administrative distance to choose which routing protocol 
 
 Cumulus Linux provides several commands to change the administrative distance for OSPF routes. The default value is 110.
 
-This example command sets the distance for an entire group of routes, rather than a specific route.
+This example command sets the distance for an entire group of routes, instead of a specific route.
 
 ```
 cumulus@switch:~$ sudo vtysh

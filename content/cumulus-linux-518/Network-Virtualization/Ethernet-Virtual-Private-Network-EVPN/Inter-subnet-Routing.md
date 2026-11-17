@@ -62,7 +62,7 @@ router bgp 65101
 {{< /tabs >}}
 
 {{%notice note%}}
-- You can deploy centralized routing at the VNI level, where you can configure the `advertise-default-gw` command per VNI; you use centralized routing for certain VNIs and distributed symmetric routing (described below) other VNIs. NVIDIA does not recommend this type of configuration.
+- You can deploy centralized routing at the VNI level, where you can configure the `advertise-default-gw` command for each VNI; you use centralized routing for certain VNIs and distributed symmetric routing (described below) other VNIs. NVIDIA does not recommend this type of configuration.
 - When you use centralized routing, even if the source host and destination host attach to the same VTEP, the packets travel to the gateway VTEP, the switch routes the packets, then the packets come back.
 - To prevent virtual switches that are not local to the border leaf from flooding traffic to a gateway MAC address in a centralized EVPN fabric, refer to {{<exlink url="https://enterprise-support.nvidia.com/s/article/Traffic-To-Gateway-MAC-In-Centralized-EVPN-Fabric-Is-Being-Flooded-By-V-Switches-Not-Local-To-The-Border-Leaf" text="this knowledge base article" >}}.
 {{%/notice%}}
@@ -496,7 +496,7 @@ To advertise locally attached subnets:
 2. Ensure that the routes corresponding to the connected subnets are in the BGP VRF routing table by injecting them using the `network` command or redistributing them using the `redistribute connected` command.
 
 {{%notice note%}}
-Use this configuration only if you have silent hosts and only on one VTEP per subnet (or two for redundancy).
+Use this configuration only if you have silent hosts and only on one VTEP for each subnet (or two for redundancy).
 {{%/notice%}}
 <!-- vale off -->
 ## Prefix-based Routing

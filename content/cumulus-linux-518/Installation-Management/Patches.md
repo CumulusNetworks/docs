@@ -8,13 +8,13 @@ The Cumulus Linux patch framework delivers small, targeted, reversible package f
 
 You can install a critical fix within your own maintenance window and back it out without a full image upgrade.
 
-Patches only contain changed packages and complement rather than replace the standard release; NVIDIA rolls every patch into a subsequent release.
+Patches only contain changed packages and complement the standard release instead of replacing it; NVIDIA rolls every patch into a subsequent release.
 
 You can roll back and return to the base image, not a previously-running patch. If a package is running an earlier patch version when you install a later patch, removing the later patch restores the base-image version, not the earlier patch.
 
 {{%notice note%}}
 - Upgrading system packages after you install a patch might overwrite the patch fixes; the switch warns you before proceeding.
-- A failed patch install rolls back all touched packages automatically to the base version so that the switch is not left in a half-installed state.
+- A failed patch install rolls back all touched packages automatically to the base version so that the switch does not remain in a half-installed state.
 - Installing and uninstalling a patch might restart affected services or reboot the system. Before you install or uninstall a patch, check the `impact` field in the `nv show system packages archive <archive-id>` command output to understand the expected impact.
 {{%/notice%}}
 

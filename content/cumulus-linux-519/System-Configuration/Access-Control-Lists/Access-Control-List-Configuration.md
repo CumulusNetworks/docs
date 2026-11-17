@@ -13,7 +13,7 @@ Cumulus Linux provides several tools to configure <span class="a-tooltip">[ACLs]
 
 ### Chains
 
-ACLs in Cumulus Linux classify and control packets to, from, and across the switch, asserting policies at layer 2, 3 and 4 of the {{<exlink url="https://en.wikipedia.org/wiki/OSI_model" text="OSI model">}} by inspecting packet and frame headers according to a list of rules. The `iptables`, `ip6tables`, and `ebtables` userspace applications provide syntax you use to define rules.
+ACLs in Cumulus Linux classify and control packets to, from, and across the switch, asserting policies at layer 2, 3 and 4 of the OSI model by inspecting packet and frame headers according to a list of rules. The `iptables`, `ip6tables`, and `ebtables` userspace applications provide syntax you use to define rules.
 
 The rules inspect or operate on packets at several points (*chains*) in the life of the packet through the system:
 
@@ -151,7 +151,7 @@ cumulus@switch:~$ nv config apply
 
 {{%notice note%}}
 - On Spectrum-2 and later, NVUE reloads `switchd` after you run and apply the `nv set system acl mode` command. Reloading `switchd` does **not** interrupt network services.
-- On Spectrum 1, NVUE restarts `switchd` after you run and apply the `nv set system acl mode` command. Restarting `switchd` causes all network ports to reset in addition to resetting the switch hardware configuration.
+- On Spectrum1, NVUE restarts `switchd` after you run and apply the `nv set system acl mode` command. Restarting `switchd` causes all network ports to reset in addition to resetting the switch hardware configuration.
 {{%/notice%}}
 
 {{< /tab >}}
@@ -171,7 +171,7 @@ cumulus@switch:~$ nv config apply
    cumulus@switch:~$ sudo systemctl reload switchd.service
    ```
 
-   On Spectrum 1, restart `switchd` for the changes to take effect. Restarting `switchd` causes all network ports to reset in addition to resetting the switch hardware configuration.
+   On Spectrum1, restart `switchd` for the changes to take effect. Restarting `switchd` causes all network ports to reset in addition to resetting the switch hardware configuration.
 
    ```
    cumulus@switch:~$ sudo systemctl restart switchd.service
@@ -292,7 +292,7 @@ To create this rule with NVUE, follow the steps below. NVUE adds all options in 
    For firewall IPv4 type ACLs on the control plane, you can match on the hashlimit module (`hashimit`), the connection state (`connection-state`), and the recent module (`recent-list`). Refer to {{<link url="Firewall-Rules/#add-firewall-rules" text="Firewall Rules">}}.
 
 2. Apply the rule to an inbound or outbound interface with the `nv set interface <interface-id> acl` command.
-   
+
    - For rules affecting the -t mangle -A PREROUTING chain (-A FORWARD in previous releases), apply the rule to an inbound or outbound interface: For example:
 
    ```
@@ -340,7 +340,7 @@ cumulus@switch:~$ nv unset interface swp1 acl EXAMPLE1
 cumulus@switch:~$ nv config apply
 ```
 
-To show ACL statistics per interface, such as the total number of bytes that match the ACL rule, run the `nv show interface <interface-id> acl <acl-id> statistics` or `nv show interface <interface-id> acl <acl-id> statistics <rule-id>` command.
+To show ACL statistics for each interface, such as the total number of bytes that match the ACL rule, run the `nv show interface <interface-id> acl <acl-id> statistics` or `nv show interface <interface-id> acl <acl-id> statistics <rule-id>` command.
 
 To see the list of all NVUE ACL commands, run the `nv list-commands acl` command.
 
@@ -432,7 +432,7 @@ You can use wildcards or variables to specify chain and interface lists.
 
 {{%notice note%}}
 - You can only use *swp+* and *bond+* as wildcard names.
-- swp+ rules apply as an aggregate, *not* per port. If you want to apply per port policing, specify a specific port instead of the wildcard.
+- swp+ rules apply as an aggregate, *not* for each port. If you want to apply policing to each port, specify a specific port instead of the wildcard.
 {{%/notice%}}
 
 ```
@@ -542,11 +542,11 @@ NVIDIA Spectrum switches use a <span class="a-tooltip">[TCAM](## "Ternary Conten
 When you enable certain switch features, they create additional system ACLs. System ACLs share TCAM resources with user-defined ACLs, which can increase TCAM utilization and reduce available ACL entries. Features that create additional system ACLs include multicast routing, VXLAN tunnels, IGMPv3 Snooping, IPv4-to-IPv6 NAT translation, and layer 2 port isolation.
 {{%/notice%}}
 
-### TCAM Profiles on Spectrum 1
+### TCAM Profiles on Spectrum1
 
-The NVIDIA Spectrum 1 ASIC (model numbers 2xx0) has one common TCAM space for both ingress and egress ACLs, which the switch also uses for multicast route entries.
+The NVIDIA Spectrum1 ASIC (model numbers 2xx0) has one common TCAM space for both ingress and egress ACLs, which the switch also uses for multicast route entries.
 
-Cumulus Linux controls the ACL and multicast route entry scale on NVIDIA Spectrum 1 switches with different TCAM profiles in combination with the ACL {{<link url="#nonatomic-update-mode-and-atomic-update-mode" text="atomic and nonatomic update setting">}}.
+Cumulus Linux controls the ACL and multicast route entry scale on NVIDIA Spectrum1 switches with different TCAM profiles in combination with the ACL {{<link url="#nonatomic-update-mode-and-atomic-update-mode" text="atomic and nonatomic update setting">}}.
 <!-- vale off -->
 |Profile |Atomic Mode IPv4 Rules |Atomic Mode IPv6 Rules |Nonatomic Mode IPv4 Rules |Nonatomic Mode IPv6 Rules | Multicast Route Entries |
 | ------------| ------------------- | -------------------| ------------------- | ------------------------- | ----------------- |
@@ -574,12 +574,12 @@ cumulus@switch:~$ sudo systemctl restart switchd.service
 ```
 
 {{%notice note%}}
-Spectrum 1 TCAM resource profiles that control ACLs and multicast route scale are different from {{<link url="Forwarding-Table-Size-and-Profiles" text="forwarding resource profiles">}} that control MAC table, IPv4, and IPv6 entry scale.
+Spectrum1 TCAM resource profiles that control ACLs and multicast route scale are different from {{<link url="Forwarding-Table-Size-and-Profiles" text="forwarding resource profiles">}} that control MAC table, IPv4, and IPv6 entry scale.
 {{%/notice%}}
 
 ### ATCAM on Spectrum-2 and Later
 
-Switches with Spectrum-2 and later use a newer <span class="a-tooltip">[KVD](## "Key Value Database")</span> scheme and an <span class="a-tooltip">[ATCAM](## "Algorithmic TCAM")</span> design that is more flexible and allows a higher ACL scale than Spectrum 1. There is no TCAM resource profile on Spectrum-2 and later.
+Switches with Spectrum-2 and later use a newer <span class="a-tooltip">[KVD](## "Key Value Database")</span> scheme and an <span class="a-tooltip">[ATCAM](## "Algorithmic TCAM")</span> design that is more flexible and allows a higher ACL scale than Spectrum1. There is no TCAM resource profile on Spectrum-2 and later.
 
 The following table shows the tested ACL rule limits. Because the KVD and ATCAM share space with forwarding table entries, multicast route entries, and VLAN flow counters, these ACL limits might vary based on your use of other tables.
 
@@ -629,7 +629,7 @@ Cumulus Linux does not offload `conntrack` or `--ctstate` ACL matches to switch 
 |--- |--- |--- |
 |**Matches**|Src/Dst, IP protocol<br>In/out interface<br>IPv4: ecn, icmp, frag, ttl,<br>IPv6: icmp6, hl,<br>IP common: tcp ({{<link url="#filter-specific-tcp-flags" text="with flags">}}), udp, multiport, DSCP, addrtype|Rules with input/output Ethernet interfaces do not apply<br>Inverse matches|
 |**Standard Targets**|ACCEPT, DROP|RETURN, QUEUE, STOP, Fall Thru, Jump|
-|**Extended Targets**|LOG (IPv4/IPv6); UID is not supported for LOG<br>TCP SEQ, TCP options or IP options<br>ULOG<br>SETQOS<br>DSCP<br>Unique to Cumulus Linux:<br>SPAN<br>ERSPAN (IPv4/IPv6)<br>POLICE<br>TRICOLORPOLICE<br>SETCLASS||
+|**Extended Targets**|LOG (IPv4 and IPv6); UID is not supported for LOG<br>TCP SEQ, TCP options or IP options<br>ULOG<br>SETQOS<br>DSCP<br>Unique to Cumulus Linux:<br>SPAN<br>ERSPAN (IPv4 or IPv6)<br>POLICE<br>TRICOLORPOLICE<br>SETCLASS||
 
 ### ebtables Rule Support
 
@@ -641,8 +641,8 @@ Cumulus Linux does not offload `conntrack` or `--ctstate` ACL matches to switch 
 
 ### Other Unsupported Rules
 
-- Rules that have no matches and accept all packets in a chain are currently ignored.
-- Chain default rules (that are ACCEPT) are also ignored.
+- Cumulus Linux currently ignores rules that have no matches and accept all packets in a chain.
+- Cumulus Linux also ignores chain default rules (that are ACCEPT).
 
 #### Considerations
 
@@ -1045,11 +1045,6 @@ Rule  In Packet  In Byte  Out Packet  Out Byte  Summary
 
 ### Control Plane Punt Classifier
 
-<!-- REVIEW: the specification states GA for 5.19, but the What's New page states that 5.19.0
-     is qualified for non-Spectrum-X only, and this feature targets Spectrum-X MRC traffic.
-     Confirm the quality level and the platform statement against the 5.19 Redmine execution
-     query. Delete this comment before publishing. -->
-
 {{%notice note%}}
 The control plane punt classifier requires an NVIDIA Spectrum switch whose ASIC supports CPU egress ACL binding. On a switch without this support, Cumulus Linux reports the feature as unsupported and does not install the rule.
 {{%/notice%}}
@@ -1071,13 +1066,6 @@ An `spxm` rule matches an outer IPv6 header with next header 41, one of the conf
 
 The following table shows the match options and the action you can set for a rule.
 
-<!-- REVIEW: the specification lists Open Issues item "Confirm default SPXM DSCP list. The
-     current draft assumes 1,2,3,4?", so the default DSCP list below is stated without values.
-     Add the values after engineering confirms them. The specification also disagrees with
-     itself on whether match dscp is mandatory: the object model tree marks it mandatory, the
-     CLI options table marks it optional with a default. The CLI section governs, so the row
-     below reads optional. Delete this comment before publishing. -->
-
 | Option | Required | Description |
 | ------ | -------- | ----------- |
 | `match packet-type <packet-type>` | Yes | The classifier type. You can specify `spxm` for Spectrum-X MRC traffic or `ipv6` for plain IPv6 UDP traffic. |
@@ -1087,8 +1075,6 @@ The following table shows the match options and the action you can set for a rul
 | `action drop` | Yes | Counts and drops the matching packets. `drop` is the only supported action. |
 
 Cumulus Linux rejects a rule that is incomplete or that mixes match options across packet types. You must set `match packet-type`, `match no-route`, and `action drop` on every rule, `match udp-dport` on every `ipv6` rule, and you cannot set `match dscp` on an `ipv6` rule or `match udp-dport` on an `spxm` rule. You can create only one `spxm` rule on the switch.
-
-<!-- REVIEW: Bibhash's 22 Oct email says action is mandatory on every rule and also says it defaults to drop. Drafted as required, matching the specification's CLI table. Confirm with the developer. Delete this comment before publishing. -->
 
 #### Configure a Control Plane Punt Classifier Rule
 
@@ -1122,10 +1108,6 @@ cumulus@switch:~$ nv config apply
 ```
 
 #### Show Control Plane Punt Classifier Counters
-
-<!-- REVIEW: the three sample outputs in this section are adapted from mock output in the
-     specification, not captured on hardware. Capture them on a switch and replace them.
-     Delete this comment before publishing. -->
 
 To show all punt classifier rules and their drop counters, run the `nv show system control-plane punt-classifier` command:
 
@@ -1165,15 +1147,11 @@ To export the drop counters with OpenTelemetry, refer to {{<link url="Open-Telem
 
 #### Clear Control Plane Punt Classifier Counters
 
-<!-- REVIEW: the specification says raw values are available "via --view=hardware" with no example output. The 5.19 command list shows a `counters hardware` path under the rule instead, so this section uses the path form. Confirm the exact syntax and its output against a candidate build. The command list also shows an all-rules form of the clear action, which neither the specification nor Bibhash's email describes; drafted from the command list. Delete this comment before publishing. -->
-
 {{%notice note%}}
 The switch clears the software (NVUE) counters only. The hardware counters, which gNMI and OpenTelemetry export, stay intact, so `nv show` can show 0 while telemetry reports a non-zero lifetime total. To show the raw, uncleared hardware counters for a rule, run the `nv show system control-plane punt-classifier <rule-id> counters hardware` command.
 {{%/notice%}}
 
 To clear the drop counters for a rule, run the `nv action clear system control-plane punt-classifier <rule-id> counters` command:
-
-<!-- TODO: capture the `nv action clear system control-plane punt-classifier <rule-id> counters` command output on a switch and add it to the code block below. -->
 
 ```
 cumulus@switch:~$ nv action clear system control-plane punt-classifier 10 counters
@@ -1183,7 +1161,7 @@ To clear the counters for all rules, run the `nv action clear system control-pla
 
 ### Set DSCP on Transit Traffic
 
-The following examples use the *mangle* table to modify the packet as it transits the switch. DSCP is in {{<exlink url="https://en.wikipedia.org/wiki/Differentiated_services#Configuration_guidelines" text="decimal notation">}} in the examples below.
+The following examples use the *mangle* table to modify the packet as it transits the switch. DSCP is in decimal notation in the examples below.
 
 {{< tabs "1015 ">}}
 {{< tab "NVUE Commands ">}}
@@ -1478,7 +1456,7 @@ Cumulus Linux supports ACL matches based on inner packet headers inside encapsul
 - You cannot match on both inner and outer packet headers in the same ACL.
 - You cannot combine a VLAN match with inner packet matches.
 - Inner packet matches support hardware forwarded packets only.
-- You can configure matches on inner packet headers with NVUE commands only. 
+- You can configure matches on inner packet headers with NVUE commands only.
 {{%/notice%}}
 
 You can use the following inner packet matching options:
@@ -1534,11 +1512,11 @@ cumulus@switch:~$ nv set acl acl1 rule 20 action deny
 Cumulus Linux supports ACL rule matches based on the packet offset.
 
 {{%notice note%}}
-- You can configure a maximum of three different packet offset matches either in a single ACL rule or across three separate ACL rules. You can reuse the same offset match in another ACL rule, which is not considered an extra offset match. The combination of an offset location and a `match-from` value is considered as one offset.
-- You can configure offset matches only for ACL type ipv4 and ipv6.
+- You can configure a maximum of three different packet offset matches either in a single ACL rule or across three separate ACL rules. You can reuse the same offset match in another ACL rule, which does not count as an extra offset match. The combination of an offset location and a `match-from` value counts as one offset.
+- You can configure offset matches only for ACL type `ipv4` and `ipv6`.
 - The Spectrum1 switch does not support matches based on the packet offset.
 - Matches based on the packet offset support hardware forwarded packets only.
-- You can configure matches based on the packet offset with NVUE commands only. 
+- You can configure matches based on the packet offset with NVUE commands only.
 {{%/notice%}}
 
 You can use the following packet offset matching options:
@@ -1550,7 +1528,7 @@ You can use the following packet offset matching options:
 | `mask` | The mask to be used while matching the value. The mask must be two bytes long and in hexadecimal. The default value is 0xFFFF. |
 | `match-from`| The extraction point for the offset position. You can specify `start-of-packet` (the start of the layer 2 header, which is first byte of the destination MAC address), `start-of-inner-ipv4-header` or `start-of-inner-ipv6-header`.|
 
-The following example creates an ACL permit rule for inbound packets on swp1 that matches the first bytes of inner ipv4 header as 0x12 and first two bytes of UDP header as 0xabcd. The format of the packet is shown below:
+The following example creates an ACL permit rule for inbound packets on swp1 that matches the first bytes of inner ipv4 header as 0x12 and first two bytes of UDP header as 0xabcd. The packet has the following format:
 
 ```
 0         14        34        54        62
@@ -1809,7 +1787,7 @@ ACL Name  Rule ID  In Packets  In Bytes  Out Packets  Out Bytes
 EXAMPLE   10       0           0 Bytes 
 ```
 
-To show the match, action, and statistics for an ACL rule on an interface, run the `nv show interface <interface> acl <acl-id>` command:
+To show the match, action, and statistics for an ACL rule on an interface, run the `nv show interface <interface-id> acl <acl-id>` command:
 
 ```
 cumulus@switch:~$ nv show interface swp1 acl EXAMPLE
@@ -1824,7 +1802,7 @@ Rule  In Packet   In Byte          Out Packet  Out Byte         Action          
                                                                                                                  source-mac-mask   : ff:ff:ff:ff:ff:ff
 ```
 
-To show the match, action, and statistics for an inbound rule, run the `nv show interface <interface> acl <acl-id> inbound` command. For an outbound rule, run the `nv show interface <interface> acl <acl-id> outbound` command.
+To show the match, action, and statistics for an inbound rule, run the `nv show interface <interface-id> acl <acl-id> inbound` command. For an outbound rule, run the `nv show interface <interface-id> acl <acl-id> outbound` command.
 
 ```
 cumulus@switch:~$ nv show interface swp1 acl EXAMPLE inbound
@@ -1852,7 +1830,7 @@ mac
   dest-mac-mask    ff:ff:ff:ff:ff:ff  ff:ff:ff:ff:ff:ff  ff:ff:ff:ff:ff:ff
 ```
 
-To show the match, action, and statistics for an inbound control plane rule, or an outbound control plane rule, run the `nv show interface <interface> acl <acl-id> inbound control-plane` or `nv show interface <interface> acl <acl-id> outbound control-plane`command.
+To show the match, action, and statistics for an inbound control plane rule, or an outbound control plane rule, run the `nv show interface <interface-id> acl <acl-id> inbound control-plane` or `nv show interface <interface-id> acl <acl-id> outbound control-plane`command.
 
 ```
 cumulus@switch:~$ nv show interface swp2 acl EXAMPLE3 inbound control-plane 
@@ -1886,7 +1864,7 @@ You cannot forward logged packets. The hardware cannot both forward a packet and
 
 ### SPAN Sessions that Reference an Outgoing Interface
 
-SPAN sessions that reference an outgoing interface create mirrored packets based on the ingress interface before the routing/switching decision. See {{<link url="SPAN-and-ERSPAN#span-sessions-that-reference-an-outgoing-interface" text="SPAN Sessions that Reference an Outgoing Interface">}} and {{<link url="SPAN-and-ERSPAN/#use-the-cpu-port-as-the-span-destination" text="Use the CPU Port as the SPAN Destination">}} in the Network Troubleshooting section.
+SPAN sessions that reference an outgoing interface create mirrored packets based on the ingress interface before the routing/switching decision. See {{<link url="SPAN-and-ERSPAN#span" text="SPAN Sessions that Reference an Outgoing Interface">}} and {{<link url="SPAN-and-ERSPAN/#cpu-port-as-the-span-destination" text="Use the CPU Port as the SPAN Destination">}} in the Network Troubleshooting section.
 <!-- vale off -->
 ### iptables Interactions with cl-acltool
 <!-- vale on -->

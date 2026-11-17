@@ -20,7 +20,7 @@ You can customize the `topology.dot` file to control the PTM service (`ptmd`) at
 
 The `ptmd` service verifies the physical network topology against a DOT-specified network graph file, `/etc/ptm.d/topology.dot`.
 
-PTM supports {{<exlink url="http://en.wikipedia.org/wiki/DOT_%28graph_description_language%29" text="undirected graphs">}}.
+PTM supports undirected graphs.
 
 At startup, the `ptmd` service connects to the `lldpd` service over a Unix socket and retrieves the neighbor name and port information. It then compares the retrieved port information with the configuration information that it reads from the topology file. If there is a match, it is a `PASS`, otherwise it is a `FAIL`.
 
@@ -280,5 +280,4 @@ If an LLDP neighbor advertises a `PortDescr` that contains commas, `ptmctl -d` s
 ## Related Information
 
 - {{<exlink url="http://www.graphviz.org" text="Graphviz">}}
-- {{<exlink url="http://en.wikipedia.org/wiki/Link_Layer_Discovery_Protocol" text="LLDP on Wikipedia">}}
 - {{<exlink url="https://github.com/CumulusNetworks/ptm" text="PTMd GitHub repo">}}

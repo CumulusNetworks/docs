@@ -90,7 +90,7 @@ The `smond` process provides monitoring for various switch hardware elements. Mi
 | Front Panel LED | `ledmgrd -d`<br>`ledmgrd -j` |5 seconds |
 
 {{%notice note%}}
-Not all switch models include a sensor for monitoring power consumption and voltage. See {{<link url="Monitoring-System-Hardware#smond-daemon" text="this note">}} for details.
+Not all switch models include a sensor for monitoring power consumption and voltage. See {{<link url="Monitoring-System-Hardware#smond" text="this note">}} for details.
 {{%/notice%}}
 
 | Hardware Logs| Log Location| Log Entries|

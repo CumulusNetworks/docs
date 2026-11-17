@@ -1,5 +1,5 @@
 ---
-title: Synchronous Ethernet - SyncE 
+title: Synchronous Ethernet - SyncE
 author: NVIDIA
 weight: 128
 toc: 3
@@ -22,7 +22,7 @@ Cumulus Linux constructs the SyncE clock identity as follows:
 - Only the NVIDIA SN3750-SX switch and the NVIDIA SN5400 switch support SyncE.
 - SyncE on 1G interfaces only supports 1000BASE-SX transceivers, 1000BASE-LX transceivers, and ADVA 5401 GrandMaster transceivers.
 - When you configure SyncE on a switch with PTP enabled, configure {{<link url="Precision-Time-Protocol-PTP#noise-transfer-servo" text="ITU-T noise transfer">}}.
-- To use SyncE on the SN5400 switch running Cumulus Linux 5.11 or later, you must upgrade SyncE firmware. See {{<link url="#upgrade-synce-firmware-on-the-sn5400-switch" text="Upgrade SyncE Firmware on the SN5400 Switch">}} below.
+- To use SyncE on the SN5400 switch running Cumulus Linux 5.11 or later, you must upgrade SyncE firmware. See {{<link url="#upgrade-synce-firmware-on-the-nvidia-sn5400-switch" text="Upgrade SyncE Firmware on the SN5400 Switch">}} below.
 {{%/notice%}}
 
 ## Upgrade SyncE Firmware on the NVIDIA SN5400 Switch
@@ -74,8 +74,8 @@ Basic SyncE configuration requires you:
 
 The basic configuration shown below uses the default SyncE settings:
 <!-- - The {{<link url="#ql-for-the-switch" text="QL">}} for the switch is set to `option 1`, which includes PRC, SSU-A, SSU-B, SEC and DNU.-->
-- The {{<link url="#frequency-source-priority" text="frequency source priority">}} on the interface is set to 100.
-- The {{<link url="#wait-to-restore-time" text="amount of time SyncE waits">}} after the interface comes up before using the interface for synchronization is set to 5 minutes.
+- The {{<link url="#frequency-source-priority" text="frequency source priority">}} on the interface is 100.
+- The {{<link url="#wait-to-restore-time" text="amount of time SyncE waits">}} after the interface comes up before using the interface for synchronization is 5 minutes.
 
 {{< tabs "TabID33 ">}}
 {{< tab "NVUE Commands ">}}

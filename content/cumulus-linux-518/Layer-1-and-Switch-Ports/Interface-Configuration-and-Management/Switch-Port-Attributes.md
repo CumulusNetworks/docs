@@ -1030,7 +1030,7 @@ Maximum 100G ports: 12
 
 SN3510 48xSFP56 (50GbE) and 6xQSFP-DD (400GbE) interfaces support both PAM4 and NRZ encodings with all speeds down to 1G.
 
-For lower speeds, PAM4 is automatically converted to NRZ encoding.
+For lower speeds, the switch automatically converts PAM4 to NRZ encoding.
 
 All 6xQSFP-DD ports can break out into 8xSFP56 (8x50GbE), 4xQSFP56 (4x100GbE), or 2xQSFP56 (2x200GbE).
 
@@ -1149,7 +1149,7 @@ Maximum 100G ports: 32
 
 32x QSFP56 200G interfaces support both PAM4 and NRZ encodings. You can set all speeds down to 1G.
 
-For lower speed interface configurations, PAM4 is automatically converted to NRZ encoding.
+For lower speed interface configurations, the switch automatically converts PAM4 to NRZ encoding.
 
 All 32x QSFP56 ports can break out into 4xSFP56 or 2x QSFP56.
 
@@ -1212,7 +1212,7 @@ SN4410 24xQSFP28-DD interfaces [ports 1-24] support both PAM4 and NRZ encoding w
 
 The 8xQSFP-DD (400GbE) interfaces [ports 25-32] support both PAM4 and NRZ encodings with all speeds from 400G down to 1G.
 
-For lower speeds, PAM4 is automatically converted to NRZ encoding.
+For lower speeds, the switch automatically converts PAM4 to NRZ encoding.
 
 You can split ports #1 to #32 into:
 - 2x ports with PAM 4 and NRZ encoding with no limitations.
@@ -1348,7 +1348,7 @@ Maximum 100G ports: 64
 
 SN4600 64xQSFP56 (200GbE) interfaces support both PAM4 and NRZ encodings with all speeds down to 1G.
 
-For lower speeds, PAM4 is automatically converted to NRZ encoding.
+For lower speeds, the switch automatically converts PAM4 to NRZ encoding.
 
 Only 32xQSFP56 ports can break out into 4xSFP56 (4x50GbE). But, in this case, the breakout blocks the adjacent QSFP56 port (only the first and third or second and fourth rows can break out into 4xSFP56).
 
@@ -1412,7 +1412,7 @@ Maximum 200G ports: 64
 
 SN4700 32x QSFP-DD 400GbE interfaces support both PAM4 and NRZ encodings. You can set all speeds down to 1G.
 
-For lower speed interface configurations, PAM4 is automatically converted to NRZ encoding.
+For lower speed interface configurations, the switch automatically converts PAM4 to NRZ encoding.
 
 Only the top 16x QSFP-DD ports can break out into 8x SFP56. You must disable the adjacent QSFP-DD port.
 
@@ -1488,7 +1488,7 @@ Maximum 400G ports: 32
 
 SN5400 64xQSFP-DD (400GbE) interfaces support both PAM4 and NRZ encodings with all speeds down to 10G.
 
-For lower speeds, PAM4 is automatically converted to NRZ encoding.
+For lower speeds, the switch automatically converts PAM4 to NRZ encoding.
 
 Bonus ports #65 and #66 support 1G, 10G, and 25G but do not support breakouts.
 
@@ -1550,7 +1550,7 @@ Maximum 400G ports: 64
 
 SN5600 64xOSFP (800GbE) interfaces support both PAM4 and NRZ encodings with all speeds down to 10G.
 
-For lower speeds, PAM4 is automatically converted to NRZ encoding.
+For lower speeds, the switch automatically converts PAM4 to NRZ encoding.
 
 Bonus port #65 supports 1G, 10G, and 25G but does not support breakouts.
 
@@ -1623,7 +1623,7 @@ Maximum 800G ports: 64
 
 SN5610 64xOSFP (800GbE) interfaces support both PAM4 and NRZ encodings with all speeds down to 10G.
 
-For lower speeds, PAM4 is automatically converted to NRZ encoding.
+For lower speeds, the switch automatically converts PAM4 to NRZ encoding.
 
 Bonus ports #65 and #66 support 1G, 10G, and 25G but does not support breakouts.
 
@@ -1847,13 +1847,13 @@ cumulus@switch:~$ sudo ifreload -a
 
 The SN4700 and SN4410 switch does not support auto-negotiation on QSFP-DD 400G transceiver modules. You need to force set the speed.
 
-### Set the Number of Lanes per Split Port
+### Set the Number of Lanes for Each Split Port
 
-By default, to calculate the split port width, Cumulus Linux uses the formula `split port width = full port width / breakout`. For example, a port split into two interfaces (2x breakout) => 8 lanes width / 2x breakout = 4 lanes per split port.
+By default, to calculate the split port width, Cumulus Linux uses the formula `split port width = full port width / breakout`. For example, a port split into two interfaces (2x breakout) => 8 lanes width / 2x breakout = 4 lanes for each split port.
 
-If you need to use a different port width than the default, you can set the number of lanes per port.
+If you need to use a different port width than the default, you can set the number of lanes for each port.
 
-The following example command splits swp1 into two interfaces (2x) and sets the number of lanes per split port to 2.
+The following example command splits swp1 into two interfaces (2x) and sets the number of lanes for each split port to 2.
 
 {{< tabs "TabID1383 ">}}
 {{< tab "NVUE Commands ">}}
@@ -1877,7 +1877,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/cumulus/ports_width.conf` file and add the number of lanes per split port you want to use, then reload `switchd`:
+Edit the `/etc/cumulus/ports_width.conf` file and add the number of lanes for each split port you want to use, then reload `switchd`:
 <!--
 {{%notice note%}}
 You must configure the lanes per port in the `/etc/cumulus/ports_width.conf` before you configure the breakout in the `/etc/cumulus/ports.conf` file. If the `ports.conf` file already contains breakout configuration for a port, you must set the breakout back to `1x`, then reload `switchd`. You can then set the desired lanes per port, then reconfigure the breakout.
@@ -1905,7 +1905,7 @@ cumulus@switch:~$ sudo systemctl reload switchd.service
 {{< /tabs >}}
 
 {{%notice note%}}
-In 5.9 and later, the 4x breakout on QSFP-DD/OSFP 8 lane ports allocates two lanes per port by default instead of one lane. Be sure to configure the lanes per port on both ends of a connection to be the same.
+In 5.9 and later, the 4x breakout on QSFP-DD/OSFP 8 lane ports allocates two lanes for each port by default instead of one lane. Be sure to configure the lanes for each port on both ends of a connection to be the same.
 {{%/notice%}}
 
 ### Remove a Breakout Port
@@ -2288,7 +2288,7 @@ The NVIDIA Spectrum-2 (25G) switch only supports RS FEC.
 <!-- vale off -->
 ### Connecting NVIDIA SN4410, SN4700, SN5600 to a Spectrum-3 and Earlier Peer Switch
 <!-- vale on -->
-When you connect an NVIDIA SN4410, SN4700, or SN5600 switch to any Spectrum 1, Spectrum-2, or Spectrum-3 peer switch (with four lanes) using a 4x breakout configuration and the default lanes per port setting, links do not come up. To work around this issue, provide the lanes per port configuration shown below:
+When you connect an NVIDIA SN4410, SN4700, or SN5600 switch to any Spectrum 1, Spectrum-2, or Spectrum-3 peer switch (with four lanes) using a 4x breakout configuration and the default lanes for each port setting, links do not come up. To work around this issue, provide the lanes for each port configuration shown below:
 
 ```
 cumulus@switch:~$ nv set interface <interface-id> link breakout 4x lanes-per-port 1

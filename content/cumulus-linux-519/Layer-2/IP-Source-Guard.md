@@ -53,4 +53,4 @@ swp1       10.1.1.50    00:02:00:00:00:01  DHCPACK  3542
 
 To confirm that the bound client forwards traffic normally, send traffic from the client, (ping its gateway or another host). The switch forwards traffic if the source IP address and MAC address match the learned binding.
 
-To confirm that the switch blocks an unauthorized source, connect a host to the same untrusted port and give it a static IP address without obtaining a DHCP lease. Because it has no binding, its traffic is dropped; the host regains connectivity only after it completes DHCP and a binding is installed. This demonstrates enforcement using an unleased source; no address spoofing is required.
+To confirm that the switch blocks an unauthorized source, connect a host to the same untrusted port and give it a static IP address without obtaining a DHCP lease. Because it has no binding, the switch drops its traffic; the host regains connectivity only after it completes DHCP and the switch installs a binding. This demonstrates enforcement using an unleased source; no address spoofing is required.

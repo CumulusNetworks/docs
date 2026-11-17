@@ -96,7 +96,7 @@ Job for switchd.service failed. See 'systemctl status switchd.service' and 'jour
 Active: failed (Result: start-limit) since Thu 2016-04-07 21:55:14 UTC; 15s ago
 ```
 
-To clear this error, run `systemctl reset-failed switchd.service`. If you know you are going to restart frequently (multiple times within the StartLimitInterval), you can run the same command before you issue the restart request. This also applies to stop followed by start.
+To clear this error, run `systemctl reset-failed switchd.service`. If you plan to restart frequently (multiple times within the StartLimitInterval), you can run the same command before you issue the restart request. This also applies to stop followed by start.
 
 ### Keep systemd Services from Hanging after Starting
 

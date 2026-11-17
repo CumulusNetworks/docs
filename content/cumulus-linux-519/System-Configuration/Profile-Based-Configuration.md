@@ -22,7 +22,7 @@ Cumulus Linux provides a simplified, profile‑based way to configure a switch t
 
 ## Set Profile-based Configuration
 
-Before you set profile-based configuration, NVIDIA recommends you back up the current configuration on the switch with the `nv config save` command so that you can restore the saved config later, if needed. Refer to {{<link url="NVUE-CLI/#back-up-and-restore-configuration-with-nvue" text="Back Up and Restore Configuration with NVUE">}}.
+Before you set profile-based configuration, NVIDIA recommends you back up the current configuration on the switch with the `nv config save` command so that you can restore the saved config later, if needed. Refer to {{<link url="NVUE-CLI/#manual-back-up-and-restore" text="Back Up and Restore Configuration with NVUE">}}.
 
 To set profile‑based configuration on the switch:
 - Specify the role of the switch: `leaf`, `spine-2` (two-tier spine), `spine-3` (three-tier spine), or `super-spine`.

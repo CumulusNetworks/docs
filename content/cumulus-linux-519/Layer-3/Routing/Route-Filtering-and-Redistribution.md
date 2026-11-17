@@ -664,7 +664,7 @@ For OSPF, redistribution loads the database unnecessarily with type-5 LSAs. Only
 
 ## Configuration Examples
 
-This section provides example route map configurations. The examples do not include commands to apply a route map; for the commands to apply a route map, refer to {{<link url="#apply-a-route-map" text="Appy a Route Map">}}.
+This section provides example route map configurations. The examples do not include commands to apply a route map; for the commands to apply a route map, refer to {{<link url="#apply-a-route-map" text="Apply a Route Map">}}.
 
 ### Match AS Path List
 
@@ -797,7 +797,7 @@ cumulus@leaf01:~$
 The following example configures a route map to allow prefixes that match BGP as the source protocol.
 <!-- vale off -->
 {{%notice note%}}
-When you configure the match source protocol in a route map, the switch only advertises that protocol type to the peers. If you configure route leaking between VRFs and the leaked routes are learned as BGP routes, you need to match the BGP source protocol to advertise that route.
+When you configure the match source protocol in a route map, the switch only advertises that protocol type to the peers. If you configure route leaking between VRFs and the switch learns the leaked routes as BGP routes, you need to match the BGP source protocol to advertise that route.
 {{%/notice%}}
 <!-- vale on -->
 {{< tabs "TabID964 ">}}

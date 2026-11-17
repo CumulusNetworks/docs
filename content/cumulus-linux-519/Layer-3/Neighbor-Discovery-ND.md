@@ -249,7 +249,7 @@ interface swp1
 
 ### Set Default Prefix Lifetimes
 
-By default, the switch advertises each prefix with a valid lifetime of 2592000 seconds (30 days) and a preferred lifetime of 604800 seconds (7 days). If a host forms an address on the wrong port, for example because it was cabled to the wrong port during cluster bringup, it keeps that address for up to 30 days after you fix the cabling.
+By default, the switch advertises each prefix with a valid lifetime of 2592000 seconds (30 days) and a preferred lifetime of 604800 seconds (7 days). If a host forms an address on the wrong port, for example because someone cabled it to the wrong port during cluster bringup, it keeps that address for up to 30 days after you fix the cabling.
 
 To make these addresses expire sooner, set default prefix lifetimes on the interface. The switch uses them for every prefix on the interface that does not have its own lifetimes: the prefixes of the IPv6 addresses on the interface, and any prefix you configure without a valid or preferred lifetime.
 - `valid` is how long the prefix stays valid for on-link determination. You can set a value between 0 and 4294967295 seconds, or `infinite`. The default value is 2592000.
@@ -335,7 +335,7 @@ cumulus@leaf01:mgmt:~$ nv action clear interface swp6 ipv6 neighbor-discovery pr
 - The action signals hosts; it does not remove the prefix from the configuration. If the prefix is still configured on the port, or its address is still installed on the interface, the switch advertises it again on the next periodic router advertisement and the host makes it available again. To retire a prefix for good, also remove it from the interface with the `nv unset interface <interface-id> ipv6 neighbor-discovery prefix <ipv6-prefix-id>` command.
 {{%/notice%}}
 
-Cumulus Linux rejects the command when the interface does not exist, is not operationally up, or is not advertising router advertisements; when the preferred lifetime exceeds the valid lifetime; and when you specify a non-zero valid lifetime for a prefix the interface does not currently advertise, because that tells hosts to create the address rather than retire it.
+Cumulus Linux rejects the command when the interface does not exist, is not operationally up, or is not advertising router advertisements; when the preferred lifetime exceeds the valid lifetime; and when you specify a non-zero valid lifetime for a prefix the interface does not currently advertise, because that tells hosts to create the address instead of retiring it.
 
 {{%notice note%}}
 Removing a prefix from configuration with the `nv unset interface <interface-id> ipv6 neighbor-discovery prefix <ipv6-prefix-id>` command also sends three router advertisements with a zero lifetime for that prefix, so hosts reliably discontinue using it instead of relying on a single advertisement. The switch sends them only when the interface is up and the prefix has `autoconfig` enabled, and sends nothing while an interface address in that prefix is still configured.
@@ -739,7 +739,7 @@ The displayed neighbor details are based on control plane forwarding and status;
 cumulus@leaf01:mgmt:~$ nv show interface vlan10 neighbor ipv6 detail
 IPV6                      LLADR(MAC)         State      Flag  Last Used  Last Confirmed  Last Change  Probes
 ------------------------  -----------------  ---------  ----  ---------  --------------  -----------  ------
-fe80::4ab0:2dff:fe60:b8e  48:b0:2d:60:0b:8e  reachable        0:15:50    0:01:18         0:15:50      0    
+fe80::4ab0:2dff:fe60:b8e  48:b0:2d:60:0b:8e  reachable        0:15:50    0:01:18         0:15:50      0
 
 To show table entries for an interface with a specific IPv6 address, run the `nv show interface <interface_id> neighbor ipv6 <ip-address> [detail]` command:
 

@@ -222,7 +222,7 @@ Packet Buffer Info
 No Data
 ```
 
-To show the most recent aggregate buffer drop events, up to the maximum aggregate cache size specified, run the `nv show system wjh aggregate-buffer` command. 
+To show the most recent aggregate buffer drop events, up to the maximum aggregate cache size specified, run the `nv show system wjh aggregate-buffer` command.
 
 ```
 cumulus@switch:~$ nv show system wjh aggregate-buffer
@@ -302,7 +302,7 @@ Congestion buffer threshold
 {{< tab "Linux Commands ">}}
 
 You can run the `nv-wjh-cli poll` command from the command line with the following options:
- 
+
 | Command Option | Description |
 | -------------- | ----------- |
 | `--data`  | You can specify `drops`, `aggregates`, or `l1`.<br>`drops` shows individual drops for each packet.<br>`aggregates` shows aggregated drops.<br>`l1` shows layer 1 port-state aggregates (only valid for channels with layer 1 in their trigger list).|
@@ -440,7 +440,7 @@ Buffer drop events describe why the server buffer has dropped packets.
 | Tail drop | Warning | Tail drop is enabled and the buffer queue is filled to maximum capacity. |
 | WRED | Warning | Weighted Random Early Detection is enabled and the buffer queue is filled to maximum capacity or the RED engine dropped the packet as a random congestion prevention. |
 | Port TC Congestion Threshold Crossed | Warning | The percentage of the occupancy buffer exceeded or dropped below the specified high or low threshold. |
-| Packet Latency Threshold Crossed | Warning | The time a packet spent within the switch exceeded or dropped below the specified high or low threshold. Not supported on Spectrum-1 and Spectrum-6. |
+| Packet Latency Threshold Crossed | Warning | The time a packet spent within the switch exceeded or dropped below the specified high or low threshold. Not supported on Spectrum1 and Spectrum-6. |
 
 ### ACL Drops
 

@@ -24,7 +24,7 @@ PTP in Cumulus Linux uses the `linuxptp` package that includes the following pro
 Cumulus Linux supports:
 - PTP boundary clock mode only (the switch provides timing to downstream servers; it is a slave to a higher-level clock and a master to downstream clocks).
 - UDPv4, UDPv6, and 802.3 encapsulation.
-- Only a single PTP domain per network.
+- Only a single PTP domain for each network.
 - PTP on layer 3 interfaces, layer 3 bonds, trunk ports, and switch ports belonging to a VLAN.
 - Multicast, unicast, and mixed message mode.
 - End-to-End delay mechanism only. Cumulus Linux does not support Peer-to-Peer.

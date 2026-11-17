@@ -204,6 +204,12 @@ carry-forward /etc/default/ifplugd
 
 Refer to {{<link url="Upgrading-Cumulus-Linux/#carry-forward-additional-files" text="Carry Forward Additional Files">}}.
 
+### ssd-dump-tools Package
+
+When you use package upgrade to upgrade the switch from Cumulus Linux 5.18 to 5.19, the upgrade does not automatically install the `ssd-dump-tools` package. To use the SSD dump tools, install the package after the upgrade with the `sudo apt-get install ssd-dump-tools` command. The Cumulus Linux repository includes both the production-signed and development-signed versions of the package. Install the version that matches your environment.
+
+Refer to {{<link url="Upgrading-Cumulus-Linux/#ssd-dump-tools-package" text="ssd-dump-tools Package">}}.
+
 ### Cumulus VX
 
 NVIDIA no longer releases Cumulus VX as a standalone image. To simulate a Cumulus Linux switch, use {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/nvidia-air/" text="NVIDIA DSX Air">}}.

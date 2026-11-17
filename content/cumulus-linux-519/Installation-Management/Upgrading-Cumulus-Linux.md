@@ -24,7 +24,9 @@ NVIDIA is discontinuing package upgrade in Cumulus Linux 5.20. For more details,
 To install a patch (such as a critical bug or CVE), refer to {{<link url="Patches" text="Patches">}}.
 
 {{%notice infonopad%}}
-For a Spectrum-6 switch, you must upgrade BMC before you upgrade Cumulus Linux. For information about upgrading BMC, refer to {{<link url="BMC" text="BMC">}}.
+- For the SN6600-LD switch, you must upgrade BMC before you upgrade Cumulus Linux. For information about upgrading BMC, refer to {{<link url="BMC" text="BMC">}}.
+- You can upgrade to Cumulus Linux 5.19 on the SN6600-LD switch only from Cumulus Linux 5.18.3 or later. 
+- The SN6600-LD switch does not support ISSU.
 {{%/notice%}}
 
 ## Upgrades with ISSU

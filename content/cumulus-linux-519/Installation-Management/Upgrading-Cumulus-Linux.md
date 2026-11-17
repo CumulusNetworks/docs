@@ -24,7 +24,9 @@ NVIDIA is discontinuing package upgrade in Cumulus Linux 5.20. For more details,
 To install a patch (such as a critical bug or CVE), refer to {{<link url="Patches" text="Patches">}}.
 
 {{%notice infonopad%}}
-For a Spectrum-6 switch, you must upgrade BMC before you upgrade Cumulus Linux. For information about upgrading BMC, refer to {{<link url="BMC" text="BMC">}}.
+- For the SN6600-LD switch, you must upgrade BMC before you upgrade Cumulus Linux. For information about upgrading BMC, refer to {{<link url="BMC" text="BMC">}}.
+- You can upgrade to Cumulus Linux 5.19 on the SN6600-LD switch only from Cumulus Linux 5.18.3 or later. 
+- The SN6600-LD switch does not support ISSU.
 {{%/notice%}}
 
 ## Upgrades with ISSU
@@ -872,6 +874,20 @@ To downgrade a switch with Secure Boot enabled, see {{<link url="Installing-a-Ne
 ### Third Party Applications
 
 If you install any third party applications on a Cumulus Linux switch, configuration data is typically installed in the `/etc` directory, but it is not guaranteed. It is your responsibility to understand the behavior and configuration file information of any third party packages installed on the switch. After you upgrade using a full Cumulus Linux image install, you need to reinstall any third party packages. Package upgrade does **not** replace or remove third-party applications.
+
+<!-- COMMENTED OUT FOR 5.19: ssd-dump-tools package
+
+### ssd-dump-tools Package
+
+When you use package upgrade to upgrade the switch from Cumulus Linux 5.18 to 5.19, the upgrade does not automatically install the `ssd-dump-tools` package. To use the SSD dump tools, install the package after the upgrade:
+
+```
+cumulus@switch:~$ sudo apt-get install ssd-dump-tools
+```
+
+The Cumulus Linux repository includes both the production-signed and development-signed versions of the package. Install the version that matches your environment.
+
+-->
 
 ### ONIE Install Issues
 

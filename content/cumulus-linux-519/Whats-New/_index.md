@@ -77,7 +77,8 @@ You can use {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text=
 
 {{%notice infonopad%}}
 - Cumulus Linux does not support ISSU when you upgrade from Cumulus Linux 5.16.x to Cumulus Linux 5.19. Use a cold boot for this upgrade.
-- For the SN6600-LD switch, you can upgrade to Cumulus Linux 5.19 only from Cumulus Linux 5.18.3 or later. ISSU is not supported on the SN6600-LD switch for the 5.18.3 to 5.19 upgrade; use a cold boot.
+- For the SN6600-LD switch, you can upgrade to Cumulus Linux 5.19 only from Cumulus Linux 5.18.3 or later. 
+- ISSU is not supported on the SN6600-LD switch.
 {{%/notice%}}
 
 To upgrade to Cumulus Linux 5.19 from a release that does not support package upgrade or optimized image upgrade, you can install an image with {{<link url="Upgrading-Cumulus-Linux/#onie-image-upgrade" text="ONIE">}}.
@@ -202,6 +203,16 @@ carry-forward /etc/default/ifplugd
 ```
 
 Refer to {{<link url="Upgrading-Cumulus-Linux/#carry-forward-additional-files" text="Carry Forward Additional Files">}}.
+
+<!-- COMMENTED OUT FOR 5.19: ssd-dump-tools package
+
+### ssd-dump-tools Package
+
+When you use package upgrade to upgrade the switch from Cumulus Linux 5.18 to 5.19, the upgrade does not automatically install the `ssd-dump-tools` package. To use the SSD dump tools, install the package after the upgrade with the `sudo apt-get install ssd-dump-tools` command. The Cumulus Linux repository includes both the production-signed and development-signed versions of the package. Install the version that matches your environment.
+
+Refer to Upgrading-Cumulus-Linux, ssd-dump-tools Package.
+
+-->
 
 ### Cumulus VX
 

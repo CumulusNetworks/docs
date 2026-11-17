@@ -266,7 +266,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/nslcd.conf` file to set the `map passwd` and `map group` options..
+Edit the `/etc/nslcd.conf` file to set the `map passwd` and `map group` options.
 
 ```
 cumulus@switch:~$ sudo nano /etc/nslcd.conf
@@ -439,7 +439,7 @@ referrals yes
 ### Show LDAP Settings
 
 To show the LDAP configuration settings on the switch, run the following commands:
-- `nv show system aaa ldap` shows all the LDAP configuration settings. 
+- `nv show system aaa ldap` shows all the LDAP configuration settings.
 - `nv show system aaa ldap server` shows the configured LDAP servers and their priorities.
 - `nv show system aaa ldap server <server-id>` shows the priority for the specified LDAP server.
 - `nv show system aaa ldap ssl` shows the LDAP SSL configuration settings.
@@ -614,8 +614,3 @@ nslcd: [8b4567] <passwd="myuser"> DEBUG: ldap_set_option(LDAP_OPT_RESTART,LDAP_O
 nslcd: [8b4567] <passwd="myuser"> DEBUG: ldap_simple_bind_s(NULL,NULL) (uri="ldap://<ip_address>")
 nslcd: [8b4567] <passwd="myuser"> DEBUG: ldap_result(): end of results (0 total)
 ```
-
-## Related Information
-
-- {{<exlink url="https://wiki.debian.org/LDAP/NSS" text="Debian - configuring LDAP authentication">}}
-- {{<exlink url="https://wiki.debian.org/LDAP/PAM" text="Debian - configuring PAM to use LDAP">}}

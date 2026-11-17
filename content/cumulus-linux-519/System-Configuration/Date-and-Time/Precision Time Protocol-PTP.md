@@ -9,7 +9,7 @@ Cumulus Linux supports IEEE 1588-2008 Precision Timing Protocol (PTPv2), which d
 PTP is capable of sub-microsecond accuracy. The clocks are in a master-slave hierarchy, where the slaves synchronize to their masters, which can be slaves to their own masters. The Best Master Clock (BMC) algorithm, which runs on every clock, creates and updates the hierarchy automatically. The Grand Master clock is the top-level master. To provide a high-degree of accuracy, a Global Positioning System (GPS) time source typically synchronizes the Grand Master clock.
 
 In the following example:
-- Boundary clock 2 receives time from Master 1 (the Grand Master) on a PTP slave port, sets its clock and passes the time down from the PTP master port to Boundary clock 1. 
+- Boundary clock 2 receives time from Master 1 (the Grand Master) on a PTP slave port, sets its clock and passes the time down from the PTP master port to Boundary clock 1.
 - Boundary clock 1 receives the time on a PTP slave port, sets its clock and passes the time down the hierarchy through the PTP master ports to the hosts that receive the time.
 
 {{< img src = "/images/cumulus-linux/date-time-ptp-example.png" >}}
@@ -99,7 +99,7 @@ cumulus@switch:~$ sudo systemctl disable ntpsec@mgmt.service
    # server 3.cumulusnetworks.pool.ntp.org iburst
    ```
 
-   2. Stop and disable the NTP service in the management VRF:
+2. Stop and disable the NTP service in the management VRF:
 
    ```
    cumulus@switch:~$ sudo systemctl stop ntpsec@mgmt.service
@@ -238,12 +238,12 @@ The configuration writes to the `/etc/ptp4l.conf` file.
 
 1. Configure NVUE to stop managing PTP configuration files:
 
-```
-cumulus@switch:~$ nv set system config apply ignore /etc/linuxptp/phc2sys.conf
-cumulus@switch:~$ nv set system config apply ignore /etc/ptp4l.conf
-cumulus@switch:~$ nv set system config apply ignore /etc/cumulus/switchd.d/ptp.conf
-cumulus@switch:~$ nv config apply
-```
+   ```
+   cumulus@switch:~$ nv set system config apply ignore /etc/linuxptp/phc2sys.conf
+   cumulus@switch:~$ nv set system config apply ignore /etc/ptp4l.conf
+   cumulus@switch:~$ nv set system config apply ignore /etc/cumulus/switchd.d/ptp.conf
+   cumulus@switch:~$ nv config apply
+   ```
 
 2. Edit the `/etc/cumulus/switchd.d/ptp.conf` file to set the `ptp.timestamping` parameter to `TRUE`:
 
@@ -420,7 +420,7 @@ cumulus@switch:~$ nv set service ptp 1 two-step off
 cumulus@switch:~$ nv config apply
 ```
 
-To revert the clock timestamp mode to the default setting (two-step mode), run the `nv set service ptp 1 two-step on` command.  
+To revert the clock timestamp mode to the default setting (two-step mode), run the `nv set service ptp 1 two-step on` command.
 
 To set the clock timestamp mode for a custom profile based on IEEE1588, ITU 8275-1 or ITU 8275-2, run the `nv set service ptp <instance-id> profile <profile-id> two-step` command. For example, to set one-step mode for the custom profile called CUSTOM1, run the `nv set service ptp 1 profile CUSTOM1 two-step off` command.
 
@@ -520,7 +520,7 @@ ITU-T noise transfer specifies the following key elements to measure, test, and 
 Cumulus Linux PTP has an option to use a servo specifically designed to handle the ITU-T Noise Transfer specification. When you use this option, the <span class="a-tooltip">[PHC](## "Physical Hardware Clock")</span> the Noise Transfer Servo resolves the jitter and wander noise from the Master clock.
 
 {{%notice note%}}
-- To use Noise Transfer Servo, you need to enable SyncE on the switch and on PTP interfaces. 
+- To use Noise Transfer Servo, you need to enable SyncE on the switch and on PTP interfaces.
 - Cumulus Linux supports Noise Transfer Servo on Spectrum ASICs that support SyncE.
 - NVIDIA recommends you use Noise Transfer Servo with PTP Telecom profiles. If you use other profiles or choose not to use a profile, make sure to set the sync interval to -3 or better.
 - When you enable Noise Transfer Servo, the PTP log reporting offset is one every two seconds instead of one every second.
@@ -1206,8 +1206,9 @@ cumulus@switch:~$ nv config apply
    [swp1]
    ...
    table_id   1
+   ```
 
-3. Restart the `ptp4l` service.
+2. Restart the `ptp4l` service.
 
    ```
    cumulus@switch:~$ sudo systemctl restart ptp4l.service
@@ -1276,7 +1277,7 @@ cumulus@switch:~$ nv config apply
    unicast_request_duration 20
    ```
 
-3. Restart the `ptp4l` service.
+2. Restart the `ptp4l` service.
 
    ```
    cumulus@switch:~$ sudo systemctl restart ptp4l.service
@@ -2392,7 +2393,7 @@ cumulus@switch:~$ nv set interface vlan10 base-interface swp1
 
 ### PTP Traffic Shaping
 
-To improve performance on the NVIDIA Spectrum 1 switch for PTP-enabled ports with speeds lower than 100G, you can enable a pre-defined traffic shaping profile. For example, if you see that the PTP timing offset varies widely and does not stabilize, enable PTP shaping on all PTP enabled ports to reduce the bandwidth on the ports slightly and improve timing stabilization.
+To improve performance on the NVIDIA Spectrum1 switch for PTP-enabled ports with speeds lower than 100G, you can enable a pre-defined traffic shaping profile. For example, if you see that the PTP timing offset varies widely and does not stabilize, enable PTP shaping on all PTP enabled ports to reduce the bandwidth on the ports slightly and improve timing stabilization.
 
 {{%notice note%}}
 - Switches with Spectrum-2 and later do not support PTP shaping.

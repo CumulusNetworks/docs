@@ -324,7 +324,7 @@ Lane Stats
     7     15E-255  22.18 dB   23.48 dB   0
 ```
 
-To show a tabular summary of PHY health statistics for all switch port interfaces in a single command, such as the error counters for all ports, run the `nv show interface --view ber` command: 
+To show a tabular summary of PHY health statistics for all switch port interfaces in a single command, such as the error counters for all ports, run the `nv show interface --view ber` command:
 
 ```
 cumulus@switch$ nv show interface --view ber
@@ -438,7 +438,7 @@ active-set-media-compliance-code  800GBASE-DR8 (Clause 124)
 ```
 
 {{%notice note%}}
-Switches with the Spectrum 1 ASIC do not support the `nv show interface <interface-id> link phy health` command or the `nv show interface <interface-id> link phy detail` command.
+Switches with the Spectrum1 ASIC do not support the `nv show interface <interface-id> link phy health` command or the `nv show interface <interface-id> link phy detail` command.
 {{%/notice%}}
 
 ## Clear Interface Counters

@@ -292,7 +292,7 @@ cumulus@switch:~$ nv set vrf UPLINK_VRF router bgp address-family ipv4-unicast r
 cumulus@switch:~$ nv config apply
 ```
 
-For {{<link url="Inter-subnet-Routing/#layer-3-vxlan-device-mode" text="layer 3 VXLAN device mode">}}, use the layer 3 VXLAN interface name as the upstream interface; Layer 3 VNI SVIs and related VLAN configurations are not needed in layer 3 VXLAN device mode. 
+For {{<link url="Inter-subnet-Routing/#layer-3-vxlan-device-mode" text="layer 3 VXLAN device mode">}}, use the layer 3 VXLAN interface name as the upstream interface; Layer 3 VNI SVIs and related VLAN configurations are not needed in layer 3 VXLAN device mode.
 
 ```
 cumulus@switch:~$ nv set service dhcp-relay UPLINK_VRF server-group uplink-servers upstream-interface vxi_4002
@@ -511,7 +511,7 @@ cumulus@switch:~$ nv config apply
 
 ### Layer 3 VXLAN Device Mode Configuration
 
-When configuring DHCP relay in an EVPN symmetric environment with {{<link url="Inter-subnet-Routing/#layer-3-vxlan-device-mode" text="layer 3 VXLAN device mode">}} configured, use the layer 3 VXLAN interface name as the upstream interface. Layer 3 VNI SVIs and related VLAN configurations are not needed in layer 3 VXLAN device mode. 
+When configuring DHCP relay in an EVPN symmetric environment with {{<link url="Inter-subnet-Routing/#layer-3-vxlan-device-mode" text="layer 3 VXLAN device mode">}} configured, use the layer 3 VXLAN interface name as the upstream interface. Layer 3 VNI SVIs and related VLAN configurations are not needed in layer 3 VXLAN device mode.
 
 
 {{< tabs "TabID516 ">}}

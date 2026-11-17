@@ -571,7 +571,7 @@ If you manage your switch configuration with NVUE, use the following procedure t
 As Cumulus Linux supports more features and functionality, NVUE syntax might change between releases and the content of snippets and flexible snippets might become invalid. Before you back up and restore configuration across different Cumulus Linux releases, make sure to review the {{<link url="Whats-New" text="What's New">}} for new NVUE syntax and other configuration file changes.
 
 {{%notice note%}}
-- An ONIE image upgrade does not back up any certificates or CRLs that you import to the system with NVUE. You must reimport the certificates after you install the new image. 
+- An ONIE image upgrade does not back up any certificates or CRLs that you import to the system with NVUE. You must reimport the certificates after you install the new image.
 - If you reinstall Cumulus Linux with an embedded `startup.yaml` file with the `nv action install system image onie <image> startup-config <file-name>` or `onie-install -t` command, Cumulus Linux preserves your NVUE startup configuration and translates the contents automatically to NVUE syntax required by the new release. This method still requires reimporting certificates and CRLs after the image install.
 - If NVUE introduces new syntax for a feature that a snippet configures, you must remove the snippet before upgrading.
 {{%/notice%}}

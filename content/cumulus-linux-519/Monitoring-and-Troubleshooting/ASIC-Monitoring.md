@@ -53,7 +53,7 @@ Cumulus Linux provides several histograms:
 
 {{%notice note%}}
 Cumulus Linux supports:
-- The egress queue length histogram on Spectrum 1 and later.
+- The egress queue length histogram on Spectrum1 and later.
 - The ingress queue length histogram and the latency histogram on Spectrum-2 and later.
 - The counter histogram (transmitted packet, transmitted byte, received packet, received byte, and CRC counters) on Spectrum-2 and later.
 - The counter histogram (layer 1 received byte counters and layer 1 transmitted byte counters) on Spectrum-4 only.
@@ -118,7 +118,7 @@ Histogram settings include the type of data you want to collect, the ports you w
 {{%notice note%}}
 When you configure minimum boundary and histogram sizes, Cumulus Linux rounds down the configured byte value to the nearest multiple of the switch ASIC cell size before programming it into hardware. The cell size is a fixed number of bytes on each switching ASIC:
 
-- Spectrum-1: 96 bytes
+- Spectrum1: 96 bytes
 - Spectrum-2 and Spectrum-3: 144 bytes
 - Spectrum-4: 192 bytes
 {{%/notice%}}
@@ -130,7 +130,7 @@ The histogram type can be `egress-buffer`, `ingress-buffer`, `counter`, or `late
 
 - To change global histogram settings, run the `nv set system telemetry histogram <type>` command.
 - To enable histograms on interfaces or to change interface level settings, run the `nv set interface <interface-id> telemetry histogram <type>` command.
-  
+
 {{< tabs "TabID93 ">}}
 {{< tab "Egress Queue Length ">}}
 

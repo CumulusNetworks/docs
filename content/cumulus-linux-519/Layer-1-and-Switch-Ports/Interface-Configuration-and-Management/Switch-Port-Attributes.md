@@ -1704,7 +1704,7 @@ Bonus port supports 100G.
 
 514x 100G:
 
-- 64 OSFP data ports break out into 8x 
+- 64 OSFP data ports break out into 8x
 - 1 QSFP112 bonus port break out 2x (default mode)
 
 Maximum 100G ports: 514
@@ -2276,7 +2276,7 @@ Laser output power                        : 0.5230 mW / -2.81 dBm
 Receiver signal average optical power     : 0.7285 mW / -1.38 dBm
 ```
 
-To show a tabular summary of transceiver temperature, voltage, and per-channel optical power and bias values for all switch port interfaces, run the `nv show interface --view dom` command: 
+To show a tabular summary of transceiver temperature, voltage, and per-channel optical power and bias values for all switch port interfaces, run the `nv show interface --view dom` command:
 
 {{%notice note%}}
 The `nv show interface --view dom` command is currently in Beta.
@@ -2344,12 +2344,8 @@ The NVIDIA Spectrum-2 (25G) switch only supports RS FEC.
 <!-- vale off -->
 ### Connecting NVIDIA SN4410, SN4700, SN5600 to a Spectrum-3 and Earlier Peer Switch
 <!-- vale on -->
-When you connect an NVIDIA SN4410, SN4700, or SN5600 switch to any Spectrum 1, Spectrum-2, or Spectrum-3 peer switch (with four lanes) using a 4x breakout configuration and the default lanes for each port setting, links do not come up. To work around this issue, provide the lanes for each port configuration shown below:
+When you connect an NVIDIA SN4410, SN4700, or SN5600 switch to any Spectrum1, Spectrum-2, or Spectrum-3 peer switch (with four lanes) using a 4x breakout configuration and the default lanes for each port setting, links do not come up. To work around this issue, provide the lanes for each port configuration shown below:
 
 ```
 cumulus@switch:~$ nv set interface <interface-id> link breakout 4x lanes-per-port 1
 ```
-
-## Related Information
-
-- {{<exlink url="http://wiki.debian.org/NetworkConfiguration" text="Debian - Network Configuration">}}

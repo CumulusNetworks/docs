@@ -14,7 +14,7 @@ The bridge driver in Cumulus Linux kernel includes IGMP and MLD snooping. If you
 
 Without a multicast router, a single switch in an IP subnet can coordinate multicast traffic flows. This switch is the querier or the designated router. The querier generates query messages to check group membership, and processes membership reports and leave messages.
 
-To configure the querier on the switch for a {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge">}}, enable the multicast querier on the bridge and add the source IP address of the queries to the VLAN. 
+To configure the querier on the switch for a {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge">}}, enable the multicast querier on the bridge and add the source IP address of the queries to the VLAN.
 
 Before you configure the querier, make sure to configure the bridge, VLAN, and ports.
 
@@ -159,7 +159,7 @@ cumulus@switch:~$ sudo ifreload -a
 {{< /tabs >}}
 
 {{%notice note%}}
-OMF increases memory usage, which can impact scaling on Spectrum 1 switches.
+OMF increases memory usage, which can impact scaling on Spectrum1 switches.
 {{%/notice%}}
 
 ## Improve Multicast Convergence
@@ -185,7 +185,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Edit /etc/cumulus/control-plane/policers.conf ">}}
 
-1. Edit the `/etc/cumulus/control-plane/policers.conf` file. 
+1. Edit the `/etc/cumulus/control-plane/policers.conf` file.
 
    - For IGMP, change the `copp.igmp.rate` and `copp.igmp.burst` parameters.
    - For MLD, change the `copp.icmp6_def_mld.rate` and `copp.icmp6_def_mld.burst` parameters.
@@ -356,8 +356,8 @@ iface br_default
 The supported values for `bridge-hashmax` are 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536.
 
 {{%notice note%}}
-* Spectrum 1 switches limit multicast groups to 16300 in the MDB with OMF disabled and 14800 multicast groups with OMF enabled.
-* On Spectrum 1 switches, to support this upper limit you must change the {{<link url="Forwarding-Table-Size-and-Profiles" text="forwarding resource profile">}} to `rash-custom-profile1`, then restart `switchd`.
+- Spectrum1 switches limit multicast groups to 16300 in the MDB with OMF disabled and 14800 multicast groups with OMF enabled.
+- On Spectrum1 switches, to support this upper limit you must change the {{<link url="Forwarding-Table-Size-and-Profiles" text="forwarding resource profile">}} to `rash-custom-profile1`, then restart `switchd`.
 {{%/notice%}}
 <!-- vale off -->
 ## DIP-based Multicast Forwarding

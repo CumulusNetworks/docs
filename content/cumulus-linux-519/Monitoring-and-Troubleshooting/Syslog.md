@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 147
 toc: 3
 ---
-Cumulus Linux uses `rsyslog` to collect, filter, store, and forward system logs from various services, applications, and network components. `rsyslog` enables efficient troubleshooting, centralized log management, and compliance enforcement with custom rules for log processing.  
+Cumulus Linux uses `rsyslog` to collect, filter, store, and forward system logs from various services, applications, and network components. `rsyslog` enables efficient troubleshooting, centralized log management, and compliance enforcement with custom rules for log processing.
 
 You can configure logging based on severity, program name, and facility while specifying transport settings such as VRF, protocol (UDP or TCP), and port. Cumulus Linux also provides advanced filtering using match conditions and actions so that you can capture and forward only relevant logs. Additionally, you can configure rate limiting to ensure controlled log forwarding and prevent overwhelming the system.
 
@@ -27,7 +27,7 @@ Cumulus Linux sends logs through `rsyslog`, which writes them to files in the `/
 | `15-crit.conf` | Logs `crit`, `alert` or `emerg` log messages to `/var/log/crit.log` to ensure they do not rotate away.|
 | `20-clagd.conf` | Logs `clagd` messages to `/var/log/clagd.log` for {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}}.|
 | `22-linkstate.conf` | Logs link state changes for all physical and logical network links to `/var/log/linkstate`. |
-| `25-switchd.conf` | Logs `switchd` messages to `/var/log/switchd.log`. | 
+| `25-switchd.conf` | Logs `switchd` messages to `/var/log/switchd.log`. |
 | `30-ptmd.conf`  | Logs `ptmd` messages to `/var/log/ptmd.log` for {{<link url="Prescriptive-Topology-Manager-PTM" text="Prescription Topology Manager">}}. |
 | `35-rdnbrd.conf` | Logs `rdnbrd` messages to `/var/log/rdnbrd.log` for {{<link url="Redistribute-Neighbor">}}. |
 | `42-nvued.conf` | Logs `nvued` messages to `/var/log/nvued.log` for NVUE. |

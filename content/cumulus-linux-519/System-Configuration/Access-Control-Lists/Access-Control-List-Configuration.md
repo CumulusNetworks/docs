@@ -151,7 +151,7 @@ cumulus@switch:~$ nv config apply
 
 {{%notice note%}}
 - On Spectrum-2 and later, NVUE reloads `switchd` after you run and apply the `nv set system acl mode` command. Reloading `switchd` does **not** interrupt network services.
-- On Spectrum 1, NVUE restarts `switchd` after you run and apply the `nv set system acl mode` command. Restarting `switchd` causes all network ports to reset in addition to resetting the switch hardware configuration.
+- On Spectrum1, NVUE restarts `switchd` after you run and apply the `nv set system acl mode` command. Restarting `switchd` causes all network ports to reset in addition to resetting the switch hardware configuration.
 {{%/notice%}}
 
 {{< /tab >}}
@@ -171,7 +171,7 @@ cumulus@switch:~$ nv config apply
    cumulus@switch:~$ sudo systemctl reload switchd.service
    ```
 
-   On Spectrum 1, restart `switchd` for the changes to take effect. Restarting `switchd` causes all network ports to reset in addition to resetting the switch hardware configuration.
+   On Spectrum1, restart `switchd` for the changes to take effect. Restarting `switchd` causes all network ports to reset in addition to resetting the switch hardware configuration.
 
    ```
    cumulus@switch:~$ sudo systemctl restart switchd.service
@@ -292,7 +292,7 @@ To create this rule with NVUE, follow the steps below. NVUE adds all options in 
    For firewall IPv4 type ACLs on the control plane, you can match on the hashlimit module (`hashimit`), the connection state (`connection-state`), and the recent module (`recent-list`). Refer to {{<link url="Firewall-Rules/#add-firewall-rules" text="Firewall Rules">}}.
 
 2. Apply the rule to an inbound or outbound interface with the `nv set interface <interface-id> acl` command.
-   
+
    - For rules affecting the -t mangle -A PREROUTING chain (-A FORWARD in previous releases), apply the rule to an inbound or outbound interface: For example:
 
    ```
@@ -542,11 +542,11 @@ NVIDIA Spectrum switches use a <span class="a-tooltip">[TCAM](## "Ternary Conten
 When you enable certain switch features, they create additional system ACLs. System ACLs share TCAM resources with user-defined ACLs, which can increase TCAM utilization and reduce available ACL entries. Features that create additional system ACLs include multicast routing, VXLAN tunnels, IGMPv3 Snooping, IPv4-to-IPv6 NAT translation, and layer 2 port isolation.
 {{%/notice%}}
 
-### TCAM Profiles on Spectrum 1
+### TCAM Profiles on Spectrum1
 
-The NVIDIA Spectrum 1 ASIC (model numbers 2xx0) has one common TCAM space for both ingress and egress ACLs, which the switch also uses for multicast route entries.
+The NVIDIA Spectrum1 ASIC (model numbers 2xx0) has one common TCAM space for both ingress and egress ACLs, which the switch also uses for multicast route entries.
 
-Cumulus Linux controls the ACL and multicast route entry scale on NVIDIA Spectrum 1 switches with different TCAM profiles in combination with the ACL {{<link url="#nonatomic-update-mode-and-atomic-update-mode" text="atomic and nonatomic update setting">}}.
+Cumulus Linux controls the ACL and multicast route entry scale on NVIDIA Spectrum1 switches with different TCAM profiles in combination with the ACL {{<link url="#nonatomic-update-mode-and-atomic-update-mode" text="atomic and nonatomic update setting">}}.
 <!-- vale off -->
 |Profile |Atomic Mode IPv4 Rules |Atomic Mode IPv6 Rules |Nonatomic Mode IPv4 Rules |Nonatomic Mode IPv6 Rules | Multicast Route Entries |
 | ------------| ------------------- | -------------------| ------------------- | ------------------------- | ----------------- |
@@ -574,12 +574,12 @@ cumulus@switch:~$ sudo systemctl restart switchd.service
 ```
 
 {{%notice note%}}
-Spectrum 1 TCAM resource profiles that control ACLs and multicast route scale are different from {{<link url="Forwarding-Table-Size-and-Profiles" text="forwarding resource profiles">}} that control MAC table, IPv4, and IPv6 entry scale.
+Spectrum1 TCAM resource profiles that control ACLs and multicast route scale are different from {{<link url="Forwarding-Table-Size-and-Profiles" text="forwarding resource profiles">}} that control MAC table, IPv4, and IPv6 entry scale.
 {{%/notice%}}
 
 ### ATCAM on Spectrum-2 and Later
 
-Switches with Spectrum-2 and later use a newer <span class="a-tooltip">[KVD](## "Key Value Database")</span> scheme and an <span class="a-tooltip">[ATCAM](## "Algorithmic TCAM")</span> design that is more flexible and allows a higher ACL scale than Spectrum 1. There is no TCAM resource profile on Spectrum-2 and later.
+Switches with Spectrum-2 and later use a newer <span class="a-tooltip">[KVD](## "Key Value Database")</span> scheme and an <span class="a-tooltip">[ATCAM](## "Algorithmic TCAM")</span> design that is more flexible and allows a higher ACL scale than Spectrum1. There is no TCAM resource profile on Spectrum-2 and later.
 
 The following table shows the tested ACL rule limits. Because the KVD and ATCAM share space with forwarding table entries, multicast route entries, and VLAN flow counters, these ACL limits might vary based on your use of other tables.
 
@@ -629,7 +629,7 @@ Cumulus Linux does not offload `conntrack` or `--ctstate` ACL matches to switch 
 |--- |--- |--- |
 |**Matches**|Src/Dst, IP protocol<br>In/out interface<br>IPv4: ecn, icmp, frag, ttl,<br>IPv6: icmp6, hl,<br>IP common: tcp ({{<link url="#filter-specific-tcp-flags" text="with flags">}}), udp, multiport, DSCP, addrtype|Rules with input/output Ethernet interfaces do not apply<br>Inverse matches|
 |**Standard Targets**|ACCEPT, DROP|RETURN, QUEUE, STOP, Fall Thru, Jump|
-|**Extended Targets**|LOG (IPv4/IPv6); UID is not supported for LOG<br>TCP SEQ, TCP options or IP options<br>ULOG<br>SETQOS<br>DSCP<br>Unique to Cumulus Linux:<br>SPAN<br>ERSPAN (IPv4/IPv6)<br>POLICE<br>TRICOLORPOLICE<br>SETCLASS||
+|**Extended Targets**|LOG (IPv4 and IPv6); UID is not supported for LOG<br>TCP SEQ, TCP options or IP options<br>ULOG<br>SETQOS<br>DSCP<br>Unique to Cumulus Linux:<br>SPAN<br>ERSPAN (IPv4 or IPv6)<br>POLICE<br>TRICOLORPOLICE<br>SETCLASS||
 
 ### ebtables Rule Support
 
@@ -1456,7 +1456,7 @@ Cumulus Linux supports ACL matches based on inner packet headers inside encapsul
 - You cannot match on both inner and outer packet headers in the same ACL.
 - You cannot combine a VLAN match with inner packet matches.
 - Inner packet matches support hardware forwarded packets only.
-- You can configure matches on inner packet headers with NVUE commands only. 
+- You can configure matches on inner packet headers with NVUE commands only.
 {{%/notice%}}
 
 You can use the following inner packet matching options:
@@ -1513,10 +1513,10 @@ Cumulus Linux supports ACL rule matches based on the packet offset.
 
 {{%notice note%}}
 - You can configure a maximum of three different packet offset matches either in a single ACL rule or across three separate ACL rules. You can reuse the same offset match in another ACL rule, which does not count as an extra offset match. The combination of an offset location and a `match-from` value counts as one offset.
-- You can configure offset matches only for ACL type ipv4 and ipv6.
+- You can configure offset matches only for ACL type `ipv4` and `ipv6`.
 - The Spectrum1 switch does not support matches based on the packet offset.
 - Matches based on the packet offset support hardware forwarded packets only.
-- You can configure matches based on the packet offset with NVUE commands only. 
+- You can configure matches based on the packet offset with NVUE commands only.
 {{%/notice%}}
 
 You can use the following packet offset matching options:

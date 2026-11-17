@@ -104,7 +104,7 @@ During first boot after ONIE upgrade or install, the ZTP process brings up all f
 - Configure a ZTP server and script that starts the current provisioning script with a shorter window for interfaces to remain unconfigured and up.
 - Modify the provisioning script to terminate the ZTP process at the beginning and bring down all the interfaces.
 - Send the ONIE installer an empty ZTP script with the `nv action install system image onie <image> ztp <URL_to_empty_ztp_script>` or `onie-install -z <URL_to_empty_ztp_script>` command. The following example shows an empty ZTP script:
-  
+
   ```
   #!/bin/sh
   #CUMULUS-AUTOPROVISIONING

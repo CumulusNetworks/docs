@@ -1252,6 +1252,8 @@ When you configure suppress route advertisement, NVUE restarts `switchd`.
 
 {{<link url="Upgrading-Cumulus-Linux/#upgrades-with-issu" text="ISSU">}} suppresses route advertisement automatically when upgrading or troubleshooting an active switch so that there is minimal disruption to the network.
 
+BGP always originates the advertisement for an aggregate route when a prefix inside the aggregate is present in the BGP RIB. BGP does not track the ASIC installation state before sending updates to peers.
+
 ## BGP VRF Active Check
 
 When you enable BGP VRF active check, BGP blocks advertisements and imports for the IPv4, IPv6, and EVPN address families in any VRF that is inactive. A VRF is inactive when no operationally up interface is bound to it. For example, with {{<link url="802.1X-Interfaces/#dynamic-vrf-assignment" text="802.1X dynamic VRF assignment">}}, a VRF has no operationally up interface until a supplicant authenticates.

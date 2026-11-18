@@ -157,8 +157,7 @@ cumulus@switch:~$ nv config apply</td>
 </tr>
 <tr>
 <td>5324952, 5355833</td>
-<td>In 5.18 and 5.19
-When you enable IP Source Guard on an interface that is a member of more than one VLAN (for example, a trunk port or a hybrid port with an untagged VLAN, and one or more tagged VLANs), the ACL rules generated from the DHCP snooping binding table do not include a VLAN match. As a result, a binding learned on one VLAN is also honored for traffic ingressing another VLAN of the same port, which might allow cross-VLAN source IP or MAC spoofing. To work around this issue, enable IP Source Guard only on interfaces that belong to a single VLAN (access port).</td>
+<td>When you enable IP Source Guard on an interface that is a member of more than one VLAN (for example, a trunk port or a hybrid port with an untagged VLAN, and one or more tagged VLANs), the ACL rules generated from the DHCP snooping binding table do not include a VLAN match. As a result, a binding learned on one VLAN is also honored for traffic ingressing another VLAN of the same port, which might allow cross-VLAN source IP or MAC spoofing. To work around this issue, enable IP Source Guard only on interfaces that belong to a single VLAN (access port).</td>
 <td>5.18.0-5.19.0</td>
 <td></td>
 </tr>

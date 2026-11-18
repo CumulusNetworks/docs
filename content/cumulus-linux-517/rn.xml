@@ -13,6 +13,28 @@
 <td></td>
 </tr>
 <tr>
+<td>5407473</td>
+<td>When using {{cl-ecmpcalc}} for a non-ECMP destination with a single next hop, the command output shows a python traceback.</td>
+<td>5.11.1-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5385916</td>
+<td>NVUE reports installed FIB routes as missing when next hop compatibility mode is enabled. The FIB filter incorrectly drops kernel entries containing both the next hop ID and the compatibility next hops array.</td>
+<td>5.16.3-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5385219</td>
+<td>When you perform a factory reset after optimized image upgrade, the switch deletes the generated {{sysctl}} files in the {{/etc/sysctl.d}} directory (such as {{route_nh.conf}}) and does not recreate them. To work around this issue:&lt;ol&gt;
+&lt;li&gt;For each missing file in the {{/etc/sysctl.d}} directory ({{igmp.conf}}, {{mld.conf}}, {{neigh.conf}}, {{route_nh.conf}}), run the {{ucf --purge /etc/sysctl.d/&lt;file&gt;}} command as root. 
+&lt;li&gt;Remove the marker with the {{rm -f /var/cache/cumulus/platform-sysctl}} command.
+&lt;li&gt;Recreate the files with the {{/usr/lib/cumulus/update-sysctl}} command and apply them with {{sysctl --system}}. 
+&lt;li&gt;Verify that the four files exist and that the {{sysctl net.ipv4.nexthop_compat_mode}} command returns 0.&lt;/li&gt;&lt;/ol&gt;</td>
+<td>5.16.3-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5376361</td>
 <td>{{switchd}} restarts repeatedly because internal SDK threads stop responding, resulting in BGP flaps and about 23 minutes of network recovery time per event.</td>
 <td>5.11.4-5.18.3</td>
@@ -41,6 +63,18 @@ In an EVPN multihoming configuration, a remote MAC address remains programmed in
 <td>5358616</td>
 <td>When you disable STP, the switch saves but does not program the bridge STP priority, which causes the MLAG secondary bonds to enter protocol-down.</td>
 <td>5.16.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5358602</td>
+<td>When you enable or disable BGP graceful shutdown, BGP sends more route refreshes and route advertisements than necessary. This extra churn triggers a timing issue that stops a route update from reaching some peers. As a result, after you disable graceful shutdown, the peers keep routes with the graceful-shutdown community and local preference 0, and use fewer ECMP paths than expected. To work around this issue, after the churn settles, run a soft outbound clear on the advertising switch toward each affected peer, one at a time with the {{sudo vtysh -c "clear bgp &lt;peer-ip&gt; soft out"}} command.</td>
+<td>5.16.8-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5357820</td>
+<td>When you suppress route advertisement ({{nv set router bgp wait-for-install enabled}}) and configure an aggregate route, when the switch withdraws all the contributing routes, BGP keeps the aggregate installed and advertised even after all the more-specific routes are gone. To work around this issue, remove and re-apply the corresponding aggregate route.</td>
+<td>5.16.1-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -92,9 +126,21 @@ In an EVPN multihoming configuration, a remote MAC address remains programmed in
 <td></td>
 </tr>
 <tr>
+<td>5330322</td>
+<td>After NVUE runs for a long time with frequent gNMI subscription changes or configuration applies, an internal NVUE error leaves NVUE unable to re-register with the telemetry service. {{nv-gnmid}} then restarts repeatedly with the error {{Failed to set up subscription service client: failed to start keepalive stream after 10 attempts}}, and gNMI subscribers receive no telemetry data. Restarting nv-umf does not recover the switch. In some cases, {{nv config apply}} also stops responding.</td>
+<td>5.16.6-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5327622</td>
 <td>A bridge FDB flush does not restore EVPN router MAC entries in the Kernel.</td>
 <td>5.11.5-5.18.3</td>
+<td></td>
+</tr>
+<tr>
+<td>5327605</td>
+<td>When an EVPN router MAC is reachable through two VTEPs and one of them changes to a different router MAC, remote switches move their FRR entry to the remaining VTEP but do not reprogram the kernel and hardware entry. As a result, the remote switch keeps forwarding traffic for that router MAC to the VTEP that no longer owns it. FRR shows the correct VTEP while the kernel bridge FDB shows the old one.</td>
+<td>5.11.1-5.18.3</td>
 <td></td>
 </tr>
 <tr>
@@ -353,6 +399,12 @@ Pin-Priority: 992</td>
 <td></td>
 </tr>
 <tr>
+<td>5155463</td>
+<td>PHY telemetry metrics for each lane, such as {{nvswitch_interface_phy_stats_raw_ber}}, report values for 8 lanes regardless of how many lanes the port uses. For example, a port with a single-lane transceiver reports 8 lanes of BER data, while {{nvswitch_interface_number_of_lanes}} and the transceiver channel metrics report one lane. The extra lanes report zero. to work around this issue, use {{nvswitch_interface_number_of_lanes}} to determine which lanes are active and ignore lanes beyond that count.</td>
+<td>5.16.0-5.18.3</td>
+<td></td>
+</tr>
+<tr>
 <td>5152149, 5154742</td>
 <td>Zebra might crash when recovering routes after a temporary failure to install forwarding next hops. During interface instability or link flapping, some routes might fail to install. Zebra caches those routes for later retry. If a cached route is removed before the next hop is installed successfully, zebra might later access invalid memory while retrying installation and then crash.</td>
 <td>5.11.3-5.17.0</td>
@@ -572,6 +624,12 @@ As a result of this issue, both peers in the multihoming pair claim DF (neither 
 <td>5.18.0-5.18.3</td>
 </tr>
 <tr>
+<td>5050999</td>
+<td>Span egress port mirroring fails on the Spectrum-6 switch.</td>
+<td>5.17.0</td>
+<td>5.18.0-5.18.3</td>
+</tr>
+<tr>
 <td>5050916</td>
 <td>When LLDP proxy is enabled (EVPN unreachable-prefix in multiplane deployments), a host-facing interface that is administratively shut, or has carrier down and is then permanently removed from a tenant VRF might not send the LLDP proxy teardown flush to the host when the link later comes back up. Traffic might drop or reachability might be incorrect until the host is reset or the stale state is cleared. </td>
 <td>5.17.0</td>
@@ -594,6 +652,12 @@ As a result of this issue, both peers in the multihoming pair claim DF (neither 
 <td>5040890</td>
 <td>IPv4 BGP aggregate routes are not advertised to peers.</td>
 <td>5.14.0-5.17.0</td>
+<td>5.18.0-5.18.3</td>
+</tr>
+<tr>
+<td>5040605, 4956977</td>
+<td>The log-level severity for {{System is busy. Please retry in a bit}} is ERROR/WARN instead of INFO.</td>
+<td>5.17.0</td>
 <td>5.18.0-5.18.3</td>
 </tr>
 <tr>

@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5429056</td>
+<td>On the Spectrum-6 switch, the {{mlxlink}} command shows the physical state of a port as {{ETH_AN_FSM_ENABLE}} even though the link is up and active.</td>
+<td>5.18.3-5.19.0</td>
+<td></td>
+</tr>
+<tr>
 <td>5413843</td>
 <td>When both ends of a link are NVIDIA Spectrum-4 switches, CMIS VDM pre-FEC BER and other FEC-based values read from particular transceiver modules are zero.</td>
 <td>5.17.0-5.19.0</td>
@@ -22,6 +28,13 @@
 <td>5376361</td>
 <td>{{switchd}} restarts repeatedly because internal SDK threads stop responding, resulting in BGP flaps and about 23 minutes of network recovery time per event.</td>
 <td>5.11.4-5.19.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5374702</td>
+<td>
+In an EVPN multihoming configuration, a remote MAC address remains programmed in the kernel bridge FDB as a single VTEP entry, with no next hop group ID. The switch does not install the correct Ethernet Segment next hop group entry, and as a result, does not load balance traffic to that MAC address across all VTEPs of the Ethernet Segment. The FRR logs show the error {{Cannot replace an existing non nexthop fdb with a nexthop}}.</td>
+<td>5.14.0-5.19.0</td>
 <td></td>
 </tr>
 <tr>
@@ -61,12 +74,6 @@
 <td></td>
 </tr>
 <tr>
-<td>5364680</td>
-<td>NVUE does not re-render /etc/apply_timezone.sh after you delete the file and the switch reboots.</td>
-<td>5.19.0</td>
-<td></td>
-</tr>
-<tr>
 <td>5364675</td>
 <td>In FIPS mode, if you delete the {{/etc/ssl/openssl.cnf}} file before the switch reboots, the NVUE service might fail to start.</td>
 <td>5.19.0</td>
@@ -91,6 +98,18 @@ cumulus@switch:~$ nv unset interface &lt;interface-id&gt; dot1x
 cumulus@switch:~$ nv config apply
 cumulus@switch:~$ nv set interface &lt;interface-id&gt; ipv6 address &lt;address&gt;
 cumulus@switch:~$ nv config apply</td>
+<td>5.19.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5358602</td>
+<td>When you enable or disable BGP graceful shutdown, BGP sends more route refreshes and route advertisements than necessary. This extra churn triggers a timing issue that stops a route update from reaching some peers. As a result, after you disable graceful shutdown, the peers keep routes with the graceful-shutdown community and local preference 0, and use fewer ECMP paths than expected. To work around this issue, after the churn settles, run a soft outbound clear on the advertising switch toward each affected peer, one at a time with the {{sudo vtysh -c "clear bgp &lt;peer-ip&gt; soft out"}} command.</td>
+<td>5.16.8-5.19.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5358469</td>
+<td>When you configure a TCP remote syslog server, a collector that silently stops responding stalls local logging.</td>
 <td>5.19.0</td>
 <td></td>
 </tr>
@@ -959,6 +978,16 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <th> Affects </th>
 </tr>
 <tr>
+<td>5420177</td>
+<td>With BGP SoO next-hop groups and unnumbered peering, a shut-down neighbor stays in the next-hop groups and the switch continues to send traffic to the shut down neighbor.</td>
+<td>5.18.1-5.18.3</td>
+</tr>
+<tr>
+<td>5420095</td>
+<td>In rare cases, a single collection of interface statistics fails and the switch logs status=13 (Parameter Error) messages for every port in {{/var/log/sdk-stats-critical.log}}. The interface, queue, switch-priority and PHY BER counters are missing from that one sample for gNMI and Prometheus. The next collection completes normally.</td>
+<td></td>
+</tr>
+<tr>
 <td>5407473</td>
 <td>When using {{cl-ecmpcalc}} for a non-ECMP destination with a single next hop, the command output shows a python traceback.</td>
 <td>5.11.1-5.18.3</td>
@@ -998,20 +1027,9 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>5.16.8-5.18.3</td>
 </tr>
 <tr>
-<td>5374702</td>
-<td>
-In an EVPN multihoming configuration, a remote MAC address remains programmed in the kernel bridge FDB as a single VTEP entry, with no next hop group ID. The switch does not install the correct Ethernet Segment next hop group entry, and as a result, does not load balance traffic to that MAC address across all VTEPs of the Ethernet Segment. The FRR logs show the error {{Cannot replace an existing non nexthop fdb with a nexthop}}.</td>
-<td>5.14.0-5.18.3</td>
-</tr>
-<tr>
 <td>5358616</td>
 <td>When you disable STP, the switch saves but does not program the bridge STP priority, which causes the MLAG secondary bonds to enter protocol-down.</td>
 <td>5.16.5-5.18.3</td>
-</tr>
-<tr>
-<td>5358602</td>
-<td>When you enable or disable BGP graceful shutdown, BGP sends more route refreshes and route advertisements than necessary. This extra churn triggers a timing issue that stops a route update from reaching some peers. As a result, after you disable graceful shutdown, the peers keep routes with the graceful-shutdown community and local preference 0, and use fewer ECMP paths than expected. To work around this issue, after the churn settles, run a soft outbound clear on the advertising switch toward each affected peer, one at a time with the {{sudo vtysh -c "clear bgp &lt;peer-ip&gt; soft out"}} command.</td>
-<td>5.16.8-5.18.3</td>
 </tr>
 <tr>
 <td>5357820</td>
@@ -1317,6 +1335,11 @@ This failure disrupts DHCPv6 service for all downstream interfaces served by tha
 <td>5.18.0-5.18.3</td>
 </tr>
 <tr>
+<td>5233874, 5228228</td>
+<td>Changing the advertisement delay while BGP sessions are already established causes type-5 aggregate or summary routes to be suppressed until FRR restarts.</td>
+<td>5.18.0-5.18.3</td>
+</tr>
+<tr>
 <td>5231075</td>
 <td>After a reboot, NVUE might fail to complete startup if the git repository housekeeping operations run concurrently and generate excessive error output. This can cause {{nvued.service}} to time out and prevent {{nvue-startup.service}} from applying the {{startup.yaml}} file. As a result, the gNMI runtime configuration and certificates might not generate, leaving the gNMI service on TCP port 9339 unavailable.</td>
 <td>5.16.7-5.18.3</td>
@@ -1562,6 +1585,11 @@ This failure disrupts DHCPv6 service for all downstream interfaces served by tha
 <td>5.18.0-5.18.3</td>
 </tr>
 <tr>
+<td>5170196</td>
+<td>While the I2C state machine (SM) is not in the IDLE state, no new transaction can be initiated, and access to the modules on this I2C bus is blocked.</td>
+<td></td>
+</tr>
+<tr>
 <td>5170159</td>
 <td>NAS IP addresses are missing from RADIUS accounting packets.</td>
 <td>5.18.0-5.18.3</td>
@@ -1610,6 +1638,11 @@ This failure disrupts DHCPv6 service for all downstream interfaces served by tha
 <td>5157775</td>
 <td>On a Spectrum-6 switch with 800Gx8 ports, the switch does not fully transmit traffic sent at full speed, causing packet loss for every frame size. The loss increases as packet size increases, indicating that the egress path cannot sustain full line-rate traffic and packets drop on transmit.</td>
 <td>5.18.0-5.18.3</td>
+</tr>
+<tr>
+<td>5155463</td>
+<td>PHY telemetry metrics for each lane, such as {{nvswitch_interface_phy_stats_raw_ber}}, report values for 8 lanes regardless of how many lanes the port uses. For example, a port with a single-lane transceiver reports 8 lanes of BER data, while {{nvswitch_interface_number_of_lanes}} and the transceiver channel metrics report one lane. The extra lanes report zero. to work around this issue, use {{nvswitch_interface_number_of_lanes}} to determine which lanes are active and ignore lanes beyond that count.</td>
+<td>5.16.0-5.18.3</td>
 </tr>
 <tr>
 <td>5154524</td>

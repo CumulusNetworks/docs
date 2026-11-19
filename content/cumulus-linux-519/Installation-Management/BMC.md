@@ -10,7 +10,8 @@ The Spectrum-6 switch requires <span class="a-tooltip">[BMC](## "Baseboard Manag
 You can access BMC either through Cumulus Linux or directly through the BMC RJ45 Ethernet port.
 
 {{%notice infonopad%}}
-If you are upgrading your Spectrum-6 switch, you must upgrade BMC before you upgrade Cumulus Linux.
+- NVIDIA distributes BMC as a separate package and does not include it in the Cumulus upgrade; you must upgrade BMC separately with NVUE.
+- You must upgrade BMC before you upgrade Cumulus Linux.
 {{%/notice%}}
 
 ## Upgrade BMC and Cumulus Linux

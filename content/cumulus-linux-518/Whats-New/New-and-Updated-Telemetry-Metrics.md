@@ -279,6 +279,15 @@ For information about OTEL, refer to {{<link url="Open-Telemetry-Export" text="O
 On PSU-based platforms, the switch emits the legacy `psu_*` metric family and the common `power_supply_*` family together for a three-release migration window. Cumulus Linux discontinues the legacy `psu_*` family and removes it after that window; make sure to migrate your dashboards and queries to `power_supply_*` during the window. The gNMI/OpenConfig PSU representation is unchanged.
 {{%/notice%}}
 
+The following metric names in the documentation for Cumulus Linux 5.17 and earlier did not match the names that the switch exports. The exported names did not change; the documentation now shows the exported names.
+
+|  Documented Metric | Exported Metric |
+|------ | ----------- |
+| `nvswitch_platform_environment_fan_max_speed` | `nvswitch_platform_environment_fan_max` |
+| `nvswitch_platform_environment_fan_min_speed` | `nvswitch_platform_environment_fan_min` |
+| `nvswitch_platform_evironment_input_voltage` | `nvswitch_platform_environment_psu_input_voltage` |
+| `nvswitch_platform_environment_input_current` | `nvswitch_platform_environment_psu_input_current` |
+
 |  Old Metric | New Metric|
 |------ | ----------- |
 | `nvswitch_platform_info_hw_details`|`nvswitch_platform_info_hw_details{serial_no}`: Serial number. Emitted for PSU components; not emitted for PDBn-HSCm (no EEPROM/VPD on a hotswap controller).<br>`nvswitch_platform_info_hw_details{part_no}`: Part number.<br>`nvswitch_platform_info_hw_details{model_name}`: Model name.<br>`nvswitch_platform_info_hw_details{hardware_version}`: Hardware revision.|

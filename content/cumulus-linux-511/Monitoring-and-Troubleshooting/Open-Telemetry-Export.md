@@ -703,8 +703,8 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 |----- | ----------- |
 | `nvswitch_env_fan_cur_speed` | Current fan speed in RPM. |  
 | `nvswitch_env_fan_dir` | Fan direction (0: Front2Back, 1: Back2Front). | 
-| `nvswitch_env_fan_max_speed` | Fan maximum speed in RPM. | 
-| `nvswitch_env_fan_min_speed` | Fan minimum speed in RPM. |  
+| `nvswitch_env_fan_max` | Fan maximum speed in RPM. | 
+| `nvswitch_env_fan_min` | Fan minimum speed in RPM. |  
 | `nvswitch_env_fan_state` | Fan status (0: ABSENT, 1: OK, 2: FAILED, 3: BAD). | 
 | `nvswitch_env_psu_capacity` | PSU capacity in watts. | 
 | `nvswitch_env_psu_current` | PSU current in amperes. | 

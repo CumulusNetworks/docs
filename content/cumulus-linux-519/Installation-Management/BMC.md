@@ -88,7 +88,7 @@ The operation will install the firmware.
  Type [N] to abort. 
 Do you want to continue? [y/N] y 
  Action executing ... 
- Firmware installation completed for bmc. Version: 88.0070.1911. BMC reset triggered to activate new firmware 
+ Firmware installation completed for bmc. Version: 88.0070.1910. BMC reset triggered to activate new firmware 
  Action succeeded
 ```
 
@@ -108,7 +108,7 @@ The following example installs BMC firmware and skips the version check:
 ```
 cumulus@switch:~$ nv action install platform firmware BMC files nvfw_ETH-SPC6-2600_0001_2651115.1.0_prod-signed.fwpkg skip-version-check
 Action executing ...
-Firmware installation completed for bmc. Version: 88.0070.1911. BMC reset triggered to activate new firmware
+Firmware installation completed for bmc. Version: 88.0070.1910. BMC reset triggered to activate new firmware
 Action succeeded
 ```
 
@@ -120,7 +120,7 @@ After you install the BMC and ERoT package, power cycle the switch to activate t
 cumulus@switch:~$ nv action reboot system mode power-cycle force
 ```
 
-After the power cycle, run the `nv show platform firmware BMC` and `nv show platform inventory BMC` commands to verify the installed BMC version. Refer to {{<link url="#show-information-about-bmc" text="Show Information About BMC">}}.
+After the power cycle, run the `nv show platform firmware` and `nv show platform inventory` commands to verify both the BMC and ERoT versions. To show only the BMC, run the `nv show platform firmware BMC` and `nv show platform inventory BMC` commands. Refer to {{<link url="#show-information-about-bmc" text="Show Information About BMC">}}.
 
 ## Manage Staged Firmware Files
 
@@ -202,6 +202,7 @@ Use the following NVUE commands to show information about the installed BMC pack
 
 | Command | Description |
 |-------- | ----------- |
+| `nv show platform firmware` | Shows the firmware versions of the platform components, including BMC and ERoT. |
 | `nv show platform inventory` | Shows the model, serial number, operational state, and type of each component on the switch. |
 | `nv show platform inventory BMC` | Shows the BMC firmware model, serial number, operational state, and type. |
 | `nv show platform firmware BMC` | Shows the BMC firmware part number and name. |
@@ -214,7 +215,7 @@ The following example shows the model, serial number, operational state, and typ
 cumulus@switch:~$ nv show platform inventory
            HW Version    Model               Serial        State  Type
 ---------  ------------  ------------------  ------------  -----  ------
-BMC        88.0070.1911  OpenBMC             MT2617606EXZ  ok     bmc
+BMC        88.0070.1910  OpenBMC             MT2617606EXZ  ok     bmc
 PDB1-HSC1  N/A           N/A                 N/A           ok     psu
 PDB2-HSC1  N/A           N/A                 N/A           ok     psu
 SWITCH     A3            920-9N62F-00LI-GC0  MT2617606EXZ  ok     switch
@@ -227,7 +228,7 @@ cumulus@switch:~$ nv show platform inventory BMC
                   operational
 ----------------  ------------
 state             ok
-hardware-version  88.0070.1911
+hardware-version  88.0070.1910
 model             OpenBMC
 serial            MT2617606EXZ
 type              bmc
@@ -240,7 +241,7 @@ cumulus@switch:~$ nv show platform firmware BMC
                  operational
 ---------------  ------------
 part-number      NVIDIA
-actual-firmware  88.0070.1911
+actual-firmware  88.0070.1910
 fw-source        default
 ```
 

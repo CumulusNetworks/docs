@@ -23,7 +23,6 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 - {{<link url="FRRouting/#class-e-address-space-support" text="Class E (240.0.0.0/4) address space support">}}
 - {{<link url="EVPN-Enhancements/#evpn-unreachability-with-8021x-dynamic-vrf-assignment" text="Disjoined multiplane support for EVPN unreachability with 802.1X dynamic VRF assignment">}}
 - {{<link url="Inter-subnet-Routing/#layer-3-vxlan-device-mode" text="Layer 3 VXLAN device mode">}} is generally available
-- {{<link url="System-Power-and-Switch-Reboot" text="Multi ASIC fast boot support">}} (Beta)
 - {{<link url="Bidirectional-Forwarding-Detection-BFD/#offload-to-hardware" text="BFD offload to switch firmware">}}
 - {{<link url="Access-Control-List-Configuration/#control-plane-punt-classifier" text="Control plane punt classifier drop counters">}} for drops caused by link failures or missing next hops
 - {{<link url="Understanding-the-cl-support-Output-File/#collect-the-nvme-nand-debug-log" text="The cl-support file">}} captures the SSD internal NAND debug log on a switch with a Virtium NVMe SSD
@@ -38,6 +37,8 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 - {{<link url="Domain-Name-System-DNS/#dns-query-source-address" text="Configurable source address for DNS queries, so that queries leave the switch from a stable loopback identity">}}
 - {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="Optimized image upgrade options to cancel a pending boot-next and to declare additional files to carry forward to the upgraded partition">}}. Optimized image upgrade no longer copies all of the `/etc` directory.
 - {{<link url="Packet-Trimming/#packet-trimming-counters" text="Trimmed packet sent and dropped counters at the global, port, and traffic class level">}} on Spectrum-6 switches
+- {{<link url="Optional-BGP-Configuration/#graceful-fabric-maintenance" text="Graceful Fabric Maintenance">}} is generally available
+- {{<link url="Optional-BGP-Configuration/#inter-dc-routing" text="Inter-DC Routing">}} is generally available
 - NVUE
   - {{<link url="Using-sudo-to-Delegate-Privileges" text="Passwordless sudo access by default">}} for members of the sudo group, and {{<link url="Role-Based-Access-Control/#os-command-classes" text="RBAC os-command allow-lists">}} for granular passwordless access to specific commands (Beta)
   - {{<link url="System-Power-and-Switch-Reboot" text="Switch power off command">}}

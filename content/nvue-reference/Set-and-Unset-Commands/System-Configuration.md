@@ -282,7 +282,7 @@ cumulus@switch:~$ nv set system counter rates load-interval 100
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h> nv set system date-time timezone</h>
+## <h>nv set system date-time timezone</h>
 
 Configures the switch time zone.
 

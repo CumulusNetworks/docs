@@ -237,3 +237,48 @@ cumulus@switch:~$ nv show system dns server 192.0.2.44
 ---  -----------
 vrf  mgmt 
 ```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system dns server \<dns-server-id\> source-interface</h>
+
+Shows the source interfaces for the specified DNS server.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<dns-server-id>` |  The IPv4 or IPv6 address of the remote DNS server. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system dns server 192.0.2.1 source-interface
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system dns server \<dns-server-id\> source-interface \<interface-id\></h>
+
+Shows a specific source interface for the specified DNS server.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<dns-server-id>` |  The IPv4 or IPv6 address of the remote DNS server. |
+| `<interface-id>` |  The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system dns server 192.0.2.1 source-interface swp1
+```

@@ -145,9 +145,13 @@ cumulus@switch:~$ nv set system wjh channel forwarding drop-filter TUNNEL1 drop-
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set system wjh channel \<channel-id\> drop-filter \<filter-id\> drop-type \<drop-filter-drop-type-id\> severity <drop-filter-severity-id></h>
+## <h>nv set system wjh channel \<channel-id\> drop-filter \<filter-id\> drop-type \<drop-filter-drop-type-id\> severity \<drop-filter-severity-id\></h>
 
 Configures traffic drop filters to prevent drops from being monitored based on severity level.
+
+{{%notice note%}}
+Cumulus Linux 5.19 and later no longer supports this command.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -156,7 +160,7 @@ Configures traffic drop filters to prevent drops from being monitored based on s
 | `<channel-id>` | The channel name. |
 | `<filter-id>` | The filter name. |
 | `<drop-filter-drop-type-id>` | The drop type. |
-| `<drop-filter-severity-id` | The severity: `error`, `warning`, or `notice`. |
+| `<drop-filter-severity-id>` | The severity: `error`, `warning`, or `notice`. |
 
 ### Version History
 

@@ -8,6 +8,7 @@ type: nojsscroll
 <style>
 h { color: RGB(118,185,0)}
 </style>
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv action</h>
@@ -193,6 +194,22 @@ WARNING:
 Are you sure (y/N)? y
 Enabling uninstall at next reboot...done.
 Reboot required to take effect.
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action cancel system image</h>
+
+Cancels a pending system image boot-next or rollback.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action cancel system image
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -683,6 +700,29 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear interface swp1 counters synce
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear interface \<interface-id\> ipv6 neighbor-discovery prefix \<ipv6-prefix-id\></h>
+
+Stops servers from using an advertised IPv6 prefix by readvertising the prefix with short lifetimes. You can set the valid lifetime and the preferred lifetime, in seconds, that the switch advertises while it clears the prefix.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+| `<ipv6-prefix-id>` |  The IPv6 address and route prefix in CIDR notation. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear interface swp1 ipv6 neighbor-discovery prefix 2001:DB8::/64
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1330,7 +1370,7 @@ Action succeeded
 
 Clears all the RADIUS server counters, such as the number of authorization requests, accepted, rejected, timed out and retried access requests, and authorization connection errors and bad responses.
 
-## Version History
+### Version History
 
 Introduced in Cumulus Linux 5.18.0
 
@@ -1341,6 +1381,7 @@ cumulus@switch:~$ nv action clear system aaa radius counters
 RADIUS counters cleared.
 Action succeeded
 ```
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv action clear system api session user \<user-id\></h>
@@ -1413,6 +1454,44 @@ Action executing ...
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action clear system control-plane punt-classifier \<rule-id\> counters</h>
+
+Clears the drop counters for the specified control plane punt classifier rule.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The punt classifier rule ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear system control-plane punt-classifier 1 counters
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear system control-plane punt-classifier counters</h>
+
+Clears the drop counters for all control plane punt classifier rules.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear system control-plane punt-classifier counters
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action clear system forwarding packet-trim counters</h>
 
 Clears the global packet trimming counter that is shown in the `nv show system forwarding packet-trim` command output.
@@ -1426,6 +1505,22 @@ Introduced in Cumulus Linux 5.14.0
 ```
 cumulus@switch:~$ nv action clear system forwarding packet-trim counters
 Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear system forwarding packet-trim notify-sender link-down counters</h>
+
+Resets the link-down sender notification counters that NVUE displays for packet trimming.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear system forwarding packet-trim notify-sender link-down counters
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3079,6 +3174,29 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action delete platform firmware \<platform-component-id\> files \<file-name\></h>
+
+Deletes the specified firmware file from the switch.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<platform-component-id>` |  The platform component. |
+| `<file-name>` |  The firmware file name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action delete platform firmware BIOS files bios-1.2.bin
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action delete system file-path \<path-id\></h>
 
 Deletes the specified file from the switch.
@@ -3481,7 +3599,6 @@ Do you want to continue? [y/N]
 
 If you add the `force` option (`nv action enable system ztp force`), ZTP enables and activates the provisioning process without prompting you for confirmation.
 
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv action erase system disk</h>
@@ -3830,6 +3947,28 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action generate system security spdm \<component-id\></h>
+
+Generates SPDM measurements on the BMC for the specified platform component. You can provide a nonce value for the measurement request.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<component-id>` |  The platform component name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action generate system security spdm cpu
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action generate system tech-support</h>
 
 Generates a technical support file (compressed archive file of useful information for troubleshooting). 
@@ -3953,6 +4092,29 @@ Introduced in Cumulus Linux 5.15.0
 
 ```
 cumulus@switch:~$ nv action import system security crl uri scp://user:password@hostname/path/crl.crt
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action install platform transceiver \<transceiver-id\> firmware files \<file-name\></h>
+
+Installs the specified firmware file on the transceiver.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<transceiver-id>` |  The transceiver name. |
+| `<file-name>` |  The firmware file name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action install platform transceiver swp1 firmware files transceiver-2.1.bin
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4460,6 +4622,22 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action prune system packages archive</h>
+
+Removes older package archives, keeping the installed archive and the one before it for each package. Run the command with the `force` option to prune without a confirmation prompt.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action prune system packages archive
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action pull system docker image \<image-id\></h>
 
 Downloads a Docker image from a registry.
@@ -4672,6 +4850,30 @@ Introduced in Cumulus Linux 5.15.0
 
 ```
 cumulus@switch:~$ nv action remove system docker image nginx tag latest
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action rename platform firmware \<platform-component-id\> files \<file-name\> \<new-name\></h>
+
+Renames the specified firmware file on the switch.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<platform-component-id>` |  The platform component. |
+| `<file-name>` |  The firmware file name. |
+| `<new-name>` |  The new firmware file name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action rename platform firmware BIOS files bios-1.2.bin bios-current.bin
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -5323,6 +5525,30 @@ Introduced in Cumulus Linux 5.9.0
 
 ```
 cumulus@switch:~$ nv action upgrade system packages to latest use-vrf default dry-run
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action upload platform firmware \<platform-component-id\> files \<file-name\> \<remote-url-upload\></h>
+
+Uploads the specified firmware file to a remote server.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<platform-component-id>` |  The platform component. |
+| `<file-name>` |  The firmware file name. |
+| `<remote-url-upload>` |  The URL of the remote server. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action upload platform firmware BIOS files bios-1.2.bin scp://user@192.0.2.1/tmp/
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

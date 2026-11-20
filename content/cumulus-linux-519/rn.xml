@@ -7,15 +7,43 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>5432451</td>
+<td>When you run the NVUE {{nv show router nexthop rib --view=brief}} command or the vtysh {{show nexthop-group rib brief json}} command, zebra memory grows each time the command runs for every next hop group that has more than one next hop. Frequent polling with these commands uses more and more memory until FRR restarts. To work around this issue, run the {{nv show router nexthop rib}} command without {{--view=brief}}.</td>
+<td>5.16.4-5.19.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5432384</td>
+<td>The following commands have a memory leak in zebra:
+{{show ip route [vrf NAME] [table N] [filter] brief json}}
+{{show ip fib [vrf NAME] [table N] [filter] brief json}}
+{{show ipv6 route [vrf NAME] [table N] [filter] brief json}}
+{{show ipv6 fib [vrf NAME] [table N] [filter] brief json}}</td>
+<td>5.16.4-5.19.0</td>
+<td></td>
+</tr>
+<tr>
 <td>5429056</td>
 <td>On the Spectrum-6 switch, the {{mlxlink}} command shows the physical state of a port as {{ETH_AN_FSM_ENABLE}} even though the link is up and active.</td>
 <td>5.18.3-5.19.0</td>
 <td></td>
 </tr>
 <tr>
+<td>5419474</td>
+<td>When a single configuration change moves ports from a bridge into a VRF, some of the ports remain in the default VRF in hardware, and traffic through them is trapped to the CPU. To work around this issue, make the change in two steps. First, remove the ports from the bridge and apply the configuration, then assign them to the VRF and apply again. To recover affected ports, unset the VRF on those ports and apply, then set the VRF again and apply. Alternatively, restart switchd with the {{systemctl restart switchd}}, command which interrupts traffic.</td>
+<td>5.16.6-5.19.0</td>
+<td></td>
+</tr>
+<tr>
 <td>5413843</td>
 <td>When both ends of a link are NVIDIA Spectrum-4 switches, CMIS VDM pre-FEC BER and other FEC-based values read from particular transceiver modules are zero.</td>
 <td>5.17.0-5.19.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5411600</td>
+<td>Telemetry services remain inactive after {{switchd}} recovers from a failed restart, causing some telemetry metrics to stop updating.</td>
+<td>5.19.0</td>
 <td></td>
 </tr>
 <tr>
@@ -138,12 +166,6 @@ cumulus@switch:~$ nv config apply</td>
 <td></td>
 </tr>
 <tr>
-<td>5344490</td>
-<td>When you configure a BGP neighbor to use BFD and also set a loopback interface as its source, the system incorrectly treats that loopback as the path for BFD traffic. As a result, BFD packets are tied to the wrong interface, never travel over the real network link, and the BFD session stayed down. To work around this issue, configure the update source as an IP address instead of an interface name when the peer is in a subnet connected on the link to it.</td>
-<td>5.19.0</td>
-<td></td>
-</tr>
-<tr>
 <td>5341343</td>
 <td>For some CPO and ELS xPaths, gNMI telemetry does not sample at short-requested intervals. For example, instead of updates every 1 or 1.5 seconds, the switch sends them every 1.6 seconds, without showing any warning or error.</td>
 <td>5.18.0-5.19.0</td>
@@ -186,6 +208,12 @@ Package: *
 Pin: release a=cumulus-local-apt-archive
 Pin-Priority: 992</td>
 <td>5.16.3-5.19.0</td>
+<td></td>
+</tr>
+<tr>
+<td>5182596, 5271340, 5361996</td>
+<td>With SNMP enabled for BGP, a configuration change that moves a large set of BGP neighbors together generates a large number of traps keeping the SNMP service busy processing and BGP becomes unresponsive. The same issue occurs when a large number of BGP sessions drop together, such as a peer clear or when you delete a large number of dynamic peers.</td>
+<td>5.18.0-5.19.0</td>
 <td></td>
 </tr>
 <tr>
@@ -979,6 +1007,11 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>5420177</td>
 <td>With BGP SoO next-hop groups and unnumbered peering, a shut-down neighbor stays in the next-hop groups and the switch continues to send traffic to the shut down neighbor.</td>
+<td>5.18.1-5.18.3</td>
+</tr>
+<tr>
+<td>5420109</td>
+<td>When you enable 802.1X reauthentication with the {{nv set system dot1x tx-identity-request state enabled}} command on multiple ports, a configuration change triggers 8021.x sessions to flap. </td>
 <td>5.18.1-5.18.3</td>
 </tr>
 <tr>

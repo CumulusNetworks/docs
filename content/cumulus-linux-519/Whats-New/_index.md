@@ -99,8 +99,8 @@ NVIDIA recommends completing migration before Cumulus Linux 5.20.0.
 
 ### Spectrum-6 BMC Requirements
 
-{{%notice infonopad%}}
-For a Spectrum-6 switch, you must upgrade BMC before you upgrade Cumulus Linux. For information about upgrading BMC, refer to {{<link url="BMC" text="BMC">}}.
+{{%notice warning%}}
+For a Spectrum-6 switch, you must upgrade BMC before you upgrade Cumulus Linux. Before you upgrade to Cumulus Linux 5.19.0, you must upgrade the BMC firmware to version 88.0070.1910 and the ERoT firmware to version 02.00.0048.0000_n05. The ERoT firmware upgrade requires a power cycle of the switch to activate. For information about upgrading BMC, refer to {{<link url="BMC" text="BMC">}}.
 {{%/notice%}}
 
 ### Linux Configuration Files Overwritten

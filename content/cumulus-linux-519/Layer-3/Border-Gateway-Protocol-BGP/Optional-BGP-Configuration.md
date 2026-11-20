@@ -2353,10 +2353,6 @@ Action succeeded
 
 ## Graceful Fabric Maintenance
 
-{{%notice note%}}
-Graceful fabric maintenance is a Beta feature.
-{{%/notice%}}
-
 Cumulus Linux enables you to remove traffic from a leaf switch gracefully by steering traffic onto other healthy planes before maintenance. This feature works with {{<link url="/#bgp-lldp-unreachability-in-disjoined-planes" text="BGP-LLDP unreachability signaling">}} and uses UPA (Unreachable Prefix Announcement) to mark advertised aggregate routes as unreachable during maintenance.
 
 To use graceful fabric maintenance, you **must** first configure {{<link url="/#bgp-lldp-unreachability-in-disjoined-planes" text="BGP-LLDP Unreachability in Disjoined Planes">}} for each VRF and address family.

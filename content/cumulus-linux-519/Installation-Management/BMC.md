@@ -10,17 +10,38 @@ The Spectrum-6 switch requires <span class="a-tooltip">[BMC](## "Baseboard Manag
 You can access BMC either through Cumulus Linux or directly through the BMC RJ45 Ethernet port.
 
 {{%notice infonopad%}}
-- NVIDIA distributes BMC as a separate package and does not include it in the Cumulus upgrade; you must upgrade BMC separately with NVUE.
+- NVIDIA distributes BMC as a separate package and does not include it in the Cumulus Linux upgrade image; you must upgrade BMC separately with NVUE.
 - You must upgrade BMC before you upgrade Cumulus Linux.
 {{%/notice%}}
 
+## BMC and ERoT Firmware Package
+
+On the Spectrum-6 (SN6600) switch, you can upgrade the following firmware components through BMC:
+
+| Component | Upgradeable | Delivered As | Notes |
+| --------- | ----------------------- | ------------ | ----- |
+| BMC (Baseboard Management Controller) | Yes, with NVUE | Combined <span class="a-tooltip">[FLM](## "Firmware Lifecycle Management")</span> `.fwpkg` package that includes BMC and ERoT firmware | The package is separate from the Cumulus Linux image. You must upgrade BMC independently. You can upgrade BMC without resetting the host or the Cumulus Linux operating system. |
+| ERoT (External Root of Trust) | Yes, with NVUE | The same combined FLM `.fwpkg` package | You must power cycle the switch to activate the ERoT firmware after you install the package. |
+
+Keep the following in mind about the BMC and ERoT package:
+
+- NVIDIA distributes the package separately; the Cumulus Linux upgrade image does not include it.
+- The package is a combined FLM bundle that contains both BMC and ERoT firmware. For example, `nvfw_ETH-SPC6-2600_0001_260726.1.0_BMC_EROT.fwpkg`.
+- One NVUE install action upgrades both BMC and ERoT.
+- A Cumulus Linux release might or might not include a new BMC and ERoT version. If the version changes, you must install the new package separately.
+- You can download the package from the {{<exlink url="https://enterprise-support.nvidia.com/s/downloads" text="NVIDIA Enterprise Support Portal">}}.
+
 ## Upgrade BMC and Cumulus Linux
+
+{{%notice warning%}}
+You must upgrade BMC firmware before you upgrade Cumulus Linux. Before you upgrade to Cumulus Linux 5.19.0, you must upgrade the BMC firmware to version 88.0070.1910 and the ERoT firmware to version 02.00.0048.0000_n05. The ERoT firmware upgrade requires a power cycle of the switch to activate.
+{{%/notice%}}
 
 To upgrade a Spectrum-6 switch, perform the upgrade in this order:
 
-1. Upgrade BMC firmware with NVUE, as described in {{<link url="#install-bmc" text="Install BMC">}}.
-2. Upgrade Cumulus Linux. Refer to {{<link url="Upgrading-Cumulus-Linux" text="Upgrading Cumulus Linux">}}.
-3. Power cycle the switch.
+1. Upgrade the BMC and ERoT firmware (the combined FLM package) with NVUE, as described in {{<link url="#install-bmc" text="Install BMC">}}. The installation resets the BMC to activate the new firmware. The installation does not reset the host CPU or Cumulus Linux.
+2. Power cycle the switch to activate the ERoT firmware with the `nv action reboot system mode power-cycle force` command.
+3. Upgrade Cumulus Linux. Refer to {{<link url="Upgrading-Cumulus-Linux" text="Upgrading Cumulus Linux">}}.
 
 {{%notice note%}}
 Upgrade BMC firmware only with the NVUE commands in this section. NVIDIA validates BMC firmware upgrades through NVUE only; NVIDIA does not validate upgrading BMC firmware through Redfish.
@@ -32,39 +53,49 @@ Upgrade BMC firmware only with the NVUE commands in this section. NVIDIA validat
 The commands on this page use BMC as the example component, but the `platform firmware` object and the `file-management`, `automatic-update`, and `firmware-source` commands described here apply to every upgradeable platform firmware component, such as BIOS, ASIC, and SSD. Substitute the platform component ID you are working with.
 {{%/notice%}}
 
-To fetch the latest BMC package, run the `nv action fetch platform firmware BMC <remote-url-to-package>` command:
+To fetch the BMC and ERoT package, run the `nv action fetch platform firmware BMC <remote-url-to-package>` command:
 
 ```
-cumulus@switch:~$ nv action fetch platform firmware BMC http://path/cec1736-ecfw-02.00.0023.0000-n05-dev-initial.fwpkg
+cumulus@switch:~$ nv action fetch platform firmware BMC http://path/nvfw_ETH-SPC6-2600_0001_2651115.1.0_prod-signed.fwpkg
 Action executing ...
 Fetching file ...
 Action executing ...
-Firmware downloaded successfully. File: /tmp/firmware_downloads/bmc/cec1736-ecfw-02.00.0023.0000-n05-dev-initial.fwpkg. SHA256: 585231eb5da5221adfdb90a88892aa65a1bf9a89517e841c654db2e9dbff99aa
+Firmware downloaded successfully. File: /tmp/firmware_downloads/bmc/nvfw_ETH-SPC6-2600_0001_2651115.1.0_prod-signed.fwpkg. SHA256: 585231eb5da5221adfdb90a88892aa65a1bf9a89517e841c654db2e9dbff99aa
 Action succeeded
+```
+
+Alternatively, fetch the package from a local file path:
+
+```
+cumulus@switch:~$ nv action fetch platform firmware BMC file:///var/tmp/nvfw_ETH-SPC6-2600_0001_2651115.1.0_prod-signed.fwpkg
 ```
 
 The following example shows the available BMC files.
 
 ```
 cumulus@switch:~$ nv show platform firmware BMC files
-Available Firmware Files                            File Path
---------------------------------------------------  ------------------------------------------------------------------------------
-cec1736-ecfw-02.00.0023.0000-n05-dev-initial.fwpkg  /tmp/firmware_downloads/bmc/cec1736-ecfw-02.00.0023.0000-n05-dev-initial.fwpkg
-sw_bmc_arm_spc6_ast2600_88.0060.0501.fwpkg          /tmp/firmware_downloads/bmc/sw_bmc_arm_spc6_ast2600_88.0060.0501.fwpkg 
+Available Firmware Files                                           File Path
+-----------------------------------------------------------------  -------------------------------------------------------------------------
+nvfw_ETH-SPC6-2600_0001_2651115.1.0_prod-signed.fwpkg              /tmp/firmware_downloads/bmc/nvfw_ETH-SPC6-2600_0001_2651115.1.0_prod-signed.fwpkg
 ```
 
-To install available BMC package files, run the `nv action install platform firmware BMC files <package-name>` command.
+To install the BMC and ERoT package, run the `nv action install platform firmware BMC files <package-name>` command.
 
 ```
-cumulus@switch:~$ nv action install platform firmware BMC files sw_bmc_arm_spc6_ast2600_88.0060.0501.fwpkg
+cumulus@switch:~$ nv action install platform firmware BMC files nvfw_ETH-SPC6-2600_0001_2651115.1.0_prod-signed.fwpkg
 The operation will install the firmware.
  Type [y] to install the firmware. 
  Type [N] to abort. 
 Do you want to continue? [y/N] y 
  Action executing ... 
- Firmware installation completed for bmc. Version: unknown 
+ Firmware installation completed for bmc. Version: 88.0070.1911. BMC reset triggered to activate new firmware 
  Action succeeded
 ```
+
+During the installation:
+
+- The BMC firmware activates immediately after the automatic BMC reset.
+- The ERoT firmware stays in the `PendingActivation` state until you power cycle the switch.
 
 You can add the following optional arguments to the install command:
 
@@ -75,11 +106,21 @@ You can add the following optional arguments to the install command:
 The following example installs BMC firmware and skips the version check:
 
 ```
-cumulus@switch:~$ nv action install platform firmware BMC files sw_bmc_arm_spc6_ast2600_88.0060.0501.fwpkg skip-version-check
+cumulus@switch:~$ nv action install platform firmware BMC files nvfw_ETH-SPC6-2600_0001_2651115.1.0_prod-signed.fwpkg skip-version-check
 Action executing ...
-Firmware installation completed for bmc. Version: 88.0060.0501. BMC reset triggered to activate new firmware
+Firmware installation completed for bmc. Version: 88.0070.1911. BMC reset triggered to activate new firmware
 Action succeeded
 ```
+
+### Power Cycle the Switch
+
+After you install the BMC and ERoT package, power cycle the switch to activate the pending ERoT firmware:
+
+```
+cumulus@switch:~$ nv action reboot system mode power-cycle force
+```
+
+After the power cycle, run the `nv show platform firmware BMC` and `nv show platform inventory BMC` commands to verify the installed BMC version. Refer to {{<link url="#show-information-about-bmc" text="Show Information About BMC">}}.
 
 ## Manage Staged Firmware Files
 
@@ -173,7 +214,7 @@ The following example shows the model, serial number, operational state, and typ
 cumulus@switch:~$ nv show platform inventory
            HW Version    Model               Serial        State  Type
 ---------  ------------  ------------------  ------------  -----  ------
-BMC        88.0060.2112  OpenBMC             MT2617606EXZ  ok     bmc
+BMC        88.0070.1911  OpenBMC             MT2617606EXZ  ok     bmc
 PDB1-HSC1  N/A           N/A                 N/A           ok     psu
 PDB2-HSC1  N/A           N/A                 N/A           ok     psu
 SWITCH     A3            920-9N62F-00LI-GC0  MT2617606EXZ  ok     switch
@@ -186,7 +227,7 @@ cumulus@switch:~$ nv show platform inventory BMC
                   operational
 ----------------  ------------
 state             ok
-hardware-version  88.0060.2112
+hardware-version  88.0070.1911
 model             OpenBMC
 serial            MT2617606EXZ
 type              bmc
@@ -199,7 +240,7 @@ cumulus@switch:~$ nv show platform firmware BMC
                  operational
 ---------------  ------------
 part-number      NVIDIA
-actual-firmware  88.0060.2112
+actual-firmware  88.0070.1911
 fw-source        default
 ```
 

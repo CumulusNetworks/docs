@@ -7,7 +7,7 @@ toc: 3
 
 The Cumulus Linux default firewall rules protect the switch control plane and CPU from DOS and other potentially malicious network attacks.
 
-In Cumulus Linux 5.8 and earlier, the set of default firewall rules are more open; Cumulus Linux accepts packets from all addresses and protocols. Cumulus Linux 5.9 and later provides a set of default firewall rules that allows only specific addresses and ports, and drops disallowed packets.
+In Cumulus Linux 5.8 and earlier, the set of default firewall rules are more open; Cumulus Linux accepts packets from all addresses and protocols. Cumulus Linux 5.9 and later provides a set of default firewall rules that allows only specific addresses and ports, and drops disallowed packets. Cumulus Linux 5.19 adds a default IPv6 control plane ACL, `acl-ipv6-default-whitelist`, that drops traffic to a small set of internal service ports. Cumulus Linux applies this ACL on a fresh installation and when you upgrade to Cumulus Linux 5.19.
 
 {{%notice note%}}
 The default set of firewall rules consists of IP and transport level rules. To block specific layer 2 packets such as ARP, LLDP, or STP or any packets sent to the CPU as part of generic traps, you must configure separate rules using control plane ACLs in the INPUT or OUTPUT chain of ebtables. See {{<link url="Access-Control-List-Configuration" text="Access Control List Configuration">}}.
@@ -80,6 +80,17 @@ The following table lists the ports that Cumulus Linux enables by default.
 |VRRP | NA | NA |
 |TCP |639 | MSDP |
 
+### IPv6 Whitelist Rules
+
+Unlike the IPv4 whitelist rules, which allow only the ports in the table above, the `acl-ipv6-default-whitelist` ACL drops traffic only to the following ports. Cumulus Linux does not filter any other IPv6 traffic by default.
+
+| Protocol | Port | Application |
+| -------- | ---- | ----------- |
+|TCP | 4222, 4223 | FRR |
+|TCP | 9100 | Node exporter |
+|TCP | 8001 | Interface statistics |
+|TCP | 2623 | mgmtd |
+
 ## Unset the Default Firewall Rules
 
 To unset the default firewall rules and use the setting in Cumulus Linux 5.8 and earlier that accepts packets from all addresses and protocols:
@@ -98,9 +109,23 @@ cumulus@switch:~$ nv set system control-plane acl acl-default-whitelist inbound
 cumulus@switch:~$ nv config apply
 ```
 
+To unset the default IPv6 firewall rules:
+
+```
+cumulus@switch:~$ nv unset system control-plane acl acl-ipv6-default-whitelist
+cumulus@switch:~$ nv config apply
+```
+
+To restore the default IPv6 firewall rules:
+
+```
+cumulus@switch:~$ nv set system control-plane acl acl-ipv6-default-whitelist inbound
+cumulus@switch:~$ nv config apply
+```
+
 ## Add Firewall Rules
 
-You cannot modify the `acl-default-dos` and `acl-default-whitelist` rules. However, you can append or insert additional rules. Additionally, you can add your own ACLs and {{<link url="Access-Control-List-Configuration/#control-plane-acls" text="apply them on the control plane">}}; control plane ACLs take precedence over `acl-default-whitelist` rules when the default firewall rules are `enabled`.
+You cannot modify the `acl-default-dos` and `acl-default-whitelist` rules. However, you can append or insert additional rules. Unlike `acl-default-dos` and `acl-default-whitelist`, you can modify or remove the `acl-ipv6-default-whitelist` rules. Additionally, you can add your own ACLs and {{<link url="Access-Control-List-Configuration/#control-plane-acls" text="apply them on the control plane">}}; control plane ACLs take precedence over `acl-default-whitelist` rules when the default firewall rules are `enabled`.
 
 If you use non-default ports for an application, NVIDIA recommends that you add a whitelist rule for the non-default port. For example, if you use ports 3020 and 3022 for radius server accounting and authentication instead of 1812 and 1813, you can add the following whitelist rules:
 
@@ -115,6 +140,18 @@ cumulus@switch:~$ nv set acl acl-default-whitelist rule 74 match ip connection-s
 cumulus@switch:~$ nv set acl acl-default-whitelist rule 74 action permit
 cumulus@switch:~$ nv config apply
 ```
+
+{{%notice note%}}
+The `nv unset acl` command (without an ACL name) also removes the `acl-ipv6-default-whitelist` ACL. When you then run `nv config apply`, the command fails with the error `ACL acl-ipv6-default-whitelist bound to control-plane does not exist`. To remove all ACLs, unset the control plane binding in the same revision:
+
+```
+cumulus@switch:~$ nv unset system control-plane acl acl-ipv6-default-whitelist
+cumulus@switch:~$ nv unset acl
+cumulus@switch:~$ nv config apply
+```
+
+To remove only specific ACLs, run the `nv unset acl <acl-name>` command.
+{{%/notice%}}
 <!-- vale off -->
 ## Hashlimit and Recent List Match
 <!-- vale on -->

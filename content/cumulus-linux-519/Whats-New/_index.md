@@ -39,6 +39,7 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 - {{<link url="Packet-Trimming/#packet-trimming-counters" text="Trimmed packet sent and dropped counters at the global, port, and traffic class level">}} on Spectrum-6 switches
 - {{<link url="Optional-BGP-Configuration/#graceful-fabric-maintenance" text="Graceful Fabric Maintenance">}} is generally available
 - {{<link url="Optional-BGP-Configuration/#inter-dc-routing" text="Inter-DC Routing">}} is generally available
+- {{<link url="Firewall-Rules/#ipv6-whitelist-rules" text="Default IPv6 control plane ACL">}} (`acl-ipv6-default-whitelist`)
 - NVUE
   - {{<link url="Using-sudo-to-Delegate-Privileges" text="Passwordless sudo access by default">}} for members of the sudo group, and {{<link url="Role-Based-Access-Control/#os-command-classes" text="RBAC os-command allow-lists">}} for granular passwordless access to specific commands (Beta)
   - {{<link url="System-Power-and-Switch-Reboot" text="Switch power off command">}}

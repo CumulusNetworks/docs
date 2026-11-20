@@ -717,6 +717,7 @@ Introduced in Cumulus Linux 5.19.0
 
 ```
 cumulus@switch:~$ nv show interface swp1 telemetry histogram microburst
+No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -762,6 +763,24 @@ Introduced in Cumulus Linux 5.19.0
 
 ```
 cumulus@switch:~$ nv show interface swp1 telemetry histogram microburst direction rx
+Interface swp4 — Microburst Histogram RX
+State           : enabled
+Unit            : packets
+Sample Interval : 1024 ns (actual: 1024 ns, resolution=3)
+Bin-min-boundary: 10 packets    Histogram-size: 120 packets
+Peak            : ~28 Mpps  (max_watermark = 29 packets)
+Mean Bin (μ)    : 2.4
+Spread (σ²)     : 13.7
+Score (σ²×μ)    : 32.9
+Threshold Score : 10.0
+Threshold State : triggered  (current score: 32.9)
+Last triggered  : 2026-05-07 10:15:01
+
+Sl.No  Date-Time             Bin-0      Bin-1        Bin-2  ... Bin-9
+0      -                     (<10pkts   (<25pkts)    (<40pkts)  (≥130pkts)
+                              <9.8Mpps) <24.4Mpps)   <39.1Mpps) ≥126.9Mpps)
+1      2026-05-07 10:15:01   900        12           0           3
+2      2026-05-07 10:15:00   910        10           0           1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -785,6 +804,7 @@ Introduced in Cumulus Linux 5.19.0
 
 ```
 cumulus@switch:~$ nv show interface swp1 telemetry histogram microburst direction rx snapshot
+No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -808,6 +828,7 @@ Introduced in Cumulus Linux 5.19.0
 
 ```
 cumulus@switch:~$ nv show interface swp1 telemetry histogram microburst direction rx threshold
+No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -830,6 +851,16 @@ Introduced in Cumulus Linux 5.19.0
 
 ```
 cumulus@switch:~$ nv show interface swp1 telemetry step-time-estimation
+               operational  applied
+--------------  -----------  -------
+export                              
+  state         enabled      enabled
+batch-interval  600          600    
+status          DISABLED            
+
+Interfaces
+=============
+No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -958,6 +989,11 @@ Introduced in Cumulus Linux 5.19.0
 
 ```
 cumulus@switch:~$ nv show system telemetry control-plane-stats class
+                  applied  pending
+-----------------  -------  -------
+punt-classifier                    
+  state            enabled  enabled
+  sample-interval  10       10  
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -974,6 +1010,10 @@ Introduced in Cumulus Linux 5.19.0
 
 ```
 cumulus@switch:~$ nv show system telemetry control-plane-stats class punt-classifier
+                 applied  pending
+---------------  -------  -------
+state            enabled  enabled
+sample-interval  10       10 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1758,6 +1798,12 @@ Introduced in Cumulus Linux 5.19.0
 
 ```
 cumulus@switch:~$ nv show system telemetry histogram microburst
+                  applied  pending
+----------------  -------  -------
+unit              packets  packets
+bin-min-boundary  960      960    
+histogram-size    12288    12288  
+sample-interval   1024     1024 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1774,6 +1820,7 @@ Introduced in Cumulus Linux 5.19.0
 
 ```
 cumulus@switch:~$ nv show system telemetry histogram microburst summary
+No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1790,6 +1837,7 @@ Introduced in Cumulus Linux 5.19.0
 
 ```
 cumulus@switch:~$ nv show system telemetry histogram microburst threshold
+No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1806,6 +1854,7 @@ Introduced in Cumulus Linux 5.19.0
 
 ```
 cumulus@switch:~$ nv show system telemetry histogram microburst top
+No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1828,6 +1877,9 @@ Introduced in Cumulus Linux 5.19.0
 
 ```
 cumulus@switch:~$ nv show system telemetry histogram microburst top 10
+Interface
+============
+No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1850,6 +1902,13 @@ Introduced in Cumulus Linux 5.19.0
 
 ```
 cumulus@switch:~$ nv show system telemetry histogram microburst top 10 interface
+Microburst Summary (last sample: 2026-05-07 10:15:01)
+
+Rank  Interface  Dir  Unit   Score   μ     σ²    Peak       Window
+1     swp17      tx   pkts   38.2    2.8   13.6   ~131 Mpps  1024 ns
+2     swp4       rx   pkts   24.1    2.4   10.0   ~28 Mpps   1024 ns
+3     swp1       rx   bytes  16.4    2.0   8.2    ~105 Gbps  1024 ns
+4     swp9       tx   pkts   0.9     8.5   0.1    ~127 Mpps  1024 ns
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3950,6 +4009,7 @@ Introduced in Cumulus Linux 5.19.0
 
 ```
 cumulus@switch:~$ nv show system telemetry stats-group group1 step-time-estimation
+No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3972,6 +4032,7 @@ Introduced in Cumulus Linux 5.19.0
 
 ```
 cumulus@switch:~$ nv show system telemetry stats-group group1 step-time-estimation export
+No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3994,6 +4055,7 @@ Introduced in Cumulus Linux 5.19.0
 
 ```
 cumulus@switch:~$ nv show system telemetry stats-group group1 wjh
+No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4016,6 +4078,7 @@ Introduced in Cumulus Linux 5.19.0
 
 ```
 cumulus@switch:~$ nv show system telemetry stats-group group1 wjh export
+No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4032,6 +4095,16 @@ Introduced in Cumulus Linux 5.19.0
 
 ```
 cumulus@switch:~$ nv show system telemetry step-time-estimation
+                operational  applied
+--------------  -----------  -------
+export                              
+  state         enabled      enabled
+batch-interval  600          600    
+status          DISABLED            
+
+Interfaces
+=============
+No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4048,6 +4121,9 @@ Introduced in Cumulus Linux 5.19.0
 
 ```
 cumulus@switch:~$ nv show system telemetry step-time-estimation export
+       operational  applied   pending 
+-----  -----------  --------  --------
+state  disabled     disabled  disabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4064,6 +4140,17 @@ Introduced in Cumulus Linux 5.19.0
 
 ```
 cumulus@switch:~$ nv show system telemetry wjh
+                 applied   pending 
+---------------  --------  --------
+sample-interval  30        30      
+export                             
+  state          disabled  disabled
+
+
+
+Channel
+==========
+No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4080,6 +4167,12 @@ Introduced in Cumulus Linux 5.19.0
 
 ```
 cumulus@switch:~$ nv show system telemetry wjh channel
+Channel name  Trigger(s)      Polling interval  Type                                     Aggregate cache size  Total drops
+------------  --------------  ----------------  ---------------------------------------  --------------------  -----------
+acls          ACL             30                WJH_USER_CHANNEL_CYCLIC_AND_AGGREGATE_E  1024                  109        
+buffer        BUFFER          30                WJH_USER_CHANNEL_CYCLIC_AND_AGGREGATE_E  1024                  0          
+forwarding    L2, L3, TUNNEL  30                WJH_USER_CHANNEL_CYCLIC_AND_AGGREGATE_E  1024                  749        
+layer-1       L1              30                WJH_USER_CHANNEL_AGGREGATE_E             1024                  0
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4101,7 +4194,28 @@ Introduced in Cumulus Linux 5.19.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show system telemetry wjh channel forwarding
+cumulus@switch:~$ nv show system telemetry wjh channel buffer
+                     operational                              applied
+--------------------  ---------------------------------------  -------
+polling-interval      30                                       30
+aggregate-cache-size  1024                                     1024
+drop-category-list    BUFFER
+type                  WJH_USER_CHANNEL_CYCLIC_AND_AGGREGATE_E
+total-drops           0
+
+Latency buffer threshold
+===========================
+    Traffic Class  Interface  High threshold
+    -------------  ---------  --------------
+    all            all        1000
+
+Congestion buffer threshold
+==============================
+    Traffic Class  Interface  High threshold
+    -------------  ---------  --------------
+    all            swp1       20
+                   swp2       20
+                   swp3       20
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4118,4 +4232,7 @@ Introduced in Cumulus Linux 5.19.0
 
 ```
 cumulus@switch:~$ nv show system telemetry wjh export
+       applied   pending 
+-----  --------  --------
+state  disabled  disabled
 ```

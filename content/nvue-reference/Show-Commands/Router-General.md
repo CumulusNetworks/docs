@@ -61,4 +61,7 @@ Introduced in Cumulus Linux 5.19.0
 
 ```
 cumulus@switch:~$ nv show router resource-limit
+                      operational  applied  pending
+--------------------  -----------  -------  -------
+max-file-descriptors  2048
 ```

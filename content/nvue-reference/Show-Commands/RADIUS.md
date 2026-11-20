@@ -54,6 +54,9 @@ Introduced in Cumulus Linux 5.19.0
 
 ```
 cumulus@switch:~$ nv show system aaa radius authorization
+RADIUS Privilege Level   Role
+----------------------   ----------------
+13                       log-monitor-role
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

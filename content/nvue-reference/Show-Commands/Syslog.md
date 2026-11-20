@@ -151,6 +151,10 @@ Introduced in Cumulus Linux 5.19.0
 
 ```
 cumulus@switch:~$ nv show system log ztp
+          operational  applied  pending
+--------  -----------  -------  -------
+messages                               
+  state   enabled      enabled  enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

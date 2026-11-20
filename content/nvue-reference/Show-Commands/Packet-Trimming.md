@@ -153,6 +153,9 @@ Introduced in Cumulus Linux 5.19.0
 
 ```
 cumulus@switch:~$ nv show interface swp1 packet-trim notify-sender
+Tail-Drop Egress Eligibility TC
+==================================
+No Data
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -476,6 +479,19 @@ Introduced in Cumulus Linux 5.19.0
 
 ```
 cumulus@switch:~$ nv show system forwarding packet-trim notify-sender
+                  operational  applied  pending
+----------------  -----------  -------  -------
+tail-drop
+  state           enabled      enabled  enabled
+  remark
+    dscp          11           11       11
+
+BTS Egress Eligibility TC-to-Interface Information
+====================================================
+TC  Interfaces
+--  ----------
+4   swp1-swp48
+5   swp33-swp48
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -492,6 +508,23 @@ Introduced in Cumulus Linux 5.19.0
 
 ```
 cumulus@switch:~$ nv show system forwarding packet-trim notify-sender link-down
+                       operational  applied
+---------------------  -----------  -------
+state                  enabled      enabled
+remark
+  dscp                 46           46
+size                   256          256
+switch-priority        1            1
+service-port           swp65s1      swp65s1
+counters
+  spxm-link-down-pkts  0
+  trim-link-down-pkts  0
+
+Ingress Eligibility DSCP-to-Interface Information
+====================================================
+    DSCP  Interface
+    ----  ---------
+    10    swp1-4
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -508,6 +541,10 @@ Introduced in Cumulus Linux 5.19.0
 
 ```
 cumulus@switch:~$ nv show system forwarding packet-trim notify-sender link-down counters
+                      operational
+--------------------  -----------
+spxm-link-down-pkts   0
+trim-link-down-pkts   0
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

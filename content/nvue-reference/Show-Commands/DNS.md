@@ -258,6 +258,9 @@ Introduced in Cumulus Linux 5.19.0
 
 ```
 cumulus@switch:~$ nv show system dns server 192.0.2.1 source-interface
+              operational   applied
+------------  ------------  -------
+address       10.10.10.2    auto
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -281,4 +284,7 @@ Introduced in Cumulus Linux 5.19.0
 
 ```
 cumulus@switch:~$ nv show system dns server 192.0.2.1 source-interface swp1
+         operational  applied  pending      
+-------  -----------  -------  -------------
+address                        198.51.100.10
 ```

@@ -3329,6 +3329,10 @@ Introduced in Cumulus Linux 5.19.0
 
 ```
 cumulus@switch:~$ nv show qos pfc-watchdog rx-pause-duration
+            operational  applied
+----------  -----------  -------
+state                    enabled
+multiplier               99
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3345,6 +3349,10 @@ Introduced in Cumulus Linux 5.19.0
 
 ```
 cumulus@switch:~$ nv show qos pfc-watchdog transmit-queue-threshold
+         operational  applied 
+-------  -----------  --------
+state                 disabled
+percent               0
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3361,6 +3369,10 @@ Introduced in Cumulus Linux 5.19.0
 
 ```
 cumulus@switch:~$ nv show qos pfc-watchdog tx-frames-threshold
+       operational  applied
+-----  -----------  -------
+state               enabled
+value               0
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

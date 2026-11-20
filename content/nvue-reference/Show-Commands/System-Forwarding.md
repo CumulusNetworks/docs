@@ -169,4 +169,11 @@ Introduced in Cumulus Linux 5.19.0
 
 ```
 cumulus@switch:~$ nv show system forwarding resilient-hash
+                      operational  applied 
+--------------------  -----------  ------- 
+state                 enabled      enabled 
+bucket-size           512          512 
+active-timer          500          500 
+max-unbalanced-timer  2000         2000
+
 ```

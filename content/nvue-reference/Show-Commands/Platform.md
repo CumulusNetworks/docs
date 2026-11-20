@@ -78,7 +78,11 @@ Introduced in Cumulus Linux 5.19.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface swp1 transceiver compliance
+cumulus@switch:~$ nv show interface swp1 platform transceiver compliance
+            operational  pending
+----------  -----------  -------
+[ethernet]                      
+[extended] 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1290,6 +1294,9 @@ Introduced in Cumulus Linux 5.19.0
 
 ```
 cumulus@switch:~$ nv show platform transceiver swp1 compliance
+compliance:
+  ethernet                  : 400GBASE-DR4 (Clause 124)
+  extended                  : IB NDR (Arch.Spec.Vol.2)
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1312,6 +1319,12 @@ Introduced in Cumulus Linux 5.19.0
 
 ```
 cumulus@switch:~$ nv show platform transceiver swp1 firmware
+                     operational
+-------------------  ---------------------
+actual-firmware      38.100.121
+fw-upgrade-status    ok
+[files]              fw-rel-38_100_121.bin
+[files]              fw-rel-38_100_122.bin
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1334,6 +1347,10 @@ Introduced in Cumulus Linux 5.19.0
 
 ```
 cumulus@switch:~$ nv show platform transceiver swp1 firmware files
+Available Firmware Files  File Path
+-------------------------  --------------------------------------------------------------
+fw-rel-38_100_121.bin      /etc/fae_platform_firmware/transceiver/fw-rel-38_100_121.bin
+fw-rel-38_100_122.bin      /tmp/firmware_downloads/transceiver/fw-rel-38_100_122.bin
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

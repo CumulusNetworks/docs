@@ -26,7 +26,7 @@ On the Spectrum-6 (SN6600) switch, you can upgrade the following firmware compon
 Keep the following in mind about the BMC and ERoT package:
 
 - NVIDIA distributes the package separately; the Cumulus Linux upgrade image does not include it.
-- The package is a combined FLM bundle that contains both BMC and ERoT firmware. For example, `nvfw_ETH-SPC6-2600_0001_260726.1.0_BMC_EROT.fwpkg`.
+- The package is a combined FLM bundle that contains both BMC and ERoT firmware. For example, `nvfw_ETH-SPC6-2600_0001_261109.1.0_prod-signed.fwpkg`.
 - One NVUE install action upgrades both BMC and ERoT.
 - A Cumulus Linux release might or might not include a new BMC and ERoT version. If the version changes, you must install the new package separately.
 - You can download the package from the {{<exlink url="https://enterprise-support.nvidia.com/s/downloads" text="NVIDIA Enterprise Support Portal">}}.
@@ -50,39 +50,41 @@ Upgrade BMC firmware only with the NVUE commands in this section. NVIDIA validat
 ## Install BMC
 
 {{%notice note%}}
-The commands on this page use BMC as the example component, but the `platform firmware` object and the `file-management`, `automatic-update`, and `firmware-source` commands described here apply to every upgradeable platform firmware component, such as BIOS, ASIC, and SSD. Substitute the platform component ID you are working with.
+The commands on this page use BMC as the example component. The `platform firmware` file management commands apply to every platform firmware component. In Cumulus Linux 5.19.0, the `auto-update` and `fw-source` settings apply only to the Spectrum-6 component. Substitute the platform component ID you are working with.
 {{%/notice%}}
 
 To fetch the BMC and ERoT package, run the `nv action fetch platform firmware BMC <remote-url-to-package>` command:
 
 ```
-cumulus@switch:~$ nv action fetch platform firmware BMC http://path/nvfw_ETH-SPC6-2600_0001_2651115.1.0_prod-signed.fwpkg
+cumulus@switch:~$ nv action fetch platform firmware BMC http://path/nvfw_ETH-SPC6-2600_0001_261109.1.0_prod-signed.fwpkg
 Action executing ...
 Fetching file ...
 Action executing ...
-Firmware downloaded successfully. File: /tmp/firmware_downloads/bmc/nvfw_ETH-SPC6-2600_0001_2651115.1.0_prod-signed.fwpkg. SHA256: 585231eb5da5221adfdb90a88892aa65a1bf9a89517e841c654db2e9dbff99aa
+File has been successfully fetched
+Action executing ...
+Firmware downloaded successfully. File: /tmp/firmware_downloads/bmc/nvfw_ETH-SPC6-2600_0001_261109.1.0_prod-signed.fwpkg. SHA256: c8d7a00062df51f99d37483f7fd47ec01c42dd491c90516fced17698529a3970
 Action succeeded
 ```
 
 Alternatively, fetch the package from a local file path:
 
 ```
-cumulus@switch:~$ nv action fetch platform firmware BMC file:///var/tmp/nvfw_ETH-SPC6-2600_0001_2651115.1.0_prod-signed.fwpkg
+cumulus@switch:~$ nv action fetch platform firmware BMC file:///var/tmp/nvfw_ETH-SPC6-2600_0001_261109.1.0_prod-signed.fwpkg
 ```
 
 The following example shows the available BMC files.
 
 ```
 cumulus@switch:~$ nv show platform firmware BMC files
-Available Firmware Files                                           File Path
------------------------------------------------------------------  -------------------------------------------------------------------------
-nvfw_ETH-SPC6-2600_0001_2651115.1.0_prod-signed.fwpkg              /tmp/firmware_downloads/bmc/nvfw_ETH-SPC6-2600_0001_2651115.1.0_prod-signed.fwpkg
+Available Firmware Files                               File Path
+-----------------------------------------------------  ------------------------------------------------------------------------
+nvfw_ETH-SPC6-2600_0001_261109.1.0_prod-signed.fwpkg   /tmp/firmware_downloads/bmc/nvfw_ETH-SPC6-2600_0001_261109.1.0_prod-signed.fwpkg
 ```
 
 To install the BMC and ERoT package, run the `nv action install platform firmware BMC files <package-name>` command.
 
 ```
-cumulus@switch:~$ nv action install platform firmware BMC files nvfw_ETH-SPC6-2600_0001_2651115.1.0_prod-signed.fwpkg
+cumulus@switch:~$ nv action install platform firmware BMC files nvfw_ETH-SPC6-2600_0001_261109.1.0_prod-signed.fwpkg
 The operation will install the firmware.
  Type [y] to install the firmware. 
  Type [N] to abort. 
@@ -106,7 +108,7 @@ You can add the following optional arguments to the install command:
 The following example installs BMC firmware and skips the version check:
 
 ```
-cumulus@switch:~$ nv action install platform firmware BMC files nvfw_ETH-SPC6-2600_0001_2651115.1.0_prod-signed.fwpkg skip-version-check
+cumulus@switch:~$ nv action install platform firmware BMC files nvfw_ETH-SPC6-2600_0001_261109.1.0_prod-signed.fwpkg skip-version-check
 Action executing ...
 Firmware installation completed for bmc. Version: 88.0070.1910. BMC reset triggered to activate new firmware
 Action succeeded
@@ -120,36 +122,26 @@ After you install the BMC and ERoT package, power cycle the switch to activate t
 cumulus@switch:~$ nv action reboot system mode power-cycle force
 ```
 
-After the power cycle, run the `nv show platform firmware` and `nv show platform inventory` commands to verify both the BMC and ERoT versions. To show only the BMC, run the `nv show platform firmware BMC` and `nv show platform inventory BMC` commands. Refer to {{<link url="#show-information-about-bmc" text="Show Information About BMC">}}.
+You can also run the `nv action power-cycle system force` command. With either command, `force` skips the confirmation prompt.
+
+After the power cycle, run the `nv show platform firmware` command to verify both the BMC and ERoT versions. The command lists the ERoT as `EROT-BMC`. To show only the ERoT, run the `nv show platform firmware EROT-BMC` command. The `nv show platform inventory` command lists only the BMC, the power distribution boards, and the switch; it does not show the ERoT. Refer to {{<link url="#show-information-about-bmc" text="Show Information About BMC">}}.
 
 ## Manage Staged Firmware Files
 
-After you fetch a firmware file to the switch, you can delete, rename, or upload a staged firmware file for any platform firmware component, not only BMC. The following examples use the SSD component; substitute the platform component ID you are working with.
+After you fetch a firmware file to the switch, you can delete, rename, or upload a staged firmware file for any platform firmware component. The following examples use the BMC component; substitute the platform component ID you are working with. If no firmware file is staged, the `nv show platform firmware BMC files` command shows `No Data`.
 
 To delete a staged firmware file, run the `nv action delete platform firmware <platform-component-id> files <file-id>` command:
 
 ```
-cumulus@switch:~$ nv action delete platform firmware SSD files ssd-fw-2.1.bin
-Action executing ...
-Deleting file: ssd-fw-2.1.bin
-Action executing ...
+cumulus@switch:~$ nv action delete platform firmware BMC files test-renamed.fwpkg
 File delete successfully
 Action succeeded
-```
-
-If the file does not exist, the action fails and names the missing file:
-
-```
-cumulus@switch:~$ nv action delete platform firmware BIOS files missing-fw.rom
-Error: Action failed with the following issue:
-File not found: missing-fw.rom
 ```
 
 To rename a staged firmware file, run the `nv action rename platform firmware <platform-component-id> files <file-id> <new-name>` command:
 
 ```
-cumulus@switch:~$ nv action rename platform firmware SSD files ssd-fw-2.1.bin ssd-fw-2.1-verified.bin
-Action executing ...
+cumulus@switch:~$ nv action rename platform firmware BMC files nvfw_ETH-SPC6-2600_0001_261109.1.0_prod-signed.fwpkg test-renamed.fwpkg
 File renamed successfully
 Action succeeded
 ```
@@ -157,11 +149,11 @@ Action succeeded
 To upload a staged firmware file to a remote server, run the `nv action upload platform firmware <platform-component-id> files <file-id> <url>` command. This is the reverse direction of `nv action fetch`, which downloads a file from a remote server onto the switch; `upload` sends a file already staged on the switch out to a remote destination, for example to archive it before you delete it locally.
 
 ```
-cumulus@switch:~$ nv action upload platform firmware SSD files ssd-fw-2.1.bin scp://admin@fw-archive.example.com/incoming/
+cumulus@switch:~$ nv action upload platform firmware BMC files nvfw_ETH-SPC6-2600_0001_261109.1.0_prod-signed.fwpkg scp://admin@fw-archive.example.com/incoming/
 Action executing ...
-Uploading file ssd-fw-2.1.bin
+Uploading file nvfw_ETH-SPC6-2600_0001_261109.1.0_prod-signed.fwpkg
 Action executing ...
-Successfully uploaded the file: ssd-fw-2.1.bin
+Successfully uploaded the file: nvfw_ETH-SPC6-2600_0001_261109.1.0_prod-signed.fwpkg
 Action succeeded
 ```
 
@@ -171,19 +163,19 @@ If the destination server requires a username and password, include them in the 
 
 ## Configure Automatic Firmware Updates
 
-You can configure whether Cumulus Linux automatically updates the staged files for a platform firmware component, and whether a component uses the default firmware source or a custom one you staged yourself. Like the file-management commands above, these settings apply to any platform firmware component, not only BMC.
+You can configure whether Cumulus Linux automatically updates the staged files for a platform firmware component, and whether a component uses the default firmware source or a custom one you staged yourself. In Cumulus Linux 5.19.0, these settings apply only to the Spectrum-6 component. The `nv show platform firmware` command shows `auto-update` and `fw-source` only for Spectrum-6; BIOS, BMC, CPLD1 through CPLD4, EROT-BMC, and SSD show neither. In the command output, Cumulus Linux lists the ASIC component as `Spectrum-6`.
 
-To enable or disable automatic updates for a component, run the `nv set platform firmware <platform-component-id> auto-update` command. The following example enables automatic updates for BIOS:
+To enable or disable automatic updates for a component, run the `nv set platform firmware <platform-component-id> auto-update` command. The following example enables automatic updates for the Spectrum-6 component:
 
 ```
-cumulus@switch:~$ nv set platform firmware BIOS auto-update enabled
+cumulus@switch:~$ nv set platform firmware Spectrum-6 auto-update enabled
 cumulus@switch:~$ nv config apply
 ```
 
-To configure whether a component uses the default firmware source or a custom one, run the `nv set platform firmware <platform-component-id> fw-source` command. Values are `default` and `custom`. The following example sets the ASIC component to use a custom firmware source:
+To configure whether a component uses the default firmware source or a custom one, run the `nv set platform firmware <platform-component-id> fw-source` command. Values are `default` and `custom`. The following example sets the Spectrum-6 component to use a custom firmware source:
 
 ```
-cumulus@switch:~$ nv set platform firmware ASIC fw-source custom
+cumulus@switch:~$ nv set platform firmware Spectrum-6 fw-source custom
 cumulus@switch:~$ nv config apply
 ```
 
@@ -202,7 +194,7 @@ Use the following NVUE commands to show information about the installed BMC pack
 
 | Command | Description |
 |-------- | ----------- |
-| `nv show platform firmware` | Shows the firmware versions of the platform components, including BMC and ERoT. |
+| `nv show platform firmware` | Shows the firmware versions of the platform components, including BMC and ERoT (listed as `EROT-BMC`). |
 | `nv show platform inventory` | Shows the model, serial number, operational state, and type of each component on the switch. |
 | `nv show platform inventory BMC` | Shows the BMC firmware model, serial number, operational state, and type. |
 | `nv show platform firmware BMC` | Shows the BMC firmware part number and name. |

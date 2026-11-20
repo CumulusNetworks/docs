@@ -3328,8 +3328,8 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 |----- | ----------- |
 | `nvswitch_platform_environment_fan_cur_speed` | Current fan speed in RPM. |  
 | `nvswitch_platform_environment_fan_dir` | Fan direction (0: Front2Back, 1: Back2Front). | 
-| `nvswitch_platform_environment_fan_max_speed` | Fan maximum speed in RPM. | 
-| `nvswitch_platform_environment_fan_min_speed` | Fan minimum speed in RPM. |  
+| `nvswitch_platform_environment_fan_max` | Fan maximum speed in RPM. | 
+| `nvswitch_platform_environment_fan_min` | Fan minimum speed in RPM. |  
 | `nvswitch_platform_environment_fan_state` | Fan status (0: ABSENT, 1: OK, 2: FAILED, 3: BAD). | 
 | `nvswitch_platform_environment_psu_capacity` | PSU capacity in watts. | 
 | `nvswitch_platform_environment_psu_current` | PSU current in amperes. | 
@@ -3341,8 +3341,12 @@ CPU statistics include the CPU core number and operation mode (user, system, idl
 | `nvswitch_platform_environment_temp_max` | Maximum temperature threshold in centigrade. | 
 | `nvswitch_platform_environment_temp_min` | Minimum temperature threshold in centigrade. | 
 | `nvswitch_platform_environment_temp_state` | Temperature sensor status (0: ABSENT, 1: OK, 2: FAILED, 3: BAD). |
-| `nvswitch_platform_evironment_input_voltage` | Input voltage to the PSU.|
-| `nvswitch_platform_environment_input_current` | Input current to the PSU.|
+| `nvswitch_platform_environment_psu_input_voltage` | Input voltage to the PSU.|
+| `nvswitch_platform_environment_psu_input_current` | Input current to the PSU.|
+
+{{%notice note%}}
+The `psu_*` metrics in this table are the legacy PSU metric family. For the common `power_supply_*` metrics that replace them, refer to the Power Supply tab.
+{{%/notice%}}
 
 {{< /tab >}}
 {{< tab "Transceivers ">}}

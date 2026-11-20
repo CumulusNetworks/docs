@@ -74,8 +74,7 @@ Before you upgrade to Cumulus Linux 5.19, review the following considerations.
 
 You can use {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="optimized image upgrade">}} and {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="package upgrade ">}} to upgrade the switch to Cumulus Linux 5.19 from the following releases. Package upgrade supports ISSU (warm boot) for the 5.17.0 and 5.18 upgrade paths only.
 - 5.16.1 through 5.16.8 (cold boot only; ISSU is not supported)
-- 5.17.0
-- 5.18.0, 5.18.1, 5.18.2, 5.18.3
+- 5.17.0, 5.18.0, 5.18.1, 5.18.2, 5.18.3 (with ISSU warm boot)
 
 {{%notice infonopad%}}
 - Cumulus Linux does not support ISSU when you upgrade from Cumulus Linux 5.16.x to Cumulus Linux 5.19. Use a cold boot for this upgrade.

@@ -16,6 +16,8 @@ You can access BMC either through Cumulus Linux or directly through the BMC RJ45
 
 ## BMC and ERoT Firmware Package
 
+The <span class="a-tooltip">[ERoT](## "External Root of Trust")</span> provides hardware-backed security, secure flash, and boot attestation for system firmware.
+
 On the Spectrum-6 (SN6600) switch, you can upgrade the following firmware components through BMC:
 
 | Component | Upgradeable | Delivered As | Notes |
@@ -27,7 +29,7 @@ Keep the following in mind about the BMC and ERoT package:
 
 - NVIDIA distributes the package separately; the Cumulus Linux upgrade image does not include it.
 - The package is a combined FLM bundle that contains both BMC and ERoT firmware. For example, `nvfw_ETH-SPC6-2600_0001_261109.1.0_prod-signed.fwpkg`.
-- One NVUE install action upgrades both BMC and ERoT.
+- One NVUE install action installs both the BMC and ERoT images, but only the BMC activates automatically (the install resets the BMC). The ERoT firmware stays staged until you power cycle the switch.
 - A Cumulus Linux release might or might not include a new BMC and ERoT version. If the version changes, you must install the new package separately.
 - You can download the package from the {{<exlink url="https://enterprise-support.nvidia.com/s/downloads" text="NVIDIA Enterprise Support Portal">}}.
 
@@ -97,7 +99,9 @@ Do you want to continue? [y/N] y
 During the installation:
 
 - The BMC firmware activates immediately after the automatic BMC reset.
-- The ERoT firmware stays in the `PendingActivation` state until you power cycle the switch.
+- The ERoT firmware stays in the `PendingActivation` state until you power cycle the switch. A BMC reset or a reboot does not activate the ERoT firmware.
+- The installation message might state that the ERoT firmware is staged, for example: `ERoT firmware 02.00.0048.0000_n05 is staged. Run 'nv action reboot system mode power-cycle' to activate it.` This message does not always appear.
+- The success message might show the previous BMC version instead of the version you installed. After the BMC reset, run the `nv show platform firmware` command to verify the running version.
 
 You can add the following optional arguments to the install command:
 
@@ -116,7 +120,7 @@ Action succeeded
 
 ### Power Cycle the Switch
 
-After you install the BMC and ERoT package, power cycle the switch to activate the pending ERoT firmware:
+After you install the BMC and ERoT package, power cycle the switch to activate the pending ERoT firmware. The power cycle takes down the entire switch, including the host, so schedule it in a maintenance window:
 
 ```
 cumulus@switch:~$ nv action reboot system mode power-cycle force
@@ -198,8 +202,26 @@ Use the following NVUE commands to show information about the installed BMC pack
 | `nv show platform inventory` | Shows the model, serial number, operational state, and type of each component on the switch. |
 | `nv show platform inventory BMC` | Shows the BMC firmware model, serial number, operational state, and type. |
 | `nv show platform firmware BMC` | Shows the BMC firmware part number and name. |
+| `nv show platform firmware EROT-BMC` | Shows the ERoT firmware part number and name. |
 | `nv show platform firmware BMC files` | Shows the available BMC firmware files. |
 | `nv show platform environment leakage`<br>`nv show platform environment leakage -o json`| Shows the switch environment leakage (low-current signals).|
+
+The following example shows the firmware versions of the platform components, including the BMC and the ERoT (`EROT-BMC`).
+
+```
+cumulus@switch:~$ nv show platform firmware
+Component   Description   Actual Firmware   FW Source
+----------  ------------  ----------------  ---------
+BIOS                      <version>
+BMC                       88.0070.1910
+CPLD1                     <version>
+CPLD2                     <version>
+CPLD3                     <version>
+CPLD4                     <version>
+EROT-BMC                  02.00.0048.0000_n05
+SSD                       <version>
+Spectrum-6                39.2020.2100      default
+```
 
 The following example shows the model, serial number, operational state, and type of each component on the switch.
 
@@ -235,6 +257,16 @@ cumulus@switch:~$ nv show platform firmware BMC
 part-number      NVIDIA
 actual-firmware  88.0070.1910
 fw-source        default
+```
+
+The following example shows the ERoT firmware part number and name.
+
+```
+cumulus@switch:~$ nv show platform firmware EROT-BMC
+                 operational
+---------------  -------------------
+part-number      NVIDIA
+actual-firmware  02.00.0048.0000_n05
 ```
 
 ## Liquid Cooling Leakage

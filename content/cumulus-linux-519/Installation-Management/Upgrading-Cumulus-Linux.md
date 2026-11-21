@@ -559,6 +559,7 @@ ONIE is an open source project (equivalent to PXE on servers) that enables the i
 - If configuration files do not restore correctly, you cannot `ssh` to the switch from in-band management. Use out-of-band connectivity (eth0 or the console).
 - You *must* reinstall and reconfigure third-party applications after upgrade.
 - On secure boot switches (Spectrum-4 and later, or SN3700-S) running ONIE installer version 5.3.0012 or earlier, the Cumulus Linux upgrade fails at the ONIE prompt. Refer to {{<link url="#onie-install-issues" text="ONIE Install Issues">}}.
+- The ONIE install `-t` option does not work with a Cumulus Linux 5.9.x NVUE configuration file on Cumulus Linux 5.19.0. To upgrade to Cumulus Linux 5.19 from Cumulus Linux 5.9.x, only use ONIE install and offline configuration translation with NVUE; refer to {{<exlink url="NVUE-CLI/#translate-a-configuration-revision-or-file" text="Translate a Configuration Revision or File">}}.
 {{%/notice%}}
 
 To upgrade the switch with ONIE:

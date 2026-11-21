@@ -13,7 +13,9 @@ This document supports the Cumulus Linux 5.19 release, and lists new features an
 Cumulus Linux 5.19.0 includes new features and improvements, provides bug fixes, and includes a fix for CVE-2026-98432.
 
 {{%notice infonopad%}}
-Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
+Cumulus Linux 5.19.0 passes testing and validation as part of the Spectrum-X reference architecture release 2.4.
+
+For a list of approved product releases, refer to the {{<exlink url="https://docs.nvidia.com/networking/software/spectrumx-solution-stack/index.html" text="NVIDIA Spectrum-X Validated Solution Stack">}}.
 {{%/notice%}}
 
 ### New Features and Enhancements

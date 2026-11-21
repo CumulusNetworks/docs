@@ -891,7 +891,7 @@ cumulus@switch:~$ nv show vrf default router ospf neighbor 10.10.10.1 interface 
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show vrf \<vrf-id\> router ospf neighbor \<neighbor-id\>  interface \<interface-id\> local-ip \<address\></h>
+## <h>nv show vrf \<vrf-id\> router ospf neighbor \<neighbor-id\> interface \<interface-id\> local-ip \<address\></h>
 
 Shows information about a specific local IP address for the specified OSPF neighbor interface.
 

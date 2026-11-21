@@ -699,6 +699,172 @@ cumulus@switch:~$ nv show interface swp1 telemetry histogram latency traffic-cla
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show interface \<interface-id\> telemetry histogram microburst</h>
+
+Shows microburst histogram details for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 telemetry histogram microburst
+No Data
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> telemetry histogram microburst direction</h>
+
+Shows the microburst histogram directions for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 telemetry histogram microburst direction
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> telemetry histogram microburst direction \<if-direction-id\></h>
+
+Shows microburst histogram details for a specific direction on the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface name. |
+| `<if-direction-id>` |  The traffic direction. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 telemetry histogram microburst direction rx
+Interface swp4 — Microburst Histogram RX
+State           : enabled
+Unit            : packets
+Sample Interval : 1024 ns (actual: 1024 ns, resolution=3)
+Bin-min-boundary: 10 packets    Histogram-size: 120 packets
+Peak            : ~28 Mpps  (max_watermark = 29 packets)
+Mean Bin (μ)    : 2.4
+Spread (σ²)     : 13.7
+Score (σ²×μ)    : 32.9
+Threshold Score : 10.0
+Threshold State : triggered  (current score: 32.9)
+Last triggered  : 2026-05-07 10:15:01
+
+Sl.No  Date-Time             Bin-0      Bin-1        Bin-2  ... Bin-9
+0      -                     (<10pkts   (<25pkts)    (<40pkts)  (≥130pkts)
+                              <9.8Mpps) <24.4Mpps)   <39.1Mpps) ≥126.9Mpps)
+1      2026-05-07 10:15:01   900        12           0           3
+2      2026-05-07 10:15:00   910        10           0           1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> telemetry histogram microburst direction \<if-direction-id\> snapshot</h>
+
+Shows the microburst histogram snapshot for a specific direction on the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface name. |
+| `<if-direction-id>` |  The traffic direction. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 telemetry histogram microburst direction rx snapshot
+No Data
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> telemetry histogram microburst direction \<if-direction-id\> threshold</h>
+
+Shows the microburst histogram threshold settings for a specific direction on the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface name. |
+| `<if-direction-id>` |  The traffic direction. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 telemetry histogram microburst direction rx threshold
+No Data
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> telemetry step-time-estimation</h>
+
+Shows the step time estimation configuration for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 telemetry step-time-estimation
+               operational  applied
+--------------  -----------  -------
+export                              
+  state         enabled      enabled
+batch-interval  600          600    
+status          DISABLED            
+
+Interfaces
+=============
+No Data
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show system telemetry buffer-stats</h>
 
 Shows telemetry buffer statistics configuration settings.
@@ -807,6 +973,47 @@ throttle-duration  10000        10000
 Congestion Event Interfaces
 ==============================
 No Data
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry control-plane-stats class</h>
+
+Shows the control plane statistics class configuration.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry control-plane-stats class
+                  applied  pending
+-----------------  -------  -------
+punt-classifier                    
+  state            enabled  enabled
+  sample-interval  10       10  
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry control-plane-stats class punt-classifier</h>
+
+Shows the punt classifier counter telemetry configuration.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry control-plane-stats class punt-classifier
+                 applied  pending
+---------------  -------  -------
+state            enabled  enabled
+sample-interval  10       10 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1579,6 +1786,133 @@ cumulus@switch:~$ nv show system telemetry histogram latency
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show system telemetry histogram microburst</h>
+
+Shows the microburst histogram defaults and operational data.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry histogram microburst
+                  applied  pending
+----------------  -------  -------
+unit              packets  packets
+bin-min-boundary  960      960    
+histogram-size    12288    12288  
+sample-interval   1024     1024 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry histogram microburst summary</h>
+
+Shows the interfaces with microburst activity, ranked by burstiness score.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry histogram microburst summary
+No Data
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry histogram microburst threshold</h>
+
+Shows the microburst histogram threshold defaults.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry histogram microburst threshold
+No Data
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry histogram microburst top</h>
+
+Shows the interface counts available for the ranked microburst view.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry histogram microburst top
+No Data
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry histogram microburst top \<microburst-top-count-id\></h>
+
+Shows the highest scoring interfaces with microburst activity.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<microburst-top-count-id>` |  The number of interfaces to show. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry histogram microburst top 10
+Interface
+============
+No Data
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry histogram microburst top \<microburst-top-count-id\> interface</h>
+
+Shows the highest scoring interfaces ranked by burstiness score.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<microburst-top-count-id>` |  The number of interfaces to show. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry histogram microburst top 10 interface
+Microburst Summary (last sample: 2026-05-07 10:15:01)
+
+Rank  Interface  Dir  Unit   Score   μ     σ²    Peak       Window
+1     swp17      tx   pkts   38.2    2.8   13.6   ~131 Mpps  1024 ns
+2     swp4       rx   pkts   24.1    2.4   10.0   ~28 Mpps   1024 ns
+3     swp1       rx   bytes  16.4    2.0   8.2    ~105 Gbps  1024 ns
+4     swp9       tx   pkts   0.9     8.5   0.1    ~127 Mpps  1024 ns
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show system telemetry interface-stats</h>
 
 Shows telemetry interface statistics configuration.
@@ -1800,6 +2134,8 @@ description  Platform metrics
 [metric]     nvswitch_env_*
 ```
 
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show system telemetry metric-list \<metric-list-id\> metric</h>
 
 Shows metrics for the specified metric list.
@@ -1825,6 +2161,8 @@ node_memory_MemTotal_bytes
 nvswitch_env_*
 ```
 
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show system telemetry metric-list \<metric-list-id\> metric \<metric-id\></h>
 
 Shows information about a specific metric for the specified metric list.
@@ -1845,6 +2183,38 @@ Introduced in Cumulus Linux 5.17.0
 ```
 cumulus@switch:~$ nv show system telemetry metric-list PLATFORM_METRICS metric node_cpu_*
 No Data
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry radius-stats</h>
+
+Shows the RADIUS login statistics configuration.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry radius-stats
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry radius-stats export</h>
+
+Shows the RADIUS login statistics export configuration.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry radius-stats export
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2796,7 +3166,7 @@ cumulus@switch:~$ nv show system telemetry snapshot port-group all-packet-pg sta
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> packet tc \<tc-id\> tx
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> stats interface \<interface-id\> packet tc \<tc-id\> tx</h>
 
 Shows a snapshot for specific traffic class transmitted packets on the specified interface.
 
@@ -2914,7 +3284,7 @@ No Data
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system telemetry snapshot port-group \<port-group-id\> threshold <threshold-stats-id> action collect</h>
+## <h>nv show system telemetry snapshot port-group \<port-group-id\> threshold \<threshold-stats-id\> action collect</h>
 
 Shows port group threshold collect action configuration.
 
@@ -3029,6 +3399,7 @@ sample-interval  1
 export                   
   state          disabled
 ```
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv show system telemetry stats-group \<stats-group-id\> buffer-stats export</h>
@@ -3079,6 +3450,50 @@ cumulus@leaf01:mgmt:~$ nv show system telemetry stats-group STAT-GROUP1 control-
 sample-interval  1       
 export                   
   state          disabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry stats-group \<stats-group-id\> control-plane-stats class</h>
+
+Shows the control plane statistics class configuration for the specified statistics group.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>` |  The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry stats-group group1 control-plane-stats class
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry stats-group \<stats-group-id\> control-plane-stats class punt-classifier</h>
+
+Shows the punt classifier counter telemetry configuration for the specified statistics group.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>` |  The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry stats-group group1 control-plane-stats class punt-classifier
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3474,6 +3889,50 @@ state  enabled
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show system telemetry stats-group \<stats-group-id\> radius-stats</h>
+
+Shows the RADIUS login statistics configuration for the specified statistics group.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>` |  The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry stats-group group1 radius-stats
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry stats-group \<stats-group-id\> radius-stats export</h>
+
+Shows the RADIUS login statistics export configuration for the specified statistics group.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>` |  The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry stats-group group1 radius-stats export
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show system telemetry stats-group \<stats-group-id\> router</h>
 
 Shows configuration for the custom statistics group for router statistics export.
@@ -3528,4 +3987,252 @@ cumulus@switch:~$ nv show system telemetry stats-group STAT-GROUP1 router export
        applied
 -----  -------
 state  enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry stats-group \<stats-group-id\> step-time-estimation</h>
+
+Shows the step time estimation configuration for the specified statistics group.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>` |  The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry stats-group group1 step-time-estimation
+No Data
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry stats-group \<stats-group-id\> step-time-estimation export</h>
+
+Shows the step time estimation export configuration for the specified statistics group.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>` |  The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry stats-group group1 step-time-estimation export
+No Data
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry stats-group \<stats-group-id\> wjh</h>
+
+Shows the What Just Happened configuration for the specified statistics group.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>` |  The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry stats-group group1 wjh
+No Data
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry stats-group \<stats-group-id\> wjh export</h>
+
+Shows the What Just Happened export configuration for the specified statistics group.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<stats-group-id>` |  The statistics group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry stats-group group1 wjh export
+No Data
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry step-time-estimation</h>
+
+Shows the step time estimation configuration and operational state.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry step-time-estimation
+                operational  applied
+--------------  -----------  -------
+export                              
+  state         enabled      enabled
+batch-interval  600          600    
+status          DISABLED            
+
+Interfaces
+=============
+No Data
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry step-time-estimation export</h>
+
+Shows the step time estimation export configuration.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry step-time-estimation export
+       operational  applied   pending 
+-----  -----------  --------  --------
+state  disabled     disabled  disabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry wjh</h>
+
+Shows the What Just Happened export configuration.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry wjh
+                 applied   pending 
+---------------  --------  --------
+sample-interval  30        30      
+export                             
+  state          disabled  disabled
+
+
+
+Channel
+==========
+No Data
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry wjh channel</h>
+
+Shows the What Just Happened channel export configuration.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry wjh channel
+Channel name  Trigger(s)      Polling interval  Type                                     Aggregate cache size  Total drops
+------------  --------------  ----------------  ---------------------------------------  --------------------  -----------
+acls          ACL             30                WJH_USER_CHANNEL_CYCLIC_AND_AGGREGATE_E  1024                  109        
+buffer        BUFFER          30                WJH_USER_CHANNEL_CYCLIC_AND_AGGREGATE_E  1024                  0          
+forwarding    L2, L3, TUNNEL  30                WJH_USER_CHANNEL_CYCLIC_AND_AGGREGATE_E  1024                  749        
+layer-1       L1              30                WJH_USER_CHANNEL_AGGREGATE_E             1024                  0
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry wjh channel \<channel-id\></h>
+
+Shows the export configuration for a specific What Just Happened channel.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<channel-id>` |  The channel name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry wjh channel buffer
+                     operational                              applied
+--------------------  ---------------------------------------  -------
+polling-interval      30                                       30
+aggregate-cache-size  1024                                     1024
+drop-category-list    BUFFER
+type                  WJH_USER_CHANNEL_CYCLIC_AND_AGGREGATE_E
+total-drops           0
+
+Latency buffer threshold
+===========================
+    Traffic Class  Interface  High threshold
+    -------------  ---------  --------------
+    all            all        1000
+
+Congestion buffer threshold
+==============================
+    Traffic Class  Interface  High threshold
+    -------------  ---------  --------------
+    all            swp1       20
+                   swp2       20
+                   swp3       20
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry wjh export</h>
+
+Shows the What Just Happened export state configuration.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry wjh export
+       applied   pending 
+-----  --------  --------
+state  disabled  disabled
 ```

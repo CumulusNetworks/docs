@@ -8,6 +8,7 @@ type: nojsscroll
 <style>
 h { color: RGB(118,185,0)}
 </style>
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv show acl</h>
@@ -1301,6 +1302,7 @@ Rule  In Packet   In Byte          Out Packet  Out Byte         Action          
                                                                                           source-mac        :   00:00:00:00:00:12   
                                                                                           source-mac-mask   :   ff:ff:ff:ff:ff:ff 
 ```
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv show interface \<interface-id\> acl \<acl-id\> statistics \<rule-id\></h>
@@ -1377,6 +1379,7 @@ swp21      EXAMPLE   10       0           0 Bytes
 ...
 ```
 <!--
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv show system acl</h>
@@ -1697,6 +1700,136 @@ In the command output:
 - `to-cpu-pkts` is the count of packets matching this rule allowed to reach the CPU.
 - `to-cpu-bytes` is the count of bytes matching this rule allowed to reach the CPU.
 - `violated-pkts` is the count of packets matching this rule not allowed to reach the CPU.
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system control-plane punt-classifier</h>
+
+Shows the control plane punt classifier rules.
+
+When an IPv6 next hop becomes unreachable, the switch withdraws the affected route and the traffic falls through to the implicit IPv6 default route, which forwards the packets to the CPU. The control plane policers drop this forwarded traffic, but their counters aggregate every kind of forwarded packet. You cannot separate MRC (Multipath Reliable Connection) traffic from other forwarded traffic such as probes, ping, and packets with no matching route.
+
+The control plane punt classifier matches for packets, counts them, and drops them before the control plane policers, so that each traffic type has its own drop counter. The punt classifier is disabled by default. You enable it by creating one or more rules, where each rule ID has its own packet and byte counters.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system control-plane punt-classifier
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system control-plane punt-classifier \<rule-id\></h>
+
+Shows a specific control plane punt classifier rule.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The punt classifier rule ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system control-plane punt-classifier 1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system control-plane punt-classifier \<rule-id\> counters</h>
+
+Shows the drop counters for a specific control plane punt classifier rule.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The punt classifier rule ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system control-plane punt-classifier 1 counters
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system control-plane punt-classifier \<rule-id\> counters hardware</h>
+
+Shows the hardware drop counters for a specific control plane punt classifier rule.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The punt classifier rule ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system control-plane punt-classifier 1 counters hardware
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system control-plane punt-classifier \<rule-id\> match</h>
+
+Shows the match conditions for a specific control plane punt classifier rule.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The punt classifier rule ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system control-plane punt-classifier 1 match
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system control-plane punt-classifier \<rule-id\> match no-route</h>
+
+Shows the no-route match condition for a specific control plane punt classifier rule.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The punt classifier rule ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system control-plane punt-classifier 1 match no-route
+```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

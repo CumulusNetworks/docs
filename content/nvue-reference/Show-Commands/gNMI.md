@@ -263,7 +263,7 @@ status
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system grpc-tunnel server <server-name-id> status</h>
+## <h>nv show system grpc-tunnel server \<server-name-id\> status</h>
 
 Shows status information for the specified gRCP-tunnel server.
 
@@ -293,7 +293,7 @@ connection
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system grpc-tunnel server <server-name-id> status connection</h>
+## <h>nv show system grpc-tunnel server \<server-name-id\> status connection</h>
 
 Shows the connection status for the specified gRCP-tunnel server.
 

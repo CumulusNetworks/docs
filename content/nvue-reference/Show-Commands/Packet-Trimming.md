@@ -8,6 +8,7 @@ type: nojsscroll
 <style>
 h { color: RGB(118,185,0)}
 </style>
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv show interface \<interface-id\> counters packet-trim</h>
@@ -134,6 +135,253 @@ No Data
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show interface \<interface-id\> packet-trim notify-sender</h>
+
+Shows the packet trimming sender notification settings for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 packet-trim notify-sender
+Tail-Drop Egress Eligibility TC
+==================================
+No Data
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> packet-trim notify-sender tail-drop</h>
+
+Shows the tail drop sender notification settings for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 packet-trim notify-sender tail-drop
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> packet-trim notify-sender tail-drop egress-eligibility</h>
+
+Shows the tail drop sender notification eligibility settings for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 packet-trim notify-sender tail-drop egress-eligibility
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> packet-trim notify-sender tail-drop egress-eligibility traffic-class</h>
+
+Shows the traffic classes eligible for tail drop sender notification on the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 packet-trim notify-sender tail-drop egress-eligibility traffic-class
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> packet-trim notify-sender tail-drop egress-eligibility traffic-class \<tc-id\></h>
+
+Shows a specific traffic class eligible for tail drop sender notification on the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface name. |
+| `<tc-id>` |  The traffic class. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 packet-trim notify-sender tail-drop egress-eligibility traffic-class 3
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> packet-trim spxm</h>
+
+Shows the SPXM packet trimming settings for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 packet-trim spxm
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> packet-trim spxm notify-sender</h>
+
+Shows the SPXM packet trimming sender notification settings for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 packet-trim spxm notify-sender
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> packet-trim spxm notify-sender link-down</h>
+
+Shows the link-down sender notification settings for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 packet-trim spxm notify-sender link-down
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> packet-trim spxm notify-sender link-down ingress-eligibility</h>
+
+Shows the link-down sender notification eligibility settings for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 packet-trim spxm notify-sender link-down ingress-eligibility
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> packet-trim spxm notify-sender link-down ingress-eligibility dscp</h>
+
+Shows the DSCP values eligible for link-down sender notification on the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 packet-trim spxm notify-sender link-down ingress-eligibility dscp
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> packet-trim spxm notify-sender link-down ingress-eligibility dscp \<dscp-id\></h>
+
+Shows a specific DSCP value eligible for link-down sender notification on the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface name. |
+| `<dscp-id>` |  The DSCP value. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 packet-trim spxm notify-sender link-down ingress-eligibility dscp 10
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show system forwarding packet-trim</h>
 
 Shows packet trimming configuration and data. The `trimmed-packet-counters` field shows the number of trimmed packets.
@@ -203,6 +451,168 @@ swp4        5000                  N/A
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show system forwarding packet-trim ingress-eligibility</h>
+
+Shows the packet trimming ingress eligibility settings.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system forwarding packet-trim ingress-eligibility
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system forwarding packet-trim notify-sender</h>
+
+Shows the packet trimming sender notification settings.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system forwarding packet-trim notify-sender
+                  operational  applied  pending
+----------------  -----------  -------  -------
+tail-drop
+  state           enabled      enabled  enabled
+  remark
+    dscp          11           11       11
+
+BTS Egress Eligibility TC-to-Interface Information
+====================================================
+TC  Interfaces
+--  ----------
+4   swp1-swp48
+5   swp33-swp48
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system forwarding packet-trim notify-sender link-down</h>
+
+Shows the link-down sender notification settings for packet trimming.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system forwarding packet-trim notify-sender link-down
+                       operational  applied
+---------------------  -----------  -------
+state                  enabled      enabled
+remark
+  dscp                 46           46
+size                   256          256
+switch-priority        1            1
+service-port           swp65s1      swp65s1
+counters
+  spxm-link-down-pkts  0
+  trim-link-down-pkts  0
+
+Ingress Eligibility DSCP-to-Interface Information
+====================================================
+    DSCP  Interface
+    ----  ---------
+    10    swp1-4
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system forwarding packet-trim notify-sender link-down counters</h>
+
+Shows the link-down sender notification counters for packet trimming.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system forwarding packet-trim notify-sender link-down counters
+                      operational
+--------------------  -----------
+spxm-link-down-pkts   0
+trim-link-down-pkts   0
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system forwarding packet-trim notify-sender link-down counters native</h>
+
+Shows the link-down sender notification counters for packet trimming in native format.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system forwarding packet-trim notify-sender link-down counters native
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system forwarding packet-trim notify-sender link-down remark</h>
+
+Shows the DSCP marking settings for link-down sender notification.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system forwarding packet-trim notify-sender link-down remark
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system forwarding packet-trim notify-sender tail-drop</h>
+
+Shows the tail drop sender notification settings for packet trimming.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system forwarding packet-trim notify-sender tail-drop
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system forwarding packet-trim notify-sender tail-drop remark</h>
+
+Shows the DSCP marking settings for tail drop sender notification.
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system forwarding packet-trim notify-sender tail-drop remark
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show system forwarding packet-trim remark</h>
 
 Shows packet trimming remark information.
@@ -219,4 +629,3 @@ cumulus@switch:~$ nv show system forwarding packet-trim remark
 ----  -----------  -------
 dscp               11
 ```
-

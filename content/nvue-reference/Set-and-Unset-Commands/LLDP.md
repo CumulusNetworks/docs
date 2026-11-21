@@ -14,7 +14,7 @@ The `nv unset` commands remove the configuration you set with the equivalent `nv
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> lldp application-tlv app \<application-id\> </h>
+## <h>nv set interface \<interface-id\> lldp application-tlv app \<application-id\></h>
 
 Configures the interface on which <span class="a-tooltip">[LLDP](## "Link Layer Discovery Protocol")</span> sends application priority TLVs in LLDP PDUs.
 
@@ -375,7 +375,7 @@ cumulus@switch:~$ nv set system lldp state disabled
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set system lldp tlv egress-policy dcbx-app-priority state</h>
+## <h>nv set system lldp tlv egress-policy dcbx-app-priority state</h>
 
 Configures a global egress policy across all ports to transmit the DCBX Application priority TLVs.
 
@@ -391,7 +391,7 @@ cumulus@switch:~$ nv set service lldp tlv egress-policy dcbx-app-priority state 
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set system lldp tlv egress-policy dcbx-ets-config state</h>
+## <h>nv set system lldp tlv egress-policy dcbx-ets-config state</h>
 
 Configures a global egress policy across all ports to transmit the DCBX ETS Configuration TLVs.
 
@@ -615,7 +615,7 @@ cumulus@switch:~$ nv set service lldp tlv egress-policy vlan-name state enabled
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set system lldp tlv ingress-policy dcbx-app-priority state</h>
+## <h>nv set system lldp tlv ingress-policy dcbx-app-priority state</h>
 
 Configures a global ingress policy across all ports to transmit the DCBX Application priority TLVs.
 
@@ -631,7 +631,7 @@ cumulus@switch:~$ nv set service lldp tlv ingress-policy dcbx-app-priority state
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set system lldp tlv ingress-policy dcbx-ets-config state</h>
+## <h>nv set system lldp tlv ingress-policy dcbx-ets-config state</h>
 
 Configures a global ingress policy across all ports to transmit the DCBX ETS Configuration TLVs.
 

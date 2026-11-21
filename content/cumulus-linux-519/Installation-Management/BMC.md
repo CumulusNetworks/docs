@@ -16,9 +16,9 @@ You can access BMC either through Cumulus Linux or directly through the BMC RJ45
 
 ## BMC and ERoT Firmware Package
 
-The <span class="a-tooltip">[ERoT](## "External Root of Trust")</span> provides hardware-backed security, secure flash, and boot attestation for system firmware.
+Cumulus Linux provides a firmware package that contains both BMC and <span class="a-tooltip">[ERoT](## "External Root of Trust")</span> firmware. The ERoT firmware provides hardware-backed security, secure flash, and boot attestation for system firmware.
 
-On the Spectrum-6 (SN6600) switch, you can upgrade the following firmware components through BMC:
+On the Spectrum-6 (SN6600) switch, you upgrade the following firmware components through BMC:
 
 | Component | Upgradeable | Delivered As | Notes |
 | --------- | ----------------------- | ------------ | ----- |

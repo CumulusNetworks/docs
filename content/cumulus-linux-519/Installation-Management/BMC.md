@@ -92,16 +92,15 @@ The operation will install the firmware.
  Type [N] to abort. 
 Do you want to continue? [y/N] y 
  Action executing ... 
- Firmware installation completed for bmc. Version: 88.0070.1910. BMC reset triggered to activate new firmware 
+ Firmware installation completed for bmc. Version: 88.0070.1908. BMC reset triggered to activate new firmware. ERoT firmware 02.00.0048.0000_n05 is staged. Run 'nv action reboot system mode power-cycle' to activate it; a reboot or BMC reset does not. 
  Action succeeded
 ```
 
 During the installation:
 
-- The BMC firmware activates immediately after the automatic BMC reset.
-- The ERoT firmware stays in the `PendingActivation` state until you power cycle the switch. A BMC reset or a reboot does not activate the ERoT firmware.
-- The installation message might state that the ERoT firmware is staged, for example: `ERoT firmware 02.00.0048.0000_n05 is staged. Run 'nv action reboot system mode power-cycle' to activate it.` This message does not always appear.
-- The success message might show the previous BMC version instead of the version you installed. After the BMC reset, run the `nv show platform firmware` command to verify the running version.
+- The BMC activates after the automatic BMC reset.
+- The ERoT is not active until you power cycle the switch. A BMC reset or reboot does not activate it.
+- To confirm the running versions, run the `nv show platform firmware` command.
 
 You can add the following optional arguments to the install command:
 
@@ -114,13 +113,13 @@ The following example installs BMC firmware and skips the version check:
 ```
 cumulus@switch:~$ nv action install platform firmware BMC files nvfw_ETH-SPC6-2600_0001_261109.1.0_prod-signed.fwpkg skip-version-check
 Action executing ...
-Firmware installation completed for bmc. Version: 88.0070.1910. BMC reset triggered to activate new firmware
+Firmware installation completed for bmc. Version: 88.0070.1908. BMC reset triggered to activate new firmware. ERoT firmware 02.00.0048.0000_n05 is staged. Run 'nv action reboot system mode power-cycle' to activate it; a reboot or BMC reset does not.
 Action succeeded
 ```
 
 ### Power Cycle the Switch
 
-After you install the BMC and ERoT package, power cycle the switch to activate the pending ERoT firmware. The power cycle takes down the entire switch, including the host, so schedule it in a maintenance window:
+After you install the BMC and ERoT package, power cycle the switch to activate the pending ERoT firmware. The power cycle is a real power loss. It takes down the entire switch, including the host, which is unreachable for about 4 minutes. The power cycle also clears staged firmware files. Schedule it in a maintenance window:
 
 ```
 cumulus@switch:~$ nv action reboot system mode power-cycle force
@@ -167,12 +166,12 @@ If the destination server requires a username and password, include them in the 
 
 ## Configure Automatic Firmware Updates
 
-You can configure whether Cumulus Linux automatically updates the staged files for a platform firmware component, and whether a component uses the default firmware source or a custom one you staged yourself. In Cumulus Linux 5.19.0, these settings apply only to the Spectrum-6 component. The `nv show platform firmware` command shows `auto-update` and `fw-source` only for Spectrum-6; BIOS, BMC, CPLD1 through CPLD4, EROT-BMC, and SSD show neither. In the command output, Cumulus Linux lists the ASIC component as `Spectrum-6`.
+You can configure whether Cumulus Linux automatically updates the staged files for a platform firmware component, and whether a component uses the default firmware source or a custom one you staged yourself. In Cumulus Linux 5.19.0, these settings apply only to the Spectrum-6 component. The `nv show platform firmware` command shows `auto-update` and `fw-source` only for Spectrum-6; BIOS, BMC, CPLD1 through CPLD4, EROT-BMC, and SSD show neither. BIOS, SSD, and BMC do not support `auto-update`. Use `Spectrum-6` as the component ID; `ASIC` is not a valid ID.
 
-To enable or disable automatic updates for a component, run the `nv set platform firmware <platform-component-id> auto-update` command. The following example enables automatic updates for the Spectrum-6 component:
+To enable or disable automatic updates for a component, run the `nv set platform firmware <platform-component-id> auto-update` command. Automatic updates are enabled by default. The following example disables automatic updates for the Spectrum-6 component:
 
 ```
-cumulus@switch:~$ nv set platform firmware Spectrum-6 auto-update enabled
+cumulus@switch:~$ nv set platform firmware Spectrum-6 auto-update disabled
 cumulus@switch:~$ nv config apply
 ```
 
@@ -210,17 +209,17 @@ The following example shows the firmware versions of the platform components, in
 
 ```
 cumulus@switch:~$ nv show platform firmware
-Component   Description   Actual Firmware   FW Source
-----------  ------------  ----------------  ---------
-BIOS                      <version>
-BMC                       88.0070.1910
-CPLD1                     <version>
-CPLD2                     <version>
-CPLD3                     <version>
-CPLD4                     <version>
-EROT-BMC                  02.00.0048.0000_n05
-SSD                       <version>
-Spectrum-6                39.2020.2100      default
+Name        Actual FW            Part Number              FW Source
+----------  -------------------  -----------------------  ---------
+BIOS        0ACUZ_01.00.007      American Megatrends International, LLC.
+BMC         88.0070.1910         NVIDIA
+CPLD1       4.0                  454
+CPLD2       2.6                  439
+CPLD3       1.3                  440
+CPLD4       1.3                  441
+EROT-BMC    02.00.0048.0000_n05  NVIDIA
+SSD         ORYAFV               MD681GEFBC82
+Spectrum-6  39.2020.2100         920-9N62F-00LI-GC0_Ax    default
 ```
 
 The following example shows the model, serial number, operational state, and type of each component on the switch.
@@ -256,7 +255,6 @@ cumulus@switch:~$ nv show platform firmware BMC
 ---------------  ------------
 part-number      NVIDIA
 actual-firmware  88.0070.1910
-fw-source        default
 ```
 
 The following example shows the ERoT firmware part number and name.

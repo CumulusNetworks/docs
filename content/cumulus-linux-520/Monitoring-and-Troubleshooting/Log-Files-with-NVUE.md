@@ -14,8 +14,7 @@ To show the current system log configuration on the switch, run the `nv show sys
 cumulus@switch:~$ nv show system log
             operational      
 -----------  -----------------
-[file]       syslog           
-[component]  apt              
+[file]       syslog                         
 [component]  audit            
 [component]  auth             
 [component]  boot             
@@ -149,8 +148,7 @@ To show the components of the system generating the logs, run the `nv show syste
 ```
 cumulus@switch:~$ nv show system log component 
 Component          Summary
------------------  -------
-apt                       
+-----------------  -------                       
 audit                     
 auth                      
 boot                      
@@ -184,7 +182,6 @@ The `nv show system log component` command provides the following options:
 {{< expand "Component File List" >}}
 | System Component  | Files |
 | ---------- | ----------- |
-| `apt` | All files in the `/var/log/apt` directory. The most current file is `history.log`. |
 | `audit` | All files in the `/var/log/audit` directory.|
 | `auth` | `auth.log` |
 | `boot` | `boot.log`|

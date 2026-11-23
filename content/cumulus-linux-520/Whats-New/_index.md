@@ -13,82 +13,28 @@ This document supports the Cumulus Linux 5.20 release, and lists new features an
 Cumulus Linux 5.20.0 includes new features and improvements, provides bug fixes, and includes a fix for CVE-2026-98432.
 
 {{%notice infonopad%}}
-Cumulus Linux 5.19.0 passes testing and validation as part of the Spectrum-X reference architecture release 2.4.
+Cumulus Linux 5.20.0 passes testing and validation as part of the Spectrum-X reference architecture release 2.4.
 
 For a list of approved product releases, refer to the {{<exlink url="https://docs.nvidia.com/networking/software/spectrumx-solution-stack/index.html" text="NVIDIA Spectrum-X Validated Solution Stack">}}.
 {{%/notice%}}
 
 ### New Features and Enhancements
 
-- FRR upgrade to 10.6.0
-- {{<link url="Inter-subnet-Routing/#prevent-re-export-of-vrf-leaked-evpn-routes" text="Prevent re-export of VRF-leaked EVPN routes">}}
-- {{<link url="FRRouting/#class-e-address-space-support" text="Class E (240.0.0.0/4) address space support">}}
-- {{<link url="EVPN-Enhancements/#evpn-unreachability-with-8021x-dynamic-vrf-assignment" text="Disjoined multiplane support for EVPN unreachability with 802.1X dynamic VRF assignment">}}
-- {{<link url="Inter-subnet-Routing/#layer-3-vxlan-device-mode" text="Layer 3 VXLAN device mode">}} is generally available
-- {{<link url="Bidirectional-Forwarding-Detection-BFD/#offload-to-hardware" text="BFD offload to switch firmware">}}
-- {{<link url="Access-Control-List-Configuration/#control-plane-punt-classifier" text="Control plane punt classifier drop counters">}} for drops caused by link failures or missing next hops
-- {{<link url="Understanding-the-cl-support-Output-File/#collect-the-nvme-nand-debug-log" text="The cl-support file">}} captures the SSD internal NAND debug log on a switch with a Virtium NVMe SSD
-- {{<link url="Patches" text="Patch uninstall returns the switch to the patch installed underneath, and a new command reclaims the space held by superseded patches">}}
-- {{<link url="Quality-of-Service/#pfc-watchdog" text="PFC watchdog detection parameters that distinguish a real deadlock from steady-state congestion">}}
-- {{<link url="Configuring-switchd/#pipeline-flush" text="Pipeline flush to limit how long the switch waits on a stalled ASIC pipeline">}} on Spectrum-4 and Spectrum-5 switches
-- {{<link url="Security-Configuration-Visibility" text="Security configuration report that collects the security configuration of the switch and checks each value against the reference values for the platform">}}
-- {{<link url="Packet-Trimming/#back-to-sender-notification-on-congestion-tail-drop" text="Back-to-sender notification on congestion tail drop">}} on Spectrum-6 switches
-- {{<link url="Packet-Trimming/#back-to-sender-notification-on-link-down" text="Back-to-sender notification when an MRC egress link fails">}}
-- {{<link url="Step-Time-Estimation" text="Step time estimation for AI training workloads">}}
-- {{<link url="Quality-of-Service/#service-port-buffers" text="Dedicated service port ingress buffers on Spectrum-6 switches">}}
-- {{<link url="Domain-Name-System-DNS/#dns-query-source-address" text="Configurable source address for DNS queries, so that queries leave the switch from a stable loopback identity">}}
-- {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="Optimized image upgrade options to cancel a pending boot-next and to declare additional files to carry forward to the upgraded partition">}}. Optimized image upgrade no longer copies all of the `/etc` directory.
-- {{<link url="Packet-Trimming/#packet-trimming-counters" text="Trimmed packet sent and dropped counters at the global, port, and traffic class level">}} on Spectrum-6 switches
-- {{<link url="Optional-BGP-Configuration/#graceful-fabric-maintenance" text="Graceful Fabric Maintenance">}} is generally available
-- {{<link url="Optional-BGP-Configuration/#inter-dc-routing" text="Inter-DC Routing">}} is generally available
-- {{<link url="Firewall-Rules/#ipv6-whitelist-rules" text="Default IPv6 control plane ACL">}} (`acl-ipv6-default-whitelist`)
-- NVUE
-  - {{<link url="Using-sudo-to-Delegate-Privileges" text="Passwordless sudo access by default">}} for members of the sudo group, and {{<link url="Role-Based-Access-Control/#os-command-classes" text="RBAC os-command allow-lists">}} for granular passwordless access to specific commands (Beta)
-  - {{<link url="System-Power-and-Switch-Reboot" text="Switch power off command">}}
-  - {{<link url="Neighbor-Discovery-ND/#clear-a-stale-prefix" text="Clear a stale IPv6 ND prefix on demand">}}
-  - {{<link url="Neighbor-Discovery-ND/#set-default-prefix-lifetimes" text="Default IPv6 ND prefix lifetimes for an interface">}}
-  - {{<link url="BMC/#manage-staged-firmware-files" text="Manage staged platform firmware files, automatic updates, and firmware source for each component">}}
-  - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#manage-transceiver-firmware" text="Show and install transceiver firmware">}}
-  - {{<link url="Optional-BGP-Configuration/#ipv6-only-unnumbered-peering" text="IPv6-only unnumbered peering command">}}
-  - {{<link url="Equal-Cost-Multipath-Load-Sharing/#resilient-hashing" text="Resilient hashing commands">}}
-  - {{<link url="NVUE-CLI/#nvue-config-apply-and-frr" text="nv config apply command improvements">}} to prevent latency and timeout during FRR configuration changes
-  - {{<link url="Zero-Touch-Provisioning-ZTP/#suppress-ztp-console-messages" text="Suppress ZTP console messages">}}
-  - {{<link url="FRRouting/#tcp-sockets-and-bgp-peering-sessions" text="Configure the file descriptor limit for the FRR routing daemons">}}
-  - {{<link url="Switch-Port-Attributes/#show-the-physical-connector-for-a-port" text="Show the physical connector for a port">}}
-  - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#show-transceiver-information" text="Decoded transceiver Ethernet compliance codes">}}
-- Telemetry
-  - {{<link url="gNMI-Streaming/#supported-models" text="gNMI component type and name for platform components">}}
-  - {{<link url="Open-Telemetry-Export/#wjh-events-and-metrics" text="WJH events, as OTEL log records, and WJH metrics for OTEL">}}
-  - {{<link url="New-and-Updated-Telemetry-Metrics/#new-gnmi-metrics" text="gNMI and OTEL metrics for unreachability AFI SAFI">}}
-  - {{<link url="New-and-Updated-Telemetry-Metrics/#new-otel-metrics" text="OTEL metrics for AAA RADIUS login authentication">}}
-  - {{<link url="ASIC-Monitoring/#microburst-histogram" text="Microburst histogram with per-port burst scoring">}}
-  - {{<link url="gNMI-Streaming/#dial-out-source-address" text="Configurable source address for gNMI dial-out connections">}}
-  - {{<link url="New-and-Updated-Telemetry-Metrics/#new-gnmi-metrics" text="gNMI and OTEL metrics for trimmed packet sent and dropped counters">}} on Spectrum-6 switches
-  - {{<link url="New-and-Updated-Telemetry-Metrics/#updated-gnmi-metrics" text="Updated gNMI xPaths for packet trimming counters">}}
-  - {{<link url="New-and-Updated-Telemetry-Metrics/#new-gnmi-metrics" text="gNMI and OTEL metrics for back-to-sender notification on link down">}} on Spectrum-6 switches
-  - {{<link url="New-and-Updated-Telemetry-Metrics/#new-gnmi-metrics" text="gNMI and OTEL metrics for control plane punt classifier drop counters">}}
-<!-- REMOVED FROM 5.19: - {{<link url="Upgrading-Cumulus-Linux/#full-resource-mode-issu" text="Full resource mode ISSU">}} (Beta) on Spectrum-4 and later switches, which keeps 100 percent of forwarding table capacity during the upgrade -->
 ## Release Considerations
 
-Before you upgrade to Cumulus Linux 5.19, review the following considerations.
+Before you upgrade to Cumulus Linux 5.20, review the following considerations.
 
 ### Upgrade Requirements
 
-You can use {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="optimized image upgrade">}} and {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="package upgrade ">}} to upgrade the switch to Cumulus Linux 5.19 from the following releases. Package upgrade supports ISSU (warm boot) for the 5.17.0 and 5.18 upgrade paths only.
-- 5.16.1 through 5.16.8 (cold boot only; ISSU is not supported)
+You can use {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="optimized image upgrade">}} to upgrade the switch to Cumulus Linux 5.20 from the following releases.
 - 5.17.0, 5.18.0, 5.18.1, 5.18.2, 5.18.3 (with ISSU warm boot)
 
 {{%notice infonopad%}}
-- Cumulus Linux does not support ISSU when you upgrade from Cumulus Linux 5.16.x to Cumulus Linux 5.19. Use a cold boot for this upgrade.
-- For the SN6600-LD switch, you can upgrade to Cumulus Linux 5.19 only from Cumulus Linux 5.18.3 or later. 
+- For the SN6600-LD switch, you can upgrade to Cumulus Linux 5.20 only from Cumulus Linux 5.18.3 or later. 
 - ISSU is not supported on the SN6600-LD switch.
 {{%/notice%}}
 
-To upgrade to Cumulus Linux 5.19 from a release that does not support package upgrade or optimized image upgrade, you can install an image with {{<link url="Upgrading-Cumulus-Linux/#onie-image-upgrade" text="ONIE">}}.
-
-{{%notice note%}}
-- The ONIE install `-t` option does not work with a Cumulus Linux 5.9.x NVUE configuration file on Cumulus Linux 5.19.0. To upgrade to Cumulus Linux 5.19.0 from Cumulus Linux 5.9.x, only use ONIE install and offline configuration translation with NVUE; refer to {{<link url="NVUE-CLI/#translate-a-configuration-revision-or-file" text="Translate a Configuration Revision or File">}}.
-{{%/notice%}}
+To upgrade to Cumulus Linux 5.20 from a release that does not support optimized image upgrade, you can install an image with {{<link url="Upgrading-Cumulus-Linux/#onie-image-upgrade" text="ONIE">}}.
 
 For a list of the earliest Cumulus Linux releases supported for each switch model, refer to [this knowledge base article]({{<ref "/knowledge-base/Support/Support-Offerings/Minimum-Cumulus-Linux-Release-for-Each-Switch-Model" >}}).
 
@@ -106,12 +52,12 @@ NVIDIA recommends completing migration before Cumulus Linux 5.20.0.
 ### Spectrum-6 BMC Requirements
 
 {{%notice warning%}}
-For a Spectrum-6 switch, you must upgrade BMC before you upgrade Cumulus Linux. Before you upgrade to Cumulus Linux 5.19.0, you must upgrade the BMC firmware to version 88.0070.1910 and the ERoT firmware to version 02.00.0048.0000_n05. The ERoT firmware upgrade requires a power cycle of the switch to activate. For information about upgrading BMC, refer to {{<link url="BMC" text="BMC">}}.
+For a Spectrum-6 switch, you must upgrade BMC before you upgrade Cumulus Linux. Before you upgrade to Cumulus Linux 5.20.0, you must upgrade the BMC firmware to version 88.0070.1910 and the ERoT firmware to version 02.00.0048.0000_n05. The ERoT firmware upgrade requires a power cycle of the switch to activate. For information about upgrading BMC, refer to {{<link url="BMC" text="BMC">}}.
 {{%/notice%}}
 
 ### Linux Configuration Files Overwritten
 
-If you use Linux commands to configure the switch, read the following information before you upgrade to Cumulus Linux 5.19.
+If you use Linux commands to configure the switch, read the following information before you upgrade to Cumulus Linux 5.20.
 
 NVUE includes a default `startup.yaml` file. In addition, NVUE enables configuration auto save by default. As a result, NVUE overwrites any manual changes to Linux configuration files on the switch when the switch reboots after upgrade, or you change the `cumulus` user account password with the Linux `passwd` command.
 
@@ -119,7 +65,7 @@ NVUE includes a default `startup.yaml` file. In addition, NVUE enables configura
 These issues occur only if you use Linux commands to configure the switch. If you use NVUE commands to configure the switch, these issues do not occur.
 {{%/notice%}}
 
-To prevent Cumulus Linux from overwriting manual changes to the Linux configuration files when the switch reboots or when changing the `cumulus` user account password with the `passwd` command, follow the steps below **before** you upgrade to 5.19 or after a new binary image installation:
+To prevent Cumulus Linux from overwriting manual changes to the Linux configuration files when the switch reboots or when changing the `cumulus` user account password with the `passwd` command, follow the steps below **before** you upgrade to 5.20 or after a new binary image installation:
 
 1.  Disable NVUE auto save:
 
@@ -152,53 +98,9 @@ After you upgrade to Cumulus Linux, running NVUE configuration commands might ov
 - {{<link url="NVUE-CLI/#configure-nvue-to-ignore-linux-files" text="Configure NVUE to ignore certain underlying Linux files">}} when applying configuration changes.
 - Use Linux and FRR (vtysh) commands instead of NVUE for **all** switch configuration.
 
-### Show global BGP Unreachability Routes Command Change
-
-In Cumulus Linux 5.19 and later, running the `nv show vrf <vrf-id> router bgp address-family <address-family>-unreachability route -o json` command is now equivalent to running the vtysh `show bgp vrf <vrf-id> ipv6 unreachability json brief` command. Therefore, certain fields, such as path details and reporter AS, no longer show. To show a more detailed view, run the `nv show vrf <vrf-id> router bgp address-family <address-family>-unreachability route <prefix> -o json` command.
-
-### BFD Offload Configuration and Show Output
-
-Cumulus Linux 5.19 replaces the BFD offload option with an offload mode that selects where BFD packet processing runs; see {{<link url="Bidirectional-Forwarding-Detection-BFD/#bfd-offload" text="BFD Offload">}}.
-- Cumulus Linux 5.19 introduces the `nv set router bfd offload-mode <control-plane|kernel|hardware>` command, which NVIDIA recommends you run to configure BFD offload. Cumulus Linux still supports the `nv set router bfd offload enabled` and `nv set router bfd offload disabled` commands as legacy configuration, and NVIDIA plans to remove it in a future release. When you upgrade, Cumulus Linux keeps an existing `offload` setting unchanged; `offload enabled` is the same as `offload-mode kernel` and `offload disabled` is the same as `offload-mode control-plane`. See {{<link url="Bidirectional-Forwarding-Detection-BFD/#upgrade-notes" text="Upgrade Notes">}}.
-- The offload field for each peer now reports the engine carrying the session. In `nv show vrf <vrf-id> router bfd peers` output, the `Offloaded` column shows `kernel`, `hardware`, or `control-plane`; in vtysh and JSON output, `offload-status` shows the same three values. In Cumulus Linux 5.18 and earlier, this field shows only `offloaded` or `control-plane`. Update any automation or monitoring that matches on the string `offloaded`.
-
-### RIB-to-FIB Filter Protocol Values
-
-Cumulus Linux 5.19 removes `connected`, `kernel`, and `table` as valid values for `<import-protocol-id>` in the `nv set vrf <vrf-id> router rib <address-family> fib-filter protocol <import-protocol-id> route-map <route-map-id>` command; see {{<link url="Route-Filtering-and-Redistribution/#apply-a-route-map" text="Apply a Route Map">}}.
-
-- If your configuration filters RIB-to-FIB routes from one of these three protocols, `nv config apply` rejects it after you upgrade. Update any such configuration before you upgrade.
-- Remaining valid values are `bgp`, `ospf`, `static`, `rip`, `sharp`, `isis`, `ospf6`, and `ripng`.
-
-### PIM and MSDP vtysh Commands
-
-Cumulus Linux 5.19 upgrades FRR, which moves the vtysh commands that configure PIM and MSDP for a routing instance into a `router pim [vrf <vrf-name>]` block and drops the `ip` prefix; see {{<link url="Protocol-Independent-Multicast-PIM/#basic-pim-configuration" text="Protocol Independent Multicast - PIM">}}.
-
-- `ip pim rp`, `ip pim ssm prefix-list`, `ip pim ecmp`, `ip pim spt-switchover`, the `ip pim` timer commands, and the `ip msdp mesh-group` commands move under `router pim` and lose the `ip` prefix. For example, `switch(config)# ip pim rp 10.10.10.101` becomes `switch(config)# router pim` followed by `switch(config-pim)# rp 10.10.10.101`.
-- `ip pim spt-switchover infinity` becomes `spt-switchover infinity-and-beyond`.
-- Per-VRF PIM settings move out of the `vrf <vrf-name>` block into a separate top-level `router pim vrf <vrf-name>` block.
-- Interface-level commands, such as `ip pim`, `ip pim hello`, `ip pim bfd`, `ip pim use-source`, `ip pim allow-rp`, `ip pim active-active`, `ip multicast boundary oil`, and all `ip igmp` commands, are unchanged. All NVUE commands are unchanged.
-- Check the `/etc/frr/frr.conf` file and any automation that configures PIM or MSDP through vtysh before you upgrade.
-
-### Class E Address Space Support
-
-FRR now treats the IPv4 240.0.0.0/4 (Class E) range as valid unicast address space on every switch running Cumulus Linux 5.19, whether or not you allow Class E as routable address space. A Class E interface address and its connected route can appear in `nv show interface` output and the routing table even if you never run the `nv set router allow-reserved-range class-e` command.
-
-- The FRR `allow-reserved-ranges` command no longer includes Class E; it now covers only 0.0.0.0/8 and 127.0.0.0/8. If you previously set this command only to use Class E, you no longer need to.
-- Until you allow Class E, Cumulus Linux still blocks Class E traffic, but the control-plane packet filter drops it instead of the ASIC. If you monitor hardware drop counters for Class E source addresses, you see this difference after you upgrade.
-
-For more information, see {{<link url="FRRouting/#class-e-address-space-support" text="Class E Address Space Support">}}.
-
-### Multiple IPv6 numbered eBGP Sessions Between the Same Pair of Switches
-
-In Cumulus 5.18 and earlier, when you configure multiple parallel IPv6 numbered eBGP sessions between the same pair of switches, you need to configure update-source separately for each session on both switches using the local IPv6 address assigned to the link for that neighbor. If you do not configure this setting, some sessions might remain in an idle state during simultaneous link or session bringup. This issue no longer occurs in Cumulus Linux 5.19 and later and you no longer need to configure this setting.
-
-### WJH Drop Filter Limits
-
-Cumulus Linux now limits WJH drop filters: you can configure a maximum of 128 drop filters in total across all channels, and all drop filters together can have a maximum of 1024 entries (IP addresses, drop reasons, and severities). If the startup configuration exceeds a limit when you upgrade, Cumulus Linux keeps it; you can reduce the number of drop filters or entries, but you cannot increase a number that is above its limit. Refer to {{<link title="What Just Happened (WJH)/#filter-traffic-drops" text="Filter Traffic Drops">}}.
-
 ### Link Tracking Customized Files
 
-During optimized image upgrade to Cumulus Linux 5.19, the upgrade process does not carry forward customized `/etc/ifplugd/action.d/ifupdown` and `/etc/default/ifplugd` files by default. The switch uses the default configurations from the new image instead.
+During optimized image upgrade to Cumulus Linux 5.20, the upgrade process does not carry forward customized `/etc/ifplugd/action.d/ifupdown` and `/etc/default/ifplugd` files by default. The switch uses the default configurations from the new image instead.
 
 To preserve customizations, add a carry-forward entry for each required file in a configuration file under `/etc/cumulus/upgrade-carry-forward.d/` on the partition from which you are upgrading. For example:
 
@@ -210,12 +112,6 @@ carry-forward /etc/default/ifplugd
 ```
 
 Refer to {{<link url="Upgrading-Cumulus-Linux/#carry-forward-additional-files" text="Carry Forward Additional Files">}}.
-
-### ssd-dump-tools Package
-
-When you use package upgrade to upgrade the switch from Cumulus Linux 5.18 to 5.19, the upgrade does not automatically install the `ssd-dump-tools` package. To use the SSD dump tools, install the package after the upgrade with the `sudo apt-get install ssd-dump-tools` command. The Cumulus Linux repository includes both the production-signed and development-signed versions of the package. Install the version that matches your environment.
-
-Refer to {{<link url="Upgrading-Cumulus-Linux/#ssd-dump-tools-package" text="ssd-dump-tools Package">}}.
 
 ### Cumulus VX
 

@@ -36,7 +36,7 @@ Due to hardware specific implementations, virtual environments do **not** suppor
 |{{<link url="Open-Telemetry-Export" text="Open Telemetry ">}}|<font color="red">No</font>|
 |{{<link url="ASIC-Monitoring" text="ASIC Monitoring ">}}|<font color="red">No</font>|
 
-<!-- SIMIX Now in 5.19
+<!-- SIMIX Now in 5.20
 ## NVIDIA DSX Air
 
 NVIDIA DSX Air is a cloud hosted platform that works exactly like a real world production deployment. You can access NVIDIA DSX Air {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/air/" text="here">}} and reference the {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/nvidia-air/" text="NVIDIA DSX Air User Guide">}} for help. To get a jumpstart on your network configuration, you can go to the {{<exlink url="https://air.nvidia.com/marketplace" text="Demo Marketplace">}} and run one of the pre-built feature demos, such as EVPN symmetric routing, EVPN centralized routing, EVPN multihoming, and more.

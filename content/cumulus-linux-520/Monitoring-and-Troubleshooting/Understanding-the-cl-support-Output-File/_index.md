@@ -198,7 +198,7 @@ On an NVIDIA platform with a Virtium NVMe SSD, every `cl-support` run (automatic
 The log appears in the archive as `Support/nandlog_<ssd-serial>.bin`, named after the SSD serial number. A summary of the collection, including the SSD model, serial number, resulting file name, and any error, appears in `Support/nandlog.show`.
 
 {{%notice note%}}
-Cumulus Linux only collects the NAND debug log from a Virtium NVMe SSD. On a switch without an NVMe SSD, or with a non-Virtium NVMe SSD, `cl-support` skips NAND log collection and records the reason; the rest of the `cl-support` run continues normally. The utility that collects the log ships as part of the Cumulus Linux image, so a switch that reaches Cumulus Linux 5.19 only through an APT upgrade might not have it yet; if so, `cl-support` skips collection cleanly and records the reason.
+Cumulus Linux only collects the NAND debug log from a Virtium NVMe SSD. On a switch without an NVMe SSD, or with a non-Virtium NVMe SSD, `cl-support` skips NAND log collection and records the reason; the rest of the `cl-support` run continues normally. 
 {{%/notice%}}
 
 <!-- vale off -->

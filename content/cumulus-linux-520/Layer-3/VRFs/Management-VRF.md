@@ -12,7 +12,7 @@ Cumulus Linux only supports eth0 (or eth1, depending on the switch platform) for
 In band management of Cumulus Linux is possible using loopbacks and SVIs (switch virtual interfaces).
 {{%/notice%}}
 
-Cumulus Linux enables Management VRF by default. IPv4 and IPv6 networking applications (for example, Ansible, Chef, and `apt-get`) run by an administrator communicate out the management network by default. This default context does not impact services run through `systemd` and the `systemctl` command, and does not impact commands examining the state of the switch, such as the `ip` command to list links, neighbors, or routes.
+Cumulus Linux enables Management VRF by default. IPv4 and IPv6 networking applications (for example, Ansible and Chef`) run by an administrator communicate out the management network by default. This default context does not impact services run through `systemd` and the `systemctl` command, and does not impact commands examining the state of the switch, such as the `ip` command to list links, neighbors, or routes.
 
 {{%notice note%}}
 The management VRF configurations in this section contain a localhost loopback IPv4 address of 127.0.0.1/8 and IPv6 address of ::1/128. Management VRF must have an IPv6 address as well as an IPv4 address to work correctly. Adding the loopback address to the layer 3 domain of the management VRF prevents issues with applications that expect the loopback IP address to exist in the VRF, such as NTP.

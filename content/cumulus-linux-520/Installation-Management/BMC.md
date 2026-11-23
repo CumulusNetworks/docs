@@ -36,7 +36,7 @@ Keep the following in mind about the BMC and ERoT package:
 ## Upgrade BMC and Cumulus Linux
 
 {{%notice warning%}}
-You must upgrade BMC firmware before you upgrade Cumulus Linux. Before you upgrade to Cumulus Linux 5.19.0, you must upgrade the BMC firmware to version 88.0070.1910 and the ERoT firmware to version 02.00.0048.0000_n05. The ERoT firmware upgrade requires a power cycle of the switch to activate.
+You must upgrade BMC firmware before you upgrade Cumulus Linux. Before you upgrade to Cumulus Linux 5.20.0, you must upgrade the BMC firmware to version 88.0070.1910 and the ERoT firmware to version 02.00.0048.0000_n05. The ERoT firmware upgrade requires a power cycle of the switch to activate.
 {{%/notice%}}
 
 To upgrade a Spectrum-6 switch, perform the upgrade in this order:
@@ -52,7 +52,7 @@ Upgrade BMC firmware only with the NVUE commands in this section. NVIDIA validat
 ## Install BMC
 
 {{%notice note%}}
-The commands on this page use BMC as the example component. The `platform firmware` file management commands apply to every platform firmware component. In Cumulus Linux 5.19.0, the `auto-update` and `fw-source` settings apply only to the Spectrum-6 component. Substitute the platform component ID you are working with.
+The commands on this page use BMC as the example component. The `platform firmware` file management commands apply to every platform firmware component. In Cumulus Linux 5.19 and later, the `auto-update` and `fw-source` settings apply only to the Spectrum-6 component. Substitute the platform component ID you are working with.
 {{%/notice%}}
 
 To fetch the BMC and ERoT package, run the `nv action fetch platform firmware BMC <remote-url-to-package>` command:
@@ -166,7 +166,7 @@ If the destination server requires a username and password, include them in the 
 
 ## Configure Automatic Firmware Updates
 
-You can configure whether Cumulus Linux automatically updates the staged files for a platform firmware component, and whether a component uses the default firmware source or a custom one you staged yourself. In Cumulus Linux 5.19.0, these settings apply only to the Spectrum-6 component. The `nv show platform firmware` command shows `auto-update` and `fw-source` only for Spectrum-6; BIOS, BMC, CPLD1 through CPLD4, EROT-BMC, and SSD show neither. BIOS, SSD, and BMC do not support `auto-update`. Use `Spectrum-6` as the component ID; `ASIC` is not a valid ID.
+You can configure whether Cumulus Linux automatically updates the staged files for a platform firmware component, and whether a component uses the default firmware source or a custom one you staged yourself. In Cumulus Linux 5.19 and later, these settings apply only to the Spectrum-6 component. The `nv show platform firmware` command shows `auto-update` and `fw-source` only for Spectrum-6; BIOS, BMC, CPLD1 through CPLD4, EROT-BMC, and SSD show neither. BIOS, SSD, and BMC do not support `auto-update`. Use `Spectrum-6` as the component ID; `ASIC` is not a valid ID.
 
 To enable or disable automatic updates for a component, run the `nv set platform firmware <platform-component-id> auto-update` command. Automatic updates are enabled by default. The following example disables automatic updates for the Spectrum-6 component:
 

@@ -1215,8 +1215,6 @@ To verify the `link-tracking.service`:
 cumulus@switch:~$ sudo systemctl status link-tracking.service
 ```
 
-<!-- TODO: capture the link-tracking.service status output on a 5.19 switch and add it above. REVIEW (Nisha): the journalctl and syslog examples above use the ifplugd-link-tracking tag from 5.18; confirm the tag and message format that link-trackingd logs in 5.19. -->
-
 ## Source Interface File Snippets
 
 Sourcing interface files helps organize and manage the `/etc/network/interfaces` file. For example:

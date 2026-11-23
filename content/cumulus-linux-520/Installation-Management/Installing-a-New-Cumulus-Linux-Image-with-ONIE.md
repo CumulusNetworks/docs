@@ -91,7 +91,7 @@ Follow the steps below if you can log into the switch on a serial console (ONIE)
 2. From the Cumulus Linux command prompt, run the `nv action install system image onie <image> force activate reboot` command. This command installs the Cumulus Linux image without prompts and reboots the switch.
 
 ```
-cumulus@switch:~$ nv action install system image onie http://10.0.1.251/cumulus-linux-5.19.0-mlx-amd64.bin force activate reboot 
+cumulus@switch:~$ nv action install system image onie http://10.0.1.251/cumulus-linux-5.20.0-mlx-amd64.bin force activate reboot 
 Action executing ... 
 Installing ONIE image 
 Action executing ... 
@@ -390,7 +390,7 @@ Reboot required to take effect.
 {{< /tabs >}}
 
 {{%notice note%}}
-If your NVUE `startup.yaml` file includes certificate configuration for gNMI, the NVUE API, or other features, NVUE does not restore the certificate files. Perform a package upgrade when possible, or manually back up and restore your certificate files to the same path after the ONIE image upgrade is complete.
+If your NVUE `startup.yaml` file includes certificate configuration for gNMI, the NVUE API, or other features, NVUE does not restore the certificate files. Manually back up and restore your certificate files to the same path after the ONIE image upgrade is complete.
 {{%/notice%}}
 
 {{%notice note%}}
@@ -834,7 +834,7 @@ cumulus@switch:~$ mokutil --list-sbat-revocations
 
 The SN3700C-S, SN5400, and SN5600 secure boot switch running Cumulus Linux boots with shim 15.8 that adds entries to the SBAT revocations to prevent the switch from booting shim 15.7 or earlier (in Cumulus Linux 5.10 or Cumulus Linux 5.9.2 and earlier), which has security vulnerabilities.
 
-After downgrading the switch from Cumulus Linux 5.19.0 with ONIE, follow the steps below to disable, then enable secure boot **before** the switch boots.
+After downgrading the switch from Cumulus Linux 5.20.0 with ONIE, follow the steps below to disable, then enable secure boot **before** the switch boots.
 
 You can also follow the steps below to recover a downgraded secure boot switch that does not boot and that shows the following error:
 

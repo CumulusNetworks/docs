@@ -1,0 +1,670 @@
+---
+title: Upgrading Cumulus Linux
+author: NVIDIA
+weight: 30
+toc: 3
+---
+
+{{%notice infonopad%}}
+Before upgrading Cumulus Linux, review the {{<link url="Whats-New/#release-considerations" text="Release Considerations">}} for the version you intend to upgrade to.
+{{%/notice%}}
+
+This guide describes the three methods for upgrading Cumulus Linux. Two of these methods optionally support {{<link url="#upgrades-with-issu" text="In-Service-System-Upgrade (ISSU)">}}, enabling you to perform a hitless (sub-second loss of data plane traffic) upgrade.
+
+To upgrade Cumulus Linux, choose one of the three upgrade methods:
+
+- Install a new Cumulus Linux image with {{<link url="#optimized-image-upgrade" text="optimized image upgrade">}}, (ISSU support and maintains the current switch configuration).
+- Install a new Cumulus Linux image with {{<link url="#onie-image-upgrade" text="ONIE">}} (no ISSU support and you need to manually back up and restore your switch configuration).
+
+{{%notice infonopad%}}
+NVIDIA is discontinuing package upgrade in Cumulus Linux 5.20. For more details, refer to {{<link url="Whats-New/#upgrade-requirements" text="Upgrade Requirements">}}.
+{{%/notice%}}
+
+To install a patch (such as a critical bug or CVE), refer to {{<link url="Patches" text="Patches">}}.
+
+{{%notice infonopad%}}
+- For the SN6600-LD switch, you must upgrade BMC before you upgrade Cumulus Linux. For information about upgrading BMC, refer to {{<link url="BMC" text="BMC">}}.
+- You can upgrade to Cumulus Linux 5.20 on the SN6600-LD switch only from Cumulus Linux 5.18.3 or later. 
+- The SN6600-LD switch does not support ISSU.
+{{%/notice%}}
+
+## Upgrades with ISSU
+<!-- SUPPORTED IN 5.19?
+{{%notice note%}}
+The Spectrum-6 switch does not support ISSU.
+{{%/notice%}}
+-->
+<span class="a-tooltip">[ISSU](## "In Service System Upgrade")</span> enables you to perform a hitless upgrade of the switch software while the network continues to forward packets. ISSU hitless upgrade minimizes data plane traffic disruption to sub-second levels and automatically translates the switch NVUE configuration to the schema of the new version. During ISSU, the routing control plane is temporarily unavailable; however, the {{<link url="Optional-BGP-Configuration/#graceful-bgp-restart" text="BGP graceful restart">}} capability maintains traffic flow through the switch.
+
+Cumulus Linux supports {{<link url="#optimized-image-upgrade" text="Optimized image upgrade">}} with ISSU.
+
+Before you perform an upgrade with ISSU, you must:
+- Set BGP graceful restart mode to full (`nv set router bgp graceful-restart mode full`) to maintain traffic flow through the switch. This change is disruptive due to BGP neighbor reset and must be a day 0 configuration.
+- Configure the switch in half-resource mode to perform a warm reboot. This change is disruptive due to `switchd` restart and must be a day 0 configuration.
+- Review support limitations and additional {{<link url="System-Power-and-Switch-Reboot/#warm-reboot-and-issu-considerations" text="warm reboot and ISSU considerations">}}.
+
+After setting BGP restart and half-resource mode, you can run warm reboot with the `nv action reboot system mode warm` command. Refer to {{<link url="System-Power-and-Switch-Reboot/#reboot-commands" text="switch reboot mode">}}.
+
+{{%notice note%}}
+Forwarding resources apply to hardware TCAM or KVD resources used for MAC addresses, layer 3 neighbors, and <span class="a-tooltip">[LPM](## "Longest Prefix Match")</span> (IPv4 and IPv6, unicast and multicast) entries. In half-resource mode, the switch reduces these by 50 percent. Refer to {{<link url="Forwarding-Table-Size-and-Profiles" text="Forwarding Table Sizes">}} for platform-specific details.
+{{%/notice%}}
+
+To configure the switch in half resource mode:
+
+{{< tabs "TabID40 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set system forwarding resource-mode half
+```
+
+To set the resource-mode back to the default value (full) run the `nv unset system forwarding resource-mode` command.
+
+{{%notice infonopad%}}
+Changing the resource mode on the switch requires a `switchd` restart, which impacts traffic forwarding.
+{{%/notice%}}
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/resource-mode.conf
+...
+resource_mode = half
+```
+
+Restart the switchd service with the `sudo systemctl restart switchd.service` command.
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{%notice note%}}
+Cumulus Linux supports ISSU and warm reboot mode with 802.1X, layer 2 forwarding, layer 3 forwarding with BGP, static routing, and VXLAN routing with EVPN.
+
+Cumulus Linux does *not* support the following features during warm reboot:
+- EVPN MLAG or EVPN multihoming.
+- LACP bonds. LACP control plane sessions might time out before warm reboot completes. Use static LAG to keep bonds up with sub-second convergence during a warm reboot.
+{{%/notice%}}
+
+<!-- REMOVED FROM 5.19: full resource mode ISSU (ISSUv2).
+
+### Full Resource Mode ISSU
+
+{{%notice note%}}
+Full resource mode ISSU is a Beta feature and requires a Spectrum-4 or later switch.
+{{%/notice%}}
+
+On Spectrum-4 and later, the switch performs the warm reboot in full resource mode and preserves its complete layer 2, layer 3, ACL, and QoS hardware state across the reboot. MAC address, layer 3 neighbor, and LPM capacity stay at the configured maximum for the duration of the upgrade.
+
+On Spectrum-3 and earlier switches, you must set the resource mode to `half` before you run a warm reboot.
+
+Cumulus Linux selects the mechanism from the configured resource mode. There is no command to enable full resource mode ISSU. If the switch cannot restore its hardware state after the reboot, it falls back to a cold boot, which interrupts traffic. To see the outcome of the last reboot, run the `nv show system reboot` command; refer to {{<link url="System-Power-and-Switch-Reboot/#show-reboot-information" text="Show Reboot Information">}}.
+-->
+
+## Before You Upgrade
+
+**Before** and **after** you upgrade the switch, run the `cl-support` script to create a `cl-support` archive file. The file is a compressed archive of useful information for troubleshooting. If you experience any issues during upgrade, you can send this archive file to the Cumulus Linux support team to investigate.
+
+1. Create the `cl-support` archive file with either the NVUE `nv action generate system tech-support` command or the Linux `sudo cl-support` command:
+
+```
+cumulus@switch:~$ nv action generate system tech-support
+```
+
+2. Copy the `cl-support` file off the switch to a different location.
+
+3. After upgrade is complete, create a new archive file:
+
+```
+cumulus@switch:~$ nv action generate system tech-support
+```
+
+## Optimized Image Upgrade
+
+Optimized image upgrade uses two partitions to upgrade the image with just one reboot cycle. With two partitions on the switch, the current image boots from one partition, from which the image upgrade triggers. After detecting the running partition and checking if the second partition is available for installation, optimized upgrade starts to stage the installation in the second partition (copying the image, preparing the partition, unpacking the new image, and tuning and finalizing the new partition for the new image). The subsequent boot occurs from the second partition.
+
+  - You can only use optimized image upgrade on a switch with a 30GB <span class="a-tooltip">[SSD](## "Solid state drive")</span> or larger to accommodate the second partition required for upgrade. To validate the size of the SSD, run the `sudo blockdev --getsize64 /dev/sda` command. As an alternative, run the `sudo blkid` command and confirm the `CL-SYSTEM-2` partition exists on the switch to support optimized upgrade.
+  - You cannot downgrade a Cumulus Linux switch to Cumulus Linux 5.11.0 or earlier with optimized image upgrade; use ONIE instead.
+<br>
+  For a list of the releases from which you can upgrade to Cumulus Linux 5.20 with optimized image upgrade, see {{<link url="Whats-New/#upgrade-requirements" text="Release Considerations">}}.
+
+{{%notice note%}}
+Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual connect two Cumulus Linux switches in your environment, follow the steps in [Upgrade Switches in an MLAG Pair](#upgrade-switches-in-an-mlag-pair) below to ensure a smooth upgrade.
+{{%/notice%}}
+
+{{< tabs "TabID569 ">}}
+{{< tab "NVUE Commands ">}}
+
+1. Download the Cumulus Linux image with the `nv action fetch system image <remote-url>` command.
+
+   The image files download to your enterprise support account in a convenient location in your infrastructure. The image location below is just an example; use your remote URL for the download.
+
+   ```
+   cumulus@switch:~$ nv action fetch system image http://10.0.1.251/cumulus-linux-5.20.0-mlx-amd64.bin
+   ```
+
+   The `nv action fetch system image <remote-url>` command copies the image to the `/var/images` directory on the switch. If you copy the image manually to the switch instead of using the `nv action fetch system image <remote-url>` command, make sure to copy the image to the `/var/images` directory.
+
+2. Install the image on the second partition:
+
+   ```
+   cumulus@switch:~$ nv action install system image files cumulus-linux-5.20.0-mlx-amd64.bin
+   ```
+
+   Use the `force` option to force install the image:
+
+   ```
+   cumulus@switch:~$ nv action install system image files cumulus-linux-5.20.0-mlx-amd64.bin force
+   ```
+
+3. Set the boot partition:
+
+   ```
+   cumulus@switch:~$ nv action boot-next system image other 
+   ```
+
+4. Reboot the switch. If you configured the switch resource mode to half for {{<link url="#upgrades-with-issu" text="ISSU">}}, reboot with warm mode for a hitless upgrade:
+
+```
+    cumulus@switch:~$ nv action reboot system mode warm
+```
+
+If you are not using ISSU, reboot with a {{<link url="System-Power-and-Switch-Reboot/#reboot-commands" text="cold reboot">}}:
+
+```
+    cumulus@switch:~$ nv action reboot system
+```
+
+If the upgrade fails or you want to go back to the Cumulus Linux release from which you upgraded, run the `nv action boot-next system image other rollback` command. The switch boots back to the previous release image and restores the switch configuration.
+
+{{%notice infonopad%}}
+After you perform a rollback, you can repeat steps 1 through 4 above to perform a switch upgrade again.
+{{%/notice%}}
+
+- To rename a Cumulus Linux image on the switch, run the `nv action rename system image files <image> <new-image-name>` command.
+- To delete a Cumulus Linux image from the switch, run the `nv action delete system image files <image>` command.
+
+To show information about a cumulus image:
+
+```
+cumulus@switch:~$ nv show system image
+               operational              
+-------------  -------------------------
+current        2                        
+next           2                        
+partition1                              
+  build-id     5.15.0.0026
+  description  Cumulus Linux 5.15.0     
+  disk         /dev/sda5                
+  release      5.15.0                   
+partition2                              
+  build-id     5.20.0.0056
+  description  Cumulus Linux 5.20.0     
+  disk         /dev/sda6                
+  release      5.20.0 
+```
+
+- To list the available Cumulus Linux image files, run the `nv show system image files` command.
+- To show information about a specific Cumulus Linux image file, run the `nv show system image files <image-filename>` command.
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+1. Download the Cumulus Linux image to the switch.
+
+2. Install the image on the second partition:
+
+   ```
+   cumulus@switch:~$ cl-image-upgrade -u cumulus-linux-5.20.0-mlx-amd64.bin
+   ```
+
+To check the current boot partition status, run the `cl-image-upgrade -s` command:
+
+```
+cumulus@switch:~$ cl-image-upgrade -s  
+Current system partition is 1 on /dev/sda5 
+Current system partition has 5.20.0 "Cumulus Linux 5.20.0" 5.20.0.0012
+Other system partition is 2 on /dev/sda6 
+...
+```
+
+To activate the other partition at next boot, run the `cl-image-upgrade -a` command:
+
+```
+cumulus@switch:~$ cl-image-upgrade -a 
+```
+
+3. Reboot the switch. If you configured the switch resource mode to half for {{<link url="#upgrades-with-issu" text="ISSU">}}, reboot with warm mode for a hitless upgrade:
+
+```
+    cumulus@switch:~$ sudo csmgrctl -wf
+```
+
+If you are not using ISSU, reboot with a {{<link url="System-Power-and-Switch-Reboot/#reboot-commands" text="cold reboot">}}:
+
+```
+    cumulus@switch:~$ sudo reboot
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Cancel boot-next
+
+After you run `nv action boot-next system image other` (or `cl-image-upgrade -a`) to set the switch to boot into the upgraded partition, you can cancel the change before you reboot. The next boot then stays on the current partition.
+
+You can only cancel before the reboot. The cancel command selects the running partition again, withdraws the pending changeover, and removes the state and markers that `boot-next` creates.
+
+{{< tabs "TabID-cancel-boot-next ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv action cancel system image
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+```
+cumulus@switch:~$ cl-image-upgrade -c
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+If NVUE cannot cancel the boot-next, it provides a message with the reason.
+
+### Carry Forward Additional Files
+
+Optimized image upgrade does not copy all the `/etc` directory to the upgraded partition. The upgrade copies the files that packages and NVUE declare, plus the files that you specify. The upgrade does not copy files to the upgraded partition that you create or edit outside NVUE that you do not specify.
+
+To copy additional files to the upgraded partition, create a configuration file in the `/etc/cumulus/upgrade-carry-forward.d/` directory with a name in the format `<name>.conf`. Each line contains `carry-forward <path>`.
+
+The upgrade reads the declarations from the partition you are leaving, so they take effect without any copy in the new image.
+
+A declaration carries files only. A directory name carries nothing, and there is no recursion, so add one line for each directory level. The `#` character starts a comment.
+
+| Declaration | What the upgrade carries |
+| ----------- | ------------------------ |
+| `carry-forward /etc/myapp/app.conf` | This one file. |
+| `carry-forward /etc/myapp/*.conf` | Every `.conf` file directly in `/etc/myapp`. |
+| `carry-forward /etc/myapp/scripts/*` | Every file directly in `scripts`, including hidden files (names that start with a dot). The upgrade does not carry subdirectories of `scripts` or their contents. |
+| `carry-forward /etc/myapp/scripts/*/*` | Files exactly one level below `scripts`, for example `scripts/sub/mid.sh`. |
+| `carry-forward /etc/myapp/scripts/` or `carry-forward /etc/myapp/scripts` | Nothing. The path is a directory, not a file. |
+| `carry-forward /etc/myapp/scripts/**` | The same as `scripts/*`. The `**` pattern is not recursive. |
+
+The following example carries forward a file that you created outside NVUE and the files in a directory of custom scripts, including the files one level below it:
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/upgrade-carry-forward.d/custom.conf
+# Files created outside NVUE
+carry-forward /etc/myapp/myapp.conf
+carry-forward /etc/myapp/scripts/*
+carry-forward /etc/myapp/scripts/*/*
+```
+
+{{%notice warning%}}
+Do not declare partition specific files (`/etc/fstab`, `/etc/passwd`, `/etc/shadow`, `/etc/group`, `/etc/gshadow`, `/etc/image-release`, `/etc/machine-id`) or broad patterns such as `/etc/*`. Declared files overwrite the upgraded partition's own copy without any check. For `/etc/fstab`, the next boot of that partition mounts and checks the wrong device.
+{{%/notice%}}
+
+## ONIE Image Upgrade
+
+ONIE is an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on a switch. ONIE upgrade enables you to choose the exact release to which you want to upgrade and is the *only* method available to upgrade your switch to a new release train (for example, from 4.4 to 5.20).
+
+{{%notice note%}}
+- Installing a Cumulus Linux image with ONIE is destructive; the installation does not save any configuration files on the switch; copy them to a different server before you start the Cumulus Linux image install.
+- You must move configuration data to the new network operating system using ZTP or automation while the operating system is first booted, or soon afterwards using out-of-band management. Moving a configuration file can cause issues.
+- Merge conflicts with configuration file changes in the new release sometimes go undetected.
+- If configuration files do not restore correctly, you cannot `ssh` to the switch from in-band management. Use out-of-band connectivity (eth0 or the console).
+- You *must* reinstall and reconfigure third-party applications after upgrade.
+- On secure boot switches (Spectrum-4 and later, or SN3700-S) running ONIE installer version 5.3.0012 or earlier, the Cumulus Linux upgrade fails at the ONIE prompt. Refer to {{<link url="#onie-install-issues" text="ONIE Install Issues">}}.
+- The ONIE install `-t` option does not work with a Cumulus Linux 5.9.x NVUE configuration file on Cumulus Linux 5.19 and later. To upgrade to Cumulus Linux 5.19 and later from Cumulus Linux 5.9.x, only use ONIE install and offline configuration translation with NVUE; refer to {{<link url="NVUE-CLI/#translate-a-configuration-revision-or-file" text="Translate a Configuration Revision or File">}}.
+{{%/notice%}}
+
+To upgrade the switch with ONIE:
+
+1. Back up the configurations off the switch.
+
+{{< tabs "TabID189">}}
+{{< tab "NVUE Commands">}}
+
+If you manage your switch configuration with NVUE, use the following procedure to back up the configuration.
+
+As Cumulus Linux supports more features and functionality, NVUE syntax might change between releases and the content of snippets and flexible snippets might become invalid. Before you back up and restore configuration across different Cumulus Linux releases, make sure to review the {{<link url="Whats-New" text="What's New">}} for new NVUE syntax and other configuration file changes.
+
+{{%notice note%}}
+- An ONIE image upgrade does not back up any certificates or CRLs that you import to the system with NVUE. You must reimport the certificates after you install the new image.
+- If you reinstall Cumulus Linux with an embedded `startup.yaml` file with the `nv action install system image onie <image> startup-config <file-name>` or `onie-install -t` command, Cumulus Linux preserves your NVUE startup configuration and translates the contents automatically to NVUE syntax required by the new release. This method still requires reimporting certificates and CRLs after the image install.
+- If NVUE introduces new syntax for a feature that a snippet configures, you must remove the snippet before upgrading.
+{{%/notice%}}
+
+To back up the configuration file:
+
+a. Save the configuration to the `/etc/nvue.d/startup.yaml` file with the `nv config save` command:
+
+   ```
+   cumulus@switch:~$ nv config save
+   saved
+   ```
+
+b. Copy the `/etc/nvue.d/startup.yaml` file off the switch to a different location.
+
+For information about the NVUE object model and commands, see {{<link url="NVIDIA-User-Experience-NVUE" text="NVIDIA User Experience - NVUE">}}.
+
+{{< /tab >}}
+{{< tab "Linux Configuration Files">}}
+
+If you do not use NVUE to manage your switch configuration, reference this section to back up your configuration files.
+
+As with other Linux distributions, the `/etc` directory is the primary location for all configuration data in Cumulus Linux. The following list contains the files you need to back up and migrate to a new release. Make sure you examine any changed files. Make the following files and directories part of a backup strategy.
+
+**Network Configuration Files:**
+
+| File Name and Location | Description| Cumulus Linux Documentation | Debian Documentation |
+| ---------------------- | ---------- | ----------------------------| -------------------- |
+| `/etc/frr/` | Routing application (responsible for BGP and OSPF) | {{<link title="FRRouting">}} | N/A |
+| `/etc/hostname` | Configuration file for the hostname of the switch | {{<link title="Quick Start Guide">}} | {{<exlink url="https://wiki.debian.org/HowTo/ChangeHostname">}} |
+| `/etc/network/` | Network configuration files, most notably `/etc/network/interfaces` and `/etc/network/interfaces.d/` | {{<link title="Switch Port Attributes">}} | N/A |
+| `/etc/resolv.conf` | DNS resolution| Not unique to Cumulus Linux: {{<exlink url="https://wiki.debian.org/NetworkConfiguration#The_resolv.conf_configuration_file" text="wiki.debian.org/NetworkConfiguration">}} | {{<exlink url="https://www.debian.org/doc/manuals/debian-reference/ch05.en.html">}} |
+| `/etc/hosts`  | Configuration file for the hostname of the switch | {{<link title="Quick Start Guide">}} | {{<exlink url="https://wiki.debian.org/HowTo/ChangeHostname">}} |
+| `/etc/cumulus/acl/*` | Netfilter configuration | {{<link title="Access Control List Configuration">}} |N/A |
+| `/etc/cumulus/control-plane/policers.conf` | Configuration for control plane policers | {{<link title="Access Control List Configuration#control-plane-policers">}} | N/A |
+| `/etc/cumulus/datapath/qos/qos_features.conf` | QoS configuration <br><br><b>Note:</b> In Cumulus Linux 5.0 and later, default ECN configuration parameters start with `default_ecn_red_conf` instead of `default_ecn_conf`. | {{<link title="Quality of Service">}} | N/A |
+| `/etc/mlx/datapath/qos/qos_infra.conf` | QoS configuration | {{<link title="Quality of Service">}} | N/A |
+| `/etc/mlx/datapath/tcam_profile.conf` | Configuration for the forwarding table profiles| {{<link title="Forwarding Table Size and Profiles">}} | N/A |
+| `/etc/cumulus/datapath/traffic.conf` | Configuration for the forwarding table profiles| {{<link title="Forwarding Table Size and Profiles">}} | N/A |
+| `/etc/cumulus/ports.conf` | Breakout cable configuration file | {{<link title="Switch Port Attributes">}} | N/A; read the guide on breakout cables |
+| `/etc/cumulus/switchd.conf` | `switchd` configuration | {{<link title="Configuring switchd">}} | N/A; read the guide on `switchd` configuration |
+
+**Commonly Used Files:**
+
+| File Name and Location | Description| Cumulus Linux Documentation | Debian Documentation |
+| ---------------------- | ---------- | --------------------------- | -------------------- |
+| `/etc/motd` | Message of the day | Not unique to Cumulus Linux | {{<exlink url="https://wiki.debian.org/motd#Wheezy" text="wiki.debian.org/motd" >}} |
+| `/etc/passwd` | User account information | Not unique to Cumulus Linux | {{<exlink url="https://www.debian.org/doc/manuals/debian-reference/ch04.en.html">}} |
+| `/etc/shadow` | Secure user account information| Not unique to Cumulus Linux | {{<exlink url="https://www.debian.org/doc/manuals/debian-reference/ch04.en.html">}} |
+| `/etc/group` | Defines user groups on the switch| Not unique to Cumulus Linux | {{<exlink url="https://www.debian.org/doc/manuals/debian-reference/ch04.en.html">}} |
+| `/etc/init/lldpd.conf` | Link Layer Discover Protocol (LLDP) daemon configuration | {{<link title="Link Layer Discovery Protocol">}} | {{<exlink url="https://packages.debian.org/buster/lldpd">}} |
+| `/etc/lldpd.d/` | Configuration directory for lldpd | {{<link title="Link Layer Discovery Protocol">}} | {{<exlink url="https://packages.debian.org/buster/lldpd">}} |
+| `/etc/nsswitch.conf` | Name Service Switch (NSS) configuration file | {{<link title="TACACS">}} | N/A |
+|`/etc/ssh/` | SSH configuration files | {{<link title="SSH for Remote Access">}} | {{<exlink url="https://wiki.debian.org/SSH">}} |
+| `/etc/sudoers`, `/etc/sudoers.d` | Best practice is to place changes in `/etc/sudoers.d/` instead of `/etc/sudoers`; changes in the `/etc/sudoers.d/` directory are not lost during upgrade | {{<link title="Using sudo to Delegate Privileges">}} |
+
+{{%notice note%}}
+- If you are using the root user account, consider including `/root/`.
+- If you have custom user accounts, consider including `/home/<username>/`.
+{{%/notice%}}
+
+**Never Migrate Files:**
+
+| File Name and Location  | Description |
+| ----------------------- | ----------- |
+| `/etc/mlx/` | Per-platform hardware configuration directory, created on first boot. Do not copy. |
+| `/etc/default/clagd` | Created and managed by `ifupdown2`. Do not copy.|
+| `/etc/default/grub` | Grub `init` table. Do not modify manually. |
+| `/etc/default/hwclock` | Platform hardware-specific file. Created during first boot. Do not copy. |
+| `/etc/init` | Platform initialization files. Do not copy. |
+| `/etc/init.d/` | Platform initialization files. Do not copy. |
+| `/etc/fstab` | Static information on filesystem. Do not copy. |
+| `/etc/image-release` | System version data. Do not copy. |
+| `/etc/os-release` | System version data. Do not copy. |
+| `/etc/lsb-release` | System version data. Do not copy. |
+| `/etc/lvm/archive` | Filesystem files. Do not copy. |
+| `/etc/lvm/backup` | Filesystem files. Do not copy. |
+| `/etc/modules` | Created during first boot. Do not copy. |
+| `/etc/modules-load.d/` | Created during first boot. Do not copy. |
+| `/etc/sensors.d` | Platform-specific sensor data. Created during first boot. Do not copy. |
+| `/root/.ansible` | Ansible `tmp` files. Do not copy. |
+| `/home/cumulus/.ansible` | Ansible `tmp` files. Do not copy.|
+
+To show a list of files changed from the previous Cumulus Linux install, run the `sudo dpkg --verify` command.
+To show a list of generated `/etc/default/isc-*` files changed from the previous Cumulus Linux install, run the `egrep -v '^$|^#|=""$' /etc/default/isc-dhcp-*` command.
+
+{{< /tab >}}
+{{< /tabs >}}
+
+2. {{<exlink url="https://enterprise-support.nvidia.com/s/downloads" text="Download the Cumulus Linux image.">}}
+
+3. Install the Cumulus Linux image and boot the switch into ONIE. The following example installs the image from a web server, defines the current NVUE startup configuration to back up and restore in the new image, then reboots the switch. There are additional ways to install the Cumulus Linux image, such as using FTP, a local file, or a USB drive. For more information, see {{<link title="Installing a New Cumulus Linux Image with ONIE">}}.
+
+{{< tabs "TabID578">}}
+{{< tab "NVUE Commands">}}
+
+Run the `nv action install system image onie <image> startup-config <file-name> force activate reboot` command. The `force` option suppresses the prompt and the action proceeds non-interactively. NVIDIA recommends using the `force` option for scripted, automated, or REST API invocations.
+
+```
+cumulus@switch:~$ nv action install system image onie http://10.0.1.251/cumulus-linux-5.20.0-mlx-amd64.bin startup-config /etc/nvue.d/startup.yaml force activate reboot 
+Action executing ... 
+Installing ONIE image 
+Action executing ... 
+ONIE install completed successfully 
+Action succeeded 
+```
+
+{{< /tab >}}
+{{< tab "ONIE Commands">}}
+
+Run the `sudo onie-install -a -i <image> -t <file-name> && sudo reboot` command.
+
+```
+cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/cumulus-linux-5.20.0-mlx-amd64.bin -t /etc/nvue.d/startup.yaml && sudo reboot
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+4. {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="Reimport all certificates">}} and, or, CRLs configured in the previous release with the `nv action import system security` command. Be sure to use the same `certificate-id` originally assigned to each certificate in the previous release. The installation does not back up or automatically restore certificates and CRLs configured on the switch. After the switch boots with the new image, features that rely on certificates (such as NVUE API, gNMI, OTEL, and so on) remain unavailable until you {{<link url="NVUE-CLI/#security-with-certificates-and-crls" text="reimport the certificates">}}.
+
+{{%notice note%}}
+In Cumulus Linux 5.16 and later, NVUE uses IPv6 address normalization, where it stores and looks up all IPv6 addresses in their normalized (canonical) form (for example, 2001:db8::1 instead of 2001:0db8::0001). When you copy the `startup.yaml` file manually from Cumulus Linux 5.15 or earlier to Cumulus Linux 5.16 or later, the file bypasses the standard upgrade translation process. As a result, the configuration might contain unnormalized IPv6 addresses that are valid in earlier Cumulus Linux releases, which might cause failed lookups during NVUE show commands, unexpected configuration mismatches, and failed or silent misconfigurations.
+
+Before you run the `nv config apply startup` command after upgrade, translate the file to normalize all IPv6 addresses, then replace the `startup.yaml` with the normalized version:
+
+```
+cumulus@switch:~$ nv config translate filename /home/cumulus/startup.yaml > /home/cumulus/ipv6_normalized_startup.yaml
+cumulus@switch:~$ sudo cp /home/cumulus/ipv6_normalized_startup.yaml /etc/nvue.d/startup.yaml
+cumulus@switch:~$ nv config apply startup
+```
+
+NVUE normalizes IPv6 addresses to their canonical form. However, for IPv4-mapped IPv6 addresses, NVUE normalizes only the IPv6 portion of the address. NVUE retains the IPv4 portion of the address in the IETF-recommended mixed-notation format and leaves it unchanged. For example, NVUE normalizes the IPv4-mapped IPv6 address 0::ffff:10.0.0.1 to ::ffff:10.0.0.1.
+
+For the full set of normalization rules and an example of configuring an unnormalized address, refer to {{<link url="NVUE-CLI/#ipv6-address-normalization" text="IPv6 Address Normalization">}}.
+{{%/notice%}}
+
+5. Verify correct operation with the old configurations on the new release.
+6. Reinstall third party applications and associated configurations.
+
+## Upgrade Switches in an MLAG Pair
+
+If you are using {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} to dual connect two switches in your environment, follow the steps below to upgrade the switches.
+
+{{%notice info%}}
+You must upgrade both switches in the MLAG pair to the same release of Cumulus Linux.
+
+Only during the upgrade process does Cumulus Linux supports different software versions between MLAG peer switches. After you upgrade the first MLAG switch in the pair, run the `clagctl showtimers` command to monitor the `init-delay` timer. When the timer expires, make the upgraded MLAG switch the primary, then upgrade the peer to the same version of Cumulus Linux.
+
+NVIDIA has not tested running different versions of Cumulus Linux on MLAG peer switches outside of the upgrade time period; you might see unexpected results.
+{{%/notice%}}
+
+{{< tabs "TabID311 ">}}
+{{< tab "NVUE Commands ">}}
+
+1. Verify the switch is in the secondary role:
+
+    ```
+    cumulus@switch:~$ nv show mlag
+    ```
+
+2. Shut down the core uplink layer 3 interfaces. The following example shuts down swp1:
+
+    ```
+    cumulus@switch:~$ nv set interface swp1 link state down
+    cumulus@switch:~$ nv config apply
+    ```
+
+3. Shut down the peer link:
+
+    ```
+    cumulus@switch:~$ nv set interface peerlink link state down
+    cumulus@switch:~$ nv config apply
+    ```
+
+4. Upgrade the switch:
+
+   - To upgrade the switch with optimized image upgrade, see {{<link url="#optimized-image-upgrade" text="Optimized Image Upgrade">}}.
+   - To boot the switch into ONIE, see {{<link url="#onie-image-upgrade" text="ONIE Image Install">}}.
+
+5. If you installed a new image on the switch, restore the configuration files to the new release.
+
+    ```
+    cumulus@switch:~$ nv set interface swp1 link state up
+    cumulus@switch:~$ nv set interface peerlink link state up
+    cumulus@switch:~$ nv config apply
+    cumulus@switch:~$ nv config save
+    ```
+
+6. Verify STP convergence across both switches with the Linux `mstpctl showall` command. NVUE does not provide an equivalent command.
+
+    ```
+    cumulus@switch:~$ mstpctl showall
+    ```
+
+7. Verify core uplinks and peer links are UP:
+
+    ```
+    cumulus@switch:~$ nv show interface
+    ```
+
+8. Verify MLAG convergence:
+
+    ```
+    cumulus@switch:~$ nv show mlag
+    ```
+
+9. Make this secondary switch the primary:
+
+    ```
+    cumulus@switch:~$ nv set mlag priority 2084
+    ```
+
+10. Verify the other switch is now in the secondary role.
+11. Repeat steps 2-8 on the new secondary switch.
+12. Remove the priority 2048 and restore the priority back to 32768 on the current primary switch:
+
+    ```
+    cumulus@switch:~$ nv set mlag priority 32768
+    ```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+1. Verify the switch is in the secondary role:
+
+    ```
+    cumulus@switch:~$ clagctl status
+    ```
+
+2. Shut down the core uplink layer 3 interfaces:
+
+    ```
+    cumulus@switch:~$ sudo ip link set <switch-port> down
+    ```
+
+3. Shut down the peer link:
+
+    ```
+    cumulus@switch:~$ sudo ip link set peerlink down
+    ```
+
+4. Upgrade the switch:
+
+   - To upgrade the switch with optimized image upgrade, see {{<link url="#optimized-image-upgrade" text="Optimized Image Upgrade">}}.
+   - To boot the switch into ONIE, see {{<link url="#onie-image-upgrade" text="ONIE Image Upgrade">}}.
+
+5. If you installed a new image on the switch, restore the configuration files to the new release.
+
+6. Verify STP convergence across both switches:
+
+    ```
+    cumulus@switch:~$ mstpctl showall
+    ```
+
+7. Verify that core uplinks and peer links are UP:
+
+    ```
+    cumulus@switch:~$ ip addr show
+    ```
+
+8. Verify MLAG convergence:
+
+    ```
+    cumulus@switch:~$ clagctl status
+    ```
+
+9. Make this secondary switch the primary:
+
+    ```
+    cumulus@switch:~$ clagctl priority 2048
+    ```
+
+10. Verify the other switch is now in the secondary role.
+11. Repeat steps 2-9 on the new secondary switch.
+12. Remove the priority 2048 and restore the priority back to 32768 on the current primary switch:
+
+    ```
+    cumulus@switch:~$ clagctl priority 32768
+    ```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+## Considerations
+
+### Downgrade a Switch with Secure Boot
+
+To downgrade a switch with Secure Boot enabled, see {{<link url="Installing-a-New-Cumulus-Linux-Image-with-ONIE/#downgrade-a-secure-boot-switch" text="Downgrade a Secure Boot Switch">}}.
+
+### Third Party Applications
+
+If you install any third party applications on a Cumulus Linux switch, configuration data is typically installed in the `/etc` directory, but it is not guaranteed. It is your responsibility to understand the behavior and configuration file information of any third party packages installed on the switch. After you upgrade using a full Cumulus Linux image install, you need to reinstall any third party packages.
+
+### ONIE Install Issues
+
+- If you run `onie-install` without the `-t` option and the `nv config patch <config>` or `nv config replace <config>` command fails, try to translate the configuration file with the `nv config translate <config.yaml> > <translated-config.yaml>` command before you run `onie-install`.
+- On secure boot switches (Spectrum-4 and later, or SN3700-S) running ONIE installer version 5.3.0012 or earlier, the Cumulus Linux upgrade fails at the ONIE prompt. **Before** you upgrade Cumulus Linux, upgrade the ONIE installer to ONIE version 5.3.0013 or later. The ONIE installer upgrade requires a switch reload and causes a complete switch factory reset.
+
+{{< expand "Upgrade the ONIE installer" >}}
+1. Log into Cumulus Linux.
+2. Run the following commands:
+
+   ```
+   cumulus@switch:~$ sudo -i
+   root@switch:~# mount LABEL=ONIE-BOOT /mnt/onie-boot
+   root@switch:~# ln -s /mnt/onie-boot/onie/tools/lib/onie /lib/onie
+   ```
+
+3. To check the existing ONIE version, run the `/mnt/onie-boot/onie/tools/bin/onie-fwpkg show` command.
+
+   ```
+   root@switch:~# /mnt/onie-boot/onie/tools/bin/onie-fwpkg show
+   ```
+
+4. To upgrade the ONIE installer, run the following commands:
+
+   ```
+   root@switch:~# wget http://Image/onie-updater-x86_64-mlnx_x86-r0
+   root@switch:~# /mnt/onie-boot/onie/tools/bin/onie-fwpkg purge
+   root@switch:~# /mnt/onie-boot/onie/tools/bin/onie-fwpkg add onie-updater-x86_64-mlnx_x86-r0
+   root@switch:~# /mnt/onie-boot/onie/tools/bin/onie-fwpkg show
+   root@switch:~# umount /mnt/onie-boot
+   root@switch:~# onie-select -pf
+   ```
+
+5. Reboot the switch, then upgrade Cumulus Linux.
+{{< /expand >}}
+
+## Related Information
+
+- {{<exlink url="https://enterprise-support.nvidia.com/s/article/NVIDIA-Enterprise-Support-Guide-for-New-Users#NVIDIA-Enterprise-Support-Portal" text="NVIDIA Enterprise Support Portal User Guide">}}
+- {{<exlink url="https://enterprise-support.nvidia.com/s/downloads" text="NVIDIA Enterprise support portal">}}
+- {{<link url="Managing-Cumulus-Linux-Disk-Images-with-ONIE" text="Managing Cumulus Linux Disk Images with ONIE">}}

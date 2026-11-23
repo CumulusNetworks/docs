@@ -1,0 +1,934 @@
+---
+title: Bidirectional Forwarding Detection - BFD
+author: NVIDIA
+weight: 990
+toc: 3
+---
+<span class="a-tooltip">[BFD](## "Bidirectional Forwarding Detection")</span> provides low overhead and rapid detection of failures in the paths between two network devices. It provides a unified mechanism for link detection over all media and protocol layers. Use BFD to detect failures for IPv4 and IPv6 single or multihop paths between any two network devices, including unidirectional path failure detection.
+
+Cumulus Linux supports BFD with BGP, OSPF, PIM, and static routes and on interfaces, subinterfaces, and bonds.
+
+{{%notice note%}}
+Cumulus Linux does not support BFD demand mode, BFD echo mode, or BGP BFD strict mode.
+{{%/notice%}}
+
+## Enable BFD
+
+To enable BFD:
+
+{{< tabs "TabID33 ">}}
+{{< tab "NVUE Commands ">}}
+
+Run the `nv set router bfd state enabled` command:
+
+```
+cumulus@switch:~$ nv set router bfd state enabled
+cumulus@switch:~$ nv config apply
+```
+
+To disable BFD, run the `nv set router bfd state disabled` command.
+
+{{%notice note%}}
+When you change the BFD state, the FRR service restarts, affecting all configured routing protocols.
+{{%/notice%}}
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+1. Enable the `bfdd` daemon as described in {{<link title="FRRouting">}}.
+
+2. Restart the FRR service with the `sudo systemctl restart frr.service` command
+
+{{< /tab >}}
+{{< /tabs >}}
+
+## Configure BFD
+
+You can configure BFD with NVUE or vtysh commands.
+
+To configure BFD, you configure a BFD profile, then attach the profile to the client, such as a BGP neighbor or peer group, OSPF interface, PIM interface, or static route. The BFD profile includes configuration parameters such as detect multiplier, transmit interval, receive interval, passive mode, admin state, and minimum expected TTL.
+
+### Configure a BFD Profile
+
+To configure BFD, you must create a BFD profile that includes the following options:
+- The detection time multiplier to determine packet loss. Cumulus Linux calculates the detection timeout by multiplying the detection multiplier with the greater value between the local switch's receive interval and the peer's transmit interval. The default value is 3.
+- The minimum interval for transmitting BFD control packets. You can set a value between 10 and 4294967 milliseconds. The default value is 300. The lowest supported value depends on the BFD offload mode; refer to {{<link url="#minimum-timer-values" text="Minimum Timer Values">}}.
+- The minimum interval between the received BFD control packets. You can set a value between 10 and 4294967 milliseconds. The default value is 300. The lowest supported value depends on the BFD offload mode.
+- Shutdown, which enables or disables the peer. When the peer is disabled the switch sends an `administrative down` message to the remote peer. The default value is `disabled`.
+- Passive mode, which marks the session as passive. A passive session does not attempt to start the connection and waits for control packets from the peer before it begins replying. Passive mode is useful when you have a router that acts as the central node of a star network and you want to avoid sending BFD control packets you don’t need to. You can set passive mode to `enabled` or `disabled`. The default is `disabled`.
+- The minimum expected TTL for an incoming BFD control packet (for multi hop sessions only). This feature tightens the packet validation requirements to avoid receiving BFD control packets from other sessions. You can set a value between 1 and 254. The default value is 254 (only expect one hop between this system and the peer).
+
+The following example configures a BFD profile called BFD1. The profile sets the detection time multiplier to 10, the minimum interval for transmitting BFD control packets and minimum interval between the received BFD control packets to 100, and the minimum expected TTL for an incoming BFD control packet to 1. The profile also enables shutdown and passive mode.
+
+{{< tabs "TabID67 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set router bfd profile BFD1 detect-multiplier 10
+cumulus@switch:~$ nv set router bfd profile BFD1 min-tx-interval 100
+cumulus@switch:~$ nv set router bfd profile BFD1 min-rx-interval 100
+cumulus@switch:~$ nv set router bfd profile BFD1 minimum-ttl 1
+cumulus@switch:~$ nv set router bfd profile BFD1 shutdown enabled
+cumulus@switch:~$ nv set router bfd profile BFD1 passive-mode enabled
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# configure terminal
+switch(config)# bfd
+switch(config-bfd)# profile BFD1
+switch(config-bfd)# detect-multiplier 10 transmit-interval 100 receive-interval 100 shutdown passive-mode minimum-ttl 1
+switch(config-bfd)# end
+switch# write memory
+switch# exit
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### BFD with BGP
+
+BFD with BGP enables you to decrease BGP convergence time. When you configure BFD with BGP, the switch registers and de-registers neighbors dynamically.
+
+You can configure BFD for a peer group or for an individual neighbor by attaching a BFD profile.
+
+{{< tabs "TabID102 ">}}
+{{< tab "NVUE Commands ">}}
+
+The following example configures BFD for the neighbor swp51 using the BFD profile BFD1.
+
+```
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 bfd profile BFD1
+cumulus@switch:~$ nv config apply
+```
+
+The following example configures BFD for the peer group `fabric` using the BFD profile BFD1:
+
+```
+cumulus@switch:~$ nv set vrf default router bgp peer-group fabric bfd profile BFD1
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+The following example configures BFD for the neighbor swp51 using the BFD profile BFD1.
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# configure terminal
+switch(config)# router bgp 65000
+switch(config-router)# neighbor swp1 bfd profile BFD1
+switch(config-router)# end
+switch# write memory
+switch# exit
+```
+
+The following example configures BFD for the peer group `fabric` using the BFD profile BFD1:
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# configure terminal
+switch(config)# router bgp 65000
+switch(config-router)# neighbor fabric bfd profile BFD1
+switch(config-router)# end
+switch# write memory
+switch# exit
+```
+
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+router bgp 65101 vrf default
+bgp router-id 10.10.10.1
+! Neighbors
+neighbor fabric peer-group
+neighbor fabric remote-as external
+neighbor fabric bfd profile BFD1
+...
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### BFD with OSPF
+
+When you enable BFD on an OSPF interface, a neighbor registers with BFD when two-way adjacency starts and de-registers when adjacency goes down. The BFD configuration applies to each interface and any IPv4 neighbors discovered on that interface inherit the configuration.
+
+The following example configures BFD in OSPF for interface swp1 using the BFD profile BFD1.
+
+{{< tabs "TabID182 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set interface swp1 router ospf bfd profile BFD1
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# configure terminal
+switch(config)# interface swp1
+switch(config-if)# ip ospf bfd profile BFD1
+switch(config-if)# end
+switch# write memory
+switch# exit
+```
+
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+interface swp1
+  ip ospf bfd 
+  ip ospf bfd profile BFD1 
+  ...
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### BFD with PIM
+
+To configure BFD with PIM, you attach a BFD profile to a PIM interface.
+
+{{< tabs "TabID275 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set interface vlan10 router pim bfd profile BFD1
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# configure terminal
+switch(config)# interface vlan10
+switch(config-if)# ip pim bfd profile BFD1
+switch(config-if)# end
+switch# write memory
+switch# exit
+```
+
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+interface vlan10
+  ip pim 
+  ip pim bfd 
+  ip pim bfd profile BFD1 
+  ...
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### BFD with Static Routes
+
+You can associate static routes with BFD to monitor static route reachability. Depending on status of the BFD session, the switch either adds or removes static routes from the Routing Information Base (RIB).
+
+{{< tabs "TabID315 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 via 10.0.1.0 bfd profile BFD1 
+cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 via 10.0.1.0 bfd multi-hop enabled
+cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 via 10.0.1.0 bfd source 10.10.10.3
+cumulus@switch:~$ nv config apply
+```
+
+```
+cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 distance 2 via 10.0.1.0 bfd profile BFD2
+cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 distance 2 via 10.0.1.0 bfd multi-hop enabled
+cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 distance 2 via 10.0.1.0 bfd source 10.10.10.3
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# configure terminal
+switch(config)# ip route 10.10.10.101/32 10.0.1.0 bfd multi-hop source 10.10.10.3 profile BFD1
+switch(config)# end
+switch# write memory
+switch# exit
+```
+
+To view BFD static route status, use the `show bfd static route` vtysh command:
+
+```
+switch# show bfd static route
+Showing BFD monitored static routes:
+
+  Next hops:
+    VRF default IPv4 Unicast:
+        10.10.10.101/32 peer 10.0.1.0 (status: uninstalled)
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{%notice note%}}
+- BFD with static routes is supported only when you specify a next-hop IP address.
+- BFD operates in single hop mode by default. You must configure `multi-hop enabled` to use BFD for multihop next-hop tracking through static routes.
+{{%/notice%}}
+
+<!--
+## Echo Function
+
+Cumulus Linux supports the *echo function* for IPv4 single hops only, and with the asynchronous operating mode only (Cumulus Linux does not support demand mode).
+
+Use the echo function to test the forwarding path on a remote system. To enable the echo function, set `echoSupport` to *1* in the topology file.
+
+After the remote system loops the echo packets, the BFD control packets can send at a much lower rate. You configure this lower rate by setting the `slowMinTx` parameter in the topology file to a non-zero value in milliseconds.
+
+You can use more aggressive detection times for echo packets because the round-trip time is less; echo packets access the forwarding path. You can configure the detection interval by setting the `echoMinRx` parameter in the topology file. The minimum setting is 50 milliseconds. After you configure this setting, BFD control packets send at this required minimum echo Rx interval. This indicates to the peer that the local system can loop back the echo packets. Echo packets transmit if the peer supports receiving echo packets.
+
+Cumulus Linux encapsulates BFD echo packets into UDP packets over destination and source UDP port number 3785. The BFD echo packet format is vendor-specific. BFD echo packets that originate from Cumulus Linux are eight bytes long and have the following format:
+
+|0|1|2|3|
+|---|---|---|---|
+|Version|Length|Reserved|Reserved|
+|My Discriminator|
+
+- **Version** is the version of the BFD echo packet.
+- **Length** is the length of the BFD echo packet.
+- **My Discriminator**is a non-zero value that uniquely identifies a BFD session on the transmitting side. When the originating node receives the packet after being looped back by the receiving system, this value uniquely identifies the BFD session.
+
+### Transmit and Receive Echo Packets
+
+Cumulus Linux transmits BFD echo packets for a BFD session only when the peer advertises a non-zero value for the required minimum echo receive interval (the `echoMinRx` setting) in the BFD control packet when the BFD session starts. The switch bases the transmit rate of the echo packets on the peer advertised echo receive value in the control packet.
+
+Cumulus Linux loops BFD echo packets back to the originating node for a BFD session only if you configure the `echoMinRx` and `echoSupport` locally to a non-zero value.
+
+### Echo Function Parameters
+
+You configure the echo function by setting the following parameters in the topology file at the global, template and port level:
+
+- **echoSupport** enables and disables echo mode. Set to 1 to enable the echo function. It defaults to 0 (disable).
+- **echoMinRx** is the minimum interval between echo packets the local system is capable of receiving. The BFD control packet advertises this value. When you enable the echo function, it defaults to 50. If you disable the echo function, this parameter is automatically 0, which indicates the port or the node cannot process or receive echo packets.
+- **slowMinTx** is the minimum interval between transmitting BFD control packets when the switch exchanges echo packets.
+-->
+
+### Considerations
+
+- You can change a BFD profile applied to an interface, but you cannot unset a profile while BFD is still enabled on the interface. To remove BFD completely from an interface, use the `nv unset interface <if-name> router <protocol> bfd` command. To change the profile, set a new profile with the `nv set interface <if-name> router <protocol> bfd profile <profile>` command.
+- BFD is supported in the `default` VRF and non-default VRFs.
+- The switch establishes a single BFD session for each interface, regardless of how many protocols use BFD on that interface. If you configure different BFD profiles for multiple protocols on the same interface, the most recently applied profile takes precedence for the BFD session on that interface.
+
+## BFD Offload
+
+BFD offload moves BFD packet transmission and reception off the control plane, which improves session scale and keeps detection accurate when the CPU is busy. Cumulus Linux provides three offload modes, which you select with the `nv set router bfd offload-mode` command:
+
+| Mode | Where BFD runs |
+| ---- | -------------- |
+| `control-plane` | Software BFD in the `bfdd` daemon. This is the default on all platforms. |
+| `kernel` | Offloaded to the kernel driver (`sx_bfd`), which maintains the sessions. Supports numbered sessions and IPv6 unnumbered sessions, single-hop and multi-hop. |
+| `hardware` | Offloaded to switch firmware, which transmits and receives BFD packets with 10 millisecond timer precision independently of CPU load. Spectrum-6 switches and single-hop sessions only. |
+
+{{%notice note%}}
+- BFD offload is opt-in. When you do not set `offload-mode` and the legacy `offload` setting is not enabled, BFD runs in the control plane on every platform.
+- The offload mode is system wide. All BFD sessions use the same mode; you cannot select a mode for an individual session.
+- You must enable BFD for any of these modes to take effect. Run the `nv set router bfd state enabled` command.
+- You can change the offload mode at runtime. FRR does not restart and sessions do not flap.
+- Cumulus Linux still supports the `nv set router bfd offload enabled` and `nv set router bfd offload disabled` commands from Cumulus Linux 5.18 and earlier as legacy configuration, and NVIDIA plans to remove them in a future release. Use `offload-mode` instead; refer to {{<link url="#upgrade-notes" text="Upgrade Notes">}}.
+{{%/notice%}}
+
+### Minimum Timer Values
+
+Each offload mode has a lowest supported transmit interval, receive interval, and detect multiplier. Set the `min-tx-interval` and `min-rx-interval` values in the BFD profile to at least the minimum for the mode, and the `detect-multiplier` to at least the multiplier shown.
+
+| Mode | Minimum transmit and receive interval | Minimum detect multiplier |
+| ---- | ------------------------------------- | ------------------------- |
+| `hardware` | 50 milliseconds | 3 |
+| `kernel` | 100 milliseconds | 3 |
+| `control-plane` | 300 milliseconds | 3 |
+
+### Change the Offload Mode at Scale
+
+If you run a large number of BFD sessions, the order in which you change the offload mode and the timers matters. The wrong order can disrupt BFD sessions and the BGP sessions that depend on them. Administratively shutting down a BFD profile does not affect the underlying link or an established BGP TCP session. For the minimum timers that each mode supports, refer to {{<link url="#minimum-timer-values" text="Minimum Timer Values">}}.
+
+In the following procedures, `BFD1` is the BFD profile in use. The modes run from fastest to slowest in this order: `hardware`, `kernel`, `control-plane`.
+
+{{< tabs "TabID5102 ">}}
+{{< tab "Move to a Slower Mode ">}}
+
+To move to a slower mode, for example from `hardware` to `kernel`, raise the timers first while the sessions are up. Then shut down the BFD profile, change the mode, and re-enable the profile.
+
+1. Raise the timers to the minimum values for the slower mode and wait for the sessions to stabilize:
+
+   ```
+   cumulus@switch:~$ nv set router bfd profile BFD1 detect-multiplier 3
+   cumulus@switch:~$ nv set router bfd profile BFD1 min-tx-interval 100
+   cumulus@switch:~$ nv set router bfd profile BFD1 min-rx-interval 100
+   cumulus@switch:~$ nv config apply
+   ```
+
+2. Shut down the BFD profile:
+
+   ```
+   cumulus@switch:~$ nv set router bfd profile BFD1 shutdown enabled
+   cumulus@switch:~$ nv config apply
+   ```
+
+3. Change the offload mode:
+
+   ```
+   cumulus@switch:~$ nv set router bfd offload-mode kernel
+   cumulus@switch:~$ nv config apply
+   ```
+
+4. Re-enable the BFD profile:
+
+   ```
+   cumulus@switch:~$ nv set router bfd profile BFD1 shutdown disabled
+   cumulus@switch:~$ nv config apply
+   ```
+
+{{< /tab >}}
+{{< tab "Move to a Faster Mode ">}}
+
+To move to a faster mode, for example from `kernel` to `hardware`, shut down the BFD profile first and change the mode. Lower the timers only after the sessions are up in the new mode.
+
+1. Shut down the BFD profile. The timers stay at the values for the slower mode:
+
+   ```
+   cumulus@switch:~$ nv set router bfd profile BFD1 shutdown enabled
+   cumulus@switch:~$ nv config apply
+   ```
+
+2. Change the offload mode:
+
+   ```
+   cumulus@switch:~$ nv set router bfd offload-mode hardware
+   cumulus@switch:~$ nv config apply
+   ```
+
+3. Re-enable the BFD profile and wait for the sessions to stabilize:
+
+   ```
+   cumulus@switch:~$ nv set router bfd profile BFD1 shutdown disabled
+   cumulus@switch:~$ nv config apply
+   ```
+
+4. With the sessions up, lower the timers to the minimum values for the faster mode:
+
+   ```
+   cumulus@switch:~$ nv set router bfd profile BFD1 detect-multiplier 3
+   cumulus@switch:~$ nv set router bfd profile BFD1 min-tx-interval 50
+   cumulus@switch:~$ nv set router bfd profile BFD1 min-rx-interval 50
+   cumulus@switch:~$ nv config apply
+   ```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Offload to the Kernel
+
+In `kernel` mode, the kernel driver (`sx_bfd`) maintains the BFD sessions. This mode supports numbered and IPv6 unnumbered sessions, and carries both single-hop and multi-hop sessions.
+
+
+{{< tabs "TabID349 ">}}
+{{< tab "NVUE Commands ">}}
+
+Run the `nv set router bfd offload-mode` command:
+
+```
+cumulus@switch:~$ nv set router bfd offload-mode kernel
+cumulus@switch:~$ nv config apply
+```
+
+For single hop static route BFD sessions in offload mode, you need to configure the source address with the `nv set vrf <vrf-id> router static <route-id> distance <distance-id> via <via-id> bfd profile <profile-id>` and `nv set vrf <vrf-id> router static <route-id> distance <distance-id> via <via-id> bfd source <source-address>` commands; for example:
+
+```
+cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 distance 2 via 10.0.1.0 bfd profile BFD1
+cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 distance 2 via 10.0.1.0 bfd source 10.10.10.3
+```
+
+To return to software BFD, run the `nv set router bfd offload-mode control-plane` command. To remove the setting entirely and fall back to the `control-plane` default, run the `nv unset router bfd offload-mode` command.
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+FRR renders the offload mode as two separate commands: `offload-mode` turns offload on, and `offload-backend` selects the engine. To offload to the kernel, run `offload-mode` on its own:
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# configure terminal
+switch(config)# bfd
+switch(config-bfd)# offload-mode
+switch(config-bfd)# end
+switch# write memory
+switch# exit
+```
+
+To return to software BFD, run the `no offload-mode` command.
+
+For single hop static route BFD sessions in offload mode, you need to configure the source address:
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# configure terminal
+switch(config)# ip route 10.10.10.101/32 10.0.1.0 2 bfd source 10.10.10.3 profile BFD1
+switch(config-bfd)# end
+switch# write memory
+switch# exit
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{%notice note%}}
+- When you change timer or profile settings with BFD sessions at scale, there is a transient spike in CPU usage because of the increased volume of messages from the BFD daemon to the kernel driver.
+- When a BFD peer goes down because of a path failure instead of an admin-down, the remote peer sends DOWN packets. With sessions at scale, the BFD daemon receives these DOWN events, which might increase CPU usage.
+- If you use frequent BFD timers, such as 50 milliseconds with a multiplier of 3, for BFD sessions at scale, NVIDIA recommends that you increase the BFD control plane policer values with the `nv set system control-plane policer bfd burst` and `nv set system control-plane policer bfd rate` commands.
+{{%/notice%}}
+
+### Offload to Hardware
+
+Under heavy CPU load, such as route churn, ACL updates, or large-scale provisioning, software BFD timers can drift and cause false session flaps, especially at aggressive intervals. In `hardware` mode, the switch firmware transmits and receives BFD packets with 10 millisecond timer precision independently of CPU load, which lets you run intervals as low as 50 milliseconds without false flaps.
+
+{{%notice note%}}
+- Hardware offload requires a Spectrum-6 switch. On any other platform, `nv config apply` rejects the configuration and tells you which mode to use instead.
+- Hardware offload carries single-hop sessions only. Multi-hop sessions continue to run in the control plane and stay up; the switch reports `control-plane` for them. Set multi-hop profile timers to at least the `control-plane` minimum values (a detect multiplier of 3 and 300 milliseconds for the transmit and receive intervals; refer to {{<link url="#minimum-timer-values" text="Minimum Timer Values">}}) even when `offload-mode` is `hardware`.
+- The firmware works in units of 10 milliseconds and rounds transmit intervals up to a multiple of 10 milliseconds.
+{{%/notice%}}
+
+Hardware offload supports these single-hop interface types:
+
+- Layer 3 physical ports; for example, `swp1`.
+- Layer 3 802.1Q subinterfaces on a physical parent port; for example, `swp1.100`.
+- Layer 3 bonds; for example, `bond0`.
+- IPv6 link-local interfaces, including BGP unnumbered peering.
+
+Loopback interfaces have no physical egress port, so sessions sourced from a loopback stay in the control plane.
+
+Hardware offload does not support BGP unnumbered (IPv6 link-local) sessions when two or more parallel links between the same two switches have adaptive routing enabled. Numbered peering (IPv4 or IPv6 global addresses) with adaptive routing works on any number of links, and BGP unnumbered with adaptive routing works on a single link between two switches. To use hardware offload in this topology, use numbered peering on the adaptive-routing-enabled links, or disable adaptive routing on them. Setting a per-port MAC address is not a workaround, because NVUE does not allow you to configure `mac-address` together with adaptive routing on the same port.
+
+To offload BFD to hardware:
+
+{{< tabs "TabID442 ">}}
+{{< tab "NVUE Commands ">}}
+
+Run the `nv set router bfd offload-mode hardware` command:
+
+```
+cumulus@switch:~$ nv set router bfd offload-mode hardware   
+cumulus@switch:~$ nv config apply
+```
+
+If the switch is not a Spectrum-6 switch, `nv config apply` rejects the configuration:
+
+```
+cumulus@switch:~$ nv config apply
+Error: BFD `offload-mode hardware` requires Spectrum-6 silicon (SPC6). This switch reports chip `Spectrum4`. Use `offload-mode kernel` (sx_bfd kernel module) or `offload-mode control-plane` (software BFD) instead.
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+Run both the `offload-mode` command and the `offload-backend hardware` command:
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# configure terminal
+switch(config)# bfd
+switch(config-bfd)# offload-mode
+switch(config-bfd)# offload-backend hardware
+switch(config-bfd)# end
+switch# write memory
+switch# exit
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Show BFD Configuration
+
+To show the BFD offload mode, run the `nv show router bfd` command. To show only the mode, run the `nv show router bfd offload-mode` command.
+
+```
+cumulus@switch:~$ nv show router bfd
+              applied
+------------  ---------------------------
+state         enabled
+offload       disabled
+offload-mode  kernel
+...
+```
+
+The `offload` field shows the legacy setting, which is `disabled` by default, even when you set `offload-mode`. If you use `offload-mode`, rely on the `offload-mode` field to check the offload mode; `offload-mode` is the setting in effect.
+
+To show if the BFD session is offloaded, run the `nv show vrf default router bfd peers --view brief` command or the vtysh `show bfd vrf default peers brief json` command.
+
+```
+cumulus@switch:~$ nv show vrf default router bfd peers --view brief
+MHop - Multihop, Local - Local, Peer - Peer, Interface - Interface, State -
+State, Passive - Passive Mode, Time - Up/Down Time, Type - Config Type,
+Offloaded - Offloaded
+LocalId     MHop      Local                      Peer                  Interface      State  Passive     Time     Type     Offloaded  Profile
+----------  -----     ---------                  ---------             -----------    -----  -------     -------  -------  ---------  -------
+4481308     disabled  10.10.10.1                 10.10.10.2            swp2           up     disabled    3:58:44  dynamic  kernel     fabric-bfd-profile
+87960564    disabled  fe80::1e34:daff:fea2:bb11  fe80::202:ff:fe00:e   swp21s1.631    up     disabled    0:00:55  dynamic  kernel     fabric-bfd-profile
+88363335    disabled  fe80::1e34:daff:fea2:bb10  fe80::202:ff:fe00:d   swp21s0.510    up     disabled    0:00:57  dynamic  kernel     fabric-bfd-profile
+90679959    disabled  fe80::1e34:daff:fea2:bb10  fe80::202:ff:fe00:d   swp21s0.507    up     disabled    0:00:57  dynamic  kernel     fabric-bfd-profile
+```
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# show bfd vrf default peers brief json
+[
+  {
+    "multihop":false,
+    "peer":"9.9.9.14",
+    "local":"9.9.9.13",
+    "vrf":"default",
+    "interface":"swp2",
+    "id":1463777133,
+    "remote-id":1884059003,
+    "passive-mode":false,
+    "status":"up",
+    "uptime":788,
+    "diagnostic":"ok",
+    "remote-diagnostic":"ok",
+    "type":"dynamic",
+    "profile":"fabric-bfd-profile",
+    "offload-status":"control-plane",
+    "receive-interval":300,
+    "transmit-interval":300,
+    "echo-receive-interval":50,
+    "echo-transmit-interval":0,
+    "detect-multiplier":3,
+    "remote-receive-interval":300,
+    "remote-transmit-interval":300,
+    "remote-echo-receive-interval":50,
+    "remote-detect-multiplier":3,
+    "rtt-min":0,
+    "rtt-avg":0,
+    "rtt-max":0
+  },
+  {
+    "multihop":false,
+    "peer":"9.9.9.18",
+    "local":"9.9.9.17",
+    "vrf":"default",
+    "interface":"swp3",
+    "id":3542416298,
+    "remote-id":233894229,
+    "passive-mode":false,
+    "status":"up",
+    "uptime":799,
+    "diagnostic":"ok",
+    "remote-diagnostic":"ok",
+    "type":"dynamic",
+    "profile":"fabric-bfd-profile",
+    "offload-status":"control-plane",
+    "receive-interval":300,
+    "transmit-interval":300,
+    "echo-receive-interval":50,
+    "echo-transmit-interval":0,
+    "detect-multiplier":3,
+    "remote-receive-interval":300,
+    "remote-transmit-interval":300,
+    "remote-echo-receive-interval":50,
+    "remote-detect-multiplier":3,
+    "rtt-min":0,
+    "rtt-avg":0,
+    "rtt-max":0
+  },
+  {
+    "multihop":false,
+    "peer":"9.9.9.1",
+    "local":"9.9.9.2",
+    "vrf":"default",
+    "interface":"swp1",
+    "id":1326855126,
+    "remote-id":1157259650,
+    "passive-mode":false,
+    "status":"up",
+    "uptime":750,
+    "diagnostic":"ok",
+    "remote-diagnostic":"ok",
+    "type":"dynamic",
+    "profile":"fabric-bfd-profile",
+    "offload-status":"control-plane",
+    "receive-interval":300,
+    "transmit-interval":300,
+    "echo-receive-interval":50,
+    "echo-transmit-interval":0,
+    "detect-multiplier":3,
+    "remote-receive-interval":300,
+    "remote-transmit-interval":300,
+    "remote-echo-receive-interval":50,
+    "remote-detect-multiplier":3,
+    "rtt-min":0,
+    "rtt-avg":0,
+    "rtt-max":0
+  }
+]
+```
+
+The `Offloaded` field shows the engine carrying the session: `kernel`, `hardware`, or `control-plane` if the session is not offloaded. In a mixed topology under `offload-mode hardware`, a single-hop peer shows `hardware` while a multi-hop peer shows `control-plane`, which is how you confirm where each session runs. The vtysh `show bfd peers` command shows the same value under the `Offload Status:` label.
+
+{{%notice info%}}
+In Cumulus Linux 5.18 and earlier, this field shows only `offloaded` or `control-plane`. If you have automation or monitoring that matches on the string `offloaded`, update it to match the specific engine name.
+{{%/notice%}}
+
+
+### Upgrade Notes
+
+In Cumulus Linux 5.18 and earlier, you set BFD offload with the `nv set router bfd offload enabled` and `nv set router bfd offload disabled` commands. Cumulus Linux 5.19 introduces the `nv set router bfd offload-mode` command, which NVIDIA recommends for configuring BFD offload. Cumulus Linux still supports the `nv set router bfd offload` command as legacy configuration, and NVIDIA plans to remove it in a future release.
+
+When you upgrade, Cumulus Linux keeps an existing `nv set router bfd offload` setting unchanged:
+
+- `nv set router bfd offload enabled` is the same as `nv set router bfd offload-mode kernel`.
+- `nv set router bfd offload disabled` is the same as `nv set router bfd offload-mode control-plane` (the default).
+
+To move to `offload-mode`, unset the legacy setting and set the mode in the same apply:
+
+```
+cumulus@switch:~$ nv unset router bfd offload
+cumulus@switch:~$ nv set router bfd offload-mode kernel
+cumulus@switch:~$ nv config apply
+```
+
+Do not configure both settings. If you do, they must agree (`offload enabled` with `offload-mode kernel` or `hardware`, or `offload disabled` with `offload-mode control-plane`); otherwise `nv config apply` rejects the configuration:
+
+```
+BFD `offload enabled` conflicts with `offload-mode control-plane`. Set only `offload-mode`, or make them agree: `offload enabled` goes with `offload-mode kernel` or `hardware`, and `offload disabled` with `offload-mode control-plane`.
+```
+
+Cumulus Linux upgrade never sets the `offload-mode` to `hardware` because hardware offload requires a Spectrum-6 switch. To use hardware offload after you upgrade, set it explicitly.
+
+## Show BFD Information
+
+You can show BFD configuration and operational data with NVUE or vtysh show commands.
+
+To show BFD profile configuration details, run the `nv show router bfd profile <profile-name>` command:
+
+```
+cumulus@switch:~$ nv show router bfd profile BFD1
+                   applied 
+-----------------  -------- 
+detect-multiplier  10 
+min-rx-interval    100 
+min-tx-interval    100 
+shutdown           disabled 
+passive-mode       enabled 
+minimum-ttl        1 
+```
+
+To show information about BFD connected devices, run the `nv show vrf <vrf-id> router bfd peers` command. You can use the `--view brief` option to show summarized information, `--view standard` to show detailed information, or `--view counters` to see counters.
+
+```
+cumulus@switch:~$ nv show vrf default router bfd peers --view brief
+MHop - Multihop, Local - Local, Peer - Peer, Interface - Interface, State - 
+State, Passive - Passive Mode, Time - Up/Down Time, Type - Config Type 
+LocalId     MHop   Local       Peer        Interface  State  Passive  Time        Type 
+----------  -----  ----------  ----------  ---------  -----  -------  ----------  ------- 
+20162981    True   6.0.0.24    6.0.0.26               up     False    1:00:08:20  dynamic 
+1002134429  True   6000::24    6000::26               up     False    1:00:08:20  dynamic 
+1987835266  False  fe80::a288  fe80::9e05  p0_if.100  up     False    1:00:08:20  dynamic 
+2124581159  False  fe80::a288  fe80::9e05  p0_if.101  up     False    1:00:08:20  dynamic 
+2323511220  True   6000::24    6000::23               up     False    1:00:08:20  dynamic 
+4089962224  True   6.0.0.24    6.0.0.23               up     False    0:19:07:20  dynamic 
+```
+
+```
+cumulus@switch:~$ nv show vrf default router bfd peers --view counters
+Local - Local, Peer - Peer, Interface - Interface, State - State, CtrlIn - 
+Control Packet Input, CtrlOut - Control Packet Output, EchoIn - Echo Packet 
+Input, EchoOut - Echo Packet Output, Up - Session Up, Down - Session Down, Zebra 
+- Zebra Notification 
+LocalId    Local      Peer       Interface State CtrlIn CtrlOut EchoIn EchoOut Up Down Zebra 
+---------- ---------- ---------- --------- ----- ------ ------- ------ ------- -- ---- ----- 
+20162981   6.0.0.24   6.0.0.26             up    248913 248920  0      0       1  0    5 
+1002134429 6000::24   6000::26             up    248882 248829  0      0       1  0    5 
+1987835266 fe80::a288 fe80::9e05 p0_if.100 up    473059 497655  0      0       1  0    9 
+2124581159 fe80::a288 fe80::9e05 p0_if.101 up    472823 497637  0      0       1  0    5 
+2323511220 6000::24   6000::23             up    320763 331701  0      0       1  0    5 
+4089962224 6.0.0.24   6.0.0.23             up    254206 262960  0      0       1  0    14 
+```
+
+### Show BFD with BGP
+
+To show the BFD profile associated with a BGP neighbor or peer group, run the NVUE `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> bfd` command or the `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> bfd` command.
+
+```
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 bfd
+         operational  applied
+-------  -----------  -------
+
+profile               BFD1
+status   up
+```
+
+To see neighbor information in BGP, including BFD status, run the vtysh `show ip bgp neighbor <interface-id>` command:
+
+```
+cumulus@switch:~$ sudo vtysh 
+switch# show ip bgp neighbor swp51
+...
+BGP neighbor is swp51, remote AS 65199, local AS 65101, external link
+  Local Role: undefined
+  Remote Role: undefined
+Hostname: top0
+  BGP version 4, remote router ID 10.10.10.101, local router ID 10.10.10.1
+  BGP state = Established, up for 00:01:18
+  Last read 00:00:03, Last write 00:00:03
+  Hold time is 10 seconds, keepalive interval is 3 seconds
+  Configured hold time is 10 seconds, keepalive interval is 3 seconds
+  Configured tcp-mss is 0, synced tcp-mss is 9164
+  Configured conditional advertisements interval is 60 seconds
+  Neighbor capabilities:
+    4 Byte AS: advertised and received
+    Extended Message: advertised and received
+    AddPath:
+      IPv4 Unicast: RX advertised and received
+    Long-lived Graceful Restart: advertised and received
+      Address families by peer:
+    Route refresh: advertised and received
+    Enhanced Route Refresh: advertised and received
+    Address Family IPv4 Unicast: advertised and received
+    Hostname Capability: advertised (name: top1,domain name: n/a) received (name: top0,domain name: n/a)
+    Version Capability: advertised software version (FRRouting/10.0.3) received software version (FRRouting/10.0.3)
+    Graceful Restart Capability: advertised and received
+      Remote Restart timer is 120 seconds
+      Address families by peer:
+            Graceful Restart Capability: advertised and received
+      Remote Restart timer is 120 seconds
+      Address families by peer:
+        none
+  Graceful restart information:
+    End-of-RIB send: IPv4 Unicast
+    End-of-RIB received: IPv4 Unicast
+    Local GR Mode: Helper*
+    Remote GR Mode: Helper
+ 
+    R bit: False
+    N bit: False
+    Timers:
+      Configured Restart Time(sec): 120
+      Received Restart Time(sec): 120
+      Configured LLGR Stale Path Time(sec): 0
+    IPv4 Unicast:
+      F bit: False
+      End-of-RIB sent: Yes
+      End-of-RIB sent after update: Yes
+      End-of-RIB received: Yes
+      Timers:
+        Configured Stale Path Time(sec): 360
+        LLGR Stale Path Time(sec): 0
+  Message statistics:
+    Inq depth is 0
+    Outq depth is 0
+                         Sent       Rcvd
+    Opens:                  2          2
+    Notifications:          0          0
+    Updates:                4          4
+    Keepalives:            44         44
+    Route Refresh:          0          0
+    Capability:             0          0
+    Total:                 50         50
+  Minimum time between advertisement runs is 5 seconds
+ 
+ For address family: IPv4 Unicast
+  Update group 1, subgroup 1
+  Packet Queue length 0
+  Community attribute sent to this neighbor(all)
+  0 accepted prefixes
+ 
+  Connections established 2; dropped 1
+  Last reset 00:01:29,  Waiting for peer OPEN (FRRouting/10.0.3)
+  External BGP neighbor may be up to 1 hops away.
+Local host: 9.9.9.2, Local port: 51442
+Foreign host: 9.9.9.1, Foreign port: 179
+Nexthop: 9.9.9.2
+Nexthop global: fe80::202:ff:fe00:a
+Nexthop local: fe80::202:ff:fe00:a
+BGP connection: shared network
+BGP Connect Retry Timer in Seconds: 10
+Estimated round trip time: 9 ms
+Read thread: on  Write thread: on  FD used: 83
+ 
+  BFD: Type: single hop
+  Profile: fabric-bfd-profile
+  Status: Up, Last update: 0:00:01:17
+...
+```
+
+### Show BFD with OSPF
+
+To show the BFD profile associated with an OSPF interface, run the NVUE `nv show interface <interface-id> router ospf bfd` command:
+
+```
+cumulus@switch:~$ nv show interface swp1 router ospf bfd
+         operational  applied
+-------  -----------  -------
+
+profile               BFD1
+```
+
+You can run vtysh commands to show neighbor information in OSPF, including BFD status. To show IPv4 OSPF interface information, run the vtysh `show ip ospf interface <interface-id>` command.
+
+### Show BFD with PIM
+
+To show the BFD profile associated with a PIM session, run the NVUE `nv show interface <interface-id> router pim bfd` command:
+
+```
+cumulus@switch:~$ nv show interface vlan10 router pim bfd
+         operational  applied
+-------  -----------  -------
+
+profile               BFD1
+```
+
+### Show BFD with Static Routes
+
+To show the BFD profile associated with static routes, run the NVUE `nv show vrf <vrf-id> router static <ipv4-prefix> via <ipv4> bfd` command or the `nv show vrf <vrf-id> router static <ipv4-prefix> distance <integer> via <ipv4> bfd` command:
+
+```
+cumulus@switch:~$ nv show vrf default router static 10.10.10.101/32 via 10.0.1.0 bfd
+         operational  applied
+-------  -----------  -------
+
+profile               BFD1
+```
+
+## Related Information
+
+- {{<exlink url="https://tools.ietf.org/html/rfc5880" text="RFC 5880 - Bidirectional Forwarding Detection">}}
+- {{<exlink url="https://tools.ietf.org/html/rfc5881" text="RFC 5881 - BFD for IPv4 and IPv6 (Single Hop)">}}
+- {{<exlink url="https://tools.ietf.org/html/rfc5882" text="RFC 5882 - Generic Application of BFD">}}
+- {{<exlink url="https://tools.ietf.org/html/rfc5883" text="RFC 5883 - Bidirectional Forwarding Detection (BFD) for Multihop Paths">}}
+
+<!--
+## BFD Multihop Routed Paths
+
+BFD multihop sessions build over arbitrary paths between two systems, which results in some complexity that does not exist for single hop sessions. To avoid **spoofing** with multihop paths, configure the maximum hop count (`max_hop_cnt`) for each peer, which limits the number of hops for a BFD session. The switch drops all BFD packets exceeding the maximum hop count.
+
+Cumulus Linux supports multihop BFD sessions for both IPv4 and IPv6 peers.
+-->

@@ -90,6 +90,50 @@ cumulus@switch:~$ nv set system aaa radius auth-type peap-gtc
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set system aaa radius authorization \<privilege-level-id\></h>
+
+Configures a RADIUS authorization mapping for the specified privilege level.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<privilege-level-id>` |  The RADIUS privilege level. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system aaa radius authorization 15
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system aaa radius authorization \<privilege-level-id\> role</h>
+
+Configures the NVUE role that the switch assigns to the specified global RADIUS privilege level.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<privilege-level-id>` |  The RADIUS privilege level. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.19.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system aaa radius authorization 15 role nvue-admin
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system aaa radius debug</h>
 
 Configures the debug option for troubleshooting. The debugging messages write to `/var/log/syslog`. When the RADIUS client is working correctly, you can disable the debug option. You can specify `enable` or `disable`.
@@ -294,6 +338,8 @@ cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 port 42
 
  <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system aaa radius server \<server-id\> priority</h>
 
 Configures the priority at which Cumulus Linux contacts the specified RADIUS server for load balancing. You can set a value between 1 and 100. The lower value is the higher priority.
@@ -315,6 +361,8 @@ cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 priority 10
 ```
 
  <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set system aaa radius server \<server-id\> secret</h>
 

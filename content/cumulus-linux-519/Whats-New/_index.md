@@ -13,7 +13,9 @@ This document supports the Cumulus Linux 5.19 release, and lists new features an
 Cumulus Linux 5.19.0 includes new features and improvements, provides bug fixes, and includes a fix for CVE-2026-98432.
 
 {{%notice infonopad%}}
-Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
+Cumulus Linux 5.19.0 passes testing and validation as part of the Spectrum-X reference architecture release 2.4.
+
+For a list of approved product releases, refer to the {{<exlink url="https://docs.nvidia.com/networking/software/spectrumx-solution-stack/index.html" text="NVIDIA Spectrum-X Validated Solution Stack">}}.
 {{%/notice%}}
 
 ### New Features and Enhancements
@@ -23,7 +25,6 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 - {{<link url="FRRouting/#class-e-address-space-support" text="Class E (240.0.0.0/4) address space support">}}
 - {{<link url="EVPN-Enhancements/#evpn-unreachability-with-8021x-dynamic-vrf-assignment" text="Disjoined multiplane support for EVPN unreachability with 802.1X dynamic VRF assignment">}}
 - {{<link url="Inter-subnet-Routing/#layer-3-vxlan-device-mode" text="Layer 3 VXLAN device mode">}} is generally available
-- {{<link url="System-Power-and-Switch-Reboot" text="Multi ASIC fast boot support">}} (Beta)
 - {{<link url="Bidirectional-Forwarding-Detection-BFD/#offload-to-hardware" text="BFD offload to switch firmware">}}
 - {{<link url="Access-Control-List-Configuration/#control-plane-punt-classifier" text="Control plane punt classifier drop counters">}} for drops caused by link failures or missing next hops
 - {{<link url="Understanding-the-cl-support-Output-File/#collect-the-nvme-nand-debug-log" text="The cl-support file">}} captures the SSD internal NAND debug log on a switch with a Virtium NVMe SSD
@@ -38,6 +39,9 @@ Cumulus Linux 5.19.0 is currently only qualified for **non-Spectrum-X**.
 - {{<link url="Domain-Name-System-DNS/#dns-query-source-address" text="Configurable source address for DNS queries, so that queries leave the switch from a stable loopback identity">}}
 - {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="Optimized image upgrade options to cancel a pending boot-next and to declare additional files to carry forward to the upgraded partition">}}. Optimized image upgrade no longer copies all of the `/etc` directory.
 - {{<link url="Packet-Trimming/#packet-trimming-counters" text="Trimmed packet sent and dropped counters at the global, port, and traffic class level">}} on Spectrum-6 switches
+- {{<link url="Optional-BGP-Configuration/#graceful-fabric-maintenance" text="Graceful Fabric Maintenance">}} is generally available
+- {{<link url="Optional-BGP-Configuration/#inter-dc-routing" text="Inter-DC Routing">}} is generally available
+- {{<link url="Firewall-Rules/#ipv6-whitelist-rules" text="Default IPv6 control plane ACL">}} (`acl-ipv6-default-whitelist`)
 - NVUE
   - {{<link url="Using-sudo-to-Delegate-Privileges" text="Passwordless sudo access by default">}} for members of the sudo group, and {{<link url="Role-Based-Access-Control/#os-command-classes" text="RBAC os-command allow-lists">}} for granular passwordless access to specific commands (Beta)
   - {{<link url="System-Power-and-Switch-Reboot" text="Switch power off command">}}
@@ -72,8 +76,7 @@ Before you upgrade to Cumulus Linux 5.19, review the following considerations.
 
 You can use {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text="optimized image upgrade">}} and {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="package upgrade ">}} to upgrade the switch to Cumulus Linux 5.19 from the following releases. Package upgrade supports ISSU (warm boot) for the 5.17.0 and 5.18 upgrade paths only.
 - 5.16.1 through 5.16.8 (cold boot only; ISSU is not supported)
-- 5.17.0
-- 5.18.0, 5.18.1, 5.18.2, 5.18.3
+- 5.17.0, 5.18.0, 5.18.1, 5.18.2, 5.18.3 (with ISSU warm boot)
 
 {{%notice infonopad%}}
 - Cumulus Linux does not support ISSU when you upgrade from Cumulus Linux 5.16.x to Cumulus Linux 5.19. Use a cold boot for this upgrade.
@@ -82,6 +85,10 @@ You can use {{<link url="Upgrading-Cumulus-Linux/#optimized-image-upgrade" text=
 {{%/notice%}}
 
 To upgrade to Cumulus Linux 5.19 from a release that does not support package upgrade or optimized image upgrade, you can install an image with {{<link url="Upgrading-Cumulus-Linux/#onie-image-upgrade" text="ONIE">}}.
+
+{{%notice note%}}
+- The ONIE install `-t` option does not work with a Cumulus Linux 5.9.x NVUE configuration file on Cumulus Linux 5.19.0. To upgrade to Cumulus Linux 5.19.0 from Cumulus Linux 5.9.x, only use ONIE install and offline configuration translation with NVUE; refer to {{<link url="NVUE-CLI/#translate-a-configuration-revision-or-file" text="Translate a Configuration Revision or File">}}.
+{{%/notice%}}
 
 For a list of the earliest Cumulus Linux releases supported for each switch model, refer to [this knowledge base article]({{<ref "/knowledge-base/Support/Support-Offerings/Minimum-Cumulus-Linux-Release-for-Each-Switch-Model" >}}).
 
@@ -98,8 +105,8 @@ NVIDIA recommends completing migration before Cumulus Linux 5.20.0.
 
 ### Spectrum-6 BMC Requirements
 
-{{%notice infonopad%}}
-For a Spectrum-6 switch, you must upgrade BMC before you upgrade Cumulus Linux. For information about upgrading BMC, refer to {{<link url="BMC" text="BMC">}}.
+{{%notice warning%}}
+For a Spectrum-6 switch, you must upgrade BMC before you upgrade Cumulus Linux. Before you upgrade to Cumulus Linux 5.19.0, you must upgrade the BMC firmware to version 88.0070.1910 and the ERoT firmware to version 02.00.0048.0000_n05. The ERoT firmware upgrade requires a power cycle of the switch to activate. For information about upgrading BMC, refer to {{<link url="BMC" text="BMC">}}.
 {{%/notice%}}
 
 ### Linux Configuration Files Overwritten
@@ -204,15 +211,11 @@ carry-forward /etc/default/ifplugd
 
 Refer to {{<link url="Upgrading-Cumulus-Linux/#carry-forward-additional-files" text="Carry Forward Additional Files">}}.
 
-<!-- COMMENTED OUT FOR 5.19: ssd-dump-tools package
-
 ### ssd-dump-tools Package
 
 When you use package upgrade to upgrade the switch from Cumulus Linux 5.18 to 5.19, the upgrade does not automatically install the `ssd-dump-tools` package. To use the SSD dump tools, install the package after the upgrade with the `sudo apt-get install ssd-dump-tools` command. The Cumulus Linux repository includes both the production-signed and development-signed versions of the package. Install the version that matches your environment.
 
-Refer to Upgrading-Cumulus-Linux, ssd-dump-tools Package.
-
--->
+Refer to {{<link url="Upgrading-Cumulus-Linux/#ssd-dump-tools-package" text="ssd-dump-tools Package">}}.
 
 ### Cumulus VX
 

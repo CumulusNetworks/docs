@@ -98,7 +98,7 @@ Privilege Level  role          command
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system aaa tacacs authorization /<privilege-level-id/></h>
+## <h>nv show system aaa tacacs authorization \<privilege-level-id\></h>
 
 Shows the TACACS+ per-command authorization configuration for the privilege level.
 
@@ -120,7 +120,7 @@ cumulus@switch:~$ nv show system aaa tacacs authorization 0
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show system aaa tacacs authorization /<privilege-level-id/> command</h>
+## <h>nv show system aaa tacacs authorization \<privilege-level-id\> command</h>
 
 Shows TACACS+ per-command authorization command for the privilege level.
 

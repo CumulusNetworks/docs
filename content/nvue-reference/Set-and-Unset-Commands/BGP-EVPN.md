@@ -337,6 +337,8 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family l2
 ```
 HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn policy outbound unsuppress-map</h>
 
 Configures the route map you want to use to unsuppress EVPN routes selectively when advertising to this neighbor; these are routes that have been suppressed due to aggregation configuration.
@@ -625,7 +627,7 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn aspath private-as </h>
+## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn aspath private-as</h>
 
 Configures what action to take with private ASNs. You can specify `none` to take no action, `remove`, to remove any private ASNs in the update to the peers in the peer group, or `replace` to replace any private ASNs in the update to the peers with the ASN of the local system.
 
@@ -647,7 +649,7 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group underlay address-fami
 ```
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn aspath replace-peer-as </h>
+## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn aspath replace-peer-as</h>
 
 Configures BGP to replace the AS path in an outgoing update that contains the ASN of the peers in the peer group with the ASN of the local system.
 

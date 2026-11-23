@@ -43,6 +43,10 @@ NetQ is offered with a per switch subscription that includes support for 1, 3, a
 
 ## NetQ Support Matrix
 
+{{<notice note>}}
+NetQ reaches end of service life (EOSL) on November 21, 2029. NVIDIA Minerva replaces NetQ, but its features do not map one to one to NetQ features, and you cannot migrate a NetQ deployment directly to NVIDIA Minerva. To learn more, see the {{<exlink url="https://networking-docs.nvidia.com/minerva/1.1.0/" text="NVIDIA Minerva User Guide">}} and the {{<exlink url="https://www.nvidia.com/en-us/networking/products/software/minerva/" text="NVIDIA Minerva product page">}}.
+{{</notice>}}
+
 | NetQ Release | Release Date | End of Support |
 | :--------: | --------- | --------- |
 | 5.3.z | 12-Aug-2026 | 12-Aug-2028|

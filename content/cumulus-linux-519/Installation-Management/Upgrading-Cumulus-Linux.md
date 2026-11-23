@@ -559,6 +559,7 @@ ONIE is an open source project (equivalent to PXE on servers) that enables the i
 - If configuration files do not restore correctly, you cannot `ssh` to the switch from in-band management. Use out-of-band connectivity (eth0 or the console).
 - You *must* reinstall and reconfigure third-party applications after upgrade.
 - On secure boot switches (Spectrum-4 and later, or SN3700-S) running ONIE installer version 5.3.0012 or earlier, the Cumulus Linux upgrade fails at the ONIE prompt. Refer to {{<link url="#onie-install-issues" text="ONIE Install Issues">}}.
+- The ONIE install `-t` option does not work with a Cumulus Linux 5.9.x NVUE configuration file on Cumulus Linux 5.19.0. To upgrade to Cumulus Linux 5.19.0 from Cumulus Linux 5.9.x, only use ONIE install and offline configuration translation with NVUE; refer to {{<link url="NVUE-CLI/#translate-a-configuration-revision-or-file" text="Translate a Configuration Revision or File">}}.
 {{%/notice%}}
 
 To upgrade the switch with ONIE:
@@ -875,8 +876,6 @@ To downgrade a switch with Secure Boot enabled, see {{<link url="Installing-a-Ne
 
 If you install any third party applications on a Cumulus Linux switch, configuration data is typically installed in the `/etc` directory, but it is not guaranteed. It is your responsibility to understand the behavior and configuration file information of any third party packages installed on the switch. After you upgrade using a full Cumulus Linux image install, you need to reinstall any third party packages. Package upgrade does **not** replace or remove third-party applications.
 
-<!-- COMMENTED OUT FOR 5.19: ssd-dump-tools package
-
 ### ssd-dump-tools Package
 
 When you use package upgrade to upgrade the switch from Cumulus Linux 5.18 to 5.19, the upgrade does not automatically install the `ssd-dump-tools` package. To use the SSD dump tools, install the package after the upgrade:
@@ -886,8 +885,6 @@ cumulus@switch:~$ sudo apt-get install ssd-dump-tools
 ```
 
 The Cumulus Linux repository includes both the production-signed and development-signed versions of the package. Install the version that matches your environment.
-
--->
 
 ### ONIE Install Issues
 

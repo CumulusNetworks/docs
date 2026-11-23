@@ -188,9 +188,9 @@ cumulus@switch:~$ nv show system version
 onie             2021.05-5.3.0008-115200
 kernel           6.1.0-cl-1-amd64
 base-os          Debian GNU/Linux 12.14
-product-release  5.19.0
+product-release  5.20.0
 image
-  build-id       5.19.0.0025
+  build-id       5.20.0.0025
   build-date     Tue Jul 21 11:06:05 UTC 2026
 patched          yes
 ```

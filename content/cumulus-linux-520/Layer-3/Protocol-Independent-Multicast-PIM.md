@@ -50,11 +50,11 @@ When you enable or disable PIM, the FRR service restarts, which might impact tra
 {{%/notice%}}
 
 {{%notice note%}}
-In Cumulus Linux 5.19, the vtysh commands that configure PIM and MSDP for a routing instance move into a `router pim [vrf <vrf-name>]` block and drop the `ip` prefix. For example, `ip pim rp 10.10.10.101` at the `switch(config)#` prompt becomes `rp 10.10.10.101` at the `switch(config-pim)#` prompt. Per-VRF PIM settings are no longer inside the `vrf <vrf-name>` block; they belong to a separate top-level `router pim vrf <vrf-name>` block.
+In Cumulus Linux 5.19 and later, the vtysh commands that configure PIM and MSDP for a routing instance move into a `router pim [vrf <vrf-name>]` block and drop the `ip` prefix. For example, `ip pim rp 10.10.10.101` at the `switch(config)#` prompt becomes `rp 10.10.10.101` at the `switch(config-pim)#` prompt. Per-VRF PIM settings are no longer inside the `vrf <vrf-name>` block; they belong to a separate top-level `router pim vrf <vrf-name>` block.
 
 Interface-level commands, such as `ip pim`, `ip pim hello`, `ip pim bfd`, `ip pim use-source`, `ip pim allow-rp`, `ip pim active-active`, `ip multicast boundary oil`, and all `ip igmp` commands, are unchanged. All NVUE commands are unchanged.
 
-Check the `/etc/frr/frr.conf` file and any automation that configures PIM or MSDP through vtysh before you upgrade to Cumulus Linux 5.19.
+Check the `/etc/frr/frr.conf` file and any automation that configures PIM or MSDP through vtysh before you upgrade to Cumulus Linux 5.19 or later.
 {{%/notice%}}
 
 These example commands configure leaf01, leaf02 and spine01 as shown in the topology example above.

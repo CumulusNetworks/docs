@@ -61,7 +61,7 @@ cpu            x86_64 QEMU Virtual CPU version 2.5+ x1
 memory         1.67 GB                                         
 disk-size      n/a                                             
 port-layout    n/a                                             
-part-number    5.19.0                                          
+part-number    5.20.0                                          
 serial-number  44:38:39:22:01:7a                               
 asic-model     n/a                                             
 system-uuid    51c411e8-43d2-4e60-a7e7-e068aa04b7f9            
@@ -111,7 +111,7 @@ TLV Name             Code Len Value
 Vendor Name          0x2D  16 
 Product Name         0x21   2 VX
 Device Version       0x26   1 3
-Part Number          0x22   5 5.19
+Part Number          0x22   5 5.20
 MAC Addresses        0x2A   2 55
 Base MAC Address     0x24   6 44:38:39:22:01:7A
 Serial Number        0x23  17 44:38:39:22:01:7a

@@ -179,7 +179,7 @@ Docker Containers
 ====================
     Container Name      Image                            Container ID  Status               Ports  Summary
     ------------------  -------------------------------  ------------  -------------------  -----  -------
-    repo                cumulus-linux-apt-mirror:5.19.0  a941e1e51c3e  Up 6 days (healthy)                
+    repo                cumulus-linux-apt-mirror:5.20.0  a941e1e51c3e  Up 6 days (healthy)                
 ```
 
 To show Docker images present on the switch, run the `nv show system docker image` command. Add the `-o native` option to display additional data from Docker inspect.
@@ -188,7 +188,7 @@ To show Docker images present on the switch, run the `nv show system docker imag
 cumulus@switch:~$ nv show system docker image
 Image Id      Image Name                Tag     Size    Date                           Summary
 ------------  ------------------------  ------  ------  -----------------------------  -------
-d839322a5483  cumulus-linux-apt-mirror  5.19.0  3.47GB  2025-10-30 02:35:30 -0400 EDT      
+d839322a5483  cumulus-linux-apt-mirror  5.20.0  3.47GB  2025-10-30 02:35:30 -0400 EDT      
 ```
 
 To list all containers and their status, including stopped containers, run the `nv show system docker container` command. Add the `-o native` option to display additional data from Docker inspect.
@@ -197,7 +197,7 @@ To list all containers and their status, including stopped containers, run the `
 cumulus@switch:~$ nv show system docker container
 Container Name      Image                            Container ID  Status               Ports  Summary
 ------------------  -------------------------------  ------------  -------------------  -----  -------
-repo                cumulus-linux-apt-mirror:5.19.0  a941e1e51c3e  Up 6 days (healthy)                
+repo                cumulus-linux-apt-mirror:5.20.0  a941e1e51c3e  Up 6 days (healthy)                
 ```
 
 To show details of container, run the `nv show system docker container <container-id>` command:
@@ -208,7 +208,7 @@ cumulus@switch:~$ nv show system docker container repo
 -------------  -------------------------------
 id             a941e1e51c3e                   
 status         Up 6 days (healthy)            
-image-name     cumulus-linux-apt-mirror:5.19.0
+image-name     cumulus-linux-apt-mirror:5.20.0
 port                                          
 stats                                         
   cpu          0.00%                          

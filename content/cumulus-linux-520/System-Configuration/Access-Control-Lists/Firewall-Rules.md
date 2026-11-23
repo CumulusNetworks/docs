@@ -7,7 +7,7 @@ toc: 3
 
 The Cumulus Linux default firewall rules protect the switch control plane and CPU from DOS and other potentially malicious network attacks.
 
-In Cumulus Linux 5.8 and earlier, the set of default firewall rules are more open; Cumulus Linux accepts packets from all addresses and protocols. Cumulus Linux 5.9 and later provides a set of default firewall rules that allows only specific addresses and ports, and drops disallowed packets. Cumulus Linux 5.19 adds a default IPv6 control plane ACL, `acl-ipv6-default-whitelist`, that drops traffic to a small set of internal service ports. Cumulus Linux applies this ACL on a fresh installation and when you upgrade to Cumulus Linux 5.19.
+In Cumulus Linux 5.8 and earlier, the set of default firewall rules are more open; Cumulus Linux accepts packets from all addresses and protocols. Cumulus Linux 5.9 and later provides a set of default firewall rules that allows only specific addresses and ports, and drops disallowed packets. Cumulus Linux 5.19 adds a default IPv6 control plane ACL, `acl-ipv6-default-whitelist`, that drops traffic to a small set of internal service ports. Cumulus Linux applies this ACL on a fresh installation and when you upgrade to Cumulus Linux 5.19 or later.
 
 {{%notice note%}}
 The default set of firewall rules consists of IP and transport level rules. To block specific layer 2 packets such as ARP, LLDP, or STP or any packets sent to the CPU as part of generic traps, you must configure separate rules using control plane ACLs in the INPUT or OUTPUT chain of ebtables. See {{<link url="Access-Control-List-Configuration" text="Access Control List Configuration">}}.

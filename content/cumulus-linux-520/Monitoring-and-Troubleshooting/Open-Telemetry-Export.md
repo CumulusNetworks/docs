@@ -1100,10 +1100,6 @@ To show congestion notification configuration, run the `nv show system telemetry
 
 Cumulus Linux exports statistics and histogram data in the formats defined in this section.
 
-{{%notice note%}}
-An asterisk (*) in the `Description` column of the tables below indicates that metric is new for Cumulus Linux 5.19.
-{{%/notice%}}
-
 ### 802.1X Statistic Format
 
 When you enable 802.1X statistic telemetry, the switch exports the following statistics:
@@ -1125,14 +1121,14 @@ When you enable 802.1X statistic telemetry, the switch exports the following sta
 | `nvswitch_dot1x_tx_identity_request_info` | Multicast EAPOL identity request information.|
 | `nvswitch_dot1x_interface_eapol_counters` | Unsolicited Request/Identity TX counters.|
 | `nvswitch_dot1x_tx-identity-request_interface_info`| Replaces `nvswitch_dot1x_interface_info`.|
-| `nvswitch_dot1x_radius_server_errors_total` | *All RADIUS error counters from `hostapd`, exposed per server. Each time-series is aggregated across 802.1x interfaces communicating with the server. |
-| `nvswitch_dot1x_radius_server_requests_total` | *Number of access and accounting requests. |
+| `nvswitch_dot1x_radius_server_errors_total` | All RADIUS error counters from `hostapd`, exposed per server. Each time-series is aggregated across 802.1x interfaces communicating with the server. |
+| `nvswitch_dot1x_radius_server_requests_total` | Number of access and accounting requests. |
 | `nvswitch_dot1x_radius_server_accounting_requests_total` | *Number of accounting requests. |
-| `nvswitch_dot1x_radius_server_responses_total`  | *Total number of responses. |
-| `nvswitch_dot1x_radius_server_retransmissions_total` | *Number of timeout retried access requests and accounting retransmissions. |
-| `nvswitch_dot1x_radius_server_timeouts_total` | *Number of timeout access requests and accounting timeouts. |
-| `nvswitch_dot1x_radius_server_pending_requests` | *Number of RADIUS requests destined for the server that have not yet received a response or been removed from the retransmit list after the maximum number of retransmit attempts. |
-| `nvswitch_dot1x_radius_server_round_trip_time_ms`  | *Most recent round-trip time, in milliseconds, between a RADIUS request and its matching response.  |
+| `nvswitch_dot1x_radius_server_responses_total`  | Total number of responses. |
+| `nvswitch_dot1x_radius_server_retransmissions_total` | Number of timeout retried access requests and accounting retransmissions. |
+| `nvswitch_dot1x_radius_server_timeouts_total` | Number of timeout access requests and accounting timeouts. |
+| `nvswitch_dot1x_radius_server_pending_requests` | Number of RADIUS requests destined for the server that have not yet received a response or been removed from the retransmit list after the maximum number of retransmit attempts. |
+| `nvswitch_dot1x_radius_server_round_trip_time_ms`  | Most recent round-trip time, in milliseconds, between a RADIUS request and its matching response.  |
 {{< expand "Example JSON data for 802.1X:" >}}
 ```
  {
@@ -1200,13 +1196,13 @@ The switch collects and exports the adaptive routing, SRv6, and packet trimming 
 | `nvswitch_interface_trimmed_unicast_pkts [interface]`| Number of packets that were trimmed on the interface.|
 | `nvswitch_interface_trimmed_tx_unicast_pkts [interface]`| Number of packets that were trimmed and sent successfully on the interface. Spectrum-4 switches do not support this metric.|
 | `nvswitch_interface_tc_trimmed_unicast_pkts [interface][tc]`| Number of packets that were trimmed on the interface and traffic class.|
-| `nvswitch_qos_trimmed_tx_unicast_pkts` | *Number of packets that were trimmed and sent successfully. Spectrum-6 only. |
-| `nvswitch_qos_trimmed_drop_unicast_pkts` | *Number of packets that were trimmed and dropped. Spectrum-6 only. |
-| `nvswitch_interface_trimmed_drop_unicast_pkts [interface]` | *Number of packets that were trimmed and dropped on the interface. Spectrum-6 only. |
-| `nvswitch_interface_tc_trimmed_tx_unicast_pkts [interface][tc]` | *Number of packets that were trimmed and sent successfully on the interface and traffic class. Spectrum-6 only. |
-| `nvswitch_interface_tc_trimmed_drop_unicast_pkts [interface][tc]` | *Number of packets that were trimmed and dropped on the interface and traffic class. Spectrum-6 only. |
-| `nvswitch_qos_spxm_notify_sender_link_down_pkts` | *Number of packets that matched the back-to-sender classifier on link down, both while the route is still in hardware and after FRR withdraws it. Counts notifications the switch attempted, not notifications the switch confirmed the sender received. Spectrum-6 only. |
-| `nvswitch_qos_notify_sender_trimmed_link_down_pkts` | *Number of those packets the switch trimmed and sent as a back-to-sender notification. Spectrum-6 only. |
+| `nvswitch_qos_trimmed_tx_unicast_pkts` | Number of packets that were trimmed and sent successfully. Spectrum-6 only. |
+| `nvswitch_qos_trimmed_drop_unicast_pkts` | Number of packets that were trimmed and dropped. Spectrum-6 only. |
+| `nvswitch_interface_trimmed_drop_unicast_pkts [interface]` | Number of packets that were trimmed and dropped on the interface. Spectrum-6 only. |
+| `nvswitch_interface_tc_trimmed_tx_unicast_pkts [interface][tc]` | Number of packets that were trimmed and sent successfully on the interface and traffic class. Spectrum-6 only. |
+| `nvswitch_interface_tc_trimmed_drop_unicast_pkts [interface][tc]` | Number of packets that were trimmed and dropped on the interface and traffic class. Spectrum-6 only. |
+| `nvswitch_qos_spxm_notify_sender_link_down_pkts` | Number of packets that matched the back-to-sender classifier on link down, both while the route is still in hardware and after FRR withdraws it. Counts notifications the switch attempted, not notifications the switch confirmed the sender received. Spectrum-6 only. |
+| `nvswitch_qos_notify_sender_trimmed_link_down_pkts` | Number of those packets the switch trimmed and sent as a back-to-sender notification. Spectrum-6 only. |
 
 {{%notice note%}}
 `nvswitch_ar_congestion_changes` is a cumulative counter that only increases. Adaptive routing selects an egress port for each packet, so the counter tracks packet forwarding instead of congestion:
@@ -1692,13 +1688,13 @@ The switch sends a sample with the following names for each interface enabled fo
 | `nvswitch_histogram_interface_counter_bucket` | Histogram interface counter bucket. |
 | `nvswitch_histogram_interface_counter_count` | Histogram interface counter count. |
 | `nvswitch_histogram_interface_latency` | Histogram interface latency data. |
-| `nvswitch_histogram_interface_microburst` | *Histogram interface microburst distribution for one direction and quantity. The bucket counts are the packet or byte delta for each sampling window. |
-| `nvswitch_histogram_interface_microburst_score` | *Burstiness score for the current window. |
-| `nvswitch_histogram_interface_microburst_mean_bin_index` | *Mean bin index for the current window. |
-| `nvswitch_histogram_interface_microburst_distribution_variance` | *Bin index variance for the current window. |
-| `nvswitch_histogram_interface_microburst_peak_value` | *Peak raw watermark for the current window, in packets or bytes. Omitted when no valid watermark is available for the window. |
-| `nvswitch_histogram_interface_microburst_threshold_state` | *Threshold state for the configured score threshold, where 0 is clear and 1 is triggered. Omitted when no threshold is configured. |
-| `nvswitch_histogram_interface_microburst_last_triggered` | *Timestamp, in Unix epoch nanoseconds, of the last transition into the triggered state. Omitted when the threshold has never triggered. |
+| `nvswitch_histogram_interface_microburst` | Histogram interface microburst distribution for one direction and quantity. The bucket counts are the packet or byte delta for each sampling window. |
+| `nvswitch_histogram_interface_microburst_score` | Burstiness score for the current window. |
+| `nvswitch_histogram_interface_microburst_mean_bin_index` | Mean bin index for the current window. |
+| `nvswitch_histogram_interface_microburst_distribution_variance` | Bin index variance for the current window. |
+| `nvswitch_histogram_interface_microburst_peak_value` | Peak raw watermark for the current window, in packets or bytes. Omitted when no valid watermark is available for the window. |
+| `nvswitch_histogram_interface_microburst_threshold_state` | Threshold state for the configured score threshold, where 0 is clear and 1 is triggered. Omitted when no threshold is configured. |
+| `nvswitch_histogram_interface_microburst_last_triggered` | Timestamp, in Unix epoch nanoseconds, of the last transition into the triggered state. Omitted when the threshold has never triggered. |
 
 The microburst metrics carry an `interface` label, a `direction` label (`rx` or `tx`), and a `quantity` label (`packets` or `bytes`). The `nvswitch_histogram_interface_microburst` metric is a histogram; the other microburst metrics are gauges. For information about configuring the microburst histogram, refer to {{<link url="ASIC-Monitoring/#microburst-histogram" text="Microburst Histogram">}}.
 
@@ -2907,14 +2903,14 @@ When you enable LLDP statistic telemetry, the switch exports the following stati
 
 | Name | Description |
 |----- | ----------- |
-| `nvswitch_lldp_chassis_info` | *LLDP chassis information. |
-| `nvswitch_lldp_chassis_capabilities` | *LLDP chassis capabilities as a bitmap. IEEE 802.1AB defines the capabilities.|
-| `nvswitch_lldp_neighbor_age` | *LLDP neighbor age information in seconds.|
-| `nvswitch_lldp_neighbor_capabilities` | *LLDP neighbor capabilities as a bitmap. IEEE 802.1AB defines the capabilities. |
-| `nvswitch_lldp_neighbor_info` | *LLDP neighbor information.|
-| `nvswitch_lldp_neighbor_ttl` | *LLDP neighbor port TTL in seconds.|
-| `nvswitch_lldp_neighbor_management_address-info` | *LLDP neighbor management address information.|
-| `nvswitch_lldp_interface_enabled` | *Per-directional status on whether LLDP is enabled per interface.|
+| `nvswitch_lldp_chassis_info` | LLDP chassis information. |
+| `nvswitch_lldp_chassis_capabilities` | LLDP chassis capabilities as a bitmap. IEEE 802.1AB defines the capabilities.|
+| `nvswitch_lldp_neighbor_age` | LLDP neighbor age information in seconds.|
+| `nvswitch_lldp_neighbor_capabilities` | LLDP neighbor capabilities as a bitmap. IEEE 802.1AB defines the capabilities. |
+| `nvswitch_lldp_neighbor_info` | LLDP neighbor information.|
+| `nvswitch_lldp_neighbor_ttl` | LLDP neighbor port TTL in seconds.|
+| `nvswitch_lldp_neighbor_management_address-info` | LLDP neighbor management address information.|
+| `nvswitch_lldp_interface_enabled` | Per-directional status on whether LLDP is enabled per interface.|
 
 {{< expand "Example JSON data for nvswitch_lldp_chassis_info:" >}}
 
@@ -3249,9 +3245,9 @@ When you enable LLDP statistic telemetry, the switch exports the following stati
 
 |  Name | Description |
 |------ | ----------- |
-| `nvswitch_platform_package_archive_failure_state` | *The failure state if the patch archive installation fails: (0: none, 1: PRE_INSTALL_FAILED_ROLLBACK_SUCCESSFULL, 2: PRE_INSTALL_FAILED_ROLLBACK_FAILED, 3: PRE_INSTALL_FAILED_ROLLBACK_IN_PROGRESS, 4: APT_FAILED_ROLLBACK_SUCCESSFULL, 5: APT_FAILED_ROLLBACK_FAILED, 6: APT_FAILED_ROLLBACK_IN_PROGRESS, 7: POST_INSTALL_FAILED_ROLLBACK_SUCCESSFULL, 8: POST_INSTALL_FAILED_ROLLBACK_FAILED, 9: POST_INSTALL_FAILED_ROLLBACK_IN_PROGRESS, 10: UNKNOWN_FAILURE_ROLLBACK_SUCCESSFULL, 11: UNKNOWN_FAILURE_ROLLBACK_FAILED, 12: UNKNOWN_FAILURE_ROLLBACK_IN_PROGRESS)|
-| `nvswitch_platform_package_archive_status` | *The patch status (0: not-installed, 1: installed, 2: partially-installed, 3: failed, 4: operation-in-progress).|
-| `nvswitch_platform_package_archive_installed_time` | *The time the patch archive was installed (Unix timestamp). |
+| `nvswitch_platform_package_archive_failure_state` | The failure state if the patch archive installation fails: (0: none, 1: PRE_INSTALL_FAILED_ROLLBACK_SUCCESSFULL, 2: PRE_INSTALL_FAILED_ROLLBACK_FAILED, 3: PRE_INSTALL_FAILED_ROLLBACK_IN_PROGRESS, 4: APT_FAILED_ROLLBACK_SUCCESSFULL, 5: APT_FAILED_ROLLBACK_FAILED, 6: APT_FAILED_ROLLBACK_IN_PROGRESS, 7: POST_INSTALL_FAILED_ROLLBACK_SUCCESSFULL, 8: POST_INSTALL_FAILED_ROLLBACK_FAILED, 9: POST_INSTALL_FAILED_ROLLBACK_IN_PROGRESS, 10: UNKNOWN_FAILURE_ROLLBACK_SUCCESSFULL, 11: UNKNOWN_FAILURE_ROLLBACK_FAILED, 12: UNKNOWN_FAILURE_ROLLBACK_IN_PROGRESS)|
+| `nvswitch_platform_package_archive_status` | The patch status (0: not-installed, 1: installed, 2: partially-installed, 3: failed, 4: operation-in-progress).|
+| `nvswitch_platform_package_archive_installed_time` | The time the patch archive was installed (Unix timestamp). |
 
 ### Performance Statistics
 
@@ -3275,11 +3271,11 @@ ASIC statistics include the ASIC resource used percentage, the maximum number of
 
 | Name | Description |
 |----- | ----------- |
-| `nvswitch_platform_asic_resource_used{resource_name="<name>"}` | *The number of entries used for an ASIC resource. |
-| `nvswitch_platform_asic_resource_free{resource_name="<name>"}` | *The number of free entries available for an ASIC resource. |
-| `nvswitch_platform_asic_resource_max_limit{resource_name="<name>"}` | *The maximum limit of possible entries for an ASIC resource.|
-| `nvswitch_platform_asic_resource_high_watermark{resource_name="<name>"}` | *The highest number of entries used for an ASIC resource. |
-| `nvswitch_platform_asic_resource_high_watermark_timestamp{resource_name="<name>"}` | *The timestamp when the high-watermark was last updated.|
+| `nvswitch_platform_asic_resource_used{resource_name="<name>"}` | The number of entries used for an ASIC resource. |
+| `nvswitch_platform_asic_resource_free{resource_name="<name>"}` | The number of free entries available for an ASIC resource. |
+| `nvswitch_platform_asic_resource_max_limit{resource_name="<name>"}` | The maximum limit of possible entries for an ASIC resource.|
+| `nvswitch_platform_asic_resource_high_watermark{resource_name="<name>"}` | The highest number of entries used for an ASIC resource. |
+| `nvswitch_platform_asic_resource_high_watermark_timestamp{resource_name="<name>"}` | The timestamp when the high-watermark was last updated.|
 
 The ASIC resource is one of the following:
 
@@ -3471,7 +3467,7 @@ The `psu_*` metrics in this table are the legacy PSU metric family. For the comm
 | `nvswitch_platform_transceiver_channel_tx_bias_current_alarm` | tx bias current alarm state of tx bias current measure for the channel when compared to the threshold values for the channel defined for the module. This is a bit mask value:<br>Bit 0: tx_bias_hi_al<br>Bit 1: l tx_bias_lo_al<br>Bit 2: tx_bia_hi_war<br>Bit 3: l tx_bias_lo_war |
 | `nvswitch_platform_transceiver_channel_tx_bias_current_threshold_info` | tx bias current thresholds defined for the channel in Amps units and represented by a 32bit decimal value. |
 | `nvswitch_platform_transceiver_firmware_version`| Firmware version information for the transceiver.|
-| `nvswitch_platform_transceiver_ethernet_pmd` | Ethernet PMD information for the transceiver. <b>Note</b>: In Cumulus Linux 5.19, this metric reports the PMD of the transceiver media instead of the host interface:<br>- Optical modules report the advertised media type, such as `ETH_400GBASE_DR4`.<br>- Active optical and active copper cables report `ETH_100G_AOC` or `ETH_100G_ACC` at 100G. Other speeds report `OTHER`.<br>- Passive copper cables report the operating PMD, such as `ETH_100GBASE_CR4`, only while the link is up.<br>For CMIS transceivers (QSFP-DD and OSFP), the reported PMD comes from the first application the module advertises. If the first application is not the full rate of the module, such as a twin-port 800G module that advertises 400GAUI-4, the metric shows the lower rate. If the first application is InfiniBand, an active cable reports its PMD only while the link is up. |
+| `nvswitch_platform_transceiver_ethernet_pmd` | Ethernet PMD information for the transceiver. <b>Note</b>: In Cumulus Linux 5.19 and later, this metric reports the PMD of the transceiver media instead of the host interface:<br>- Optical modules report the advertised media type, such as `ETH_400GBASE_DR4`.<br>- Active optical and active copper cables report `ETH_100G_AOC` or `ETH_100G_ACC` at 100G. Other speeds report `OTHER`.<br>- Passive copper cables report the operating PMD, such as `ETH_100GBASE_CR4`, only while the link is up.<br>For CMIS transceivers (QSFP-DD and OSFP), the reported PMD comes from the first application the module advertises. If the first application is not the full rate of the module, such as a twin-port 800G module that advertises 400GAUI-4, the metric shows the lower rate. If the first application is InfiniBand, an active cable reports its PMD only while the link is up. |
 | `nvswitch_platform_transceiver_physical_channel_state` | Per physical channel LOS and CDR LOL state.|
 | `nvswitch_platform_transceiver_host_lane_state` | Per host lane LOS and CDR LOL state.|
 
@@ -3520,8 +3516,8 @@ The switch exports these metrics on a switch with CPO only. Enable them with the
 
 |  Name | Description |
 |------ | ----------- |
-| `nvswitch_platform_environment_leak_sensor_status` | *Leak sensor status. Liquid-cooled NVIDIA switch only.|
-| `nvswitch_platform_environment_leakage_status` | *Leakage status. Liquid-cooled NVIDIA switch only. |
+| `nvswitch_platform_environment_leak_sensor_status` | Leak sensor status. Liquid-cooled NVIDIA switch only.|
+| `nvswitch_platform_environment_leakage_status` | Leakage status. Liquid-cooled NVIDIA switch only. |
 
 {{< /tab >}}
 {{< tab "Power Supply">}}
@@ -4678,15 +4674,15 @@ When you enable layer 3 routing metrics telemetry, the switch exports the follow
 | `nvrouting_rib_count_pbr_ipv6` | Number of IPv6 PBR routes in the IP routing table. |
 | `nvrouting_rib_count_ospf_ipv6` | Number of IPv6 OSPF routes in the IP routing table. |
 | `nvrouting_rib_nhg_count` | Number of next hop groups in the routing table. |
-| `nvrouting_bgp_unreach_prefix_count*` | *Number of prefixes in the BGP unreachability table. |
-| `nvrouting_lldp_exception_count` | *Number of unreachable prefixes the switch holds to export to LLDP, excluding the default route exception. |
-| `nvrouting_lldp_default_exception_active_count` | *Whether the default route exception is active. |
-| `nvrouting_lldp_exception_add_total` | *Number of unreachable prefixes sent to LLDP since the routing service started, including resynchronization replays. |
-| `nvrouting_lldp_exception_remove_total` | *Number of unreachable prefix withdrawals sent to LLDP since the routing service started. |
-| `nvrouting_lldp_default_exception_add_total` | *Number of default route exceptions sent to LLDP since the routing service started, counted separately for each VRF and address family. |
-| `nvrouting_lldp_default_exception_remove_total` | *Number of default route exception withdrawals sent to LLDP since the routing service started. |
-| `nvrouting_lldp_export_channel_connected` | *Whether the LLDP export channel is up. |
-| `nvrouting_lldp_export_channel_errors_total` | *Number of unreachable prefix updates that failed to reach LLDP since the routing service started. |
+| `nvrouting_bgp_unreach_prefix_count*` | Number of prefixes in the BGP unreachability table. |
+| `nvrouting_lldp_exception_count` | Number of unreachable prefixes the switch holds to export to LLDP, excluding the default route exception. |
+| `nvrouting_lldp_default_exception_active_count` | Whether the default route exception is active. |
+| `nvrouting_lldp_exception_add_total` | Number of unreachable prefixes sent to LLDP since the routing service started, including resynchronization replays. |
+| `nvrouting_lldp_exception_remove_total` | Number of unreachable prefix withdrawals sent to LLDP since the routing service started. |
+| `nvrouting_lldp_default_exception_add_total` | Number of default route exceptions sent to LLDP since the routing service started, counted separately for each VRF and address family. |
+| `nvrouting_lldp_default_exception_remove_total` | Number of default route exception withdrawals sent to LLDP since the routing service started. |
+| `nvrouting_lldp_export_channel_connected` | Whether the LLDP export channel is up. |
+| `nvrouting_lldp_export_channel_errors_total` | Number of unreachable prefix updates that failed to reach LLDP since the routing service started. |
 
 {{%notice note%}}
 - The unreachability and LLDP exception metrics carry a `vrf` label. The metrics that report a value for each address family also carry an `afi` label that identifies whether the value is for IPv4 or IPv6.

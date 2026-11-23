@@ -1,0 +1,352 @@
+---
+title: System Power and Switch Reboot
+author: NVIDIA
+weight: 295
+toc: 3
+---
+
+Cumulus Linux provides these reboot and power modes:
+- **immediate** reboots the switch immediately without notifying any running processes. Use this mode to reboot as quickly as possible, skipping graceful shutdown to avoid delays or to avoid the switch from hanging.
+- **halt** shuts down the operating system and halts the CPU. The switch is no longer reachable over the network but switch hardware might remain powered. Use this mode for a graceful complete shutdown during planned maintenance when you must shut down the operating system fully but an operating system level halt is sufficient. You cannot connect to the switch until you power cycle it through a remote PDU connection.
+- **power-off** powers off the switch completely (complete electrical power-off). Use this mode to power off the switch for planned maintenance when you need to power off the switch fully. You cannot connect to the switch until you power cycle it through a remote PDU connection. The SN2700 switch does not support `power-off`.
+- **power-cycle** lets you power cycle the switch to recover from certain conditions, such as a thermal ASIC shutdown due to high temperatures.
+- **cold** restarts the system and resets all the hardware devices on the switch (including the switching ASIC). This is the default restart mode on the switch.
+- **fast** restarts the system more efficiently with minimal impact to traffic by reloading the kernel and software stack without a hard reset of the hardware. During a fast restart, the system decouples from the network to the extent possible using existing protocol extensions before recovering to the operational mode of the system. The switch restarts the kernel and software stack without touching the forwarding entries or the switching ASIC; therefore, the data plane is not affected as the software stack restarts. Traffic outage is much lower in this mode as there is a momentary interruption after reboot, while the system reinitializes.
+- **warm** restarts the switch with no interruption to traffic for existing route entries and without a hardware reset of the switch ASIC. While this process does not affect the data plane, the control plane is absent during restart and is unable to process routing updates. On Spectrum-3 and earlier switches, warm reboot requires configuring the switch {{<link url="#resource-allocation" text="resource mode">}} to `half` to reduce the available {{<link title="Forwarding Table Size and Profiles" text="forwarding table entries">}} on the switch by half to accommodate traffic forwarding during a reboot. Spectrum-4 and later switches perform a warm reboot with the resource mode set to `full` and keep all forwarding table entries available.
+
+  Review {{<link url="#warm-reboot-and-issu-considerations" text="Warm Reboot and ISSU Considerations">}} to understand support limitations and requirements for warm reboot and ISSU.
+
+## Reboot Commands
+
+The following table shows the NVUE reboot and power commands, and their Linux command equivalents:
+
+| NVUE Command  | Linux Command| Description |
+|-------------- | ------------- | ----------- |
+| `nv action reboot system` | `sudo csmgrctl -c` | Reboots the switch in cold mode. This command is equivalent to the `nv action reboot system mode cold` command. |
+| `nv action reboot system force` | `sudo csmgrctl -cf` | Reboots the switch in cold mode without prompting for confirmation. This is equivalent to the `nv action reboot system mode cold force` command. |
+| `nv action reboot system mode immediate`| No Linux command available. | Reboots the switch immediately without notifying any running processes. This command invokes the Linux command `sudo reboot --force` after you respond to the prompt with `Yes`.|
+| `nv action reboot system mode immediate force` | `sudo reboot --force` | Reboots the switch immediately without notifying any running processes and without prompting for confirmation. |
+| `nv action reboot system mode halt` | No native command available. | Shuts down the operating system and halts the CPU. The switch hardware might remain powered.  |
+| `nv action reboot system mode halt force` | `sudo reboot --halt` | Shuts down the system without prompting for confirmation.|
+| `nv action reboot system mode power-off`| `sudo cl-poweroff` | Powers off the switch completely (complete electrical power-off). The SN2700 switch does not support `power-off`.|
+| `nv action reboot system mode power-off force`| `sudo cl-poweroff -noprompt` | Powers off the switch completely (complete electrical power-off) without prompting for confirmation. The SN2700 switch does not support `power-off`.|
+| `nv action reboot system mode power-cycle` | `sudo cl-powercycle` | Power cycles the switch. |
+| `nv action reboot system mode power-cycle force` | `sudo cl-powercycle -noprompt` | Power cycles the switch without prompting for confirmation.|
+| `nv action reboot system mode cold` | `sudo csmgrctl -c` | Reboots the switch in cold mode. |
+| `nv action reboot system mode cold force` | `sudo csmgrctl -cf` | Reboots the switch in cold mode without prompting for confirmation.|
+| `nv action reboot system mode fast` | `sudo csmgrctl -f` | Reboots the switch in fast mode.|
+| `nv action reboot system mode fast force` | `sudo csmgrctl -ff` | Reboots the switch in fast mode without prompting for confirmation.|
+| `nv action reboot system mode warm` | `sudo csmgrctl -w` | Reboots the switch in warm mode. |
+| `nv action reboot system mode warm force` | `sudo csmgrctl -wf` | Reboots the switch in warm mode without prompting for confirmation.|
+
+## Command Examples
+
+The following command reboots the switch immediately without notifying any running processes and without prompting for confirmation.
+
+{{< tabs "TabID83">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv action reboot system mode immediate force
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+```
+cumulus@switch:~$ sudo reboot --force
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+The following command shuts down the operating system and halts the CPU.
+
+{{< tabs "TabID103">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv action reboot system mode halt
+
+Do you want to continue? [y/N]  
+Action executing ... 
+Action succeeded
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+```
+cumulus@switch:~$ sudo reboot --halt
+Broadcast message from root@leaf01 on pts/1 (Wed 2026-03-25 15:31:36 UTC):
+
+The system will halt now!
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+The following command powers off the switch.
+
+{{< tabs "TabID125">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv action reboot system mode power-off
+WARNING: This operation will shut down the system completely. 
+The switch will remain powered off until power cycled through 
+a remote PDU connection. 
+
+Do you want to continue? [y/N] y 
+Action executing ... 
+Powering off the switch 
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+```
+cumulus@switch:~$ sudo cl-poweroff
+This script will now power off the switch.
+Do you want to proceed with power-off? (yes/no):
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+The following command power cycles the switch.
+
+{{< tabs "TabID153">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv action reboot system mode power-cycle
+The operation will Power Cycle the switch.
+Type [y] to power cycle.
+Type [N] to abort.
+
+Do you want to continue? [y/N]  
+Action executing ... 
+Action succeeded 
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+```
+cumulus@switch:~$ sudo cl-powercycle
+This script will now power cycle the switch.
+Do you want to proceed with power-cycle? (yes/no):
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+The following command reboots the switch in cold mode.
+
+{{< tabs "TabID181">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv action reboot system mode cold
+Use this option for a complete reboot without removing power.
+
+Do you want to continue? [y/N]
+```
+
+You can also run `nv action reboot system force` because cold reboot is the default mode.
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+```
+cumulus@switch:~$ sudo csmgrctl -c
+System will restart
+ Do you wish to continue? [Y/n]:
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+The following command reboots the switch in fast mode.
+
+{{< tabs "TabID1207">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv action reboot system mode fast
+WARNING: This operation will perform reboot similar to cold reboot but with relatively lower impact on traffic.
+Use this option for quick testing or configuration reload.
+
+Do you want to continue? [y/N]
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+```
+cumulus@switch:~$ sudo csmgrctl -f
+System will restart
+ Do you wish to continue? [Y/n]
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+The following command reboots the switch in warm mode.
+
+{{< tabs "TabID232">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv action reboot system mode warm
+WARNING: This operation will perform a warm reboot (hitless restart that minimizes impact on traffic).
+
+Do you want to continue? [y/N]
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+```
+cumulus@switch:~$ sudo csmgrctl -w
+System will restart
+ Do you wish to continue? [Y/n]:
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+## Show Reboot Information
+
+To show reboot information, such as the date and time, and reason, the reboot mode, and the reboot status, run the `nv show system reboot` command:
+
+```
+cumulus@switch:~$ nv show system reboot
+reason
+  reason               SW asserted reset through CPLD
+  gentime              2026-02-28T01:45:15.921195+00:00
+  user                 system/root
+required               no
+last-reboot-operation  warm
+status                 failed
+detailed-status        forwarding driver api failed
+```
+
+For cold and fast reboot, the `status` indicates `success` and the `detailed-status` is `none` immediately after reboot.
+
+For warm reboot:
+- During warm reboot the status is `in-progress`.
+- When warm reboot completes successfully, the status transitions to `success`.
+- If there is a warm reboot failure, the status is `failed`, and the detailed status indicates the cause:
+  - `forwarding driver API failed` indicates that the warm reboot forwarding driver process returned an error.
+  - `unexpected module restart` indicates that a registered module participating in warm reboot restarted unexpectedly before warm reboot completed.
+
+The switch also creates a syslog message to indicate if warm reboot is in progress or complete.
+
+## Warm Reboot and ISSU Considerations
+
+### Warm Reboot Support
+
+Cumulus Linux supports warm reboot mode with 802.1X, layer 2 forwarding, layer 3 forwarding with BGP, static routing, and VXLAN routing with EVPN.
+
+The following features are not supported during warm reboot:
+- EVPN MLAG or EVPN multihoming.
+- LACP bonds. LACP control plane sessions might time out before warm reboot completes. Use static LAG to keep bonds up with sub-second convergence during a warm reboot.
+
+### Resource Allocation
+
+To manage switch resource allocation, you can configure the resource mode to be either `half` or `full`. By default, the resource mode is `full`.
+
+Warm reboot and hitless ISSU-based software upgrade require the resource mode to be `half`.
+
+The following example sets the switch resource mode to `half`:
+
+{{< tabs "TabID40 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set system forwarding resource-mode half
+```
+
+To set the resource-mode back to the default value (full) run the `nv unset system forwarding resource-mode` command.
+
+{{%notice infonopad%}}
+Changing the resource mode on the switch requires a `switchd` restart, which impacts traffic forwarding.
+{{%/notice%}}
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/resource-mode.conf
+...
+resource_mode = half
+```
+
+Restart the switchd service with the `sudo systemctl restart switchd.service` command.
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### BGP Graceful Restart
+
+When you restart the switch in warm reboot mode, BGP only performs a graceful restart if you set the BGP graceful restart option to `full`. To set BGP graceful restart to full, run the `nv set router bgp graceful-restart mode full` command, then apply the configuration with `nv config apply`. For more information about BGP graceful restart, refer to {{<link url="Optional-BGP-Configuration/#graceful-bgp-restart" text="Optional BGP Configuration">}}.
+
+ You must set the {{<link url="Optional-BGP-Configuration/#restart-timers" text="BGP graceful restart timer">}} to 180 seconds or more to accommodate ISSU.
+
+### ARP Handling
+
+The control plane is responsible for Address Resolution Protocol (ARP) processing. During In-Service Software Upgrade (ISSU) and warm reboot operations, the control plane becomes temporarily unavailable.
+
+If the switch has connected hosts configured with ARP timeout values shorter than approximately 180 seconds, these hosts might experience traffic disruption when gateway ARP entries expire during ISSU. To prevent host connectivity issues during the ISSU process, use one of the following methods:
+
+- Increase ARP parameters such as `base_reachable_time_ms` and `gc_stale_time` on linux hosts so that ARP entries remain valid for a duration longer than the ISSU window.
+
+- Configure static ARP entries. Create required static ARP mappings on the affected hosts before initiating ISSU to ensure uninterrupted ARP resolution.
+
+### MAC Address Learning
+
+During the warm boot window, the switch does not learn new MAC addresses in hardware. The switch does not learn a MAC address that reaches it for the first time during this window, such as a host that comes online or moves to a different port, until the warm boot completes. The switch preserves MAC addresses it learned before the warm boot.
+
+After the warm boot completes, hardware MAC learning resumes. If traffic is still flowing from the affected hosts, the switch learns their MAC addresses at that point; you do not need to take any action.
+
+### Static Routes
+
+When a switch uses a static default route or specific static prefix routes configured only within FRR or through NVUE using the `nv set vrf <vrf-name> router static` command, these routes become temporarily unavailable after a warm reboot while FRR services restart. This can lead to a brief loss of reachability to remote networks.
+
+To maintain connectivity immediately following a warm reboot, configure a kernel  default route with the `nv set interface eth0 ipv4 gateway <gateway-ip>` command, or define the `gateway` parameter under `eth0` in `/etc/network/interfaces` when managing your configuration through linux configuration files.
+
+To add more specific prefix routes directly into the kernel routing table at interface initialization, use ifupdown2 `post-up` hooks in the `/etc/network/interfaces` file:
+
+```
+auto eth0
+iface eth0
+ address 10.100.156.254/24
+ post-up ip route add 10.100.200.0/24 via 10.100.156.1 vrf mgmt
+```
+
+<!-- REMOVED FROM 5.19: applied to full resource mode ISSU, which is no longer in 5.19.
+
+### Spanning Tree Protocol
+
+When you run a warm reboot in {{<link url="Upgrading-Cumulus-Linux/#full-resource-mode-issu" text="full resource mode">}} and <span class="a-tooltip">[STP](## "Spanning Tree Protocol")</span> is enabled in the bridge domain, a continuous traffic stream experiences momentary traffic loss. Traffic recovers on its own; you do not need to take any action.
+
+Cumulus Linux enables STP by default on both VLAN-aware and traditional bridges, so this applies unless you disable STP. Refer to {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP" text="Spanning Tree and Rapid Spanning Tree - STP">}}.
+-->
+
+<!--
+## Power Off
+
+In certain situations, you might need to power off the switch instead of rebooting. To power off the switch, run the `cl-poweroff` command, which shuts down the switch.
+
+```
+cumulus@switch:~$ sudo cl-poweroff
+```
+
+You can also run the Linux `poweroff` command, which gracefully shuts down the switch (the switch LEDs stay on). On certain switches, such as the NVIDIA SN2201, SN2010, SN2100, SN2100B, SN3420, SN3700, SN3700C, SN4410, SN4600C, SN4600, SN4700, SN5400, or SN5600, the switch reboots instead of powering off.
+
+```
+cumulus@switch:~$ sudo poweroff
+```
+-->

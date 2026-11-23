@@ -1,0 +1,258 @@
+---
+title: Management VRF
+author: NVIDIA
+weight: 950
+toc: 3
+---
+*Management VRF* is a subset of {{<link url="Virtual-Routing-and-Forwarding-VRF">}} (virtual routing tables and forwarding) and provides a separation between the out-of-band management network and the in-band data plane network. For VRFs, the *main* routing table is the default table for the data plane switch ports. With management VRF, the switch uses a second table, *mgmt*, for routing through the Ethernet ports of the switch. The *mgmt* name is special cased to identify the management VRF from a data plane VRF.
+
+Cumulus Linux only supports eth0 (or eth1, depending on the switch platform) for *out-of-band management*. The Ethernet ports are software-only ports that are not hardware accelerated by `switchd`. VLAN subinterfaces, bonds, bridges, and the front panel switch ports are not supported as OOB management interfaces.
+
+{{%notice note%}}
+In band management of Cumulus Linux is possible using loopbacks and SVIs (switch virtual interfaces).
+{{%/notice%}}
+
+Cumulus Linux enables Management VRF by default. IPv4 and IPv6 networking applications (for example, Ansible, Chef, and `apt-get`) run by an administrator communicate out the management network by default. This default context does not impact services run through `systemd` and the `systemctl` command, and does not impact commands examining the state of the switch, such as the `ip` command to list links, neighbors, or routes.
+
+{{%notice note%}}
+The management VRF configurations in this section contain a localhost loopback IPv4 address of 127.0.0.1/8 and IPv6 address of ::1/128. Management VRF must have an IPv6 address as well as an IPv4 address to work correctly. Adding the loopback address to the layer 3 domain of the management VRF prevents issues with applications that expect the loopback IP address to exist in the VRF, such as NTP.
+{{%/notice%}}
+
+## Bring Up the Management VRF
+
+If you take down the management VRF using `ifdown`, to bring it back up you need to do one of two things:
+
+- Run the `ifup --with-depends mgmt` command
+- Run `ifreload -a` command
+
+The following command example brings down the management VRF, then brings it back up with the `ifup --with-depends mgmt` command:
+
+```
+cumulus@switch:~$ sudo ifdown mgmt
+cumulus@switch:~$ sudo ifup --with-depends mgmt
+```
+
+{{%notice note%}}
+Running `ifreload -a` disconnects the session for any interface configured as *auto*.
+{{%/notice%}}
+
+## Run Services within the Management VRF
+
+Most default services in Cumulus Linux are VRF aware. If you want to run a service within the management VRF instead of the default VRF, run the following commands:
+
+1. If the service is running, stop the service:
+
+    ```
+    cumulus@switch:~$ sudo systemctl stop <service>.service
+    ```
+
+2. Disable the service from starting automatically in the default VRF:
+
+    ```
+    cumulus@switch:~$ sudo systemctl disable <service>.service
+    ```
+
+3. Start the service in the management VRF:
+
+    ```
+    cumulus@switch:~$ sudo systemctl start <service>@mgmt.service
+    ```
+
+4. Enable the service in the management VRF so that it starts when the switch boots:
+
+    ```
+    cumulus@switch:~$ sudo systemctl enable <service>@mgmt.service
+    ```
+
+5. Verify that the service is running in the management VRF with the `ps aux | grep <service>` command.
+
+Run the following command to show the process IDs associated with the management VRF:
+
+```
+cumulus@switch:~$ ip vrf pids mgmt
+ 2559  login
+ 2753  bash
+ 2045  dhclient
+ 5421  sshd
+ 5462  sshd
+ 5463  bash
+37691  sshd
+37732  sshd
+37735  bash
+55679  sshd
+55720  sshd
+55721  bash
+55993  ip
+ 3834  ntpd
+ 2023  python3
+ 2563  netqd
+ 1855  login
+ 2770  bash
+```
+
+Run the following command to show the VRF association of the specified process:
+
+```
+cumulus@switch:~$ ip vrf identify 2045
+mgmt
+```
+
+Run `ip vrf help` for additional `ip vrf` commands.
+
+### Enable Polling with snmpd in a Management VRF
+
+When you enable `snmpd` to run in the management VRF, you need to specify that VRF so that `snmpd` listens on eth0 in the management VRF; you can also configure `snmpd` to listen on other ports. In Cumulus Linux, SNMP configuration is VRF aware so `snmpd` can bind to multiple IP addresses each configured with a particular VRF (routing table). The `snmpd` daemon responds to polling requests on the interfaces of the VRF on which the request comes in. For information about configuring SNMP version 1, 2c, and 3 Traps and (v3) Inform messages, refer to {{<link url="Simple-Network-Management-Protocol-SNMP">}}.
+
+{{%notice note%}}
+The message `Duplicate IPv4 address detected, some interfaces may not be visible in IP-MIB` displays after starting `snmpd` in the management VRF. This is because the IP-MIB assumes that you cannot use the same IP address twice on the same device; the IP-MIB is not VRF aware. This message is a warning that the SNMP IP-MIB detects overlapping IP addresses on the system; it does *not* indicate a problem and does not impact the operation of the switch.
+{{%/notice%}}
+
+### ping or traceroute on the Management VRF
+
+By default, when you issue a `ping` or `traceroute`, the packet goes to the data plane network (the main routing table). To use `ping` or `traceroute` on the management network, use `ping -I mgmt` or `traceroute -i mgmt`. To select a source address within the management VRF, use the `-s` flag for `traceroute`.
+
+```
+cumulus@switch:~$ ping -I mgmt <destination-ip>
+```
+
+```
+cumulus@switch:~$ sudo traceroute -i mgmt -s <source-ip> <destination-ip>
+```
+
+For additional information on using `ping` and `traceroute`, see {{<link url="Network-Troubleshooting">}}.
+<!-- vale off -->
+### Run Services as a Non-root User
+<!-- vale on -->
+To run services in the management VRF as a non-root user, you need to create a custom service based on the original service file. The following example commands configure the SSH service to run in the management VRF as a non-root user.
+
+1. Run the following command to create a custom service file in the `/etc/systemd/system` directory.
+
+    ```
+    cumulus@switch:~$ sudo -E systemctl edit --full ssh.service
+    ```
+
+2. If a *User* directive exists under *\[Service\]*, comment it out.
+
+    ```
+    cumulus@switch:~$ sudo nano /etc/systemd/system/ssh.service
+    ...
+    [Service]
+    #User=username
+    ExecStart=/usr/local/bin/ssh agent -data-dir=/tmp/ssh -bind=192.168.0.11
+    ...
+    ```
+
+3. Modify the *ExecStart* line to `/usr/bin/ip vrf exec mgmt /sbin/runuser -u USER -- ssh`:
+
+    ```
+    ...
+    [Service]
+    #User=username
+    ExecStart=/usr/bin/ip vrf exec mgmt /sbin/runuser -u cumulus -- ssh
+    ...
+    ```
+
+## OSPF and BGP
+
+<span class="a-tooltip">[FRR](## "FRRouting")</span> is VRF-aware and sends packets based on the switch port routing table. This includes BGP peering through loopback interfaces. BGP looks up routes in the default table. However, depending on how you redistribute your routes, you can perform the following modification.
+
+Management VRF uses the mgmt table, including local routes. This does not affect route redistribution when you use routing protocols, such as OSPF and BGP.
+
+To redistribute the routes in your network, use the `redistribute connected` command under BGP or OSPF. This enables the directly connected network out of eth0 to advertise to its neighbor.
+
+{{%notice note%}}
+This also creates a route on the neighbor device to the management network through the data plane.
+{{%/notice%}}
+
+NVIDIA recommends route maps to control advertised networks that you redistribute with the `redistribute connected` command.
+
+{{< tabs "TabID222 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set router policy route-map REDISTRIBUTE rule 10 match type ipv4
+cumulus@switch:~$ nv set router policy route-map REDISTRIBUTE rule 10 match interface eth0
+cumulus@switch:~$ nv set router policy route-map REDISTRIBUTE rule 10 action deny
+cumulus@switch:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected route-map REDISTRIBUTE
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:$ sudo vtysh
+...
+switch# configure terminal
+switch(config)# route-map REDISTRIBUTE-CONNECTED deny 10 
+switch(config-route-map)# match interface eth0
+switch(config)# route-map REDISTRIBUTE-CONNECTED permit 100
+switch(config-route-map)# exit
+switch(config)# router bgp
+switch(config-router)# address-family ipv4 unicast
+switch((config-router-af)# redistribute connected route-map REDISTRIBUTE-CONNECTED
+switch(config)# end
+switch# write memory
+switch# exit
+```
+
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+router bgp 65101
+ bgp router-id 10.10.10.1
+ neighbor swp51 interface remote-as external
+ neighbor swp52 interface remote-as external
+ !
+ address-family ipv4 unicast
+  network 10.1.10.0/24
+  network 10.10.10.1/32
+  redistribute connected route-map REDISTRIBUTE-CONNECTED
+  maximum-paths 64
+  maximum-paths ibgp 64
+ exit-address-family
+!
+route-map REDISTRIBUTE-CONNECTED deny 100
+match interface eth0
+!
+route-map REDISTRIBUTE-CONNECTED permit 1000
+...
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+## SSH
+
+- To limit SSH to listen on only the management VRF or to a specific IP address on the management VRF, see {{<link url="SSH-for-Remote-Access/#ssh-and-vrfs" text="SSH and VRFs">}}.
+- If you SSH to the switch through a switch port, SSH works as expected. If you need to SSH from the switch out of a switch port, use the `ip vrf exec default ssh <switch-port-ip-address>` command. For example:
+
+  ```
+  cumulus@switch:~$ sudo ip vrf exec default ssh 10.3.3.3
+  ```
+
+## View the Routing Tables
+
+When you use `ip route get` to return information about a single route, the command resolves over the *mgmt* table by default. To show information about the route in the switching silicon, run this command:
+
+```
+cumulus@switch:~$ ip route get <ip-address>
+```
+
+To get the route for any VRF, run the `ip route get <ip-address> oif <vrf-id>` command. For example, to show the route for the management VRF, run:
+
+```
+cumulus@switch:~$ ip route get <ip-address> oif mgmt
+```
+
+## Management VRF and DNS
+
+Cumulus Linux supports both DHCP and static DNS entries over management VRF through IP FIB rules, which it adds to direct lookups to the DNS addresses out of the management VRF.
+
+To configure a nameserver in the management VRF, run the `nv set system dns server <dns-server-id> vrf mgmt` command. For the full set of DNS client commands, including the `/etc/resolv.conf` entries that associate a nameserver with the management VRF and how to configure the source address of DNS queries, see {{<link url="Domain-Name-System-DNS" text="Domain Name System DNS">}}.
+
+{{%notice note%}}
+- Because FIB rules force DNS lookups out of the management interface, this can affect data plane ports if you use overlapping addresses. For example, when the switch learns the DNS server IP address over the management VRF, it creates a FIB rule for that IP address. When DHCP relay has the same IP address, the switch forwards any DHCP discover packet arriving on the front panel port out of the management interface (eth0) even though a route is present out the front-panel port.
+- If you do not specify a DNS server and you lose in band connectivity, DNS does not work through the management VRF. Cumulus Linux does not assume all DNS servers are reachable through the management VRF.
+{{%/notice%}}

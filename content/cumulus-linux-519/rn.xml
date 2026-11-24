@@ -7,16 +7,8 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>5441211</td>
-<td>You can only upgrade to CL5.19 from CL5.9.x using ONIE install and offline configuration translation with NVUE; refer to the "Translate a Configuration Revision or File" section the Cumulus Linux user guide.</td>
-<td>5.9.5-5.15.1, 5.16.0-5.16.1, 5.16.5-5.19.0</td>
-<td></td>
-</tr>
-<tr>
 <td>5440931</td>
-<td>Enabling histogram config with snapshot file on the switch would lead to connection issues with NetQ server. 
-Compression of histogram snapshot files is an enhancement introduced in CL 5.19.0 to support platforms with higher scale of interfaces, saving disk space. 
-These compressed files are not compatible with NetQ 5.3 causing server connection loss.</td>
+<td>In Cumulus Linux 5.19.0, the switch compresses histogram snapshot files to save disk space on platforms with a large number of interfaces. The NetQ 5.3 agent cannot process the compressed files. If you configure a histogram snapshot file on a switch running Cumulus Linux 5.19.0, the NetQ agent stops sending histogram data to the NetQ server.</td>
 <td>5.19.0</td>
 <td></td>
 </tr>
@@ -89,12 +81,6 @@ In an EVPN multihoming configuration, a remote MAC address remains programmed in
 <td>5372506</td>
 <td>On a multi-lane CPO port, the {{l1-show}} command only shows the first TX and RX power reading instead of showing one reading for each lane.</td>
 <td>5.18.0-5.19.0</td>
-<td></td>
-</tr>
-<tr>
-<td>5369140</td>
-<td>After you change a fib filter route map rule action from deny to permit, the switch does not reinstall BGP routes in the kernel. zebra and NVUE show the routes as installed and offloaded, BGP keeps advertising them, and the switch drops traffic to them. To work around this issue, clear the neighbor session with the {{nv action clear vrf &lt;vrf-id&gt; router bgp neighbor &lt;neighbor-id&gt;}} command after changing the route map action.  </td>
-<td>5.19.0</td>
 <td></td>
 </tr>
 <tr>

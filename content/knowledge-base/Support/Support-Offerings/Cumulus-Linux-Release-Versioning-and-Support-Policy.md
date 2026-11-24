@@ -99,6 +99,7 @@ NVIDIA does not provide support for end of life releases; migrate to a current r
 | 5.16.z                | N/A               | April 2027        |
 | 5.17.z                | N/A               | July 2027         |
 | 5.18.z                | N/A               | August 2027       |
+| 5.19.z                | N/A               | December 2029     |
 
 Cumulus Linux 5.y.z supports Spectrum based switches only.
 

@@ -818,5 +818,4 @@ The TACACS+ client implementation that forwards or retries a request with an alt
 
 ### Local Fallback and User Home Directory
 
-- To avoid home directory permission issues, NVIDIA recommends you do not configure both local fallback authentication and enable a home directory for a user.
-- A TACACS+ server might delay every reject by about one second to slow down password-guessing attacks. Not every server adds this delay. The configured TACACS timeout must be longer than the server's reject delay;otherwise, the reject arrives after the timeout and is treated as unreachable, so authentication continues to the next method.
+To avoid home directory permission issues, NVIDIA recommends you do not configure both local fallback authentication and enable a home directory for a user.

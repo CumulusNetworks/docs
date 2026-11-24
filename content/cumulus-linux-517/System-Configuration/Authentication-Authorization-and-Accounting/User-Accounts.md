@@ -138,16 +138,17 @@ You must specify the hashed password in Linux `crypt` format; the password must 
   - `$5$` is SHA-256
   - `$6$` is SHA-512
   
-To generate a hashed password on the switch, you can either run a `python3` command or install and use the `mkpasswd` utility:
+To generate a hashed password on the switch, you can either run an `openssl passwd` command or install and use the `mkpasswd` utility:
 
 {{< tabs "TabID102 ">}}
-{{< tab "python3 Command ">}}
+{{< tab "openssl passwd Command ">}}
 
 Run the following command on the switch or Linux host. When prompted, enter the plain text password you want to hash:
 
 ```
-cumulus@switch:~$ python3 -c "import crypt; import getpass; print(crypt.crypt(getpass.getpass(), salt=crypt.METHOD_SHA512))"                    
-Password:                                                                                                                                                                 
+cumulus@switch:~$ openssl passwd -6
+Password:
+Verifying - Password:
 $6$MIDE.sdxwxuAMGHd$XFXSpHV4NRJymUpeCKz.SYEMUfGGEtLbcqK0fBw3d96ZzegP3sw6ppl5Atx9xLS3UHLLTWS/BOwjkeBJJaRx10
 ```
 
